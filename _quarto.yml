@@ -1,0 +1,51 @@
+project:
+  type: website
+
+website:
+  title: "MATH 615 Fall 22"
+  reader-mode: true
+  navbar:
+    background: primary
+    search: true
+    left:
+      - href: schedule.qmd
+        text: "Schedule"
+      - href: notes.qmd
+        text: "Materials"
+#  page-footer: 
+#    left: "Copyright 2022, Robin Donatello" 
+#    right: 
+#      - icon: github
+#        href: https://github.com/norcalbiostat
+#      - icon: twitter 
+#        href: https://twitter.com/norcalbiostat
+
+
+  sidebar:
+    - title: "Materials"
+      style: "docked"
+      search: true
+      background: light
+      contents:
+        - section: "Schedule"
+          contents: 
+          - href: weekly.qmd
+          - href: schedule.qmd
+          - href: calendar.qmd
+
+        - section: "Notes"
+          text: "All Notes"
+          contents:
+          - href: notes00_intro_class.qmd
+            text: "Intro to the class"
+        - section: "Homework"
+
+        
+format:
+  html:
+    theme: flatly
+    highlight: tango
+    toc: true
+
+
+

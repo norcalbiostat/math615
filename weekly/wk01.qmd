@@ -1,0 +1,153 @@
+---
+title: "Week 01: Introduction to the Class"
+date: "2022-08-22"
+---
+
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(dplyr);library(readxl); library(kableExtra); library(tidyr)
+library(stringr)
+options(knitr.table.format = "html", knitr.kable.NA = '') 
+knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE) 
+```
+
+
+----
+
+# Learning Path
+
+## Where we've been
+Summer Break! 
+
+## Where we're at
+Ready to learn
+
+
+## Objectives for the week
+
+* Get connected to all the class materials & tools
+* Learning how to format data in spreadsheets
+* Choose a research project data set and review its codebook
+
+---
+
+```{r}
+read_excel("../schedule_615.xlsx", sheet="weekly_schedule") %>% 
+  mutate(Date = format(date, "%m/%d")) %>% 
+  filter(floor(order)==1) %>%
+  select(Reading:Assignment) %>% 
+  pivot_longer(everything(), names_to = 'Materials') %>%
+  mutate(Item = gsub("\r\n", "-", value)) %>% 
+  select(-value) %>%
+  na.omit() %>%
+  separate_rows(Item, sep = "-") %>% 
+  mutate(Materials = factor(Materials, levels = c("Lecture Notes", "Collaborative Notes", "Reading", "Video", "Assignment"))) %>% 
+  arrange(Materials) %>% 
+  kbl(align="ll", escape=FALSE) %>%
+  kable_paper("hover", full_width=F, html_font = "Ariel",
+              position='left', font_size=16) %>% 
+  column_spec(1, width = '20%', border_right = TRUE) %>% 
+  row_spec(0, bold = T, color = "white", background = "#654378")
+```
+
+
+----
+
+# Monday
+
+## Introductions
+
+* To each other
+* Code of conduct
+* To your learning tools and platforms
+    - What is HackMD?
+
+## Data Architecture
+
+* What is data, where can it be found, how do we use it? 
+* Data Architecture collaborative notes on HackMD
+
+----
+
+# Wednesday 
+
+## Working with data in Spreadsheets
+Same collaborative notes as Monday. 
+
+
+### Formatting data in spreadsheets 
+
+* Humans use spreadsheets differently than computers
+* What do you want to do with the data is important to consider during setup
+* You can set things up in different ways in spreadsheets, but some of these choices can limit your ability to work with the data in other programs 
+
+
+### Good data handling practices
+
+* **Leave raw data alone**
+* Minimize the amount of tidying you do to the data outside of a script. 
+    - If you have to make an adjustment, write down exactly what you did in a notes file. 
+* Export the cleaned data to a text based format like CSV (comma separated values)
+* Leave missing data cells blank:
+    *  don't put a `.`, or `missing`, or 0, or NULL
+
+### Tidy Data principles
+
+* Put all variables in columns - this is the thing that you're measuring (weight, temp, address)
+* One observation per row
+* Don't combine multiple pieces of information in once cell. 
+* pct_5_10_F : percent of females between 5 & 10 years old in that county
+
+
+
+## Example - livestock data
+
+Consider a study of agricultural practices among farmers in two countries in eastern sub-Saharan Africa (Mozambique and Tanzania). Researchers conducted interviews with farmers in these countries to collect data on household statistics (e.g. number of household members, number of meals eaten per day, availability of water), farming practices (e.g. water usage), and assets (e.g. number of farm plots, number of livestock). They also recorded the dates and locations of each interview.
+
+If they were to keep track of the data like this:
+
+![](https://datacarpentry.org/spreadsheets-socialsci/fig/multiple-info.png)
+
+
+**What are some of the problems with this?**
+
+
+**What is actually being measured?**
+
+
+<!---
+**What would this data look like in a _tidy_ data format?**
+
+![](https://datacarpentry.org/spreadsheets-socialsci/fig/single-info.png)
+
+--->
+
+----
+
+## Metadata 
+
+* Recording data about your data ("metadata"") is essential. 
+* **Think about yourself**. You may know now, but the chances that you will still remember the exact wording of the question you asked about your informants’ water use (the data recorded in the column water use), for example, are slim.
+* **Think about others.** Other people may want to examine or use your data - to understand your findings, to verify your findings, to review your submitted publication, to replicate your results, to design a similar study, or even to archive your data for access and re-use by others.   
+* Should not be contained in the data file itself. 
+* Made for humans, not computers. 
+* Often called _codebooks_ or _data dictionaries_ 
+
+
+### Codebooks contain the following information
+
+* variable name (for the computer)
+* variable label (for the human)
+* the prompt (e.g. survey text question)
+* plausible values
+* categorical value labels (e.g. 1: Chico, 2: Paradise)
+    
+    
+[^dc]: Lesson adapted from https://datacarpentry.org/spreadsheets-socialsci/01-format-data/index.html 
+
+
+
+## Explore project data
+
+* Project data you can choose from can be found here: https://drive.google.com/drive/u/0/folders/1jULudBjRbHdW-uLIvmMbxRBEJJkq9crY 
+* Browse through the available data sets, read the summaries and skim the codebooks. Next week you'll choose a data set and start to develop research questions to explore. 
