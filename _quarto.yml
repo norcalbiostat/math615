@@ -2,50 +2,59 @@ project:
   type: website
 
 website:
-  title: "MATH 615 Fall 22"
-  reader-mode: true
-  navbar:
-    background: primary
-    search: true
-    left:
-      - href: schedule.qmd
-        text: "Schedule"
-      - href: notes.qmd
-        text: "Materials"
-#  page-footer: 
-#    left: "Copyright 2022, Robin Donatello" 
-#    right: 
-#      - icon: github
-#        href: https://github.com/norcalbiostat
-#      - icon: twitter 
-#        href: https://twitter.com/norcalbiostat
+  page-navigation: true
+  title: "Data Analysis for Graduate Students"
+  description: "Homepage for MATH 615 Fall 22"
+  site-url: "https://norcalbiostat.github.io/MATH615"
+  
+  #repo-url: https://github.com/rstudio-conf-2022/teach-ds
+  #repo-actions: [edit, issue]
+  
+ # page-footer:
+ #    left: "This page is built with -heart- and [Quarto](https://quarto.org/)."
+ #    right: "&copy; Copyright 2022, Robin Donatello"
+ #    #background: "#2e3846"
+ #     - icon: github
+ #       href: https://github.com/norcalbiostat
+ #     - icon: twitter
+ #       href: https://twitter.com/norcalbiostat
 
 
   sidebar:
-    - title: "Materials"
-      style: "docked"
-      search: true
-      background: light
-      contents:
-        - section: "Schedule"
-          contents: 
-          - href: weekly.qmd
-          - href: schedule.qmd
-          - href: calendar.qmd
+    pinned: true
+    align: center
+    style: "docked"
+    search: true
+    #    logo: "images/logo.gif"
+    # tools:
+    #   - icon: github
+    #     href: https://github.com/norcalbiostat
+    #     text: GitHub
+    contents: 
+      - index.qmd
+      - section: "Schedule"
+        contents:
+          - schedule.qmd
+          - calendar.qmd
+      - section: "Materials"
+        contents:
+          - topics.qmd
+          - slides.qmd
+          - hw.qmd
+          - collab_notes.qmd
+          - reading.qmd
 
-        - section: "Notes"
-          text: "All Notes"
-          contents:
-          - href: notes00_intro_class.qmd
-            text: "Intro to the class"
-        - section: "Homework"
-
-        
 format:
   html:
-    theme: flatly
+    theme: 
+      light: flatly
+      dark: darkly
     highlight: tango
     toc: true
+    code-copy: true
+    code-overflow: scroll
 
-
-
+execute:
+  #freeze: auto
+  echo: false
+  warning: false

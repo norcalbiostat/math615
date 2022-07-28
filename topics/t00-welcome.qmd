@@ -1,0 +1,71 @@
+---
+title: "Welcome"
+subtitle: "Introduction to the Class and your materials"
+description: "Aug 22"
+---
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse);library(readxl); 
+library(pander); library(janitor)
+
+# Function to clean strings & separate into lists
+str_prep <- function(var){
+  as.list(
+    str_split(var, "\r\n", simplify=TRUE)
+    )
+}
+
+topic_mats <- read_excel("../schedule_615_test.xlsx", sheet="weekly_schedule") %>%
+  clean_names() %>% 
+  filter(grepl("t00", topic)) %>%
+  select(slides, collab, reading, assignment)
+```
+
+## Learning Path
+
+### Where we've been
+Summer Break! 
+
+### Where we're at
+Ready to learn
+
+
+### Objectives
+
+* Get connected to all the class materials & tools
+
+---
+
+## Learning Materials
+
+**Slides**
+
+```{r}
+pander(str_prep(topic_mats$slides))
+```
+
+**Reading** 
+
+```{r}
+pander(str_prep(topic_mats$reading))
+```
+
+
+**Collaborative notes**
+
+```{r}
+pander(str_prep(topic_mats$collab))
+```
+
+## Assignments
+
+```{r}
+pander(str_prep(topic_mats$assignment))
+```
+
+## Discussion
+
+* Introductions to each other
+* Code of conduct
+* Overiview of your learning tools and platforms
+    - What is HackMD collaborative notes.
