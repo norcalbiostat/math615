@@ -2,6 +2,24 @@
 title: "Collaborative Notes"
 ---
 
-* link 1
-* link 2
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
 
+library(readxl); library(pander)
+
+str_prep <- function(var){
+  as.list(
+    stringr::str_split(var, "\r\n", simplify=TRUE)
+    )
+}
+
+topic_mats <- read_excel("schedule_615_test.xlsx", sheet="weekly_schedule") |>
+  dplyr::select(collab) |> na.omit()
+```
+
+
+```{r}
+pander(str_prep(topic_mats$collab))
+```

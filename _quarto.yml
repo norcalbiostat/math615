@@ -1,24 +1,28 @@
 project:
   type: website
-
+  output-dir: _site
+  preview:
+    port: 4200
+    browser: true
+    
 website:
   page-navigation: true
   title: "Data Analysis for Graduate Students"
   description: "Homepage for MATH 615 Fall 22"
   site-url: "https://norcalbiostat.github.io/MATH615"
   
-  #repo-url: https://github.com/rstudio-conf-2022/teach-ds
-  #repo-actions: [edit, issue]
+  repo-url: https://github.com/norcalbiostat/math615_test
+  repo-actions: [edit, issue]
   
- # page-footer:
- #    left: "This page is built with -heart- and [Quarto](https://quarto.org/)."
- #    right: "&copy; Copyright 2022, Robin Donatello"
- #    #background: "#2e3846"
- #     - icon: github
- #       href: https://github.com/norcalbiostat
- #     - icon: twitter
- #       href: https://twitter.com/norcalbiostat
-
+  page-footer:
+    background: "#2e3846"
+    left: "This site is built with :heart: and [Quarto](https://quarto.org/). &copy; Copyright 2022, Robin Donatello"
+    right:
+      - icon: github
+        href: https://github.com/norcalbiostat
+      - icon: twitter 
+        href: https://twitter.com/norcalbiostat
+    
 
   sidebar:
     pinned: true
@@ -27,11 +31,12 @@ website:
     search: true
     #    logo: "images/logo.gif"
     # tools:
-    #   - icon: github
-    #     href: https://github.com/norcalbiostat
-    #     text: GitHub
+    #  - icon: discord
+    #    href: https://discord.gg/tzcB4MJadW
+    #    text: Discord
     contents: 
       - index.qmd
+      - syllabus.qmd
       - section: "Schedule"
         contents:
           - schedule.qmd
@@ -43,7 +48,9 @@ website:
           - hw.qmd
           - collab_notes.qmd
           - reading.qmd
+      - help.qmd
 
+from: markdown+emoji
 format:
   html:
     theme: 
@@ -53,8 +60,9 @@ format:
     toc: true
     code-copy: true
     code-overflow: scroll
+    
 
 execute:
-  #freeze: auto
+  freeze: auto # re-render only when source changes
   echo: false
   warning: false

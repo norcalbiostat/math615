@@ -1,6 +1,6 @@
 ---
-title: "Welcome"
-subtitle: "Introduction to the Class and your materials"
+title: "Welcome to Fall 22"
+subtitle: "Introduction to class and your learning materials"
 description: "Aug 22"
 ---
 
@@ -18,7 +18,9 @@ str_prep <- function(var){
 topic_mats <- read_excel("../schedule_615_test.xlsx", sheet="weekly_schedule") %>%
   clean_names() %>% 
   filter(grepl("t00", topic)) %>%
-  select(slides, collab, reading, assignment)
+  mutate(assignment = gsub("hw", "../hw/hw", hw), 
+         slides = sprintf("[%s](%s)", topic_name, paste0("../slides/", lecture, "html"))) %>% 
+  select(slides, collab, reading, assignment, topic_obj)
 ```
 
 ## Learning Path
@@ -32,26 +34,26 @@ Ready to learn
 
 ### Objectives
 
-* Get connected to all the class materials & tools
-
----
+```{r}
+pander(str_prep(topic_mats$topic_obj))
+```
 
 ## Learning Materials
 
-**Slides**
+{{< fa person-chalkboard >}}  **Slides (Will open in full screen. Right click to open in a new tab)**
 
 ```{r}
 pander(str_prep(topic_mats$slides))
 ```
 
-**Reading** 
+{{< fa book-open >}}  **Reading** 
 
 ```{r}
 pander(str_prep(topic_mats$reading))
 ```
 
 
-**Collaborative notes**
+{{< fa pencil >}} **Collaborative notes**
 
 ```{r}
 pander(str_prep(topic_mats$collab))
@@ -67,5 +69,5 @@ pander(str_prep(topic_mats$assignment))
 
 * Introductions to each other
 * Code of conduct
-* Overiview of your learning tools and platforms
+* Overview of your learning tools and platforms
     - What is HackMD collaborative notes.

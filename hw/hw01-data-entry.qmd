@@ -1,0 +1,103 @@
+---
+title: "HW 01: Data Entry"
+subtitle: "Recording data to maintain your sanity."
+---
+
+# Assignment Overview
+Although you will be working with previously collected data, it is important to understand what data looks like as well as how it is coded and entered into a spreadsheet or dataset for analysis. This can help you identify and avoid problems later when reading data into an analysis software program. For example if you mix letters and numbers in the same cell, the variable will be treated as character not numeric. 
+
+# Instructions
+
+There are three pieces to this assignment. 
+
+1. Entering raw data into a spreadsheet. 
+2. Creating a codebook
+3. Importing the data into your software program of choice (SPC)
+
+Using the [PDF copies of medical records](https://norcalbiostat.netlify.com/data/medical-records.pdf) for 5 patients seeking treatment in a hospital emergency room you are going to do data entry and create a codebook.
+
+
+## Submission Instructions
+
+You will enter data and create your codebook directly in Google Sheets.
+
+* Start a new Google spreadsheet in the **01 Data Entry** folder in our shared Google Drive. 
+* Name this file `medrecords_userid` where _userid_ is your chico state user id. 
+* Create and name the following worksheets: `data`, `codebook`, `import`.
+* When you have completed this work, download a copy as a PDF and submit through Blackboard for scoring. 
+
+_I will look at your Google spreadsheet directly. Do not worry if your PDF is not formatted for easy viewing_. 
+
+There is no peer review for this assignment. 
+
+----
+
+# Assignment
+
+## 1. Data Entry
+1. Select 4 variables recorded on the medical forms
+    - one should be a unique identifier, at least one should be a quantitative variable and at least one should be a categorical variable. (Ref PMA6 Ch2)
+2. Select a brief name for each variable - write this in the first row
+    - Use good variable naming conventions: 
+        - short
+        - no special characters
+        - no spaces
+        - doesn't start with a number
+3. Determine what range of values is needed for recording each variable 
+5. Enter the data for each patient, one patient per row. 
+6. If data is missing for a particular value, leave the cell blank. 
+
+![](images/hw1_data.png)
+
+Recall the _tidy data principles_ state to put one observation per row, and one variable (characteristic) per column. 
+
+## 2. Codebook Creation
+In a separate worksheet list the variable names, labels, data types, and response code or ranges in separate columns (4 columns total).
+
+An example of what this should look like is below. (With the exception of the red error)
+
+![](images/hw1_codebook.png)
+
+
+## 3. Data Import
+1. Export your file to your hard drive as a Comma Separated Value (`*.csv`). 
+    - If it asks you, only save the` data` worksheet.
+2. Using your software program of choice, import this data into the program using point and click GUI methods.
+    - Code is fine if you already know how. Point and click is also fine for now.
+    - Read the collaborative notes for your SPC to learn others have done this.
+3. Note and record any problems that you noticed and/or had to fix at the bottom of your `codebook` worksheet. 
+    - Does your data file look like your spreadsheet? 
+    - Did you have to specify missing values in any specific way?
+4. Show that it worked by taking a screenshot of the code, and the view of the data. Paste both in the `codebook` worksheet.
+    
+
+### Examples of import code
+
+![Example R code](images/hw1_r_code.png){fig-alt="Example of R import code"}
+
+
+![Example SPSS code](images/hw1_spss_code.png){width=400 fig-alt="Example of SPSS import code"}
+
+
+----
+
+# Grading Rubric
+
+* Data entry
+    - Data for 4 distinct variables are entered
+    - The three specified data types are included
+    - Used proper variable names
+    - Missing data properly treated
+* Codebook
+    - Each variable in the data is present
+    - Ranges of plausible data are defined
+    - Levels of categorical variables are defined
+* Data import code
+    - Code looks correct
+    - Path to data leads to math 615 folder
+* Screenshot showing
+    - Data was read in correctly
+    - first row was read in as variable names
+    - missing data properly accounted for
+
+    
