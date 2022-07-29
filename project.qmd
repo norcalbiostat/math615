@@ -1,0 +1,219 @@
+---
+title: "Research Project"
+---
+
+## Overview
+
+Throughout the entire semester you will be analyzing a data set with the end goal of creating a poster presentation to present your research. Your assignments will serve as a first draft of exploration into your research questions, and helps you build your story. Homework assignments alone will not be sufficient for a good analysis. 
+
+You will build up your project in stages, revising multiple times. The end goal is a research poster that you will present during finals week. You will be summarizing your findings using Google Slides. This will help you concisely explain your research topic and findings in a way will be easier to translate (fit) onto a poster. Here is the general outline, with each stage is explained in detail further below. 
+
+* Stage 1: Choose a data set and identify a few research topics
+* Stage 2: Introduce your project and variables of interest
+* Stage 3: Explore your data and relationships
+* Stage 4: Analyze bivariate relationships
+* Stage 5: Multivariable modeling & summarizing findings
+* Stage 6: Poster Creation & Presentation
+
+:::{.callout-note icon=false}
+## Peer Review
+
+Stages 2-6 are subject to peer review. See the [help with peer review](help.html#peer-review) page for details. 
+:::
+
+* At each reviewed stage you should update anything you need to change, such as correctly making graphics, writing results correctly etc. 
+* There is an example slide deck in Google Drive named `AAA Example/Template`. This has more details about the contents of each slide and guidance for what should be included on that slide. 
+* There is a grading rubric in Blackboard that you can self-check your submission against prior to grading. 
+* This includes reviewing the current set of feedback and making the appropriate corrections. 
+    - Once you have addressed a particular piece of feedback mark it as "resolved" in Google Slides. 
+    - :warning: *Do Not Delete Feedback.*
+* Your presentation should be limited to approximately 20 slides. The contents of each slide are specified below. 
+    - You are welcome to have "staging" slides where you can dump content, thoughts, analyses that you _may_ end up using. 
+
+
+:::{.callout-important}
+## Dr. D's interpretation of your research
+
+I will be using [this Google file](https://docs.google.com/spreadsheets/d/10O0Fasbpo_3KgC5Z7-P4YDAnZu70bYn_WFPR6vRX4O0) to summarize your research progress as I do my reviews. I may ask you to review it and address critical questions. 
+:::
+
+
+
+## Stage 1: Choose a data set and identify a few research topics
+
+* Project data you can choose from can be found in this [Google Drive folder](https://drive.google.com/drive/u/0/folders/1jULudBjRbHdW-uLIvmMbxRBEJJkq9crY). 
+* Browse through the available data sets, read the summaries and skim the codebooks.
+* Add your name to [Dr D's summary of your research](https://docs.google.com/spreadsheets/d/10O0Fasbpo_3KgC5Z7-P4YDAnZu70bYn_WFPR6vRX4O0) once you have chosen a topic.
+* Download the data and codebook to your `Math615/project/data` folder. 
+* You will work through writing out a few research questions as part of Homework 02. 
+
+:::{.callout-caution icon=false collapse="true"}
+## But what about my thesis research?
+
+Under only very strict certain circumstances I will allow for graduate thesis data to be used. You must make an appointment to meet with me to go over your data, codebook and research question for this to be a consideration.
+:::
+
+
+## Stage 2: Introduce your project and variables of interest
+
+* Create a Google Slides presentation directly into the Project Slides folder in our Google Drive. 
+* Name your file using your username only. 
+* Review the 
+
+**Slides 1-7 content**
+
+1. Title 
+2. Introduction 
+3. Background & lit review. 
+4. Explain the research problem / topic area
+5. State your Research Question as a testable hypothesis. 
+6. Introduce the data. Where does it come from, how was it collected. How many records? 
+7. Description of measures (variables) being used. Explain any recoding and/or altering that was done. 
+    - This refers to significant changes to the data (making new variables, dichotomizing or categorizing existing variables)
+    - Do NOT discuss setting missing codes such as 98 and 99 to `NA` or `SYSMIS`.
+    - Do NOT talk about applying labels
+    - Do NOT use variable names. 
+    - Restrict this list to only the variables you are using in your analysis. This is likely not to be more than 4-6. 
+    
+## Stage 3: Exploratory data analysis 
+
+**Slides 8-11 content**
+   
+8. Fully describe your primary outcome (response) variable ...
+9. Fully describe your primary explanatory variable ...
+10. Fully describe the relationship between your primary explanatory and primary response variables ....
+11. Fully describe the relationship of a third variable to either your explanatory or response variables ...
+
+... All using appropriate summary statistics, graphic and an explanatory sentence. 
+
+
+## Stage 4: Bivariate Inference 
+
+Revise and update all prior slides. 
+
+Two analyses, one per slide. Each slide should contain the following:  
+
+1. A fully labeled and cleaned up plot demonstrating the bivariate relationship under consideration.
+2. The results of an appropriate bivariate analysis. 
+    - This should be a conclusion written in English, includes a confidence interval and a p-value. 
+    - You also need to state the name of the test you used. 
+
+
+## Stage 5: Multivariable modeling & summarizing findings
+
+Revise and update all prior slides. 
+
+You are trying to understand the relationship between your explanatory and response variable, in presence of information contained in other variables. Add the following content slides. 
+
+
+**Slide 14: Testing for moderators**
+
+* Moderation:
+    - If you found a moderator: Remove the bivariate graph and write up from your poster and replace with explanation of moderator and graph of significant bivariate at the 3rd variable level.
+    - If you did NOT find a moderator: Include a slide stating what relationships you tested for moderation and with what variable to see if it was a moderator, explaining that it was not a moderator. No graphs needed
+
+**Slide 15: Testing for confounding relationships**
+
+* Confounding: 
+    - If you found a confounder: on slide with bivariate relationship that was confounded put a bullet point that explains what variable confounded the relationship and put the written results that are shown in the confounding assignment on how to write results. Make sure to explain if it helped improve prediction of response variable. 
+    - If you did NOT find a confounder: Include a slide stating what relationships you tested for confounds and with what variable to see if it was a confound, explaining that it was not a moderator. Make sure to explain if it helped improve prediction of response variable. 
+
+
+**Slide 16: Results from a Multivariable Model**
+
+* Build a multivariable model by adding additional predictors to the model. 
+    - See the lecture notes on model building as guidance. 
+    - Include any variables that were found to be significantly associated with the outcome
+    - If you found a moderator, your model should include an interaction term with your moderating variable.
+* A table or a graphic of the regression coefficients (or Odds Ratios) must be presented. 
+    - Make tables in Excel or Powerpoint directly. Do not copy R output
+* At least one coefficient, the primary explanatory variable, must be interpreted in context of the problem. 
+
+
+**Slide 17. Discussion**
+
+* Here you will explain what your graphical and inferential results tell you about your topic.
+* Discuss if your research hypothesis was supported, if it was not, why you think that might be
+* Explain the overall story/trend/what you learned when you consider your univariate, bivariate & multivariate results about your topic.
+* Compare your results to previous research results. Do they agree or disagree? 
+
+**Slide 18. Implications**
+
+* What are the practical implications of your results?
+* What could others do with your findings? 
+* What future research needs to be conducted?
+    - This needs to be more specific than "other variables could be explored". Which variables and why? What other research articles indicate that those other variables are relevant? 
+
+**Slide 19. Limitations**
+
+* Who are the results of this study generalizable to? (i.e. a subset of individuals?)
+* Were there any model assumptions that were not upheld? 
+* If this is an observational study, you should make a statement about the findings are associations and not causal in nature
+* Are there other factors that could explain your response variable that you did not include in your model? 
+
+
+**Slide 20. References**  
+
+* You can use smaller font to get all references on one slide.
+* Use references from research plan, and any additional references gathered along the way. 
+* Make sure these are correctly done in APA format.
+* Proper citations for 
+    - [Add Health](http://www.cpc.unc.edu/projects/addhealth/faqs/addhealth#how-do-i-cite-the-add-health-contractual-data-)
+    - *R*: Type `citation()`
+    - [R Studio](https://support.rstudio.com/hc/en-us/articles/206212048-Citing-RStudio)
+    - [SPSS](http://www-01.ibm.com/support/docview.wss?uid=swg21476197)
+    - [How to cite software in Text](http://blog.apastyle.org/apastyle/2015/01/how-to-cite-software-in-apa-style.html)
+    
+
+## Stage 6: Posters Presentations
+
+:::{.callout-important}
+# REVISIONS NEEDED HERE
+The content below needs to be revised for Fall 22
+:::
+
+
+* You will transfer all findings into a research poster, print the poster, and then present your research to your classmates. 
+    - We will split the class in half. When not presenting, you will be scoring the other half of the class's posters. 
+* Posters can be in powerpoint (the standard format for research posters), or Google Slides (once appropriately sized)
+    - Regardless of the file type, you must use a template. Do not try to reinvent the wheel. 
+
+### Poster Guidelines
+https://norcalbiostat.netlify.com/lec/poster_guidelines/ 
+
+  * Links to poster templates, 
+  * Details on what each section should contain
+  * Guidance on aesthetics and printing (when appropriate)
+  * Evaluation criteria
+  * Examples of professional and prior student work. 
+
+
+### Draft version
+
+* This draft is graded on how complete the poster is. You should consider this a draft that you would circulate to your colleagues for final review and comments. 
+* Use the [evaluation criteria](https://norcalbiostat.netlify.com/lec/poster_guidelines/#evaluation-criteria) as a guide for what I am looking for.
+*  **This assignment is graded in Blackboard using a rubric** - be sure to look at this before you submit. 
+    - Points are awarded based off how close to presentation quality your poster is by the time the draft is due. 
+    - Basically the more work I think you need to put into your poster to make it presentable, the lower the points you get for the draft. 
+
+
+**Submission and Peer Review Instructions**
+
+* Save your poster as a PDF and upload to the `Google Drive/Project Poster Drafts` folder. 
+* To conduct your peer review, open the PDF from Google Drive directly in your browser. 
+    - Use the comment feature to write the comments directly into the poster file itself. 
+    - provide at least two specific comments for each
+        - something that can be improved
+        - something that is good
+    
+
+### Final Version
+
+* Upload your final poster (as printed) to the `Google Drive/Project Poster Final Version` folder. 
+    - PDF preferred. PPTX ok.
+* Scoring will be done via [Google Forms](https://forms.gle/oFMQ2hqtthZFPq7T7). It looks exactly like the [evaluation criteria](https://norcalbiostat.netlify.com/lec/poster_guidelines/#evaluation-criteria).
+    - When not presenting, you will walk around and learn about others research. Ask them questions, fill out the evaluation on your phone as you go. Printed copies will be available upon request so you can submit later. 
+* The final grade will be determined by
+    - Base score = **30%** student score + **70%** instructor score **+ bonus pts** for best in show awards **- 1** point penalty for each day late. 
+
+

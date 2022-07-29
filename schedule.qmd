@@ -2,6 +2,8 @@
 title: "Weekly Overview"
 ---
 
+While the class is generally organized by calendar week, sometimes we will cover two topics in a week or one topic will span multiple weeks. Always start with the [Topics](topics.html) page to find the materials for that topic such as lecture notes and assignments. 
+
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 library(dplyr);library(readxl); library(kableExtra)
 library(janitor)
@@ -33,14 +35,13 @@ hlt.col <-  "background-color: #50a18d; color: #fff;"
 ```
 
 ```{r}
-sched %>% select(-order) %>%
-  kbl(align="lclc", escape=FALSE) %>%
-  kable_paper("hover", full_width=F, html_font = "Ariel",
-              position='center', font_size=14) %>%
-  column_spec(1, width="5%") %>% 
-  column_spec(2, width="5%", border_right = TRUE) %>% 
+sched %>% select(-order, -Week) %>%
+  kbl(align="lcc", escape=FALSE) %>%
+  kable_styling("hover", full_width=F, html_font = "Ariel",
+              position='center', font_size=14, fixed_thead = T) %>%
+  column_spec(1, width="10%") %>% 
+  column_spec(2, width="40%") %>% 
   column_spec(3, width="40%") %>% 
-  column_spec(4, width="40%") %>% 
   pack_rows("Week 1", tn$start[1],   tn$end[1],  label_row_css = hlt.col) %>%
   pack_rows("Week 2", tn$start[2],   tn$end[2],  label_row_css = wk.col) %>%
   pack_rows("Week 3", tn$start[3],   tn$end[3],  label_row_css = wk.col) 
