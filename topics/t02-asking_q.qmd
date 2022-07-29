@@ -1,7 +1,7 @@
 ---
-title: "" # title 
-subtitle: "" # sub title
-description: "" #date range
+title: "Formulating research questions" # title 
+subtitle: "Asking questions is easy. Asking _answerable_ questions is more difficult." # sub title
+description: "Aug 29" #date range
 ---
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
@@ -17,7 +17,7 @@ str_prep <- function(var){
 
 topic_mats <- read_excel("../schedule_615_test.xlsx", sheet="weekly_schedule") %>%
   clean_names() %>% 
-  filter(grepl("t00", topic)) %>%
+  filter(grepl("t02", topic)) %>%
   mutate(assignment = gsub("hw", "../hw/hw", hw), 
          slides = sprintf("[%s](%s)", topic_name, paste0("../slides/", lecture, ".html"))) %>% 
   select(slides, collab, reading, assignment, topic_obj)
@@ -26,10 +26,11 @@ topic_mats <- read_excel("../schedule_615_test.xlsx", sheet="weekly_schedule") %
 ## Learning Path
 
 ### Where we've been
-Summer Break! 
+* Learning how to interact with data
+* Reviewing the available data and thinking of a topic area of interest 
 
 ### Where we're at
-Ready to learn
+Ready to start asking research questions to explore for the rest of the term. 
 
 
 ### Objectives
