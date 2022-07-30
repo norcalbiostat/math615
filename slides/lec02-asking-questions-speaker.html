@@ -10,6 +10,7 @@
   <meta name="generator" content="quarto-1.0.36">
 
   <meta name="author" content="Robin Donatello">
+  <meta name="dcterms.date" content="2022-08-29">
   <title>Data Analysis for Graduate Research - Formulating research questions</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -316,7 +317,7 @@
     }
   </style>
 <meta name="twitter:title" content="Data Analysis for Graduate Research - Formulating research questions">
-<meta name="twitter:description" content="Asking questions is easy. Asking answerable questions is more difficult.">
+<meta name="twitter:description" content="2">
 <meta name="twitter:creator" content="@norcalbiostat">
 <meta name="twitter:card" content="summary">
 </head>
@@ -327,7 +328,7 @@
 <section id="title-slide" class="center">
   <h1 class="title">Formulating research questions</h1>
   <p class="author">Robin Donatello</p>
-  <p class="date">Aug 29</p>
+  <p class="date">2022-08-29</p>
 </section>
 
 <section id="a-research-hypothesis-poses-a-question-about-the-relationship-between-two-or-more-measurable-characteristics." class="slide level2">
@@ -689,48 +690,6 @@
         ]
       });
     </script>
-    
-    <script>
-      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-      // slide changes (different for each slide format).
-      (function () {
-        function fireSlideChanged(previousSlide, currentSlide) {
-
-          // dispatch for htmlwidgets
-          const event = window.document.createEvent("Event");
-          event.initEvent("slideenter", true, true);
-          window.document.dispatchEvent(event);
-
-          // dispatch for shiny
-          if (window.jQuery) {
-            if (previousSlide) {
-              window.jQuery(previousSlide).trigger("hidden");
-            }
-            if (currentSlide) {
-              window.jQuery(currentSlide).trigger("shown");
-            }
-          }
-        }
-
-        // hookup for reveal
-        if (window.Reveal) {
-          window.Reveal.addEventListener("slidechanged", function(event) {
-            fireSlideChanged(event.previousSlide, event.currentSlide);
-          });
-        }
-
-        // hookup for slidy
-        if (window.w3c_slidy) {
-          window.w3c_slidy.add_observer(function (slide_num) {
-            // slide_num starts at position 1
-            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-          });
-        }
-
-      })();
-    </script>
-
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {

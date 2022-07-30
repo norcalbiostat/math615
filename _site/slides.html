@@ -68,7 +68,7 @@ ul.task-list{list-style: none;}
     }
 
     const options = {
-      valueNames: ['listing-description','listing-title','listing-date',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
+      valueNames: ['listing-description','listing-title',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
       
       searchColumns: ["listing-date","listing-title","listing-author"],
     };
@@ -112,10 +112,13 @@ ul.task-list{list-style: none;}
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
-    <div class="pt-lg-2 mt-2 text-center sidebar-header">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Data Analysis for Graduate Research</a> 
-        <div class="sidebar-tools-main">
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://pollev.com/drd" title="PollEV" class="sidebar-tool px-1"><i class="bi bi-bar-chart"></i></a>
+    <a href="https://drive.google.com/drive/folders/1oeVbt6QXvNjiadAu8VspPLXOlfaMmtXP" title="Google Drive" class="sidebar-tool px-1"><i class="bi bi-google"></i></a>
+    <a href="https://hackmd.io/#" title="HackMD" class="sidebar-tool px-1"><i class="bi bi-file-code"></i></a>
   <a href="" class="quarto-color-scheme-toggle sidebar-tool" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
     </div>
@@ -239,12 +242,6 @@ ul.task-list{list-style: none;}
      <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
        <option value="" disabled="" selected="" hidden="">Order By</option>
        <option value="index" data-direction="asc">Default</option>
-         <option value="listing-date-sort" data-direction="asc">
-          Date Covered - Oldest
-        </option>
-         <option value="listing-date-sort" data-direction="desc">
-          Date Covered - Newest
-        </option>
          <option value="listing-title-sort" data-direction="asc">
           Slide Deck
         </option>
@@ -265,9 +262,6 @@ Week
 <th>
 <a class="sort" data-sort="listing-title-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Slide Deck</a>
 </th>
-<th>
-<a class="sort" data-sort="listing-date-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Date Covered</a>
-</th>
 </tr>
 </thead>
 <tbody class="list">
@@ -278,9 +272,6 @@ Week
 <td class="listing-title">
 <a href="./slides/lec00-welcome.html" class="title">Welcome to MATH 615 - Fall 22</a>
 </td>
-<td class="listing-date">
-Aug 22, 2022
-</td>
 </tr>
 <tr data-index="1" data-listing-date-sort="1661151600000" data-listing-file-modified-sort="1659054584498" data-listing-reading-time-sort="3.19" data-listing-title-sort="Data Architecture" data-listing-filename-sort="lec01-data-arch.qmd">
 <td class="listing-description">
@@ -289,19 +280,21 @@ Aug 22, 2022
 <td class="listing-title">
 <a href="./slides/lec01-data-arch.html" class="title">Data Architecture</a>
 </td>
-<td class="listing-date">
-Aug 22, 2022
-</td>
 </tr>
-<tr data-index="2" data-listing-date-sort="999068400000" data-listing-file-modified-sort="1659132476295" data-listing-reading-time-sort="1.285" data-listing-title-sort="Formulating research questions" data-listing-filename-sort="lec02-asking-questions.qmd">
+<tr data-index="2" data-listing-date-sort="1661756400000" data-listing-file-modified-sort="1659138473388" data-listing-reading-time-sort="1.285" data-listing-title-sort="Formulating research questions" data-listing-filename-sort="lec02-asking-questions.qmd">
 <td class="listing-description">
-Asking questions is easy. Asking <em>answerable</em> questions is more difficult.
+2
 </td>
 <td class="listing-title">
 <a href="./slides/lec02-asking-questions.html" class="title">Formulating research questions</a>
 </td>
-<td class="listing-date">
-Aug 29, 2001
+</tr>
+<tr data-index="3" data-listing-date-sort="1661929200000" data-listing-file-modified-sort="1659150436566" data-listing-reading-time-sort="0.005" data-listing-title-sort="Data Wrangling" data-listing-filename-sort="lec03-data-management.qmd">
+<td class="listing-description">
+3, 4
+</td>
+<td class="listing-title">
+<a href="./slides/lec03-data-management.html" class="title">Data Wrangling</a>
 </td>
 </tr>
 </tbody>

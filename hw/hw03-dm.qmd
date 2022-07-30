@@ -1,0 +1,200 @@
+---
+title: "HW 03: Data Management"
+subtitle: "Wrangling your data into analyzable form"
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+# Purpose
+
+By now you should know what variables you want to use, and you've looked over the codebook enough now that you have an idea of some potential problems that you will encounter. This assignment uses your chosen research data, and the variables that you chose in the last assignment when you created a personal research codebook. You will thoughtfully review the variables you are interested in, document which ones will need changed and how.
+
+All raw data needs to stay raw, and all changes need to be documented. You will create a script/code file that will make all changes to the data in a programatically and reproducible way. You will create a single code file that imports your raw data, performs some data cleaning steps, and saves out an analysis ready data set that you will use throughout the semester. 
+
+You are **not** expected to have completed data management for every one of your variables under consideration by the submission date. 
+I want to see a VERY good effort has been made (raw data read in, at least 2 quant and 2 cat variables dealt with, analysis data saved out.)
+You can always check the rubric in Blackboard learn for more grade specific details. 
+
+----
+
+# Instructions 
+
+1. Create a `dm_dataname.Rmd` or `dm_dataname.sps` script file. 
+    - Rename this to include your username. I.e. `dm_dataname_rdonatello.Rmd`. 
+    - Make sure this is your **math615/script** folder, and your data is in your **math615/data** folder
+2. If you have not done so yet, restrict the variables to only the ones you are investigating. 
+    - R users - use the `select` statement found in the `dplyr` package
+    - SPSS users use `KEEP`
+3. Explore and clean at least 2 categorical and 2 numeric variables. One by one, check each variable for necessary adjustments. Complete each of the following steps for each variable.
+    - First explain in English what the variable name is and what it measures. 
+    - Then examine the variable using the `freq` function in the `descr` package. 
+    - Identify the data type of the variable using `class`. Does this match with the intended data type? 
+    - Recode the data as necessary 
+    - Always confirm your recodes worked as intended by creating another table or summary. 
+4. Save the resulting data set to your `data` folder as `datasetname_clean.Rdata`, or `datasetname_clean.sav`. e.g. `addhealth_clean.Rdata`. 
+
+
+If these tasks are performed using point & click, the code must be pasted into a script file that can be run on command. 
+
+----
+
+# Submission instructions
+
+## Draft
+
+Upload your <span style="color:red">PDF</span> file to the `03 Data Management` folder in Google Drive. 
+
+* R users compile your RMD file to create a PDF (knit to PDF)
+* SPSS users will have to present additional output to demonstrate that the recodes were successful. 
+    - Include the `FREQUENCIES` code in your `dm` file to create tables or summaries of the modified variables, so that it shows up in your output window. 
+    - After you are done, close & restart SPSS by opening your `dm` file. Click "Run all" 
+    - Export your **output** file as PDF and upload it to Google Drive
+
+### Peer Review instructions
+
+As a reviewer, this is what you're checking for: 
+
+* Check that they have 2 quantitative and 2 categorical variables present
+* Did they check for missing, out of range values? 
+* Did they present some sort of proof that a certain recode worked as intended? 
+* Does their work appear to be reproducible? 
+
+## Final
+Upload your <span style="color:red">code</span> file to the `03 Data Management/code` folder in Google Drive. 
+
+  - I will download this file and run it on my computer.
+  - The file it creates will be the item that is graded. 
+  - You can keep submitting files until it works. 
+
+
+
+
+----
+
+# Examples
+
+:::{.callout-caution icon=false}
+## Rmarkdown
+Here is an example using R Markdown
+:::
+
+
+```{r}
+# Load libraries
+library(dplyr)
+library(descr)
+
+# Read in the data
+raw <- read.delim("https://norcalbiostat.netlify.com/data/depress_081217.txt", 
+                  sep="\t",  header=TRUE)
+
+# Select only the variables that I am interested in
+mydata  <- raw %>% select(age, marital, cesd, health)
+```
+
+**General Health**
+
+The variable `health` records a persons perceived general health as being either Excellent, Good, Fair or Poor. This is considered an ordinal categorical variable. 
+
+```{r}
+freq(mydata$health)
+class(mydata$health)
+```
+
+The variable `health` currently is an integer with numeric values 1-4, but the codebook states that this is a categorical variable where 1=Excellent, 2=Good, 3=Fair, 4=Poor. 
+So I need to convert this numeric variable to a factor variable. There are no values outside the 1-4 range, such as a -9 that codes for missing data so I do not need to make any further adjustments (You want to code out missing before you convert variables to factors)
+
+```{r}
+mydata$health_cat <- factor(mydata$health, labels=c("Excellent", "Good", "Fair", "Poor"))
+```
+
+I will confirm that the recode worked by making a two-way `table`
+```{r}
+table(mydata$health, mydata$health_cat, useNA="always")
+```
+This shows that all 1's are now 'excellent', 4's are now 'poor' and so forth. 
+
+**CESD**
+The numeric variable `CESD` represents the depression index scale, which is a sum of 20 component variables. A high score indicates a person who is depressed, with 16 being the typical cutoff for creating a binary indicator of depression.
+
+```{r}
+summary(mydata$cesd)
+hist(mydata$cesd)
+```
+
+There are no values outside of the expected range, and no missing values. 
+
+**Indicator of Depression**
+Create the binary indicator of depression using CESD
+
+```{r}
+mydata$depressed <- ifelse(mydata$cesd > 16, "depressed", "not depressed")
+table(mydata$depressed, useNA="always")
+```
+
+No missing values were accidentally generated, 
+
+
+**Keep only selected variables and save to an external file**
+```{r}
+#| eval: false
+clean <- mydata %>% select(age, marital, cesd, depressed, health_cat)
+save(clean, file="depression_clean.Rdata")
+```
+
+:::{.callout-caution icon=false}
+## SPSS
+Here is an example of what a data management script for SPSS would look like. 
+:::
+
+
+
+```
+\* This is how to write a comment
+
+\* import the data 
+GET FILE='/Users/rdonatello/Box/F19/hw03/data/AddHealth_Wave_IV.sav'
+/KEEP BIO_SEX H4GH1. /                   \* Only keep certain variables.
+EXECUTE.
+
+DATASET NAME addhealth WINDOW = FRONT./  \*brings the data window up.
+
+\*\--SEX
+
+FREQUENCIES VARIABLES= BIO_SEX
+/ORDER=ANALYSIS.
+
+\* BIO_SEX is coded as 1=male, 2=female, 6=missing.
+
+\* I want to recode this into a binary indicator of being female.
+
+RECODE BIO_SEX (1=0) (2=1) (6=SYSMIS) INTO FEMALE.
+
+\* Confirm it worked.
+
+FREQUENCIES VARIABLES= FEMALE
+/ORDER=ANALYSIS.
+
+\* apply variable and value labels.
+
+VARIABLE LABELS 'FEMALE'.
+VALUE LABELS FEMALE
+0 'male'
+1 'female'.
+EXECUTE.
+
+FREQUENCIES VARIABLES= FEMALE
+/ORDER=ANALYSIS.
+
+
+\* Save dataset for analysis.
+
+SAVE OUTFILE='/Users/rdonatello/Box/F19/hw03/data/addhealth_clean.sav'
+/ DROP BIO_SEX
+/ COMPRESSED.
+
+```
+
+    
