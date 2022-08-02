@@ -13,7 +13,7 @@ options(knitr.table.format = "html", knitr.kable.NA = '')
 knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE) 
 
 # Read in schedule
-sched <- read_excel("schedule_615_test.xlsx", sheet="weekly_schedule") %>% 
+sched <- read_excel("schedule_615.xlsx", sheet="weekly_schedule") %>% 
   clean_names() %>%
   mutate(Date = format(date, "%m/%d")) %>% 
   select(Week = week, Date, order, Topic = topic_name, Details = topic_subtitle) %>%

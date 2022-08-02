@@ -15,7 +15,7 @@ str_prep <- function(var){
     )
 }
 
-topic_mats <- read_excel("../schedule_615_test.xlsx", sheet="weekly_schedule") %>%
+topic_mats <- read_excel("../schedule_615.xlsx", sheet="weekly_schedule") %>%
   clean_names() %>% 
   filter(grepl("t01", topic)) %>%
   mutate(assignment = gsub("hw", "../hw/hw", hw), 
