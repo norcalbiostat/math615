@@ -6,12 +6,14 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.0.36">
 
   <meta name="author" content="Robin Donatello">
-  <meta name="dcterms.date" content="2022-08-31">
-  <title>Data Analysis for Graduate Research - Data Wrangling</title>
+  <meta name="dcterms.date" content="2022-08-22">
+  <title>Data Analysis for Graduate Research - Data Architecture</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -316,8 +318,7 @@
       margin-right: 0; 
     }
   </style>
-<meta name="twitter:title" content="Data Analysis for Graduate Research - Data Wrangling">
-<meta name="twitter:description" content="3, 4">
+<meta name="twitter:title" content="Data Analysis for Graduate Research - Data Architecture">
 <meta name="twitter:creator" content="@norcalbiostat">
 <meta name="twitter:card" content="summary">
 </head>
@@ -326,16 +327,175 @@
     <div class="slides">
 
 <section id="title-slide" class="center">
-  <h1 class="title">Data Wrangling</h1>
+  <h1 class="title">Data Architecture</h1>
   <p class="author">Robin Donatello</p>
-  <p class="date">2022-08-31</p>
+  <p class="date">2022-08-22</p>
 </section>
 
-<section class="slide level2">
+<section>
+<section id="prior-knowledge" class="title-slide slide level1 center">
+<h1>Prior Knowledge</h1>
 
+</section>
+<section id="shared-experiences" class="slide level2">
+<h2>Shared experiences</h2>
+<div class="callout callout-note no-icon callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<p><strong>Answer each of the following questions</strong></p>
+</div>
+<div class="callout-content">
+<p>Answer directly in the HackMD Data Architecture collaborative notes. Put your name next to your answer.</p>
+</div>
+</div>
+</div>
+<p><span class="emoji" data-emoji="question">❓</span> What is data?<br>
+<span class="emoji" data-emoji="question">❓</span> In what manner/forms are data found?<br>
+<span class="emoji" data-emoji="question">❓</span> How and where do you store data?<br>
+<span class="emoji" data-emoji="question">❓</span> What do we use data for?</p>
+</section></section>
+<section>
+<section id="working-with-data-in-spreadsheets" class="title-slide slide level1 center">
+<h1>Working with data in Spreadsheets</h1>
+
+</section>
+<section id="shared-experiences-1" class="slide level2">
+<h2>Shared experiences</h2>
+<p><span class="emoji" data-emoji="question">❓</span> What kind of tasks do you do in spreadsheets?<br>
+<span class="emoji" data-emoji="question">❓</span> Which tasks do you think spreadsheets are good for?<br>
+<span class="emoji" data-emoji="question">❓</span> Spreadsheet frustrations (Pain points) <em>What have you accidentally done in spreadsheet that made you frustrated or sad?</em></p>
+</section>
+<section id="formatting-data-in-spreadsheets" class="slide level2">
+<h2>Formatting data in spreadsheets</h2>
+<ul>
+<li>Humans use spreadsheets differently than computers</li>
+<li>What do you want to do with the data is important to consider during setup</li>
+<li>You can set things up in different ways in spreadsheets, but some of these choices can limit your ability to work with the data in other programs</li>
+</ul>
+</section>
+<section id="good-data-handling-practices" class="slide level2">
+<h2>Good data handling practices</h2>
+<ul>
+<li><span class="emoji" data-emoji="x">❌</span> <strong>Leave raw data alone</strong></li>
+<li>Minimize the amount of tidying you do to the data outside of a script.
+<ul>
+<li>If you have to make an adjustment, write down exactly what you did in a notes file.</li>
+</ul></li>
+<li>Export the cleaned data to a text based format like CSV (comma separated values)</li>
+<li>Leave missing data cells blank: don’t put a <code>.</code>, or <code>missing</code>, or 0, or NULL</li>
+</ul>
+</section>
+<section id="tidy-data-principles" class="slide level2">
+<h2>Tidy Data principles</h2>
+<ul>
+<li>Put all variables in columns - this is the thing that you’re measuring (weight, temp, address)</li>
+<li>One observation per row</li>
+<li>Don’t combine multiple pieces of information in once cell.</li>
+<li>pct_5_10_F : percent of females between 5 &amp; 10 years old in that county</li>
+</ul>
+<div class="callout callout-tip callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Tip</strong></p>
+</div>
+<div class="callout-content">
+<p>Excellent read: <a href="https://tidyr.tidyverse.org/articles/tidy-data.html#tidying">Tidy data principles</a> by Hadley Wickham.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="example---livestock-data" class="slide level2">
+<h2>Example - livestock data</h2>
+<p>Consider a study of agricultural practices among farmers in two countries in eastern sub-Saharan Africa (Mozambique and Tanzania). Researchers conducted interviews with farmers in these countries to collect data on household statistics (e.g.&nbsp;number of household members, number of meals eaten per day, availability of water), farming practices (e.g.&nbsp;water usage), and assets (e.g.&nbsp;number of farm plots, number of livestock). They also recorded the dates and locations of each interview.</p>
+
+<aside><div>
+<p>This example is from the <a href="https://datacarpentry.org/spreadsheets-socialsci/01-format-data/index.html">Data Carpentry for Social Science</a> lesson</p>
+</div></aside></section>
+<section id="data-for-humans" class="slide level2">
+<h2>Data for humans</h2>
+<p>If they were to keep track of the data like this:</p>
+
+<img data-src="https://datacarpentry.org/spreadsheets-socialsci/fig/multiple-info.png" alt="Example of multiple pieces of data in a single row" width="400" class="r-stretch quarto-figure-center"><p><span class="emoji" data-emoji="question">❓</span> What are some of the problems with this? (Work with your neighbor and answer this in HackMD)</p>
+<p><span class="emoji" data-emoji="question">❓</span> What is actually being measured?</p>
+</section>
+<section id="what-would-this-data-look-like-in-a-tidy-data-format" class="slide level2">
+<h2>What would this data look like in a tidy data format?</h2>
+<div class="fragment">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="https://datacarpentry.org/spreadsheets-socialsci/fig/single-info.png" alt="The previous example in tidy data format" width="300"></p>
+</figure>
+</div>
+</div>
+<div class="fragment">
+<ul>
+<li>One row per observation (farmer)</li>
+<li>One topic per column (animal)</li>
+<li>Cell value is a count of the unique combination between animal type and farmer.</li>
+</ul>
+</div>
+</section></section>
+<section>
+<section id="metadata" class="title-slide slide level1 center">
+<h1>Metadata</h1>
+
+</section>
+<section id="metadata-1" class="slide level2">
+<h2>Metadata</h2>
+<ul>
+<li>Recording data about your data (“metadata”“) is essential.</li>
+<li><strong>Think about yourself</strong>. You may know now, but the chances that you will still remember the exact wording of the question you asked about your informants’ water use (the data recorded in the column water use), for example, are slim.</li>
+<li><strong>Think about others.</strong> Other people may want to examine or use your data - to understand your findings, to verify your findings, to review your submitted publication, to replicate your results, to design a similar study, or even to archive your data for access and re-use by others.<br>
+</li>
+<li>Should not be contained in the data file itself.</li>
+<li>Made for humans, not computers.</li>
+<li>Often called <em>codebooks</em> or <em>data dictionaries</em></li>
+</ul>
+</section>
+<section id="codebooks-contain-the-following-information" class="slide level2 small">
+<h2>Codebooks contain the following information</h2>
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<ul>
+<li>variable name (for the computer)</li>
+<li>variable label (for the human)</li>
+<li>the prompt (e.g.&nbsp;survey text question)</li>
+<li>plausible values</li>
+<li>categorical value labels</li>
+</ul>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/example_codebook.png" alt="Screenshot of a codebook entry" width="500"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section></section>
+<section id="closing-thoughts" class="title-slide slide level1 center">
+<h1>Closing thoughts</h1>
+<div class="callout callout-warning callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Warning</strong></p>
+</div>
+<div class="callout-content">
+<p>Data without context is meaningless.</p>
+</div>
+</div>
+</div>
 
 <div class="footer footer-default">
-<p><a href="https://norcalbiostat.github.io/MATH615/">🔗 https://norcalbiostat.github.io/MATH615</a> / Data Wrangling</p>
+<p><a href="https://norcalbiostat.github.io/MATH615/">🔗 https://norcalbiostat.github.io/MATH615</a> / Data Architecture</p>
 </div>
 </section>
     </div>
@@ -374,7 +534,7 @@
 'autoAnimateUnmatched': true,
 'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
 'chalkboard': {"buttons":true},
-'multiplex': {"secret":null,"id":"59c60ceecad89aa1","url":"https://reveal-multiplex.glitch.me/"},
+'multiplex': {"secret":null,"id":"d8fb300ca5f8e5b1","url":"https://reveal-multiplex.glitch.me/"},
 'smaller': false,
  
         // Display controls in the bottom right corner

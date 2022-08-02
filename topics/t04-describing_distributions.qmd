@@ -1,7 +1,7 @@
 ---
-title: "Data Architecture" # topic name
-subtitle: "Data entry, spreadsheets, metadata, codebooks"
-description: "Aug 22"
+title: "Describing distributions of data" # title 
+subtitle: "Visualizing your data is the first line of defense against bad data" # sub title
+description: "9/12-9/18" #date range
 ---
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
@@ -17,7 +17,7 @@ str_prep <- function(var){
 
 topic_mats <- read_excel("../schedule_615_test.xlsx", sheet="weekly_schedule") %>%
   clean_names() %>% 
-  filter(grepl("t01", topic)) %>%
+  filter(grepl("t04", topic)) %>%
   mutate(assignment = gsub("hw", "../hw/hw", hw), 
          slides = sprintf("[%s](%s)", topic_name, paste0("../slides/", lecture, ".html"))) %>% 
   select(slides, collab, reading, assignment, topic_obj)
@@ -26,10 +26,10 @@ topic_mats <- read_excel("../schedule_615_test.xlsx", sheet="weekly_schedule") %
 ## Learning Path
 
 ### Where we've been
-Getting all of our learning tools together. 
+Importing & starting to wrangle our data
 
 ### Where we're at
-Ready to learn how to interact with data. 
+Ready to visualize and learn characteristics of our data. 
 
 
 ### Objectives
@@ -41,7 +41,7 @@ pander(str_prep(topic_mats$topic_obj))
 
 ## Learning Materials
 
-{{< fa person-chalkboard >}} **Slides (Will open in full screen. Right click to open in a new tab)**
+{{< fa person-chalkboard >}}  **Slides (Will open in full screen. Right click to open in a new tab)**
 
 ```{r}
 pander(str_prep(topic_mats$slides))
@@ -65,4 +65,6 @@ pander(str_prep(topic_mats$collab))
 ```{r}
 pander(str_prep(topic_mats$assignment))
 ```
+
+## Discussion
 

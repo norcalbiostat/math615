@@ -6,12 +6,14 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.0.36">
 
   <meta name="author" content="Robin Donatello">
   <meta name="dcterms.date" content="2022-08-31">
-  <title>Data Analysis for Graduate Research - Data Wrangling</title>
+  <title>Data Analysis for Graduate Research - Preparing your data for analysis</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -316,7 +318,7 @@
       margin-right: 0; 
     }
   </style>
-<meta name="twitter:title" content="Data Analysis for Graduate Research - Data Wrangling">
+<meta name="twitter:title" content="Data Analysis for Graduate Research - Preparing your data for analysis">
 <meta name="twitter:description" content="3, 4">
 <meta name="twitter:creator" content="@norcalbiostat">
 <meta name="twitter:card" content="summary">
@@ -326,18 +328,128 @@
     <div class="slides">
 
 <section id="title-slide" class="center">
-  <h1 class="title">Data Wrangling</h1>
+  <h1 class="title">Preparing your data for analysis</h1>
   <p class="author">Robin Donatello</p>
   <p class="date">2022-08-31</p>
 </section>
 
-<section class="slide level2">
+<section>
+<section id="workflow-and-data-cleaning" class="title-slide slide level1 center">
+<h1>Workflow and Data Cleaning</h1>
 
+</section>
+<section id="workflows" class="slide level2">
+<h2>Workflows</h2>
+<p>Once the data are available from a study there are still a number of steps that must be undertaken to get them into shape for analysis.</p>
+<p>One of the most misunderstood parts of the analysis process is the data preparation stage. To say that 70% of any analysis is spent on the data management stage is not an understatement.</p>
+</section>
+<section id="section" class="slide level2">
+<h2></h2>
+
+<img data-src="images/Afifi_Fig3_1.png" class="r-stretch quarto-figure-center"><p class="caption">Example workflow</p></section>
+<section id="generating-a-reproducible-workflows" class="slide level2">
+<h2>Generating a reproducible workflows</h2>
+<p>Reproducibility is the ability for any researcher to take the same data set and run the same set of software program instructions as another researcher and achieve the same results.</p>
+<p><em>Not the same as <strong>replicability</strong> where you re-run an experiment and achieve the same outcomes.</em></p>
+<p>The goal is to create an exact record of what was done to a data set to produce a specific result.</p>
+</section>
+<section id="three-steps-to-achieve-reproducibility" class="slide level2">
+<h2>Three steps to achieve reproducibility</h2>
+<ol type="1">
+<li>The un-processed data are connected directly to software code file(s) that perform data preparation techniques.</li>
+<li>The processed data are connected directly to other software code file(s) that perform the analyses.</li>
+<li>All data and code files are self-contained such that they could be given to another researcher to execute the code commands on a separate computer and achieve the same results as the original author.</li>
+</ol>
+</section>
+<section id="literate-programming" class="slide level2">
+<h2>Literate programming</h2>
+<ul>
+<li>Explain the logic of the program or analysis process in a natural language,</li>
+<li>Small code snippets included at each step act as a full set of instructions that can be executed to reproduce the result/analysis being discussed.</li>
+<li>Literate programming tools such as Markdown, Quarto and <span class="math inline">\(\LaTeX\)</span> are integrated into all common statistical packages except SPSS.</li>
+</ul>
+</section>
+<section id="reproducible-research-literate-programming" class="slide level2 smaller">
+<h2>Reproducible Research + Literate Programming</h2>
+<ul>
+<li>Practicing reproducible research techniques using literate programming tools allows such major updates to be a simple matter of re-compiling all coded instructions using the updated data set.</li>
+<li>The effort then is reduced to a careful review and update of any written results.</li>
+<li>Using literate programming tools create formatted documents in a streamlined manner that is fully synchronized with the code itself.</li>
+<li>The author writes the text explanations, interpretations, and code in the statistical software program itself, and the program will execute all commands and combine the text, code and output all together into a final dynamic document.</li>
+</ul>
+</section>
+<section id="why-all-the-fuss" class="slide level2 smaller">
+<h2>Why all the fuss?</h2>
+<ul>
+<li>You are your own collaborator 6 months from now. Be nice to your future self</li>
+<li>Explain your steps (what and why)
+<ul>
+<li>How did you get from point A to B?</li>
+<li>Why did you recode this variable in this manner?</li>
+</ul></li>
+<li>Found an error in your analysis code? Need to add an analysis to your presentation?</li>
+<li>Reproduce your steps in a few clicks using a script file (<code>.R</code>, <code>.Rmd</code>, <code>.sas</code>, <code>.sps</code>, <code>.do</code>, <code>.ipynb</code>)</li>
+</ul>
+
+<img data-src="images/pipeline.png" class="r-stretch quarto-figure-center"><p class="caption">Figure Credits: <a href="http://www.biostat.jhsph.edu/~rpeng/">Roger Peng</a></p></section></section>
+<section>
+<section id="data-analysis-pipeline" class="title-slide slide level1 center">
+<h1>Data Analysis Pipeline</h1>
+
+<img data-src="https://d33wubrfki0l68.cloudfront.net/571b056757d68e6df81a3e3853f54d3c76ad6efc/32d37/diagrams/data-science.png" class="r-stretch"><p>This week is all about importing, tidying and transforming.</p>
+</section>
+<section id="data-prep-questions" class="slide level2 smaller">
+<h2>Data Prep questions</h2>
+<p>Questions to ask yourself (and the data) while reviewing the codebook to choose variables to be used in an analysis.</p>
+<ul>
+<li>Do you need to code out missing data? (<code>N/A</code>, <code>MISSING</code> ,<code>-99</code>)</li>
+<li>Do you need to make response codes more logical?
+<ul>
+<li>Some systems will record 1=YES and 2=NO. This should be changed so 0=NO.</li>
+</ul></li>
+<li>Do you need to recode numerical variables to categorical?
+<ul>
+<li>Sometimes categorical data will be recorded as 1, 2, 3 etc when those numbers represent named categories.</li>
+</ul></li>
+<li>Do you need to create secondary variables?
+<ul>
+<li>Such as an average across measures to create a score.</li>
+</ul></li>
+</ul>
+
+<aside><div>
+<p>Some of these answers will come only after you look at your data. This can be looking at the raw data itself but also looking at tables and charts generated from the data. Often when you try to create a plot or table you will encounter an error or something odd looking that will be the notification that something has to be adjusted.</p>
+</div></aside></section>
+<section id="how-do-i-actually-do-this" class="slide level2">
+<h2>How do I actually do this?</h2>
+<ul>
+<li>After you identify what you need to do, you have to find an example of how to code the task you want.</li>
+<li>The <a href="https://norcalbiostat.github.io/AppliedStatistics_notes/data-management.html">Applied Stats Course notes</a> has specific examples on how to handle certain/common circumstances.</li>
+<li>Take it one variable at a time.</li>
+</ul>
+</section>
+<section id="closing-thoughts" class="slide level2">
+<h2>Closing thoughts</h2>
+<ul>
+<li>Do not underestimate the importance of this step</li>
+<li>It will take you far, far longer than you anticipate to ‘clean’ your data</li>
+<li>Writing code (in any language) will be challenging, but will pay off in the long run</li>
+</ul>
+<div class="callout callout-tip no-icon callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<p><strong>HackMD</strong></p>
+</div>
+<div class="callout-content">
+<p>Share your data management &amp; reproducible workflow plan in HackMD.</p>
+</div>
+</div>
+</div>
 
 <div class="footer footer-default">
-<p><a href="https://norcalbiostat.github.io/MATH615/">🔗 https://norcalbiostat.github.io/MATH615</a> / Data Wrangling</p>
+<p><a href="https://norcalbiostat.github.io/MATH615/">🔗 https://norcalbiostat.github.io/MATH615</a> / Preparing your data for analysis</p>
 </div>
-</section>
+</section></section>
     </div>
   </div>
 
@@ -374,7 +486,7 @@
 'autoAnimateUnmatched': true,
 'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
 'chalkboard': {"buttons":true},
-'multiplex': {"secret":"16591501716638381196","id":"59c60ceecad89aa1","url":"https://reveal-multiplex.glitch.me/"},
+'multiplex': {"secret":"165941787968748846","id":"6e13615a69064bf4","url":"https://reveal-multiplex.glitch.me/"},
 'smaller': false,
  
         // Display controls in the bottom right corner

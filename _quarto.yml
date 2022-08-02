@@ -17,41 +17,61 @@ website:
     creator: "@norcalbiostat"
   
   page-footer:
-    background: "#2e3846"
-    left: "This site is built with :heart: and [Quarto](https://quarto.org/) by [Robin Donatello](www.norcalbiostat.com)."
+    #background: light
+    left: "This site is built with :heart:, {{< fa brands r-project >}} and [Quarto](https://quarto.org/) by [Robin Donatello](www.norcalbiostat.com)."
     
 
-  sidebar:
+  navbar: 
     pinned: true
-    style: "docked"
-    search: true
-    #    logo: "images/logo.gif"
-    tools:
-      - icon: bar-chart
-        href: https://pollev.com/drd
-        text: PollEV
-      - icon: google
-        href: https://drive.google.com/drive/folders/1oeVbt6QXvNjiadAu8VspPLXOlfaMmtXP
-        text: Google Drive
-      - icon: file-code
-        href: https://hackmd.io/#
-        text: HackMD
-    contents: 
-      - index.qmd
-      - syllabus.qmd
-      - section: "Schedule"
-        contents:
-          - schedule.qmd
-          - calendar.qmd
-      - project.qmd
-      - section: "Materials"
-        contents:
-          - topics.qmd
-          - slides.qmd
-          - hw.qmd
+    background: "#654378"
+    right: 
+      - text: "Schedule"
+        menu:
+          - file: schedule.qmd
+          - file: calendar.qmd
+      - text: "Materials"
+        menu: 
+          - file: topics.qmd
+          - file: slides.qmd
+          - file: hw.qmd
           - collab_notes.qmd
           - reading.qmd
+      - text: "Project"
+        file: project.qmd
+      - syllabus.qmd
       - help.qmd
+      
+      
+  sidebar:
+    - title: "Content"
+      pinned: true
+      style: "docked"
+      background: dark
+      search: true
+      tools:
+        - icon: bar-chart
+          href: https://pollev.com/drd
+          text: PollEV
+        - icon: google
+          href: https://drive.google.com/drive/folders/1oeVbt6QXvNjiadAu8VspPLXOlfaMmtXP
+          text: Google Drive
+        - icon: file-code
+          href: https://hackmd.io/#
+          text: HackMD
+      contents: 
+        - section: "Schedule"
+          contents:
+            - schedule.qmd
+            - calendar.qmd
+        - project.qmd
+        - section: "Materials"
+          contents:
+            - topics.qmd
+            - slides.qmd
+            - hw.qmd
+            - collab_notes.qmd
+            - reading.qmd
+      
 
 from: markdown+emoji
 format:

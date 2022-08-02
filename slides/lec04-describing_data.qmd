@@ -1,0 +1,102 @@
+---
+title: "Describing Distributions of Data"
+date: "2022-09-12"
+description: "4"
+author: "Robin Donatello"
+footer: "[🔗 https://norcalbiostat.github.io/MATH615](https://norcalbiostat.github.io/MATH615/) / Describing  Distributions of Data"
+from: markdown+emoji
+format: 
+  revealjs:
+#    theme: ../slides.scss
+    multiplex: true
+    transition: fade
+    slide-number: true
+    incremental: false 
+    chalkboard: true
+execute:
+  freeze: auto
+  echo: true
+knitr:
+  opts_chunk: 
+    R.options:
+      width: 200
+---
+
+## Motivation
+Visualizing your data is hands down the most important thing you can learn to do. 
+
+* Screen for data entry errors
+* Out of range variables
+* Mistakes in coding
+* Violation of model assumptions
+
+## Level of care depends on the audience {.smaller}
+
+There are three main audiences in mind when creating data visualizations: 
+
+1. For your eyes only (FYEO). These are quick and dirty plots, without annotation. Meant to be looked at once or twice. 
+    - You'll create a TON of these. Don't spend a ton of time on them. 
+    
+. . . 
+
+2. To share with others internally. These mostly need to stand on their own. Axes labels, titles, colors as needed, possibly captions.
+    - You'll create a lot of these, and you'll get better with practice at adding necessary annotation without a lot of time
+    
+. . . 
+
+3. Professional - Contains all bells and whistles needed to make it publication quality. 
+    - You'll create very few of these, but they demand a lot of time, detail and thought. 
+
+
+## Choosing Appropriate Visualization
+
+:::: {.columns}
+
+::: {.column width="30%"}
+<br>
+<br>
+It entirely depends on the data type. 
+:::
+
+::: {.column width="70%"}
+![Crappy screenshot of PMA6 Table 4.7](images/pma6_data_viz_table.png)
+:::
+
+::::
+
+## 
+
+:::: {.columns}
+
+::: {.column width="50%"}
+**Categorical**
+
+* Summary Statistics: N, %
+* Tables: Frequency & proportions
+* Plots: Bar charts, (pie charts on occasion)
+:::
+
+::: {.column width="50%"}
+**Continuous**
+
+* Summary Statistics: 
+  - A measure of center: mean or median
+  - A measure of variability: standard deviation, range, IQR
+* Plots: Histogram, density plot, boxplot, violin plot
+
+:::
+
+::::
+
+
+## How to create graphs
+
+* Similar to the data management section, after identifying what you want to do, you go look up how to do that thing. 
+* Don't expect to remember the exact code yet, just know where to look up an example and copy from there
+* copy/paste/pray
+* Keep it simple until you get more comfortable. 
+
+## References
+
+* PMA6 Chapter 4 for appropriate plot choices
+* Applied Stats course Notes Chapter 2.3 for examples and code

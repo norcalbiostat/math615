@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="Aug 22">
 
-<title>Data Analysis for Graduate Research - Data Architecture</title>
+<title>Data Analysis for Graduate Research - HW 01: Data Entry</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -39,11 +38,11 @@ ul.task-list{list-style: none;}
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
-  "location": "sidebar",
+  "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
-  "panel-placement": "start",
-  "type": "textbox",
+  "panel-placement": "end",
+  "type": "overlay",
   "limit": 20,
   "language": {
     "search-no-results-text": "No results",
@@ -59,19 +58,84 @@ ul.task-list{list-style: none;}
 }</script>
 
 
-<meta name="twitter:title" content="Data Analysis for Graduate Research - Data Architecture">
-<meta name="twitter:description" content="Aug 22">
+<meta name="twitter:title" content="Data Analysis for Graduate Research - HW 01: Data Entry">
+<meta name="twitter:description" content="Recording data to maintain your sanity.">
 <meta name="twitter:creator" content="@norcalbiostat">
 <meta name="twitter:card" content="summary">
 </head>
 
-<body class="nav-sidebar docked">
+<body class="nav-sidebar docked nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Data Analysis for Graduate Research</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-schedule" role="button" data-bs-toggle="dropdown" aria-expanded="false">Schedule</a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-schedule">    
+        <li>
+    <a class="dropdown-item" href="../schedule.html">
+ <span class="dropdown-text">Weekly Overview</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../calendar.html">
+ <span class="dropdown-text">Calendar (Due dates)</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-materials" role="button" data-bs-toggle="dropdown" aria-expanded="false">Materials</a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-materials">    
+        <li>
+    <a class="dropdown-item" href="../topics.html">
+ <span class="dropdown-text">Topic Areas</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides.html">
+ <span class="dropdown-text">All Slides</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../hw.html">
+ <span class="dropdown-text">Assignments</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../collab_notes.html">
+ <span class="dropdown-text">Collaborative Notes</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../reading.html">
+ <span class="dropdown-text">Readings</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link active" href="../project.html" aria-current="page">Project</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../syllabus.html">Syllabus</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../help.html">Get help with…</a>
+  </li>  
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Data Architecture</h1>
+      <h1 class="quarto-secondary-nav-title">HW 01: Data Entry</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -79,37 +143,21 @@ ul.task-list{list-style: none;}
   </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
-    <div class="sidebar-title mb-0 py-0">
-      <a href="../">Data Analysis for Graduate Research</a> 
-        <div class="sidebar-tools-main tools-wide">
-    <a href="https://pollev.com/drd" title="PollEV" class="sidebar-tool px-1"><i class="bi bi-bar-chart"></i></a>
-    <a href="https://drive.google.com/drive/folders/1oeVbt6QXvNjiadAu8VspPLXOlfaMmtXP" title="Google Drive" class="sidebar-tool px-1"><i class="bi bi-google"></i></a>
-    <a href="https://hackmd.io/#" title="HackMD" class="sidebar-tool px-1"><i class="bi bi-file-code"></i></a>
-  <a href="" class="quarto-color-scheme-toggle sidebar-tool" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
-</div>
-    </div>
-      </div>
       <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
         </div>
+        <div class="sidebar-tools-collapse tools-wide">
+    <a href="https://pollev.com/drd" title="PollEV" class="sidebar-tool px-1"><i class="bi bi-bar-chart"></i></a>
+    <a href="https://drive.google.com/drive/folders/1oeVbt6QXvNjiadAu8VspPLXOlfaMmtXP" title="Google Drive" class="sidebar-tool px-1"><i class="bi bi-google"></i></a>
+    <a href="https://hackmd.io/#" title="HackMD" class="sidebar-tool px-1"><i class="bi bi-file-code"></i></a>
+</div>
       </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../index.html" class="sidebar-item-text sidebar-link">Math 615 Home</a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../syllabus.html" class="sidebar-item-text sidebar-link">Syllabus</a>
-  </div>
-</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Schedule</a>
@@ -145,7 +193,7 @@ ul.task-list{list-style: none;}
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../topics.html" class="sidebar-item-text sidebar-link">Topic List</a>
+  <a href="../topics.html" class="sidebar-item-text sidebar-link">Topic Areas</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -170,11 +218,6 @@ ul.task-list{list-style: none;}
 </li>
       </ul>
   </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../help.html" class="sidebar-item-text sidebar-link">Get help with…</a>
-  </div>
-</li>
     </ul>
     </div>
 </nav>
@@ -184,31 +227,32 @@ ul.task-list{list-style: none;}
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#learning-path" id="toc-learning-path" class="nav-link active" data-scroll-target="#learning-path">Learning Path</a>
+  <li><a href="#assignment-overview" id="toc-assignment-overview" class="nav-link active" data-scroll-target="#assignment-overview">Assignment Overview</a></li>
+  <li><a href="#instructions" id="toc-instructions" class="nav-link" data-scroll-target="#instructions">Instructions</a>
   <ul class="collapse">
-  <li><a href="#where-weve-been" id="toc-where-weve-been" class="nav-link" data-scroll-target="#where-weve-been">Where we’ve been</a></li>
-  <li><a href="#where-were-at" id="toc-where-were-at" class="nav-link" data-scroll-target="#where-were-at">Where we’re at</a></li>
-  <li><a href="#objectives" id="toc-objectives" class="nav-link" data-scroll-target="#objectives">Objectives</a></li>
+  <li><a href="#submission-instructions" id="toc-submission-instructions" class="nav-link" data-scroll-target="#submission-instructions">Submission Instructions</a></li>
   </ul></li>
-  <li><a href="#learning-materials" id="toc-learning-materials" class="nav-link" data-scroll-target="#learning-materials">Learning Materials</a></li>
-  <li><a href="#assignments" id="toc-assignments" class="nav-link" data-scroll-target="#assignments">Assignments</a></li>
+  <li><a href="#assignment" id="toc-assignment" class="nav-link" data-scroll-target="#assignment">Assignment</a>
+  <ul class="collapse">
+  <li><a href="#data-entry" id="toc-data-entry" class="nav-link" data-scroll-target="#data-entry">1. Data Entry</a></li>
+  <li><a href="#codebook-creation" id="toc-codebook-creation" class="nav-link" data-scroll-target="#codebook-creation">2. Codebook Creation</a></li>
+  <li><a href="#data-import" id="toc-data-import" class="nav-link" data-scroll-target="#data-import">3. Data Import</a>
+  <ul class="collapse">
+  <li><a href="#examples-of-import-code" id="toc-examples-of-import-code" class="nav-link" data-scroll-target="#examples-of-import-code">Examples of import code</a></li>
+  </ul></li>
+  </ul></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/norcalbiostat/math615_test/edit/main/topics/t01-data-arch.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/norcalbiostat/math615_test/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/norcalbiostat/math615_test/edit/main/hw/hw01-data_entry.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/norcalbiostat/math615_test/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Data Architecture</h1>
-<p class="subtitle lead">Data entry, spreadsheets, metadata, codebooks</p>
+<h1 class="title d-none d-lg-block">HW 01: Data Entry</h1>
+<p class="subtitle lead">Recording data to maintain your sanity.</p>
 </div>
 
-<div>
-  <div class="description">
-    Aug 22
-  </div>
-</div>
 
 
 <div class="quarto-title-meta">
@@ -220,78 +264,102 @@ ul.task-list{list-style: none;}
 
 </header>
 
-<div class="cell">
-
-</div>
-<section id="learning-path" class="level2">
-<h2 class="anchored" data-anchor-id="learning-path">Learning Path</h2>
-<section id="where-weve-been" class="level3">
-<h3 class="anchored" data-anchor-id="where-weve-been">Where we’ve been</h3>
-<p>Getting all of our learning tools together.</p>
+<section id="assignment-overview" class="level1">
+<h1>Assignment Overview</h1>
+<p>Although you will be working with previously collected data, it is important to understand what data looks like as well as how it is coded and entered into a spreadsheet or dataset for analysis. This can help you identify and avoid problems later when reading data into an analysis software program. For example if you mix letters and numbers in the same cell, the variable will be treated as character not numeric.</p>
 </section>
-<section id="where-were-at" class="level3">
-<h3 class="anchored" data-anchor-id="where-were-at">Where we’re at</h3>
-<p>Ready to learn how to interact with data.</p>
+<section id="instructions" class="level1">
+<h1>Instructions</h1>
+<p>There are three pieces to this assignment.</p>
+<ol type="1">
+<li>Entering raw data into a spreadsheet.</li>
+<li>Creating a codebook</li>
+<li>Importing the data into your software program of choice (SPC)</li>
+</ol>
+<p>Using the <a href="https://norcalbiostat.netlify.com/data/medical-records.pdf">PDF copies of medical records</a> for 5 patients seeking treatment in a hospital emergency room you are going to do data entry and create a codebook.</p>
+<section id="submission-instructions" class="level2">
+<h2 class="anchored" data-anchor-id="submission-instructions">Submission Instructions</h2>
+<p>You will enter data and create your codebook directly in Google Sheets.</p>
+<ul>
+<li>Start a new Google spreadsheet in the <strong>01 Data Entry</strong> folder in our shared Google Drive.</li>
+<li>Name this file <code>medrecords_userid</code> where <em>userid</em> is your chico state user id.</li>
+<li>Create and name the following worksheets: <code>data</code>, <code>codebook</code>, <code>import</code>.</li>
+<li>When you have completed this work, download a copy as a PDF and submit through Blackboard for scoring.</li>
+</ul>
+<p><em>I will look at your Google spreadsheet directly. Do not worry if your PDF is not formatted for easy viewing</em>.</p>
+<p>There is no peer review for this assignment.</p>
+<hr>
 </section>
-<section id="objectives" class="level3">
-<h3 class="anchored" data-anchor-id="objectives">Objectives</h3>
-<div class="cell">
-<div class="cell-output-display">
+</section>
+<section id="assignment" class="level1">
+<h1>Assignment</h1>
+<section id="data-entry" class="level2">
+<h2 class="anchored" data-anchor-id="data-entry">1. Data Entry</h2>
+<ol type="1">
+<li>Select 4 variables recorded on the medical forms
 <ul>
-<li>Data is recorded in different manners
-<ul>
-<li>Spreadsheets are a common method of recording data</li>
-<li>Codebooks are an essential piece in learning about the data</li>
-<li>There is a difference between human readable and computer readable data formats</li>
+<li>one should be a unique identifier, at least one should be a quantitative variable and at least one should be a categorical variable. (Ref PMA6 Ch2)</li>
 </ul></li>
-</ul>
-<!-- end of list -->
-</div>
-</div>
+<li>Select a brief name for each variable - write this in the first row
+<ul>
+<li>Use good variable naming conventions:
+<ul>
+<li>short</li>
+<li>no special characters</li>
+<li>no spaces</li>
+<li>doesn’t start with a number</li>
+</ul></li>
+</ul></li>
+<li>Determine what range of values is needed for recording each variable</li>
+<li>Enter the data for each patient, one patient per row.</li>
+<li>If data is missing for a particular value, leave the cell blank.</li>
+</ol>
+<p><img src="images/hw1_data.png" class="img-fluid"></p>
+<p>Recall the <em>tidy data principles</em> state to put one observation per row, and one variable (characteristic) per column.</p>
 </section>
+<section id="codebook-creation" class="level2">
+<h2 class="anchored" data-anchor-id="codebook-creation">2. Codebook Creation</h2>
+<p>In a separate worksheet list the variable names, labels, data types, and response code or ranges in separate columns (4 columns total).</p>
+<p>An example of what this should look like is below. (With the exception of the red error)</p>
+<p><img src="images/hw1_codebook.png" class="img-fluid"></p>
 </section>
-<section id="learning-materials" class="level2">
-<h2 class="anchored" data-anchor-id="learning-materials">Learning Materials</h2>
-<p><i class="fa-solid fa-person-chalkboard" aria-hidden="true"></i> <strong>Slides (Will open in full screen. Right click to open in a new tab)</strong></p>
-<div class="cell">
-<div class="cell-output-display">
+<section id="data-import" class="level2">
+<h2 class="anchored" data-anchor-id="data-import">3. Data Import</h2>
+<ol type="1">
+<li>Export your file to your hard drive as a Comma Separated Value (<code>*.csv</code>).
 <ul>
-<li><a href="../slides/lec01-data-arch.html">Data architecture</a></li>
-</ul>
-<!-- end of list -->
-</div>
-</div>
-<p><span class="emoji" data-emoji="books">📚</span> <strong>Reading</strong></p>
-<div class="cell">
-<div class="cell-output-display">
+<li>If it asks you, only save the<code>data</code> worksheet.</li>
+</ul></li>
+<li>Using your software program of choice, import this data into the program using point and click GUI methods.
 <ul>
-<li><a href="https://tidyr.tidyverse.org/articles/tidy-data.html#tidying">Tidy data principles</a> (Optional)</li>
-</ul>
-<!-- end of list -->
-</div>
-</div>
-<p><span class="emoji" data-emoji="pencil">📝</span> <strong>Collaborative notes</strong></p>
-<div class="cell">
-<div class="cell-output-display">
+<li>Code is fine if you already know how. Point and click is also fine for now.</li>
+<li>Read the collaborative notes for your SPC to learn others have done this.</li>
+</ul></li>
+<li>Note and record any problems that you noticed and/or had to fix at the bottom of your <code>codebook</code> worksheet.
 <ul>
-<li><a href="https://hackmd.io/@norcalbiostat/01_data_arch">Data architecture</a></li>
-</ul>
-<!-- end of list -->
+<li>Does your data file look like your spreadsheet?</li>
+<li>Did you have to specify missing values in any specific way?</li>
+</ul></li>
+<li>Show that it worked by taking a screenshot of the code, and the view of the data. Paste both in the <code>codebook</code> worksheet.</li>
+</ol>
+<section id="examples-of-import-code" class="level3">
+<h3 class="anchored" data-anchor-id="examples-of-import-code">Examples of import code</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/hw1_r_code.png" class="img-fluid figure-img" alt="Example of R import code"></p>
+<p></p><figcaption class="figure-caption">Example R code</figcaption><p></p>
+</figure>
 </div>
-</div>
-</section>
-<section id="assignments" class="level2">
-<h2 class="anchored" data-anchor-id="assignments">Assignments</h2>
-<div class="cell">
-<div class="cell-output-display">
-<ul>
-<li><a href="../hw/hw01_data_entry.html">HW01 Data Entry</a></li>
-</ul>
-<!-- end of list -->
-</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/hw1_spss_code.png" class="img-fluid figure-img" alt="Example of SPSS import code" width="400"></p>
+<p></p><figcaption class="figure-caption">Example SPSS code</figcaption><p></p>
+</figure>
 </div>
 
 
+</section>
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -498,7 +566,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-    <div class="nav-footer-left">This site is built with <span class="emoji" data-emoji="heart">❤️</span> and <a href="https://quarto.org/">Quarto</a> by <a href="www.norcalbiostat.com">Robin Donatello</a>.</div>   
+    <div class="nav-footer-left">This site is built with <span class="emoji" data-emoji="heart">❤️</span>, <i class="fa-brands fa-r-project" aria-hidden="true"></i> and <a href="https://quarto.org/">Quarto</a> by <a href="www.norcalbiostat.com">Robin Donatello</a>.</div>   
   </div>
 </footer>
 
