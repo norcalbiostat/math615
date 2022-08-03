@@ -26,6 +26,70 @@
     div.column{display: inline-block; vertical-align: top; width: 50%;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css" id="theme">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -369,41 +433,119 @@
 </ol>
 </div>
 </section>
+<section id="graphing-with-intent" class="slide level2">
+<h2>Graphing with intent</h2>
+<p>Along with having the audience in mind, it is important to give thought to the purpose of the chart.</p>
+<blockquote>
+<p>The effectiveness of any visualization can be measured according to how well it fulfills the tasks it was designed for. (A. Cairo, 2018).</p>
+</blockquote>
+</section>
 <section id="choosing-appropriate-visualization" class="slide level2">
 <h2>Choosing Appropriate Visualization</h2>
-<div class="columns">
-<div class="column" style="width:30%;">
-<p><br> <br> It entirely depends on the data type.</p>
-</div><div class="column" style="width:70%;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="images/pma6_data_viz_table.png"></p>
-<p></p><figcaption>Crappy screenshot of PMA6 Table 4.7</figcaption><p></p>
-</figure>
+<p>75% of your choice is determined by the data type</p>
+<p><a href="https://r-graph-gallery.com/">https://r-graph-gallery.com/</a></p>
+</section>
+<section>
+<section id="meet-the-palmer-penguins" class="title-slide slide level1 center" data-background-image="images/penguins.png" data-background-size="90%" data-background-position="right">
+<h1>Meet the Palmer Penguins</h1>
+<div class="cell">
+
+</div>
+</section>
+<section id="single-categorical" class="slide level2" data-background-image="images/penguins.png" data-background-size="20%" data-background-position="80% 10%">
+<h2>Single Categorical</h2>
+<div class="panel-tabset">
+<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">Numbers</a></li><li><a href="#tabset-1-2">Plots</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1">
+<p><strong>Frequencies (N)</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">table</span>(pen<span class="sc">$</span>species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+   Adelie Chinstrap    Gentoo 
+      152        68       124 </code></pre>
+</div>
+</div>
+<p><strong>Percents (%)</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">table</span>(pen<span class="sc">$</span>species) <span class="sc">|&gt;</span> <span class="fu">proportions</span>() <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="at">digits=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+   Adelie Chinstrap    Gentoo 
+     0.44      0.20      0.36 </code></pre>
+</div>
+</div>
+<p>Penguin species <em>Adelie</em> make up 44% of the sample (n=152)</p>
+</div>
+<div id="tabset-1-2">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>sjPlot<span class="sc">::</span><span class="fu">plot_frq</span>(pen<span class="sc">$</span>species) <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">"Species"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img data-src="lec04-describing_data_files/figure-revealjs/unnamed-chunk-4-1.png" width="960"></p>
+</div>
+</div>
 </div>
 </div>
 </div>
 </section>
-<section id="section" class="slide level2">
-<h2></h2>
+<section id="single-numeric" class="slide level2" data-background-image="images/culmen_depth.png" data-background-size="25%" data-background-position="100% 0%">
+<h2>Single Numeric</h2>
+<div class="panel-tabset">
+<ul id="tabset-2" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-2-1">Center</a></li><li><a href="#tabset-2-2">Spread</a></li><li><a href="#tabset-2-3">Plots</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">summary</span>(pen<span class="sc">$</span>bill_depth_mm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+  13.10   15.60   17.30   17.15   18.70   21.50       2 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">sd</span>(pen<span class="sc">$</span>bill_depth_mm, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.974793</code></pre>
+</div>
+</div>
+<p><br>
+</p>
+<p>The average bill depth is 17.15mm, with a standard deviation of 1.9mm.</p>
+</div>
+<div id="tabset-2-2">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">summary</span>(pen<span class="sc">$</span>bill_depth_mm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+  13.10   15.60   17.30   17.15   18.70   21.50       2 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">IQR</span>(pen<span class="sc">$</span>bill_depth_mm, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3.1</code></pre>
+</div>
+</div>
+<p><br>
+</p>
+<p>Bill depth ranges from 13.1 to 21.5mm, and has an IQR of 3.1mm.</p>
+</div>
+<div id="tabset-2-3">
 <div class="columns">
 <div class="column" style="width:50%;">
-<p><strong>Categorical</strong></p>
-<ul>
-<li>Summary Statistics: N, %</li>
-<li>Tables: Frequency &amp; proportions</li>
-<li>Plots: Bar charts, (pie charts on occasion)</li>
-</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>ggpubr<span class="sc">::</span><span class="fu">gghistogram</span>(pen<span class="sc">$</span>bill_depth_mm, <span class="at">add_density =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img data-src="lec04-describing_data_files/figure-revealjs/unnamed-chunk-7-1.png" width="960"></p>
+</div>
+</div>
 </div><div class="column" style="width:50%;">
-<p><strong>Continuous</strong></p>
-<ul>
-<li>Summary Statistics:
-<ul>
-<li>A measure of center: mean or median</li>
-<li>A measure of variability: standard deviation, range, IQR</li>
-</ul></li>
-<li>Plots: Histogram, density plot, boxplot, violin plot</li>
-</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>ggpubr<span class="sc">::</span><span class="fu">ggviolin</span>(pen<span class="sc">$</span>bill_depth_mm, <span class="at">add =</span> <span class="fu">c</span>(<span class="st">"jitter"</span>, <span class="st">"boxplot"</span>)) <span class="sc">+</span> <span class="fu">coord_flip</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img data-src="lec04-describing_data_files/figure-revealjs/unnamed-chunk-8-1.png" width="960"></p>
+</div>
+</div>
+</div>
+</div>
+<p>The distribution of bill depth appears to be bimodal with peaks around 15 and 18mm.</p>
+</div>
 </div>
 </div>
 </section>
@@ -411,9 +553,13 @@
 <h2>How to create graphs</h2>
 <ul>
 <li>Similar to the data management section, after identifying what you want to do, you go look up how to do that thing.</li>
-<li>Don’t expect to remember the exact code yet, just know where to look up an example and copy from there</li>
+<li>Don’t expect to remember the exact code yet, just know where to look up an example and copy from there
+<ul>
+<li>Prior semester SPSS students crated a HackMD collaborative notes file for sharing code. <a href="https://hackmd.io/@norcalbiostat/SPSS">[LINK]</a></li>
+<li>Need these for other languages!</li>
+</ul></li>
 <li>copy/paste/pray</li>
-<li>Keep it simple until you get more comfortable.</li>
+<li>Keep graphs simple until you get more comfortable.</li>
 </ul>
 </section>
 <section id="references" class="slide level2">
@@ -421,12 +567,13 @@
 <ul>
 <li>PMA6 Chapter 4 for appropriate plot choices</li>
 <li>Applied Stats course Notes Chapter 2.3 for examples and code</li>
+<li>HackMD Notes</li>
 </ul>
 
 <div class="footer footer-default">
 <p><a href="https://norcalbiostat.github.io/MATH615/">🔗 https://norcalbiostat.github.io/MATH615</a> / Describing Distributions of Data</p>
 </div>
-</section>
+</section></section>
     </div>
   </div>
 

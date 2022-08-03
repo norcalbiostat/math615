@@ -1,0 +1,577 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  letterpaper,
+  DIV=11,
+  numbers=noendperiod]{scrartcl}
+
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+% Make \paragraph and \subparagraph free-standing
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+
+\KOMAoption{captions}{tableheading}
+\makeatletter
+\@ifpackageloaded{tcolorbox}{}{\usepackage[many]{tcolorbox}}
+\@ifpackageloaded{fontawesome5}{}{\usepackage{fontawesome5}}
+\definecolor{quarto-callout-color}{HTML}{909090}
+\definecolor{quarto-callout-note-color}{HTML}{0758E5}
+\definecolor{quarto-callout-important-color}{HTML}{CC1914}
+\definecolor{quarto-callout-warning-color}{HTML}{EB9113}
+\definecolor{quarto-callout-tip-color}{HTML}{00A047}
+\definecolor{quarto-callout-caution-color}{HTML}{FC5300}
+\definecolor{quarto-callout-color-frame}{HTML}{acacac}
+\definecolor{quarto-callout-note-color-frame}{HTML}{4582ec}
+\definecolor{quarto-callout-important-color-frame}{HTML}{d9534f}
+\definecolor{quarto-callout-warning-color-frame}{HTML}{f0ad4e}
+\definecolor{quarto-callout-tip-color-frame}{HTML}{02b875}
+\definecolor{quarto-callout-caution-color-frame}{HTML}{fd7e14}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Table of contents}
+\else
+  \newcommand\contentsname{Table of contents}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{List of Figures}
+\else
+  \newcommand\listfigurename{List of Figures}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{List of Tables}
+\else
+  \newcommand\listtablename{List of Tables}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figure}
+\else
+  \newcommand\figurename{Figure}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Table}
+\else
+  \newcommand\tablename{Table}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listing}
+\newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{tcolorbox}{}{\usepackage[many]{tcolorbox}}
+\makeatother
+\makeatletter
+\@ifundefined{shadecolor}{\definecolor{shadecolor}{rgb}{.97, .97, .97}}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{fontawesome5}{}{\usepackage{fontawesome5}}
+\makeatother
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={Syllabus},
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Syllabus}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[interior hidden, sharp corners, breakable, enhanced, borderline west={3pt}{0pt}{shadecolor}, boxrule=0pt, frame hidden]}{\end{tcolorbox}}\fi
+
+\hypertarget{course-information}{%
+\section{Course Information}\label{course-information}}
+
+\emph{This course provides a hands-on introduction to using data to
+rigorously answer research questions. Students practice cleaning and
+manipulating data, creating data visualizations, and conducting
+introductory level statistical analysis using real-world data sets that
+are relevant to their field. Analysis topics include single and
+two-sample inference, analysis of variance, multiple regression,
+analysis of co-variance, experimental design, repeated measures,
+nonparametric procedures, and categorical data analysis. Reproducible
+research is strongly emphasized through the use of statistical computing
+software (e.g.~SPSS, Stata, SAS, R, Python). Recommended for all majors
+that use data for research. 3 hours discussion.}
+
+\hypertarget{instructor}{%
+\subsection{Instructor}\label{instructor}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Name \& pronouns:} Dr.~Robin Donatello (Dr.~D, she/her)
+\item
+  \textbf{Website:} \url{https://www.norcalbiostat.com/}
+\item
+  \textbf{Office Location:} Holt 202
+\item
+  \textbf{E-mail:} rdonatello@csuchico.edu
+\item
+  \textbf{Best Contact Method:} Discord
+\item
+  \textbf{Student Office Hours:} Holt 202: MW 3-4pm and during community
+  coding
+\end{itemize}
+
+\hypertarget{logistics}{%
+\subsection{Logistics}\label{logistics}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Meeting Pattern:} MW 4-5:30, Holt 291
+\item
+  \textbf{Prerequisites:} Basic computer literacy. Recent statistics
+  course such as Math 105, MATH 315, or MATH 350.\\
+\item
+  \textbf{Mode of Instruction:} In Person. All students are expected to
+  attend class in person each session. At this time there is no specific
+  plan for habitual synchronous hybrid zoom session.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{what-are-we-going-to-learn-course-learning-outcomes}{%
+\section{What are we going to learn? (Course Learning
+Outcomes)}\label{what-are-we-going-to-learn-course-learning-outcomes}}
+
+By the end of the course, students will be able to\ldots{}
+
+\begin{itemize}
+\tightlist
+\item
+  Import data into a statistical analysis software program in a format
+  that is ready to analyze.
+\item
+  Process, screen, recode, transform, and clean data.
+\item
+  Describe distributions and patterns of data using visualizations and
+  words.
+\item
+  Select and carry out an appropriate statistical analysis.
+\item
+  Explain study results and limitations to a non-technical audience.
+\item
+  Understand and implement a reproducible research pipeline.
+\item
+  Become a data nerd (Optional, but recommended).
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{required-materials-and-accounts}{%
+\section{Required materials and
+accounts}\label{required-materials-and-accounts}}
+
+Homework 0 provides a checklist for you to make sure you have
+everything.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Class website}: https://norcalbiostat.github.io/MATH615/
+\item
+  \textbf{Textbook (Required)}: \emph{Practical Multivariate Analysis,
+  6th ed} by Afifi, May, Donatello, Clark.
+  \href{https://www.routledge.com/Practical-Multivariate-Analysis/Afifi-May-Donatello-Clark/p/book/9781032088471}{{[}Link{]}}
+\item
+  \textbf{Textbook (Optional)}: Open Intro Statistics 3rd edition. If
+  you need a refresher on your basic statistics. Free PDF available at
+  https://www.openintro.org/stat/textbook.php?stat\_book=os
+\item
+  \textbf{Laptop \& Internet}: Expect to bring your laptop to class
+  every day. Contact me if this poses a problem or concern for you.
+  Refer to ITSS for help with internet.
+\item
+  \textbf{Data Analysis software}: R recommended but not required.
+  Common statistical programs include SAS, STATA, Python and SPSS.
+\item
+  \textbf{Blackboard Learn (BBL)}: Used for recording grades via grading
+  rubric only.
+\item
+  \textbf{Google Drive}: Through your campus email.
+\item
+  \textbf{Discord}: A free discussion platform with a lot of
+  collaborative functionality. The defacto method of communication for
+  the class. Download either the phone app or the desktop app (I use
+  both). This is mandatory. Do not rely on remembering to log in via the
+  web browser. You will miss important notifications.
+\item
+  \textbf{Hack MD}: https://hackmd.io/. Interactive collaborative notes.
+  No account needed to view, but account needed for editing (which you
+  will be doing). I recommend you sign up with your campus email
+  (@csuchico.edu)
+\item
+  \textbf{Poll Everywhere}: I will add you to my class using your campus
+  email.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{grading-breakdown}{%
+\section{Grading Breakdown}\label{grading-breakdown}}
+
+\begin{itemize}
+\tightlist
+\item
+  Your final grade will be a straight sum of points earned and will be
+  displayed as a running total in Blackboard Learn.
+\item
+  The approximate contributions per category are:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Peer Reviews: 20\%
+  \item
+    Written Assignments 30\%
+  \item
+    Quizzes: 10\%
+  \item
+    Take home Final exam: 15\%
+  \item
+    Project related assignments: 30\%\\
+  \end{itemize}
+\item
+  I use a standard grade cutoff of 100-90\%: A, 89-80\%: B, 79-70\%: C.
+  Plusses and minuses will be as displayed on Blackboard Learn.
+\end{itemize}
+
+\hypertarget{schedule-of-topics}{%
+\section{Schedule of Topics}\label{schedule-of-topics}}
+
+The general ordering of topics is:
+
+\begin{itemize}
+\tightlist
+\item
+  Data Collection and recording
+\item
+  Preparing data for analysis
+\item
+  Data Visualization
+\item
+  Foundations for Inference: probability distributions, point and
+  interval estimation, Hypothesis Testing
+\item
+  Inference comparing multiple samples (t-tests, ANOVA, \(\chi^{2}\)
+  tests)
+\item
+  Study design, confounding, causation
+\item
+  Linear regression analysis (Simple and Multiple, Categorical
+  predictors, variable selection)
+\item
+  Logistic regression analysis
+\item
+  Model building techniques and comparing model fit
+\item
+  Special analysis topics - how to identify when linear regression
+  models won't work.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{how-do-you-get-help}{%
+\section{How do you get help?}\label{how-do-you-get-help}}
+
+\begin{itemize}
+\tightlist
+\item
+  See the \href{help.html}{help} page on the course website.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{class-policies-and-statements}{%
+\section{Class Policies and
+statements}\label{class-policies-and-statements}}
+
+\hypertarget{everyone-is-welcome-here}{%
+\subsection{Everyone is welcome here}\label{everyone-is-welcome-here}}
+
+It is my intent that students from all diverse backgrounds and
+perspectives be well-served by this course, that students' learning
+needs be addressed both in and out of class, and that the diversity that
+the students bring to this class be viewed as a resource, strength and
+benefit. It is my intent to present materials and activities that are
+respectful of diversity: gender identity, sexuality, disability, age,
+socioeconomic status, ethnicity, race, nationality, religion, and
+culture. Your suggestions are encouraged and appreciated. Please let me
+know ways to improve the effectiveness of the course for you personally,
+or for other students or student groups.
+
+I would like to create a learning environment that supports a diversity
+of thoughts, perspectives and experiences, and honors your identities
+(including race, gender, class, sexuality, religion, ability, etc.) To
+help accomplish this:
+
+\begin{itemize}
+\tightlist
+\item
+  Let me know if you have a name and/or set of pronouns that differ from
+  those that appear in your official Chico records. I make it a point to
+  call on people by name, so please make sure that I know what you want
+  to be called. - I also want to try to pronounce your name as
+  accurately as possible. The more you help and correct me the better I
+  can do to honor your name.
+\item
+  If you feel like your performance in the class is being impacted by
+  your experiences outside of class, please don't hesitate to come and
+  talk with me. I want to be a resource for you. Remember that you can
+  also submit anonymous feedback using the feedback button on the
+  schedule and help pages of the website (which will lead to me making a
+  general announcement to the class, if necessary to address your
+  concerns).
+\item
+  If you prefer to speak with someone outside of the course, the Office
+  of Diversity and Inclusion is here to assist. Their number is
+  530-898-4764, and email
+  \href{mailto:diversityoffice@csuchico.edu}{\nolinkurl{diversityoffice@csuchico.edu}}
+\item
+  I (like many people) am still in the process of learning about diverse
+  perspectives and identities. If something was said in class (by
+  anyone) that made you feel uncomfortable, please talk to me about it.
+  (Again, anonymous feedback is always an option).
+\end{itemize}
+
+\emph{Adapted from
+\href{https://www.brown.edu/sheridan/teaching-learning-resources/inclusive-teaching/statements}{Monica
+Linden at Brown University}}.
+
+Furthermore, I would like to acknowledge that Chico State stands on
+lands that were originally occupied by the first people of this area,
+the Mechoopda. I recognize their distinctive spiritual relationship with
+this land and the waters that run through campus. I am humbled that our
+campus resides upon sacred lands that once sustained the Mechoopda
+people for centuries.
+
+\hypertarget{attendance}{%
+\subsection{Attendance}\label{attendance}}
+
+Class attendance is expected. Talk to me ahead of time if you need to
+miss a class for a planned reason. In the event of an unplanned reason,
+PM me in Discord when you can so that I know you are still alive.
+
+\begin{itemize}
+\tightlist
+\item
+  If you are not feeling well or are experiencing Covid symptoms
+  \textbf{DO NOT COME TO CLASS}. DM me in Discord we'll make a backup
+  plan.
+\end{itemize}
+
+\hypertarget{late-work}{%
+\subsection{Late work}\label{late-work}}
+
+\begin{itemize}
+\tightlist
+\item
+  You should strive to submit on time for all draft items the sake of
+  your peers. Do you want your reviews back in a timely manner? You
+  should show them the same courtesy and professionalism.
+\item
+  I don't penalize for late work, but I prioritize on time submissions.
+  If you submit an assignment after i'm done grading everyone elses, and
+  we're moving on to the next topic then your assignment may have to
+  wait a week before I can get back to it.
+\end{itemize}
+
+\hypertarget{collaboration}{%
+\subsection{Collaboration}\label{collaboration}}
+
+Collaboration on assignments is encouraged. People learn better when
+they have someone else to talk through concepts with.
+
+\begin{tcolorbox}[enhanced jigsaw, colback=white, title=\textcolor{quarto-callout-warning-color}{\faExclamationTriangle}\hspace{0.5em}{Warning}, toptitle=1mm, bottomrule=.15mm, breakable, leftrule=.75mm, bottomtitle=1mm, opacityback=0, coltitle=black, rightrule=.15mm, left=2mm, toprule=.15mm, colframe=quarto-callout-warning-color-frame, colbacktitle=quarto-callout-warning-color!10!white, opacitybacktitle=0.6, arc=.35mm, titlerule=0mm]
+Collaboration on exams is not allowed.
+\end{tcolorbox}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{campus-resources}{%
+\section{Campus Resources}\label{campus-resources}}
+
+This \href{https://www.csuchico.edu/coronavirus/students.shtml}{campus
+website} contains a lot of information and resources specific to our
+COVID-19 situation. Specifically this page contains links to resources
+to help you keep
+\href{https://www.csuchico.edu/keep-learning/index.shtml}{learning}, and
+\href{https://www.csuchico.edu/keep-engaging/index.shtml}{engaging}, and
+lots of links to student support services such as emergency grants,
+basic need such as healthy food and housing, tutoring, health center,
+financial aid and a lot more.
+
+You can also check out the resources on the \href{help.html}{Help} page.
+
+\hypertarget{americans-with-disabilities-act}{%
+\subsection{Americans with Disabilities
+Act}\label{americans-with-disabilities-act}}
+
+If you need course adaptations or accommodations because of a disability
+or chronic illness, or if you need to make special arrangements in case
+the building must be evacuated, please make an appointment with me as
+soon as possible, or see me during office hours. Please also contact
+Accessibility Resource Center (ARC) as they are the designated
+department responsible for approving and coordinating reasonable
+accommodations and services for students with disabilities. ARC will
+help you understand your rights and responsibilities under the Americans
+with Disabilities Act and provide you further assistance with requesting
+and arranging accommodations. We try our best to ensure equal access to
+materials in accessible formats. Reach out to your me if there is some
+aspect of the course materials that are inaccessible to you.
+
+Accessibility Resource Center 530-898-5959 Student Services Center 170
+\href{mailto:arcdept@csuchico.edu}{\nolinkurl{arcdept@csuchico.edu}}
+\href{https://www.csuchico.edu/arc/}{http://www.csuchico.edu/arc}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{university-policies}{%
+\section{University Policies}\label{university-policies}}
+
+\hypertarget{covid-19}{%
+\subsection{COVID-19}\label{covid-19}}
+
+The CSU requires students to be fully vaccinated and boosted against
+COVID-19 by February 28th, 2022, unless you have an approved exemption.
+While Chico State has relaxed its stance on mask mandates, for your and
+my health and safety I \emph{request} that everyone wear an appropriate
+face mask covering the nose and mouth while in class.
+
+Please note that dishonesty relating to the vaccination policy and/or
+your failure to comply with any other COVID-19 related safety policy or
+mandate may result in disciplinary action against you through the office
+of Student Conduct, Rights and Responsibilities, which can include
+suspension or expulsion from the California State University system.
+
+\hypertarget{adding-and-dropping-the-course}{%
+\subsection{Adding and Dropping the
+course}\label{adding-and-dropping-the-course}}
+
+You are responsible for understanding the policies and procedures about
+add/drops, academic renewal, etc., found in the
+\href{http://www.csuchico.edu/catalog/}{CSU Chico University Catalog}.
+You should be aware of the new deadlines and penalties for adding and
+dropping classes.
+
+\hypertarget{confidentiality-and-mandatory-reoprting}{%
+\subsection{Confidentiality and Mandatory
+Reoprting}\label{confidentiality-and-mandatory-reoprting}}
+
+As an instructor, one of my responsibilities is to help create a safe
+learning environment on our campus. I also have a mandatory reporting
+responsibility related to my role as a your instructor. I am required to
+share information regarding sexual misconduct with the University.
+Students may speak to someone confidentially by contacting the
+Counseling and Wellness Center (898-6345) or Safe Place (898-3030).
+Information on campus reporting obligations and other Title IX related
+resources are available here: www.csuchico.edu/title-ix.
+
+\hypertarget{academic-integrity}{%
+\subsection{Academic Integrity}\label{academic-integrity}}
+
+Academic integrity is defined as ``a commitment, even in the face of
+adversity, to five fundamental values: honesty, trust, fairness,
+respect, and responsibility''. From these values flow principles of
+behavior that enable academic communities to translate ideals to action.
+Academic integrity is expected and required. No forms of cheating or
+plagiarism will be tolerated. Please see your student handbook at
+https://www.csuchico.edu/scrr/integrity.shtml if you have questions
+about the meaning of these terms or the consequences of violating
+academic integrity.
+
+
+
+\end{document}

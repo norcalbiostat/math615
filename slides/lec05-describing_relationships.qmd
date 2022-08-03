@@ -1,0 +1,198 @@
+---
+title: "Describing Relationships between variables"
+date: "2022-09-19"
+description: "5, 6"
+author: "Robin Donatello"
+footer: "[🔗 https://norcalbiostat.github.io/MATH615](https://norcalbiostat.github.io/MATH615/) / Describing  Relationships"
+from: markdown+emoji
+format: 
+  revealjs:
+    theme: beige
+    multiplex: true
+    transition: fade
+    slide-number: true
+    incremental: false 
+    chalkboard: true
+execute:
+  freeze: auto
+  echo: false
+knitr:
+  opts_chunk: 
+    R.options:
+      width: 200
+---
+
+# Bivariate: Association between 2 variables
+
+## Naming conventions
+
+|      Response      |     Explanatory      |
+|:------------------:|:--------------------:|
+|         y          |          x           |
+|      outcome       |      predictor       |
+| dependent variable | independent variable |
+|                    |      covariate       |
+|                    |       feature        |
+
+\
+
+Model notation: $y \sim x$
+
+## Types of combinations
+
+-   Categorical response and categorical explanatory variable. (C \~ C)
+-   Quantitative response and categorical explanatory variable. (Q \~ C)
+-   Quantitative response and quantitative explanatory variable. (Q \~ Q)
+
+#  {background-image="images/penguins.png" background-size="60%"}
+
+```{r}
+#| echo: false
+library(palmerpenguins); library(ggplot2); library(sjPlot); library(ggpubr)
+pen <- penguins
+```
+
+## Categorical response & Categorical explanatory
+
+::: panel-tabset
+### Two way tables (cross-tabs)
+
+::: columns
+::: {.column width="50%"}
+```{r}
+#| echo: true
+table(pen$species, pen$island)
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+#| echo: true
+table(pen$species, pen$island) |> prop.table(margin=2) |> round(2)
+```
+:::
+:::
+
+-   All of the 52 penguins on Torgersen island are the *Adelie* species.
+-   74% of penguins on Biscoe island are *Gentoo*.
+
+### Plots
+
+```{r}
+plot_xtab(pen$island, grp=pen$species, show.total = FALSE)
+```
+:::
+
+## Watch your margins {.smaller}
+
+::: panel-tabset
+### Tables
+
+::: columns
+::: {.column width="50%"}
+**Row Percents**
+
+```{r}
+table(pen$species, pen$island) |> 
+  prop.table(margin=1) |> round(2)
+```
+
+29% **of *Adelie* penguins** are on Biscoe Island.
+:::
+
+::: {.column width="50%"}
+**Column Percents**
+
+```{r}
+table(pen$species, pen$island) |> 
+  prop.table(margin=2) |> round(2)
+```
+
+74% **of penguins on Biscoe island** are *Gentoo*.
+:::
+:::
+
+### Plots
+
+::: columns
+::: {.column width="50%"}
+Distribution of islands for each species inhabits.
+
+```{r}
+plot_xtab(pen$species, grp=pen$island, margin = "row", show.total = FALSE)
+```
+
+29% **of *Adelie* penguins** are on Biscoe Island.
+:::
+
+::: {.column width="50%"}
+Distribution of Species on each island.
+
+```{r}
+plot_xtab(pen$island, grp=pen$species, margin = "row", show.total = FALSE)
+```
+
+74% **of penguins on Biscoe island** are *Gentoo*.
+:::
+:::
+:::
+
+## Quantitative response & Categorical explanatory
+
+
+::: panel-tabset
+### Grouped summary statistics
+
+### Plots
+
+::: columns
+::: {.column width="50%"}
+```{r}
+#| echo: true
+
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+#| echo: true
+
+```
+:::
+
+:::
+:::
+
+
+## Quantitative response & Quantitative explanatory
+
+::: panel-tabset
+### Summary statistic
+
+```{r}
+#| echo: true
+cor(pen$flipper_length_mm, pen$body_mass_g, use="pairwise.complete.obs")
+```
+
+The penguin flipper length (mm) has a strong positive correlation with body mass (g), r=0.87
+
+### Plots
+
+::: columns
+::: {.column width="50%"}
+```{r}
+#| echo: true
+ggscatter(pen, x="flipper_length_mm", y = "body_mass_g")
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+#| echo: true
+ggscatter(pen, x="flipper_length_mm", y = "body_mass_g", add = "loess", conf.int = TRUE)
+```
+:::
+
+<small> The relationship between flipper length and body mass in penguins is relatively linear, but there may be possible clustering on a third variable. There appears to be two groups below and above a flipper length of about 205mm. </small>
+:::
+:::
