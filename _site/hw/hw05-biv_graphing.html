@@ -173,10 +173,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <a class="dropdown-item" href="../collab_notes.html">
  <span class="dropdown-text">Collaborative Notes</span></a>
   </li>  
-        <li>
-    <a class="dropdown-item" href="../reading.html">
- <span class="dropdown-text">Readings</span></a>
-  </li>  
     </ul>
   </li>
   <li class="nav-item">
@@ -274,11 +270,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="../collab_notes.html" class="sidebar-item-text sidebar-link">Collaborative Notes</a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../reading.html" class="sidebar-item-text sidebar-link">Readings</a>
-  </div>
-</li>
       </ul>
   </li>
     </ul>
@@ -291,13 +282,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
    
   <ul>
   <li><a href="#purpose" id="toc-purpose" class="nav-link active" data-scroll-target="#purpose">Purpose</a></li>
-  <li><a href="#instructions" id="toc-instructions" class="nav-link" data-scroll-target="#instructions">Instructions</a></li>
+  <li><a href="#instructions" id="toc-instructions" class="nav-link" data-scroll-target="#instructions">Instructions</a>
+  <ul class="collapse">
+  <li><a href="#before-you-start" id="toc-before-you-start" class="nav-link" data-scroll-target="#before-you-start">Before you start,</a></li>
+  <li><a href="#for-each-bivariate-relationship-under-consideration-you-will-do-the-following" id="toc-for-each-bivariate-relationship-under-consideration-you-will-do-the-following" class="nav-link" data-scroll-target="#for-each-bivariate-relationship-under-consideration-you-will-do-the-following">For each bivariate relationship under consideration you will do the following:</a></li>
+  </ul></li>
   <li><a href="#submission-instructions" id="toc-submission-instructions" class="nav-link" data-scroll-target="#submission-instructions">Submission instructions</a>
   <ul class="collapse">
-  <li><a href="#draft" id="toc-draft" class="nav-link" data-scroll-target="#draft">Draft</a>
-  <ul class="collapse">
+  <li><a href="#draft" id="toc-draft" class="nav-link" data-scroll-target="#draft">Draft</a></li>
   <li><a href="#peer-review-instructions" id="toc-peer-review-instructions" class="nav-link" data-scroll-target="#peer-review-instructions">Peer Review instructions</a></li>
-  </ul></li>
   <li><a href="#final" id="toc-final" class="nav-link" data-scroll-target="#final">Final</a></li>
   <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example">Example</a>
   <ul class="collapse">
@@ -338,12 +331,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1>Instructions</h1>
 <p>For this assignment you will describe the relationship between these <strong>four</strong> specific combinations of data types:</p>
 <ul>
-<li>Categorical explanatory and categorical explanatory variable. (C ~ C)</li>
-<li>Quantitative explanatory and categorical explanatory variable. (Q ~ C)</li>
+<li>Categorical response and categorical explanatory variable. (C ~ C)</li>
+<li>Quantitative response and categorical explanatory variable. (Q ~ C)</li>
 <li>Any combination of the above with a binary variable (B ~ C, C ~ B, or Q ~ B)</li>
 <li>Quantitative response and quantitative explanatory variable. (Q ~ Q)</li>
 </ul>
-<p>Before you start,</p>
+<section id="before-you-start" class="level2">
+<h2 class="anchored" data-anchor-id="before-you-start">Before you start,</h2>
 <ol type="1">
 <li>Determine what variables you want to graph based on your research topic.
 <ul>
@@ -357,7 +351,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ol>
 <p>If you do not already have a binary (B) variable in your clean data you can either a) go back and edit your <code>dm</code> file to include a binary varible, or b) dichotomize one of your categorical (C) varibles into two levels. (Make a new variable, don’t overwrite your categorical variable).</p>
-<p>For each bivariate relationship under consideration you will do the following:</p>
+</section>
+<section id="for-each-bivariate-relationship-under-consideration-you-will-do-the-following" class="level2">
+<h2 class="anchored" data-anchor-id="for-each-bivariate-relationship-under-consideration-you-will-do-the-following">For each bivariate relationship under consideration you will do the following:</h2>
 <ol type="1">
 <li><p>Name and explain the two variables under consideration.</p></li>
 <li><p>Create the appropriate graphic for bivariate relationship under consideration. For these plots binary variables are treated as categorical variables with only 2 levels.</p>
@@ -390,17 +386,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol>
 <hr>
 </section>
+</section>
 <section id="submission-instructions" class="level1">
 <h1>Submission instructions</h1>
-<section id="draft" class="level2">
-<h2 class="anchored" data-anchor-id="draft">Draft</h2>
+<section id="draft" class="level3">
+<h3 class="anchored" data-anchor-id="draft">Draft</h3>
 <ul>
-<li>Use the template provided: <a href="templates/05_biv_graphing_template.Rmd">[RMD]</a> for R users, and <a href="templates/05_biv_graphing_template.docx">[Word]</a> for SPSS users.
+<li>Use the template provided: <a href="_templates/05_biv_graphing_template.Rmd">[RMD]</a> for R users, and <a href="_templates/05_biv_graphing_template.docx">[Word]</a> for SPSS users.
 <ul>
 <li>Rename this file to <code>biv_graphing_userid</code></li>
 </ul></li>
 <li>Upload your draft PDF to <code>05 Bivariate Graphing/draft</code> folder in Google Drive.</li>
 </ul>
+</section>
 <section id="peer-review-instructions" class="level3">
 <h3 class="anchored" data-anchor-id="peer-review-instructions">Peer Review instructions</h3>
 <p>As a reviewer, this is what you’re checking for:</p>
@@ -411,9 +409,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Did they include all the required summary numbers in their description?</li>
 </ul>
 </section>
-</section>
-<section id="final" class="level2">
-<h2 class="anchored" data-anchor-id="final">Final</h2>
+<section id="final" class="level3">
+<h3 class="anchored" data-anchor-id="final">Final</h3>
 <ul>
 <li>Upload your final PDF to <code>05 Bivariate Graphing/final</code> folder in Google Drive.</li>
 <li>“Submit” a note to the assignment in BBL so I can use the rubric for scoring.</li>

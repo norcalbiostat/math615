@@ -2,24 +2,13 @@
 title: "Collaborative Notes"
 ---
 
-```{r}
-#| echo: false
-#| message: false
-#| warning: false
+## Notes
 
-library(readxl); library(pander)
+* [What is HackMD](https://hackmd.io/@norcalbiostat/intro_hackmd)  
+* [Data architecture](https://hackmd.io/@norcalbiostat/01_data_arch)
+* [Formulating Research Questions](https://hackmd.io/@norcalbiostat/02_rq)
+* [Preparing data for analysis](https://hackmd.io/@norcalbiostat/03_dm)
 
-str_prep <- function(var){
-  as.list(
-    stringr::str_split(var, "\r\n", simplify=TRUE)
-    )
-}
+## Code helpers
 
-topic_mats <- read_excel("schedule_615.xlsx", sheet="weekly_schedule") |>
-  dplyr::select(collab) |> na.omit()
-```
-
-
-```{r}
-pander(str_prep(topic_mats$collab))
-```
+* [SPSS](https://hackmd.io/@norcalbiostat/SPSS)

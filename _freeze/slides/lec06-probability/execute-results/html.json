@@ -1,0 +1,18 @@
+{
+  "hash": "c42f537e8bbd5441667a1622d7c21c90",
+  "result": {
+    "markdown": "---\ntitle: \"Understanding probability through simulation\"\ndate: \"2022-10-03\"\ndescription: \"7\"\nauthor: \"Robin Donatello\"\nfooter: \"[🔗 https://norcalbiostat.github.io/MATH615](https://norcalbiostat.github.io/MATH615/) / title\"\nfrom: markdown+emoji\nformat: \n  revealjs:\n    theme: beige\n    multiplex: true\n    transition: fade\n    slide-number: true\n    incremental: false \n    chalkboard: true\n    #code-fold: true\n    #code-summary: \"Show the code\"\nexecute:\n  freeze: auto\n  echo: true\nknitr:\n  opts_chunk: \n    R.options:\n      width: 200\n---\n\n\n# Section \n\n## slide",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {
+      "include-after-body": [
+        "\r\n<script>\r\n  // htmlwidgets need to know to resize themselves when slides are shown/hidden.\r\n  // Fire the \"slideenter\" event (handled by htmlwidgets.js) when the current\r\n  // slide changes (different for each slide format).\r\n  (function () {\r\n    function fireSlideChanged(previousSlide, currentSlide) {\r\n\r\n      // dispatch for htmlwidgets\r\n      const event = window.document.createEvent(\"Event\");\r\n      event.initEvent(\"slideenter\", true, true);\r\n      window.document.dispatchEvent(event);\r\n\r\n      // dispatch for shiny\r\n      if (window.jQuery) {\r\n        if (previousSlide) {\r\n          window.jQuery(previousSlide).trigger(\"hidden\");\r\n        }\r\n        if (currentSlide) {\r\n          window.jQuery(currentSlide).trigger(\"shown\");\r\n        }\r\n      }\r\n    }\r\n\r\n    // hookup for reveal\r\n    if (window.Reveal) {\r\n      window.Reveal.addEventListener(\"slidechanged\", function(event) {\r\n        fireSlideChanged(event.previousSlide, event.currentSlide);\r\n      });\r\n    }\r\n\r\n    // hookup for slidy\r\n    if (window.w3c_slidy) {\r\n      window.w3c_slidy.add_observer(function (slide_num) {\r\n        // slide_num starts at position 1\r\n        fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);\r\n      });\r\n    }\r\n\r\n  })();\r\n</script>\r\n\r\n"
+      ]
+    },
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

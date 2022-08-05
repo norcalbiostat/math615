@@ -462,7 +462,10 @@
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell">
+<details>
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">table</span>(pen<span class="sc">$</span>species, pen<span class="sc">$</span>island)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>           
             Biscoe Dream Torgersen
@@ -473,7 +476,10 @@
 </div>
 </div><div class="column" style="width:50%;">
 <div class="cell">
+<details>
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">table</span>(pen<span class="sc">$</span>species, pen<span class="sc">$</span>island) <span class="sc">|&gt;</span> <span class="fu">prop.table</span>(<span class="at">margin=</span><span class="dv">2</span>) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>           
             Biscoe Dream Torgersen
@@ -536,7 +542,7 @@
 <div id="tabset-2-2">
 <div class="columns">
 <div class="column" style="width:50%;">
-<p>Distribution of islands for each species inhabits.</p>
+<p>Distribution of islands for each species</p>
 <div class="cell">
 <div class="cell-output-display">
 <p><img data-src="lec05-describing_relationships_files/figure-revealjs/unnamed-chunk-7-1.png" width="960"></p>
@@ -544,7 +550,7 @@
 </div>
 <p>29% <strong>of <em>Adelie</em> penguins</strong> are on Biscoe Island.</p>
 </div><div class="column" style="width:50%;">
-<p>Distribution of Species on each island.</p>
+<p>Distribution of species on each island.</p>
 <div class="cell">
 <div class="cell-output-display">
 <p><img data-src="lec05-describing_relationships_files/figure-revealjs/unnamed-chunk-8-1.png" width="960"></p>
@@ -557,26 +563,62 @@
 </div>
 </div>
 </section>
-<section id="quantitative-response-categorical-explanatory" class="slide level2">
+<section id="quantitative-response-categorical-explanatory" class="slide level2 smaller">
 <h2>Quantitative response &amp; Categorical explanatory</h2>
 <div class="panel-tabset">
 <ul id="tabset-3" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-3-1">Grouped summary statistics</a></li><li><a href="#tabset-3-2">Plots</a></li></ul>
 <div class="tab-content">
 <div id="tabset-3-1">
-
+<p>Mean, median, sd, IQR of the quantitative variable for each level of the categorical level.</p>
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>pen <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(species) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">summarize</span>(<span class="at">mean =</span> <span class="fu">mean</span>(bill_depth_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb7-3"><a href="#cb7-3"></a>            <span class="at">median =</span> <span class="fu">median</span>(bill_depth_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb7-4"><a href="#cb7-4"></a>            <span class="at">sd =</span> <span class="fu">sd</span>(bill_depth_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb7-5"><a href="#cb7-5"></a>            <span class="at">IQR =</span> <span class="fu">IQR</span>(bill_depth_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 5
+  species    mean median    sd   IQR
+  &lt;fct&gt;     &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1 Adelie     18.3   18.4 1.22   1.5 
+2 Chinstrap  18.4   18.4 1.14   1.90
+3 Gentoo     15.0   15   0.981  1.5 </code></pre>
+</div>
+</div>
+<p>Gentoo penguins have lower average bill depth compared to Adelie or Chinstrap (15.0mm vs 18.3 and 18.4mm respectively). Chinstrap however have a larger IQR at 1.9 compared to 1.5 for the others.</p>
 </div>
 <div id="tabset-3-2">
 <div class="columns">
 <div class="column" style="width:50%;">
+<p><strong>Overlaid density plots</strong></p>
 <div class="cell">
-
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">gghistogram</span>(pen, <span class="at">x =</span> <span class="st">"bill_depth_mm"</span>, <span class="at">fill =</span> <span class="st">"species"</span>, <span class="at">add_density =</span> <span class="cn">TRUE</span>, <span class="at">add=</span><span class="st">"mean"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img data-src="lec05-describing_relationships_files/figure-revealjs/unnamed-chunk-11-1.png" width="960"></p>
+</div>
 </div>
 </div><div class="column" style="width:50%;">
+<p><strong>Side by side boxplots</strong></p>
 <div class="cell">
-
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">ggviolin</span>(pen, <span class="at">x=</span><span class="st">"species"</span>, <span class="at">y =</span> <span class="st">"bill_depth_mm"</span>, <span class="at">color =</span> <span class="st">"species"</span>, <span class="at">add =</span> <span class="fu">c</span>(<span class="st">"mean"</span>, <span class="st">"boxplot"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img data-src="lec05-describing_relationships_files/figure-revealjs/unnamed-chunk-12-1.png" width="960"></p>
 </div>
 </div>
 </div>
+</div>
+<p>The distribution of bill depth are fairly normal for each species, with some higher end values causing a slight right skew for Adelie and Gentoo.</p>
 </div>
 </div>
 </div>
@@ -588,7 +630,10 @@
 <div class="tab-content">
 <div id="tabset-4-1">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">cor</span>(pen<span class="sc">$</span>flipper_length_mm, pen<span class="sc">$</span>body_mass_g, <span class="at">use=</span><span class="st">"pairwise.complete.obs"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">cor</span>(pen<span class="sc">$</span>flipper_length_mm, pen<span class="sc">$</span>body_mass_g, <span class="at">use=</span><span class="st">"pairwise.complete.obs"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.8712018</code></pre>
 </div>
@@ -599,16 +644,22 @@
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">ggscatter</span>(pen, <span class="at">x=</span><span class="st">"flipper_length_mm"</span>, <span class="at">y =</span> <span class="st">"body_mass_g"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">ggscatter</span>(pen, <span class="at">x=</span><span class="st">"flipper_length_mm"</span>, <span class="at">y =</span> <span class="st">"body_mass_g"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
-<p><img data-src="lec05-describing_relationships_files/figure-revealjs/unnamed-chunk-12-1.png" width="960"></p>
+<p><img data-src="lec05-describing_relationships_files/figure-revealjs/unnamed-chunk-14-1.png" width="960"></p>
 </div>
 </div>
 </div><div class="column" style="width:50%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">ggscatter</span>(pen, <span class="at">x=</span><span class="st">"flipper_length_mm"</span>, <span class="at">y =</span> <span class="st">"body_mass_g"</span>, <span class="at">add =</span> <span class="st">"loess"</span>, <span class="at">conf.int =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">ggscatter</span>(pen, <span class="at">x=</span><span class="st">"flipper_length_mm"</span>, <span class="at">y =</span> <span class="st">"body_mass_g"</span>, <span class="at">add =</span> <span class="st">"loess"</span>, <span class="at">conf.int =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
-<p><img data-src="lec05-describing_relationships_files/figure-revealjs/unnamed-chunk-13-1.png" width="960"></p>
+<p><img data-src="lec05-describing_relationships_files/figure-revealjs/unnamed-chunk-15-1.png" width="960"></p>
 </div>
 </div>
 </div><p><small> The relationship between flipper length and body mass in penguins is relatively linear, but there may be possible clustering on a third variable. There appears to be two groups below and above a flipper length of about 205mm. </small></p>

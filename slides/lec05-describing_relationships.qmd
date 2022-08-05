@@ -13,6 +13,8 @@ format:
     slide-number: true
     incremental: false 
     chalkboard: true
+    code-fold: true
+    code-summary: "Show the code"
 execute:
   freeze: auto
   echo: false
@@ -47,8 +49,9 @@ Model notation: $y \sim x$
 #  {background-image="images/penguins.png" background-size="60%"}
 
 ```{r}
-#| echo: false
-library(palmerpenguins); library(ggplot2); library(sjPlot); library(ggpubr)
+library(tidyverse);
+library(palmerpenguins);  library(sjPlot); library(ggpubr)
+
 pen <- penguins
 ```
 
@@ -116,7 +119,7 @@ table(pen$species, pen$island) |>
 
 ::: columns
 ::: {.column width="50%"}
-Distribution of islands for each species inhabits.
+Distribution of islands for each species
 
 ```{r}
 plot_xtab(pen$species, grp=pen$island, margin = "row", show.total = FALSE)
@@ -126,7 +129,7 @@ plot_xtab(pen$species, grp=pen$island, margin = "row", show.total = FALSE)
 :::
 
 ::: {.column width="50%"}
-Distribution of Species on each island.
+Distribution of species on each island.
 
 ```{r}
 plot_xtab(pen$island, grp=pen$species, margin = "row", show.total = FALSE)
@@ -137,32 +140,57 @@ plot_xtab(pen$island, grp=pen$species, margin = "row", show.total = FALSE)
 :::
 :::
 
-## Quantitative response & Categorical explanatory
-
+## Quantitative response & Categorical explanatory {.smaller}
 
 ::: panel-tabset
 ### Grouped summary statistics
+
+Mean, median, sd, IQR of the quantitative variable for each level of the categorical level.
+
+```{r}
+#| echo: true
+#| eval: false
+pen %>% group_by(species) %>% 
+  summarize(mean = mean(bill_depth_mm, na.rm = TRUE), 
+            median = median(bill_depth_mm, na.rm = TRUE), 
+            sd = sd(bill_depth_mm, na.rm = TRUE), 
+            IQR = IQR(bill_depth_mm, na.rm = TRUE))
+```
+
+```{r}
+pen %>% group_by(species) %>% 
+  summarize(mean = mean(bill_depth_mm, na.rm = TRUE), 
+            median = median(bill_depth_mm, na.rm = TRUE), 
+            sd = sd(bill_depth_mm, na.rm = TRUE), 
+            IQR = IQR(bill_depth_mm, na.rm = TRUE))
+```
+
+Gentoo penguins have lower average bill depth compared to Adelie or Chinstrap (15.0mm vs 18.3 and 18.4mm respectively). Chinstrap however have a larger IQR at 1.9 compared to 1.5 for the others.
 
 ### Plots
 
 ::: columns
 ::: {.column width="50%"}
+**Overlaid density plots**
+
 ```{r}
 #| echo: true
-
+gghistogram(pen, x = "bill_depth_mm", fill = "species", add_density = TRUE, add="mean")
 ```
 :::
 
 ::: {.column width="50%"}
+**Side by side boxplots**
+
 ```{r}
 #| echo: true
-
+ggviolin(pen, x="species", y = "bill_depth_mm", color = "species", add = c("mean", "boxplot"))
 ```
 :::
-
-:::
 :::
 
+The distribution of bill depth are fairly normal for each species, with some higher end values causing a slight right skew for Adelie and Gentoo.
+:::
 
 ## Quantitative response & Quantitative explanatory
 
