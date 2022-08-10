@@ -12,8 +12,8 @@
   <meta name="generator" content="quarto-1.0.36">
 
   <meta name="author" content="Robin Donatello">
-  <meta name="dcterms.date" content="2022-10-03">
-  <title>Data Analysis for Graduate Research - Understanding probability through simulation</title>
+  <meta name="dcterms.date" content="2022-10-05">
+  <title>Data Analysis for Graduate Research - Inference with Mathematical Models</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -318,8 +318,8 @@
       margin-right: 0; 
     }
   </style>
-<meta name="twitter:title" content="Data Analysis for Graduate Research - Understanding probability through simulation">
-<meta name="twitter:description" content="7">
+<meta name="twitter:title" content="Data Analysis for Graduate Research - Inference with Mathematical Models">
+<meta name="twitter:description" content="7, 8">
 <meta name="twitter:creator" content="@norcalbiostat">
 <meta name="twitter:card" content="summary">
 </head>
@@ -328,21 +328,112 @@
     <div class="slides">
 
 <section id="title-slide" class="center">
-  <h1 class="title">Understanding probability through simulation</h1>
+  <h1 class="title">Inference with Mathematical Models</h1>
   <p class="author">Robin Donatello</p>
-  <p class="date">2022-10-03</p>
+  <p class="date">2022-10-05</p>
 </section>
 
+<section class="slide level2">
+
+<div class="cell">
+
+</div>
+</section>
 <section>
-<section id="section" class="title-slide slide level1 center">
-<h1>Section</h1>
+<section id="refresher-on-the-normal-distribution" class="title-slide slide level1 center">
+<h1>Refresher on the Normal Distribution</h1>
+<p>insert paranormal pic here</p>
+</section>
+<section id="collaborative-notes" class="slide level2">
+<h2>Collaborative Notes</h2>
+<p><a href="https://hackmd.io/@norcalbiostat/07-intro_inference">https://hackmd.io/<span class="citation" data-cites="norcalbiostat/07-intro_inference">@norcalbiostat/07-intro_inference</span></a></p>
+</section></section>
+<section>
+<section id="case-study-stents" class="title-slide slide level1 center">
+<h1>Case study: Stents</h1>
 
 </section>
-<section id="slide" class="slide level2">
-<h2>slide</h2>
+<section id="observed-data" class="slide level2">
+<h2>Observed data</h2>
+<p>Consider an experiment that examined whether implanting a stent in the brain of a patient at risk for a stroke helps reduce the risk of a stroke. The results from the first 30 days of this study are summarized in the following table.</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>           
+            no event stroke Sum
+  control        214     13 227
+  treatment      191     33 224
+  Sum            405     46 451</code></pre>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>           
+            no event stroke
+  control       0.94   0.06
+  treatment     0.85   0.15</code></pre>
+</div>
+</div>
+</div>
+</div>
+<p>These results are surprising! The point estimate suggests that patients who received stents may have a higher risk of stroke: <span class="math inline">\(p_{trmt}−p_{ctrl}=0.090\)</span>.</p>
+</section>
+<section id="point-estimate-vs-interval-estimate" class="slide level2">
+<h2>Point estimate vs Interval estimate</h2>
+<p>The point estimate for the difference in proportions <span class="math inline">\(p_{trmt}−p_{ctrl}=0.090\)</span> is a single point estimate, based on this single sample.</p>
+<p><br>
+</p>
+<p>A <em>point estimate</em> is our best guess for the value of the parameter, so it makes sense to build the confidence interval around that value.</p>
+</section>
+<section id="constructing-a-95-confidence-interval-ci" class="slide level2">
+<h2>Constructing a 95% confidence interval (CI)</h2>
+<p>When the sampling distribution of a point estimate can reasonably be modeled as normal, the point estimate we observe will be within 1.96 standard errors of the true value of interest about 95% of the time. Thus, a 95% confidence interval for such a point estimate can be constructed:</p>
+<p><span class="math display">\[\mbox{point estimate} \pm 1.96 × SE\]</span></p>
+<p>We can be 95% confident this interval captures the true value.</p>
+</section>
+<section id="construct-a-95-ci-for-the-stent-example" class="slide level2">
+<h2>Construct a 95% CI for the stent example</h2>
+<p>The conditions necessary to ensure the point estimate <span class="math inline">\(p_{trmt}−p_{ctrl}\)</span> is nearly normal have been verified for you, and the estimate’s standard error is <span class="math inline">\(SE = 0.028\)</span>.</p>
+<ul>
+<li>Construct a 95% confidence interval for the change in 30-day stroke rates from usage of the stent.</li>
+<li>Interpret this interval in context of the problem.</li>
+</ul>
+</section>
+<section id="answer" class="slide level2">
+<h2>Answer:</h2>
+<p><span class="math display">\[0.090 \pm 1.96×0.028 = (0.035,0.145)\]</span></p>
+<p>We are 95% confident that implanting a stent in a stroke patient’s brain increased the risk of stroke within 30 days by a rate of 0.035 to 0.145.</p>
+</section>
+<section id="important-note" class="slide level2">
+<h2>Important note</h2>
+<p><span class="emoji" data-emoji="warning">⚠️</span> it’s incorrect to say that we can be 95% confident that the true value is inside the mean.</p>
+
+<img data-src="https://openintro-ims.netlify.app/13-foundations-mathematical_files/figure-html/95PercentConfidenceInterval-1.png" class="r-stretch quarto-figure-center"><p class="caption">Figure 13.11: Twenty-five samples of size n=300 were collected from a population with p=0.30. For each sample, a confidence interval was created to try to capture the true proportion p.&nbsp;However, 1 of these 25 intervals did not capture p=0.30.</p></section>
+<section id="section" class="slide level2">
+<h2></h2>
+<ul>
+<li>This is one of the most common errors: while it might be useful to think of it as a probability, the confidence level only quantifies how plausible it is that the parameter is in the interval.</li>
+<li>Our intervals say nothing about the confidence of capturing individual observations, a proportion of the observations, or about capturing point estimates.</li>
+<li>Confidence intervals provide an interval estimate for and attempt to capture population parameters.</li>
+</ul>
+</section></section>
+<section>
+<section id="hypothesis-testing" class="title-slide slide level1 center">
+<h1>Hypothesis Testing</h1>
+
+<img data-src="https://imgs.xkcd.com/comics/p_values.png" class="r-stretch quarto-figure-center"><p class="caption">https://xkcd.com/1478/</p></section>
+<section id="return-to-the-collaborative-notes." class="slide level2">
+<h2>Return to the collaborative notes.</h2>
+<p><a href="https://hackmd.io/@norcalbiostat/07-intro_inference">https://hackmd.io/<span class="citation" data-cites="norcalbiostat/07-intro_inference">@norcalbiostat/07-intro_inference</span></a></p>
+</section>
+<section id="using-confidence-intervals-to-test-a-hypothesis" class="slide level2">
+<h2>Using Confidence Intervals to test a hypothesis</h2>
+<p>This confidence interval can also be used in a way analogous to a hypothesis test: since the interval does not contain 0 (is completely above 0), it means the data provide convincing evidence that the stent used in the study changed the risk of stroke within 30 days</p>
 
 <div class="footer footer-default">
-<p><a href="https://norcalbiostat.github.io/MATH615/">🔗 https://norcalbiostat.github.io/MATH615</a> / title</p>
+<p><a href="https://norcalbiostat.github.io/MATH615/">🔗 https://norcalbiostat.github.io/MATH615</a> / Inference with Mathematical Models</p>
 </div>
 </section></section>
     </div>
@@ -381,7 +472,7 @@
 'autoAnimateUnmatched': true,
 'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
 'chalkboard': {"buttons":true},
-'multiplex': {"secret":"16596773065387824360","id":"1f1b4897309fb4dd","url":"https://reveal-multiplex.glitch.me/"},
+'multiplex': {"secret":null,"id":"a9f5ab879e7279af","url":"https://reveal-multiplex.glitch.me/"},
 'smaller': false,
  
         // Display controls in the bottom right corner
@@ -555,7 +646,7 @@
         plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
 
           RevealMath,
-          RevealNotes,
+          
           RevealSearch,
           RevealZoom
         ]
