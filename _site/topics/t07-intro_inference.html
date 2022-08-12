@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="10/03">
+<meta name="description" content="10/05-10/10">
 
-<title>Data Analysis for Graduate Research - Understanding probability through simulation</title>
+<title>Data Analysis for Graduate Research - Inference with Mathematical Models</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -59,8 +59,8 @@ ul.task-list{list-style: none;}
 }</script>
 
 
-<meta name="twitter:title" content="Data Analysis for Graduate Research - Understanding probability through simulation">
-<meta name="twitter:description" content="10/03">
+<meta name="twitter:title" content="Data Analysis for Graduate Research - Inference with Mathematical Models">
+<meta name="twitter:description" content="10/05-10/10">
 <meta name="twitter:creator" content="@norcalbiostat">
 <meta name="twitter:card" content="summary">
 </head>
@@ -132,7 +132,7 @@ ul.task-list{list-style: none;}
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Understanding probability through simulation</h1>
+      <h1 class="quarto-secondary-nav-title">Inference with Mathematical Models</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -229,20 +229,20 @@ ul.task-list{list-style: none;}
   <li><a href="#assignments" id="toc-assignments" class="nav-link" data-scroll-target="#assignments">Assignments</a></li>
   <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">Discussion</a></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/norcalbiostat/math615_test/edit/main/topics/t06-probability.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/norcalbiostat/math615_test/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/norcalbiostat/math615_test/edit/main/topics/t07-intro_inference.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/norcalbiostat/math615_test/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Understanding probability through simulation</h1>
-<p class="subtitle lead">Not just for gambling</p>
+<h1 class="title d-none d-lg-block">Inference with Mathematical Models</h1>
+<p class="subtitle lead">If all else fails, use ‘significant at p&gt;.05 level’ and hope no one notices. Ref: https://xkcd.com/1478/?</p>
 </div>
 
 <div>
   <div class="description">
-    10/03
+    10/05-10/10
   </div>
 </div>
 
@@ -263,23 +263,33 @@ ul.task-list{list-style: none;}
 <h2 class="anchored" data-anchor-id="learning-path">Learning Path</h2>
 <section id="where-weve-been" class="level3">
 <h3 class="anchored" data-anchor-id="where-weve-been">Where we’ve been</h3>
-<ul>
-<li>Learning how to explore and visualize our data.</li>
-<li>Visually consider patterns, identify potential relationships</li>
-</ul>
+<p>Learning about different data generating mechanisms/models.</p>
 </section>
 <section id="where-were-at" class="level3">
 <h3 class="anchored" data-anchor-id="where-were-at">Where we’re at</h3>
-<ul>
-<li>Learn about how probability is used to make statistical inferences.</li>
-</ul>
+<p>Refreshing our memory from a prior stat class how to use the Normal distribution to compare values, calculate probabilities, confidence intervals and conduct a hypothesis test</p>
 </section>
 <section id="objectives" class="level3">
 <h3 class="anchored" data-anchor-id="objectives">Objectives</h3>
 <div class="cell">
 <div class="cell-output-display">
 <ul>
-<li>Get connected to all the class materials &amp; tools</li>
+<li>Use the Normal distribution to calculate a probability
+<ul>
+<li><em>NA</em></li>
+<li>Compare values under two distributions by comparing Zscores</li>
+<li></li>
+<li>Describe the concept of sampling variability.</li>
+<li></li>
+<li>Calculate the mean and sd of the sampling distribution based on population parameters</li>
+<li></li>
+<li>Explain the Central Limit Theorem</li>
+<li></li>
+<li>Construct and Interpret a confidence interval in context of the problem</li>
+<li></li>
+<li>Assess a research question using a hypothesis test</li>
+<li></li>
+</ul></li>
 </ul>
 <!-- end of list -->
 </div>
@@ -288,23 +298,15 @@ ul.task-list{list-style: none;}
 </section>
 <section id="learning-materials" class="level2">
 <h2 class="anchored" data-anchor-id="learning-materials">Learning Materials</h2>
-<p><i class="fa-solid fa-person-chalkboard" aria-hidden="true"></i> <strong>Slides (Will open in full screen. Right click to open in a new tab)</strong></p>
-<div class="cell">
-<div class="cell-output-display">
-<ul>
-<li><a href="../slides/lec00-welcome.html">Welcome</a></li>
-</ul>
-<!-- end of list -->
-</div>
-</div>
 <p><span class="emoji" data-emoji="books">📚</span> <strong>Reading</strong></p>
 <div class="cell">
 <div class="cell-output-display">
 <ul>
-<li><a href="../syllabus.html">Syllabus</a>
+<li><a href="https://openintro-ims.netlify.app/foundations-mathematical.html">IMS - Chapter 13.1-13.3</a>
 <ul>
-<li><a href="../help.html">Help page</a></li>
-<li>PMA6 Ch 2</li>
+<li><em>NA</em></li>
+<li>and <a href="https://openintro-ims.netlify.app/foundations-randomization.html">IMS Chapter 11-11.1</a></li>
+<li></li>
 </ul></li>
 </ul>
 <!-- end of list -->
@@ -314,7 +316,10 @@ ul.task-list{list-style: none;}
 <div class="cell">
 <div class="cell-output-display">
 <ul>
-<li><a href="https://hackmd.io/@norcalbiostat/intro_hackmd">What is HackMD</a></li>
+<li><a href="https://hackmd.io/@norcalbiostat/07-intro_inference">Inference with Mathematical models</a>
+<ul>
+<li><em>NA</em></li>
+</ul></li>
 </ul>
 <!-- end of list -->
 </div>
@@ -322,17 +327,15 @@ ul.task-list{list-style: none;}
 </section>
 <section id="assignments" class="level2">
 <h2 class="anchored" data-anchor-id="assignments">Assignments</h2>
-<div class="cell">
-<div class="cell-output-display">
-<ul>
-<li><a href="../hw/hw00-setup.html">HW00 Getting Setup</a></li>
-</ul>
-<!-- end of list -->
-</div>
-</div>
+<p>None. All work is done in the collab notes.</p>
 </section>
 <section id="discussion" class="level2">
 <h2 class="anchored" data-anchor-id="discussion">Discussion</h2>
+<p>Additional videos that may be helpful.</p>
+<ul>
+<li><a href="https://youtu.be/xGVzHxFnaiA">What is a sampling distribution</a></li>
+<li><a href="https://youtu.be/Zbw-YvELsaM">Sampling Distributions: Introduction to the concept</a></li>
+</ul>
 
 
 </section>

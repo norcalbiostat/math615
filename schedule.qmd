@@ -15,8 +15,12 @@ knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE)
 # Read in schedule
 sched <- read_excel("schedule_615.xlsx", sheet="weekly_schedule") %>% 
   clean_names() %>%
-  mutate(Date = format(date, "%m/%d")) %>% 
-  select(Week = week, Date, order, Topic = topic_name, Details = topic_subtitle) %>%
+  mutate(Date = format(date, "%m/%d"), 
+         topic_link = paste0("topics/", topic, ".html"), 
+         Topic = ifelse(!is.na(topic), 
+                        sprintf("[%s](%s)", topic_name,topic_link), 
+                        topic_name)) %>% 
+  select(Week = week, Date, order, Topic, Details = topic_subtitle) %>%
   filter(!is.na(order))
 
 # set colors for schedule
@@ -34,7 +38,7 @@ hlt.col <-  "background-color: #50a18d; color: #fff;"
 
 ```
 
-```{r}
+```{r, results = 'asis'}
 sched %>% select(-order, -Week) %>%
   kbl(align="lcc", escape=FALSE) %>%
   kable_styling("hover", full_width=F, html_font = "Ariel",
@@ -57,5 +61,6 @@ sched %>% select(-order, -Week) %>%
   pack_rows("Week 13", tn$start[13],   tn$end[13],  label_row_css = wk.col) %>%
   pack_rows("Week 14", tn$start[14],   tn$end[14],  label_row_css = wk.col) %>%
   pack_rows("Week 15", tn$start[15],   tn$end[15],  label_row_css = wk.col) %>%
-  pack_rows("Finals",  tn$start[16],   tn$end[16],  label_row_css = wk.col)
+  pack_rows("Finals",  tn$start[16],   tn$end[16],  label_row_css = wk.col) |>
+  unclass() |> cat()
 ```
