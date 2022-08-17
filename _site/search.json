@@ -11,7 +11,7 @@
     "href": "collab_notes.html",
     "title": "Collaborative Notes",
     "section": "",
-    "text": "What is HackMD\n\nData architecture\nFormulating Research Questions\nPreparing data for analysis\nStudy Design\nInference with Mathematical models"
+    "text": "What is HackMD\n\nData architecture\nFormulating Research Questions\nPreparing data for analysis\nStudy Design\nInference with Mathematical models\nChoosing appropriate analysis"
   },
   {
     "objectID": "collab_notes.html#code-helpers",
@@ -88,7 +88,7 @@
     "href": "hw/hw01-data_entry.html#submission-instructions",
     "title": "HW 01: Data Entry",
     "section": "Submission Instructions",
-    "text": "Submission Instructions\nYou will enter data and create your codebook directly in Google Sheets.\n\nStart a new Google spreadsheet in the 01 Data Entry folder in our shared Google Drive.\nName this file medrecords_userid where userid is your chico state user id.\nCreate and name the following worksheets: data, codebook, import.\nWhen you have completed this work, download a copy as a PDF and submit through Blackboard for scoring.\n\nI will look at your Google spreadsheet directly. Do not worry if your PDF is not formatted for easy viewing.\nThere is no peer review for this assignment."
+    "text": "Submission Instructions\nYou will enter data and create your codebook directly in Google Sheets.\n\nStart a new Google spreadsheet in the 01 Data Entry folder in our shared Google Drive.\nName this file medrecords_userid where userid is your chico state user id.\nCreate and name the following worksheets: data, codebook, import.\n\nThere is no peer review for this assignment."
   },
   {
     "objectID": "hw/hw01-data_entry.html#data-entry",
@@ -224,11 +224,32 @@
     "text": "Example\nIn these examples I use a combination of ggplot2 and sjPlot for plotting, dplyr for data management and to create summary statistics, knitr to create nice tables, gridExtra to put plots side by side. You do not need to report this information in your assignment. This is for your knowledge only. I also explain what I’m doing in code here for you to learn. you do not need to explain your own code.\n\nlibrary(ggplot2); library(dplyr); library(knitr); \nlibrary(scales); library(gridExtra); library(sjPlot)\nknitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)\n\n\nC ~ C Association\nFor this example I am using the NC Births data set, data on 1000 births in 2004 from North Carolina. This example explores the association between the smoking status of the mother (habit) and whether or not the baby was born prematurely (premie).\n\n\n\nFrequency tables to get counts, and row percents because I specifically want to compare the percent of premie babies within the smoking and non-smoking groups.\n\nnc %>% select(habit, premie) %>% table() %>% addmargins %>% kable()\n\n\n\n\n\nfull term\npremie\nSum\n\n\n\n\nnonsmoker\n739\n133\n872\n\n\nsmoker\n107\n19\n126\n\n\nSum\n846\n152\n998\n\n\n\n\nnc %>% select(habit, premie) %>% table() %>% prop.table(margin=1) %>% kable(digits=3)\n\n\n\n\n\nfull term\npremie\n\n\n\n\nnonsmoker\n0.847\n0.153\n\n\nsmoker\n0.849\n0.151\n\n\n\n\n\n\nplot_xtab(x=nc$habit, grp=nc$premie, show.total=FALSE, margin='row')\n\n\n\n\nContrary to what I was expecting, there is equal proportion of prematurely born babies to non-smokers (133/739, 15.2%) compared to babies born to smokers (19/107, 15.1%). There is no association between the smoking status of the mother and the likelihood of the baby being born prematurely.\n\n\nQ ~ C Association\nThis example explores the association between the length of an iris petal and the species of iris. The quantitative response variable is petal length (Petal.Length) and the categorical explanatory variable is species (Species).\n\niris %>% group_by(Species) %>% \n         summarise(mean=mean(Petal.Length), \n                   sd=sd(Petal.Length), \n                   n=n()) %>% \n         kable(digits=2)\n\n\n\n\nSpecies\nmean\nsd\nn\n\n\n\n\nsetosa\n1.46\n0.17\n50\n\n\nversicolor\n4.26\n0.47\n50\n\n\nvirginica\n5.55\n0.55\n50\n\n\n\n\nggplot(iris, aes(x=Species, y=Petal.Length, fill=Species)) + \n  geom_boxplot(width=.4) + geom_violin(alpha=.3) + \n  stat_summary(fun.y=\"mean\", geom=\"point\", size=3, pch=17, \n    position=position_dodge(width=0.75)) + theme_bw()\n\n\n\n\n\n\n\n\nThere are 50 iris plants within each species. There is clear difference in the average Petal length across the pecies. Setosa has the smallest average petal length of 1.46 cm and the smallest variation with a standard deviation of 0.17cm. Veriscolor has an average petal length of 4.26cm with SD of 0.47cm, and Virginica has the largest average petal length of 5.55cm and the largest variation with a standard deviation of 0.55cm.\n\n\nQ ~ Q Association\nThis example explores the association between length of an iris petal and the length of the sepal. The quantitative response variable is petal length (Petal.Length) and the quantitative explanatory variable is sepal length (Sepal.Length).\n\ncor(iris$Petal.Length, iris$Sepal.Length) # calculate the correlation\n\n[1] 0.8717538\n\nggplot(iris, aes(x=Sepal.Length, y=Petal.Length)) + geom_point() + \n  geom_smooth(se=FALSE, col=\"brown\") + geom_smooth(se=FALSE, method=\"lm\")\n\n\n\n\nThere is a positive association between sepal and petal length of an iris. The correlation coefficient is 0.87, but the form of the data may not be linear. There is a cluster of values below 2cm petal length which are separated away from the rest of the data. It is hard to assess the linearity of this relationship due to the separate clusters."
   },
   {
+    "objectID": "hw/hw06-biv_modeling.html",
+    "href": "hw/hw06-biv_modeling.html",
+    "title": "HW 06: Bivariate Modeling",
+    "section": "",
+    "text": "We’ve been visually exploring relationships between two variables by creating appropriate plots to assess how the distribution of a primary outcome (response/dependent) variable changes according to the level of a predictor (explanatory/independent/covariate) variable. We can learn a lot by conducting exploratory data analysis, and if description is the goal then this is where your work can stop.\nHowever, if you want to make conclusions or inference about a relationship, then formal statistical analysis techniques are needed. We start here by formally testing if relationships or associations between two measures exist, then later will see how additional third variables can potentially disrupt or enhance any association that you may find."
+  },
+  {
+    "objectID": "hw/hw06-biv_modeling.html#draft",
+    "href": "hw/hw06-biv_modeling.html#draft",
+    "title": "HW 06: Bivariate Modeling",
+    "section": "Draft",
+    "text": "Draft\nUpload your PDF file to the 06 Bivariate Modeling/draft folder in Google Drive.\n\nPeer Review instructions\nYou will review 1 peer’s work for each analysis type for a total of 5 reviews.\nAs a reviewer, this is what you’re checking for:\n\nDid they complete all steps?\nDid they check assumptions?\nAre the graphics, summary statistics and analysis appropriate?\nIs the final conclusion in plain english with no statistical jargon?\nDoes their conclusion match the output of their statistical progam?"
+  },
+  {
+    "objectID": "hw/hw06-biv_modeling.html#final",
+    "href": "hw/hw06-biv_modeling.html#final",
+    "title": "HW 06: Bivariate Modeling",
+    "section": "Final",
+    "text": "Final\n\nUpload your final PDF to 06 Bivariate Modeling/final folder in Google Drive."
+  },
+  {
     "objectID": "hw.html",
     "href": "hw.html",
     "title": "Assignments",
     "section": "",
-    "text": "Assignment\n\n\nLearning Objective\n\n\n\n\n\n\nHW 00: Getting setup\n\n\nGetting all the materials and tools for the class\n\n\n\n\nHW 01: Data Entry\n\n\nRecording data to maintain your sanity.\n\n\n\n\nHW 02: Formulating a research hypothesis\n\n\nBrainstorming research questions to investigate\n\n\n\n\nHW 03: Data Management\n\n\nWrangling your data into analyzable form\n\n\n\n\nHW 04: Univariate Graphing\n\n\nLet the data be beautiful\n\n\n\n\nHW 05: Bivariate Graphing\n\n\nExploring Associations between two variables\n\n\n\n\n\n\nNo matching items"
+    "text": "Assignment\n\n\nLearning Objective\n\n\n\n\n\n\nHW 00: Getting setup\n\n\nGetting all the materials and tools for the class\n\n\n\n\nHW 01: Data Entry\n\n\nRecording data to maintain your sanity.\n\n\n\n\nHW 02: Formulating a research hypothesis\n\n\nBrainstorming research questions to investigate\n\n\n\n\nHW 03: Data Management\n\n\nWrangling your data into analyzable form\n\n\n\n\nHW 04: Univariate Graphing\n\n\nLet the data be beautiful\n\n\n\n\nHW 05: Bivariate Graphing\n\n\nExploring Associations between two variables\n\n\n\n\nHW 06: Bivariate Modeling\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "index.html",
@@ -312,7 +333,7 @@
     "href": "schedule.html",
     "title": "Weekly Overview",
     "section": "",
-    "text": "Due dates are displayed on the calendar only\n\n\n\n\n\n\n\n\nDate\n\n\nTopic\n\n\nDetails\n\n\n\n\n\n\nWeek 1\n\n\n\n\n08/22\n\n\nWelcome\n\n\nIntroduction to the Class and your materials\n\n\n\n\n08/22\n\n\nData architecture\n\n\nData entry, spreadsheets, metadata, codebooks\n\n\n\n\n08/24\n\n\nProject Stage 1: Choosing your topic\n\n\nChoosing project research data\n\n\n\n\nWeek 2\n\n\n\n\n08/29\n\n\nFormulating research questions\n\n\nAsking questions is easy. Asking answerable questions is more difficult.\n\n\n\n\n08/31\n\n\nPreparing data for analysis\n\n\nWhere an inordinate amount of time is spent\n\n\n\n\nWeek 3\n\n\n\n\n09/05\n\n\nLabor Day. No Class\n\n\n\n\n\n\n09/07\n\n\nData wrangling\n\n\nKeep coding, coding, coding, keep them fingers flowing, keep them data scrolling, Compile!\n\n\n\n\nWeek 4\n\n\n\n\n09/12\n\n\nDescribing distributions of data\n\n\nVisualizing your data is the first line of defense against bad data\n\n\n\n\n09/14\n\n\nProject Stage I: Setting up the story\n\n\n\n\n\n\nWeek 5\n\n\n\n\n09/19\n\n\nDescribing relationships between two variables\n\n\nFirst step in investigating a question about an association\n\n\n\n\nWeek 6\n\n\n\n\n09/26\n\n\nBivariate relationships cont.\n\n\n\n\n\n\n09/28\n\n\nProject Stage II: Exploratory Data Analysis\n\n\n\n\n\n\nWeek 7\n\n\n\n\n10/03\n\n\nStudy Design\n\n\nHow did the data come to be?\n\n\n\n\n10/05\n\n\nFoundations for Inference\n\n\nIf all else fails, use “significant at p>.05 level” and hope no one notices. Ref: https://xkcd.com/1478/\n\n\n\n\nWeek 8\n\n\n\n\n10/10\n\n\nFoundations for Inference cont.\n\n\n\n\n\n\n10/12\n\n\nT-tests for difference in means\n\n\n\n\n\n\nWeek 9\n\n\n\n\n10/17\n\n\nANOVA & Kruskill Wallas\n\n\n\n\n\n\n10/19\n\n\nChi-Square & Fishers Exact Test\n\n\n\n\n\n\nWeek 10\n\n\n\n\n10/24\n\n\nCorrelation & Regression\n\n\n\n\n\n\n10/26\n\n\nProject Stage III: Bivariate Inference\n\n\n\n\n\n\nWeek 11\n\n\n\n\n10/31\n\n\nStratification\n\n\n\n\n\n\n11/02\n\n\nModeration\n\n\n\n\n\n\nWeek 12\n\n\n\n\n11/07\n\n\nMultiple Regression analysis\n\n\n\n\n\n\n11/09\n\n\nConfounding\n\n\n\n\n\n\nWeek 13\n\n\n\n\n11/14\n\n\nCategorical Predictors\n\n\n\n\n\n\n11/16\n\n\nLogistic Regression analysis\n\n\n\n\n\n\n11/16\n\n\nProject Stage IV: Multivariable Analysis & Conclusions\n\n\n\n\n\n\nWeek 14\n\n\n\n\n11/28\n\n\nModel Building\n\n\n\n\n\n\nWeek 15\n\n\n\n\n12/05\n\n\nDevelop Research Poster\n\n\n\n\n\n\n12/07\n\n\nStudy Design & Causation\nWhat to watch out for\n\n\n\n\n\n\nFinals\n\n\n\n\n12/12\n\n\nPoster Presentation\n\n\n\n\n\n\n12/16\n\n\nFinal Exam"
+    "text": "Due dates are displayed on the calendar only\n\n\n\n\n\n\n\n\nDate\n\n\nTopic\n\n\nDetails\n\n\n\n\n\n\nWeek 1\n\n\n\n\n08/22\n\n\nWelcome\n\n\nIntroduction to the Class and your materials\n\n\n\n\n08/22\n\n\nData architecture\n\n\nData entry, spreadsheets, metadata, codebooks\n\n\n\n\n08/24\n\n\nProject Stage 1: Choosing your topic\n\n\nChoosing project research data\n\n\n\n\nWeek 2\n\n\n\n\n08/29\n\n\nFormulating research questions\n\n\nAsking questions is easy. Asking answerable questions is more difficult.\n\n\n\n\n08/31\n\n\nPreparing data for analysis\n\n\nWhere an inordinate amount of time is spent\n\n\n\n\nWeek 3\n\n\n\n\n09/05\n\n\nLabor Day. No Class\n\n\n\n\n\n\n09/07\n\n\nData wrangling\n\n\nKeep coding, coding, coding, keep them fingers flowing, keep them data scrolling, Compile!\n\n\n\n\nWeek 4\n\n\n\n\n09/12\n\n\nDescribing distributions of data\n\n\nVisualizing your data is the first line of defense against bad data\n\n\n\n\n09/14\n\n\nProject Stage I: Setting up the story\n\n\n\n\n\n\nWeek 5\n\n\n\n\n09/19\n\n\nDescribing relationships between two variables\n\n\nFirst step in investigating a question about an association\n\n\n\n\nWeek 6\n\n\n\n\n09/26\n\n\nBest practices in Data Visualization\n\n\nJust because you can add it to a graph, doesn’t mean you should.\n\n\n\n\n09/28\n\n\nProject Stage II: Exploratory Data Analysis\n\n\n\n\n\n\nWeek 7\n\n\n\n\n10/03\n\n\nStudy Design\n\n\nHow did the data come to be?\n\n\n\n\n10/05\n\n\nFoundations for Inference\n\n\nIf all else fails, use “significant at p>.05 level” and hope no one notices. Ref: https://xkcd.com/1478/\n\n\n\n\nWeek 8\n\n\n\n\n10/10\n\n\nFoundations for Inference cont.\n\n\nInference with Mathematical Models\n\n\n\n\n10/12\n\n\nModeling Bivariate relationships\n\n\nT-tests for difference in means\n\n\n\n\nWeek 9\n\n\n\n\n10/17\n\n\n\n\nANOVA & Kruskill Wallas\n\n\n\n\n10/19\n\n\n\n\nChi-Square & Fishers Exact Test\n\n\n\n\nWeek 10\n\n\n\n\n10/24\n\n\n\n\nCorrelation & Regression\n\n\n\n\n10/26\n\n\nProject Stage III: Bivariate Inference\n\n\n\n\n\n\nWeek 11\n\n\n\n\n10/31\n\n\nStratification\n\n\n\n\n\n\n11/02\n\n\nModeration\n\n\n\n\n\n\nWeek 12\n\n\n\n\n11/07\n\n\nMultiple Regression analysis\n\n\n\n\n\n\n11/09\n\n\nConfounding\n\n\n\n\n\n\nWeek 13\n\n\n\n\n11/14\n\n\nCategorical Predictors\n\n\n\n\n\n\n11/16\n\n\nLogistic Regression analysis\n\n\n\n\n\n\n11/16\n\n\nProject Stage IV: Multivariable Analysis & Conclusions\n\n\n\n\n\n\nWeek 14\n\n\n\n\n11/28\n\n\nModel Building\n\n\n\n\n\n\nWeek 15\n\n\n\n\n12/05\n\n\nDevelop Research Poster\n\n\n\n\n\n\n12/07\n\n\nStudy Design & Causation\nWhat to watch out for\n\n\n\n\n\n\nFinals\n\n\n\n\n12/12\n\n\nPoster Presentation\n\n\n\n\n\n\n12/16\n\n\nFinal Exam"
   },
   {
     "objectID": "slides/lec00-welcome.html#dr.-robin-donatello-sheher",
@@ -742,6 +763,62 @@
     "text": "Quantitative response & Quantitative explanatory\n\nSummary statisticPlots\n\n\n\n\nShow the code\ncor(pen$flipper_length_mm, pen$body_mass_g, use=\"pairwise.complete.obs\")\n\n\n[1] 0.8712018\n\n\nThe penguin flipper length (mm) has a strong positive correlation with body mass (g), r=0.87\n\n\n\n\n\n\nShow the code\nggscatter(pen, x=\"flipper_length_mm\", y = \"body_mass_g\")\n\n\n\n\n\n\n\n\nShow the code\nggscatter(pen, x=\"flipper_length_mm\", y = \"body_mass_g\", add = \"loess\", conf.int = TRUE)\n\n\n\n\n\n The relationship between flipper length and body mass in penguins is relatively linear, but there may be possible clustering on a third variable. There appears to be two groups below and above a flipper length of about 205mm. \n\n\n\n\n\n\n🔗 https://norcalbiostat.github.io/MATH615 / Describing Relationships"
   },
   {
+    "objectID": "slides/lec06-data_viz_bestpractice.html#recap-level-of-care-depends-on-the-audience",
+    "href": "slides/lec06-data_viz_bestpractice.html#recap-level-of-care-depends-on-the-audience",
+    "title": "Best practices in Data Visualization",
+    "section": "Recap: Level of care depends on the audience",
+    "text": "Recap: Level of care depends on the audience\nThere are three main audiences in mind when creating data visualizations:\n\nFor your eyes only (FYEO). These are quick and dirty plots, without annotation. Meant to be looked at once or twice.\nTo share with others internally. These mostly need to stand on their own. Axes labels, titles, colors as needed, possibly captions.\nProfessional - Contains all bells and whistles needed to make it publication quality."
+  },
+  {
+    "objectID": "slides/lec06-data_viz_bestpractice.html#highly-recommended-references",
+    "href": "slides/lec06-data_viz_bestpractice.html#highly-recommended-references",
+    "title": "Best practices in Data Visualization",
+    "section": "Highly recommended references",
+    "text": "Highly recommended references\n\n\n\n\nThe classic book on statistical graphics, charts, tables. Theory and practice in the design of data graphics, 250 illustrations of the best (and a few of the worst) statistical graphics, with detailed analysis of how to display data for precise, effective, quick analysis."
+  },
+  {
+    "objectID": "slides/lec06-data_viz_bestpractice.html#highly-recommended-references-1",
+    "href": "slides/lec06-data_viz_bestpractice.html#highly-recommended-references-1",
+    "title": "Best practices in Data Visualization",
+    "section": "Highly recommended references",
+    "text": "Highly recommended references\n\n\n\n\nIn The Truthful Art, Cairo explains the principles of good data visualization. He describes five qualities that should be your foundation when you work with data visualization: truthful, functional, beautiful, insightful, and enlightening. Cairo also gives some great examples of biased and dishonest visualization."
+  },
+  {
+    "objectID": "slides/lec06-data_viz_bestpractice.html#five-qualities-of-great-visualizations-cairo",
+    "href": "slides/lec06-data_viz_bestpractice.html#five-qualities-of-great-visualizations-cairo",
+    "title": "Best practices in Data Visualization",
+    "section": "Five qualities of great visualizations (Cairo)",
+    "text": "Five qualities of great visualizations (Cairo)\n\nTruthful. Be honest with scaling and relationships.\nFunctional. Does it accurately convey the correct information?\nBeautiful. Or at least aesthetically pleasing.\nInsightful. Does it reveal new information?\nEnlightening. Consequence of qualities 1-4\n\nReferences:\n\nUMSL Computer Science worksho on effective data viz\n\nCalling Bullshit: Spotting misleading axes"
+  },
+  {
+    "objectID": "slides/lec06-data_viz_bestpractice.html#graphing-with-intent",
+    "href": "slides/lec06-data_viz_bestpractice.html#graphing-with-intent",
+    "title": "Best practices in Data Visualization",
+    "section": "Graphing with intent",
+    "text": "Graphing with intent\nAlong with having the audience in mind, it is important to give thought to the purpose of the chart.\n\nThe effectiveness of any visualization can be measured according to how well it fulfills the tasks it was designed for. (A. Cairo, 2018)."
+  },
+  {
+    "objectID": "slides/lec06-data_viz_bestpractice.html#manage-your-ink-to-information-ratio",
+    "href": "slides/lec06-data_viz_bestpractice.html#manage-your-ink-to-information-ratio",
+    "title": "Best practices in Data Visualization",
+    "section": "Manage your ink to information ratio",
+    "text": "Manage your ink to information ratio\n\n“Data-ink is the non-erasable core of the graphic. (Tufte, 83)”\n\n\n\n\n\n\n\n\n\n\n\nDarkhorse Analytics demonstrates how “data looks better naked”"
+  },
+  {
+    "objectID": "slides/lec06-data_viz_bestpractice.html#what-to-watch-out-for",
+    "href": "slides/lec06-data_viz_bestpractice.html#what-to-watch-out-for",
+    "title": "Best practices in Data Visualization",
+    "section": "What to watch out for",
+    "text": "What to watch out for\n\nAvoid complexity\nChoose colors mindfully\nDo not add extra dimensions\nBe truthful with the scaling\nCheck publishing guidelines\nBe consistent with selected themes\nDo not over-interpret\nPlotting with missing data"
+  },
+  {
+    "objectID": "slides/lec06-data_viz_bestpractice.html#inspirations",
+    "href": "slides/lec06-data_viz_bestpractice.html#inspirations",
+    "title": "Best practices in Data Visualization",
+    "section": "Inspirations",
+    "text": "Inspirations\nNot sure what type of graph to create?\n\nPoke around on the R Graph Gallery or Python version. Appropriate for all languages as the goal is to identify the graph type\nfrom Data to Viz: a decision tree for graph options\n\n\n\n🔗 https://norcalbiostat.github.io/MATH615 / Best practices in Data Visualization"
+  },
+  {
     "objectID": "slides/lec07-intro_inference.html#statistical-inference-1",
     "href": "slides/lec07-intro_inference.html#statistical-inference-1",
     "title": "Statistical Inference with Mathematical Models",
@@ -795,7 +872,7 @@
     "href": "slides/lec07-intro_inference.html#refresher-on-the-normal-distribution",
     "title": "Statistical Inference with Mathematical Models",
     "section": "Refresher on the Normal Distribution",
-    "text": "Refresher on the Normal Distribution\nThe normal distribution is used to describe the variability associated with sample statistics which are taken from either repeated samples or repeated experiments. The normal distribution is quite powerful in that it describes the variability of many different statistics such as the sample mean and sample proportions.\n\n\n\n\n\nWarning\n\n\nThis chapter makes reference to a number of case studies from chapter 11 and 12. You may need to follow the reference links in the online textbook on occasion to get more information and context."
+    "text": "Refresher on the Normal Distribution\n\n\n\nThe normal distribution is used to describe the variability associated with sample statistics which are taken from either repeated samples or repeated experiments. The normal distribution is quite powerful in that it describes the variability of many different statistics such as the sample mean and sample proportions."
   },
   {
     "objectID": "slides/lec07-intro_inference.html#collaborative-notes",
@@ -872,14 +949,14 @@
     "href": "slides/lec07-intro_inference.html#hypothesis-test-3",
     "title": "Statistical Inference with Mathematical Models",
     "section": "Hypothesis test",
-    "text": "Hypothesis test\n\n\n\nRevision 3:\n\n\nWriting it in symbols\n\n\n\nLet \\(p_{trmt}\\) be the proportion of patients with a stent who have a stroke, and \\(p_{ctrl}\\) be the proportion of patients without a stent who have a stroke\n\n\n\\(H_{0}: p_{trmt} = p_{ctrl}\\)\n\\(H_{A}: p_{trmt} = p_{ctrl}\\)"
+    "text": "Hypothesis test\n\n\n\nRevision 3:\n\n\nWriting it in symbols\n\n\n\nLet \\(p_{trmt}\\) be the proportion of patients with a stent who have a stroke, and \\(p_{ctrl}\\) be the proportion of patients without a stent who have a stroke\n\n\n\\(H_{0}: p_{trmt} = p_{ctrl}\\)\n\\(H_{A}: p_{trmt} \\neq p_{ctrl}\\)"
   },
   {
     "objectID": "slides/lec07-intro_inference.html#hypothesis-test-4",
     "href": "slides/lec07-intro_inference.html#hypothesis-test-4",
     "title": "Statistical Inference with Mathematical Models",
     "section": "Hypothesis test",
-    "text": "Hypothesis test\n\n\n\nRevision 3.5:\n\n\nRewriting as a difference in parameters\n\n\n\nLet \\(p_{1}\\) be the proportion of patients with a stent who have a stroke, and \\(p_{ctrl}\\) be the proportion of patients without a stent who have a stroke\n\n\n\\(H_{0}: p_{trmt} - p_{ctrl} = 0\\)\n\\(H_{A}: p_{trmt} - p_{ctrl} = 0\\)"
+    "text": "Hypothesis test\n\n\n\nRevision 3.5:\n\n\nRewriting as a difference in parameters\n\n\n\nLet \\(p_{1}\\) be the proportion of patients with a stent who have a stroke, and \\(p_{ctrl}\\) be the proportion of patients without a stent who have a stroke\n\n\n\\(H_{0}: p_{trmt} - p_{ctrl} = 0\\)\n\\(H_{A}: p_{trmt} - p_{ctrl} \\neq 0\\)"
   },
   {
     "objectID": "slides/lec07-intro_inference.html#calculating-a-test-statistic",
@@ -903,11 +980,116 @@
     "text": "Using Confidence Intervals to test a hypothesis\n\nWe are 95% confident that implanting a stent in a stroke patient’s brain increased the risk of stroke within 30 days by a rate of 0.035 to 0.145.\n\nSince the interval does not contain the null hypothesized value of 0 (is completely above 0), it means the data provide convincing evidence that the stent used in the study changed the risk of stroke within 30 days\n\n\n🔗 https://norcalbiostat.github.io/MATH615 / Statistical Inference with Mathematical Models"
   },
   {
+    "objectID": "slides/lec08-bivariate_modeling.html#which-analyseses-to-perform",
+    "href": "slides/lec08-bivariate_modeling.html#which-analyseses-to-perform",
+    "title": "Modeling Bivariate Relationships",
+    "section": "Which analyseses to perform?",
+    "text": "Which analyseses to perform?\nMoving from:\n\n“What descriptive measures should be used to examine the data”\n\nto\n\n“What statistical analyses should be performed?\n\n\n\nREF: PMA6 Chapter 6"
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#why-selection-can-be-difficult",
+    "href": "slides/lec08-bivariate_modeling.html#why-selection-can-be-difficult",
+    "title": "Modeling Bivariate Relationships",
+    "section": "Why selection can be difficult",
+    "text": "Why selection can be difficult\n\n\nClassroom instruction tends to present methods in logical order from a learning perspective. Building from simple to more complex. Exposure to complex models limited.\nReal life data often contain a mixture of data types, missing data and complex patterns. This can make the choice of analysis somewhat arbitrary at times.\nTwo trained statisticians presented with the same data will often approach the analysis from different perspectives, and run different analyses depending on what assumptions they are willing to make."
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#not-always-clear",
+    "href": "slides/lec08-bivariate_modeling.html#not-always-clear",
+    "title": "Modeling Bivariate Relationships",
+    "section": "Not always clear",
+    "text": "Not always clear\n\nThe primary assumption of most standard statistical procedures is that the records are independent of each other.\nOften program evaluation relies on paired measurements before and after a certain exposure or treatment (pre-post).\n\nIn this case, the approach is to calculate a pairwise difference for each individual and compare the average difference to 0 (any change vs no change).\n\nFor the purposes of this class, we will only concern ourselves with independent groups.\n\nRepeated measures is a topic typically taught in MATH 456 (but also covered in Chapter 18 of PMA6)"
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#choose-your-adventure",
+    "href": "slides/lec08-bivariate_modeling.html#choose-your-adventure",
+    "title": "Modeling Bivariate Relationships",
+    "section": "Choose your adventure",
+    "text": "Choose your adventure\nTable 6.2 in PMA6 shows which statistical analyses procedures are appropriate depending on the combination of explanatory and response variable."
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#case-study-practice",
+    "href": "slides/lec08-bivariate_modeling.html#case-study-practice",
+    "title": "Modeling Bivariate Relationships",
+    "section": "Case study practice",
+    "text": "Case study practice\nGo to the HackMD collaborative notes on Choosing appropriate analysis and work in pairs to answer an assigned question."
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#t-test-for-difference-in-means-between-two-groups",
+    "href": "slides/lec08-bivariate_modeling.html#t-test-for-difference-in-means-between-two-groups",
+    "title": "Modeling Bivariate Relationships",
+    "section": "T-test for difference in means between two groups",
+    "text": "T-test for difference in means between two groups\n\nParameter: \\(\\mu_{1} - \\mu_{2}\\), Estimate: \\(\\bar{x}_{1} - \\bar{x}_{2}\\)\nAssumptions:\n\nGroups are mutually exclusive and independent\nDifference \\(\\bar{x}_{1} - \\bar{x}_{2}\\) is normally distributed\n\n\n\\(H_{0}: \\mu_{1} - \\mu_{2} = 0\\): There is no difference in the averages between groups.\n\\(H_{A}: \\mu_{1} - \\mu_{2} \\neq 0\\): There is a difference in the averages between groups."
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#example-bmi-vs-smoking",
+    "href": "slides/lec08-bivariate_modeling.html#example-bmi-vs-smoking",
+    "title": "Modeling Bivariate Relationships",
+    "section": "Example: BMI vs smoking",
+    "text": "Example: BMI vs smoking\nWe would like to know, is there convincing evidence that the average BMI differs between those who have ever smoked a cigarette in their life compared to those who have never smoked?\n\n\n\n\n\n\nNitty gritty detail\n\n\nFor the purposes of learning, you will be writing out each step in the analysis in depth. As you begin to master these analyses, it is natural to slowly start to blend and some steps. However it is important for you to have a baseline reference."
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#identify-response-and-explanatory-variables",
+    "href": "slides/lec08-bivariate_modeling.html#identify-response-and-explanatory-variables",
+    "title": "Modeling Bivariate Relationships",
+    "section": "1. Identify response and explanatory variables",
+    "text": "1. Identify response and explanatory variables\n\nEver smoker = binary explanatory variable (variable eversmoke_c)\nBMI = quantitative response variable (variable BMI)"
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#visualize-and-summarise-bivariate-relationship",
+    "href": "slides/lec08-bivariate_modeling.html#visualize-and-summarise-bivariate-relationship",
+    "title": "Modeling Bivariate Relationships",
+    "section": "2. Visualize and summarise bivariate relationship",
+    "text": "2. Visualize and summarise bivariate relationship\n\n\n\n\n\n\n\n\n\n\n\n\n\neversmoke_c\nmean\nsd\n\n\n\n\nNever Smoked\n29.7\n7.8\n\n\nSmoked at least once\n28.8\n7.3\n\n\n\n\n\n\n\nSmokers have on average BMI of 28.8, smaller than the average BMI of non-smokers at 29.7. Non-smokers have more variation in their weights (7.8 vs 7.3lbs), but the distributions both look normal, if slightly skewed right."
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#write-the-relationship-you-want-to-examine-in-the-form-of-a-research-question.",
+    "href": "slides/lec08-bivariate_modeling.html#write-the-relationship-you-want-to-examine-in-the-form-of-a-research-question.",
+    "title": "Modeling Bivariate Relationships",
+    "section": "3. Write the relationship you want to examine in the form of a research question.",
+    "text": "3. Write the relationship you want to examine in the form of a research question.\n\nNull Hypothesis: There is no difference in the average BMI between smokers and non-smokers.\nAlternate Hypothesis: There is a difference in the average BMI between smokers and non-smokers."
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#perform-an-appropriate-statistical-analysis-using-dr-ds-5-step-method.",
+    "href": "slides/lec08-bivariate_modeling.html#perform-an-appropriate-statistical-analysis-using-dr-ds-5-step-method.",
+    "title": "Modeling Bivariate Relationships",
+    "section": "4. Perform an appropriate statistical analysis using Dr D’s 5 step method.",
+    "text": "4. Perform an appropriate statistical analysis using Dr D’s 5 step method.\nI. Define parameters\nLet \\(\\mu_{1}\\) be the average BMI for smokers, and \\(\\mu_{2}\\) be the average BMI for non-smokers\nII. State the null and alternative hypothesis as symbols\n\\(H_{0}: \\mu_{1} - \\mu_{2} = 0\\)\n\\(H_{A}: \\mu_{1} - \\mu_{2} \\neq 0\\)"
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#section-1",
+    "href": "slides/lec08-bivariate_modeling.html#section-1",
+    "title": "Modeling Bivariate Relationships",
+    "section": "",
+    "text": "III. State and justify the analysis model. Check assumptions.\nWe are comparing the means between two independent samples. A Two-Sample T-Test for a difference in means will be conducted. The assumptions that the groups are independent is upheld because each individual can only be either a smoker or non smoker. The difference in sample means \\(\\bar{x}_{1}-\\bar{x}_{2}\\) is normally distributed - this is a valid assumption due to the large sample size and that differences typically are normally distributed. The observations are independent, and the variances are roughly equal (67/44 = 1.5 is smaller than 2)."
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#section-2",
+    "href": "slides/lec08-bivariate_modeling.html#section-2",
+    "title": "Modeling Bivariate Relationships",
+    "section": "",
+    "text": "IV. Conduct the test and make a decision about the plausibility of the alternative hypothesis.\n\n\n\n    Welch Two Sample t-test\n\ndata:  BMI by eversmoke_c\nt = 3.6937, df = 3395.3, p-value = 0.0002245\nalternative hypothesis: true difference in means between group Never Smoked and group Smoked at least once is not equal to 0\n95 percent confidence interval:\n 0.3906204 1.2744780\nsample estimates:\n        mean in group Never Smoked mean in group Smoked at least once \n                          29.67977                           28.84722 \n\n\nThere is strong evidence in favor of the alternative hypothesis. The interval for the differences (0.4, 1.3) does not contain zero and the p-value = .0002."
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#section-3",
+    "href": "slides/lec08-bivariate_modeling.html#section-3",
+    "title": "Modeling Bivariate Relationships",
+    "section": "",
+    "text": "V. Write a conclusion in context of the problem. Include the point estimates, confidence interval for the difference and p-value\nOn average, non-smokers have a significantly higher 0.82 (0.39, 1.27) BMI compared to smokers (p=.0002)."
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#analysis-of-variance-anova",
+    "href": "slides/lec08-bivariate_modeling.html#analysis-of-variance-anova",
+    "title": "Modeling Bivariate Relationships",
+    "section": "Analysis of Variance (ANOVA)",
+    "text": "Analysis of Variance (ANOVA)\n\n\n🔗 https://norcalbiostat.github.io/MATH615 / Modeling Bivariate Relationships"
+  },
+  {
     "objectID": "slides.html",
     "href": "slides.html",
     "title": "All Slides",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Slide Deck\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\nWeek\n\n\nSlide Deck\n\n\n\n\n\n\n1\n\n\nWelcome to MATH 615\n\n\n\n\n1\n\n\nData Architecture\n\n\n\n\n2\n\n\nFormulating research questions\n\n\n\n\n3, 4\n\n\nPreparing your data for analysis\n\n\n\n\n4\n\n\nDescribing Distributions of Data\n\n\n\n\n5, 6\n\n\nDescribing Relationships between variables\n\n\n\n\n7, 8\n\n\nStatistical Inference with Mathematical Models\n\n\n\n\n\n\nNo matching items"
+    "text": "Order By\n       Default\n         \n          Slide Deck\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\nWeek\n\n\nSlide Deck\n\n\n\n\n\n\n1\n\n\nWelcome to MATH 615\n\n\n\n\n1\n\n\nData Architecture\n\n\n\n\n2\n\n\nFormulating research questions\n\n\n\n\n3, 4\n\n\nPreparing your data for analysis\n\n\n\n\n4\n\n\nDescribing Distributions of Data\n\n\n\n\n5, 6\n\n\nDescribing Relationships between variables\n\n\n\n\n6\n\n\nBest practices in Data Visualization\n\n\n\n\n7, 8\n\n\nStatistical Inference with Mathematical Models\n\n\n\n\nweek number\n\n\nModeling Bivariate Relationships\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "syllabus.html",
@@ -1173,14 +1355,14 @@
     "href": "topics/t07-intro_inference.html#learning-path",
     "title": "Inference with Mathematical Models",
     "section": "Learning Path",
-    "text": "Learning Path\n\nWhere we’ve been\nLearning about different data generating mechanisms/models.\n\n\nWhere we’re at\nRefreshing our memory from a prior stat class how to use the Normal distribution to compare values, calculate probabilities, confidence intervals and conduct a hypothesis test\n\n\nObjectives\n\n\n\nUse the Normal distribution to calculate a probability\n\nNA\nCompare values under two distributions by comparing Zscores\n\nDescribe the concept of sampling variability.\n\nCalculate the mean and sd of the sampling distribution based on population parameters\n\nExplain the Central Limit Theorem\n\nConstruct and Interpret a confidence interval in context of the problem\n\nAssess a research question using a hypothesis test"
+    "text": "Learning Path\n\nWhere we’ve been\nLearning about different data generating mechanisms/models.\n\n\nWhere we’re at\nRefreshing our memory from a prior stat class how to use the Normal distribution to compare values, calculate probabilities, confidence intervals and conduct a hypothesis test\n\n\nObjectives\n\n\n\nExplain how to test a hypothsis using randomization\n\nAssess a research question using a hypothesis test\nUse the Normal distribution to calculate a probability\nDescribe the concept of sampling variability\nCalculate the mean and sd of the sampling distribution based on population parameters\nExplain the Central Limit Theorem\nConstruct and Interpret a confidence interval in context of the problem\nUse a confidence interval to make an inferential hypothesis statement"
   },
   {
     "objectID": "topics/t07-intro_inference.html#learning-materials",
     "href": "topics/t07-intro_inference.html#learning-materials",
     "title": "Inference with Mathematical Models",
     "section": "Learning Materials",
-    "text": "Learning Materials\n📚 Reading\n\n\n\nIMS - Chapter 13.1-13.3\n\nNA\nand IMS Chapter 11-11.1\n\n\n\n\n\n\n📝 Collaborative notes\n\n\n\nInference with Mathematical models\n\nNA"
+    "text": "Learning Materials\n📚 Reading\n\n\n\nIMS - Chapter 13.1-13.3\n\nand IMS Chapter 11-11.1\n\n\n\n\n\n📝 Collaborative notes\n\n\n\nInference with Mathematical models"
   },
   {
     "objectID": "topics/t07-intro_inference.html#assignments",
@@ -1197,10 +1379,38 @@
     "text": "Discussion\nAdditional videos that may be helpful.\n\nWhat is a sampling distribution\nSampling Distributions: Introduction to the concept"
   },
   {
+    "objectID": "topics/t08-bivariate_modeling.html#learning-path",
+    "href": "topics/t08-bivariate_modeling.html#learning-path",
+    "title": "Modeling Bivariate Relationships",
+    "section": "Learning Path",
+    "text": "Learning Path\n\nWhere we’ve been\n\nVisually exploring relationships between two variables by creating appropriate plots to assess how the distribution of a primary outcome (response/dependent) variable changes according to the level of a predictor (explanatory/independent/covariate) variable.\nLearning how probability is used to make inferential statements about parameters\n\n\n\nWhere we’re at\nReady to make some statistical statements about relationships between variables.\n\n\nObjectives\n\n\n\nIdentify the most appropriate analysis for a given research topic.\n\nFully conduct the following statistical analyses: Two sample T-Test of means, ANOVA, Chi-squared test of Association, Correlation, Simple linear Regression"
+  },
+  {
+    "objectID": "topics/t08-bivariate_modeling.html#learning-materials",
+    "href": "topics/t08-bivariate_modeling.html#learning-materials",
+    "title": "Modeling Bivariate Relationships",
+    "section": "Learning Materials",
+    "text": "Learning Materials\n Slides (Will open in full screen. Right click to open in a new tab)\n\n\n\nModeling Bivariate relationships\n\n\n\n\n📚 Reading\n\n\n\nPMA6 Ch 6\n\n\n\n\n📝 Collaborative notes\n\n\n\nChoosing appropriate analysis"
+  },
+  {
+    "objectID": "topics/t08-bivariate_modeling.html#assignments",
+    "href": "topics/t08-bivariate_modeling.html#assignments",
+    "title": "Modeling Bivariate Relationships",
+    "section": "Assignments",
+    "text": "Assignments\n\n\n\nHW06 Bivariate Modeling"
+  },
+  {
+    "objectID": "topics/t08-bivariate_modeling.html#discussion",
+    "href": "topics/t08-bivariate_modeling.html#discussion",
+    "title": "Modeling Bivariate Relationships",
+    "section": "Discussion",
+    "text": "Discussion"
+  },
+  {
     "objectID": "topics.html",
     "href": "topics.html",
     "title": "Topic Areas",
     "section": "",
-    "text": "Topic\n\n\nDates\n\n\nDescription\n\n\n\n\n\n\nWelcome to Fall 22\n\n\n8/22\n\n\nIntroduction to class and your learning materials\n\n\n\n\nData Architecture\n\n\n8/22\n\n\nData entry, spreadsheets, metadata, codebooks\n\n\n\n\nFormulating research questions\n\n\n8/29\n\n\nAsking questions is easy. Asking answerable questions is more difficult.\n\n\n\n\nData Management\n\n\n8/31-9/11\n\n\nWhere an inordinate amount of time is spent\n\n\n\n\nDescribing distributions of data\n\n\n9/12-9/18\n\n\nVisualizing your data is the first line of defense against bad data\n\n\n\n\nDescribing Relationships\n\n\n9/19-10/02\n\n\nFirst step in investigating a question about an association\n\n\n\n\nStudy Design\n\n\n10/03\n\n\nHow did the data come to be?\n\n\n\n\nInference with Mathematical Models\n\n\n10/05-10/10\n\n\nIf all else fails, use ‘significant at p>.05 level’ and hope no one notices. Ref: https://xkcd.com/1478/?\n\n\n\n\n\n\nNo matching items"
+    "text": "Topic\n\n\nDates\n\n\nDescription\n\n\n\n\n\n\nWelcome to Fall 22\n\n\n8/22\n\n\nIntroduction to class and your learning materials\n\n\n\n\nData Architecture\n\n\n8/22\n\n\nData entry, spreadsheets, metadata, codebooks\n\n\n\n\nFormulating research questions\n\n\n8/29\n\n\nAsking questions is easy. Asking answerable questions is more difficult.\n\n\n\n\nData Management\n\n\n8/31-9/11\n\n\nWhere an inordinate amount of time is spent\n\n\n\n\nDescribing distributions of data\n\n\n9/12-9/18\n\n\nVisualizing your data is the first line of defense against bad data\n\n\n\n\nDescribing Relationships\n\n\n9/19-10/02\n\n\nFirst step in investigating a question about an association\n\n\n\n\nStudy Design\n\n\n10/03\n\n\nHow did the data come to be?\n\n\n\n\nInference with Mathematical Models\n\n\n10/05-10/10\n\n\nIf all else fails, use ‘significant at p>.05 level’ and hope no one notices. Ref: https://xkcd.com/1478/?\n\n\n\n\nModeling Bivariate Relationships\n\n\n10/12 - 10/24\n\n\n\n\n\n\n\n\nNo matching items"
   }
 ]

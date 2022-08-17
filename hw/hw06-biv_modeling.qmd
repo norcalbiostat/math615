@@ -1,0 +1,79 @@
+---
+title: "HW 06: Bivariate Modeling"
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+# Purpose
+We've been visually exploring relationships between two variables by creating appropriate plots to assess how the distribution of a primary outcome (response/dependent) variable changes according to the level of a predictor (explanatory/independent/covariate) variable. We can learn a lot by conducting exploratory data analysis, and if description is the goal then this is where your work can stop. 
+
+However, if you want to make conclusions or **inference** about a relationship, then formal statistical analysis techniques are needed. We start here by formally testing if relationships or associations between *two* measures exist, then later will see how additional third variables can potentially disrupt or enhance any association that you may find. 
+
+----
+
+# Instructions 
+
+In this assignment you will practice <span style="color:blue">**FIVE(5)**</span> different types of bivariate analysis: 
+
+1. (Q~B) Quantitative Outcome ~ Binary Categorical Explanatory == Two-sample t-tests for a difference in means
+2. (Q~C) Quantitative Outcome ~ Categorical Explanatory == ANOVA
+3. (B~C) Binary Outcome ~ Categorical (or Binary) Explanatory ==  $\chi^{2}$ test of Association.
+4. (Q~Q) Quantitative Outcome ~ Quantitative Explanatory == Correlation analysis 
+5. (Q~Q) Quantitative Outcome ~ Quantitative Explanatory == Linear regression analysis
+
+For each analysis you will do the following steps: 
+
+1. State which variable (including the variable name from your codebook) will be your explanatory variable and which will be your response variable. 
+    - Remember, you have some variables in your codebook that can act as both categorical and quantitative. 
+    - Decide which of those variables makes sense to “explain” the other. Don’t just blindly pick a bunch of variables. 
+    - Think about the relationship among your variables, keeping in mind your original research questions. You may use gender as your categorical explanatory variable if you are struggling to find an explanatory and response relationship that makes sense.
+    
+2. Create an appropriate bivariate plot to visualize the relationship you are exploring. Calculate appropriate summary statistics. Summarize the relationship between the explanatory and outcome variables in short paragraph form. 
+
+3. Write the relationship you want to examine in the form of a research question. 
+    - State the null and alternative hypotheses as sentences. 
+    
+4. Perform an appropriate statistical analysis using the full five step method as outlined in class and described below. 
+    - Define the parameters being tested. ($\rho$, $p_{1}$, $\mu_{1}$, $\beta_{1}$ etc)
+    - Translate the null and alternative hypotheses into $H_{0}$ and $H_{A}$ with symbols. 
+    - State and verify assumptions of the test. Even if these assumptions are potentially violated, for the purposes of this assignment, acknowledge this limitation and continue with the prescribed analysis.
+    - Conduct the analysis using your software program of choice. Make a decision whether or not to reject the null hypothesis. State your p-value. 
+    - Write a conclusion in context of the problem. 
+
+----
+
+# Submission instructions
+
+* Use the [RMD](_templates/06_biv_modeling_template.Rmd) or [WORD](_templates/06_biv_modeling_template.docx) to template answer the questions. 
+* As you complete each question
+    - upload a **PDF** of your work to the `06 Bivariate Modeling/draft` folder in Google Drive
+    - Use the following naming convention to keep versions separate: **06_biv_modeling_userid_1.pdf**, **06_biv_modeling_userid_2.pdf** etc. 
+    
+::: {.callout-important}
+## Revise at each stage
+
+Before you upload your next version, check for a peer review/comments on your prior analyses and make any suggested/recommended adjustments. 
+:::
+
+
+## Draft
+
+Upload your PDF file to the `06 Bivariate Modeling/draft` folder in Google Drive. 
+
+### Peer Review instructions
+
+You will review **1** peer's work for each analysis type for a total of **5** reviews.
+
+As a reviewer, this is what you're checking for: 
+
+* Did they complete all steps?
+* Did they check assumptions? 
+* Are the graphics, summary statistics and analysis appropriate? 
+* Is the final conclusion in plain english with no statistical jargon? 
+* Does their conclusion match the output of their statistical progam? 
+
+## Final
+
+* Upload your final **PDF** to `06 Bivariate Modeling/final` folder in Google Drive.

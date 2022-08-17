@@ -1,0 +1,194 @@
+---
+title: "Modeling Bivariate Relationships"
+date: "2022-10-12"
+description: "week number"
+author: "Robin Donatello"
+footer: "[🔗 https://norcalbiostat.github.io/MATH615](https://norcalbiostat.github.io/MATH615/) / Modeling Bivariate Relationships"
+from: markdown+emoji
+format: 
+  revealjs:
+    theme: beige
+    multiplex: true
+    transition: fade
+    slide-number: true
+    incremental: false 
+    chalkboard: true
+execute:
+  freeze: auto
+  echo: true
+knitr:
+  opts_chunk: 
+    R.options:
+      width: 200
+---
+
+## Which analyseses to perform? 
+
+Moving from: 
+
+> "What descriptive measures should be used to examine the data"
+
+to
+
+> "What statistical analyses should be performed? 
+
+\
+
+REF: PMA6 Chapter 6
+
+
+## Why selection can be difficult 
+
+::: {.incremental}
+
+* Classroom instruction tends to present methods in logical order from a learning perspective. Building from simple to more complex. Exposure to complex models limited. 
+* Real life data often contain a mixture of data types, missing data and complex patterns. This can make the choice of analysis somewhat arbitrary at times. 
+* Two trained statisticians presented with the same data will often approach the analysis from different perspectives, and run different analyses depending on what assumptions they are willing to make. 
+
+:::
+
+## Not always clear {.smaller}
+
+* The primary assumption of most standard statistical procedures is that the records are independent of each other. 
+* Often program evaluation relies on paired measurements before and after a certain exposure or treatment (pre-post).
+    - In this case, the approach is to calculate a pairwise difference for each individual and compare the average difference to 0 (any change vs no change).
+* For the purposes of this class, we will only concern ourselves with independent groups. 
+
+Repeated measures is a topic typically taught in MATH 456 (but also covered in Chapter 18 of PMA6)
+
+## Choose your adventure
+
+Table 6.2 in PMA6 shows which statistical analyses procedures are appropriate depending on the combination of explanatory and response variable. 
+
+![](images/pma6_analysis_table.png)
+
+## Case study practice
+
+Go to the HackMD collaborative notes on [Choosing appropriate analysis](https://hackmd.io/@norcalbiostat/08-choosing-analysis) and work in pairs to answer an assigned question. 
+
+## 
+
+<a href="https://twitter.com/patilindrajeets/status/1360137736859095042">
+<img src = "images/everything_is_lm.png" 
+     alt = "Tweet from Indrajeet Patil saying 'Your periodic reminder that the most common statistical tests are nothing but special cases of linear models.  https://lindeloev.github.io/tests-as-linear/. I wish someone had pointed out this beautiful simplicity and parsimony when I was learning statistics'" 
+     width = "50%" height = "60%">
+</a>
+
+# Quantitative Outcome ~ Binary Covariate
+
+## T-test for difference in means between two groups
+
+* Parameter: $\mu_{1} - \mu_{2}$, Estimate:  $\bar{x}_{1} - \bar{x}_{2}$
+* Assumptions: 
+    - Groups are mutually exclusive and independent
+    - Difference $\bar{x}_{1} - \bar{x}_{2}$ is normally distributed
+
+$H_{0}: \mu_{1} - \mu_{2} = 0$: There is no difference in the averages between groups.
+
+$H_{A}: \mu_{1} - \mu_{2} \neq 0$: There is a difference in the averages between groups. 
+
+
+
+## Example: BMI vs smoking
+We would like to know, is there convincing evidence that the average BMI differs between those who have ever smoked a cigarette in their life compared to those who have never smoked? 
+
+```{r, warning=FALSE, message=FALSE, include=FALSE}
+library(knitr)
+opts_chunk$set(warning=FALSE, message=FALSE, echo=FALSE) 
+library(dplyr)
+library(ggplot2)
+library(pander)
+library(scales)
+
+load("C:/Box/Data/AddHealth/addhealth_clean.Rdata")
+```
+
+::: {.callout-important}
+## Nitty gritty detail
+
+For the purposes of learning, you will be writing out each step in the analysis in depth. As you begin to master these analyses, it is natural to slowly start to blend and some steps. However it is important for you to have a baseline reference. 
+:::
+
+
+## 1. Identify response and explanatory variables
+
+* Ever smoker = binary explanatory variable (variable `eversmoke_c`)
+* BMI = quantitative response variable (variable `BMI`)
+
+## 2. Visualize and summarise bivariate relationship
+
+:::: {.columns}
+
+::: {.column width="50%"}
+```{r}
+plot.bmi.smoke <- addhealth %>% select(eversmoke_c, BMI) %>% na.omit()
+
+ggplot(plot.bmi.smoke, aes(x=eversmoke_c, y=BMI, fill=eversmoke_c)) + 
+      geom_boxplot(width=.3) + geom_violin(alpha=.4) + theme_bw() + 
+      labs(x="Smoking status") + 
+      scale_fill_manual(values=c("skyblue", "orange"), guide = "none") + 
+      stat_summary(fun="mean", geom="point", size=3, pch=17, 
+      position=position_dodge(width=0.75))
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+plot.bmi.smoke %>% group_by(eversmoke_c) %>% 
+              summarise(mean=mean(BMI, na.rm=TRUE), 
+                        sd = sd(BMI, na.rm=TRUE)) %>%
+              kable(digits = 1)
+```
+:::
+
+::::
+
+
+
+Smokers have on average BMI of 28.8, smaller than the average BMI of non-smokers at 29.7. Non-smokers have more variation in their weights (7.8 vs 7.3lbs), but the distributions both look normal, if slightly skewed right. 
+
+
+## 3. Write the relationship you want to examine in the form of a research question.
+
+* Null Hypothesis: There is no difference in the average BMI between smokers and non-smokers.
+* Alternate Hypothesis: There is a difference in the average BMI between smokers and non-smokers.
+
+## 4. Perform an appropriate statistical analysis using Dr D's 5 step method.
+ 
+**I. Define parameters**
+
+Let $\mu_{1}$ be the average BMI for smokers, and $\mu_{2}$ be the average BMI for non-smokers 
+
+**II. State the null and alternative hypothesis as symbols**
+
+$H_{0}: \mu_{1} - \mu_{2} = 0$  
+$H_{A}: \mu_{1} - \mu_{2} \neq 0$
+
+##
+
+**III. State and justify the analysis model. Check assumptions.**
+
+We are comparing the means between two independent samples. A Two-Sample T-Test for a difference in means will be conducted. The assumptions that the groups are independent is upheld because each individual can only be either a smoker or non smoker. The difference in sample means $\bar{x}_{1}-\bar{x}_{2}$ is normally distributed - this is a valid assumption due to the large sample size and that differences typically are normally distributed. The observations are independent, and the variances are roughly equal (67/44 = 1.5 is smaller than 2). 
+
+##
+
+**IV. Conduct the test and make a decision about the plausibility of the alternative hypothesis.**
+
+```{r}
+t.test(BMI ~ eversmoke_c, data=addhealth)
+```
+
+There is strong evidence in favor of the alternative hypothesis. The interval for the differences (0.4, 1.3) does not contain zero and the p-value = .0002.
+
+##
+
+**V. Write a conclusion in context of the problem. Include the point estimates, confidence interval for the difference and p-value**
+
+On average, non-smokers have a significantly higher 0.82 (0.39, 1.27) BMI compared to smokers (p=.0002). 
+
+
+# Quantitative Outcome ~ Categorical Covariate
+
+## Analysis of Variance (ANOVA)
+
+

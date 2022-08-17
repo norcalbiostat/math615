@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="description" content="10/12 - 10/24">
 
-<title>Data Analysis for Graduate Research - HW 01: Data Entry</title>
+<title>Data Analysis for Graduate Research - Modeling Bivariate Relationships</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -58,8 +59,8 @@ ul.task-list{list-style: none;}
 }</script>
 
 
-<meta name="twitter:title" content="Data Analysis for Graduate Research - HW 01: Data Entry">
-<meta name="twitter:description" content="Recording data to maintain your sanity.">
+<meta name="twitter:title" content="Data Analysis for Graduate Research - Modeling Bivariate Relationships">
+<meta name="twitter:description" content="10/12 - 10/24">
 <meta name="twitter:creator" content="@norcalbiostat">
 <meta name="twitter:card" content="summary">
 </head>
@@ -131,7 +132,7 @@ ul.task-list{list-style: none;}
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">HW 01: Data Entry</h1>
+      <h1 class="quarto-secondary-nav-title">Modeling Bivariate Relationships</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -218,32 +219,31 @@ ul.task-list{list-style: none;}
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#assignment-overview" id="toc-assignment-overview" class="nav-link active" data-scroll-target="#assignment-overview">Assignment Overview</a></li>
-  <li><a href="#instructions" id="toc-instructions" class="nav-link" data-scroll-target="#instructions">Instructions</a>
+  <li><a href="#learning-path" id="toc-learning-path" class="nav-link active" data-scroll-target="#learning-path">Learning Path</a>
   <ul class="collapse">
-  <li><a href="#submission-instructions" id="toc-submission-instructions" class="nav-link" data-scroll-target="#submission-instructions">Submission Instructions</a></li>
+  <li><a href="#where-weve-been" id="toc-where-weve-been" class="nav-link" data-scroll-target="#where-weve-been">Where we’ve been</a></li>
+  <li><a href="#where-were-at" id="toc-where-were-at" class="nav-link" data-scroll-target="#where-were-at">Where we’re at</a></li>
+  <li><a href="#objectives" id="toc-objectives" class="nav-link" data-scroll-target="#objectives">Objectives</a></li>
   </ul></li>
-  <li><a href="#assignment" id="toc-assignment" class="nav-link" data-scroll-target="#assignment">Assignment</a>
-  <ul class="collapse">
-  <li><a href="#data-entry" id="toc-data-entry" class="nav-link" data-scroll-target="#data-entry">1. Data Entry</a></li>
-  <li><a href="#codebook-creation" id="toc-codebook-creation" class="nav-link" data-scroll-target="#codebook-creation">2. Codebook Creation</a></li>
-  <li><a href="#data-import" id="toc-data-import" class="nav-link" data-scroll-target="#data-import">3. Data Import</a>
-  <ul class="collapse">
-  <li><a href="#examples-of-import-code" id="toc-examples-of-import-code" class="nav-link" data-scroll-target="#examples-of-import-code">Examples of import code</a></li>
-  </ul></li>
-  </ul></li>
+  <li><a href="#learning-materials" id="toc-learning-materials" class="nav-link" data-scroll-target="#learning-materials">Learning Materials</a></li>
+  <li><a href="#assignments" id="toc-assignments" class="nav-link" data-scroll-target="#assignments">Assignments</a></li>
+  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">Discussion</a></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/norcalbiostat/math615_test/edit/main/hw/hw01-data_entry.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/norcalbiostat/math615_test/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/norcalbiostat/math615_test/edit/main/topics/t08-bivariate_modeling.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/norcalbiostat/math615_test/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">HW 01: Data Entry</h1>
-<p class="subtitle lead">Recording data to maintain your sanity.</p>
+<h1 class="title d-none d-lg-block">Modeling Bivariate Relationships</h1>
 </div>
 
+<div>
+  <div class="description">
+    10/12 - 10/24
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
@@ -255,100 +255,82 @@ ul.task-list{list-style: none;}
 
 </header>
 
-<section id="assignment-overview" class="level1">
-<h1>Assignment Overview</h1>
-<p>Although you will be working with previously collected data, it is important to understand what data looks like as well as how it is coded and entered into a spreadsheet or dataset for analysis. This can help you identify and avoid problems later when reading data into an analysis software program. For example if you mix letters and numbers in the same cell, the variable will be treated as character not numeric.</p>
-</section>
-<section id="instructions" class="level1">
-<h1>Instructions</h1>
-<p>There are three pieces to this assignment.</p>
-<ol type="1">
-<li>Entering raw data into a spreadsheet.</li>
-<li>Creating a codebook</li>
-<li>Importing the data into your software program of choice (SPC)</li>
-</ol>
-<p>Using the <a href="https://norcalbiostat.netlify.com/data/medical-records.pdf">PDF copies of medical records</a> for 5 patients seeking treatment in a hospital emergency room you are going to do data entry and create a codebook.</p>
-<section id="submission-instructions" class="level2">
-<h2 class="anchored" data-anchor-id="submission-instructions">Submission Instructions</h2>
-<p>You will enter data and create your codebook directly in Google Sheets.</p>
+<div class="cell">
+
+</div>
+<section id="learning-path" class="level2">
+<h2 class="anchored" data-anchor-id="learning-path">Learning Path</h2>
+<section id="where-weve-been" class="level3">
+<h3 class="anchored" data-anchor-id="where-weve-been">Where we’ve been</h3>
 <ul>
-<li>Start a new Google spreadsheet in the <strong>01 Data Entry</strong> folder in our shared Google Drive.</li>
-<li>Name this file <code>medrecords_userid</code> where <em>userid</em> is your chico state user id.</li>
-<li>Create and name the following worksheets: <code>data</code>, <code>codebook</code>, <code>import</code>.</li>
+<li>Visually exploring relationships between two variables by creating appropriate plots to assess how the distribution of a primary outcome (response/dependent) variable changes according to the level of a predictor (explanatory/independent/covariate) variable.</li>
+<li>Learning how probability is used to make inferential statements about parameters</li>
 </ul>
-<p>There is no peer review for this assignment.</p>
-<hr>
 </section>
+<section id="where-were-at" class="level3">
+<h3 class="anchored" data-anchor-id="where-were-at">Where we’re at</h3>
+<p>Ready to make some statistical statements about relationships between variables.</p>
 </section>
-<section id="assignment" class="level1">
-<h1>Assignment</h1>
-<section id="data-entry" class="level2">
-<h2 class="anchored" data-anchor-id="data-entry">1. Data Entry</h2>
-<ol type="1">
-<li>Select 4 variables recorded on the medical forms
+<section id="objectives" class="level3">
+<h3 class="anchored" data-anchor-id="objectives">Objectives</h3>
+<div class="cell">
+<div class="cell-output-display">
 <ul>
-<li>one should be a unique identifier, at least one should be a quantitative variable and at least one should be a categorical variable. (Ref PMA6 Ch2)</li>
-</ul></li>
-<li>Select a brief name for each variable - write this in the first row
+<li>Identify the most appropriate analysis for a given research topic.
 <ul>
-<li>Use good variable naming conventions:
-<ul>
-<li>short</li>
-<li>no special characters</li>
-<li>no spaces</li>
-<li>doesn’t start with a number</li>
+<li>Fully conduct the following statistical analyses: Two sample T-Test of means, ANOVA, Chi-squared test of Association, Correlation, Simple linear Regression</li>
 </ul></li>
-</ul></li>
-<li>Determine what range of values is needed for recording each variable</li>
-<li>Enter the data for each patient, one patient per row.</li>
-<li>If data is missing for a particular value, leave the cell blank.</li>
-</ol>
-<p><img src="images/hw1_data.png" class="img-fluid"></p>
-<p>Recall the <em>tidy data principles</em> state to put one observation per row, and one variable (characteristic) per column.</p>
-</section>
-<section id="codebook-creation" class="level2">
-<h2 class="anchored" data-anchor-id="codebook-creation">2. Codebook Creation</h2>
-<p>In a separate worksheet list the variable names, labels, data types, and response code or ranges in separate columns (4 columns total).</p>
-<p>An example of what this should look like is below. (With the exception of the red error)</p>
-<p><img src="images/hw1_codebook.png" class="img-fluid"></p>
-</section>
-<section id="data-import" class="level2">
-<h2 class="anchored" data-anchor-id="data-import">3. Data Import</h2>
-<ol type="1">
-<li>Export your file to your hard drive as a Comma Separated Value (<code>*.csv</code>).
-<ul>
-<li>If it asks you, only save the<code>data</code> worksheet.</li>
-</ul></li>
-<li>Using your software program of choice, import this data into the program using point and click GUI methods.
-<ul>
-<li>Code is fine if you already know how. Point and click is also fine for now.</li>
-<li>Read the collaborative notes for your SPC to learn others have done this.</li>
-</ul></li>
-<li>Note and record any problems that you noticed and/or had to fix at the bottom of your <code>codebook</code> worksheet.
-<ul>
-<li>Does your data file look like your spreadsheet?</li>
-<li>Did you have to specify missing values in any specific way?</li>
-</ul></li>
-<li>Show that it worked by taking a screenshot of the code, and the view of the data. Paste both in the <code>codebook</code> worksheet.</li>
-</ol>
-<section id="examples-of-import-code" class="level3">
-<h3 class="anchored" data-anchor-id="examples-of-import-code">Examples of import code</h3>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/hw1_r_code.png" class="img-fluid figure-img" alt="Example of R import code"></p>
-<p></p><figcaption class="figure-caption">Example R code</figcaption><p></p>
-</figure>
+</ul>
+<!-- end of list -->
 </div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/hw1_spss_code.png" class="img-fluid figure-img" alt="Example of SPSS import code" width="400"></p>
-<p></p><figcaption class="figure-caption">Example SPSS code</figcaption><p></p>
-</figure>
 </div>
+</section>
+</section>
+<section id="learning-materials" class="level2">
+<h2 class="anchored" data-anchor-id="learning-materials">Learning Materials</h2>
+<p><i class="fa-solid fa-person-chalkboard" aria-hidden="true"></i> <strong>Slides (Will open in full screen. Right click to open in a new tab)</strong></p>
+<div class="cell">
+<div class="cell-output-display">
+<ul>
+<li><a href="../slides/lec08-bivariate_modeling.html">Modeling Bivariate relationships</a></li>
+</ul>
+<!-- end of list -->
+</div>
+</div>
+<p><span class="emoji" data-emoji="books">📚</span> <strong>Reading</strong></p>
+<div class="cell">
+<div class="cell-output-display">
+<ul>
+<li>PMA6 Ch 6</li>
+</ul>
+<!-- end of list -->
+</div>
+</div>
+<p><span class="emoji" data-emoji="pencil">📝</span> <strong>Collaborative notes</strong></p>
+<div class="cell">
+<div class="cell-output-display">
+<ul>
+<li><a href="https://hackmd.io/@norcalbiostat/08-choosing-analysis">Choosing appropriate analysis</a></li>
+</ul>
+<!-- end of list -->
+</div>
+</div>
+</section>
+<section id="assignments" class="level2">
+<h2 class="anchored" data-anchor-id="assignments">Assignments</h2>
+<div class="cell">
+<div class="cell-output-display">
+<ul>
+<li><a href="../hw/hw/06_biv_modeling.html">HW06 Bivariate Modeling</a></li>
+</ul>
+<!-- end of list -->
+</div>
+</div>
+</section>
+<section id="discussion" class="level2">
+<h2 class="anchored" data-anchor-id="discussion">Discussion</h2>
 
 
-</section>
-</section>
 </section>
 
 </main> <!-- /main -->

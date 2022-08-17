@@ -1,0 +1,115 @@
+---
+title: "Best practices in Data Visualization"
+date: "2022-09-29"
+description: "6"
+author: "Robin Donatello"
+footer: "[🔗 https://norcalbiostat.github.io/MATH615](https://norcalbiostat.github.io/MATH615/) / Best practices in Data Visualization"
+from: markdown+emoji
+format: 
+  revealjs:
+    theme: beige
+    multiplex: true
+    transition: fade
+    slide-number: true
+    incremental: false 
+    chalkboard: true
+execute:
+  freeze: auto
+  echo: false
+knitr:
+  opts_chunk: 
+    R.options:
+      width: 200
+---
+
+## Recap: Level of care depends on the audience {.smaller}
+
+There are three main audiences in mind when creating data visualizations: 
+
+1. For your eyes only (FYEO). These are quick and dirty plots, without annotation. Meant to be looked at once or twice. 
+
+2. To share with others internally. These mostly need to stand on their own. Axes labels, titles, colors as needed, possibly captions.
+
+3. Professional - Contains all bells and whistles needed to make it publication quality. 
+ 
+## Highly recommended references
+
+:::: {.columns}
+
+::: {.column width="40%"}
+![](images/tufte_book.gif)
+:::
+
+::: {.column width="60%"}
+The classic book on statistical graphics, charts, tables. Theory and practice in the design of data graphics, 250 illustrations of the best (and a few of the worst) statistical graphics, with detailed analysis of how to display data for precise, effective, quick analysis. 
+
+:::
+
+::::
+
+
+## Highly recommended references
+
+:::: {.columns}
+
+::: {.column width="40%"}
+![](images/truthful_art.jpg)
+:::
+
+::: {.column width="60%"}
+In The Truthful Art, Cairo explains the principles of good data visualization. He describes five qualities that should be your foundation when you work with data visualization: truthful, functional, beautiful, insightful, and enlightening. Cairo also gives some great examples of biased and dishonest visualization.
+:::
+
+::::
+
+
+## Five qualities of great visualizations (Cairo) {.smaller}
+
+1. Truthful. Be honest with scaling and relationships. 
+2. Functional. Does it accurately convey the correct information?
+3. Beautiful. Or at least aesthetically pleasing. 
+4. Insightful. Does it reveal new information? 
+5. Enlightening. Consequence of qualities 1-4
+
+References: 
+
+* [UMSL Computer Science worksho on effective data viz](https://badriadhikari.github.io/data-viz-workshop-2021/five-qualities/)  
+* [Calling Bullshit: Spotting misleading axes](https://www.callingbullshit.org/tools.html)
+
+## Graphing with intent
+
+Along with having the audience in mind, it is important to give thought to the purpose of the chart.
+
+> The effectiveness of any visualization can be measured according to how well it fulfills the tasks it was designed for. (A. Cairo, 2018).
+
+## Manage your ink to information ratio
+
+> "Data-ink is the non-erasable core of the graphic. (Tufte, 83)" 
+
+:::{layout-ncol=2}
+![](https://images.squarespace-cdn.com/content/v1/56713bf4dc5cb41142f28d1f/1450306653111-70K5IT30R69NWPDIE1ZJ/data-ink.gif?format=950w){fig-align="center"}
+
+
+[Darkhorse Analytics](https://www.darkhorseanalytics.com/blog/data-looks-better-naked/) demonstrates how "data looks better naked"
+:::
+
+
+## What to watch out for
+
+* Avoid complexity
+* Choose colors mindfully
+* Do not add extra dimensions
+* Be truthful with the scaling
+* Check publishing guidelines
+* Be consistent with selected themes
+* Do not over-interpret
+* Plotting with missing data
+
+
+## Inspirations
+Not sure what type of graph to create? 
+
+* Poke around on the [R Graph Gallery](https://r-graph-gallery.com/) or [Python version](https://www.python-graph-gallery.com/). _Appropriate for all languages as the goal is to identify the graph type_
+
+* [from Data to Viz: a decision tree for graph options](https://www.data-to-viz.com/)
+

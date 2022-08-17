@@ -12,8 +12,8 @@
   <meta name="generator" content="quarto-1.0.36">
 
   <meta name="author" content="Robin Donatello">
-  <meta name="dcterms.date" content="2022-10-05">
-  <title>Data Analysis for Graduate Research - Statistical Inference with Mathematical Models</title>
+  <meta name="dcterms.date" content="2022-10-12">
+  <title>Data Analysis for Graduate Research - Modeling Bivariate Relationships</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -318,8 +318,8 @@
       margin-right: 0; 
     }
   </style>
-<meta name="twitter:title" content="Data Analysis for Graduate Research - Statistical Inference with Mathematical Models">
-<meta name="twitter:description" content="7, 8">
+<meta name="twitter:title" content="Data Analysis for Graduate Research - Modeling Bivariate Relationships">
+<meta name="twitter:description" content="week number">
 <meta name="twitter:creator" content="@norcalbiostat">
 <meta name="twitter:card" content="summary">
 </head>
@@ -328,302 +328,196 @@
     <div class="slides">
 
 <section id="title-slide" class="center">
-  <h1 class="title">Statistical Inference with Mathematical Models</h1>
+  <h1 class="title">Modeling Bivariate Relationships</h1>
   <p class="author">Robin Donatello</p>
-  <p class="date">2022-10-05</p>
+  <p class="date">2022-10-12</p>
 </section>
 
-<section>
-<section id="statistical-inference" class="title-slide slide level1 center">
-<h1>Statistical Inference</h1>
-<p>(A.K.A Hypothesis Testing)</p>
-
-<img data-src="https://imgs.xkcd.com/comics/p_values.png" class="r-stretch quarto-figure-center"><p class="caption">https://xkcd.com/1478/</p></section>
-<section id="statistical-inference-1" class="slide level2">
-<h2>Statistical Inference</h2>
+<section id="which-analyseses-to-perform" class="slide level2">
+<h2>Which analyseses to perform?</h2>
+<p>Moving from:</p>
+<blockquote>
+<p>“What descriptive measures should be used to examine the data”</p>
+</blockquote>
+<p>to</p>
+<blockquote>
+<p>“What statistical analyses should be performed?</p>
+</blockquote>
+<p><br>
+</p>
+<p>REF: PMA6 Chapter 6</p>
+</section>
+<section id="why-selection-can-be-difficult" class="slide level2">
+<h2>Why selection can be difficult</h2>
 <div>
 <ul>
-<li class="fragment">Primarily concerned with understanding and quantifying the uncertainty of parameter estimates.</li>
-<li class="fragment">Equations and details change depending on the setting, the foundations for inference are the same throughout all of statistics.</li>
-<li class="fragment">We start with a case studies designed to motivate the process of making decisions about research claims.</li>
-<li class="fragment">We formalize the process through the introduction of the hypothesis testing framework, which allows us to formally evaluate claims about the population.</li>
+<li class="fragment">Classroom instruction tends to present methods in logical order from a learning perspective. Building from simple to more complex. Exposure to complex models limited.</li>
+<li class="fragment">Real life data often contain a mixture of data types, missing data and complex patterns. This can make the choice of analysis somewhat arbitrary at times.</li>
+<li class="fragment">Two trained statisticians presented with the same data will often approach the analysis from different perspectives, and run different analyses depending on what assumptions they are willing to make.</li>
 </ul>
 </div>
 </section>
-<section id="variability-in-data" class="slide level2">
-<h2>Variability in data</h2>
-<div>
+<section id="not-always-clear" class="slide level2 smaller">
+<h2>Not always clear</h2>
 <ul>
-<li class="fragment">Sometimes the dataset at hand represents the entire research question.</li>
-<li class="fragment">More often than not, the data have been collected to answer a research question about a larger group of which the data are a (hopefully) representative subset.</li>
-<li class="fragment">One dataset will not be identical to a second dataset even if they are both collected from the same population using the same methods.</li>
+<li>The primary assumption of most standard statistical procedures is that the records are independent of each other.</li>
+<li>Often program evaluation relies on paired measurements before and after a certain exposure or treatment (pre-post).
+<ul>
+<li>In this case, the approach is to calculate a pairwise difference for each individual and compare the average difference to 0 (any change vs no change).</li>
+</ul></li>
+<li>For the purposes of this class, we will only concern ourselves with independent groups.</li>
 </ul>
-</div>
+<p>Repeated measures is a topic typically taught in MATH 456 (but also covered in Chapter 18 of PMA6)</p>
+</section>
+<section id="choose-your-adventure" class="slide level2">
+<h2>Choose your adventure</h2>
+<p>Table 6.2 in PMA6 shows which statistical analyses procedures are appropriate depending on the combination of explanatory and response variable.</p>
+
+<img data-src="images/pma6_analysis_table.png" class="r-stretch"></section>
+<section id="case-study-practice" class="slide level2">
+<h2>Case study practice</h2>
+<p>Go to the HackMD collaborative notes on <a href="https://hackmd.io/@norcalbiostat/08-choosing-analysis">Choosing appropriate analysis</a> and work in pairs to answer an assigned question.</p>
 </section>
 <section id="section" class="slide level2">
 <h2></h2>
-<div class="callout callout-warning no-icon callout-captioned callout-style-default">
+<p><a href="https://twitter.com/patilindrajeets/status/1360137736859095042"> <img src="images/everything_is_lm.png" alt="Tweet from Indrajeet Patil saying 'Your periodic reminder that the most common statistical tests are nothing but special cases of linear models.  https://lindeloev.github.io/tests-as-linear/. I wish someone had pointed out this beautiful simplicity and parsimony when I was learning statistics'" width="50%" height="60%"> </a></p>
+</section>
+<section>
+<section id="quantitative-outcome-binary-covariate" class="title-slide slide level1 center">
+<h1>Quantitative Outcome ~ Binary Covariate</h1>
+
+</section>
+<section id="t-test-for-difference-in-means-between-two-groups" class="slide level2">
+<h2>T-test for difference in means between two groups</h2>
+<ul>
+<li>Parameter: <span class="math inline">\(\mu_{1} - \mu_{2}\)</span>, Estimate: <span class="math inline">\(\bar{x}_{1} - \bar{x}_{2}\)</span></li>
+<li>Assumptions:
+<ul>
+<li>Groups are mutually exclusive and independent</li>
+<li>Difference <span class="math inline">\(\bar{x}_{1} - \bar{x}_{2}\)</span> is normally distributed</li>
+</ul></li>
+</ul>
+<p><span class="math inline">\(H_{0}: \mu_{1} - \mu_{2} = 0\)</span>: There is no difference in the averages between groups.</p>
+<p><span class="math inline">\(H_{A}: \mu_{1} - \mu_{2} \neq 0\)</span>: There is a difference in the averages between groups.</p>
+</section>
+<section id="example-bmi-vs-smoking" class="slide level2">
+<h2>Example: BMI vs smoking</h2>
+<p>We would like to know, is there convincing evidence that the average BMI differs between those who have ever smoked a cigarette in their life compared to those who have never smoked?</p>
+<div class="callout callout-important callout-captioned callout-style-default">
 <div class="callout-body">
 <div class="callout-caption">
-<p><strong>Could it be chance?</strong></p>
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Nitty gritty detail</strong></p>
 </div>
 <div class="callout-content">
-<p>Suppose your professor splits the students in your class into two groups: students who sit on the left side of the classroom and students who sit on the right side of the classroom.</p>
-<p>If <span class="math inline">\(p_{L}\)</span> represents the proportion of students who prefer to read books on screen who sit on the left side of the classroom and <span class="math inline">\(p_{R}\)</span> represents the proportion of students who prefer to read books on screen who sit on the right side of the classroom, would you be surprised if <span class="math inline">\(p_{L}\)</span> did not exactly equal <span class="math inline">\(p_{R}\)</span>?</p>
-</div>
-</div>
-</div>
-<div class="fragment">
-<div class="callout callout-info no-icon callout-captioned callout-style-default">
-<div class="callout-body">
-<div class="callout-caption">
-<p><strong>Assumptions</strong></p>
-</div>
-<div class="callout-content">
-<p>If we do not think the side of the room a person sits on in class is related to whether they prefer to read books on screen, what assumption are we making about the relationship between these two variables (side of room and preferring to read books)?</p>
-</div>
+<p>For the purposes of learning, you will be writing out each step in the analysis in depth. As you begin to master these analyses, it is natural to slowly start to blend and some steps. However it is important for you to have a baseline reference.</p>
 </div>
 </div>
 </div>
 </section>
-<section id="randomization" class="slide level2">
-<h2>Randomization</h2>
-<p>To decide whether variability in data is due to (1) the causal mechanism (the randomized explanatory variable in the experiment) or (2) natural variability inherent to the data we set up a sham randomized experiment as a comparison.</p>
+<section id="identify-response-and-explanatory-variables" class="slide level2">
+<h2>1. Identify response and explanatory variables</h2>
 <ul>
-<li>We assume that each observational unit would have gotten the exact same response value regardless of the treatment level.</li>
-<li>By reassigning the treatments many many times, we can compare the actual experiment to the sham experiment.</li>
+<li>Ever smoker = binary explanatory variable (variable <code>eversmoke_c</code>)</li>
+<li>BMI = quantitative response variable (variable <code>BMI</code>)</li>
 </ul>
 </section>
-<section id="decision" class="slide level2">
-<h2>Decision</h2>
-<p>If the actual experiment has <strong>more extreme results</strong> than any of the sham experiments, we are led to believe that it is the explanatory variable which is causing the result and not just variability inherent to the data.</p>
-</section>
-<section id="case-study-sex-discrimination" class="slide level2">
-<h2>Case Study: Sex discrimination</h2>
-<p>Open the collaborative notes and work with your neighbor to answer the following questions. You will be randomly assigned to write out your answer in this document.</p>
-<p><a href="https://hackmd.io/@norcalbiostat/07-intro_inference">https://hackmd.io/@norcalbiostat/07-intro_inference</a></p>
-</section>
-<section id="section-1" class="slide level2">
-<h2></h2>
-<p><br>
-</p>
-<div class="callout callout-note no-icon callout-captioned callout-style-default">
-<div class="callout-body">
-<div class="callout-caption">
-<p><strong>Statistical inference is the practice of making decisions and conclusions from data in the context of uncertainty.</strong></p>
-</div>
-<div class="callout-content">
-<p>Errors do occur, just like rare events, and the dataset at hand might lead us to the wrong conclusion. While a given dataset may not always lead us to a correct conclusion, statistical inference gives us tools to control and evaluate how often these errors occur.</p>
-</div>
-</div>
-</div>
-</section></section>
-<section>
-<section id="inference-with-mathematical-models" class="title-slide slide level1 center">
-<h1>Inference with Mathematical Models</h1>
-<div class="cell">
-
-</div>
-
-<img data-src="images/paranormal.png" class="r-stretch"></section>
-<section id="refresher-on-the-normal-distribution" class="slide level2">
-<h2>Refresher on the Normal Distribution</h2>
-<div class="quarto-layout-panel">
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p>The normal distribution is used to describe the variability associated with sample statistics which are taken from either repeated samples or repeated experiments. The normal distribution is quite powerful in that it describes the variability of many different statistics such as the sample mean and sample proportions.</p>
-</div>
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><a href="https://twitter.com/RiddleMeCam/status/1557402268395139077?ref_src=twsrc%5Etfw"><img data-src="images/clt_twitter.png"></a></p>
-</div>
-</div>
-</div>
-</section>
-<section id="collaborative-notes" class="slide level2">
-<h2>Collaborative Notes</h2>
-<p>Return to the collaborative notes and answer your assigned questions.</p>
-<p><a href="https://hackmd.io/@norcalbiostat/07-intro_inference">https://hackmd.io/@norcalbiostat/07-intro_inference</a></p>
-</section></section>
-<section>
-<section id="case-study-stents" class="title-slide slide level1 center">
-<h1>Case study: Stents</h1>
-
-</section>
-<section id="observed-data" class="slide level2">
-<h2>Observed data</h2>
-<p>Consider an experiment that examined whether implanting a stent in the brain of a patient at risk for a stroke helps reduce the risk of a stroke. The results from the first 30 days of this study are summarized in the following table.</p>
+<section id="visualize-and-summarise-bivariate-relationship" class="slide level2">
+<h2>2. Visualize and summarise bivariate relationship</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>           
-            no event stroke Sum
-  control        214     13 227
-  treatment      191     33 224
-  Sum            405     46 451</code></pre>
+<div class="cell-output-display">
+<p><img data-src="lec08-bivariate_modeling_files/figure-revealjs/unnamed-chunk-2-1.png" width="960"></p>
 </div>
 </div>
 </div><div class="column" style="width:50%;">
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>           
-            no event stroke
-  control       0.94   0.06
-  treatment     0.85   0.15</code></pre>
+<div class="cell-output-display">
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">eversmoke_c</th>
+<th style="text-align: right;">mean</th>
+<th style="text-align: right;">sd</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Never Smoked</td>
+<td style="text-align: right;">29.7</td>
+<td style="text-align: right;">7.8</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Smoked at least once</td>
+<td style="text-align: right;">28.8</td>
+<td style="text-align: right;">7.3</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
 </div>
-<p>These results are surprising! The point estimate suggests that patients who received stents may have a higher risk of stroke: <span class="math inline">\(p_{trmt}−p_{ctrl}=0.090\)</span>.</p>
+<p>Smokers have on average BMI of 28.8, smaller than the average BMI of non-smokers at 29.7. Non-smokers have more variation in their weights (7.8 vs 7.3lbs), but the distributions both look normal, if slightly skewed right.</p>
 </section>
-<section id="point-estimate-vs-interval-estimate" class="slide level2">
-<h2>Point estimate vs Interval estimate</h2>
-<p>The point estimate for the difference in proportions <span class="math inline">\(p_{trmt}−p_{ctrl}=0.090\)</span> is a single point estimate, based on this single sample.</p>
-<p><br>
-</p>
-<p>A <em>point estimate</em> is our best guess for the value of the parameter, so it makes sense to build the confidence interval around that value.</p>
-</section>
-<section id="constructing-a-95-confidence-interval-ci" class="slide level2">
-<h2>Constructing a 95% confidence interval (CI)</h2>
-<p>When the sampling distribution of a point estimate can <em>reasonably be modeled as having a normal distribution</em>, the point estimate we observe will be within 1.96 standard errors of the true value of interest about 95% of the time. Thus, a 95% confidence interval for such a point estimate can be constructed:</p>
-<p><span class="math display">\[\mbox{point estimate} \pm 1.96 × SE\]</span></p>
-<p>We can be 95% confident this interval captures the true value.</p>
-</section>
-<section id="construct-a-95-ci-for-the-stent-example" class="slide level2 smaller">
-<h2>Construct a 95% CI for the stent example</h2>
-<p>The conditions necessary to ensure the point estimate <span class="math inline">\(p_{trmt}−p_{ctrl}\)</span> is nearly normal have been verified for you, and the estimate’s standard error is <span class="math inline">\(SE = 0.028\)</span>.</p>
+<section id="write-the-relationship-you-want-to-examine-in-the-form-of-a-research-question." class="slide level2">
+<h2>3. Write the relationship you want to examine in the form of a research question.</h2>
 <ul>
-<li>Construct a 95% confidence interval for the change in 30-day stroke rates from usage of the stent.</li>
-<li>Interpret this interval in context of the problem.</li>
+<li>Null Hypothesis: There is no difference in the average BMI between smokers and non-smokers.</li>
+<li>Alternate Hypothesis: There is a difference in the average BMI between smokers and non-smokers.</li>
 </ul>
-<div class="fragment">
-<p><span class="math display">\[0.090 \pm 1.96×0.028 = (0.035,0.145)\]</span></p>
-<p>We are 95% confident that implanting a stent in a stroke patient’s brain increased the risk of stroke within 30 days by a rate of 0.035 to 0.145.</p>
-</div>
 </section>
-<section id="important-note" class="slide level2">
-<h2>Important note</h2>
-<p><span class="emoji" data-emoji="warning">⚠️</span> it’s incorrect to say that we can be 95% confident that the true value is inside the mean.</p>
-
-<img data-src="https://openintro-ims.netlify.app/13-foundations-mathematical_files/figure-html/95PercentConfidenceInterval-1.png" class="r-stretch quarto-figure-center"><p class="caption">Figure 13.11: Twenty-five samples of size n=300 were collected from a population with p=0.30. For each sample, a confidence interval was created to try to capture the true proportion p.&nbsp;However, 1 of these 25 intervals did not capture p=0.30.</p></section>
+<section id="perform-an-appropriate-statistical-analysis-using-dr-ds-5-step-method." class="slide level2">
+<h2>4. Perform an appropriate statistical analysis using Dr D’s 5 step method.</h2>
+<p><strong>I. Define parameters</strong></p>
+<p>Let <span class="math inline">\(\mu_{1}\)</span> be the average BMI for smokers, and <span class="math inline">\(\mu_{2}\)</span> be the average BMI for non-smokers</p>
+<p><strong>II. State the null and alternative hypothesis as symbols</strong></p>
+<p><span class="math inline">\(H_{0}: \mu_{1} - \mu_{2} = 0\)</span><br>
+<span class="math inline">\(H_{A}: \mu_{1} - \mu_{2} \neq 0\)</span></p>
+</section>
+<section id="section-1" class="slide level2">
+<h2></h2>
+<p><strong>III. State and justify the analysis model. Check assumptions.</strong></p>
+<p>We are comparing the means between two independent samples. A Two-Sample T-Test for a difference in means will be conducted. The assumptions that the groups are independent is upheld because each individual can only be either a smoker or non smoker. The difference in sample means <span class="math inline">\(\bar{x}_{1}-\bar{x}_{2}\)</span> is normally distributed - this is a valid assumption due to the large sample size and that differences typically are normally distributed. The observations are independent, and the variances are roughly equal (67/44 = 1.5 is smaller than 2).</p>
+</section>
 <section id="section-2" class="slide level2">
 <h2></h2>
-<ul>
-<li>This is one of the most common errors: while it might be useful to think of it as a probability, the confidence level only quantifies how plausible it is that the parameter is in the interval.</li>
-<li>Our intervals say nothing about the confidence of capturing individual observations, a proportion of the observations, or about capturing point estimates.</li>
-<li>Confidence intervals provide an interval estimate for and attempt to capture population parameters.</li>
-</ul>
-</section>
-<section id="hypothesis-test" class="slide level2">
-<h2>Hypothesis test</h2>
-<div class="callout callout-note no-icon callout-captioned callout-style-default">
-<div class="callout-body">
-<div class="callout-caption">
-<p><strong>First draft</strong></p>
-</div>
-<div class="callout-content">
-<p>Let’s setup a hypothesis to test if stents work to reduce the risk of a stroke.</p>
-</div>
+<p><strong>IV. Conduct the test and make a decision about the plausibility of the alternative hypothesis.</strong></p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Welch Two Sample t-test
+
+data:  BMI by eversmoke_c
+t = 3.6937, df = 3395.3, p-value = 0.0002245
+alternative hypothesis: true difference in means between group Never Smoked and group Smoked at least once is not equal to 0
+95 percent confidence interval:
+ 0.3906204 1.2744780
+sample estimates:
+        mean in group Never Smoked mean in group Smoked at least once 
+                          29.67977                           28.84722 </code></pre>
 </div>
 </div>
-<p><br>
-</p>
-<p><span class="math inline">\(H_{0}\)</span>: Stents don’t work</p>
-<p><span class="math inline">\(H_{A}\)</span>: Stents reduce the risk of a stroke</p>
-</section>
-<section id="hypothesis-test-1" class="slide level2">
-<h2>Hypothesis test</h2>
-<div class="callout callout-note no-icon callout-captioned callout-style-default">
-<div class="callout-body">
-<div class="callout-caption">
-<p><strong>Revision 1:</strong></p>
-</div>
-<div class="callout-content">
-<p>Making it a statement about two groups</p>
-</div>
-</div>
-</div>
-<p><span class="math inline">\(H_{0}\)</span>: Patients who have a stent have the same risk of a stroke as patients who don’t have a stent</p>
-<p><span class="math inline">\(H_{A}\)</span>: Patients who have a stent have lower risk of a stroke as patients who don’t have a stent</p>
-</section>
-<section id="hypothesis-test-2" class="slide level2">
-<h2>Hypothesis test</h2>
-<div class="callout callout-note no-icon callout-captioned callout-style-default">
-<div class="callout-body">
-<div class="callout-caption">
-<p><strong>Revision 2:</strong></p>
-</div>
-<div class="callout-content">
-<p>Make it a statement using summary statistics and removing the directionality of the hypothesis</p>
-</div>
-</div>
-</div>
-<p>&nbsp;</p>
-<p><span class="math inline">\(H_{0}\)</span>: The proportion of patients with a stent who have a stroke is the same as the proportion of patients without a stent who have a stroke.</p>
-<p><span class="math inline">\(H_{A}\)</span>: The proportion of patients with a stent who have a stroke is different than the proportion of patients without a stent who have a stroke.</p>
-</section>
-<section id="hypothesis-test-3" class="slide level2">
-<h2>Hypothesis test</h2>
-<div class="callout callout-note no-icon callout-captioned callout-style-default">
-<div class="callout-body">
-<div class="callout-caption">
-<p><strong>Revision 3:</strong></p>
-</div>
-<div class="callout-content">
-<p>Writing it in symbols</p>
-</div>
-</div>
-</div>
-<p>Let <span class="math inline">\(p_{trmt}\)</span> be the proportion of patients with a stent who have a stroke, and <span class="math inline">\(p_{ctrl}\)</span> be the proportion of patients without a stent who have a stroke</p>
-<p><br>
-</p>
-<p><span class="math inline">\(H_{0}: p_{trmt} = p_{ctrl}\)</span></p>
-<p><span class="math inline">\(H_{A}: p_{trmt} \neq p_{ctrl}\)</span></p>
-</section>
-<section id="hypothesis-test-4" class="slide level2">
-<h2>Hypothesis test</h2>
-<div class="callout callout-note no-icon callout-captioned callout-style-default">
-<div class="callout-body">
-<div class="callout-caption">
-<p><strong>Revision 3.5:</strong></p>
-</div>
-<div class="callout-content">
-<p>Rewriting as a difference in parameters</p>
-</div>
-</div>
-</div>
-<p>Let <span class="math inline">\(p_{1}\)</span> be the proportion of patients with a stent who have a stroke, and <span class="math inline">\(p_{ctrl}\)</span> be the proportion of patients without a stent who have a stroke</p>
-<p><br>
-</p>
-<p><span class="math inline">\(H_{0}: p_{trmt} - p_{ctrl} = 0\)</span></p>
-<p><span class="math inline">\(H_{A}: p_{trmt} - p_{ctrl} \neq 0\)</span></p>
-</section>
-<section id="calculating-a-test-statistic" class="slide level2">
-<h2>Calculating a test statistic</h2>
-<p><span class="math display">\[ Z = \frac{\mbox{point estimate - null value}}{SE}\]</span></p>
-<div class="fragment">
-<p><span class="math display">\[ Z = \frac{(p_{trmt} - p_{ctrl}) - 0}{SE_{p_{trmt} - p_{ctrl}}} = \frac{.090}{.028} = 3.21 \]</span></p>
-</div>
-<div class="fragment">
-<p><span class="math display">\[ P(Z &gt; 3.2) = .00068 \qquad \mbox{ (the p-value)}\]</span></p>
-</div>
-<div class="fragment">
-<p>If the true difference in proportions was 0, then the probability of observing a difference of 0.09 due to random chance is 0.00068.</p>
-</div>
+<p>There is strong evidence in favor of the alternative hypothesis. The interval for the differences (0.4, 1.3) does not contain zero and the p-value = .0002.</p>
 </section>
 <section id="section-3" class="slide level2">
 <h2></h2>
+<p><strong>V. Write a conclusion in context of the problem. Include the point estimates, confidence interval for the difference and p-value</strong></p>
+<p>On average, non-smokers have a significantly higher 0.82 (0.39, 1.27) BMI compared to smokers (p=.0002).</p>
+</section></section>
+<section>
+<section id="quantitative-outcome-categorical-covariate" class="title-slide slide level1 center">
+<h1>Quantitative Outcome ~ Categorical Covariate</h1>
 
-<img data-src="https://imgs.xkcd.com/comics/p_values.png" class="r-stretch quarto-figure-center"><p class="caption">https://xkcd.com/1478/</p></section>
-<section id="using-confidence-intervals-to-test-a-hypothesis" class="slide level2">
-<h2>Using Confidence Intervals to test a hypothesis</h2>
-<blockquote>
-<p>We are 95% confident that implanting a stent in a stroke patient’s brain increased the risk of stroke within 30 days by a rate of 0.035 to 0.145.</p>
-</blockquote>
-<p>Since the interval does not contain the null hypothesized value of 0 (is completely above 0), it means the data provide convincing evidence that the stent used in the study changed the risk of stroke within 30 days</p>
+</section>
+<section id="analysis-of-variance-anova" class="slide level2">
+<h2>Analysis of Variance (ANOVA)</h2>
 
 <div class="footer footer-default">
-<p><a href="https://norcalbiostat.github.io/MATH615/">🔗 https://norcalbiostat.github.io/MATH615</a> / Statistical Inference with Mathematical Models</p>
+<p><a href="https://norcalbiostat.github.io/MATH615/">🔗 https://norcalbiostat.github.io/MATH615</a> / Modeling Bivariate Relationships</p>
 </div>
 </section></section>
     </div>
@@ -662,7 +556,7 @@
 'autoAnimateUnmatched': true,
 'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
 'chalkboard': {"buttons":true},
-'multiplex': {"secret":"16601095244795816082","id":"a9f5ab879e7279af","url":"https://reveal-multiplex.glitch.me/"},
+'multiplex': {"secret":null,"id":"3ab01b4122a4fd19","url":"https://reveal-multiplex.glitch.me/"},
 'smaller': false,
  
         // Display controls in the bottom right corner
@@ -836,7 +730,7 @@
         plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
 
           RevealMath,
-          RevealNotes,
+          
           RevealSearch,
           RevealZoom
         ]
