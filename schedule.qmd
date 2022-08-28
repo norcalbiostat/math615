@@ -20,7 +20,8 @@ sched <- read_excel("schedule_615.xlsx", sheet="weekly_schedule") %>%
          Topic = ifelse(!is.na(topic), 
                         sprintf("[%s](%s)", topic_name,topic_link), 
                         topic_name)) %>% 
-  select(Week = week, Date, order, Topic, Details = topic_subtitle) %>%
+  select(Week = week, Date, order, Topic, Details = topic_subtitle, 
+         Reading = reading, HW = hw) %>%
   filter(!is.na(order))
 
 # set colors for schedule
@@ -40,14 +41,16 @@ hlt.col <-  "background-color: #50a18d; color: #fff;"
 
 ```{r, results = 'asis'}
 sched %>% select(-order, -Week) %>%
-  kbl(align="lcc", escape=FALSE) %>%
+  kbl(align="lcccc", escape=FALSE) %>%
   kable_styling("hover", full_width=F, html_font = "Ariel",
               position='center', font_size=14, fixed_thead = T) %>%
   column_spec(1, width="10%") %>% 
-  column_spec(2, width="30%") %>% 
-  column_spec(3, width="50%") %>% 
-  pack_rows("Week 1", tn$start[1],   tn$end[1],  label_row_css = hlt.col) %>%
-  pack_rows("Week 2", tn$start[2],   tn$end[2],  label_row_css = wk.col) %>%
+  column_spec(2, width="20%") %>% 
+  column_spec(3, width="30%") %>% 
+  column_spec(4, width="20%") %>% 
+  column_spec(4, width="20%") %>% 
+  pack_rows("Week 1", tn$start[1],   tn$end[1],  label_row_css = wk.col) %>%
+  pack_rows("Week 2", tn$start[2],   tn$end[2],  label_row_css = hlt.col) %>%
   pack_rows("Week 3", tn$start[3],   tn$end[3],  label_row_css = wk.col) %>%
   pack_rows("Week 4", tn$start[4],   tn$end[4],  label_row_css = wk.col) %>%
   pack_rows("Week 5", tn$start[5],   tn$end[5],  label_row_css = wk.col) %>%
