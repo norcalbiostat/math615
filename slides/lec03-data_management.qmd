@@ -22,57 +22,53 @@ knitr:
       width: 200
 ---
 
-# Workflow and Data Cleaning 
+# Workflow and Data Cleaning
 
 ## Workflows
 
 Once the data are available from a study there are still a number of steps that must be undertaken to get them into shape for analysis.
 
-One of the most misunderstood parts of the analysis process is the data preparation stage. To say that 70% of any analysis is spent on the data management stage is not an understatement. 
+One of the most misunderstood parts of the analysis process is the data preparation stage. To say that 70% of any analysis is spent on the data management stage is not an understatement.
 
 ## 
 
 ![Example workflow](images/Afifi_Fig3_1.png)
 
-
 ## Generating a reproducible workflows
 
-Reproducibility is the ability for any researcher to take the same data set and run the same
-set of software program instructions as another researcher and achieve the same results. 
+Reproducibility is the ability for any researcher to take the same data set and run the same set of software program instructions as another researcher and achieve the same results.
 
-_Not the same as **replicability** where you re-run an experiment and achieve the same outcomes._
+*Not the same as **replicability** where you re-run an experiment and achieve the same outcomes.*
 
-The goal is to create an exact record of what was done to a data set to produce a specific result. 
-
+The goal is to create an exact record of what was done to a data set to produce a specific result.
 
 ## Three steps to achieve reproducibility
 
-1. The un-processed data are connected directly to software code file(s) that perform data preparation techniques.
-2. The processed data are connected directly to other software code file(s) that perform the analyses. 
-3. All data and code files are self-contained such that they could be given to another researcher to execute the code commands on a separate computer and achieve the same results as the original author. 
+1.  The un-processed data are connected directly to software code file(s) that perform data preparation techniques.
+2.  The processed data are connected directly to other software code file(s) that perform the analyses.
+3.  All data and code files are self-contained such that they could be given to another researcher to execute the code commands on a separate computer and achieve the same results as the original author.
 
 ## Literate programming
 
-* Explain the logic of the program or analysis process in a natural language, 
-* Small code snippets included at each step act as a full set of instructions that can be executed to reproduce the result/analysis being discussed. 
-* Literate programming tools such as Markdown, Quarto and $\LaTeX$ are integrated into all common statistical packages except SPSS.
+-   Explain the logic of the program or analysis process in a natural language,
+-   Small code snippets included at each step act as a full set of instructions that can be executed to reproduce the result/analysis being discussed.
+-   Literate programming tools such as Markdown, Quarto and $\LaTeX$ are integrated into all common statistical packages except SPSS.
 
 ## Reproducible Research + Literate Programming {.smaller}
 
-* Practicing reproducible research techniques using literate programming tools allows such major updates to be a simple matter of re-compiling all coded instructions using the updated data set. 
-* The effort then is reduced to a careful review and update of any written results.
-* Using literate programming tools create formatted documents in a streamlined manner that is fully synchronized with the code itself. 
-* The author writes the text explanations, interpretations, and code in the statistical software program itself, and the program will execute all commands and combine the text, code and output all together into a final dynamic document. 
-
+-   Practicing reproducible research techniques using literate programming tools allows such major updates to be a simple matter of re-compiling all coded instructions using the updated data set.
+-   The effort then is reduced to a careful review and update of any written results.
+-   Using literate programming tools create formatted documents in a streamlined manner that is fully synchronized with the code itself.
+-   The author writes the text explanations, interpretations, and code in the statistical software program itself, and the program will execute all commands and combine the text, code and output all together into a final dynamic document.
 
 ## Why all the fuss? {.smaller}
 
-* You are your own collaborator 6 months from now. Be nice to your future self
-* Explain your steps (what and why)
-    - How did you get from point A to B? 
-    - Why did you recode this variable in this manner? 
-* Found an error in your analysis code? Need to add an analysis to your presentation? 
-* Reproduce your steps in a few clicks using a script file (`.R`, `.Rmd`, `.sas`, `.sps`, `.do`, `.ipynb`)
+-   You are your own collaborator 6 months from now. Be nice to your future self
+-   Explain your steps (what and why)
+    -   How did you get from point A to B?
+    -   Why did you recode this variable in this manner?
+-   Found an error in your analysis code? Need to add an analysis to your presentation?
+-   Reproduce your steps in a few clicks using a script file (`.R`, `.Rmd`, `.sas`, `.sps`, `.do`, `.ipynb`)
 
 ![Figure Credits: [Roger Peng](http://www.biostat.jhsph.edu/~rpeng/)](images/pipeline.png)
 
@@ -82,34 +78,68 @@ The goal is to create an exact record of what was done to a data set to produce 
 
 This week is all about importing, tidying and transforming.
 
-## Data Prep questions {.smaller}
-Questions to ask yourself (and the data) while reviewing the codebook to choose variables to be used in an analysis. 
+## Project Structure / Follow along for R users
 
-* Do you need to code out missing data? (`N/A`, `MISSING` ,`-99`) 
-* Do you need to make response codes more logical?
-    - Some systems will record 1=YES and 2=NO. This should be changed so 0=NO. 
-* Do you need to recode numerical variables to categorical?
-    - Sometimes categorical data will be recorded as 1, 2, 3 etc when those numbers represent named categories. 
-* Do you need to create secondary variables?
-    - Such as an average across measures to create a score. 
+1.  Start a new R project and connect it to your Math 615 folder. This will help keep all your files for this class self-contained.
+2.  Install the following packages by copying the following code and pasting it into the console. 
+
+```{r, eval=FALSE}
+install.packages("here")
+install.packages("tidyverse")
+install.packages("palmerpenguins")
+```
+
+Outside of class you will also need to install the following packages: `knitr, kableExtra, scales, sjPlot, ggpubr, RcolorBrewer, janitor`, but we won't use some of these until Hw4. 
+
+## Hello Quarto
+
+<https://quarto.org/docs/get-started/hello/rstudio.html>
+
+## Data Import
+
+Create a new Quarto file named `dm_dataset.qmd` where `dataset` is YOUR dataset  name. E.g. `dm_addhealth.qmd`. 
+
+``` verbatim
+library(here)
+library(tidyverse)
+
+raw <- read_csv(here("data", "data.csv"))
+glimpse(raw)
+```
+
+Use the `here` package to read in the data into your environment, then use the `glimpse()` function from the `tidyverse` package to get a snapshot of what the data looks like. (# of rows, columns, data types).
+
+## Initial Data Screening
+
+Use functions like `str()`, `typeof()` to see what data type R thinks your variables are.
+
+Use `table()` or `summary()` to see the range of values present.
+
+## Data Prep questions {.smaller}
+
+Questions to ask yourself (and the data) while reviewing the codebook to choose variables to be used in an analysis.
+
+-   Do you need to code out missing data? (`N/A`, `MISSING` ,`-99`)
+-   Do you need to make response codes more logical?
+    -   Some systems will record 1=YES and 2=NO. This should be changed so 0=NO.
+-   Do you need to recode numerical variables to categorical?
+    -   Sometimes categorical data will be recorded as 1, 2, 3 etc when those numbers represent named categories.
+-   Do you need to create secondary variables?
+    -   Such as an average across measures to create a score.
 
 ::: aside
-Some of these answers will come only after you look at your data. This can be looking at the raw data itself but also looking at tables and charts generated from the data. Often when you try to create a plot or table you will encounter an error or something odd looking that will be the notification that something has to be adjusted. 
+Some of these answers will come only after you look at your data. This can be looking at the raw data itself but also looking at tables and charts generated from the data. Often when you try to create a plot or table you will encounter an error or something odd looking that will be the notification that something has to be adjusted.
 :::
 
-## How do I actually do this? 
+## How do I actually do this?
 
-* After you identify what you need to do, you have to find an example of how to code the task you want. 
-* The [Applied Stats Course notes](https://norcalbiostat.github.io/AppliedStatistics_notes/data-management.html) has specific examples on how to handle certain/common circumstances. 
-* Take it one variable at a time. 
+-   After you identify what you need to do, you have to find an example of how to code the task you want.
+-   The [Applied Stats Course notes](https://norcalbiostat.github.io/AppliedStatistics_notes/data-management.html) has specific examples on how to handle certain/common circumstances.
+-   Take it one variable at a time.
+- Write your successes/code in the [Collaborative R Notes](https://hackmd.io/@norcalbiostat/R) as a quick reference for you, and others. You can see how the [SPSS](https://hackmd.io/@norcalbiostat/SPSS) students did it in years prior. 
 
 ## Closing thoughts
 
-* Do not underestimate the importance of this step
-* It will take you far, far longer than you anticipate to 'clean' your data
-* Writing code (in any language) will be challenging, but will pay off in the long run
-
-:::{.callout-tip icon=false}
-## HackMD
-Share your data management & reproducible workflow plan in HackMD.
-:::
+-   Do not underestimate the importance of this step
+-   It will take you far, far longer than you anticipate to 'clean' your data
+-   Writing code (in any language) will be challenging, but will pay off in the long run
