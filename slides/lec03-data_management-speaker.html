@@ -471,23 +471,76 @@
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">install.packages</span>(<span class="st">"here"</span>)</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">install.packages</span>(<span class="st">"palmerpenguins"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">install.packages</span>(<span class="st">"palmerpenguins"</span>)</span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="fu">install.packages</span>(<span class="st">"rmarkdown"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Outside of class you will also need to install the following packages: <code>knitr, kableExtra, scales, sjPlot, ggpubr, RcolorBrewer, janitor</code>, but we won’t use some of these until Hw4.</p>
+</section>
+<section id="using-projects" class="slide level2">
+<h2>Using Projects</h2>
+<p>Great, you made a project but how do you use it?</p>
+<p>Instead of opening a single script file, you will open the project itself. It has the same cube like icon that you see in the top right of Rstudio.</p>
+
+<img data-src="images/rproj.png" class="r-stretch"><p>Then from your bottom left pane, in the <code>files</code> tab you can open all of your script files.</p>
 </section>
 <section id="hello-quarto" class="slide level2">
 <h2>Hello Quarto</h2>
 <p><a href="https://quarto.org/docs/get-started/hello/rstudio.html" class="uri">https://quarto.org/docs/get-started/hello/rstudio.html</a></p>
 </section>
+<section id="creating-a-pdf" class="slide level2">
+<h2>Creating a PDF</h2>
+<p>Great! You rendered your first literate document to an HTML format. Great for viewing, not so great for printing or emailing. We need to do one more thing before we can render this document to a pdf. Install a typesetting program called (lah-tek or lay-tek).</p>
+<p><br>
+</p>
+<p><strong>Step 1: Copy the code below to install the <code>tinytex</code> package:</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">install.packages</span>(<span class="st">"tinytex"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="install-latex" class="slide level2">
+<h2>Install LaTeX</h2>
+<p>Once that is fully complete and you see the R console windows showing a <code>&gt;</code> waiting for you, copy the following code to have tinytex install for you.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>tinytex<span class="sc">::</span><span class="fu">install_tinytex</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This will take some time. Be patient, and wait for R to display a <code>&gt;</code> in the console.</p>
+</section>
+<section id="test-your-installation." class="slide level2">
+<h2>Test your installation.</h2>
+<p>Change the output format of your quarto file to <code>pdf</code> in the YAML header (At the very top of your code file, line 2 or 3).</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource verbatim number-lines code-with-copy"><code class="sourceCode"><span id="cb4-1"><a href="#cb4-1"></a>---</span>
+<span id="cb4-2"><a href="#cb4-2"></a>format: pdf</span>
+<span id="cb4-3"><a href="#cb4-3"></a>---</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now click <code>render</code> and see if it creates a PDF.</p>
+<p>The PDF should automatically pop up, otherwise check your <code>Math615</code> folder <em>in the same location as your script file is saved</em> and see if a PDF is located there.</p>
+</section>
 <section id="data-import" class="slide level2">
 <h2>Data Import</h2>
-<p>Create a new Quarto file named <code>dm_dataset.qmd</code> where <code>dataset</code> is YOUR dataset name. E.g. <code>dm_addhealth.qmd</code>.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource verbatim number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a href="#cb2-1"></a>library(here)</span>
-<span id="cb2-2"><a href="#cb2-2"></a>library(tidyverse)</span>
-<span id="cb2-3"><a href="#cb2-3"></a></span>
-<span id="cb2-4"><a href="#cb2-4"></a>raw &lt;- read_csv(here("data", "data.csv"))</span>
-<span id="cb2-5"><a href="#cb2-5"></a>glimpse(raw)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Use the <code>here</code> package to read in the data into your environment, then use the <code>glimpse()</code> function from the <code>tidyverse</code> package to get a snapshot of what the data looks like. (# of rows, columns, data types).</p>
+<ol type="1">
+<li>Create a new Quarto file named <code>dm_dataset.qmd</code> where <code>dataset</code> is YOUR dataset name. E.g. <code>dm_addhealth.qmd</code>.</li>
+<li>Save this file in your <code>Math615/scripts</code> folder.</li>
+<li>Copy this code into a new code chunk.</li>
+</ol>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource verbatim number-lines code-with-copy"><code class="sourceCode"><span id="cb5-1"><a href="#cb5-1"></a>library(here)</span>
+<span id="cb5-2"><a href="#cb5-2"></a>library(tidyverse)</span>
+<span id="cb5-3"><a href="#cb5-3"></a></span>
+<span id="cb5-4"><a href="#cb5-4"></a>raw &lt;- read_csv(here("data", "data.csv"))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="4" type="1">
+<li>Replace the <code>data.csv</code> with YOUR data set name exactly as it shows in your files window (bottom right).</li>
+<li>Run this code chunk only (not render)</li>
+</ol>
+</section>
+<section id="peek-at-your-data" class="slide level2">
+<h2>Peek at your data</h2>
+<p>Okay, did it work?</p>
+<ol type="1">
+<li>Look in the top right Environment pane. Do you see a dataset named <code>raw</code>? Does it have an expected number of rows and columns?</li>
+<li>Use the <code>glimpse()</code> function from the <code>tidyverse</code> package to get a snapshot of what the data looks like. (# of rows, columns, data types). Type the following code in the console to see a summary of what R sees as your variable names and data types.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">glimpse</span>(raw)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Don’t worry much more about interpreting this now. We’ll start exploring data next week. 7</p>
 </section>
 <section id="initial-data-screening" class="slide level2">
 <h2>Initial Data Screening</h2>
