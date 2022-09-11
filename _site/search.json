@@ -193,7 +193,7 @@
     "href": "hw/hw04-univ_graphing.html#proficient-quantitative",
     "title": "HW 04: Univariate Graphing",
     "section": "Proficient quantitative",
-    "text": "Proficient quantitative\nOverlaid a density curve on the histogram, added a dashed line at the mean. Table of summary statistics present in a nicely formatted way, digits rounded appropriately. Plot cleaned up with appropriate axis and titles.\n\nThe cty variable records the miles per gallon (mpg) achieved during city driving. This is a quantititative numeric variable.\n\n\ngghistogram(data=mpg, x = \"cty\", add = \"mean\", fill = \"skyblue\", add_density = TRUE, \n            xlab = \"MPG\", title = \"City miles per gallon (MPG)\")\n\n\n\n\n\n\n\nsummary(mpg$cty)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n   9.00   14.00   17.00   16.86   19.00   35.00 \n\n\n\nThe MPG in the city ranges from 9 to 35, unimodal and is slightly skewed right with a mean of 16.9 close to the median of 17 and a standard deviation of 4.3mpg. The histogram indicates that there are at a few upper end potential outliers achieving a city MPG of approximately over 30 mpg."
+    "text": "Proficient quantitative\nOverlaid a density curve on the histogram, added a dashed line at the mean. Table of summary statistics present in a nicely formatted way, digits rounded appropriately. Plot cleaned up with appropriate axis and titles.\n\nThe cty variable records the miles per gallon (mpg) achieved during city driving. This is a quantititative numeric variable.\n\n\n# this function is from the ggpubr package\ngghistogram(data=mpg, x = \"cty\", add = \"mean\", fill = \"skyblue\", add_density = TRUE, \n            xlab = \"MPG\", title = \"City miles per gallon (MPG)\")\n\n\n\n\n\n\n\nsummary(mpg$cty)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n   9.00   14.00   17.00   16.86   19.00   35.00 \n\n\n\nThe MPG in the city ranges from 9 to 35, unimodal and is slightly skewed right with a mean of 16.9 close to the median of 17 and a standard deviation of 4.3mpg. The histogram indicates that there are at a few upper end potential outliers achieving a city MPG of approximately over 30 mpg."
   },
   {
     "objectID": "hw/hw05-biv_graphing.html",
@@ -1489,5 +1489,138 @@
     "title": "Preparing your data for analysis",
     "section": "Peek at your data",
     "text": "Peek at your data\nOkay, did it work?\n\nLook in the top right Environment pane. Do you see a dataset named raw? Does it have an expected number of rows and columns?\nUse the glimpse() function from the tidyverse package to get a snapshot of what the data looks like. (# of rows, columns, data types). Type the following code in the console to see a summary of what R sees as your variable names and data types.\n\n\nglimpse(raw)\n\nDon’t worry much more about interpreting this now. We’ll start exploring data next week. 7"
+  },
+  {
+    "objectID": "topics/t04-describing_distributions.html#motivation",
+    "href": "topics/t04-describing_distributions.html#motivation",
+    "title": "Describing distributions of data",
+    "section": "Motivation",
+    "text": "Motivation\nVisualizing your data is hands down the most important thing you can learn to do.\n\nScreen for data entry errors\nOut of range variables\nMistakes in coding\nViolation of model assumptions"
+  },
+  {
+    "objectID": "topics/t04-describing_distributions.html#level-of-care-depends-on-the-audience",
+    "href": "topics/t04-describing_distributions.html#level-of-care-depends-on-the-audience",
+    "title": "Describing distributions of data",
+    "section": "Level of care depends on the audience",
+    "text": "Level of care depends on the audience\nThere are three main audiences in mind when creating data visualizations:\n\nFor your eyes only (FYEO). These are quick and dirty plots, without annotation. Meant to be looked at once or twice.\n\nYou’ll create a TON of these. Don’t spend a ton of time on them.\n\n\n\n\nTo share with others internally. These mostly need to stand on their own. Axes labels, titles, colors as needed, possibly captions.\n\nYou’ll create a lot of these, and you’ll get better with practice at adding necessary annotation without a lot of time\n\n\n\n\n\nProfessional - Contains all bells and whistles needed to make it publication quality.\n\nYou’ll create very few of these, but they demand a lot of time, detail and thought."
+  },
+  {
+    "objectID": "topics/t04-describing_distributions.html#graphing-with-intent",
+    "href": "topics/t04-describing_distributions.html#graphing-with-intent",
+    "title": "Describing distributions of data",
+    "section": "Graphing with intent",
+    "text": "Graphing with intent\nAlong with having the audience in mind, it is important to give thought to the purpose of the chart.\n\nThe effectiveness of any visualization can be measured according to how well it fulfills the tasks it was designed for. (A. Cairo, 2018)."
+  },
+  {
+    "objectID": "topics/t04-describing_distributions.html#choosing-appropriate-visualization",
+    "href": "topics/t04-describing_distributions.html#choosing-appropriate-visualization",
+    "title": "Describing distributions of data",
+    "section": "Choosing Appropriate Visualization",
+    "text": "Choosing Appropriate Visualization\n75% of your choice is determined by the data type\nhttps://r-graph-gallery.com/"
+  },
+  {
+    "objectID": "topics/t04-describing_distributions.html#single-categorical",
+    "href": "topics/t04-describing_distributions.html#single-categorical",
+    "title": "Describing distributions of data",
+    "section": "Single Categorical",
+    "text": "Single Categorical\n\nTablesPlots\n\n\nFrequencies (N)\n\ntable(pen$species)\n\n\n   Adelie Chinstrap    Gentoo \n      152        68       124 \n\n\nPercents (%)\n\ntable(pen$species) |> proportions() |> round(digits=2)\n\n\n   Adelie Chinstrap    Gentoo \n     0.44      0.20      0.36 \n\n\nPenguin species Adelie make up 44% of the sample (n=152)\n\n\n\nsjPlot::plot_frq(pen$species) + xlab(\"Species\")"
+  },
+  {
+    "objectID": "topics/t04-describing_distributions.html#single-numeric",
+    "href": "topics/t04-describing_distributions.html#single-numeric",
+    "title": "Describing distributions of data",
+    "section": "Single Numeric",
+    "text": "Single Numeric\n\nCenterSpreadPlots\n\n\n\nsummary(pen$bill_depth_mm)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's \n  13.10   15.60   17.30   17.15   18.70   21.50       2 \n\nsd(pen$bill_depth_mm, na.rm=TRUE)\n\n[1] 1.974793\n\n\n\n\nThe average bill depth is 17.15mm, with a standard deviation of 1.9mm.\n\n\n\nsummary(pen$bill_depth_mm)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's \n  13.10   15.60   17.30   17.15   18.70   21.50       2 \n\nIQR(pen$bill_depth_mm, na.rm=TRUE)\n\n[1] 3.1\n\n\n\n\nBill depth ranges from 13.1 to 21.5mm, and has an IQR of 3.1mm.\n\n\n\n\n\nggpubr::gghistogram(pen$bill_depth_mm, add_density = TRUE)\n\n\n\n\n\n\nggpubr::ggviolin(pen$bill_depth_mm, add = c(\"jitter\", \"boxplot\")) + coord_flip()\n\n\n\n\n\n\nThe distribution of bill depth appears to be bimodal with peaks around 15 and 18mm.\n\n\n\n\nHow to create graphs\n\nSimilar to the data management section, after identifying what you want to do, you go look up how to do that thing.\nDon’t expect to remember the exact code yet, just know where to look up an example and copy from there\ncopy/paste/pray\nKeep graphs simple until you get more comfortable.\n\n\n\nReferences\n\nPMA6 Chapter 4 for appropriate plot choices\nApplied Stats course Notes Chapter 2.3 for examples and code\nHackMD Notes for Code specific notes\nR specific help on the Math 130 class page"
+  },
+  {
+    "objectID": "topics/t04-describing_distributions.html#how-to-create-graphs",
+    "href": "topics/t04-describing_distributions.html#how-to-create-graphs",
+    "title": "Describing distributions of data",
+    "section": "How to create graphs",
+    "text": "How to create graphs\n\nSimilar to the data management section, after identifying what you want to do, you go look up how to do that thing.\nDon’t expect to remember the exact code yet, just know where to look up an example and copy from there\n\nPrior semester SPSS students crated a HackMD collaborative notes file for sharing code. [LINK]\nNeed these for other languages!\n\ncopy/paste/pray\nKeep graphs simple until you get more comfortable."
+  },
+  {
+    "objectID": "topics/t04-describing_distributions.html#references",
+    "href": "topics/t04-describing_distributions.html#references",
+    "title": "Describing distributions of data",
+    "section": "References",
+    "text": "References\n\nPMA6 Chapter 4 for appropriate plot choices\nApplied Stats course Notes Chapter 2.3 for examples and code\nHackMD Notes for Code specific notes\nR specific help on the Math 130 class page"
+  },
+  {
+    "objectID": "notes/lec04-describing_data.html#motivation",
+    "href": "notes/lec04-describing_data.html#motivation",
+    "title": "Describing Distributions of Data",
+    "section": "Motivation",
+    "text": "Motivation\nVisualizing your data is hands down the most important thing you can learn to do.\n\nScreen for data entry errors\nOut of range variables\nMistakes in coding\nViolation of model assumptions"
+  },
+  {
+    "objectID": "notes/lec04-describing_data.html#level-of-care-depends-on-the-audience",
+    "href": "notes/lec04-describing_data.html#level-of-care-depends-on-the-audience",
+    "title": "Describing Distributions of Data",
+    "section": "Level of care depends on the audience",
+    "text": "Level of care depends on the audience\nThere are three main audiences in mind when creating data visualizations:\n\nFor your eyes only (FYEO). These are quick and dirty plots, without annotation. Meant to be looked at once or twice.\n\nYou’ll create a TON of these. Don’t spend a ton of time on them.\n\n\n\n\nTo share with others internally. These mostly need to stand on their own. Axes labels, titles, colors as needed, possibly captions.\n\nYou’ll create a lot of these, and you’ll get better with practice at adding necessary annotation without a lot of time\n\n\n\n\n\nProfessional - Contains all bells and whistles needed to make it publication quality.\n\nYou’ll create very few of these, but they demand a lot of time, detail and thought."
+  },
+  {
+    "objectID": "notes/lec04-describing_data.html#graphing-with-intent",
+    "href": "notes/lec04-describing_data.html#graphing-with-intent",
+    "title": "Describing Distributions of Data",
+    "section": "Graphing with intent",
+    "text": "Graphing with intent\nAlong with having the audience in mind, it is important to give thought to the purpose of the chart.\n\nThe effectiveness of any visualization can be measured according to how well it fulfills the tasks it was designed for. (A. Cairo, 2018)."
+  },
+  {
+    "objectID": "notes/lec04-describing_data.html#choosing-appropriate-visualization",
+    "href": "notes/lec04-describing_data.html#choosing-appropriate-visualization",
+    "title": "Describing Distributions of Data",
+    "section": "Choosing Appropriate Visualization",
+    "text": "Choosing Appropriate Visualization\n75% of your choice is determined by the data type\nhttps://r-graph-gallery.com/"
+  },
+  {
+    "objectID": "notes/lec04-describing_data.html#single-categorical",
+    "href": "notes/lec04-describing_data.html#single-categorical",
+    "title": "Describing Distributions of Data",
+    "section": "Single Categorical",
+    "text": "Single Categorical\n\nTablesPlots\n\n\nFrequencies (N)\n\ntable(pen$species)\n\n\n   Adelie Chinstrap    Gentoo \n      152        68       124 \n\n\nPercents (%)\n\ntable(pen$species) |> proportions() |> round(digits=2)\n\n\n   Adelie Chinstrap    Gentoo \n     0.44      0.20      0.36 \n\n\nPenguin species Adelie make up 44% of the sample (n=152)\n\n\n\nsjPlot::plot_frq(pen$species) + xlab(\"Species\")"
+  },
+  {
+    "objectID": "notes/lec04-describing_data.html#single-numeric",
+    "href": "notes/lec04-describing_data.html#single-numeric",
+    "title": "Describing Distributions of Data",
+    "section": "Single Numeric",
+    "text": "Single Numeric\n\nCenterSpreadPlots\n\n\n\nsummary(pen$bill_depth_mm)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's \n  13.10   15.60   17.30   17.15   18.70   21.50       2 \n\nsd(pen$bill_depth_mm, na.rm=TRUE)\n\n[1] 1.974793\n\n\n\n\nThe average bill depth is 17.15mm, with a standard deviation of 1.9mm.\n\n\n\nsummary(pen$bill_depth_mm)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's \n  13.10   15.60   17.30   17.15   18.70   21.50       2 \n\nIQR(pen$bill_depth_mm, na.rm=TRUE)\n\n[1] 3.1\n\n\n\n\nBill depth ranges from 13.1 to 21.5mm, and has an IQR of 3.1mm.\n\n\n\n\n\nggpubr::gghistogram(pen$bill_depth_mm, add_density = TRUE)\n\n\n\n\n\n\nggpubr::ggviolin(pen$bill_depth_mm, add = c(\"jitter\", \"boxplot\")) + coord_flip()\n\n\n\n\n\n\nThe distribution of bill depth appears to be bimodal with peaks around 15 and 18mm."
+  },
+  {
+    "objectID": "notes/lec04-describing_data.html#how-to-create-graphs",
+    "href": "notes/lec04-describing_data.html#how-to-create-graphs",
+    "title": "Describing Distributions of Data",
+    "section": "How to create graphs",
+    "text": "How to create graphs\n\nSimilar to the data management section, after identifying what you want to do, you go look up how to do that thing.\nDon’t expect to remember the exact code yet, just know where to look up an example and copy from there\n\nPrior semester SPSS students crated a HackMD collaborative notes file for sharing code. [LINK]\nNeed these for other languages!\n\ncopy/paste/pray\nKeep graphs simple until you get more comfortable."
+  },
+  {
+    "objectID": "notes/lec04-describing_data.html#references",
+    "href": "notes/lec04-describing_data.html#references",
+    "title": "Describing Distributions of Data",
+    "section": "References",
+    "text": "References\n\nPMA6 Chapter 4 for appropriate plot choices\nApplied Stats course Notes Chapter 2.3 for examples and code\nHackMD Notes for Code specific notes\nR specific help on the Math 130 class page\n\n\n\n🔗 https://math615.netlify.app / Describing Distributions of Data"
+  },
+  {
+    "objectID": "topics/t04-describing_distributions.html#meet-the-palmer-penguins",
+    "href": "topics/t04-describing_distributions.html#meet-the-palmer-penguins",
+    "title": "Describing distributions of data",
+    "section": "Meet the Palmer Penguins",
+    "text": "Meet the Palmer Penguins\n\n\nlibrary(palmerpenguins) # for access to the penguin data\nlibrary(ggplot2)        # part of the tidyverse, but I'm being explicit here\nlibrary(sjPlot)         # alternative plotting package. GREAT for barcharts\npen <- penguins         # create a copy with a shorter name b/c I'm lazy"
+  },
+  {
+    "objectID": "topics/t04-describing_distributions.html#single-categorical-variable",
+    "href": "topics/t04-describing_distributions.html#single-categorical-variable",
+    "title": "Describing distributions of data",
+    "section": "Single Categorical Variable",
+    "text": "Single Categorical Variable\n\nTablesPlots\n\n\nFrequencies (N)\n\ntable(pen$species)\n\n\n   Adelie Chinstrap    Gentoo \n      152        68       124 \n\n\nPercents (%)\n\ntable(pen$species) |> proportions() |> round(digits=2)\n\n\n   Adelie Chinstrap    Gentoo \n     0.44      0.20      0.36 \n\n\nPenguin species Adelie make up 44% of the sample (n=152)\n\n\n\nsjPlot::plot_frq(pen$species) + xlab(\"Species\")\n\n\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nMeet the base “pipe” |>\nThis functions sufficiently the same as %>% but doesn’t require the magrittr package (part of the tidyverse). You are welcome to use either."
+  },
+  {
+    "objectID": "topics/t04-describing_distributions.html#single-numeric-variable",
+    "href": "topics/t04-describing_distributions.html#single-numeric-variable",
+    "title": "Describing distributions of data",
+    "section": "Single Numeric Variable",
+    "text": "Single Numeric Variable\n\n\nCenterSpreadPlots\n\n\n\nsummary(pen$bill_depth_mm)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's \n  13.10   15.60   17.30   17.15   18.70   21.50       2 \n\nsd(pen$bill_depth_mm, na.rm=TRUE)\n\n[1] 1.974793\n\n\n\n\nThe average bill depth is 17.15mm, with a standard deviation of 1.9mm.\n\n\n\nsummary(pen$bill_depth_mm)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's \n  13.10   15.60   17.30   17.15   18.70   21.50       2 \n\nIQR(pen$bill_depth_mm, na.rm=TRUE)\n\n[1] 3.1\n\n\n\n\nBill depth ranges from 13.1 to 21.5mm, and has an IQR of 3.1mm.\n\n\n\n\n\nggpubr::gghistogram(pen$bill_depth_mm, add_density = TRUE)\n\n\n\n\n\n\nggpubr::ggviolin(pen$bill_depth_mm, add = c(\"jitter\", \"boxplot\")) + coord_flip()\n\n\n\n\n\n\nThe distribution of bill depth appears to be bimodal with peaks around 15 and 18mm.\n\n\n\n\nHow to create graphs\n\nSimilar to the data management section, after identifying what you want to do, you go look up how to do that thing.\nDon’t expect to remember the exact code yet, just know where to look up an example and copy from there (all the ref’s below)\ncopy/paste/pray\nKeep graphs simple until you get more comfortable.\n\n\n\nReferences\n\nPMA6 Chapter 4 for appropriate plot choices\nApplied Stats course Notes Chapter 2.3 for examples and code\nHackMD Notes for Code specific notes\nR specific help on the Math 130 class page\nsjPlot vignette: https://strengejacke.github.io/sjPlot/index.html\nggpubr vignette: https://rpkgs.datanovia.com/ggpubr/\nggplot vignette: https://ggplot2.tidyverse.org/index.html\nR graphics cookbook: https://r-graphics.org/"
   }
 ]

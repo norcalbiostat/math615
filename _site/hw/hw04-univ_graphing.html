@@ -367,9 +367,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="draft" class="level3">
 <h3 class="anchored" data-anchor-id="draft">Draft</h3>
 <ul>
-<li>Use the template provided: <a href="templates/04_univ_graphing_template.Rmd">[RMD]</a> for R users, and <a href="templates/04_univ_graphing_template.docx">[Word]</a> for SPSS users.
+<li>Use the template provided: <a href="_templates/hw04_univ_graphing_template.qmd">[QMD]</a>
 <ul>
-<li>Rename this file to <code>univ_graphing_userid</code></li>
+<li>Right click and ‘save as’, put this in your <code>scripts</code> folder</li>
+<li>Rename this file to <code>univ_graphing_userid</code> BEFORE you open it.</li>
 </ul></li>
 <li>Upload your draft PDF to <code>04 Univariate Graphing/draft</code> folder in Google Drive.</li>
 </ul>
@@ -398,8 +399,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1>Example</h1>
 <p>This example uses the <code>mpg</code> data set from the <code>ggplot2</code> package.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>mpg <span class="ot">&lt;-</span> ggplot2<span class="sc">::</span>mpg <span class="co">#this is where you would import the data</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sjPlot); <span class="fu">library</span>(ggplot2);<span class="fu">library</span>(ggpubr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load libraries</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sjPlot); <span class="fu">library</span>(ggplot2);<span class="fu">library</span>(ggpubr)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Import data</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># load(here("data", "data.Rdata")) # your import line will look something like this</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <blockquote class="blockquote">
 <p>text written like this are example student submission text</p>
@@ -465,8 +469,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The <code>cty</code> variable records the miles per gallon (mpg) achieved during city driving. This is a quantititative numeric variable.</p>
 </blockquote>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gghistogram</span>(<span class="at">data=</span>mpg, <span class="at">x =</span> <span class="st">"cty"</span>, <span class="at">add =</span> <span class="st">"mean"</span>, <span class="at">fill =</span> <span class="st">"skyblue"</span>, <span class="at">add_density =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">xlab =</span> <span class="st">"MPG"</span>, <span class="at">title =</span> <span class="st">"City miles per gallon (MPG)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># this function is from the ggpubr package</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">gghistogram</span>(<span class="at">data=</span>mpg, <span class="at">x =</span> <span class="st">"cty"</span>, <span class="at">add =</span> <span class="st">"mean"</span>, <span class="at">fill =</span> <span class="st">"skyblue"</span>, <span class="at">add_density =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">xlab =</span> <span class="st">"MPG"</span>, <span class="at">title =</span> <span class="st">"City miles per gallon (MPG)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
