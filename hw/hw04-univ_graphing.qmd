@@ -48,8 +48,9 @@ To guide your description of this distribution try to include the following info
 
 ### Draft
 
-* Use the template provided: [[RMD]](templates/04_univ_graphing_template.Rmd) for R users, and [[Word]](templates/04_univ_graphing_template.docx) for SPSS users.
-    - Rename this file to `univ_graphing_userid`
+* Use the template provided: [[QMD]](_templates/hw04_univ_graphing_template.qmd)
+  - Right click and 'save as', put this in your `scripts` folder
+  - Rename this file to `univ_graphing_userid` BEFORE you open it. 
 * Upload your draft PDF to `04 Univariate Graphing/draft` folder in Google Drive.
 
 
@@ -76,8 +77,11 @@ As a reviewer, this is what you're checking for:
 # Example
 This example uses the `mpg` data set from the `ggplot2` package.
 ```{r}
-mpg <- ggplot2::mpg #this is where you would import the data
+# Load libraries
 library(sjPlot); library(ggplot2);library(ggpubr)
+
+# Import data
+# load(here("data", "data.Rdata")) # your import line will look something like this
 ```
 
 > text written like this are example student submission text
@@ -120,6 +124,7 @@ Overlaid a density curve on the histogram, added a dashed line at the mean. Tabl
 > The `cty` variable records the miles per gallon (mpg) achieved during city driving. This is a quantititative numeric variable. 
 
 ```{r, fig.height=3, fig.width=4, fig.align='center'}
+# this function is from the ggpubr package
 gghistogram(data=mpg, x = "cty", add = "mean", fill = "skyblue", add_density = TRUE, 
             xlab = "MPG", title = "City miles per gallon (MPG)")
 

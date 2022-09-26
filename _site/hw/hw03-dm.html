@@ -184,6 +184,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li class="nav-item">
     <a class="nav-link" href="../help.html">Get help with…</a>
   </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-tools" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tools</a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-tools">    
+        <li>
+    <a class="dropdown-item" href="https://pollev.com/drd"><i class="bi bi-bar-chart" role="img">
+</i> 
+ <span class="dropdown-text">PollEV</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://drive.google.com/drive/folders/1oeVbt6QXvNjiadAu8VspPLXOlfaMmtXP"><i class="bi bi-google" role="img">
+</i> 
+ <span class="dropdown-text">Google Drive</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://hackmd.io/@norcalbiostat/R"><i class="bi bi-file-code" role="img">
+</i> 
+ <span class="dropdown-text">HackMD - R code</span></a>
+  </li>  
+    </ul>
+  </li>
 </ul>
               <div class="quarto-toggle-container">
                   <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
@@ -323,25 +343,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="instructions" class="level1">
 <h1>Instructions</h1>
 <ol type="1">
-<li>Create a <code>dm_dataname.Rmd</code> or <code>dm_dataname.sps</code> script file.
+<li>Create a <code>dm_dataname.qmd</code> or <code>dm_dataname.sps</code> script file.
 <ul>
-<li>Rename this to include your username. I.e. <code>dm_dataname_rdonatello.Rmd</code>.</li>
+<li>Rename this to include your username. I.e. <code>dm_dataname_rdonatello.qmd</code>.</li>
 <li>Make sure this is your <strong>math615/script</strong> folder, and your data is in your <strong>math615/data</strong> folder</li>
 </ul></li>
-<li>If you have not done so yet, restrict the variables to only the ones you are investigating.
-<ul>
-<li>R users - use the <code>select</code> statement found in the <code>dplyr</code> package</li>
-<li>SPSS users use <code>KEEP</code></li>
-</ul></li>
+<li>After you load the data, restrict the variables to only the ones you are investigating using statements like <code>select</code> from the <code>dplyr</code> package, or the <code>KEEP</code> statement in SPSS.</li>
 <li>Explore and clean at least 2 categorical and 2 numeric variables. One by one, check each variable for necessary adjustments. Complete each of the following steps for each variable.
 <ul>
 <li>First explain in English what the variable name is and what it measures.</li>
-<li>Then examine the variable using the <code>freq</code> function in the <code>descr</code> package.</li>
-<li>Identify the data type of the variable using <code>class</code>. Does this match with the intended data type?</li>
+<li>Then examine the variable using the <code>table()</code>, <code>summary()</code> and <code>hist()</code> functions.</li>
+<li>Identify the data type of the variable using the <code>class()</code> or <code>typeof()</code> functions. Ask (and answer) the question “Does this match with the intended data type?”</li>
 <li>Recode the data as necessary</li>
 <li>Always confirm your recodes worked as intended by creating another table or summary.</li>
 </ul></li>
-<li>Save the resulting data set to your <code>data</code> folder as <code>datasetname_clean.Rdata</code>, or <code>datasetname_clean.sav</code>. e.g.&nbsp;<code>addhealth_clean.Rdata</code>.</li>
+<li>Save the resulting data set to your <code>data</code> folder as <code>datasetname_clean.Rdata</code>, or <code>datasetname_clean.sav</code>. e.g.&nbsp;<code>addhealth_clean.Rdata</code> using the <code>save()</code> function in R, or <code>SAVE OUTFILE</code> command in SPSS.</li>
 </ol>
 <p>If these tasks are performed using point &amp; click, the code must be pasted into a script file that can be run on command.</p>
 <hr>
@@ -352,7 +368,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 class="anchored" data-anchor-id="draft">Draft</h3>
 <p>Upload your <span style="color:red">PDF</span> file to the <code>03 Data Management</code> folder in Google Drive.</p>
 <ul>
-<li>R users compile your RMD file to create a PDF (knit to PDF)</li>
+<li>R users compile your <code>qmd</code> file to create a PDF (render to PDF)</li>
 <li>SPSS users will have to present additional output to demonstrate that the recodes were successful.
 <ul>
 <li>Include the <code>FREQUENCIES</code> code in your <code>dm</code> file to create tables or summaries of the modified variables, so that it shows up in your output window.</li>
@@ -394,36 +410,28 @@ Rmarkdown
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Here is an example using R Markdown</p>
+<p>Here is an example using R Markdown/Quarto</p>
 </div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load libraries</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(descr)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in the data</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>raw <span class="ot">&lt;-</span> <span class="fu">read.delim</span>(<span class="st">"https://norcalbiostat.netlify.com/data/depress_081217.txt"</span>, </span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>                  <span class="at">sep=</span><span class="st">"</span><span class="sc">\t</span><span class="st">"</span>,  <span class="at">header=</span><span class="cn">TRUE</span>)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Select only the variables that I am interested in</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>mydata  <span class="ot">&lt;-</span> raw <span class="sc">%&gt;%</span> <span class="fu">select</span>(age, marital, cesd, health)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in the data</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>raw <span class="ot">&lt;-</span> <span class="fu">read.delim</span>(<span class="st">"https://norcalbiostat.netlify.com/data/depress_081217.txt"</span>, </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>                  <span class="at">sep=</span><span class="st">"</span><span class="sc">\t</span><span class="st">"</span>,  <span class="at">header=</span><span class="cn">TRUE</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Select only the variables that I am interested in</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>mydata  <span class="ot">&lt;-</span> raw <span class="sc">%&gt;%</span> <span class="fu">select</span>(age, marital, cesd, health)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>General Health</strong></p>
 <p>The variable <code>health</code> records a persons perceived general health as being either Excellent, Good, Fair or Poor. This is considered an ordinal categorical variable.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(mydata<span class="sc">$</span>health)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="hw03-dm_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
-</div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(mydata<span class="sc">$</span>health)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>mydata$health 
-      Frequency Percent
-1           130  44.218
-2           115  39.116
-3            35  11.905
-4            14   4.762
-Total       294 100.000</code></pre>
+<pre><code>
+  1   2   3   4 
+130 115  35  14 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(mydata<span class="sc">$</span>health)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">

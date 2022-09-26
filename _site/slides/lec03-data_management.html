@@ -26,6 +26,70 @@
     div.column{display: inline-block; vertical-align: top; width: 50%;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css" id="theme">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -398,6 +462,91 @@
 
 <img data-src="https://d33wubrfki0l68.cloudfront.net/571b056757d68e6df81a3e3853f54d3c76ad6efc/32d37/diagrams/data-science.png" class="r-stretch"><p>This week is all about importing, tidying and transforming.</p>
 </section>
+<section id="project-structure-follow-along-for-r-users" class="slide level2">
+<h2>Project Structure / Follow along for R users</h2>
+<ol type="1">
+<li>Start a new R project and connect it to your Math 615 folder. This will help keep all your files for this class self-contained.</li>
+<li>Install the following packages by copying the following code and pasting it into the console.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">install.packages</span>(<span class="st">"here"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">install.packages</span>(<span class="st">"palmerpenguins"</span>)</span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="fu">install.packages</span>(<span class="st">"rmarkdown"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Outside of class you will also need to install the following packages: <code>knitr, kableExtra, scales, sjPlot, ggpubr, RcolorBrewer, janitor</code>, but we won’t use some of these until Hw4.</p>
+</section>
+<section id="using-projects" class="slide level2">
+<h2>Using Projects</h2>
+<p>Great, you made a project but how do you use it?</p>
+<p>Instead of opening a single script file, you will open the project itself. It has the same cube like icon that you see in the top right of Rstudio.</p>
+
+<img data-src="images/rproj.png" class="r-stretch"><p>Then from your bottom left pane, in the <code>files</code> tab you can open all of your script files.</p>
+</section>
+<section id="hello-quarto" class="slide level2">
+<h2>Hello Quarto</h2>
+<p><a href="https://quarto.org/docs/get-started/hello/rstudio.html" class="uri">https://quarto.org/docs/get-started/hello/rstudio.html</a></p>
+</section>
+<section id="creating-a-pdf" class="slide level2">
+<h2>Creating a PDF</h2>
+<p>Great! You rendered your first literate document to an HTML format. Great for viewing, not so great for printing or emailing. We need to do one more thing before we can render this document to a pdf. Install a typesetting program called (lah-tek or lay-tek).</p>
+<p><br>
+</p>
+<p><strong>Step 1: Copy the code below to install the <code>tinytex</code> package:</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">install.packages</span>(<span class="st">"tinytex"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="install-latex" class="slide level2">
+<h2>Install LaTeX</h2>
+<p>Once that is fully complete and you see the R console windows showing a <code>&gt;</code> waiting for you, copy the following code to have tinytex install for you.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>tinytex<span class="sc">::</span><span class="fu">install_tinytex</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This will take some time. Be patient, and wait for R to display a <code>&gt;</code> in the console.</p>
+</section>
+<section id="test-your-installation." class="slide level2">
+<h2>Test your installation.</h2>
+<p>Change the output format of your quarto file to <code>pdf</code> in the YAML header (At the very top of your code file, line 2 or 3).</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource verbatim number-lines code-with-copy"><code class="sourceCode"><span id="cb4-1"><a href="#cb4-1"></a>---</span>
+<span id="cb4-2"><a href="#cb4-2"></a>format: pdf</span>
+<span id="cb4-3"><a href="#cb4-3"></a>---</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now click <code>render</code> and see if it creates a PDF.</p>
+<p>The PDF should automatically pop up, otherwise check your <code>Math615</code> folder <em>in the same location as your script file is saved</em> and see if a PDF is located there.</p>
+</section>
+<section id="data-import" class="slide level2">
+<h2>Data Import</h2>
+<ol type="1">
+<li>Create a new Quarto file named <code>dm_dataset.qmd</code> where <code>dataset</code> is YOUR dataset name. E.g. <code>dm_addhealth.qmd</code>.</li>
+<li>Save this file in your <code>Math615/scripts</code> folder.</li>
+<li>Copy this code into a new code chunk.</li>
+</ol>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource verbatim number-lines code-with-copy"><code class="sourceCode"><span id="cb5-1"><a href="#cb5-1"></a>library(here)</span>
+<span id="cb5-2"><a href="#cb5-2"></a>library(tidyverse)</span>
+<span id="cb5-3"><a href="#cb5-3"></a></span>
+<span id="cb5-4"><a href="#cb5-4"></a>raw &lt;- read_csv(here("data", "data.csv"))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="4" type="1">
+<li>Replace the <code>data.csv</code> with YOUR data set name exactly as it shows in your files window (bottom right).</li>
+<li>Run this code chunk only (not render)</li>
+</ol>
+</section>
+<section id="peek-at-your-data" class="slide level2">
+<h2>Peek at your data</h2>
+<p>Okay, did it work?</p>
+<ol type="1">
+<li>Look in the top right Environment pane. Do you see a dataset named <code>raw</code>? Does it have an expected number of rows and columns?</li>
+<li>Use the <code>glimpse()</code> function from the <code>tidyverse</code> package to get a snapshot of what the data looks like. (# of rows, columns, data types). Type the following code in the console to see a summary of what R sees as your variable names and data types.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">glimpse</span>(raw)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Don’t worry much more about interpreting this now. We’ll start exploring data next week. 7</p>
+</section>
+<section id="initial-data-screening" class="slide level2">
+<h2>Initial Data Screening</h2>
+<p>Use functions like <code>str()</code>, <code>typeof()</code> to see what data type R thinks your variables are.</p>
+<p>Use <code>table()</code> or <code>summary()</code> to see the range of values present.</p>
+</section>
 <section id="data-prep-questions" class="slide level2 smaller">
 <h2>Data Prep questions</h2>
 <p>Questions to ask yourself (and the data) while reviewing the codebook to choose variables to be used in an analysis.</p>
@@ -426,6 +575,7 @@
 <li>After you identify what you need to do, you have to find an example of how to code the task you want.</li>
 <li>The <a href="https://norcalbiostat.github.io/AppliedStatistics_notes/data-management.html">Applied Stats Course notes</a> has specific examples on how to handle certain/common circumstances.</li>
 <li>Take it one variable at a time.</li>
+<li>Write your successes/code in the <a href="https://hackmd.io/@norcalbiostat/R">Collaborative R Notes</a> as a quick reference for you, and others. You can see how the <a href="https://hackmd.io/@norcalbiostat/SPSS">SPSS</a> students did it in years prior.</li>
 </ul>
 </section>
 <section id="closing-thoughts" class="slide level2">
@@ -435,16 +585,6 @@
 <li>It will take you far, far longer than you anticipate to ‘clean’ your data</li>
 <li>Writing code (in any language) will be challenging, but will pay off in the long run</li>
 </ul>
-<div class="callout callout-tip no-icon callout-captioned callout-style-default">
-<div class="callout-body">
-<div class="callout-caption">
-<p><strong>HackMD</strong></p>
-</div>
-<div class="callout-content">
-<p>Share your data management &amp; reproducible workflow plan in HackMD.</p>
-</div>
-</div>
-</div>
 
 <div class="footer footer-default">
 <p><a href="https://math615.netlify.app">🔗 https://math615.netlify.app</a> / Preparing your data for analysis</p>
@@ -486,7 +626,7 @@
 'autoAnimateUnmatched': true,
 'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
 'chalkboard': {"buttons":true},
-'multiplex': {"secret":null,"id":"99a1d1b98541f099","url":"https://reveal-multiplex.glitch.me/"},
+'multiplex': {"secret":null,"id":"2945e34cb1c51652","url":"https://reveal-multiplex.glitch.me/"},
 'smaller': false,
  
         // Display controls in the bottom right corner

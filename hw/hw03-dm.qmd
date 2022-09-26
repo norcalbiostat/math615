@@ -21,19 +21,17 @@ You can always check the rubric in Blackboard learn for more grade specific deta
 
 # Instructions 
 
-1. Create a `dm_dataname.Rmd` or `dm_dataname.sps` script file. 
-    - Rename this to include your username. I.e. `dm_dataname_rdonatello.Rmd`. 
+1. Create a `dm_dataname.qmd` or `dm_dataname.sps` script file. 
+    - Rename this to include your username. I.e. `dm_dataname_rdonatello.qmd`. 
     - Make sure this is your **math615/script** folder, and your data is in your **math615/data** folder
-2. If you have not done so yet, restrict the variables to only the ones you are investigating. 
-    - R users - use the `select` statement found in the `dplyr` package
-    - SPSS users use `KEEP`
+2. After you load the data, restrict the variables to only the ones you are investigating using statements like `select` from the `dplyr` package, or the `KEEP` statement in SPSS. 
 3. Explore and clean at least 2 categorical and 2 numeric variables. One by one, check each variable for necessary adjustments. Complete each of the following steps for each variable.
     - First explain in English what the variable name is and what it measures. 
-    - Then examine the variable using the `freq` function in the `descr` package. 
-    - Identify the data type of the variable using `class`. Does this match with the intended data type? 
+    - Then examine the variable using the `table()`, `summary()` and `hist()` functions. 
+    - Identify the data type of the variable using the `class()` or `typeof()` functions. Ask (and answer) the question "Does this match with the intended data type?" 
     - Recode the data as necessary 
     - Always confirm your recodes worked as intended by creating another table or summary. 
-4. Save the resulting data set to your `data` folder as `datasetname_clean.Rdata`, or `datasetname_clean.sav`. e.g. `addhealth_clean.Rdata`. 
+4. Save the resulting data set to your `data` folder as `datasetname_clean.Rdata`, or `datasetname_clean.sav`. e.g. `addhealth_clean.Rdata` using the `save()` function in R, or `SAVE OUTFILE` command in SPSS. 
 
 
 If these tasks are performed using point & click, the code must be pasted into a script file that can be run on command. 
@@ -46,7 +44,7 @@ If these tasks are performed using point & click, the code must be pasted into a
 
 Upload your <span style="color:red">PDF</span> file to the `03 Data Management` folder in Google Drive. 
 
-* R users compile your RMD file to create a PDF (knit to PDF)
+* R users compile your `qmd` file to create a PDF (render to PDF)
 * SPSS users will have to present additional output to demonstrate that the recodes were successful. 
     - Include the `FREQUENCIES` code in your `dm` file to create tables or summaries of the modified variables, so that it shows up in your output window. 
     - After you are done, close & restart SPSS by opening your `dm` file. Click "Run all" 
@@ -77,14 +75,13 @@ Upload your <span style="color:red">code</span> file to the `03 Data Management/
 
 :::{.callout-caution icon=false}
 ## Rmarkdown
-Here is an example using R Markdown
+Here is an example using R Markdown/Quarto
 :::
 
 
 ```{r}
 # Load libraries
 library(dplyr)
-library(descr)
 
 # Read in the data
 raw <- read.delim("https://norcalbiostat.netlify.com/data/depress_081217.txt", 
@@ -99,7 +96,7 @@ mydata  <- raw %>% select(age, marital, cesd, health)
 The variable `health` records a persons perceived general health as being either Excellent, Good, Fair or Poor. This is considered an ordinal categorical variable. 
 
 ```{r}
-freq(mydata$health)
+table(mydata$health)
 class(mydata$health)
 ```
 
