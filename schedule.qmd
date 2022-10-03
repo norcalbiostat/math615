@@ -51,12 +51,12 @@ sched %>% select(-order, -Week) %>%
   column_spec(4, width="20%") %>% 
   column_spec(4, width="20%") %>% 
   pack_rows("Week 1", tn$start[1],   tn$end[1],  label_row_css = wk.col) %>%
-  pack_rows("Week 2", tn$start[2],   tn$end[2],  label_row_css = hlt.col) %>%
+  pack_rows("Week 2", tn$start[2],   tn$end[2],  label_row_css = wk.col) %>%
   pack_rows("Week 3", tn$start[3],   tn$end[3],  label_row_css = wk.col) %>%
   pack_rows("Week 4", tn$start[4],   tn$end[4],  label_row_css = wk.col) %>%
   pack_rows("Week 5", tn$start[5],   tn$end[5],  label_row_css = wk.col) %>%
   pack_rows("Week 6", tn$start[6],   tn$end[6],  label_row_css = wk.col) %>%
-  pack_rows("Week 7", tn$start[7],   tn$end[7],  label_row_css = wk.col) %>%
+  pack_rows("Week 7", tn$start[7],   tn$end[7],  label_row_css = hlt.col) %>%
   pack_rows("Week 8", tn$start[8],   tn$end[8],  label_row_css = wk.col) %>%
   pack_rows("Week 9", tn$start[9],   tn$end[9],  label_row_css = wk.col) %>%
   pack_rows("Week 10", tn$start[10],   tn$end[10],  label_row_css = wk.col) %>%

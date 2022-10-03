@@ -59,6 +59,7 @@ ul.task-list{list-style: none;}
   }
 }</script>
 
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <meta name="twitter:title" content="Data Analysis for Graduate Research - Research Project">
 <meta name="twitter:description" content="Throughout the entire semester you will be analyzing a data set with the end goal of creating a poster presentation to present your research.">
@@ -123,6 +124,26 @@ ul.task-list{list-style: none;}
   <li class="nav-item">
     <a class="nav-link" href="./help.html">Get help with…</a>
   </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-tools" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tools</a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-tools">    
+        <li>
+    <a class="dropdown-item" href="https://pollev.com/drd"><i class="bi bi-bar-chart" role="img">
+</i> 
+ <span class="dropdown-text">PollEV</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://drive.google.com/drive/folders/1oeVbt6QXvNjiadAu8VspPLXOlfaMmtXP"><i class="bi bi-google" role="img">
+</i> 
+ <span class="dropdown-text">Google Drive</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://hackmd.io/@norcalbiostat/R"><i class="bi bi-file-code" role="img">
+</i> 
+ <span class="dropdown-text">HackMD - R code</span></a>
+  </li>  
+    </ul>
+  </li>
 </ul>
               <div class="quarto-toggle-container">
                   <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
@@ -220,7 +241,11 @@ ul.task-list{list-style: none;}
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a>
+  <ul class="collapse">
+  <li><a href="#general-notes" id="toc-general-notes" class="nav-link" data-scroll-target="#general-notes">General Notes</a></li>
+  </ul></li>
+  <li><a href="#grading-method" id="toc-grading-method" class="nav-link" data-scroll-target="#grading-method">Grading Method</a></li>
   <li><a href="#stage-1-choose-a-data-set-and-identify-a-few-research-topics" id="toc-stage-1-choose-a-data-set-and-identify-a-few-research-topics" class="nav-link" data-scroll-target="#stage-1-choose-a-data-set-and-identify-a-few-research-topics">Stage 1: Choose a data set and identify a few research topics</a></li>
   <li><a href="#stage-2-introduce-your-research-question-and-variables-of-interest" id="toc-stage-2-introduce-your-research-question-and-variables-of-interest" class="nav-link" data-scroll-target="#stage-2-introduce-your-research-question-and-variables-of-interest">Stage 2: Introduce your research question and variables of interest</a></li>
   <li><a href="#stage-3-exploratory-data-analysis" id="toc-stage-3-exploratory-data-analysis" class="nav-link" data-scroll-target="#stage-3-exploratory-data-analysis">Stage 3: Exploratory data analysis</a></li>
@@ -277,20 +302,21 @@ Peer Review
 </div>
 <div class="callout-body-container callout-body">
 <p>Stages 2-6 are subject to peer review. See the <a href="help.html#peer-review">help with peer review</a> page for details.</p>
+<p>Once you have addressed a particular piece of feedback mark it as “resolved” in Google Slides.</p>
+<p><span class="emoji" data-emoji="warning">⚠️</span> <em>Do Not Delete Feedback until notified that it is okay</em></p>
 </div>
 </div>
+<section id="general-notes" class="level3">
+<h3 class="anchored" data-anchor-id="general-notes">General Notes</h3>
 <ul>
-<li>At each reviewed stage you should update anything you need to change, such as correctly making graphics, writing results correctly etc.</li>
-<li>There is a slide deck template and some example slides from prior students in <a href="https://drive.google.com/drive/folders/1JoRVyt_F4IqleTZFCnsPjOaFYDVNJPzP">Google Drive</a>. This has more details about the contents of each slide and guidance for what should be included on that slide.</li>
-<li>There is a grading rubric in Blackboard that you can self-check your submission against prior to grading.</li>
-<li>This includes reviewing the current set of feedback and making the appropriate corrections.
+<li>At each reviewed stage you should update anything you need to change based on feedback, such as correctly making graphics, writing results correctly etc.</li>
+<li>There is a <a href="https://docs.google.com/presentation/d/1M98PL_S1TzHjXs00Ir86imfr1mO801tyWawk30RH0r4">slide deck template</a> and some example slides from prior students in <a href="https://drive.google.com/drive/folders/1JoRVyt_F4IqleTZFCnsPjOaFYDVNJPzP">Google Drive</a>.
 <ul>
-<li>Once you have addressed a particular piece of feedback mark it as “resolved” in Google Slides.</li>
-<li><span class="emoji" data-emoji="warning">⚠️</span> <em>Do Not Delete Feedback.</em></li>
+<li>The template has more details about the contents of each slide and guidance for what should be included on that slide.</li>
 </ul></li>
-<li>Your presentation should be limited to approximately 20 slides. The contents of each slide are specified below.
+<li>The contents of each slide are specified below.
 <ul>
-<li>You are welcome to have “staging” slides where you can dump content, thoughts, analyses that you <em>may</em> end up using.</li>
+<li>You are welcome to have “staging” slides where you can dump content, thoughts, analyses that you <em>may</em> end up using. <strong>These extra slides should be at the END of the required slides.</strong></li>
 </ul></li>
 </ul>
 <div class="callout-important callout callout-style-default callout-captioned">
@@ -307,6 +333,46 @@ Dr.&nbsp;D’s interpretation of your research
 </div>
 </div>
 </section>
+</section>
+<section id="grading-method" class="level2">
+<h2 class="anchored" data-anchor-id="grading-method">Grading Method</h2>
+<p>This project overall is worth 30% of your grade. Instead of assigning specific points to each stage and adding up the points for an overall score, this work will be done through a series of revisions gaining feedback from both your peers and the instructor at each stage.</p>
+<ul>
+<li>Instead of a point number, for each item to be assessed (currently each slide) you will be marked as either “needing revision”, “meeting expectation”, or “exemplary”. .<br>
+</li>
+<li>See the <a href="https://docs.google.com/spreadsheets/d/1S7hhnF8hwr1rJ5VTfolkx12fh3IjW5gSRh4GvK3j7Jw">Assessment Rubric here</a></li>
+<li>I will update your status column for the slides that are being assessed at that stage.
+<ul>
+<li>I will also check on any prior slides that are at ‘needs revision’ stage.</li>
+</ul></li>
+<li>You can request a reassessment of prior work at (nearly) any time. (You can ask for it, I just may not get to it until the next time I’m reviewing slides.)</li>
+</ul>
+<div class="callout-important callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Rubric under construction
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This is a method of ‘ungrading’ that I have been wanting to try for a while. At the math congress (camping conference) I attended the first week of October a math educator discussed this method with us and so I was inspired to finally test it out. This project is a perfect opportunity to do so.</p>
+<p>This means that the Assessment item descriptions are a work in progress. Right now they are slightly modified from the old grading rubric. I may add, combine, or reword items as I do my revisions to better fit what I am actually looking for.</p>
+<p>Each person has their own ‘project assessment’ Google spreadsheet (same location as your poster) that shows you what achievement stage you are at for each item. It is locked to only view mode and only you and I have access to it.</p>
+</div>
+</div>
+<section id="but-points" class="level4">
+<h4 class="anchored" data-anchor-id="but-points">… but points!??</h4>
+<p>In the end this still has to be converted to a point value/letter grade right? So here’s how I’m going to do it. The project makes up 110 points out of the total pts for the class.</p>
+<ul>
+<li>If you have <span class="math inline">\(\geq\)</span> 90% of assessment items at ‘exemplary’ and none at ‘needs revision’, that’s “A” work and you get the full 110 pts.</li>
+<li>If you have <span class="math inline">\(\geq\)</span> 90% of assessment items at ‘meets expectation’ and no more than 1 at ‘needs revision’, that’s “B” work and you get 95 pts. Note ‘meeting expectation’ does not correspond to <em>A</em> level work</li>
+<li>If you have <span class="math inline">\(\geq\)</span> 80% of assessment items at ‘meets expectation’ and no more than 2 at ‘needs revision’, that’s “C” work and you get 80 pts.</li>
+</ul>
+<p>This is a graduate level class, so anything below a C is considered not passing. I don’t expect anyone to be at that stage by the end of the semester.</p>
+</section>
+</section>
 <section id="stage-1-choose-a-data-set-and-identify-a-few-research-topics" class="level2">
 <h2 class="anchored" data-anchor-id="stage-1-choose-a-data-set-and-identify-a-few-research-topics">Stage 1: Choose a data set and identify a few research topics</h2>
 <ul>
@@ -317,7 +383,7 @@ Dr.&nbsp;D’s interpretation of your research
 <li>You will work through writing out a few research questions as part of Homework 02.</li>
 </ul>
 <div class="callout-caution callout callout-style-default no-icon callout-captioned">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -326,7 +392,7 @@ But what about my thesis research?
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Under only very strict certain circumstances I will allow for graduate thesis data to be used. You must make an appointment to meet with me to go over your data, codebook and research question for this to be a consideration.</p>
 </div>
@@ -338,72 +404,76 @@ But what about my thesis research?
 <ul>
 <li>Create a Google Slides presentation directly into the <code>Project -00 Poster prep</code> folder in our Google Drive.</li>
 <li>Name your file using your username only.</li>
-<li>Review the <a href="https://drive.google.com/drive/folders/1JoRVyt_F4IqleTZFCnsPjOaFYDVNJPzP">example slides</a> as a reference</li>
+<li>The <a href="https://docs.google.com/presentation/d/1M98PL_S1TzHjXs00Ir86imfr1mO801tyWawk30RH0r4">Template</a> has more details and specific guidance for what should be included on each slide (similar to below)</li>
+<li>There are also <a href="https://drive.google.com/drive/folders/1JoRVyt_F4IqleTZFCnsPjOaFYDVNJPzP">example slides</a> from prior students as a references.</li>
 </ul>
-<p><strong>Slides 1-7 content</strong></p>
-<ol type="1">
-<li>Title</li>
-<li>Introduction</li>
-<li>Background &amp; lit review.</li>
-<li>Explain the research problem / topic area</li>
-<li>State your Research Question as a testable hypothesis.</li>
-<li>Introduce the data. Where does it come from, how was it collected. How many records?</li>
-<li>Description of measures (variables) being used.
+<p>These slides are pale yellow in the template.</p>
 <ul>
-<li>List out the variable names and what they mean in english.</li>
-<li>Explain any recoding and/or altering that was done.</li>
-<li>This refers to significant changes to the data (making new variables, log transforming, dichotomizing or categorizing existing variables)</li>
-<li>Do NOT discuss setting missing codes such as 98 and 99 to <code>NA</code> or <code>SYSMIS</code>.</li>
-<li>Do NOT talk about applying labels</li>
-<li>Restrict this list to only the variables you are using in your analysis. This is likely not to be more than 4-6.</li>
-</ul></li>
-</ol>
+<li><strong>Slide 01</strong>. Title</li>
+<li><strong>Slide 02</strong>. Introduction</li>
+<li><strong>Slide 03</strong>. Background &amp; lit review.</li>
+<li><strong>Slide 04</strong>. Explain the research problem / topic area</li>
+<li><strong>Slide 05</strong>. State your Research Question as a testable hypothesis.</li>
+<li><strong>Slide 06</strong>. Introduce the data. Where does it come from, how was it collected. How many records?</li>
+<li><strong>Slide 07</strong>. Description of measures (variables) being used.</li>
+</ul>
+<div class="callout-warning callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Pay attention to slide Numbers!
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Please ensure that all content is on the slide as expected.</li>
+<li>Slides will not be filled in in direct numerical order.</li>
+<li>Check the template if you are confused. I have added slide background coloring to help you keep you on track</li>
+</ul>
+</div>
+</div>
 </section>
 <section id="stage-3-exploratory-data-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="stage-3-exploratory-data-analysis">Stage 3: Exploratory data analysis</h2>
-<p><strong>Slides 8-11 content</strong></p>
-<ol start="8" type="1">
-<li>Fully describe your primary outcome (response) variable …</li>
-<li>Fully describe your primary explanatory variable …</li>
-<li>Fully describe the relationship between your primary explanatory and primary response variables ….</li>
-<li>Fully describe the relationship of a third variable to either your explanatory or response variables …</li>
-</ol>
-<p>… All using appropriate summary statistics, graphic and an explanatory sentence.</p>
+<p>These slides are pale blue in the template.</p>
+<ul>
+<li><strong>Slide 09</strong>. Fully describe your primary response variable</li>
+<li><strong>Slide 10</strong>. Fully describe your primary explanatory variable</li>
+<li><strong>Slide 11</strong>. Fully describe the relationship between your primary explanatory and primary response variables</li>
+<li><strong>Slide 13</strong>. Fully describe the relationship of a third variable to either your explanatory or response variables</li>
+</ul>
+<p>All using appropriate summary statistics, graphic and an explanatory sentence.</p>
 </section>
 <section id="stage-4-bivariate-inference" class="level2">
 <h2 class="anchored" data-anchor-id="stage-4-bivariate-inference">Stage 4: Bivariate Inference</h2>
-<p>Revise and update all prior slides.</p>
-<p>Two analyses, one per slide. Each slide should contain the following:</p>
-<ol type="1">
-<li>A fully labeled and cleaned up plot demonstrating the bivariate relationship under consideration.</li>
-<li>The results of an appropriate bivariate analysis.
+<p>These slides are pale purple in the template.</p>
 <ul>
-<li>This should be a conclusion written in English, includes a confidence interval and a p-value.</li>
-<li>You also need to state the name of the test you used.</li>
-</ul></li>
-</ol>
+<li><p><strong>Slide 08</strong>. Describe in a few sentences what analysis tools you will use to answer your research question</p></li>
+<li><p><strong>Slide 12</strong>. Analyze the relationship discussed in slides 11</p></li>
+<li><p><strong>Slide 14</strong>. Analyze the relationship discussed in slides 13</p></li>
+<li><p>This should be a conclusion written in English, in the contenxt of the problem, includes summary statistics, confidence interval and a p-value.</p></li>
+</ul>
 </section>
 <section id="stage-5-multivariable-modeling-summarizing-findings" class="level2">
 <h2 class="anchored" data-anchor-id="stage-5-multivariable-modeling-summarizing-findings">Stage 5: Multivariable modeling &amp; summarizing findings</h2>
-<p>Revise and update all prior slides.</p>
-<p>You are trying to understand the relationship between your explanatory and response variable, in presence of information contained in other variables. Add the following content slides.</p>
-<p><strong>Slide 14: Testing for moderators</strong></p>
+<p>You are trying to understand the relationship between your explanatory and response variable, in presence of information contained in other variables.</p>
+<p>These slides are pale green in the template.</p>
+<p><strong>Slide 15: Testing for categorical moderator</strong></p>
 <ul>
-<li>Moderation:
-<ul>
-<li>If you found a moderator: Remove the bivariate graph and write up from your poster and replace with explanation of moderator and graph of significant bivariate at the 3rd variable level.</li>
-<li>If you did NOT find a moderator: Include a slide stating what relationships you tested for moderation and with what variable to see if it was a moderator, explaining that it was not a moderator. No graphs needed</li>
-</ul></li>
+<li>Create a graph to assess if a separate categorical variable is a moderator</li>
+<li>Include appropriate summary statistics for the bivariate relationship under consideration for each level of the potential moderator</li>
+<li>Explain in a sentence or two if this new variable is or is not a moderator, using summary numbers and explicit features of the graph to justify your conclusion</li>
 </ul>
-<p><strong>Slide 15: Testing for confounding relationships</strong></p>
+<p><strong>Slide 16: Testing for confounding relationships</strong></p>
 <ul>
-<li>Confounding:
-<ul>
-<li>If you found a confounder: on slide with bivariate relationship that was confounded put a bullet point that explains what variable confounded the relationship and put the written results that are shown in the confounding assignment on how to write results. Make sure to explain if it helped improve prediction of response variable.</li>
-<li>If you did NOT find a confounder: Include a slide stating what relationships you tested for confounds and with what variable to see if it was a confound, explaining that it was not a moderator. Make sure to explain if it helped improve prediction of response variable.</li>
-</ul></li>
+<li>Present the regression analysis results with and without a confounder.</li>
+<li>Explain whether or not the variable under consideration is a confounder or not. Use the confounding assignment to guide the written results.<br>
+</li>
+<li>Explain whether or not the additional variable helped improve prediction of response variable.</li>
 </ul>
-<p><strong>Slide 16: Results from a Multivariable Model</strong></p>
+<p><strong>Slide 17: Results from a Multivariable Model</strong></p>
 <ul>
 <li>Build a multivariable model by adding additional predictors to the model.
 <ul>
@@ -417,14 +487,14 @@ But what about my thesis research?
 </ul></li>
 <li>At least one coefficient, the primary explanatory variable, must be interpreted in context of the problem.</li>
 </ul>
-<p><strong>Slide 17. Discussion</strong></p>
+<p><strong>Slide 18. Discussion</strong></p>
 <ul>
 <li>Here you will explain what your graphical and inferential results tell you about your topic.</li>
 <li>Discuss if your research hypothesis was supported, if it was not, why you think that might be</li>
 <li>Explain the overall story/trend/what you learned when you consider your univariate, bivariate &amp; multivariate results about your topic.</li>
 <li>Compare your results to previous research results. Do they agree or disagree?</li>
 </ul>
-<p><strong>Slide 18. Implications</strong></p>
+<p><strong>Slide 19. Implications</strong></p>
 <ul>
 <li>What are the practical implications of your results?</li>
 <li>What could others do with your findings?</li>
@@ -433,14 +503,14 @@ But what about my thesis research?
 <li>This needs to be more specific than “other variables could be explored”. Which variables and why? What other research articles indicate that those other variables are relevant?</li>
 </ul></li>
 </ul>
-<p><strong>Slide 19. Limitations</strong></p>
+<p><strong>Slide 20. Limitations</strong></p>
 <ul>
 <li>Who are the results of this study generalizable to? (i.e.&nbsp;a subset of individuals?)</li>
 <li>Were there any model assumptions that were not upheld?</li>
 <li>If this is an observational study, you should make a statement about the findings are associations and not causal in nature</li>
 <li>Are there other factors that could explain your response variable that you did not include in your model?</li>
 </ul>
-<p><strong>Slide 20. References</strong></p>
+<p><strong>Slide 21. References</strong></p>
 <ul>
 <li>You can use smaller font to get all references on one slide.</li>
 <li>Use references from research plan, and any additional references gathered along the way.</li>
