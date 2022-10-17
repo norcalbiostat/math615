@@ -24,6 +24,13 @@ knitr:
       width: 200
 ---
 
+## Advisory note
+
+:::{.callout-warning appearance=minimal}
+This set of slides is really long. I recommend using the navigation menu (hamburger menu in the bottom left) to skip to the relevant section. 
+:::
+
+
 ## Which analyseses to perform? 
 
 Moving from: 
@@ -80,12 +87,21 @@ Go to the HackMD collaborative notes on [Choosing appropriate analysis](https://
 
 PMA6 does not go over T-test, ANOVA or $\chi^{2}$ tests. To see more examples (with R code) and more mathematical detail see [Chapter 5 in the Applied Stats Course Notes](https://norcalbiostat.github.io/AppliedStatistics_notes/bivariate-analysis.html) 
 
-# Quantitative Outcome ~ Binary Covariate
+
+## A unifying model framework
+
+A good way to think about all statistical models is that the observed data comes from some true model with some random error.
+
+> DATA = MODEL + RESIDUAL
+
+The `MODEL` is a mathematical formula (like $y = f(x)$). 
+The formulation of the `MODEL` will change depending on the number of, and data types of explanatory variables. One goal of inferential analysis is to explain the variation in our data, using information contained in other measures. 
+
+# Quantitative Outcome ~ Binary Covariate {background-color="#6c972b"}
 
 ## T-test for difference in means between two groups [(ASCN Section 5.3)](https://norcalbiostat.github.io/AppliedStatistics_notes/bv-ttest.html) {.smaller}
 
-* Parameter: $\mu_{1} - \mu_{2}$
-* Estimate:  $\bar{x}_{1} - \bar{x}_{2}$
+* Parameter: $\mu_{1} - \mu_{2}$, Estimate:  $\bar{x}_{1} - \bar{x}_{2}$
 * Assumptions: 
     - Groups are mutually exclusive and independent
     - Difference $\bar{x}_{1} - \bar{x}_{2}$ is normally distributed
@@ -96,7 +112,6 @@ $H_{0}: \mu_{1} - \mu_{2} = 0$: There is no difference in the averages between g
 $H_{A}: \mu_{1} - \mu_{2} \neq 0$: There is a difference in the averages between groups. 
 
 
-
 ## Example: BMI vs smoking
 We would like to know, is there convincing evidence that the average BMI differs between those who have ever smoked a cigarette in their life compared to those who have never smoked? 
 
@@ -104,8 +119,9 @@ We would like to know, is there convincing evidence that the average BMI differs
 library(knitr)
 library(dplyr)
 library(ggplot2)
-library(pander)
+library(forcats)
 library(scales)
+library(sjPlot)
 
 load("C:/Box/Data/AddHealth/addhealth_clean.Rdata")
 ```
@@ -192,20 +208,35 @@ There is strong evidence in favor of the alternative hypothesis. The interval fo
 On average, non-smokers have a significantly higher 0.82 (0.39, 1.27) BMI compared to smokers (p=.0002). 
 
 
-# Quantitative Outcome ~ Categorical Covariate
+# Quantitative Outcome ~ Categorical Covariate {background-color="#6c972b"}
 
-## Analysis of Variance (ANOVA)
+## Analysis of Variance (ANOVA)[(ASCN Section 5.4)](https://norcalbiostat.github.io/AppliedStatistics_notes/bv-anova.html) 
 
-Analysis of variance assesses whether the means of two or more groups are statistically different from each other. This analysis is appropriate whenever you want to compare the means (quantitative variables) of groups (categorical variables).
+Analysis of variance assesses whether the means of two or more groups are statistically different from each other. Does knowing what group an observation is in tell you about the location of the data? 
 
+$$
+y_{ij} = \mu_{j} + \epsilon_{ij} \qquad \qquad
+\epsilon_{ij} \overset{iid}{\sim} \mathcal{N}(0,\sigma^{2})
+$$
+
+for $i=1, \ldots, I$ factor levels and $j = 1, \ldots, n_{i}$ subjects within each factor level. The random error terms are independently and identically distributed (iid) normally with common variance. 
+
+## Hypothesis specification
 
 The null hypothesis is that there is no difference in the mean of the quantitative variable across groups (categorical variable), while the alternative is that there is a difference.
+
+* $H_0$: The mean outcome is the same across all groups. $\mu_1 = \mu_2 = \cdots = \mu_j$
+* $H_A$: At least one mean is different.
+
+:::{.callout-note appearance=minimal}
+A 2-sample t-test is mathematically identical to an ANOVA with 2 groups. 
+:::
 
 ##  {background-color="#6c972b" background-image="https://imgs.xkcd.com/comics/significant.png" background-size="300px" background-position="85% 50%"}
 
 :::: {.columns}
 
-::: {.column width="40%"}
+::: {.column width="60%"}
 **Why not multiple T-tests between all pairs of groups?**
 
 \
@@ -221,10 +252,653 @@ Img Ref: [https://xkcd.com/882](https://xkcd.com/882)
 
 :::
 
-::: {.column width="60%"}
+::: {.column width="40%"}
 
 :::
 
 ::::
 
-## Type I and Type II Error (an important side topic)
+## Type I and Type II Error (an important side topic) {.incremental}
+
+* AKA False positive or false negative. [Wikipedia](https://en.wikipedia.org/wiki/Type_I_and_type_II_errors)
+* The significance level, $\alpha$, is what we use to define the amount of "risk" we are willing to take to falsely reject $H_{0}$ (false positive).
+* We talk more about false positive & false negative, [specificity and sensitivity](https://en.wikipedia.org/wiki/Sensitivity_and_specificity) in Math 456. 
+* We will see shortly however how to conduct multiple comparisons while maintaining our "family-wise" error rate at $\alpha$
+
+## Analysis of Variance
+
+By comparing the portion of the variance in the outcome that is explained by the groups, to the portion that's leftover due to  unexplained randomness. Essentially we're comparing the ratio of `MODEL` to `RESIDUAL`. 
+
+> Total Variation = Between Group Variation + Within Group Variation
+
+Variation is measured using the Sum of Squares (SS): The sum of the squares within a group (SSE), the sum of squares between groups (SSG), and the total sum of squares (SST).
+
+## Sum of Squares {.smaller}
+
+**SSG (Between groups)**: Measures the variation of the $I$ group means around the overall mean.
+$$
+  SSG = \sum_{i=1}^{I}n_{i}(\bar{y}_{i.}-\bar{y}..)^{2} = n_{1}(\bar{y}_{1.}-\bar{y}..)^{2} + n_{2}(\bar{y}_{2.}-\bar{y}..)^{2} + n_{3}(\bar{y}_{3.}-\bar{y}..)^{2}
+$$
+
+**SSE (Within group)**: Measures the variation of each observation around its group mean.
+$$
+SSE = \sum_{i=1}^{I}\sum_{j=1}^{n_{i}}(y_{ij}-\bar{y}_{i.})^{2} = \sum_{i=1}^{I}(n_{i}-1)Var(Y_{i})
+$$
+
+**SST (Total)**: Measures the variation of the $N$ data points around the overall mean.
+$$
+SST =  \sum_{i=1}^{I}\sum_{j=1}^{n_{i}}(y_{ij}-\bar{y}..)^{2} = (N-1)Var(Y)
+$$
+
+
+## Analysis of Variance Table
+
+The results are typically summarized in an ANOVA table. 
+
++----------+--------+-------+---------------------------+-------+
+| Source   | SS     | df    | MS                        | F     |
++:=========+:======:+:=====:+:=========================:+:=====:+
+| Groups   | SSG    | $I-1$ | MSG = $\frac{SSG}{I-1}$   | $\frac{MSG}{MSE}$ |
++----------+--------+-------+---------------------------+-------+
+| Error    | SSE    | $N-I$ | MSE = $\frac{MSG}{N-I}$   |
++----------+--------+-------+---------------------------+
+|**Total** | **SST**| $N-1$ |       |
++----------+--------+-------+-------+
+
+The value in the **F** column is the test statistic, and has a F distribution with degrees of freedom (df) dependent on the number of groups (I-1), and the number of observations (N-I). 
+
+## The F-distribution
+
+The $p$-value is the **area to the right** of the F statistic density curve. This is always to the right because the F-distribution is truncated at 0 and skewed right. This is true regardless of the $df$.
+
+```{r}
+curve(df(x,df1=5, df2=10),xlim=c(0,10), main="Example F distribution with df1=5, df2=10", ylab="",xlab=expression(F))
+```
+
+## Assumptions
+
+Generally we must check three conditions on the data before performing ANOVA:
+
+* The observations are independent within and across groups
+* The data within each group are nearly normal
+* The variability across the groups is about equal.
+
+## Example: March of the Penguins 
+```{r}
+#| echo: false
+pen <- palmerpenguins::penguins
+```
+
+### 1. Identify response and explanatory variables
+
+* Species = categorical explanatory variable 
+* Flipper length = quantitative response variable 
+
+## 2. Visualize and summarise bivariate relationship {.smaller}
+
+:::: {.columns}
+
+::: {.column width="50%"}
+```{r}
+library(ggdist) # for the "half-violin" plot (stat_slab)
+ggplot(pen, aes(x=flipper_length_mm, y=species, fill=species)) + 
+      stat_slab(alpha=.5, justification = 0) + 
+      geom_boxplot(width = .2,  outlier.shape = NA) + 
+      geom_jitter(alpha = 0.5, height = 0.05) +
+      stat_summary(fun="mean", geom="point", col="red", size=4, pch=17) + 
+      theme_bw() + 
+      labs(x="Flipper Length (mm)", y = "Species") + 
+      theme(legend.position = "none")
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+pen %>% group_by(species) %>% 
+  summarise(mean=mean(flipper_length_mm, na.rm=TRUE), 
+            sd = sd(flipper_length_mm, na.rm=TRUE), 
+            IQR = IQR(flipper_length_mm, na.rm=TRUE)) %>%
+  kable(digits = 1)
+```
+:::
+
+::::
+
+The distribution of flipper length varies across the species, with Gentoo having the largest flippers on average at 217.2mm compared to Adelie (190mm) and Chinstrap (195.8mm). The distributions are normally distributed with very similar spreads, Chinstrap has the most variable flipper length with a SD of 7.1 compared to 6.5 for the other two species. 
+
+<small>
+_[A blog post about raincloud plots vs violins](https://www.cedricscherer.com/2021/06/06/visualizing-distributions-with-raincloud-plots-and-how-to-create-them-with-ggplot2/)_ </small>
+
+
+## 3. Write the relationship you want to examine in the form of a research question.
+
+* Null Hypothesis: There is no association between flipper length and species. 
+* Alternate Hypothesis: There is an association between flipper length and species. 
+
+## 4. Perform an appropriate statistical analysis using Dr D's 4 step method.
+ 
+**a. Define parameters**
+
+Let $\mu_{A}, \mu_{C}$ and $\mu_{G}$ be the average flipper length for the _Adelie, Chinstrap_ and _Gentoo_ species of penguins respectively. 
+
+\
+
+**b. State the null and alternative hypothesis as symbols**
+
+$H_{0}: \mu_{A} = \mu_{C} = \mu_{G}$  
+$H_{A}:$ At least one $\mu_{j}$ is different. 
+
+##
+
+**c. State and justify the analysis model. Check assumptions.**
+
+We are comparing means from multiple groups, so an ANOVA is the appropriate procedure. We need to check for independence, approximate normality and approximately equal variances across groups.
+
+**Independence**: We are assuming that each penguin was sampled independently of each other, and that the species themselves are independent of each other.
+
+**Normality**: The distributions of flipper length within each group are fairly normal
+
+**Equal variances**: Both the standard deviation and IQR (as measures of variability) are very similar across all groups. 
+
+##
+
+**d. Conduct the test and make a decision about the plausibility of the alternative hypothesis.**
+
+```{r}
+aov(flipper_length_mm ~ species, data=pen) |> summary()
+```
+
+The pvalue is very small, so there is evidence to support $H_{a}$: at least one mean is different. 
+
+## 5. Write a conclusion in context of the problem. 
+
+There is sufficient evidence to believe that the average flipper length is significantly different between the Adelie, Chinstrap and Gentoo species of penguins (p<.0001). 
+
+## Multiple / Post-Hoc comparisons: Which group is different? {.smaller}
+
+* Run Post Hoc tests ("Tukeys HSD", or "Duncan"), _only_ if your ANOVA is significant. 
+* The overall ANOVA can be significant and NOT have any significant differences when you look at the post hoc results. The reason is that the two analyses ask two different questions.
+    - The ANOVA is testing the overall pattern of the data and asking if as a whole the explanatory variable has a relationship (or lack thereof) with the response variable. 
+    - The post hoc is asking if one level of the explanatory variable is significantly different than another for the response variable. The post hoc is not as sensitive to differences as the ANOVA. 
+    - **The family-wise error rate of $\alpha$ is mainained**
+* Differences in group means can be non-significant at the post hoc level, but significant at the ANOVA level.
+
+
+##
+
+```{r}
+TukeyHSD(aov(flipper_length_mm ~ species, data=pen))
+```
+
+The results of the Tukey HSD post-hoc test indicate that the average flipper length in mm is significantly different between all pairs of penguin species at the 5% significance level. Chinstrap has an average flipper length 5.87mm(3.59-8.15) larger than Adelie, whereas Gentoo has an average flipper length 27.23mm(25.33-29.13) larger than Adelie. 
+
+## Coefficient of Determination $R^{2} = \frac{SSG}{SST}$ {.smaller}
+```{r}
+#| echo: 2
+#| code-fold: false
+aov(flipper_length_mm ~ species, data=pen) |> summary()
+52473/(52473 + 14953)*100
+```
+
+The coefficient of determination is interpreted as the % of the variation seen in the outcome that is due to subject level variation within each of the treatment groups. The strength of this measure can be thought of in a similar manner as the correlation coefficient $\rho$, $<.3$ indicates a poor fit, $<.5$ indicates a medium fit, and $>.7$ indicates a good fit.
+
+> 77.8% of the variation in flipper length can be explained by the species of penguin
+
+## Non-parametric tests
+
+* Many stat tests rely on assumptions that ensure the sample estimate can be modeled with a normal distribution. 
+* What do you do if your assumptions aren't met? 
+* We can "relax" some of those assumptions and perform a more robust, but less powerful test. 
+    - less power means you need more data to draw a conclusion with the same amount of confidence.
+* No detailed examples will be provided in these notes. You tend to learn/use these on an "as-needed" basis. 
+
+## Kruskal-Wallis {.incremental}
+
+* The [Kruskal-Wallis](https://en.wikipedia.org/wiki/Kruskal%E2%80%93Wallis_one-way_analysis_of_variance) test is the most common **non-parametric** method for testing whether or not groups of observations come from the same overall distribution. 
+* By comparing the _medians_ instead of the means, we can remove the normality assumption on the residuals. 
+* Null hypothesis is now that the medians of all groups are equal vs at least one population median is different. 
+* [Ref on how to do this in R from STHDA](http://www.sthda.com/english/wiki/kruskal-wallis-test-in-r)
+
+
+# Categorical Outcome ~ Categorical Covariate  {background-color="#6c972b"}
+
+## Opening Remarks
+
+If we are only concerned with testing the hypothesis that the proportion of successes between two groups are equal  $p_{1}-p_{2}=0$, we can leverage the Normal distribution and conduct a Z-test for two proportions. 
+
+However in this class we will use the more generalizable model via Chi-squared test of association/equal proportions. 
+
+## Chi-squared test of equal proportions [(Ref: ASCN Section 5.5)](https://norcalbiostat.github.io/AppliedStatistics_notes/bv-chisq.html) 
+ 
+A 30-year study was conducted with nearly 90,000 female participants.
+(Miller AB. 2014) During a 5-year screening period, each woman was randomized to one of two groups: in the first group, women received regular mammograms to screen for breast cancer, and in the second group, women received regular non-mammogram breast cancer exams. No intervention was made during the following 25 years of the study, and we'll consider death resulting from breast cancer over the full 30-year period. 
+
+## Results from study
+
+```{r, echo=FALSE}
+a <- data.frame(Tx = c(rep("Mammogram", 500), rep("Control", 505), 
+                  rep("Mammogram", 44425), rep("Control", 44405)),
+           Outcome = c(rep("Dead",1005), rep("Alive", 88830)))
+
+addmargins(table(a$Tx, a$Outcome))%>% kable() 
+```
+ 
+The independent/explanatory variable is treatment (additional mammograms), and the dependent/response variable is death from breast cancer. Are these measures  associated? 
+
+## Assume independence/no association {.smaller .incremental}
+
+* If mammograms are more effective than non-mammogram breast cancer exams,
+then we would expect to see additional deaths from breast cancer in the control
+group (there is a relationship). 
+* If mammograms are not as effective as regular breast cancer exams, we would expect to see no difference in breast cancer deaths in the two groups (there is no relationship).
+* Need to figure out how many deaths would be **expected**, if there was no relationship between treatment death by breast cancer, 
+* Then examine the **residuals** - the difference between the observed counts and the expected counts in each cell.
+
+## Table notation
+Tables can be described by $i$ rows and $j$ columns. So the cell in the top left is $i=1$ and $j=1$. 
+
++----------+---------+----------+---------+
+| $O_{ij}$ | Alive   | Dead     | Total   |
++:=========+:=======:+:========:+:=======:+
+| Mammo    |$n_{11}$ | $n_{12}$ | $n_{1.}$|
++----------+---------+-----------+--------+
+| Control  |$n_{21}$ | $n_{22}$ | $n_{2.}$|
++----------+---------+----------+---------+
+|Total     |$n_{.1}$ | $n_{.2}$ | $N$     |
++----------+---------+----------+---------+
+
+In our DATA = MODEL + RESIDUAL framework, the DATA ($n_{11}, n_{12}$, etc)is the observed counts $O_{ij}$ and the MODEL is the expected counts $E_{ij}$. 
+
+## Calculating the expected count
+
+Since we assume the variables are independent (unless the data show otherwise) the expected count for each cell is calculated as the row total times the column total for that cell, divided by the overall total. 
+
+$$E_{ij} = \frac{n_{i.}n_{.j}}{N}$$
+
+In a probability framework this is stated as two variables $A$ and $B$ are independent if $P(A \cap B) = P(A)*P(B) = \frac{n_{i.}}{N}*\frac{n_{.j}}{N}$
+
+## Calculating the residuals {.smaller}
+
+The residuals are calculated as $(O_{ij} - E_{ij})$ 
+
+:::: {.columns}
+
+::: {.column width="50%"}
+Expected
+```{r}
+chisq.test(a$Tx, a$Outcome)$expected %>% kable(digits=2)
+```
+:::
+
+::: {.column width="50%"}
+Residuals
+```{r}
+chisq.test(a$Tx, a$Outcome)$residuals %>% kable(digits=3) 
+```
+:::
+
+::::
+
+If mammograms were not associated with survival, there were 0.01 fewer people still alive than expected, and 0.11 more people dead.
+
+
+## $\chi^2$ test statistic
+:::: {.columns}
+
+::: {.column width="50%"}
+The $\chi^2$ test statistic is defined as the sum of the squared residuals, divided by the expected counts, and follows a $\chi^2$ distribution with degrees of freedom (#rows -1)(#cols -1). 
+
+$$ \sum_{ij}\frac{(O_{ij}-E_{ij})^{2}}{E_{ij}} $$
+:::
+
+::: {.column width="50%"}
+```{r}
+dist_chisq(chi2=.027, deg.f=1, geom.colors=c("#FDE725FF", "#440154FF"))
+```
+:::
+
+::::
+
+## Conclusion
+In this example, the test statistic was `r round(chisq.test(a$Tx, a$Outcome)$statistic,3)` with p-value `r round(chisq.test(a$Tx, a$Outcome)$p.value,3)`. 
+
+So there is not enough reason to believe that mammograms in addition to regular exams are associated with a reduced risk of death due to breast cancer. 
+
+This example demonstrated how we examine the residuals to see how closely our DATA fits a hypothesized MODEL. 
+
+
+
+
+## Example: Income and General Health
+Using the Addhealth data set, what can we say about the relationship between smoking status and a person’s perceived level of general health?
+
+Is there an association between lifetime smoking status and perceived general health? 
+
+## 1. Identify response and explanatory variables
+
+* The binary explanatory variable is whether the person has ever smoked an entire cigarette (`eversmoke_c`). 
+* The categorical explanatory variable is the person’s general health (`genhealth`) and has levels “Excellent”, “Very Good”, “Good”, “Fair”, and “Poor”.
+
+## 2. Visualize and summarise bivariate relationship {.smaller}
+
+```{r}
+plot_xtab(grp=addhealth$eversmoke_c, x=addhealth$genhealth, 
+                  show.total = FALSE, margin="row", legend.title="") 
+```
+
+The percentage of smokers seems to increase as the general health status decreases. Almost three-quarters (73%, n=40) of those reporting poor health have smoked an entire cigarette at least once in their life compared to 59% (n=573) of those reporting excellent health.
+
+## 2b. Other ways to visualize this (FYI only)
+
+:::: {.columns}
+
+::: {.column width="50%"}
+```{r}
+addhealth %>% 
+  group_by(genhealth) %>% 
+  summarize(p = mean(eversmoke_c == "Smoked at least once", na.rm=TRUE)*100, 
+            n = n()) %>% 
+  na.omit() %>% 
+  ggplot(aes(x=genhealth, y=p, color=genhealth)) + 
+  geom_point(aes(size = n)) + 
+  scale_y_continuous(limits=c(0, 100)) + 
+  geom_segment(aes(x=genhealth, xend=genhealth, y=0, yend=p)) +
+  scale_color_discrete(guide="none") + theme_bw() + 
+  ylab("Proportion of smokers") + 
+  xlab("Perceived General Health")
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+addhealth %>% 
+  count(genhealth, eversmoke_c) %>% 
+  na.omit() %>%
+  group_by(genhealth)%>%
+  mutate(p = n/sum(n)*100) %>% 
+ggplot(aes(x=genhealth, y=p, fill=eversmoke_c, 
+           label = paste0(round(p, 1), "%"))) + 
+  geom_col() + theme_bw() + 
+  scale_fill_discrete(name = "") + 
+  geom_text(position=position_stack(0.5)) + 
+  ylab("Proportion of smokers") + 
+  xlab("Perceived General Health")
+```
+:::
+
+::::
+
+<small>
+These methods pre-calculate the proportions first, and then put them on a ggplot canvas. As you build your expertise with R/Ggplot you will find yourself wanting to enhance or move away from the "pre-packaged" plots from `sjPlot` and `ggpubr`. </small>
+
+
+
+## 3. Write the relationship you want to examine in the form of a research question.
+
+* Null Hypothesis: The proportion of smokers is the same across all levels of general health. 
+* Alternate Hypothesis: At least one group has a different proportion of smokers compared to the other general health groups. 
+
+## 4. Perform an appropriate statistical analysis using Dr D's 4 step method.
+ 
+**a. Define parameters**
+
+Let $p_{1}, p_{2}, \ldots, p_{5}$ be the true proportion of smokers in each of the 5 health categories: (1) Excellent to (5) Poor. 
+
+\
+
+**b. State the null and alternative hypothesis as symbols**
+
+$H_{0}: p_{1} = p_{2} = \ldots p_{5}$  
+$H_{A}:$ At least one $p_{j}$ is different. 
+
+##
+
+**c. State and justify the analysis model. Check assumptions.**
+
+I will conduct a $\chi^{2}$ test of association. There is at least 10 observations in each combination of smoking status and general health.
+
+**d. Conduct the test and make a decision about the plausibility of the alternative hypothesis.**
+
+```{r}
+chisq.test(addhealth$genhealth, addhealth$eversmoke_c)
+```
+
+We have strong evidence in favor of the alternative hypothesis, p<.0001
+
+## 5. Write a conclusion in context of the problem. 
+
+We can conclude that there is an association between ever smoking a cigarette in their life and perceived general health ($\chi^{2} = 30.8, df=4, p<.0001$).
+
+## Multiple comparisons: Which group is different? {.smaller}
+
+Just like with ANOVA, if we find that the Chi-squared test indicates that at least one proportion is different from the others, it’s our job to figure out which ones might be different! We will analyze the residuals to accomplish this. 
+
+## Examine the residuals {.smaller}
+The residuals ($O_{ij} - E_{ij}$) are automatically stored in the model output. You can either print them out and look at the values directly or create a plot. You're looking for combinations that have much higher, or lower expected proportions.
+
+:::: {.columns}
+
+::: {.column width="50%"}
+```{r}
+health.smoke.model <- chisq.test(addhealth$genhealth, addhealth$eversmoke_c)
+health.smoke.model$residuals |> round(2)
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+plot.residuals <- health.smoke.model$residuals %>% data.frame()
+ggplot(plot.residuals, aes(x=addhealth.genhealth, y=addhealth.eversmoke_c)) +
+       geom_raster(aes(fill=Freq)) +  scale_fill_viridis_c()
+```
+:::
+
+::::
+
+The proportion of non-smokers in the excellent health category is much higher than expected if there were no relationship between these two variables. 
+
+## All pairwise comparisons {.smaller}
+
+:::: {.columns}
+
+::: {.column width="70%"}
+```{r}
+# library(rcompanion)
+smoke.by.genhealth <- table(addhealth$genhealth, addhealth$eversmoke_c)
+rcompanion::pairwiseNominalIndependence(smoke.by.genhealth, fisher = FALSE, gtest=FALSE) |> kable(digits = 3)
+```
+:::
+
+::: {.column width="30%"}
+Using the adjusted (for multiple comparisons) p-value column, the proportion of smokers in the Excellent group (41.3%) is significantly different from nearly all other groups (35.4% for Very Good, 31.3% for Good, 31.8% for Fair). 
+
+But why is it not significantly different from the 27.3% in the Poor group? 
+:::
+
+::::
+
+
+## The effect of small sample sizes
+Why is 41.3% significantly different from 35.4%, but NOT different from 27.3%? 
+
+The standard error is always dependent on the sample size. Here, the number of individuals in the Poor health category is much smaller compared to all other groups - so the margin of error will be larger - making it less likely to be statistically significantly different from other groups. 
+
+When you have a small numbers (n<10) in one or more cells the distribution of the test statistic can no longer be modeled well using the $\chi^{2}$ distribution. So we again go to a non-parametric test that uses a randomization based method. 
+
+## Fishers Exact Test
+
+```{r}
+fisher.test(addhealth$genhealth, addhealth$eversmoke_c, 
+            simulate.p.value = TRUE)
+```
+
+Then you can use the `pairwiseNominalIndependence` function for all pairwise comparisons again, with the `fisher` argument set to `TRUE`. 
+
+:::{.callout-note appearance=minimal}
+<small>Note: the `simulate.p.value = TRUE` argument here is only needed if the randomization space is larger than your workspace. R will let you know when this is needed.</small> 
+:::
+
+## Chi-Squared test of Association/Independence
+
+We can still use the $\chi^{2}$ test of association to compare categorical variables with more than 2 levels. In this case we generalize the statement to ask: **Is the distribution of 1 variable the same across levels of another variable?**. In this sense, it is very much like an ANOVA. 
+
+Mathematically the $\chi^{2}$ test of association is the exact same as a test of equal proportions. 
+
+## Example
+
+Let's analyze the relationship between a person's income and perceived level of general health. 
+
+The categorical explanatory variable is income, binned into 4 ranges (`income_cat`). 
+
+```{r}
+addhealth$income_cat <- Hmisc::cut2(addhealth$income, g = 4)
+```
+
+## State Hypothesis
+
+* The income distribution is the same in each of the general health categories (no association)
+* The income distribution differs for at least one of the general health categories (association)
+
+## Visualize the relationship 
+:::: {.columns}
+
+::: {.column width="60%"}
+```{r}
+#| fig.height = 10
+plot_xtab(grp=addhealth$income_cat,
+                  x=addhealth$genhealth, 
+                  show.total = FALSE, margin="row",
+                  legend.title="") + 
+  theme(legend.position = "top")
+```
+:::
+
+::: {.column width="40%"}
+<small>
+The income distribution is nearly flat for who rate themselves in excellent or very good condition. However, the proportion of individuals in the lower income categories increase as perceived general health decreases. Over 80% of those that rate themselves as in Poor condition have an annual income less than $35,500. 
+
+Since there are very small cell sizes, we will use a Fishers Exact test. 
+</small>
+:::
+
+::::
+
+## Test the relationship & make a conclusion. 
+
+```{r}
+fisher.test(addhealth$genhealth, addhealth$income_cat, 
+            simulate.p.value = TRUE)
+```
+
+There is sufficient evidence to conclude that the distribution of income is not the same across all general health status categories. 
+
+
+## Other analysis for categorical variables
+
+There is a slew of methods to analyze categorical data, we can't get into them all. To learn more start with Categorical Data Analysis by Alan Agresti, who has written _extensively_ on the subject. 
+
+This R companion page also looks very useful http://rcompanion.org/handbook/H_01.html and where I got the `pairwiseNominalIndependence` function from. 
+
+# Quantitative Outcome ~ Quantitative Covariate {background-color="#6c972b"}
+
+## Opening Remarks
+
+The PMA6 textbook (Chapter 7) goes into great detail on this topic, since regression is typically the basis for all advanced models. 
+
+The book also distinguishes between a "fixed-x" case, where the values of the explanatory variable $x$ only take on pre-specified values, and a "variable-x" case, where the values of $x$ are observations from a population distribution of X's. 
+
+This latter case is what we will be concerning ourselves with. 
+
+## Correlation
+
+The **correlation coefficient** is designated by $r$ for the sample correlation, and $\rho$ for the population correlation. The correlation is a measure of the strength and direction of a _linear relationship_ between two variables. 
+
+The correlation ranges from +1 to -1. A correlation of +1 means that there is a perfect, positive linear relationship between the two variables. A correlation of -1 means there is a perfect, negative linear relationship between the two variables.
+In both cases, knowing the value of one variable, you can perfectly predict the value of the second.
+
+## Strength of the correlation
+
+Here are rough estimates for interpreting the strengths of correlations based on the magnitude of $r$.
+
+* $|r| \geq 0.7$: Very strong relationship
+* $0.4 \leq |r| < 0.7$: Strong relationship
+* $0.3 \leq |r| < 0.4$: Moderate relationship
+* $0.2 \leq |r| < 0.3:$ Weak relationship
+* $|r| < 0.2:$ Negligible or no relationship
+
+## As a measure of model fit
+
+When we square $r$ (i.e. $R^{2}$), it tells us what proportion of the variability in one variable that is described by variation in the second variable. 
+
+\
+
+Yes, this is mathematically the same as the coefficient of determination we saw in ANOVA. 
+
+## Pearson test of correlation
+
+To test for a _linear_ correlation between two variables we use the **Pearson correlation coefficient** which is defined as the covariance of the two variables divided by the product of their standard deviations.
+
+$$
+\rho_{X,Y} = \frac{cov(X,Y)}{\sigma_{x}\sigma_{Y}}
+$$
+
+There are many modifications and adjustments to this measure that we will not get into detail with. We are using correlation as a stepping stool to Linear Regression. 
+
+## Example: Body mass and bill length of penguins
+
+### 1. Identify response and explanatory variables
+
+* The quantitative explanatory variable is body mass (g)
+* The quantitative explanatory variable is bill length (mm)
+
+## 2. Visualize and summarise bivariate relationship {.smaller}
+:::: {.columns}
+
+::: {.column width="50%"}
+```{r}
+ggplot(pen, aes(x=body_mass_g, y=bill_length_mm)) + 
+  geom_point() + geom_smooth(col = "red")
+cor(pen$body_mass_g, pen$bill_length_mm, use = "pairwise.complete.obs")
+```
+:::
+
+::: {.column width="50%"}
+There is a strong, positive, mostly linear relationship between the body mass (g) of penguins and their bill length (mm) (r=.595). 
+
+:::
+
+::::
+
+
+## 3. Write the relationship you want to examine in the form of a research question.
+
+* Null Hypothesis: There is no correlation between the body mass and bill length of penguins. 
+* Alternate Hypothesis: There is a correlation between the body mass and bill length of penguins. 
+
+## 4. Perform an appropriate statistical analysis using Dr D's 4 step method.
+ 
+**a. Define parameters**
+Let $\rho$ be the true correlation between body mass and bill length of penguins.  
+
+**b. State the null and alternative hypothesis as symbols**
+
+$H_{0}: \rho=0 \qquad \qquad  H_{A}: \rho \neq 0$ 
+
+**c. State and justify the analysis model.**
+
+Pearsons test of correlation will be conducted. This is appropriate because both variables are quantitative, the relationship between variables are reasonably linear, and the sample size is large. 
+
+## 
+
+**d. Conduct the test and make a decision about the plausibility of the alternative hypothesis.**
+
+```{r}
+cor.test(pen$body_mass_g, pen$bill_length_mm)
+```
+
+The p-value is very small, there is evidence in favor of a non-zero correlation. 
+
+## 5. Write a conclusion in context of the problem. 
+
+There was a statistically significant and strong correlation between the body mass (g) and bill length (mm) of penguins (r = 0.595, 95%CI .5220-.6595, p < .0001). The significant positive correlation shows that as the body mass of a penguin increases so does the bill length. These results suggest that 35% (95% CI: 27.2-43.5) of the variance in bill length can be explained by the body mass of the penguin. 
+

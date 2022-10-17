@@ -397,6 +397,16 @@
   <p class="date">2022-10-12</p>
 </section>
 
+<section id="advisory-note" class="slide level2">
+<h2>Advisory note</h2>
+<div class="callout callout-warning no-icon callout-style-simple">
+<div class="callout-body">
+<div class="callout-content">
+<p>This set of slides is really long. I recommend using the navigation menu (hamburger menu in the bottom left) to skip to the relevant section.</p>
+</div>
+</div>
+</div>
+</section>
 <section id="which-analyseses-to-perform" class="slide level2">
 <h2>Which analyseses to perform?</h2>
 <p>Moving from:</p>
@@ -450,16 +460,23 @@
 <h2>Additional References</h2>
 <p>PMA6 does not go over T-test, ANOVA or <span class="math inline">\(\chi^{2}\)</span> tests. To see more examples (with R code) and more mathematical detail see <a href="https://norcalbiostat.github.io/AppliedStatistics_notes/bivariate-analysis.html">Chapter 5 in the Applied Stats Course Notes</a></p>
 </section>
+<section id="a-unifying-model-framework" class="slide level2">
+<h2>A unifying model framework</h2>
+<p>A good way to think about all statistical models is that the observed data comes from some true model with some random error.</p>
+<blockquote>
+<p>DATA = MODEL + RESIDUAL</p>
+</blockquote>
+<p>The <code>MODEL</code> is a mathematical formula (like <span class="math inline">\(y = f(x)\)</span>). The formulation of the <code>MODEL</code> will change depending on the number of, and data types of explanatory variables. One goal of inferential analysis is to explain the variation in our data, using information contained in other measures.</p>
+</section>
 <section>
-<section id="quantitative-outcome-binary-covariate" class="title-slide slide level1 center">
+<section id="quantitative-outcome-binary-covariate" class="title-slide slide level1 center" data-background-color="#6c972b">
 <h1>Quantitative Outcome ~ Binary Covariate</h1>
 
 </section>
 <section id="t-test-for-difference-in-means-between-two-groups-ascn-section-5.3" class="slide level2 smaller">
 <h2>T-test for difference in means between two groups <a href="https://norcalbiostat.github.io/AppliedStatistics_notes/bv-ttest.html">(ASCN Section 5.3)</a></h2>
 <ul>
-<li>Parameter: <span class="math inline">\(\mu_{1} - \mu_{2}\)</span></li>
-<li>Estimate: <span class="math inline">\(\bar{x}_{1} - \bar{x}_{2}\)</span></li>
+<li>Parameter: <span class="math inline">\(\mu_{1} - \mu_{2}\)</span>, Estimate: <span class="math inline">\(\bar{x}_{1} - \bar{x}_{2}\)</span></li>
 <li>Assumptions:
 <ul>
 <li>Groups are mutually exclusive and independent</li>
@@ -600,19 +617,38 @@ sample estimates:
 <p>On average, non-smokers have a significantly higher 0.82 (0.39, 1.27) BMI compared to smokers (p=.0002).</p>
 </section></section>
 <section>
-<section id="quantitative-outcome-categorical-covariate" class="title-slide slide level1 center">
+<section id="quantitative-outcome-categorical-covariate" class="title-slide slide level1 center" data-background-color="#6c972b">
 <h1>Quantitative Outcome ~ Categorical Covariate</h1>
 
 </section>
-<section id="analysis-of-variance-anova" class="slide level2">
-<h2>Analysis of Variance (ANOVA)</h2>
-<p>Analysis of variance assesses whether the means of two or more groups are statistically different from each other. This analysis is appropriate whenever you want to compare the means (quantitative variables) of groups (categorical variables).</p>
+<section id="analysis-of-variance-anovaascn-section-5.4" class="slide level2">
+<h2>Analysis of Variance (ANOVA)<a href="https://norcalbiostat.github.io/AppliedStatistics_notes/bv-anova.html">(ASCN Section 5.4)</a></h2>
+<p>Analysis of variance assesses whether the means of two or more groups are statistically different from each other. Does knowing what group an observation is in tell you about the location of the data?</p>
+<p><span class="math display">\[
+y_{ij} = \mu_{j} + \epsilon_{ij} \qquad \qquad
+\epsilon_{ij} \overset{iid}{\sim} \mathcal{N}(0,\sigma^{2})
+\]</span></p>
+<p>for <span class="math inline">\(i=1, \ldots, I\)</span> factor levels and <span class="math inline">\(j = 1, \ldots, n_{i}\)</span> subjects within each factor level. The random error terms are independently and identically distributed (iid) normally with common variance.</p>
+</section>
+<section id="hypothesis-specification" class="slide level2">
+<h2>Hypothesis specification</h2>
 <p>The null hypothesis is that there is no difference in the mean of the quantitative variable across groups (categorical variable), while the alternative is that there is a difference.</p>
+<ul>
+<li><span class="math inline">\(H_0\)</span>: The mean outcome is the same across all groups. <span class="math inline">\(\mu_1 = \mu_2 = \cdots = \mu_j\)</span></li>
+<li><span class="math inline">\(H_A\)</span>: At least one mean is different.</li>
+</ul>
+<div class="callout callout-note no-icon callout-style-simple">
+<div class="callout-body">
+<div class="callout-content">
+<p>A 2-sample t-test is mathematically identical to an ANOVA with 2 groups.</p>
+</div>
+</div>
+</div>
 </section>
 <section id="section-3" class="slide level2" data-background-color="#6c972b" data-background-image="https://imgs.xkcd.com/comics/significant.png" data-background-size="300px" data-background-position="85% 50%">
 <h2></h2>
 <div class="columns">
-<div class="column" style="width:40%;">
+<div class="column" style="width:60%;">
 <p><strong>Why not multiple T-tests between all pairs of groups?</strong></p>
 <p><br>
 </p>
@@ -621,13 +657,973 @@ sample estimates:
 <p><br>
 </p>
 <p>Img Ref: <a href="https://xkcd.com/882">https://xkcd.com/882</a></p>
-</div><div class="column" style="width:60%;">
+</div><div class="column" style="width:40%;">
 
 </div>
 </div>
 </section>
-<section id="type-i-and-type-ii-error-an-important-side-topic" class="slide level2">
+<section id="type-i-and-type-ii-error-an-important-side-topic" class="slide level2 incremental">
 <h2>Type I and Type II Error (an important side topic)</h2>
+<ul>
+<li>AKA False positive or false negative. <a href="https://en.wikipedia.org/wiki/Type_I_and_type_II_errors">Wikipedia</a></li>
+<li>The significance level, <span class="math inline">\(\alpha\)</span>, is what we use to define the amount of “risk” we are willing to take to falsely reject <span class="math inline">\(H_{0}\)</span> (false positive).</li>
+<li>We talk more about false positive &amp; false negative, <a href="https://en.wikipedia.org/wiki/Sensitivity_and_specificity">specificity and sensitivity</a> in Math 456.</li>
+<li>We will see shortly however how to conduct multiple comparisons while maintaining our “family-wise” error rate at <span class="math inline">\(\alpha\)</span></li>
+</ul>
+</section>
+<section id="analysis-of-variance" class="slide level2">
+<h2>Analysis of Variance</h2>
+<p>By comparing the portion of the variance in the outcome that is explained by the groups, to the portion that’s leftover due to unexplained randomness. Essentially we’re comparing the ratio of <code>MODEL</code> to <code>RESIDUAL</code>.</p>
+<blockquote>
+<p>Total Variation = Between Group Variation + Within Group Variation</p>
+</blockquote>
+<p>Variation is measured using the Sum of Squares (SS): The sum of the squares within a group (SSE), the sum of squares between groups (SSG), and the total sum of squares (SST).</p>
+</section>
+<section id="sum-of-squares" class="slide level2 smaller">
+<h2>Sum of Squares</h2>
+<p><strong>SSG (Between groups)</strong>: Measures the variation of the <span class="math inline">\(I\)</span> group means around the overall mean.</p>
+<p><span class="math display">\[
+  SSG = \sum_{i=1}^{I}n_{i}(\bar{y}_{i.}-\bar{y}..)^{2} = n_{1}(\bar{y}_{1.}-\bar{y}..)^{2} + n_{2}(\bar{y}_{2.}-\bar{y}..)^{2} + n_{3}(\bar{y}_{3.}-\bar{y}..)^{2}
+\]</span></p>
+<p><strong>SSE (Within group)</strong>: Measures the variation of each observation around its group mean.</p>
+<p><span class="math display">\[
+SSE = \sum_{i=1}^{I}\sum_{j=1}^{n_{i}}(y_{ij}-\bar{y}_{i.})^{2} = \sum_{i=1}^{I}(n_{i}-1)Var(Y_{i})
+\]</span></p>
+<p><strong>SST (Total)</strong>: Measures the variation of the <span class="math inline">\(N\)</span> data points around the overall mean.</p>
+<p><span class="math display">\[
+SST =  \sum_{i=1}^{I}\sum_{j=1}^{n_{i}}(y_{ij}-\bar{y}..)^{2} = (N-1)Var(Y)
+\]</span></p>
+</section>
+<section id="analysis-of-variance-table" class="slide level2">
+<h2>Analysis of Variance Table</h2>
+<p>The results are typically summarized in an ANOVA table.</p>
+<table style="width:89%;">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 12%">
+<col style="width: 11%">
+<col style="width: 38%">
+<col style="width: 11%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Source</th>
+<th style="text-align: center;">SS</th>
+<th style="text-align: center;">df</th>
+<th style="text-align: center;">MS</th>
+<th style="text-align: center;">F</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Groups</td>
+<td style="text-align: center;">SSG</td>
+<td style="text-align: center;"><span class="math inline">\(I-1\)</span></td>
+<td style="text-align: center;">MSG = <span class="math inline">\(\frac{SSG}{I-1}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\frac{MSG}{MSE}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Error</td>
+<td style="text-align: center;">SSE</td>
+<td style="text-align: center;"><span class="math inline">\(N-I\)</span></td>
+<td style="text-align: center;">MSE = <span class="math inline">\(\frac{MSG}{N-I}\)</span></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Total</strong></td>
+<td style="text-align: center;"><strong>SST</strong></td>
+<td style="text-align: center;"><span class="math inline">\(N-1\)</span></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<p>The value in the <strong>F</strong> column is the test statistic, and has a F distribution with degrees of freedom (df) dependent on the number of groups (I-1), and the number of observations (N-I).</p>
+</section>
+<section id="the-f-distribution" class="slide level2">
+<h2>The F-distribution</h2>
+<p>The <span class="math inline">\(p\)</span>-value is the <strong>area to the right</strong> of the F statistic density curve. This is always to the right because the F-distribution is truncated at 0 and skewed right. This is true regardless of the <span class="math inline">\(df\)</span>.</p>
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">curve</span>(<span class="fu">df</span>(x,<span class="at">df1=</span><span class="dv">5</span>, <span class="at">df2=</span><span class="dv">10</span>),<span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">10</span>), <span class="at">main=</span><span class="st">"Example F distribution with df1=5, df2=10"</span>, <span class="at">ylab=</span><span class="st">""</span>,<span class="at">xlab=</span><span class="fu">expression</span>(F))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+
+</div>
+<img data-src="lec08-bivariate_modeling_files/figure-revealjs/unnamed-chunk-5-1.png" width="960" class="r-stretch"></section>
+<section id="assumptions" class="slide level2">
+<h2>Assumptions</h2>
+<p>Generally we must check three conditions on the data before performing ANOVA:</p>
+<ul>
+<li>The observations are independent within and across groups</li>
+<li>The data within each group are nearly normal</li>
+<li>The variability across the groups is about equal.</li>
+</ul>
+</section>
+<section id="example-march-of-the-penguins" class="slide level2">
+<h2>Example: March of the Penguins</h2>
+<div class="cell">
+
+</div>
+<h3 id="identify-response-and-explanatory-variables-1">1. Identify response and explanatory variables</h3>
+<ul>
+<li>Species = categorical explanatory variable</li>
+<li>Flipper length = quantitative response variable</li>
+</ul>
+</section>
+<section id="visualize-and-summarise-bivariate-relationship-1" class="slide level2 smaller">
+<h2>2. Visualize and summarise bivariate relationship</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">library</span>(ggdist) <span class="co"># for the "half-violin" plot (stat_slab)</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="fu">ggplot</span>(pen, <span class="fu">aes</span>(<span class="at">x=</span>flipper_length_mm, <span class="at">y=</span>species, <span class="at">fill=</span>species)) <span class="sc">+</span> </span>
+<span id="cb6-3"><a href="#cb6-3"></a>      <span class="fu">stat_slab</span>(<span class="at">alpha=</span>.<span class="dv">5</span>, <span class="at">justification =</span> <span class="dv">0</span>) <span class="sc">+</span> </span>
+<span id="cb6-4"><a href="#cb6-4"></a>      <span class="fu">geom_boxplot</span>(<span class="at">width =</span> .<span class="dv">2</span>,  <span class="at">outlier.shape =</span> <span class="cn">NA</span>) <span class="sc">+</span> </span>
+<span id="cb6-5"><a href="#cb6-5"></a>      <span class="fu">geom_jitter</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">height =</span> <span class="fl">0.05</span>) <span class="sc">+</span></span>
+<span id="cb6-6"><a href="#cb6-6"></a>      <span class="fu">stat_summary</span>(<span class="at">fun=</span><span class="st">"mean"</span>, <span class="at">geom=</span><span class="st">"point"</span>, <span class="at">col=</span><span class="st">"red"</span>, <span class="at">size=</span><span class="dv">4</span>, <span class="at">pch=</span><span class="dv">17</span>) <span class="sc">+</span> </span>
+<span id="cb6-7"><a href="#cb6-7"></a>      <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb6-8"><a href="#cb6-8"></a>      <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Flipper Length (mm)"</span>, <span class="at">y =</span> <span class="st">"Species"</span>) <span class="sc">+</span> </span>
+<span id="cb6-9"><a href="#cb6-9"></a>      <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img data-src="lec08-bivariate_modeling_files/figure-revealjs/unnamed-chunk-7-1.png" width="960"></p>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>pen <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(species) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">summarise</span>(<span class="at">mean=</span><span class="fu">mean</span>(flipper_length_mm, <span class="at">na.rm=</span><span class="cn">TRUE</span>), </span>
+<span id="cb7-3"><a href="#cb7-3"></a>            <span class="at">sd =</span> <span class="fu">sd</span>(flipper_length_mm, <span class="at">na.rm=</span><span class="cn">TRUE</span>), </span>
+<span id="cb7-4"><a href="#cb7-4"></a>            <span class="at">IQR =</span> <span class="fu">IQR</span>(flipper_length_mm, <span class="at">na.rm=</span><span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">species</th>
+<th style="text-align: right;">mean</th>
+<th style="text-align: right;">sd</th>
+<th style="text-align: right;">IQR</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Adelie</td>
+<td style="text-align: right;">190.0</td>
+<td style="text-align: right;">6.5</td>
+<td style="text-align: right;">9</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Chinstrap</td>
+<td style="text-align: right;">195.8</td>
+<td style="text-align: right;">7.1</td>
+<td style="text-align: right;">10</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Gentoo</td>
+<td style="text-align: right;">217.2</td>
+<td style="text-align: right;">6.5</td>
+<td style="text-align: right;">9</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<p>The distribution of flipper length varies across the species, with Gentoo having the largest flippers on average at 217.2mm compared to Adelie (190mm) and Chinstrap (195.8mm). The distributions are normally distributed with very similar spreads, Chinstrap has the most variable flipper length with a SD of 7.1 compared to 6.5 for the other two species.</p>
+<p><small> <em><a href="https://www.cedricscherer.com/2021/06/06/visualizing-distributions-with-raincloud-plots-and-how-to-create-them-with-ggplot2/">A blog post about raincloud plots vs violins</a></em> </small></p>
+</section>
+<section id="write-the-relationship-you-want-to-examine-in-the-form-of-a-research-question.-1" class="slide level2">
+<h2>3. Write the relationship you want to examine in the form of a research question.</h2>
+<ul>
+<li>Null Hypothesis: There is no association between flipper length and species.</li>
+<li>Alternate Hypothesis: There is an association between flipper length and species.</li>
+</ul>
+</section>
+<section id="perform-an-appropriate-statistical-analysis-using-dr-ds-4-step-method.-1" class="slide level2">
+<h2>4. Perform an appropriate statistical analysis using Dr D’s 4 step method.</h2>
+<p><strong>a. Define parameters</strong></p>
+<p>Let <span class="math inline">\(\mu_{A}, \mu_{C}\)</span> and <span class="math inline">\(\mu_{G}\)</span> be the average flipper length for the <em>Adelie, Chinstrap</em> and <em>Gentoo</em> species of penguins respectively.</p>
+<p><br>
+</p>
+<p><strong>b. State the null and alternative hypothesis as symbols</strong></p>
+<p><span class="math inline">\(H_{0}: \mu_{A} = \mu_{C} = \mu_{G}\)</span><br>
+<span class="math inline">\(H_{A}:\)</span> At least one <span class="math inline">\(\mu_{j}\)</span> is different.</p>
+</section>
+<section id="section-4" class="slide level2">
+<h2></h2>
+<p><strong>c.&nbsp;State and justify the analysis model. Check assumptions.</strong></p>
+<p>We are comparing means from multiple groups, so an ANOVA is the appropriate procedure. We need to check for independence, approximate normality and approximately equal variances across groups.</p>
+<p><strong>Independence</strong>: We are assuming that each penguin was sampled independently of each other, and that the species themselves are independent of each other.</p>
+<p><strong>Normality</strong>: The distributions of flipper length within each group are fairly normal</p>
+<p><strong>Equal variances</strong>: Both the standard deviation and IQR (as measures of variability) are very similar across all groups.</p>
+</section>
+<section id="section-5" class="slide level2">
+<h2></h2>
+<p><strong>d.&nbsp;Conduct the test and make a decision about the plausibility of the alternative hypothesis.</strong></p>
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">aov</span>(flipper_length_mm <span class="sc">~</span> species, <span class="at">data=</span>pen) <span class="sc">|&gt;</span> <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>             Df Sum Sq Mean Sq F value Pr(&gt;F)    
+species       2  52473   26237   594.8 &lt;2e-16 ***
+Residuals   339  14953      44                   
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+2 observations deleted due to missingness</code></pre>
+</div>
+</div>
+<p>The pvalue is very small, so there is evidence to support <span class="math inline">\(H_{a}\)</span>: at least one mean is different.</p>
+</section>
+<section id="write-a-conclusion-in-context-of-the-problem." class="slide level2">
+<h2>5. Write a conclusion in context of the problem.</h2>
+<p>There is sufficient evidence to believe that the average flipper length is significantly different between the Adelie, Chinstrap and Gentoo species of penguins (p&lt;.0001).</p>
+</section>
+<section id="multiple-post-hoc-comparisons-which-group-is-different" class="slide level2 smaller">
+<h2>Multiple / Post-Hoc comparisons: Which group is different?</h2>
+<ul>
+<li>Run Post Hoc tests (“Tukeys HSD”, or “Duncan”), <em>only</em> if your ANOVA is significant.</li>
+<li>The overall ANOVA can be significant and NOT have any significant differences when you look at the post hoc results. The reason is that the two analyses ask two different questions.
+<ul>
+<li>The ANOVA is testing the overall pattern of the data and asking if as a whole the explanatory variable has a relationship (or lack thereof) with the response variable.</li>
+<li>The post hoc is asking if one level of the explanatory variable is significantly different than another for the response variable. The post hoc is not as sensitive to differences as the ANOVA.</li>
+<li><strong>The family-wise error rate of <span class="math inline">\(\alpha\)</span> is mainained</strong></li>
+</ul></li>
+<li>Differences in group means can be non-significant at the post hoc level, but significant at the ANOVA level.</li>
+</ul>
+</section>
+<section id="section-6" class="slide level2">
+<h2></h2>
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">TukeyHSD</span>(<span class="fu">aov</span>(flipper_length_mm <span class="sc">~</span> species, <span class="at">data=</span>pen))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = flipper_length_mm ~ species, data = pen)
+
+$species
+                      diff       lwr       upr p adj
+Chinstrap-Adelie  5.869887  3.586583  8.153191     0
+Gentoo-Adelie    27.233349 25.334376 29.132323     0
+Gentoo-Chinstrap 21.363462 19.000841 23.726084     0</code></pre>
+</div>
+</div>
+<p>The results of the Tukey HSD post-hoc test indicate that the average flipper length in mm is significantly different between all pairs of penguin species at the 5% significance level. Chinstrap has an average flipper length 5.87mm(3.59-8.15) larger than Adelie, whereas Gentoo has an average flipper length 27.23mm(25.33-29.13) larger than Adelie.</p>
+</section>
+<section id="coefficient-of-determination-r2-fracssgsst" class="slide level2 smaller">
+<h2>Coefficient of Determination <span class="math inline">\(R^{2} = \frac{SSG}{SST}\)</span></h2>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>             Df Sum Sq Mean Sq F value Pr(&gt;F)    
+species       2  52473   26237   594.8 &lt;2e-16 ***
+Residuals   339  14953      44                   
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+2 observations deleted due to missingness</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="dv">52473</span><span class="sc">/</span>(<span class="dv">52473</span> <span class="sc">+</span> <span class="dv">14953</span>)<span class="sc">*</span><span class="dv">100</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 77.82309</code></pre>
+</div>
+</div>
+<p>The coefficient of determination is interpreted as the % of the variation seen in the outcome that is due to subject level variation within each of the treatment groups. The strength of this measure can be thought of in a similar manner as the correlation coefficient <span class="math inline">\(\rho\)</span>, <span class="math inline">\(&lt;.3\)</span> indicates a poor fit, <span class="math inline">\(&lt;.5\)</span> indicates a medium fit, and <span class="math inline">\(&gt;.7\)</span> indicates a good fit.</p>
+<blockquote>
+<p>77.8% of the variation in flipper length can be explained by the species of penguin</p>
+</blockquote>
+</section>
+<section id="non-parametric-tests" class="slide level2">
+<h2>Non-parametric tests</h2>
+<ul>
+<li>Many stat tests rely on assumptions that ensure the sample estimate can be modeled with a normal distribution.</li>
+<li>What do you do if your assumptions aren’t met?</li>
+<li>We can “relax” some of those assumptions and perform a more robust, but less powerful test.
+<ul>
+<li>less power means you need more data to draw a conclusion with the same amount of confidence.</li>
+</ul></li>
+<li>No detailed examples will be provided in these notes. You tend to learn/use these on an “as-needed” basis.</li>
+</ul>
+</section>
+<section id="kruskal-wallis" class="slide level2 incremental">
+<h2>Kruskal-Wallis</h2>
+<ul>
+<li>The <a href="https://en.wikipedia.org/wiki/Kruskal%E2%80%93Wallis_one-way_analysis_of_variance">Kruskal-Wallis</a> test is the most common <strong>non-parametric</strong> method for testing whether or not groups of observations come from the same overall distribution.</li>
+<li>By comparing the <em>medians</em> instead of the means, we can remove the normality assumption on the residuals.</li>
+<li>Null hypothesis is now that the medians of all groups are equal vs at least one population median is different.</li>
+<li><a href="http://www.sthda.com/english/wiki/kruskal-wallis-test-in-r">Ref on how to do this in R from STHDA</a></li>
+</ul>
+</section></section>
+<section>
+<section id="categorical-outcome-categorical-covariate" class="title-slide slide level1 center" data-background-color="#6c972b">
+<h1>Categorical Outcome ~ Categorical Covariate</h1>
+
+</section>
+<section id="opening-remarks" class="slide level2">
+<h2>Opening Remarks</h2>
+<p>If we are only concerned with testing the hypothesis that the proportion of successes between two groups are equal <span class="math inline">\(p_{1}-p_{2}=0\)</span>, we can leverage the Normal distribution and conduct a Z-test for two proportions.</p>
+<p>However in this class we will use the more generalizable model via Chi-squared test of association/equal proportions.</p>
+</section>
+<section id="chi-squared-test-of-equal-proportions-ref-ascn-section-5.5" class="slide level2">
+<h2>Chi-squared test of equal proportions <a href="https://norcalbiostat.github.io/AppliedStatistics_notes/bv-chisq.html">(Ref: ASCN Section 5.5)</a></h2>
+<p>A 30-year study was conducted with nearly 90,000 female participants. (Miller AB. 2014) During a 5-year screening period, each woman was randomized to one of two groups: in the first group, women received regular mammograms to screen for breast cancer, and in the second group, women received regular non-mammogram breast cancer exams. No intervention was made during the following 25 years of the study, and we’ll consider death resulting from breast cancer over the full 30-year period.</p>
+</section>
+<section id="results-from-study" class="slide level2">
+<h2>Results from study</h2>
+<div class="cell">
+<div class="cell-output-display">
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Alive</th>
+<th style="text-align: right;">Dead</th>
+<th style="text-align: right;">Sum</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Control</td>
+<td style="text-align: right;">44405</td>
+<td style="text-align: right;">505</td>
+<td style="text-align: right;">44910</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Mammogram</td>
+<td style="text-align: right;">44425</td>
+<td style="text-align: right;">500</td>
+<td style="text-align: right;">44925</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Sum</td>
+<td style="text-align: right;">88830</td>
+<td style="text-align: right;">1005</td>
+<td style="text-align: right;">89835</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>The independent/explanatory variable is treatment (additional mammograms), and the dependent/response variable is death from breast cancer. Are these measures associated?</p>
+</section>
+<section id="assume-independenceno-association" class="slide level2 smaller incremental">
+<h2>Assume independence/no association</h2>
+<ul>
+<li>If mammograms are more effective than non-mammogram breast cancer exams, then we would expect to see additional deaths from breast cancer in the control group (there is a relationship).</li>
+<li>If mammograms are not as effective as regular breast cancer exams, we would expect to see no difference in breast cancer deaths in the two groups (there is no relationship).</li>
+<li>Need to figure out how many deaths would be <strong>expected</strong>, if there was no relationship between treatment death by breast cancer,</li>
+<li>Then examine the <strong>residuals</strong> - the difference between the observed counts and the expected counts in each cell.</li>
+</ul>
+</section>
+<section id="table-notation" class="slide level2">
+<h2>Table notation</h2>
+<p>Tables can be described by <span class="math inline">\(i\)</span> rows and <span class="math inline">\(j\)</span> columns. So the cell in the top left is <span class="math inline">\(i=1\)</span> and <span class="math inline">\(j=1\)</span>.</p>
+<table style="width:60%;">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 13%">
+<col style="width: 15%">
+<col style="width: 15%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><span class="math inline">\(O_{ij}\)</span></th>
+<th style="text-align: center;">Alive</th>
+<th style="text-align: center;">Dead</th>
+<th style="text-align: center;">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Mammo</td>
+<td style="text-align: center;"><span class="math inline">\(n_{11}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(n_{12}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(n_{1.}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Control</td>
+<td style="text-align: center;"><span class="math inline">\(n_{21}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(n_{22}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(n_{2.}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Total</td>
+<td style="text-align: center;"><span class="math inline">\(n_{.1}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(n_{.2}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(N\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>In our DATA = MODEL + RESIDUAL framework, the DATA (<span class="math inline">\(n_{11}, n_{12}\)</span>, etc)is the observed counts <span class="math inline">\(O_{ij}\)</span> and the MODEL is the expected counts <span class="math inline">\(E_{ij}\)</span>.</p>
+</section>
+<section id="calculating-the-expected-count" class="slide level2">
+<h2>Calculating the expected count</h2>
+<p>Since we assume the variables are independent (unless the data show otherwise) the expected count for each cell is calculated as the row total times the column total for that cell, divided by the overall total.</p>
+<p><span class="math display">\[E_{ij} = \frac{n_{i.}n_{.j}}{N}\]</span></p>
+<p>In a probability framework this is stated as two variables <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are independent if <span class="math inline">\(P(A \cap B) = P(A)*P(B) = \frac{n_{i.}}{N}*\frac{n_{.j}}{N}\)</span></p>
+</section>
+<section id="calculating-the-residuals" class="slide level2 smaller">
+<h2>Calculating the residuals</h2>
+<p>The residuals are calculated as <span class="math inline">\((O_{ij} - E_{ij})\)</span></p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>Expected</p>
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">chisq.test</span>(a<span class="sc">$</span>Tx, a<span class="sc">$</span>Outcome)<span class="sc">$</span>expected <span class="sc">%&gt;%</span> <span class="fu">kable</span>(<span class="at">digits=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Alive</th>
+<th style="text-align: right;">Dead</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Control</td>
+<td style="text-align: right;">44407.58</td>
+<td style="text-align: right;">502.42</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Mammogram</td>
+<td style="text-align: right;">44422.42</td>
+<td style="text-align: right;">502.58</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<p>Residuals</p>
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">chisq.test</span>(a<span class="sc">$</span>Tx, a<span class="sc">$</span>Outcome)<span class="sc">$</span>residuals <span class="sc">%&gt;%</span> <span class="fu">kable</span>(<span class="at">digits=</span><span class="dv">3</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Alive</th>
+<th style="text-align: right;">Dead</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Control</td>
+<td style="text-align: right;">-0.012</td>
+<td style="text-align: right;">0.115</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Mammogram</td>
+<td style="text-align: right;">0.012</td>
+<td style="text-align: right;">-0.115</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<p>If mammograms were not associated with survival, there were 0.01 fewer people still alive than expected, and 0.11 more people dead.</p>
+</section>
+<section id="chi2-test-statistic" class="slide level2">
+<h2><span class="math inline">\(\chi^2\)</span> test statistic</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>The <span class="math inline">\(\chi^2\)</span> test statistic is defined as the sum of the squared residuals, divided by the expected counts, and follows a <span class="math inline">\(\chi^2\)</span> distribution with degrees of freedom (#rows -1)(#cols -1).</p>
+<p><span class="math display">\[ \sum_{ij}\frac{(O_{ij}-E_{ij})^{2}}{E_{ij}} \]</span></p>
+</div><div class="column" style="width:50%;">
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">dist_chisq</span>(<span class="at">chi2=</span>.<span class="dv">027</span>, <span class="at">deg.f=</span><span class="dv">1</span>, <span class="at">geom.colors=</span><span class="fu">c</span>(<span class="st">"#FDE725FF"</span>, <span class="st">"#440154FF"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img data-src="lec08-bivariate_modeling_files/figure-revealjs/unnamed-chunk-15-1.png" width="960"></p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="conclusion" class="slide level2">
+<h2>Conclusion</h2>
+<p>In this example, the test statistic was 0.017 with p-value 0.895.</p>
+<p>So there is not enough reason to believe that mammograms in addition to regular exams are associated with a reduced risk of death due to breast cancer.</p>
+<p>This example demonstrated how we examine the residuals to see how closely our DATA fits a hypothesized MODEL.</p>
+</section>
+<section id="example-income-and-general-health" class="slide level2">
+<h2>Example: Income and General Health</h2>
+<p>Using the Addhealth data set, what can we say about the relationship between smoking status and a person’s perceived level of general health?</p>
+<p>Is there an association between lifetime smoking status and perceived general health?</p>
+</section>
+<section id="identify-response-and-explanatory-variables-2" class="slide level2">
+<h2>1. Identify response and explanatory variables</h2>
+<ul>
+<li>The binary explanatory variable is whether the person has ever smoked an entire cigarette (<code>eversmoke_c</code>).</li>
+<li>The categorical explanatory variable is the person’s general health (<code>genhealth</code>) and has levels “Excellent”, “Very Good”, “Good”, “Fair”, and “Poor”.</li>
+</ul>
+</section>
+<section id="visualize-and-summarise-bivariate-relationship-2" class="slide level2 smaller">
+<h2>2. Visualize and summarise bivariate relationship</h2>
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">plot_xtab</span>(<span class="at">grp=</span>addhealth<span class="sc">$</span>eversmoke_c, <span class="at">x=</span>addhealth<span class="sc">$</span>genhealth, </span>
+<span id="cb18-2"><a href="#cb18-2"></a>                  <span class="at">show.total =</span> <span class="cn">FALSE</span>, <span class="at">margin=</span><span class="st">"row"</span>, <span class="at">legend.title=</span><span class="st">""</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+
+</div>
+<img data-src="lec08-bivariate_modeling_files/figure-revealjs/unnamed-chunk-16-1.png" width="960" class="r-stretch"><p>The percentage of smokers seems to increase as the general health status decreases. Almost three-quarters (73%, n=40) of those reporting poor health have smoked an entire cigarette at least once in their life compared to 59% (n=573) of those reporting excellent health.</p>
+</section>
+<section id="b.-other-ways-to-visualize-this-fyi-only" class="slide level2">
+<h2>2b. Other ways to visualize this (FYI only)</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>addhealth <span class="sc">%&gt;%</span> </span>
+<span id="cb19-2"><a href="#cb19-2"></a>  <span class="fu">group_by</span>(genhealth) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-3"><a href="#cb19-3"></a>  <span class="fu">summarize</span>(<span class="at">p =</span> <span class="fu">mean</span>(eversmoke_c <span class="sc">==</span> <span class="st">"Smoked at least once"</span>, <span class="at">na.rm=</span><span class="cn">TRUE</span>)<span class="sc">*</span><span class="dv">100</span>, </span>
+<span id="cb19-4"><a href="#cb19-4"></a>            <span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-5"><a href="#cb19-5"></a>  <span class="fu">na.omit</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb19-6"><a href="#cb19-6"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>genhealth, <span class="at">y=</span>p, <span class="at">color=</span>genhealth)) <span class="sc">+</span> </span>
+<span id="cb19-7"><a href="#cb19-7"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">size =</span> n)) <span class="sc">+</span> </span>
+<span id="cb19-8"><a href="#cb19-8"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">100</span>)) <span class="sc">+</span> </span>
+<span id="cb19-9"><a href="#cb19-9"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x=</span>genhealth, <span class="at">xend=</span>genhealth, <span class="at">y=</span><span class="dv">0</span>, <span class="at">yend=</span>p)) <span class="sc">+</span></span>
+<span id="cb19-10"><a href="#cb19-10"></a>  <span class="fu">scale_color_discrete</span>(<span class="at">guide=</span><span class="st">"none"</span>) <span class="sc">+</span> <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb19-11"><a href="#cb19-11"></a>  <span class="fu">ylab</span>(<span class="st">"Proportion of smokers"</span>) <span class="sc">+</span> </span>
+<span id="cb19-12"><a href="#cb19-12"></a>  <span class="fu">xlab</span>(<span class="st">"Perceived General Health"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img data-src="lec08-bivariate_modeling_files/figure-revealjs/unnamed-chunk-17-1.png" width="960"></p>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>addhealth <span class="sc">%&gt;%</span> </span>
+<span id="cb20-2"><a href="#cb20-2"></a>  <span class="fu">count</span>(genhealth, eversmoke_c) <span class="sc">%&gt;%</span> </span>
+<span id="cb20-3"><a href="#cb20-3"></a>  <span class="fu">na.omit</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb20-4"><a href="#cb20-4"></a>  <span class="fu">group_by</span>(genhealth)<span class="sc">%&gt;%</span></span>
+<span id="cb20-5"><a href="#cb20-5"></a>  <span class="fu">mutate</span>(<span class="at">p =</span> n<span class="sc">/</span><span class="fu">sum</span>(n)<span class="sc">*</span><span class="dv">100</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb20-6"><a href="#cb20-6"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>genhealth, <span class="at">y=</span>p, <span class="at">fill=</span>eversmoke_c, </span>
+<span id="cb20-7"><a href="#cb20-7"></a>           <span class="at">label =</span> <span class="fu">paste0</span>(<span class="fu">round</span>(p, <span class="dv">1</span>), <span class="st">"%"</span>))) <span class="sc">+</span> </span>
+<span id="cb20-8"><a href="#cb20-8"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span> <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb20-9"><a href="#cb20-9"></a>  <span class="fu">scale_fill_discrete</span>(<span class="at">name =</span> <span class="st">""</span>) <span class="sc">+</span> </span>
+<span id="cb20-10"><a href="#cb20-10"></a>  <span class="fu">geom_text</span>(<span class="at">position=</span><span class="fu">position_stack</span>(<span class="fl">0.5</span>)) <span class="sc">+</span> </span>
+<span id="cb20-11"><a href="#cb20-11"></a>  <span class="fu">ylab</span>(<span class="st">"Proportion of smokers"</span>) <span class="sc">+</span> </span>
+<span id="cb20-12"><a href="#cb20-12"></a>  <span class="fu">xlab</span>(<span class="st">"Perceived General Health"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img data-src="lec08-bivariate_modeling_files/figure-revealjs/unnamed-chunk-18-1.png" width="960"></p>
+</div>
+</div>
+</div>
+</div>
+<p><small> These methods pre-calculate the proportions first, and then put them on a ggplot canvas. As you build your expertise with R/Ggplot you will find yourself wanting to enhance or move away from the “pre-packaged” plots from <code>sjPlot</code> and <code>ggpubr</code>. </small></p>
+</section>
+<section id="write-the-relationship-you-want-to-examine-in-the-form-of-a-research-question.-2" class="slide level2">
+<h2>3. Write the relationship you want to examine in the form of a research question.</h2>
+<ul>
+<li>Null Hypothesis: The proportion of smokers is the same across all levels of general health.</li>
+<li>Alternate Hypothesis: At least one group has a different proportion of smokers compared to the other general health groups.</li>
+</ul>
+</section>
+<section id="perform-an-appropriate-statistical-analysis-using-dr-ds-4-step-method.-2" class="slide level2">
+<h2>4. Perform an appropriate statistical analysis using Dr D’s 4 step method.</h2>
+<p><strong>a. Define parameters</strong></p>
+<p>Let <span class="math inline">\(p_{1}, p_{2}, \ldots, p_{5}\)</span> be the true proportion of smokers in each of the 5 health categories: (1) Excellent to (5) Poor.</p>
+<p><br>
+</p>
+<p><strong>b. State the null and alternative hypothesis as symbols</strong></p>
+<p><span class="math inline">\(H_{0}: p_{1} = p_{2} = \ldots p_{5}\)</span><br>
+<span class="math inline">\(H_{A}:\)</span> At least one <span class="math inline">\(p_{j}\)</span> is different.</p>
+</section>
+<section id="section-7" class="slide level2">
+<h2></h2>
+<p><strong>c.&nbsp;State and justify the analysis model. Check assumptions.</strong></p>
+<p>I will conduct a <span class="math inline">\(\chi^{2}\)</span> test of association. There is at least 10 observations in each combination of smoking status and general health.</p>
+<p><strong>d.&nbsp;Conduct the test and make a decision about the plausibility of the alternative hypothesis.</strong></p>
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">chisq.test</span>(addhealth<span class="sc">$</span>genhealth, addhealth<span class="sc">$</span>eversmoke_c)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pearson's Chi-squared test
+
+data:  addhealth$genhealth and addhealth$eversmoke_c
+X-squared = 30.795, df = 4, p-value = 3.371e-06</code></pre>
+</div>
+</div>
+<p>We have strong evidence in favor of the alternative hypothesis, p&lt;.0001</p>
+</section>
+<section id="write-a-conclusion-in-context-of-the-problem.-1" class="slide level2">
+<h2>5. Write a conclusion in context of the problem.</h2>
+<p>We can conclude that there is an association between ever smoking a cigarette in their life and perceived general health (<span class="math inline">\(\chi^{2} = 30.8, df=4, p&lt;.0001\)</span>).</p>
+</section>
+<section id="multiple-comparisons-which-group-is-different" class="slide level2 smaller">
+<h2>Multiple comparisons: Which group is different?</h2>
+<p>Just like with ANOVA, if we find that the Chi-squared test indicates that at least one proportion is different from the others, it’s our job to figure out which ones might be different! We will analyze the residuals to accomplish this.</p>
+</section>
+<section id="examine-the-residuals" class="slide level2 smaller">
+<h2>Examine the residuals</h2>
+<p>The residuals (<span class="math inline">\(O_{ij} - E_{ij}\)</span>) are automatically stored in the model output. You can either print them out and look at the values directly or create a plot. You’re looking for combinations that have much higher, or lower expected proportions.</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>health.smoke.model <span class="ot">&lt;-</span> <span class="fu">chisq.test</span>(addhealth<span class="sc">$</span>genhealth, addhealth<span class="sc">$</span>eversmoke_c)</span>
+<span id="cb23-2"><a href="#cb23-2"></a>health.smoke.model<span class="sc">$</span>residuals <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>                   addhealth$eversmoke_c
+addhealth$genhealth Never Smoked Smoked at least once
+          Excellent         3.45                -2.52
+          Very good         0.48                -0.35
+          Good             -2.44                 1.78
+          Fair             -1.06                 0.77
+          Poor             -0.94                 0.69</code></pre>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>plot.residuals <span class="ot">&lt;-</span> health.smoke.model<span class="sc">$</span>residuals <span class="sc">%&gt;%</span> <span class="fu">data.frame</span>()</span>
+<span id="cb25-2"><a href="#cb25-2"></a><span class="fu">ggplot</span>(plot.residuals, <span class="fu">aes</span>(<span class="at">x=</span>addhealth.genhealth, <span class="at">y=</span>addhealth.eversmoke_c)) <span class="sc">+</span></span>
+<span id="cb25-3"><a href="#cb25-3"></a>       <span class="fu">geom_raster</span>(<span class="fu">aes</span>(<span class="at">fill=</span>Freq)) <span class="sc">+</span>  <span class="fu">scale_fill_viridis_c</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img data-src="lec08-bivariate_modeling_files/figure-revealjs/unnamed-chunk-21-1.png" width="960"></p>
+</div>
+</div>
+</div>
+</div>
+<p>The proportion of non-smokers in the excellent health category is much higher than expected if there were no relationship between these two variables.</p>
+</section>
+<section id="all-pairwise-comparisons" class="slide level2 smaller">
+<h2>All pairwise comparisons</h2>
+<div class="columns">
+<div class="column" style="width:70%;">
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="co"># library(rcompanion)</span></span>
+<span id="cb26-2"><a href="#cb26-2"></a>smoke.by.genhealth <span class="ot">&lt;-</span> <span class="fu">table</span>(addhealth<span class="sc">$</span>genhealth, addhealth<span class="sc">$</span>eversmoke_c)</span>
+<span id="cb26-3"><a href="#cb26-3"></a>rcompanion<span class="sc">::</span><span class="fu">pairwiseNominalIndependence</span>(smoke.by.genhealth, <span class="at">fisher =</span> <span class="cn">FALSE</span>, <span class="at">gtest=</span><span class="cn">FALSE</span>) <span class="sc">|&gt;</span> <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Comparison</th>
+<th style="text-align: right;">p.Chisq</th>
+<th style="text-align: right;">p.adj.Chisq</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Excellent : Very good</td>
+<td style="text-align: right;">0.002</td>
+<td style="text-align: right;">0.008</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Excellent : Good</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Excellent : Fair</td>
+<td style="text-align: right;">0.001</td>
+<td style="text-align: right;">0.005</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Excellent : Poor</td>
+<td style="text-align: right;">0.055</td>
+<td style="text-align: right;">0.110</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Very good : Good</td>
+<td style="text-align: right;">0.009</td>
+<td style="text-align: right;">0.022</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Very good : Fair</td>
+<td style="text-align: right;">0.167</td>
+<td style="text-align: right;">0.278</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Very good : Poor</td>
+<td style="text-align: right;">0.269</td>
+<td style="text-align: right;">0.384</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Good : Fair</td>
+<td style="text-align: right;">0.886</td>
+<td style="text-align: right;">0.886</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Good : Poor</td>
+<td style="text-align: right;">0.630</td>
+<td style="text-align: right;">0.700</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Fair : Poor</td>
+<td style="text-align: right;">0.601</td>
+<td style="text-align: right;">0.700</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div><div class="column" style="width:30%;">
+<p>Using the adjusted (for multiple comparisons) p-value column, the proportion of smokers in the Excellent group (41.3%) is significantly different from nearly all other groups (35.4% for Very Good, 31.3% for Good, 31.8% for Fair).</p>
+<p>But why is it not significantly different from the 27.3% in the Poor group?</p>
+</div>
+</div>
+</section>
+<section id="the-effect-of-small-sample-sizes" class="slide level2">
+<h2>The effect of small sample sizes</h2>
+<p>Why is 41.3% significantly different from 35.4%, but NOT different from 27.3%?</p>
+<p>The standard error is always dependent on the sample size. Here, the number of individuals in the Poor health category is much smaller compared to all other groups - so the margin of error will be larger - making it less likely to be statistically significantly different from other groups.</p>
+<p>When you have a small numbers (n&lt;10) in one or more cells the distribution of the test statistic can no longer be modeled well using the <span class="math inline">\(\chi^{2}\)</span> distribution. So we again go to a non-parametric test that uses a randomization based method.</p>
+</section>
+<section id="fishers-exact-test" class="slide level2">
+<h2>Fishers Exact Test</h2>
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="fu">fisher.test</span>(addhealth<span class="sc">$</span>genhealth, addhealth<span class="sc">$</span>eversmoke_c, </span>
+<span id="cb27-2"><a href="#cb27-2"></a>            <span class="at">simulate.p.value =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Fisher's Exact Test for Count Data with simulated p-value (based on 2000 replicates)
+
+data:  addhealth$genhealth and addhealth$eversmoke_c
+p-value = 0.0004998
+alternative hypothesis: two.sided</code></pre>
+</div>
+</div>
+<p>Then you can use the <code>pairwiseNominalIndependence</code> function for all pairwise comparisons again, with the <code>fisher</code> argument set to <code>TRUE</code>.</p>
+<div class="callout callout-note no-icon callout-style-simple">
+<div class="callout-body">
+<div class="callout-content">
+<p><small>Note: the <code>simulate.p.value = TRUE</code> argument here is only needed if the randomization space is larger than your workspace. R will let you know when this is needed.</small></p>
+</div>
+</div>
+</div>
+</section>
+<section id="chi-squared-test-of-associationindependence" class="slide level2">
+<h2>Chi-Squared test of Association/Independence</h2>
+<p>We can still use the <span class="math inline">\(\chi^{2}\)</span> test of association to compare categorical variables with more than 2 levels. In this case we generalize the statement to ask: <strong>Is the distribution of 1 variable the same across levels of another variable?</strong>. In this sense, it is very much like an ANOVA.</p>
+<p>Mathematically the <span class="math inline">\(\chi^{2}\)</span> test of association is the exact same as a test of equal proportions.</p>
+</section>
+<section id="example" class="slide level2">
+<h2>Example</h2>
+<p>Let’s analyze the relationship between a person’s income and perceived level of general health.</p>
+<p>The categorical explanatory variable is income, binned into 4 ranges (<code>income_cat</code>).</p>
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a>addhealth<span class="sc">$</span>income_cat <span class="ot">&lt;-</span> Hmisc<span class="sc">::</span><span class="fu">cut2</span>(addhealth<span class="sc">$</span>income, <span class="at">g =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="state-hypothesis" class="slide level2">
+<h2>State Hypothesis</h2>
+<ul>
+<li>The income distribution is the same in each of the general health categories (no association)</li>
+<li>The income distribution differs for at least one of the general health categories (association)</li>
+</ul>
+</section>
+<section id="visualize-the-relationship" class="slide level2">
+<h2>Visualize the relationship</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="fu">plot_xtab</span>(<span class="at">grp=</span>addhealth<span class="sc">$</span>income_cat,</span>
+<span id="cb30-2"><a href="#cb30-2"></a>                  <span class="at">x=</span>addhealth<span class="sc">$</span>genhealth, </span>
+<span id="cb30-3"><a href="#cb30-3"></a>                  <span class="at">show.total =</span> <span class="cn">FALSE</span>, <span class="at">margin=</span><span class="st">"row"</span>,</span>
+<span id="cb30-4"><a href="#cb30-4"></a>                  <span class="at">legend.title=</span><span class="st">""</span>) <span class="sc">+</span> </span>
+<span id="cb30-5"><a href="#cb30-5"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img data-src="lec08-bivariate_modeling_files/figure-revealjs/unnamed-chunk-25-1.png" width="960"></p>
+</div>
+</div>
+</div><div class="column" style="width:40%;">
+<p><small> The income distribution is nearly flat for who rate themselves in excellent or very good condition. However, the proportion of individuals in the lower income categories increase as perceived general health decreases. Over 80% of those that rate themselves as in Poor condition have an annual income less than $35,500.</small></p><small>
+</small><p><small>Since there are very small cell sizes, we will use a Fishers Exact test. </small></p>
+</div>
+</div>
+</section>
+<section id="test-the-relationship-make-a-conclusion." class="slide level2">
+<h2>Test the relationship &amp; make a conclusion.</h2>
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="fu">fisher.test</span>(addhealth<span class="sc">$</span>genhealth, addhealth<span class="sc">$</span>income_cat, </span>
+<span id="cb31-2"><a href="#cb31-2"></a>            <span class="at">simulate.p.value =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Fisher's Exact Test for Count Data with simulated p-value (based on 2000 replicates)
+
+data:  addhealth$genhealth and addhealth$income_cat
+p-value = 0.0004998
+alternative hypothesis: two.sided</code></pre>
+</div>
+</div>
+<p>There is sufficient evidence to conclude that the distribution of income is not the same across all general health status categories.</p>
+</section>
+<section id="other-analysis-for-categorical-variables" class="slide level2">
+<h2>Other analysis for categorical variables</h2>
+<p>There is a slew of methods to analyze categorical data, we can’t get into them all. To learn more start with Categorical Data Analysis by Alan Agresti, who has written <em>extensively</em> on the subject.</p>
+<p>This R companion page also looks very useful http://rcompanion.org/handbook/H_01.html and where I got the <code>pairwiseNominalIndependence</code> function from.</p>
+</section></section>
+<section>
+<section id="quantitative-outcome-quantitative-covariate" class="title-slide slide level1 center" data-background-color="#6c972b">
+<h1>Quantitative Outcome ~ Quantitative Covariate</h1>
+
+</section>
+<section id="opening-remarks-1" class="slide level2">
+<h2>Opening Remarks</h2>
+<p>The PMA6 textbook (Chapter 7) goes into great detail on this topic, since regression is typically the basis for all advanced models.</p>
+<p>The book also distinguishes between a “fixed-x” case, where the values of the explanatory variable <span class="math inline">\(x\)</span> only take on pre-specified values, and a “variable-x” case, where the values of <span class="math inline">\(x\)</span> are observations from a population distribution of X’s.</p>
+<p>This latter case is what we will be concerning ourselves with.</p>
+</section>
+<section id="correlation" class="slide level2">
+<h2>Correlation</h2>
+<p>The <strong>correlation coefficient</strong> is designated by <span class="math inline">\(r\)</span> for the sample correlation, and <span class="math inline">\(\rho\)</span> for the population correlation. The correlation is a measure of the strength and direction of a <em>linear relationship</em> between two variables.</p>
+<p>The correlation ranges from +1 to -1. A correlation of +1 means that there is a perfect, positive linear relationship between the two variables. A correlation of -1 means there is a perfect, negative linear relationship between the two variables. In both cases, knowing the value of one variable, you can perfectly predict the value of the second.</p>
+</section>
+<section id="strength-of-the-correlation" class="slide level2">
+<h2>Strength of the correlation</h2>
+<p>Here are rough estimates for interpreting the strengths of correlations based on the magnitude of <span class="math inline">\(r\)</span>.</p>
+<ul>
+<li><span class="math inline">\(|r| \geq 0.7\)</span>: Very strong relationship</li>
+<li><span class="math inline">\(0.4 \leq |r| &lt; 0.7\)</span>: Strong relationship</li>
+<li><span class="math inline">\(0.3 \leq |r| &lt; 0.4\)</span>: Moderate relationship</li>
+<li><span class="math inline">\(0.2 \leq |r| &lt; 0.3:\)</span> Weak relationship</li>
+<li><span class="math inline">\(|r| &lt; 0.2:\)</span> Negligible or no relationship</li>
+</ul>
+</section>
+<section id="as-a-measure-of-model-fit" class="slide level2">
+<h2>As a measure of model fit</h2>
+<p>When we square <span class="math inline">\(r\)</span> (i.e.&nbsp;<span class="math inline">\(R^{2}\)</span>), it tells us what proportion of the variability in one variable that is described by variation in the second variable.</p>
+<p><br>
+</p>
+<p>Yes, this is mathematically the same as the coefficient of determination we saw in ANOVA.</p>
+</section>
+<section id="pearson-test-of-correlation" class="slide level2">
+<h2>Pearson test of correlation</h2>
+<p>To test for a <em>linear</em> correlation between two variables we use the <strong>Pearson correlation coefficient</strong> which is defined as the covariance of the two variables divided by the product of their standard deviations.</p>
+<p><span class="math display">\[
+\rho_{X,Y} = \frac{cov(X,Y)}{\sigma_{x}\sigma_{Y}}
+\]</span></p>
+<p>There are many modifications and adjustments to this measure that we will not get into detail with. We are using correlation as a stepping stool to Linear Regression.</p>
+</section>
+<section id="example-body-mass-and-bill-length-of-penguins" class="slide level2">
+<h2>Example: Body mass and bill length of penguins</h2>
+<h3 id="identify-response-and-explanatory-variables-3">1. Identify response and explanatory variables</h3>
+<ul>
+<li>The quantitative explanatory variable is body mass (g)</li>
+<li>The quantitative explanatory variable is bill length (mm)</li>
+</ul>
+</section>
+<section id="visualize-and-summarise-bivariate-relationship-3" class="slide level2 smaller">
+<h2>2. Visualize and summarise bivariate relationship</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="fu">ggplot</span>(pen, <span class="fu">aes</span>(<span class="at">x=</span>body_mass_g, <span class="at">y=</span>bill_length_mm)) <span class="sc">+</span> </span>
+<span id="cb33-2"><a href="#cb33-2"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">col =</span> <span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img data-src="lec08-bivariate_modeling_files/figure-revealjs/unnamed-chunk-27-1.png" width="960"></p>
+</div>
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a><span class="fu">cor</span>(pen<span class="sc">$</span>body_mass_g, pen<span class="sc">$</span>bill_length_mm, <span class="at">use =</span> <span class="st">"pairwise.complete.obs"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.5951098</code></pre>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<p>There is a strong, positive, mostly linear relationship between the body mass (g) of penguins and their bill length (mm) (r=.595).</p>
+</div>
+</div>
+</section>
+<section id="write-the-relationship-you-want-to-examine-in-the-form-of-a-research-question.-3" class="slide level2">
+<h2>3. Write the relationship you want to examine in the form of a research question.</h2>
+<ul>
+<li>Null Hypothesis: There is no correlation between the body mass and bill length of penguins.</li>
+<li>Alternate Hypothesis: There is a correlation between the body mass and bill length of penguins.</li>
+</ul>
+</section>
+<section id="perform-an-appropriate-statistical-analysis-using-dr-ds-4-step-method.-3" class="slide level2">
+<h2>4. Perform an appropriate statistical analysis using Dr D’s 4 step method.</h2>
+<p><strong>a. Define parameters</strong> Let <span class="math inline">\(\rho\)</span> be the true correlation between body mass and bill length of penguins.</p>
+<p><strong>b. State the null and alternative hypothesis as symbols</strong></p>
+<p><span class="math inline">\(H_{0}: \rho=0 \qquad \qquad H_{A}: \rho \neq 0\)</span></p>
+<p><strong>c.&nbsp;State and justify the analysis model.</strong></p>
+<p>Pearsons test of correlation will be conducted. This is appropriate because both variables are quantitative, the relationship between variables are reasonably linear, and the sample size is large.</p>
+</section>
+<section id="section-8" class="slide level2">
+<h2></h2>
+<p><strong>d.&nbsp;Conduct the test and make a decision about the plausibility of the alternative hypothesis.</strong></p>
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a><span class="fu">cor.test</span>(pen<span class="sc">$</span>body_mass_g, pen<span class="sc">$</span>bill_length_mm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pearson's product-moment correlation
+
+data:  pen$body_mass_g and pen$bill_length_mm
+t = 13.654, df = 340, p-value &lt; 2.2e-16
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.5220040 0.6595358
+sample estimates:
+      cor 
+0.5951098 </code></pre>
+</div>
+</div>
+<p>The p-value is very small, there is evidence in favor of a non-zero correlation.</p>
+</section>
+<section id="write-a-conclusion-in-context-of-the-problem.-2" class="slide level2">
+<h2>5. Write a conclusion in context of the problem.</h2>
+<p>There was a statistically significant and strong correlation between the body mass (g) and bill length (mm) of penguins (r = 0.595, 95%CI .5220-.6595, p &lt; .0001). The significant positive correlation shows that as the body mass of a penguin increases so does the bill length. These results suggest that 35% (95% CI: 27.2-43.5) of the variance in bill length can be explained by the body mass of the penguin.</p>
 
 <div class="footer footer-default">
 <p><a href="https://math615.netlify.app">🔗 https://math615.netlify.app</a> / Modeling Bivariate Relationships</p>
