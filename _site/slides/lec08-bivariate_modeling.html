@@ -1517,6 +1517,38 @@ alternative hypothesis: two.sided</code></pre>
 <p>The book also distinguishes between a “fixed-x” case, where the values of the explanatory variable <span class="math inline">\(x\)</span> only take on pre-specified values, and a “variable-x” case, where the values of <span class="math inline">\(x\)</span> are observations from a population distribution of X’s.</p>
 <p>This latter case is what we will be concerning ourselves with.</p>
 </section>
+<section id="bivariate-distribution" class="slide level2 smaller">
+<h2>Bivariate distribution</h2>
+<p>The <em>bivariate distribution</em> describes how of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are jointly distributed, and is best interpreted by a look at the scatter diagram.</p>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a>y.bar <span class="ot">&lt;-</span> <span class="fu">mean</span>(pen<span class="sc">$</span>bill_length_mm, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb33-2"><a href="#cb33-2"></a>x.bar <span class="ot">&lt;-</span> <span class="fu">mean</span>(pen<span class="sc">$</span>body_mass_g, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb33-3"><a href="#cb33-3"></a></span>
+<span id="cb33-4"><a href="#cb33-4"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(pen, <span class="fu">aes</span>(<span class="at">x=</span>body_mass_g, <span class="at">y=</span>bill_length_mm)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb33-5"><a href="#cb33-5"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> y.bar) <span class="sc">+</span> </span>
+<span id="cb33-6"><a href="#cb33-6"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> x.bar) </span>
+<span id="cb33-7"><a href="#cb33-7"></a>ggExtra<span class="sc">::</span><span class="fu">ggMarginal</span>(p, <span class="at">type=</span><span class="st">"histogram"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+
+</div>
+<img data-src="lec08-bivariate_modeling_files/figure-revealjs/unnamed-chunk-27-1.png" width="576" class="r-stretch quarto-figure-center"><p>If <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> come from independent normal distributions, the pair <span class="math inline">\((X,Y)\)</span> comes from a <em>bivariate normal distribution</em>, and the data will tend to cluster around the means of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>.</p>
+</section>
+<section id="ellipse-of-concentration" class="slide level2">
+<h2>Ellipse of concentration</h2>
+<p>We can view the <em>ellipse of concentration</em> as measure of strength and direction of the correlation between X and Y.</p>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a>ggpubr<span class="sc">::</span><span class="fu">ggscatter</span>(pen, <span class="at">x =</span> <span class="st">"body_mass_g"</span>, <span class="at">y =</span> <span class="st">"bill_length_mm"</span>,</span>
+<span id="cb34-2"><a href="#cb34-2"></a>   <span class="at">ellipse =</span> <span class="cn">TRUE</span>, <span class="at">mean.point =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb34-3"><a href="#cb34-3"></a>   <span class="at">star.plot =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+
+</div>
+<img data-src="lec08-bivariate_modeling_files/figure-revealjs/unnamed-chunk-28-1.png" width="480" class="r-stretch quarto-figure-center"><p>See PMA6 Figure 7.5 for more examples.</p>
+</section>
 <section id="correlation" class="slide level2">
 <h2>Correlation</h2>
 <p>The <strong>correlation coefficient</strong> is designated by <span class="math inline">\(r\)</span> for the sample correlation, and <span class="math inline">\(\rho\)</span> for the population correlation. The correlation is a measure of the strength and direction of a <em>linear relationship</em> between two variables.</p>
@@ -1563,15 +1595,15 @@ alternative hypothesis: two.sided</code></pre>
 <div class="cell">
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="fu">ggplot</span>(pen, <span class="fu">aes</span>(<span class="at">x=</span>body_mass_g, <span class="at">y=</span>bill_length_mm)) <span class="sc">+</span> </span>
-<span id="cb33-2"><a href="#cb33-2"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">col =</span> <span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a><span class="fu">ggplot</span>(pen, <span class="fu">aes</span>(<span class="at">x=</span>body_mass_g, <span class="at">y=</span>bill_length_mm)) <span class="sc">+</span> </span>
+<span id="cb35-2"><a href="#cb35-2"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">col =</span> <span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img data-src="lec08-bivariate_modeling_files/figure-revealjs/unnamed-chunk-27-1.png" width="960"></p>
+<p><img data-src="lec08-bivariate_modeling_files/figure-revealjs/unnamed-chunk-29-1.png" width="960"></p>
 </div>
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a><span class="fu">cor</span>(pen<span class="sc">$</span>body_mass_g, pen<span class="sc">$</span>bill_length_mm, <span class="at">use =</span> <span class="st">"pairwise.complete.obs"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a><span class="fu">cor</span>(pen<span class="sc">$</span>body_mass_g, pen<span class="sc">$</span>bill_length_mm, <span class="at">use =</span> <span class="st">"pairwise.complete.obs"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.5951098</code></pre>
@@ -1603,7 +1635,7 @@ alternative hypothesis: two.sided</code></pre>
 <div class="cell">
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a><span class="fu">cor.test</span>(pen<span class="sc">$</span>body_mass_g, pen<span class="sc">$</span>bill_length_mm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a><span class="fu">cor.test</span>(pen<span class="sc">$</span>body_mass_g, pen<span class="sc">$</span>bill_length_mm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>

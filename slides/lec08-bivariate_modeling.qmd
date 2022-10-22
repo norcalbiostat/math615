@@ -801,6 +801,7 @@ This R companion page also looks very useful http://rcompanion.org/handbook/H_01
 
 # Quantitative Outcome ~ Quantitative Covariate {background-color="#6c972b"}
 
+
 ## Opening Remarks
 
 The PMA6 textbook (Chapter 7) goes into great detail on this topic, since regression is typically the basis for all advanced models. 
@@ -809,12 +810,47 @@ The book also distinguishes between a "fixed-x" case, where the values of the ex
 
 This latter case is what we will be concerning ourselves with. 
 
+## Bivariate distribution {.smaller}
+
+The _bivariate distribution_ describes how of $X$ and $Y$ are jointly distributed, and is best interpreted by a look at the scatter diagram. 
+
+```{r}
+#| fig-width: 6
+#| fig-height: 6
+#| fig-align: 'center'
+y.bar <- mean(pen$bill_length_mm, na.rm=TRUE)
+x.bar <- mean(pen$body_mass_g, na.rm=TRUE)
+
+p <- ggplot(pen, aes(x=body_mass_g, y=bill_length_mm)) + geom_point() + 
+  geom_hline(yintercept = y.bar) + 
+  geom_vline(xintercept = x.bar) 
+ggExtra::ggMarginal(p, type="histogram")
+```
+
+If $X$ and $Y$ come from independent normal distributions, the pair $(X,Y)$ comes from a _bivariate normal distribution_, and the data will tend to cluster around the means of $X$ and $Y$. 
+
+## Ellipse of concentration
+
+We can view the _ellipse of concentration_ as measure of strength and direction of the correlation between X and Y.
+
+```{r}
+#| fig-width: 5
+#| fig-height: 5
+#| fig-align: 'center'
+ggpubr::ggscatter(pen, x = "body_mass_g", y = "bill_length_mm",
+   ellipse = TRUE, mean.point = TRUE,
+   star.plot = TRUE)
+```
+
+See PMA6 Figure 7.5 for more examples. 
+
 ## Correlation
 
 The **correlation coefficient** is designated by $r$ for the sample correlation, and $\rho$ for the population correlation. The correlation is a measure of the strength and direction of a _linear relationship_ between two variables. 
 
 The correlation ranges from +1 to -1. A correlation of +1 means that there is a perfect, positive linear relationship between the two variables. A correlation of -1 means there is a perfect, negative linear relationship between the two variables.
 In both cases, knowing the value of one variable, you can perfectly predict the value of the second.
+
 
 ## Strength of the correlation
 
