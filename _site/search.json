@@ -2041,7 +2041,7 @@
     "href": "slides/lec08-bivariate_modeling.html#example-body-mass-and-bill-length-of-penguins",
     "title": "Modeling Bivariate Relationships",
     "section": "Example: Body mass and bill length of penguins",
-    "text": "Example: Body mass and bill length of penguins\n1. Identify response and explanatory variables\n\nThe quantitative explanatory variable is body mass (g)\nThe quantitative explanatory variable is bill length (mm)"
+    "text": "Example: Body mass and bill length of penguins\n1. Identify response and explanatory variables\n\nThe quantitative explanatory variable is body mass (g)\nThe quantitative response variable is bill length (mm)"
   },
   {
     "objectID": "slides/lec08-bivariate_modeling.html#visualize-and-summarise-bivariate-relationship-3",
@@ -2069,7 +2069,7 @@
     "href": "slides/lec08-bivariate_modeling.html#write-a-conclusion-in-context-of-the-problem.-2",
     "title": "Modeling Bivariate Relationships",
     "section": "5. Write a conclusion in context of the problem.",
-    "text": "5. Write a conclusion in context of the problem.\nThere was a statistically significant and strong correlation between the body mass (g) and bill length (mm) of penguins (r = 0.595, 95%CI .5220-.6595, p < .0001). The significant positive correlation shows that as the body mass of a penguin increases so does the bill length. These results suggest that 35% (95% CI: 27.2-43.5) of the variance in bill length can be explained by the body mass of the penguin.\n\n\n🔗 https://math615.netlify.app / Modeling Bivariate Relationships"
+    "text": "5. Write a conclusion in context of the problem.\nThere was a statistically significant and strong correlation between the body mass (g) and bill length (mm) of penguins (r = 0.595, 95%CI .5220-.6595, p < .0001). The significant positive correlation shows that as the body mass of a penguin increases so does the bill length. These results suggest that 35% (95% CI: 27.2-43.5) of the variance in bill length can be explained by the body mass of the penguin."
   },
   {
     "objectID": "slides/lec08-bivariate_modeling.html#ellipse-of-concentration",
@@ -2112,5 +2112,75 @@
     "title": "Linear Regression",
     "section": "Discussion",
     "text": "Discussion"
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#overview",
+    "href": "slides/lec08-bivariate_modeling.html#overview",
+    "title": "Modeling Bivariate Relationships",
+    "section": "Overview",
+    "text": "Overview\nThe general purpose of regression is to learn more about the relationship between several independent or predictor variables and a quantitative dependent variable.\nThe goal of Simple linear regression is to describe the relationship between a continuous dependent variable Y and a single independent continuous variable X using a straight line.\n\nSee ASCN Ch 7 for the learning content. What follows is just a full 5 step analysis example."
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#example-body-mass-and-bill-length-of-penguins-1",
+    "href": "slides/lec08-bivariate_modeling.html#example-body-mass-and-bill-length-of-penguins-1",
+    "title": "Modeling Bivariate Relationships",
+    "section": "Example: Body mass and bill length of penguins",
+    "text": "Example: Body mass and bill length of penguins\n1. Identify response and explanatory variables\n\nThe quantitative explanatory variable is body mass (g)\nThe quantitative response variable is bill length (mm)"
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#visualize-and-summarise-bivariate-relationship-4",
+    "href": "slides/lec08-bivariate_modeling.html#visualize-and-summarise-bivariate-relationship-4",
+    "title": "Modeling Bivariate Relationships",
+    "section": "2. Visualize and summarise bivariate relationship",
+    "text": "2. Visualize and summarise bivariate relationship\n\n\nShow the code\nggplot(pen, aes(x=body_mass_g, y=bill_length_mm)) + \n  geom_point() + geom_smooth(col = \"red\")\n\n\n\nThere is a strong, positive, mostly linear relationship between the body mass (g) of penguins and their bill length (mm) (r=.595)."
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#write-the-relationship-you-want-to-examine-in-the-form-of-a-research-question.-4",
+    "href": "slides/lec08-bivariate_modeling.html#write-the-relationship-you-want-to-examine-in-the-form-of-a-research-question.-4",
+    "title": "Modeling Bivariate Relationships",
+    "section": "3. Write the relationship you want to examine in the form of a research question.",
+    "text": "3. Write the relationship you want to examine in the form of a research question.\n\nNull Hypothesis: There is no linear relationship between body mass and bill length.\nAlternate Hypothesis: There is a linear relationship between body mass and bill length."
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#perform-an-appropriate-statistical-analysis-using-dr-ds-4-step-method.-4",
+    "href": "slides/lec08-bivariate_modeling.html#perform-an-appropriate-statistical-analysis-using-dr-ds-4-step-method.-4",
+    "title": "Modeling Bivariate Relationships",
+    "section": "4. Perform an appropriate statistical analysis using Dr D’s 4 step method.",
+    "text": "4. Perform an appropriate statistical analysis using Dr D’s 4 step method.\na. Define parameters Let \\(\\beta_1\\) be the true slope parameter that describes the change in bill length of the penguin as body mass increases.\nb. State the null and alternative hypothesis as symbols\n\\(H_{0}: \\beta_{1}=0 \\qquad \\qquad H_{A}: \\beta_{1} \\neq 0\\)"
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#section-9",
+    "href": "slides/lec08-bivariate_modeling.html#section-9",
+    "title": "Modeling Bivariate Relationships",
+    "section": "",
+    "text": "d. Conduct the test and make a decision about the plausibility of the alternative hypothesis.\n\n\nShow the code\npen.body.bill <- lm(bill_length_mm ~ body_mass_g, data=pen)\npen.body.bill |> summary()\n\n\n\nCall:\nlm(formula = bill_length_mm ~ body_mass_g, data = pen)\n\nResiduals:\n     Min       1Q   Median       3Q      Max \n-10.1251  -3.0434  -0.8089   2.0711  16.1109 \n\nCoefficients:\n             Estimate Std. Error t value Pr(>|t|)    \n(Intercept) 2.690e+01  1.269e+00   21.19   <2e-16 ***\nbody_mass_g 4.051e-03  2.967e-04   13.65   <2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 4.394 on 340 degrees of freedom\n  (2 observations deleted due to missingness)\nMultiple R-squared:  0.3542,    Adjusted R-squared:  0.3523 \nF-statistic: 186.4 on 1 and 340 DF,  p-value: < 2.2e-16\n\n\nThe p-value for \\(b_{1}\\) is <.0001, so there is sufficient evidence to believe that there is a linear relationship between body mass and bill length."
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#c-cont.-finish-checking-the-assumptions",
+    "href": "slides/lec08-bivariate_modeling.html#c-cont.-finish-checking-the-assumptions",
+    "title": "Modeling Bivariate Relationships",
+    "section": "c (cont). Finish checking the assumptions",
+    "text": "c (cont). Finish checking the assumptions\n\nNormality of residuals – density plotNormality of residuals – “qqplot”Homogeneity of variancePosterior Predictions\n\n\n\n\n\n\n\n\n\n\nMostly normal, pretty heavy right tail. This is indicative of a nonlinear trend somewhere in the data.\n\n\n\n\n\n\n\n\n\n\n\n\nThis is also known as a ‘normal probability plot’. It is used to compare the theoretical quantiles of the data if it were to come from a normal distribution to the observed quantiles. PMA6 Figure 5.4 has more examples and an explanation.\n\n\n\n\n\n\n\n\n\n\n\n\nHoly non-flat relationship Batman. The variance of Y is not constant. This is a warning that our linear model does not fit the data well and we should look into possible refinements and improvements.\n\n\n\n\n\n\n\n\n\n\n\n\nHere we clearly see that the observed distribution of bill length is bimodal, and so the model is overestimating some values and underestimating others. There is clearly some other confounding variable that predicts bill length better than just body mass."
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#write-a-conclusion-in-context-of-the-problem.-3",
+    "href": "slides/lec08-bivariate_modeling.html#write-a-conclusion-in-context-of-the-problem.-3",
+    "title": "Modeling Bivariate Relationships",
+    "section": "5. Write a conclusion in context of the problem.",
+    "text": "5. Write a conclusion in context of the problem.\n\n\n\n\nShow the code\npen.body.bill |> coefficients() \n\n\n (Intercept)  body_mass_g \n26.898872424  0.004051417 \n\n\nShow the code\npen.body.bill |> confint()\n\n\n                   2.5 %       97.5 %\n(Intercept) 24.402502194 29.395242653\nbody_mass_g  0.003467795  0.004635038\n\n\nShow the code\npen.body.bill |> r2()\n\n\n# R2 for Linear Regression\n       R2: 0.354\n  adj. R2: 0.352\n\n\n\nEach 1g increase in body mass of a penguin is associated with a significant increase of 0.004 (0.0035, 0.0046) mm of bill length (p<.0001).\nAn increase of 1kg of body mass in a penguin corresponds to a 4(3.5, 4.6) mm increase in bill length.\nBody mass explains 35.4% of the variation in bill length.\n\n\nHowever, model diagnostics indicate that a linear model may not be appropriate for this relationship. The assumption of constant variance is not upheld and there may be another variable that affects bill length.\n\n\n🔗 https://math615.netlify.app / Modeling Bivariate Relationships"
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#d.-conduct-the-test-and-make-a-decision-about-the-plausibility-of-the-alternative-hypothesis.",
+    "href": "slides/lec08-bivariate_modeling.html#d.-conduct-the-test-and-make-a-decision-about-the-plausibility-of-the-alternative-hypothesis.",
+    "title": "Modeling Bivariate Relationships",
+    "section": "d. Conduct the test and make a decision about the plausibility of the alternative hypothesis.",
+    "text": "d. Conduct the test and make a decision about the plausibility of the alternative hypothesis.\n\n\nShow the code\npen.body.bill <- lm(bill_length_mm ~ body_mass_g, data=pen)\npen.body.bill |> summary()\n\n\n\nCall:\nlm(formula = bill_length_mm ~ body_mass_g, data = pen)\n\nResiduals:\n     Min       1Q   Median       3Q      Max \n-10.1251  -3.0434  -0.8089   2.0711  16.1109 \n\nCoefficients:\n             Estimate Std. Error t value Pr(>|t|)    \n(Intercept) 2.690e+01  1.269e+00   21.19   <2e-16 ***\nbody_mass_g 4.051e-03  2.967e-04   13.65   <2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 4.394 on 340 degrees of freedom\n  (2 observations deleted due to missingness)\nMultiple R-squared:  0.3542,    Adjusted R-squared:  0.3523 \nF-statistic: 186.4 on 1 and 340 DF,  p-value: < 2.2e-16\n\n\nThe p-value for \\(b_{1}\\) is <.0001, so there is sufficient evidence to believe that there is a linear relationship between body mass and bill length."
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#c.-state-and-justify-the-analysis-model.",
+    "href": "slides/lec08-bivariate_modeling.html#c.-state-and-justify-the-analysis-model.",
+    "title": "Modeling Bivariate Relationships",
+    "section": "c. State and justify the analysis model.",
+    "text": "c. State and justify the analysis model.\nBoth the outcome and predictor are continuous variables that have a visible linear relationship, and observations are independent.\nThe rest of the model assumptions can be checked after the model is fit using the check_model(my_model_object_name) function from the performance package."
   }
 ]
