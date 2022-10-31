@@ -77,6 +77,97 @@
     "text": "Life\nThis is not an all encompassing list. If there is something not listed that you think should be, please let me know!\n\nBasic Needs\nThe Hungry Wildcat Food Pantry provides supplemental food, fresh produce, CalFresh application assistance and basic needs referral services for students experiencing food and housing insecurity.\nAll students are welcomed to visit the Pantry located in the Student Service Center 196. Check the website for current hours.\nPlease visit the Chico State Basic Needs website http://www.csuchico.edu/basic-needs for more information.\n\n\nCelebrating Diversity\nThe Diversity resources for students webpage has a lot of information on clubs, organizations, resources and opportunities available to our wonderful body of non-[white/cis/hetero/able] students.\n\n\nAccomodations\nIf you need course adaptations or accommodations because of a disability or chronic illness, or if you need to make special arrangements in case the building must be evacuated, please make an appointment with me as soon as possible, or see me during office hours. Please also contact Accessibility Resource Center (ARC) as they are the designated department responsible for approving and coordinating reasonable accommodations and services for students with disabilities. ARC will help you understand your rights and responsibilities under the Americans with Disabilities Act and provide you further assistance with requesting and arranging accommodations.\n\n\nTutoring\nThe Student Learning Center will provide all learning support services online. Students can schedule appointments on the Center’s website. The Supplemental Instruction program will also be available virtually, utilizing peer-assisted study sessions to increase student success in historically difficult courses. Student leaders are faculty-recommended and trained to facilitate group sessions. Math tutoring is available via Zoom from the Math Learning Lab.\n\n\nFinancial Aid\nFinancial Aid & Scholarship Office is providing financial aid assistance virtually. Contact finaid@csuchico.edu or call 530-898-6451 and to set up an appointment by phone or Zoom.\n\n\nHealth Center\nThe WellCat Health Center is available by appointment for regular healthcare services. Visit their website for current hours and appointment times.\n\n\nCovid-19 news and information\nIt’s super important to stay informed about what is going on. This is a horrible once in a lifetime (hopefully) GLOBAL pandemic, and the whole world is suffering. Campus information can be found here, and here is a link to the Butte County Covid tracking dashboard.\nEdit for 2022… okay except for the second pandemic of Monkeypox\n\n\nMental Health\nOnline counseling is available through the WellCat Counseling Center and Safe Place. Find specific information on their websites.\n\n\nCareer Center\nThe Career Center remains virtual only, but will continue providing a wide variety of career development programs for students of all majors and class levels, and for all alumni. It also offers services to help students with the transition from student to working professional."
   },
   {
+    "objectID": "hw/10_MLR_confounding.html",
+    "href": "hw/10_MLR_confounding.html",
+    "title": "Regression Assignment",
+    "section": "",
+    "text": "You will perform 4 regression analyses in this assignment. For each analysis you will\n\nFit the simple, and multivariable model.\nTest for a potential confounder \\(Z\\).\nInterpret ALL regression coefficients (including the intercept) of the multivariable model.\n\nRemember, to test if \\(Z\\) confounds the relationship between \\(X\\) and \\(Y\\), the relationship between \\(X\\) and \\(Y\\) must be significant\n\nMultiple Linear Regression: \\(Q \\sim Q + Z\\)\n\nOne quantitative and a potential binary confounder.\n\nLogistic Regression: \\(logit(B) \\sim Q + Z\\)\n\nOne quantitative and a potential binary confounder.\nYour binary response variable \\(Y\\) must be coded as 1 (event) and 0 (non-event).\n\nLog-Linear Regression: \\(log(Q) \\sim X + Z\\)\n\n\\(X\\) and \\(Z\\) can be of any data type.\n\nAny of the above analyses (or a new model) with a categorical (more than 2 levels) predictor variable e.g.: \\(Q \\sim X + C\\).\n\nYou do NOT need to test a for a potential confounder here.\nReview detailed instructions in the example below. You have to write out the mathematical model."
+  },
+  {
+    "objectID": "hw/10_MLR_confounding.html#identify-variables",
+    "href": "hw/10_MLR_confounding.html#identify-variables",
+    "title": "Regression Assignment",
+    "section": "1. Identify variables",
+    "text": "1. Identify variables\nIf you have a likert “Strongly Agree” to “Strongly Disagree” variable that has at least 5 levels you can treat it as a pseudo-Quantitative Variable for this assignment.\n\nQuantitative outcome: Income (variable income).\nQuantitative predictor: Time you wake up in the morning (variable wakeup)\nBinary confounder: Gender (variable female_c)"
+  },
+  {
+    "objectID": "hw/10_MLR_confounding.html#state-hypotheses",
+    "href": "hw/10_MLR_confounding.html#state-hypotheses",
+    "title": "Regression Assignment",
+    "section": "2. State hypotheses",
+    "text": "2. State hypotheses\n\nNull: There is no relationship between the time you wake up and your personal earnings\nAlternative: There is a relationship between the time you wake up and your personal earnings\nConfounder: There is still a relationship between the time you wake up and your personal earnings, after controlling for gender."
+  },
+  {
+    "objectID": "hw/10_MLR_confounding.html#fit-the-simple-model",
+    "href": "hw/10_MLR_confounding.html#fit-the-simple-model",
+    "title": "Regression Assignment",
+    "section": "3. Fit the simple model",
+    "text": "3. Fit the simple model\nIs there a relationship between income and time a person wakes up?\n\n\n\nCall:\nlm(formula = income ~ wakeup, data = addhealth)\n\nResiduals:\n   Min     1Q Median     3Q    Max \n-31297 -15622  -5622   9245 209865 \n\nCoefficients:\n            Estimate Std. Error t value Pr(>|t|)    \n(Intercept)  43548.4     1126.2  38.667  < 2e-16 ***\nwakeup        -487.7      151.2  -3.225  0.00127 ** \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 24670 on 3812 degrees of freedom\n  (2690 observations deleted due to missingness)\nMultiple R-squared:  0.002721,  Adjusted R-squared:  0.002459 \nF-statistic:  10.4 on 1 and 3812 DF,  p-value: 0.001271\n\n\nThe estimate of the regression coefficient for wakeup is significant (b1=-488, p= 0.001). There is reason to believe that the time you wakeup is associated with your income."
+  },
+  {
+    "objectID": "hw/10_MLR_confounding.html#fit-the-multivariable-model",
+    "href": "hw/10_MLR_confounding.html#fit-the-multivariable-model",
+    "title": "Regression Assignment",
+    "section": "4. Fit the multivariable model",
+    "text": "4. Fit the multivariable model\nFit the same multiple linear regression model and include the potential confounding variable. Determine if the third variable is a confounder.\n\n\n\nCall:\nlm(formula = income ~ wakeup + female_c, data = addhealth)\n\nResiduals:\n   Min     1Q Median     3Q    Max \n-36047 -15141  -5252   8678 205610 \n\nCoefficients:\n               Estimate Std. Error t value Pr(>|t|)    \n(Intercept)     48669.4     1206.9  40.325  < 2e-16 ***\nwakeup           -611.3      149.4  -4.092 4.37e-05 ***\nfemale_cFemale  -8527.1      789.3 -10.803  < 2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 24300 on 3810 degrees of freedom\n  (2691 observations deleted due to missingness)\nMultiple R-squared:  0.03236,   Adjusted R-squared:  0.03185 \nF-statistic:  63.7 on 2 and 3810 DF,  p-value: < 2.2e-16\n\n\nThe relationship between income and wake up time is still significant after controlling for gender. Gender is not a confounder.\n\nOptional new package stargazer for printing regression models as columns. Great for comparisons, looks like journal articles. Your R code chunk header must look like this: ```{r, results='asis'} and be sure to use the correct output format: type='html' or type='latex'. Vignette found at: https://www.jakeruss.com/cheatsheets/stargazer/\n\n\n\n\n\n\n\n\n\n\n\nDependent variable:\n\n\n\n\n\n\n\n\n\n\n\n\nincome\n\n\n\n\n\n\nSLR\n\n\nMLR\n\n\n\n\n\n\n\n\nwakeup\n\n\n-488*** (-784, -191)\n\n\n-611*** (-904, -319)\n\n\n\n\nfemale_cFemale\n\n\n\n\n-8,527*** (-10,074, -6,980)\n\n\n\n\nConstant\n\n\n43,548*** (41,341, 45,756)\n\n\n48,669*** (46,304, 51,035)\n\n\n\n\n\n\n\n\nObservations\n\n\n3,814\n\n\n3,813\n\n\n\n\nAdjusted R2\n\n\n0\n\n\n0\n\n\n\n\nResidual Std. Error\n\n\n24,666 (df = 3812)\n\n\n24,297 (df = 3810)\n\n\n\n\nF Statistic\n\n\n10*** (df = 1; 3812)\n\n\n64*** (df = 2; 3810)\n\n\n\n\n\n\n\n\nNote:\n\n\np<0.1; p<0.05; p<0.01"
+  },
+  {
+    "objectID": "hw/10_MLR_confounding.html#interpret-the-regression-coefficients-of-the-multivariable-model.",
+    "href": "hw/10_MLR_confounding.html#interpret-the-regression-coefficients-of-the-multivariable-model.",
+    "title": "Regression Assignment",
+    "section": "5. Interpret the regression coefficients of the multivariable model.",
+    "text": "5. Interpret the regression coefficients of the multivariable model.\n\n\\(b_{0}\\): For a male (gender=0) who wakes up at midnight (wakeup=0), their predicted average income is $48,669.4 (95% CI $46,303.9, $51,035)\n\\(b_{1}\\): Holding gender constant, for every hour later a person wakes up, their predicted average income drops by $611 (95% CI $319, $904).\n\\(b_{2}\\): Controlling for the time someone wakes up in the morning, the predicted average income for females is $8,527 (95% CI $6,980, $10,074) lower than for males."
+  },
+  {
+    "objectID": "hw/10_MLR_confounding.html#template-conclusion",
+    "href": "hw/10_MLR_confounding.html#template-conclusion",
+    "title": "Regression Assignment",
+    "section": "6. Template Conclusion",
+    "text": "6. Template Conclusion\n\nUse the numerical results from the multivariable model to fill in the values in the conclusion below.\nLook at the Adjusted \\(R^{2}\\) to see how much of the variance in the response you are accounting for with the predictor.\n\nReplace the bold words with your variables, the highlighted words with data from your analysis, and choose between conclusion options.\nAfter adjusting for the potential confounding factor of third variable, explanatory variable (b1 = parameter estimate, CI confidence interval range, p = significance value) was *significantly/not significantly and positively/negatively associated with response variable. Approximately R-Square*100 of the variance of response can be accounted for by explanatory after controlling for third variable. Based on these analyses, third variable is not/is a confounding factor because the association between explanatory and response is still/is no longer significant after accounting for third variable.\nSo the conclusion for this analysis reads:\n\nAfter adjusting for the potential confounding factor of gender, wake up time (\\(b_{1}\\) = -611, 95% CI: (-904, -318), p<.0001) was significantly and negatively associated with income. Approximately 3.2% of the variance of income can be accounted for by wake up time after controlling for gender. Based on these analyses, gender is not a confounding factor because the association between wake up time and income is still significant after accounting for gender.\n\nAfter wordsmithing/editing for sentence flow,\n\nAfter adjusting for the potential confounding factor of gender, an adolescent’s weight (Beta = 1.34, 95% CI -0.53, 3.21, p = .1558) was not significantly associated with the number of cigarettes smoked in the past 30 days. Approximately 0.78% of the variance in cigarettes smoked can be accounted for by weight after controlling for gender. Based on these analyses, gender is a confounding factor because the association between weight and cigarettes smoked is no longer significant after accounting for gender."
+  },
+  {
+    "objectID": "hw/10_MLR_confounding.html#identify-variables-1",
+    "href": "hw/10_MLR_confounding.html#identify-variables-1",
+    "title": "Regression Assignment",
+    "section": "1. Identify variables",
+    "text": "1. Identify variables\n\nBinary outcome: Poverty (variable poverty). This is an indicator if reported personal income is below $10,210.\nBinary predictor: Ever smoked a cigarette (variable eversmoke_c)\nBinary confounder: Gender (variable female_c)"
+  },
+  {
+    "objectID": "hw/10_MLR_confounding.html#state-hypotheses-1",
+    "href": "hw/10_MLR_confounding.html#state-hypotheses-1",
+    "title": "Regression Assignment",
+    "section": "2. State hypotheses",
+    "text": "2. State hypotheses\n\nNull hypothesis: There is no relationship between the probability of living below the poverty level and the time you wake up in the morning.\nAlternative hypothesis: There is a relationship between the probability of living below the poverty level and the time you wake up in the morning.\nConfounding hypothesis: There still is a relationship between the probability of living below the poverty level and the time you wake up in the morning after controlling for gender."
+  },
+  {
+    "objectID": "hw/10_MLR_confounding.html#fit-the-simple-model-1",
+    "href": "hw/10_MLR_confounding.html#fit-the-simple-model-1",
+    "title": "Regression Assignment",
+    "section": "3. Fit the simple model",
+    "text": "3. Fit the simple model\nFit the logistic regression model (a.k.a generalized linear model) of the explanatory variable on the response variable. Decide to reject the null hypothesis in favor of the alternative.\n\n\n\nCall:\nglm(formula = poverty ~ eversmoke_c, family = \"binomial\", data = addhealth)\n\nDeviance Residuals: \n    Min       1Q   Median       3Q      Max  \n-0.7064  -0.7064  -0.7064  -0.6210   1.8659  \n\nCoefficients:\n                                Estimate Std. Error z value Pr(>|z|)    \n(Intercept)                     -1.54800    0.06444 -24.021  < 2e-16 ***\neversmoke_cSmoked at least once  0.28711    0.07737   3.711 0.000207 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n(Dispersion parameter for binomial family taken to be 1)\n\n    Null deviance: 4907.4  on 4834  degrees of freedom\nResidual deviance: 4893.3  on 4833  degrees of freedom\n  (1669 observations deleted due to missingness)\nAIC: 4897.3\n\nNumber of Fisher Scoring iterations: 4\n\n\nThe p-value for the b1 estimate of the regression coefficient for eversmoke_c is significant at 0.0002. There is reason to believe that smoking status is associated with the probability of living below the poverty level."
+  },
+  {
+    "objectID": "hw/10_MLR_confounding.html#fit-the-multivariable-model-1",
+    "href": "hw/10_MLR_confounding.html#fit-the-multivariable-model-1",
+    "title": "Regression Assignment",
+    "section": "4. Fit the multivariable model",
+    "text": "4. Fit the multivariable model\nFit the same logistic regression model and include the potential confounding variable. This is only done if there is a significant relationship between the explanatory and response variable. Determine if the third variable is a confounder.\n\n\n\nCall:\nglm(formula = poverty ~ eversmoke_c + female_c, family = \"binomial\", \n    data = addhealth)\n\nDeviance Residuals: \n    Min       1Q   Median       3Q      Max  \n-0.8335  -0.7048  -0.5652  -0.4716   2.1221  \n\nCoefficients:\n                                Estimate Std. Error z value Pr(>|z|)    \n(Intercept)                     -2.14045    0.08662  -24.71  < 2e-16 ***\neversmoke_cSmoked at least once  0.38725    0.07886    4.91 9.09e-07 ***\nfemale_cFemale                   0.87450    0.07690   11.37  < 2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n(Dispersion parameter for binomial family taken to be 1)\n\n    Null deviance: 4906.9  on 4833  degrees of freedom\nResidual deviance: 4755.4  on 4831  degrees of freedom\n  (1670 observations deleted due to missingness)\nAIC: 4761.4\n\nNumber of Fisher Scoring iterations: 4\n\n\nThe p-value for the regression coefficient estimate of eversmoke_c is still significant at <.0001 after controlling for gender. Thus gender is not a confounder."
+  },
+  {
+    "objectID": "hw/10_MLR_confounding.html#interpret-the-odds-ratio-estimates",
+    "href": "hw/10_MLR_confounding.html#interpret-the-odds-ratio-estimates",
+    "title": "Regression Assignment",
+    "section": "5. Interpret the Odds Ratio estimates",
+    "text": "5. Interpret the Odds Ratio estimates\nBelow I create a table containing the odds ratio estimates and 95% CI for those estimates using the multivariable model.\n\n\n\n\n\n\nOR\nLCL\nUCL\n\n\n\n\n(Intercept)\n0.12\n0.10\n0.14\n\n\neversmoke_cSmoked at least once\n1.47\n1.26\n1.72\n\n\nfemale_cFemale\n2.40\n2.06\n2.79\n\n\n\n\n\n\nAfter controlling for gender, smokers have 1.5 (1.3, 1.7) times the odds of reporting making below the federal poverty level compared to non smokers.\nAfter controlling for smoking status, females have 2.4 (2.1, 2.8) time the odds of reporting annual earned wages below the federal poverty level compared to males."
+  },
+  {
+    "objectID": "hw/10_MLR_confounding.html#template-conclusion-1",
+    "href": "hw/10_MLR_confounding.html#template-conclusion-1",
+    "title": "Regression Assignment",
+    "section": "6. Template Conclusion",
+    "text": "6. Template Conclusion\nReplace the bold words with your variables, the highlighted words with data from your analysis, and choose between conclusion options.\nAfter adjusting for the potential confounding factor of third variable, explanatory variable (OR odds ratio estimate, CI confidence interval range, p = significance value) was significantly/not significantly and positively/negatively associated with the likelihood of response variable. In this analysis, the odds ratio tells us that those who are [describe what dummy code 1 of your explanatory variable means here] are 0.05 times more (if OR greater than 1)/less (if OR less than 1) likely to [describe what dummy code 1 of your response variable means here]. Based on these analyses, third variable is not/is a confounding factor because the association between explanatory and response is still/is no longer significant after accounting for third variable.\nSo the conclusion for this analysis reads:\nAfter adjusting for the potential confounding factor of gender, smoking status (1.47, CI 1.26-1.72, p <.0001) was significantly and positively associated with the likelihood of earning under the poverty level. In this analysis, the odds ratio tells us that those who have ever smoked are 1.47 times more likely to earn income below the federal poverty level. Based on these analyses, gender is not a confounding factor because the association between smoking and poverty status is still significant after accounting for gender."
+  },
+  {
     "objectID": "hw/hw00-setup.html",
     "href": "hw/hw00-setup.html",
     "title": "HW 00: Getting setup",
@@ -245,11 +336,25 @@
     "text": "Final\n\nUpload your final PDF to 06 Bivariate Modeling/final folder in Google Drive."
   },
   {
+    "objectID": "hw/hw07-moderation.html",
+    "href": "hw/hw07-moderation.html",
+    "title": "HW 07: Moderation and Stratification",
+    "section": "",
+    "text": "To start to motivate multiple regression, we need to explore how a third variable can muck up the relationship between a predictor and an outcome variable. This assignment will have you testing prior analyses for potential moderators."
+  },
+  {
+    "objectID": "hw/hw07-moderation.html#final",
+    "href": "hw/hw07-moderation.html#final",
+    "title": "HW 07: Moderation and Stratification",
+    "section": "Final",
+    "text": "Final\n\nUpload your final PDF to 07 Moderation/final folder in Google Drive."
+  },
+  {
     "objectID": "hw.html",
     "href": "hw.html",
     "title": "Assignments",
     "section": "",
-    "text": "Assignment\n\n\nLearning Objective\n\n\n\n\n\n\nHW 00: Getting setup\n\n\nGetting all the materials and tools for the class\n\n\n\n\nHW 01: Data Entry\n\n\nRecording data to maintain your sanity.\n\n\n\n\nHW 02: Formulating a research hypothesis\n\n\nBrainstorming research questions to investigate\n\n\n\n\nHW 03: Data Management\n\n\nWrangling your data into analyzable form\n\n\n\n\nHW 04: Univariate Graphing\n\n\nLet the data be beautiful\n\n\n\n\nHW 05: Bivariate Graphing\n\n\nExploring Associations between two variables\n\n\n\n\nHW 06: Bivariate Modeling\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "Assignment\n\n\nLearning Objective\n\n\n\n\n\n\nRegression Assignment\n\n\n\n\n\n\nHW 00: Getting setup\n\n\nGetting all the materials and tools for the class\n\n\n\n\nHW 01: Data Entry\n\n\nRecording data to maintain your sanity.\n\n\n\n\nHW 02: Formulating a research hypothesis\n\n\nBrainstorming research questions to investigate\n\n\n\n\nHW 03: Data Management\n\n\nWrangling your data into analyzable form\n\n\n\n\nHW 04: Univariate Graphing\n\n\nLet the data be beautiful\n\n\n\n\nHW 05: Bivariate Graphing\n\n\nExploring Associations between two variables\n\n\n\n\nHW 06: Bivariate Modeling\n\n\n\n\n\n\nHW 07: Moderation and Stratification\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "index.html",
@@ -333,7 +438,7 @@
     "href": "schedule.html",
     "title": "Weekly Overview",
     "section": "",
-    "text": "Due dates are displayed on the calendar only. Consider subscribing to this Google calendar and stay up to date!\n\n\n\n\n\n\n\n\nDate\n\n\nTopic\n\n\nDetails\n\n\nReading\n\n\nHW\n\n\n\n\n\n\nWeek 1\n\n\n\n\n08/22\n\n\nWelcome\n\n\nIntroduction to the Class and your materials\n\n\nSyllabus\nHelp page\nPMA6 Ch 2\n\n\nHW00 Getting Setup\n\n\n\n\n08/22\n\n\nData architecture\n\n\nData entry, spreadsheets, metadata, codebooks\n\n\nTidy data principles (Optional)\n\n\nHW01 Data Entry\n\n\n\n\n08/24\n\n\nProject Stage 1: Choosing your topic\n\n\nChoosing project research data\n\n\n\n\n\n\n\n\nWeek 2\n\n\n\n\n08/29\n\n\nFormulating research questions\n\n\nAsking questions is easy. Asking answerable questions is more difficult.\n\n\nHow to Write an Effective Research Question\n\n\nHW02 RQ Formulation\n\n\n\n\n08/31\n\n\nPreparing data for analysis\n\n\nWhere an inordinate amount of time is spent\n\n\nPMA6 Ch 3\nASCN Ch 1\nProject Structure by Danielle Navarro\n\n\nHW03 Data Management\n\n\n\n\nWeek 3\n\n\n\n\n09/05\n\n\nLabor Day. No Class\n\n\n\n\n\n\n\n\n\n\n09/07\n\n\nData wrangling\n\n\nKeep coding, coding, coding, keep them fingers flowing, keep them data scrolling, Compile!\n\n\n\n\n\n\n\n\nWeek 4\n\n\n\n\n09/12\n\n\nDescribing distributions of data\n\n\nVisualizing your data is the first line of defense against bad data\n\n\nPMA6 Ch 4\nASCN Ch 2.3\n\n\nHW04 Univariate Graphing\n\n\n\n\n09/14\n\n\nProject Stage 2: Introduce your research question and variables of interest\n\n\n\n\n\n\nPoster prep Stage 2\n\n\n\n\nWeek 5\n\n\n\n\n09/19\n\n\nDescribing relationships between two variables\n\n\nFirst step in investigating a question about an association\n\n\nPMA6 Ch 4\nASCN Ch 2.4\n\n\nHW05 Graphing Relationships\n\n\n\n\nWeek 6\n\n\n\n\n09/26\n\n\nBest practices in Data Visualization\n\n\nJust because you can add it to a graph, doesn’t mean you should.\n\n\nPMA6 Ch 4.6\nSlides\n\n\n\n\n\n\n09/28\n\n\nProject Stage 3: Exploratory Data Analysis\n\n\n\n\n\n\nPoster prep Stage 3\n\n\n\n\nWeek 7\n\n\n\n\n10/03\n\n\nStudy Design\n\n\nHow did the data come to be?\n\n\nIMS - Chapter 2\n\n\n\n\n\n\n10/05\n\n\nFoundations for Inference\n\n\nIf all else fails, use “significant at p>.05 level” and hope no one notices.\n\n\nIMS - Chapter 13.1-13.3 and IMS Chapter 11-11.1\n\n\nQuiz: Quantifying Uncertainty\nQuiz: Foundations for Inference\n\n\n\n\nWeek 8\n\n\n\n\n10/10\n\n\nFoundations for Inference cont.\n\n\nInference with Mathematical Models\n\n\n\n\n\n\n\n\n10/12\n\n\nModeling Bivariate relationships\n\n\nChoosing appropriate analysis, T-tests for difference in means\n\n\nASCN Ch 5 IMS - Chapter 20](https://openintro-ims.netlify.app/inference-two-means.html)\n\n\nHW06 Bivariate Modeling\n\n\n\n\nWeek 9\n\n\n\n\n10/17\n\n\n\n\nANOVA & Kruskill Wallas\n\n\nIMS - Chapter 22\n\n\nQuiz: T-test & ANOVA\n\n\n\n\n10/19\n\n\n\n\nChi-Square & Fishers Exact Test\n\n\n\n\nQuiz: Chi-Square\n\n\n\n\nWeek 10\n\n\n\n\n10/24\n\n\n\n\nCorrelation\n\n\n\n\n\n\n\n\n10/24\n\n\nLinear Modeling\n\n\nEverything is a linear model.\n\n\nPMA6 Ch 7\nASCN Ch 7\nIMS Ch 24\n\n\nQuiz: Regression Modeling\n\n\n\n\n10/26\n\n\nProject Stage 4: Bivariate Inference\n\n\n\n\n\n\nPoster prep Stage III\n\n\n\n\nWeek 11\n\n\n\n\n10/31\n\n\nStratification\n\n\n\n\nASCN 9.1\n\n\nHW 07 Moderation and Stratification\n\n\n\n\n11/02\n\n\nModeration\n\n\n\n\nASCN 9.2\n\n\n\n\n\n\nWeek 12\n\n\n\n\n11/07\n\n\nMultiple Regression analysis\n\n\n\n\nPMA6 Ch 8 ASCN Ch 8\n\n\nHW08 Multiple Regression\n\n\n\n\n11/09\n\n\nConfounding\n\n\n\n\nASCN 9.4\n\n\n\n\n\n\nWeek 13\n\n\n\n\n11/14\n\n\nCategorical Predictors\n\n\n\n\nPMA5 Ch 9.3 ASCN 9.1\n\n\nHW9 GLM & Categorical\n\n\n\n\n11/16\n\n\nLogistic Regression analysis\n\n\n\n\nPMA5 Ch12 ASCN Ch 10\n\n\n\n\n\n\n11/16\n\n\nProject Stage IV: Multivariable Analysis & Conclusions\n\n\n\n\n\n\nPoster prep Stage IV\n\n\n\n\nWeek 14\n\n\n\n\n11/28\n\n\nModel Building\n\n\n\n\nPMA5 Ch8 ASCN Ch 9\n\n\n\n\n\n\nWeek 15\n\n\n\n\n12/05\n\n\nDevelop Research Poster\n\n\n\n\n\n\nPoster*\n\n\n\n\n12/07\n\n\nOther types of models\n\n\n\n\nPMA6 Ch 10.2, 10.5\n\n\n\n\n\n\nFinals\n\n\n\n\n12/12\n\n\nPoster Presentation\n\n\n\n\n\n\nMonday 6pm-8pm. I will work to get this changed.\n\n\n\n\n12/16\n\n\nFinal Exam\n\n\n\n\n\n\nTake home final exam"
+    "text": "Due dates are displayed on the calendar only. Consider subscribing to this Google calendar and stay up to date!\n\n\n\n\n\n\n\n\nDate\n\n\nTopic\n\n\nDetails\n\n\nReading\n\n\nHW\n\n\n\n\n\n\nWeek 1\n\n\n\n\n08/22\n\n\nWelcome\n\n\nIntroduction to the Class and your materials\n\n\nSyllabus\nHelp page\nPMA6 Ch 2\n\n\nHW00 Getting Setup\n\n\n\n\n08/22\n\n\nData architecture\n\n\nData entry, spreadsheets, metadata, codebooks\n\n\nTidy data principles (Optional)\n\n\nHW01 Data Entry\n\n\n\n\n08/24\n\n\nProject Stage 1: Choosing your topic\n\n\nChoosing project research data\n\n\n\n\n\n\n\n\nWeek 2\n\n\n\n\n08/29\n\n\nFormulating research questions\n\n\nAsking questions is easy. Asking answerable questions is more difficult.\n\n\nHow to Write an Effective Research Question\n\n\nHW02 RQ Formulation\n\n\n\n\n08/31\n\n\nPreparing data for analysis\n\n\nWhere an inordinate amount of time is spent\n\n\nPMA6 Ch 3\nASCN Ch 1\nProject Structure by Danielle Navarro\n\n\nHW03 Data Management\n\n\n\n\nWeek 3\n\n\n\n\n09/05\n\n\nLabor Day. No Class\n\n\n\n\n\n\n\n\n\n\n09/07\n\n\nData wrangling\n\n\nKeep coding, coding, coding, keep them fingers flowing, keep them data scrolling, Compile!\n\n\n\n\n\n\n\n\nWeek 4\n\n\n\n\n09/12\n\n\nDescribing distributions of data\n\n\nVisualizing your data is the first line of defense against bad data\n\n\nPMA6 Ch 4\nASCN Ch 2.3\n\n\nHW04 Univariate Graphing\n\n\n\n\n09/14\n\n\nProject Stage 2: Introduce your research question and variables of interest\n\n\n\n\n\n\nPoster prep Stage 2\n\n\n\n\nWeek 5\n\n\n\n\n09/19\n\n\nDescribing relationships between two variables\n\n\nFirst step in investigating a question about an association\n\n\nPMA6 Ch 4\nASCN Ch 2.4\n\n\nHW05 Graphing Relationships\n\n\n\n\nWeek 6\n\n\n\n\n09/26\n\n\nBest practices in Data Visualization\n\n\nJust because you can add it to a graph, doesn’t mean you should.\n\n\nPMA6 Ch 4.6\nSlides\n\n\n\n\n\n\n09/28\n\n\nProject Stage 3: Exploratory Data Analysis\n\n\n\n\n\n\nPoster prep Stage 3\n\n\n\n\nWeek 7\n\n\n\n\n10/03\n\n\nStudy Design\n\n\nHow did the data come to be?\n\n\nIMS - Chapter 2\n\n\n\n\n\n\n10/05\n\n\nFoundations for Inference\n\n\nIf all else fails, use “significant at p>.05 level” and hope no one notices.\n\n\nIMS - Chapter 13.1-13.3 and IMS Chapter 11-11.1\n\n\nQuiz: Quantifying Uncertainty\nQuiz: Foundations for Inference\n\n\n\n\nWeek 8\n\n\n\n\n10/10\n\n\nFoundations for Inference cont.\n\n\nInference with Mathematical Models\n\n\n\n\n\n\n\n\n10/12\n\n\nModeling Bivariate relationships\n\n\nChoosing appropriate analysis, T-tests for difference in means\n\n\nASCN Ch 5 IMS - Chapter 20](https://openintro-ims.netlify.app/inference-two-means.html)\n\n\nHW06 Bivariate Modeling\n\n\n\n\nWeek 9\n\n\n\n\n10/17\n\n\n\n\nANOVA & Kruskill Wallas\n\n\nIMS - Chapter 22\n\n\nQuiz: T-test & ANOVA\n\n\n\n\n10/19\n\n\n\n\nChi-Square & Fishers Exact Test\n\n\n\n\nQuiz: Chi-Square\n\n\n\n\nWeek 10\n\n\n\n\n10/24\n\n\n\n\nCorrelation\n\n\n\n\n\n\n\n\n10/24\n\n\nLinear Modeling\n\n\nEverything is a linear model.\n\n\nPMA6 Ch 7\nASCN Ch 7\nIMS Ch 24\n\n\nQuiz: Regression Modeling\n\n\n\n\n10/26\n\n\nProject Stage 4: Bivariate Inference\n\n\n\n\n\n\nPoster prep Stage III\n\n\n\n\nWeek 11\n\n\n\n\n10/31\n\n\nModeration and Stratification\n\n\nMotivation for multiple regression\n\n\nASCN Ch 8\n\n\nHW 07 Moderation\n\n\n\n\n11/02\n\n\n\n\n\n\n\n\n\n\n\n\nWeek 12\n\n\n\n\n11/07\n\n\nMultiple Regression analysis\n\n\n\n\nPMA6 Ch 8 ASCN Ch 9\n\n\nHW08 Multiple Regression\n\n\n\n\n11/09\n\n\nConfounding\n\n\n\n\n\n\n\n\n\n\nWeek 13\n\n\n\n\n11/14\n\n\nCategorical Predictors\n\n\n\n\nPMA5 Ch 9.3 ASCN 9.1\n\n\nHW9 GLM & Categorical\n\n\n\n\n11/16\n\n\nLogistic Regression analysis\n\n\n\n\nPMA5 Ch12 ASCN Ch 10\n\n\n\n\n\n\n11/16\n\n\nProject Stage IV: Multivariable Analysis & Conclusions\n\n\n\n\n\n\nPoster prep Stage IV\n\n\n\n\nWeek 14\n\n\n\n\n11/28\n\n\nModel Building\n\n\n\n\nPMA5 Ch8 ASCN Ch 9\n\n\n\n\n\n\nWeek 15\n\n\n\n\n12/05\n\n\nDevelop Research Poster\n\n\n\n\n\n\nPoster*\n\n\n\n\n12/07\n\n\nOther types of models\n\n\n\n\nPMA6 Ch 10.2, 10.5\n\n\n\n\n\n\nFinals\n\n\n\n\n12/12\n\n\nPoster Presentation\n\n\n\n\n\n\nMonday 6pm-8pm. I will work to get this changed.\n\n\n\n\n12/16\n\n\nFinal Exam\n\n\n\n\n\n\nTake home final exam"
   },
   {
     "objectID": "slides/lec00-welcome.html#dr.-robin-donatello-sheher",
@@ -1057,6 +1162,13 @@
     "text": "Using Confidence Intervals to test a hypothesis\n\nWe are 95% confident that implanting a stent in a stroke patient’s brain increased the risk of stroke within 30 days by a rate of 0.035 to 0.145.\n\nSince the interval does not contain the null hypothesized value of 0 (is completely above 0), it means the data provide convincing evidence that the stent used in the study changed the risk of stroke within 30 days\n\n\n🔗 https://math615.netlify.app / Statistical Inference with Mathematical Models"
   },
   {
+    "objectID": "slides/lec08-bivariate_modeling.html#advisory-note",
+    "href": "slides/lec08-bivariate_modeling.html#advisory-note",
+    "title": "Modeling Bivariate Relationships",
+    "section": "Advisory note",
+    "text": "Advisory note\n\n\n\nThis set of slides is really long. I recommend using the navigation menu (hamburger menu in the bottom left) to skip to the relevant section."
+  },
+  {
     "objectID": "slides/lec08-bivariate_modeling.html#which-analyseses-to-perform",
     "href": "slides/lec08-bivariate_modeling.html#which-analyseses-to-perform",
     "title": "Modeling Bivariate Relationships",
@@ -1097,6 +1209,13 @@
     "title": "Modeling Bivariate Relationships",
     "section": "Additional References",
     "text": "Additional References\nPMA6 does not go over T-test, ANOVA or \\(\\chi^{2}\\) tests. To see more examples (with R code) and more mathematical detail see Chapter 5 in the Applied Stats Course Notes"
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#a-unifying-model-framework",
+    "href": "slides/lec08-bivariate_modeling.html#a-unifying-model-framework",
+    "title": "Modeling Bivariate Relationships",
+    "section": "A unifying model framework",
+    "text": "A unifying model framework\nA good way to think about all statistical models is that the observed data comes from some true model with some random error.\n\nDATA = MODEL + RESIDUAL\n\nThe MODEL is a mathematical formula (like \\(y = f(x)\\)). The formulation of the MODEL will change depending on the number of, and data types of explanatory variables. One goal of inferential analysis is to explain the variation in our data, using information contained in other measures."
   },
   {
     "objectID": "slides/lec08-bivariate_modeling.html#t-test-for-difference-in-means-between-two-groups-ascn-section-5.3",
@@ -1162,11 +1281,18 @@
     "text": "5. Write a conclusion in context of the problem. Include the point estimates, confidence interval for the difference and p-value.\nOn average, non-smokers have a significantly higher 0.82 (0.39, 1.27) BMI compared to smokers (p=.0002)."
   },
   {
-    "objectID": "slides/lec08-bivariate_modeling.html#analysis-of-variance-anova",
-    "href": "slides/lec08-bivariate_modeling.html#analysis-of-variance-anova",
+    "objectID": "slides/lec08-bivariate_modeling.html#analysis-of-variance-anovaascn-section-5.4",
+    "href": "slides/lec08-bivariate_modeling.html#analysis-of-variance-anovaascn-section-5.4",
     "title": "Modeling Bivariate Relationships",
-    "section": "Analysis of Variance (ANOVA)",
-    "text": "Analysis of Variance (ANOVA)\nAnalysis of variance assesses whether the means of two or more groups are statistically different from each other. This analysis is appropriate whenever you want to compare the means (quantitative variables) of groups (categorical variables).\n\n\nThe null hypothesis is that there is no difference in the mean of the quantitative variable across groups (categorical variable), while the alternative is that there is a difference."
+    "section": "Analysis of Variance (ANOVA)(ASCN Section 5.4)",
+    "text": "Analysis of Variance (ANOVA)(ASCN Section 5.4)\nAnalysis of variance assesses whether the means of two or more groups are statistically different from each other. Does knowing what group an observation is in tell you about the location of the data?\n\\[\ny_{ij} = \\mu_{j} + \\epsilon_{ij} \\qquad \\qquad\n\\epsilon_{ij} \\overset{iid}{\\sim} \\mathcal{N}(0,\\sigma^{2})\n\\]\nfor \\(i=1, \\ldots, I\\) factor levels and \\(j = 1, \\ldots, n_{i}\\) subjects within each factor level. The random error terms are independently and identically distributed (iid) normally with common variance."
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#hypothesis-specification",
+    "href": "slides/lec08-bivariate_modeling.html#hypothesis-specification",
+    "title": "Modeling Bivariate Relationships",
+    "section": "Hypothesis specification",
+    "text": "Hypothesis specification\nThe null hypothesis is that there is no difference in the mean of the quantitative variable across groups (categorical variable), while the alternative is that there is a difference.\n\n\\(H_0\\): The mean outcome is the same across all groups. \\(\\mu_1 = \\mu_2 = \\cdots = \\mu_j\\)\n\\(H_A\\): At least one mean is different.\n\n\n\n\nA 2-sample t-test is mathematically identical to an ANOVA with 2 groups."
   },
   {
     "objectID": "slides/lec08-bivariate_modeling.html#section-3",
@@ -1181,6 +1307,475 @@
     "title": "Modeling Bivariate Relationships",
     "section": "Type I and Type II Error (an important side topic)",
     "text": "Type I and Type II Error (an important side topic)\n\nAKA False positive or false negative. Wikipedia\nThe significance level, \\(\\alpha\\), is what we use to define the amount of “risk” we are willing to take to falsely reject \\(H_{0}\\) (false positive).\nWe talk more about false positive & false negative, specificity and sensitivity in Math 456.\nWe will see shortly however how to conduct multiple comparisons while maintaining our “family-wise” error rate at \\(\\alpha\\)"
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#analysis-of-variance",
+    "href": "slides/lec08-bivariate_modeling.html#analysis-of-variance",
+    "title": "Modeling Bivariate Relationships",
+    "section": "Analysis of Variance",
+    "text": "Analysis of Variance\nBy comparing the portion of the variance in the outcome that is explained by the groups, to the portion that’s leftover due to unexplained randomness. Essentially we’re comparing the ratio of MODEL to RESIDUAL.\n\nTotal Variation = Between Group Variation + Within Group Variation\n\nVariation is measured using the Sum of Squares (SS): The sum of the squares within a group (SSE), the sum of squares between groups (SSG), and the total sum of squares (SST)."
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#sum-of-squares",
+    "href": "slides/lec08-bivariate_modeling.html#sum-of-squares",
+    "title": "Modeling Bivariate Relationships",
+    "section": "Sum of Squares",
+    "text": "Sum of Squares\nSSG (Between groups): Measures the variation of the \\(I\\) group means around the overall mean.\n\\[\n  SSG = \\sum_{i=1}^{I}n_{i}(\\bar{y}_{i.}-\\bar{y}..)^{2} = n_{1}(\\bar{y}_{1.}-\\bar{y}..)^{2} + n_{2}(\\bar{y}_{2.}-\\bar{y}..)^{2} + n_{3}(\\bar{y}_{3.}-\\bar{y}..)^{2}\n\\]\nSSE (Within group): Measures the variation of each observation around its group mean.\n\\[\nSSE = \\sum_{i=1}^{I}\\sum_{j=1}^{n_{i}}(y_{ij}-\\bar{y}_{i.})^{2} = \\sum_{i=1}^{I}(n_{i}-1)Var(Y_{i})\n\\]\nSST (Total): Measures the variation of the \\(N\\) data points around the overall mean.\n\\[\nSST =  \\sum_{i=1}^{I}\\sum_{j=1}^{n_{i}}(y_{ij}-\\bar{y}..)^{2} = (N-1)Var(Y)\n\\]"
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#analysis-of-variance-table",
+    "href": "slides/lec08-bivariate_modeling.html#analysis-of-variance-table",
+    "title": "Modeling Bivariate Relationships",
+    "section": "Analysis of Variance Table",
+    "text": "Analysis of Variance Table\nThe results are typically summarized in an ANOVA table.\n\n\n\n\n\n\n\n\n\n\nSource\nSS\ndf\nMS\nF\n\n\n\n\nGroups\nSSG\n\\(I-1\\)\nMSG = \\(\\frac{SSG}{I-1}\\)\n\\(\\frac{MSG}{MSE}\\)\n\n\nError\nSSE\n\\(N-I\\)\nMSE = \\(\\frac{MSG}{N-I}\\)\n\n\n\nTotal\nSST\n\\(N-1\\)\n\n\n\n\n\nThe value in the F column is the test statistic, and has a F distribution with degrees of freedom (df) dependent on the number of groups (I-1), and the number of observations (N-I)."
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#the-f-distribution",
+    "href": "slides/lec08-bivariate_modeling.html#the-f-distribution",
+    "title": "Modeling Bivariate Relationships",
+    "section": "The F-distribution",
+    "text": "The F-distribution\nThe \\(p\\)-value is the area to the right of the F statistic density curve. This is always to the right because the F-distribution is truncated at 0 and skewed right. This is true regardless of the \\(df\\).\n\n\nShow the code\ncurve(df(x,df1=5, df2=10),xlim=c(0,10), main=\"Example F distribution with df1=5, df2=10\", ylab=\"\",xlab=expression(F))"
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#assumptions",
+    "href": "slides/lec08-bivariate_modeling.html#assumptions",
+    "title": "Modeling Bivariate Relationships",
+    "section": "Assumptions",
+    "text": "Assumptions\nGenerally we must check three conditions on the data before performing ANOVA:\n\nThe observations are independent within and across groups\nThe data within each group are nearly normal\nThe variability across the groups is about equal."
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#example-march-of-the-penguins",
+    "href": "slides/lec08-bivariate_modeling.html#example-march-of-the-penguins",
+    "title": "Modeling Bivariate Relationships",
+    "section": "Example: March of the Penguins",
+    "text": "Example: March of the Penguins\n\n\n\n1. Identify response and explanatory variables\n\nSpecies = categorical explanatory variable\nFlipper length = quantitative response variable"
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#visualize-and-summarise-bivariate-relationship-1",
+    "href": "slides/lec08-bivariate_modeling.html#visualize-and-summarise-bivariate-relationship-1",
+    "title": "Modeling Bivariate Relationships",
+    "section": "2. Visualize and summarise bivariate relationship",
+    "text": "2. Visualize and summarise bivariate relationship\n\n\n\n\nShow the code\nlibrary(ggdist) # for the \"half-violin\" plot (stat_slab)\nggplot(pen, aes(x=flipper_length_mm, y=species, fill=species)) + \n      stat_slab(alpha=.5, justification = 0) + \n      geom_boxplot(width = .2,  outlier.shape = NA) + \n      geom_jitter(alpha = 0.5, height = 0.05) +\n      stat_summary(fun=\"mean\", geom=\"point\", col=\"red\", size=4, pch=17) + \n      theme_bw() + \n      labs(x=\"Flipper Length (mm)\", y = \"Species\") + \n      theme(legend.position = \"none\")\n\n\n\n\n\n\n\n\nShow the code\npen %>% group_by(species) %>% \n  summarise(mean=mean(flipper_length_mm, na.rm=TRUE), \n            sd = sd(flipper_length_mm, na.rm=TRUE), \n            IQR = IQR(flipper_length_mm, na.rm=TRUE)) %>%\n  kable(digits = 1)\n\n\n\n\n\nspecies\nmean\nsd\nIQR\n\n\n\n\nAdelie\n190.0\n6.5\n9\n\n\nChinstrap\n195.8\n7.1\n10\n\n\nGentoo\n217.2\n6.5\n9\n\n\n\n\n\n\n\nThe distribution of flipper length varies across the species, with Gentoo having the largest flippers on average at 217.2mm compared to Adelie (190mm) and Chinstrap (195.8mm). The distributions are normally distributed with very similar spreads, Chinstrap has the most variable flipper length with a SD of 7.1 compared to 6.5 for the other two species.\n A blog post about raincloud plots vs violins"
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#write-the-relationship-you-want-to-examine-in-the-form-of-a-research-question.-1",
+    "href": "slides/lec08-bivariate_modeling.html#write-the-relationship-you-want-to-examine-in-the-form-of-a-research-question.-1",
+    "title": "Modeling Bivariate Relationships",
+    "section": "3. Write the relationship you want to examine in the form of a research question.",
+    "text": "3. Write the relationship you want to examine in the form of a research question.\n\nNull Hypothesis: There is no association between flipper length and species.\nAlternate Hypothesis: There is an association between flipper length and species."
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#perform-an-appropriate-statistical-analysis-using-dr-ds-4-step-method.-1",
+    "href": "slides/lec08-bivariate_modeling.html#perform-an-appropriate-statistical-analysis-using-dr-ds-4-step-method.-1",
+    "title": "Modeling Bivariate Relationships",
+    "section": "4. Perform an appropriate statistical analysis using Dr D’s 4 step method.",
+    "text": "4. Perform an appropriate statistical analysis using Dr D’s 4 step method.\na. Define parameters\nLet \\(\\mu_{A}, \\mu_{C}\\) and \\(\\mu_{G}\\) be the average flipper length for the Adelie, Chinstrap and Gentoo species of penguins respectively.\n\n\nb. State the null and alternative hypothesis as symbols\n\\(H_{0}: \\mu_{A} = \\mu_{C} = \\mu_{G}\\)\n\\(H_{A}:\\) At least one \\(\\mu_{j}\\) is different."
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#section-4",
+    "href": "slides/lec08-bivariate_modeling.html#section-4",
+    "title": "Modeling Bivariate Relationships",
+    "section": "",
+    "text": "c. State and justify the analysis model. Check assumptions.\nWe are comparing means from multiple groups, so an ANOVA is the appropriate procedure. We need to check for independence, approximate normality and approximately equal variances across groups.\nIndependence: We are assuming that each penguin was sampled independently of each other, and that the species themselves are independent of each other.\nNormality: The distributions of flipper length within each group are fairly normal\nEqual variances: Both the standard deviation and IQR (as measures of variability) are very similar across all groups."
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#section-5",
+    "href": "slides/lec08-bivariate_modeling.html#section-5",
+    "title": "Modeling Bivariate Relationships",
+    "section": "",
+    "text": "d. Conduct the test and make a decision about the plausibility of the alternative hypothesis.\n\n\nShow the code\naov(flipper_length_mm ~ species, data=pen) |> summary()\n\n\n             Df Sum Sq Mean Sq F value Pr(>F)    \nspecies       2  52473   26237   594.8 <2e-16 ***\nResiduals   339  14953      44                   \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n2 observations deleted due to missingness\n\n\nThe pvalue is very small, so there is evidence to support \\(H_{a}\\): at least one mean is different."
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#write-a-conclusion-in-context-of-the-problem.",
+    "href": "slides/lec08-bivariate_modeling.html#write-a-conclusion-in-context-of-the-problem.",
+    "title": "Modeling Bivariate Relationships",
+    "section": "5. Write a conclusion in context of the problem.",
+    "text": "5. Write a conclusion in context of the problem.\nThere is sufficient evidence to believe that the average flipper length is significantly different between the Adelie, Chinstrap and Gentoo species of penguins (p<.0001)."
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#multiple-post-hoc-comparisons-which-group-is-different",
+    "href": "slides/lec08-bivariate_modeling.html#multiple-post-hoc-comparisons-which-group-is-different",
+    "title": "Modeling Bivariate Relationships",
+    "section": "Multiple / Post-Hoc comparisons: Which group is different?",
+    "text": "Multiple / Post-Hoc comparisons: Which group is different?\n\nRun Post Hoc tests (“Tukeys HSD”, or “Duncan”), only if your ANOVA is significant.\nThe overall ANOVA can be significant and NOT have any significant differences when you look at the post hoc results. The reason is that the two analyses ask two different questions.\n\nThe ANOVA is testing the overall pattern of the data and asking if as a whole the explanatory variable has a relationship (or lack thereof) with the response variable.\nThe post hoc is asking if one level of the explanatory variable is significantly different than another for the response variable. The post hoc is not as sensitive to differences as the ANOVA.\nThe family-wise error rate of \\(\\alpha\\) is mainained\n\nDifferences in group means can be non-significant at the post hoc level, but significant at the ANOVA level."
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#section-6",
+    "href": "slides/lec08-bivariate_modeling.html#section-6",
+    "title": "Modeling Bivariate Relationships",
+    "section": "",
+    "text": "Show the code\nTukeyHSD(aov(flipper_length_mm ~ species, data=pen))\n\n\n  Tukey multiple comparisons of means\n    95% family-wise confidence level\n\nFit: aov(formula = flipper_length_mm ~ species, data = pen)\n\n$species\n                      diff       lwr       upr p adj\nChinstrap-Adelie  5.869887  3.586583  8.153191     0\nGentoo-Adelie    27.233349 25.334376 29.132323     0\nGentoo-Chinstrap 21.363462 19.000841 23.726084     0\n\n\nThe results of the Tukey HSD post-hoc test indicate that the average flipper length in mm is significantly different between all pairs of penguin species at the 5% significance level. Chinstrap has an average flipper length 5.87mm(3.59-8.15) larger than Adelie, whereas Gentoo has an average flipper length 27.23mm(25.33-29.13) larger than Adelie."
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#coefficient-of-determination-r2-fracssgsst",
+    "href": "slides/lec08-bivariate_modeling.html#coefficient-of-determination-r2-fracssgsst",
+    "title": "Modeling Bivariate Relationships",
+    "section": "Coefficient of Determination \\(R^{2} = \\frac{SSG}{SST}\\)",
+    "text": "Coefficient of Determination \\(R^{2} = \\frac{SSG}{SST}\\)\n\n\n             Df Sum Sq Mean Sq F value Pr(>F)    \nspecies       2  52473   26237   594.8 <2e-16 ***\nResiduals   339  14953      44                   \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n2 observations deleted due to missingness\n\n52473/(52473 + 14953)*100\n\n[1] 77.82309\n\n\nThe coefficient of determination is interpreted as the % of the variation seen in the outcome that is due to subject level variation within each of the treatment groups. The strength of this measure can be thought of in a similar manner as the correlation coefficient \\(\\rho\\), \\(<.3\\) indicates a poor fit, \\(<.5\\) indicates a medium fit, and \\(>.7\\) indicates a good fit.\n\n77.8% of the variation in flipper length can be explained by the species of penguin"
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#non-parametric-tests",
+    "href": "slides/lec08-bivariate_modeling.html#non-parametric-tests",
+    "title": "Modeling Bivariate Relationships",
+    "section": "Non-parametric tests",
+    "text": "Non-parametric tests\n\nMany stat tests rely on assumptions that ensure the sample estimate can be modeled with a normal distribution.\nWhat do you do if your assumptions aren’t met?\nWe can “relax” some of those assumptions and perform a more robust, but less powerful test.\n\nless power means you need more data to draw a conclusion with the same amount of confidence.\n\nNo detailed examples will be provided in these notes. You tend to learn/use these on an “as-needed” basis."
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#kruskal-wallis",
+    "href": "slides/lec08-bivariate_modeling.html#kruskal-wallis",
+    "title": "Modeling Bivariate Relationships",
+    "section": "Kruskal-Wallis",
+    "text": "Kruskal-Wallis\n\nThe Kruskal-Wallis test is the most common non-parametric method for testing whether or not groups of observations come from the same overall distribution.\nBy comparing the medians instead of the means, we can remove the normality assumption on the residuals.\nNull hypothesis is now that the medians of all groups are equal vs at least one population median is different.\nRef on how to do this in R from STHDA"
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#opening-remarks",
+    "href": "slides/lec08-bivariate_modeling.html#opening-remarks",
+    "title": "Modeling Bivariate Relationships",
+    "section": "Opening Remarks",
+    "text": "Opening Remarks\nIf we are only concerned with testing the hypothesis that the proportion of successes between two groups are equal \\(p_{1}-p_{2}=0\\), we can leverage the Normal distribution and conduct a Z-test for two proportions.\nHowever in this class we will use the more generalizable model via Chi-squared test of association/equal proportions."
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#chi-squared-test-of-equal-proportions-ref-ascn-section-5.5",
+    "href": "slides/lec08-bivariate_modeling.html#chi-squared-test-of-equal-proportions-ref-ascn-section-5.5",
+    "title": "Modeling Bivariate Relationships",
+    "section": "Chi-squared test of equal proportions (Ref: ASCN Section 5.5)",
+    "text": "Chi-squared test of equal proportions (Ref: ASCN Section 5.5)\nA 30-year study was conducted with nearly 90,000 female participants. (Miller AB. 2014) During a 5-year screening period, each woman was randomized to one of two groups: in the first group, women received regular mammograms to screen for breast cancer, and in the second group, women received regular non-mammogram breast cancer exams. No intervention was made during the following 25 years of the study, and we’ll consider death resulting from breast cancer over the full 30-year period."
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#results-from-study",
+    "href": "slides/lec08-bivariate_modeling.html#results-from-study",
+    "title": "Modeling Bivariate Relationships",
+    "section": "Results from study",
+    "text": "Results from study\n\n\n\n\n\n\nAlive\nDead\nSum\n\n\n\n\nControl\n44405\n505\n44910\n\n\nMammogram\n44425\n500\n44925\n\n\nSum\n88830\n1005\n89835\n\n\n\n\n\nThe independent/explanatory variable is treatment (additional mammograms), and the dependent/response variable is death from breast cancer. Are these measures associated?"
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#assume-independenceno-association",
+    "href": "slides/lec08-bivariate_modeling.html#assume-independenceno-association",
+    "title": "Modeling Bivariate Relationships",
+    "section": "Assume independence/no association",
+    "text": "Assume independence/no association\n\nIf mammograms are more effective than non-mammogram breast cancer exams, then we would expect to see additional deaths from breast cancer in the control group (there is a relationship).\nIf mammograms are not as effective as regular breast cancer exams, we would expect to see no difference in breast cancer deaths in the two groups (there is no relationship).\nNeed to figure out how many deaths would be expected, if there was no relationship between treatment death by breast cancer,\nThen examine the residuals - the difference between the observed counts and the expected counts in each cell."
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#table-notation",
+    "href": "slides/lec08-bivariate_modeling.html#table-notation",
+    "title": "Modeling Bivariate Relationships",
+    "section": "Table notation",
+    "text": "Table notation\nTables can be described by \\(i\\) rows and \\(j\\) columns. So the cell in the top left is \\(i=1\\) and \\(j=1\\).\n\n\n\n\n\n\n\n\n\n\\(O_{ij}\\)\nAlive\nDead\nTotal\n\n\n\n\nMammo\n\\(n_{11}\\)\n\\(n_{12}\\)\n\\(n_{1.}\\)\n\n\nControl\n\\(n_{21}\\)\n\\(n_{22}\\)\n\\(n_{2.}\\)\n\n\nTotal\n\\(n_{.1}\\)\n\\(n_{.2}\\)\n\\(N\\)\n\n\n\nIn our DATA = MODEL + RESIDUAL framework, the DATA (\\(n_{11}, n_{12}\\), etc)is the observed counts \\(O_{ij}\\) and the MODEL is the expected counts \\(E_{ij}\\)."
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#calculating-the-expected-count",
+    "href": "slides/lec08-bivariate_modeling.html#calculating-the-expected-count",
+    "title": "Modeling Bivariate Relationships",
+    "section": "Calculating the expected count",
+    "text": "Calculating the expected count\nSince we assume the variables are independent (unless the data show otherwise) the expected count for each cell is calculated as the row total times the column total for that cell, divided by the overall total.\n\\[E_{ij} = \\frac{n_{i.}n_{.j}}{N}\\]\nIn a probability framework this is stated as two variables \\(A\\) and \\(B\\) are independent if \\(P(A \\cap B) = P(A)*P(B) = \\frac{n_{i.}}{N}*\\frac{n_{.j}}{N}\\)"
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#calculating-the-residuals",
+    "href": "slides/lec08-bivariate_modeling.html#calculating-the-residuals",
+    "title": "Modeling Bivariate Relationships",
+    "section": "Calculating the residuals",
+    "text": "Calculating the residuals\nThe residuals are calculated as \\((O_{ij} - E_{ij})\\)\n\n\nExpected\n\n\nShow the code\nchisq.test(a$Tx, a$Outcome)$expected %>% kable(digits=2)\n\n\n\n\n\n\nAlive\nDead\n\n\n\n\nControl\n44407.58\n502.42\n\n\nMammogram\n44422.42\n502.58\n\n\n\n\n\n\nResiduals\n\n\nShow the code\nchisq.test(a$Tx, a$Outcome)$residuals %>% kable(digits=3) \n\n\n\n\n\n\nAlive\nDead\n\n\n\n\nControl\n-0.012\n0.115\n\n\nMammogram\n0.012\n-0.115\n\n\n\n\n\n\n\nIf mammograms were not associated with survival, there were 0.01 fewer people still alive than expected, and 0.11 more people dead."
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#chi2-test-statistic",
+    "href": "slides/lec08-bivariate_modeling.html#chi2-test-statistic",
+    "title": "Modeling Bivariate Relationships",
+    "section": "\\(\\chi^2\\) test statistic",
+    "text": "\\(\\chi^2\\) test statistic\n\n\nThe \\(\\chi^2\\) test statistic is defined as the sum of the squared residuals, divided by the expected counts, and follows a \\(\\chi^2\\) distribution with degrees of freedom (#rows -1)(#cols -1).\n\\[ \\sum_{ij}\\frac{(O_{ij}-E_{ij})^{2}}{E_{ij}} \\]\n\n\n\nShow the code\ndist_chisq(chi2=.027, deg.f=1, geom.colors=c(\"#FDE725FF\", \"#440154FF\"))"
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#conclusion",
+    "href": "slides/lec08-bivariate_modeling.html#conclusion",
+    "title": "Modeling Bivariate Relationships",
+    "section": "Conclusion",
+    "text": "Conclusion\nIn this example, the test statistic was 0.017 with p-value 0.895.\nSo there is not enough reason to believe that mammograms in addition to regular exams are associated with a reduced risk of death due to breast cancer.\nThis example demonstrated how we examine the residuals to see how closely our DATA fits a hypothesized MODEL."
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#example-income-and-general-health",
+    "href": "slides/lec08-bivariate_modeling.html#example-income-and-general-health",
+    "title": "Modeling Bivariate Relationships",
+    "section": "Example: Income and General Health",
+    "text": "Example: Income and General Health\nUsing the Addhealth data set, what can we say about the relationship between smoking status and a person’s perceived level of general health?\nIs there an association between lifetime smoking status and perceived general health?"
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#identify-response-and-explanatory-variables-2",
+    "href": "slides/lec08-bivariate_modeling.html#identify-response-and-explanatory-variables-2",
+    "title": "Modeling Bivariate Relationships",
+    "section": "1. Identify response and explanatory variables",
+    "text": "1. Identify response and explanatory variables\n\nThe binary explanatory variable is whether the person has ever smoked an entire cigarette (eversmoke_c).\nThe categorical explanatory variable is the person’s general health (genhealth) and has levels “Excellent”, “Very Good”, “Good”, “Fair”, and “Poor”."
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#visualize-and-summarise-bivariate-relationship-2",
+    "href": "slides/lec08-bivariate_modeling.html#visualize-and-summarise-bivariate-relationship-2",
+    "title": "Modeling Bivariate Relationships",
+    "section": "2. Visualize and summarise bivariate relationship",
+    "text": "2. Visualize and summarise bivariate relationship\n\n\nShow the code\nplot_xtab(grp=addhealth$eversmoke_c, x=addhealth$genhealth, \n                  show.total = FALSE, margin=\"row\", legend.title=\"\") \n\n\n\nThe percentage of smokers seems to increase as the general health status decreases. Almost three-quarters (73%, n=40) of those reporting poor health have smoked an entire cigarette at least once in their life compared to 59% (n=573) of those reporting excellent health."
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#b.-other-ways-to-visualize-this-fyi-only",
+    "href": "slides/lec08-bivariate_modeling.html#b.-other-ways-to-visualize-this-fyi-only",
+    "title": "Modeling Bivariate Relationships",
+    "section": "2b. Other ways to visualize this (FYI only)",
+    "text": "2b. Other ways to visualize this (FYI only)\n\n\n\n\nShow the code\naddhealth %>% \n  group_by(genhealth) %>% \n  summarize(p = mean(eversmoke_c == \"Smoked at least once\", na.rm=TRUE)*100, \n            n = n()) %>% \n  na.omit() %>% \n  ggplot(aes(x=genhealth, y=p, color=genhealth)) + \n  geom_point(aes(size = n)) + \n  scale_y_continuous(limits=c(0, 100)) + \n  geom_segment(aes(x=genhealth, xend=genhealth, y=0, yend=p)) +\n  scale_color_discrete(guide=\"none\") + theme_bw() + \n  ylab(\"Proportion of smokers\") + \n  xlab(\"Perceived General Health\")\n\n\n\n\n\n\n\n\nShow the code\naddhealth %>% \n  count(genhealth, eversmoke_c) %>% \n  na.omit() %>%\n  group_by(genhealth)%>%\n  mutate(p = n/sum(n)*100) %>% \nggplot(aes(x=genhealth, y=p, fill=eversmoke_c, \n           label = paste0(round(p, 1), \"%\"))) + \n  geom_col() + theme_bw() + \n  scale_fill_discrete(name = \"\") + \n  geom_text(position=position_stack(0.5)) + \n  ylab(\"Proportion of smokers\") + \n  xlab(\"Perceived General Health\")\n\n\n\n\n\n\n\n These methods pre-calculate the proportions first, and then put them on a ggplot canvas. As you build your expertise with R/Ggplot you will find yourself wanting to enhance or move away from the “pre-packaged” plots from sjPlot and ggpubr."
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#write-the-relationship-you-want-to-examine-in-the-form-of-a-research-question.-2",
+    "href": "slides/lec08-bivariate_modeling.html#write-the-relationship-you-want-to-examine-in-the-form-of-a-research-question.-2",
+    "title": "Modeling Bivariate Relationships",
+    "section": "3. Write the relationship you want to examine in the form of a research question.",
+    "text": "3. Write the relationship you want to examine in the form of a research question.\n\nNull Hypothesis: The proportion of smokers is the same across all levels of general health.\nAlternate Hypothesis: At least one group has a different proportion of smokers compared to the other general health groups."
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#perform-an-appropriate-statistical-analysis-using-dr-ds-4-step-method.-2",
+    "href": "slides/lec08-bivariate_modeling.html#perform-an-appropriate-statistical-analysis-using-dr-ds-4-step-method.-2",
+    "title": "Modeling Bivariate Relationships",
+    "section": "4. Perform an appropriate statistical analysis using Dr D’s 4 step method.",
+    "text": "4. Perform an appropriate statistical analysis using Dr D’s 4 step method.\na. Define parameters\nLet \\(p_{1}, p_{2}, \\ldots, p_{5}\\) be the true proportion of smokers in each of the 5 health categories: (1) Excellent to (5) Poor.\n\n\nb. State the null and alternative hypothesis as symbols\n\\(H_{0}: p_{1} = p_{2} = \\ldots p_{5}\\)\n\\(H_{A}:\\) At least one \\(p_{j}\\) is different."
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#section-7",
+    "href": "slides/lec08-bivariate_modeling.html#section-7",
+    "title": "Modeling Bivariate Relationships",
+    "section": "",
+    "text": "c. State and justify the analysis model. Check assumptions.\nI will conduct a \\(\\chi^{2}\\) test of association. There is at least 10 observations in each combination of smoking status and general health.\nd. Conduct the test and make a decision about the plausibility of the alternative hypothesis.\n\n\nShow the code\nchisq.test(addhealth$genhealth, addhealth$eversmoke_c)\n\n\n\n    Pearson's Chi-squared test\n\ndata:  addhealth$genhealth and addhealth$eversmoke_c\nX-squared = 30.795, df = 4, p-value = 3.371e-06\n\n\nWe have strong evidence in favor of the alternative hypothesis, p<.0001"
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#write-a-conclusion-in-context-of-the-problem.-1",
+    "href": "slides/lec08-bivariate_modeling.html#write-a-conclusion-in-context-of-the-problem.-1",
+    "title": "Modeling Bivariate Relationships",
+    "section": "5. Write a conclusion in context of the problem.",
+    "text": "5. Write a conclusion in context of the problem.\nWe can conclude that there is an association between ever smoking a cigarette in their life and perceived general health (\\(\\chi^{2} = 30.8, df=4, p<.0001\\))."
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#multiple-comparisons-which-group-is-different",
+    "href": "slides/lec08-bivariate_modeling.html#multiple-comparisons-which-group-is-different",
+    "title": "Modeling Bivariate Relationships",
+    "section": "Multiple comparisons: Which group is different?",
+    "text": "Multiple comparisons: Which group is different?\nJust like with ANOVA, if we find that the Chi-squared test indicates that at least one proportion is different from the others, it’s our job to figure out which ones might be different! We will analyze the residuals to accomplish this."
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#examine-the-residuals",
+    "href": "slides/lec08-bivariate_modeling.html#examine-the-residuals",
+    "title": "Modeling Bivariate Relationships",
+    "section": "Examine the residuals",
+    "text": "Examine the residuals\nThe residuals (\\(O_{ij} - E_{ij}\\)) are automatically stored in the model output. You can either print them out and look at the values directly or create a plot. You’re looking for combinations that have much higher, or lower expected proportions.\n\n\n\n\nShow the code\nhealth.smoke.model <- chisq.test(addhealth$genhealth, addhealth$eversmoke_c)\nhealth.smoke.model$residuals |> round(2)\n\n\n                   addhealth$eversmoke_c\naddhealth$genhealth Never Smoked Smoked at least once\n          Excellent         3.45                -2.52\n          Very good         0.48                -0.35\n          Good             -2.44                 1.78\n          Fair             -1.06                 0.77\n          Poor             -0.94                 0.69\n\n\n\n\n\nShow the code\nplot.residuals <- health.smoke.model$residuals %>% data.frame()\nggplot(plot.residuals, aes(x=addhealth.genhealth, y=addhealth.eversmoke_c)) +\n       geom_raster(aes(fill=Freq)) +  scale_fill_viridis_c()\n\n\n\n\n\n\n\nThe proportion of non-smokers in the excellent health category is much higher than expected if there were no relationship between these two variables."
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#all-pairwise-comparisons",
+    "href": "slides/lec08-bivariate_modeling.html#all-pairwise-comparisons",
+    "title": "Modeling Bivariate Relationships",
+    "section": "All pairwise comparisons",
+    "text": "All pairwise comparisons\n\n\n\n\nShow the code\n# library(rcompanion)\nsmoke.by.genhealth <- table(addhealth$genhealth, addhealth$eversmoke_c)\nrcompanion::pairwiseNominalIndependence(smoke.by.genhealth, fisher = FALSE, gtest=FALSE) |> kable(digits = 3)\n\n\n\n\n\nComparison\np.Chisq\np.adj.Chisq\n\n\n\n\nExcellent : Very good\n0.002\n0.008\n\n\nExcellent : Good\n0.000\n0.000\n\n\nExcellent : Fair\n0.001\n0.005\n\n\nExcellent : Poor\n0.055\n0.110\n\n\nVery good : Good\n0.009\n0.022\n\n\nVery good : Fair\n0.167\n0.278\n\n\nVery good : Poor\n0.269\n0.384\n\n\nGood : Fair\n0.886\n0.886\n\n\nGood : Poor\n0.630\n0.700\n\n\nFair : Poor\n0.601\n0.700\n\n\n\n\n\n\nUsing the adjusted (for multiple comparisons) p-value column, the proportion of smokers in the Excellent group (41.3%) is significantly different from nearly all other groups (35.4% for Very Good, 31.3% for Good, 31.8% for Fair).\nBut why is it not significantly different from the 27.3% in the Poor group?"
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#the-effect-of-small-sample-sizes",
+    "href": "slides/lec08-bivariate_modeling.html#the-effect-of-small-sample-sizes",
+    "title": "Modeling Bivariate Relationships",
+    "section": "The effect of small sample sizes",
+    "text": "The effect of small sample sizes\nWhy is 41.3% significantly different from 35.4%, but NOT different from 27.3%?\nThe standard error is always dependent on the sample size. Here, the number of individuals in the Poor health category is much smaller compared to all other groups - so the margin of error will be larger - making it less likely to be statistically significantly different from other groups.\nWhen you have a small numbers (n<10) in one or more cells the distribution of the test statistic can no longer be modeled well using the \\(\\chi^{2}\\) distribution. So we again go to a non-parametric test that uses a randomization based method."
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#fishers-exact-test",
+    "href": "slides/lec08-bivariate_modeling.html#fishers-exact-test",
+    "title": "Modeling Bivariate Relationships",
+    "section": "Fishers Exact Test",
+    "text": "Fishers Exact Test\n\n\nShow the code\nfisher.test(addhealth$genhealth, addhealth$eversmoke_c, \n            simulate.p.value = TRUE)\n\n\n\n    Fisher's Exact Test for Count Data with simulated p-value (based on 2000 replicates)\n\ndata:  addhealth$genhealth and addhealth$eversmoke_c\np-value = 0.0004998\nalternative hypothesis: two.sided\n\n\nThen you can use the pairwiseNominalIndependence function for all pairwise comparisons again, with the fisher argument set to TRUE.\n\n\n\nNote: the simulate.p.value = TRUE argument here is only needed if the randomization space is larger than your workspace. R will let you know when this is needed."
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#chi-squared-test-of-associationindependence",
+    "href": "slides/lec08-bivariate_modeling.html#chi-squared-test-of-associationindependence",
+    "title": "Modeling Bivariate Relationships",
+    "section": "Chi-Squared test of Association/Independence",
+    "text": "Chi-Squared test of Association/Independence\nWe can still use the \\(\\chi^{2}\\) test of association to compare categorical variables with more than 2 levels. In this case we generalize the statement to ask: Is the distribution of 1 variable the same across levels of another variable?. In this sense, it is very much like an ANOVA.\nMathematically the \\(\\chi^{2}\\) test of association is the exact same as a test of equal proportions."
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#example",
+    "href": "slides/lec08-bivariate_modeling.html#example",
+    "title": "Modeling Bivariate Relationships",
+    "section": "Example",
+    "text": "Example\nLet’s analyze the relationship between a person’s income and perceived level of general health.\nThe categorical explanatory variable is income, binned into 4 ranges (income_cat).\n\n\nShow the code\naddhealth$income_cat <- Hmisc::cut2(addhealth$income, g = 4)"
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#state-hypothesis",
+    "href": "slides/lec08-bivariate_modeling.html#state-hypothesis",
+    "title": "Modeling Bivariate Relationships",
+    "section": "State Hypothesis",
+    "text": "State Hypothesis\n\nThe income distribution is the same in each of the general health categories (no association)\nThe income distribution differs for at least one of the general health categories (association)"
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#visualize-the-relationship",
+    "href": "slides/lec08-bivariate_modeling.html#visualize-the-relationship",
+    "title": "Modeling Bivariate Relationships",
+    "section": "Visualize the relationship",
+    "text": "Visualize the relationship\n\n\n\n\nShow the code\nplot_xtab(grp=addhealth$income_cat,\n                  x=addhealth$genhealth, \n                  show.total = FALSE, margin=\"row\",\n                  legend.title=\"\") + \n  theme(legend.position = \"top\")\n\n\n\n\n\n\n The income distribution is nearly flat for who rate themselves in excellent or very good condition. However, the proportion of individuals in the lower income categories increase as perceived general health decreases. Over 80% of those that rate themselves as in Poor condition have an annual income less than $35,500.\nSince there are very small cell sizes, we will use a Fishers Exact test."
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#test-the-relationship-make-a-conclusion.",
+    "href": "slides/lec08-bivariate_modeling.html#test-the-relationship-make-a-conclusion.",
+    "title": "Modeling Bivariate Relationships",
+    "section": "Test the relationship & make a conclusion.",
+    "text": "Test the relationship & make a conclusion.\n\n\nShow the code\nfisher.test(addhealth$genhealth, addhealth$income_cat, \n            simulate.p.value = TRUE)\n\n\n\n    Fisher's Exact Test for Count Data with simulated p-value (based on 2000 replicates)\n\ndata:  addhealth$genhealth and addhealth$income_cat\np-value = 0.0004998\nalternative hypothesis: two.sided\n\n\nThere is sufficient evidence to conclude that the distribution of income is not the same across all general health status categories."
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#other-analysis-for-categorical-variables",
+    "href": "slides/lec08-bivariate_modeling.html#other-analysis-for-categorical-variables",
+    "title": "Modeling Bivariate Relationships",
+    "section": "Other analysis for categorical variables",
+    "text": "Other analysis for categorical variables\nThere is a slew of methods to analyze categorical data, we can’t get into them all. To learn more start with Categorical Data Analysis by Alan Agresti, who has written extensively on the subject.\nThis R companion page also looks very useful http://rcompanion.org/handbook/H_01.html and where I got the pairwiseNominalIndependence function from."
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#opening-remarks-1",
+    "href": "slides/lec08-bivariate_modeling.html#opening-remarks-1",
+    "title": "Modeling Bivariate Relationships",
+    "section": "Opening Remarks",
+    "text": "Opening Remarks\nThe PMA6 textbook (Chapter 7) goes into great detail on this topic, since regression is typically the basis for all advanced models.\nThe book also distinguishes between a “fixed-x” case, where the values of the explanatory variable \\(x\\) only take on pre-specified values, and a “variable-x” case, where the values of \\(x\\) are observations from a population distribution of X’s.\nThis latter case is what we will be concerning ourselves with."
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#bivariate-distribution",
+    "href": "slides/lec08-bivariate_modeling.html#bivariate-distribution",
+    "title": "Modeling Bivariate Relationships",
+    "section": "Bivariate distribution",
+    "text": "Bivariate distribution\nThe bivariate distribution describes how of \\(X\\) and \\(Y\\) are jointly distributed, and is best interpreted by a look at the scatter diagram.\n\n\nShow the code\ny.bar <- mean(pen$bill_length_mm, na.rm=TRUE)\nx.bar <- mean(pen$body_mass_g, na.rm=TRUE)\n\np <- ggplot(pen, aes(x=body_mass_g, y=bill_length_mm)) + geom_point() + \n  geom_hline(yintercept = y.bar) + \n  geom_vline(xintercept = x.bar) \nggExtra::ggMarginal(p, type=\"histogram\")\n\n\n\nIf \\(X\\) and \\(Y\\) come from independent normal distributions, the pair \\((X,Y)\\) comes from a bivariate normal distribution, and the data will tend to cluster around the means of \\(X\\) and \\(Y\\)."
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#ellipse-of-concentration",
+    "href": "slides/lec08-bivariate_modeling.html#ellipse-of-concentration",
+    "title": "Modeling Bivariate Relationships",
+    "section": "Ellipse of concentration",
+    "text": "Ellipse of concentration\nWe can view the ellipse of concentration as measure of strength and direction of the correlation between X and Y.\n\n\nShow the code\nggpubr::ggscatter(pen, x = \"body_mass_g\", y = \"bill_length_mm\",\n   ellipse = TRUE, mean.point = TRUE,\n   star.plot = TRUE)\n\n\n\nSee PMA6 Figure 7.5 for more examples."
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#correlation",
+    "href": "slides/lec08-bivariate_modeling.html#correlation",
+    "title": "Modeling Bivariate Relationships",
+    "section": "Correlation",
+    "text": "Correlation\nThe correlation coefficient is designated by \\(r\\) for the sample correlation, and \\(\\rho\\) for the population correlation. The correlation is a measure of the strength and direction of a linear relationship between two variables.\nThe correlation ranges from +1 to -1. A correlation of +1 means that there is a perfect, positive linear relationship between the two variables. A correlation of -1 means there is a perfect, negative linear relationship between the two variables. In both cases, knowing the value of one variable, you can perfectly predict the value of the second."
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#strength-of-the-correlation",
+    "href": "slides/lec08-bivariate_modeling.html#strength-of-the-correlation",
+    "title": "Modeling Bivariate Relationships",
+    "section": "Strength of the correlation",
+    "text": "Strength of the correlation\nHere are rough estimates for interpreting the strengths of correlations based on the magnitude of \\(r\\).\n\n\\(|r| \\geq 0.7\\): Very strong relationship\n\\(0.4 \\leq |r| < 0.7\\): Strong relationship\n\\(0.3 \\leq |r| < 0.4\\): Moderate relationship\n\\(0.2 \\leq |r| < 0.3:\\) Weak relationship\n\\(|r| < 0.2:\\) Negligible or no relationship"
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#as-a-measure-of-model-fit",
+    "href": "slides/lec08-bivariate_modeling.html#as-a-measure-of-model-fit",
+    "title": "Modeling Bivariate Relationships",
+    "section": "As a measure of model fit",
+    "text": "As a measure of model fit\nWhen we square \\(r\\) (i.e. \\(R^{2}\\)), it tells us what proportion of the variability in one variable that is described by variation in the second variable.\n\n\nYes, this is mathematically the same as the coefficient of determination we saw in ANOVA."
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#pearson-test-of-correlation",
+    "href": "slides/lec08-bivariate_modeling.html#pearson-test-of-correlation",
+    "title": "Modeling Bivariate Relationships",
+    "section": "Pearson test of correlation",
+    "text": "Pearson test of correlation\nTo test for a linear correlation between two variables we use the Pearson correlation coefficient which is defined as the covariance of the two variables divided by the product of their standard deviations.\n\\[\n\\rho_{X,Y} = \\frac{cov(X,Y)}{\\sigma_{x}\\sigma_{Y}}\n\\]\nThere are many modifications and adjustments to this measure that we will not get into detail with. We are using correlation as a stepping stool to Linear Regression."
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#example-body-mass-and-bill-length-of-penguins",
+    "href": "slides/lec08-bivariate_modeling.html#example-body-mass-and-bill-length-of-penguins",
+    "title": "Modeling Bivariate Relationships",
+    "section": "Example: Body mass and bill length of penguins",
+    "text": "Example: Body mass and bill length of penguins\n1. Identify response and explanatory variables\n\nThe quantitative explanatory variable is body mass (g)\nThe quantitative response variable is bill length (mm)"
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#visualize-and-summarise-bivariate-relationship-3",
+    "href": "slides/lec08-bivariate_modeling.html#visualize-and-summarise-bivariate-relationship-3",
+    "title": "Modeling Bivariate Relationships",
+    "section": "2. Visualize and summarise bivariate relationship",
+    "text": "2. Visualize and summarise bivariate relationship\n\n\n\n\nShow the code\nggplot(pen, aes(x=body_mass_g, y=bill_length_mm)) + \n  geom_point() + geom_smooth(col = \"red\")\n\n\n\n\n\nShow the code\ncor(pen$body_mass_g, pen$bill_length_mm, use = \"pairwise.complete.obs\")\n\n\n[1] 0.5951098\n\n\n\nThere is a strong, positive, mostly linear relationship between the body mass (g) of penguins and their bill length (mm) (r=.595)."
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#write-the-relationship-you-want-to-examine-in-the-form-of-a-research-question.-3",
+    "href": "slides/lec08-bivariate_modeling.html#write-the-relationship-you-want-to-examine-in-the-form-of-a-research-question.-3",
+    "title": "Modeling Bivariate Relationships",
+    "section": "3. Write the relationship you want to examine in the form of a research question.",
+    "text": "3. Write the relationship you want to examine in the form of a research question.\n\nNull Hypothesis: There is no correlation between the body mass and bill length of penguins.\nAlternate Hypothesis: There is a correlation between the body mass and bill length of penguins."
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#perform-an-appropriate-statistical-analysis-using-dr-ds-4-step-method.-3",
+    "href": "slides/lec08-bivariate_modeling.html#perform-an-appropriate-statistical-analysis-using-dr-ds-4-step-method.-3",
+    "title": "Modeling Bivariate Relationships",
+    "section": "4. Perform an appropriate statistical analysis using Dr D’s 4 step method.",
+    "text": "4. Perform an appropriate statistical analysis using Dr D’s 4 step method.\na. Define parameters Let \\(\\rho\\) be the true correlation between body mass and bill length of penguins.\nb. State the null and alternative hypothesis as symbols\n\\(H_{0}: \\rho=0 \\qquad \\qquad H_{A}: \\rho \\neq 0\\)\nc. State and justify the analysis model.\nPearsons test of correlation will be conducted. This is appropriate because both variables are quantitative, the relationship between variables are reasonably linear, and the sample size is large."
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#section-8",
+    "href": "slides/lec08-bivariate_modeling.html#section-8",
+    "title": "Modeling Bivariate Relationships",
+    "section": "",
+    "text": "d. Conduct the test and make a decision about the plausibility of the alternative hypothesis.\n\n\nShow the code\ncor.test(pen$body_mass_g, pen$bill_length_mm)\n\n\n\n    Pearson's product-moment correlation\n\ndata:  pen$body_mass_g and pen$bill_length_mm\nt = 13.654, df = 340, p-value < 2.2e-16\nalternative hypothesis: true correlation is not equal to 0\n95 percent confidence interval:\n 0.5220040 0.6595358\nsample estimates:\n      cor \n0.5951098 \n\n\nThe p-value is very small, there is evidence in favor of a non-zero correlation."
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#write-a-conclusion-in-context-of-the-problem.-2",
+    "href": "slides/lec08-bivariate_modeling.html#write-a-conclusion-in-context-of-the-problem.-2",
+    "title": "Modeling Bivariate Relationships",
+    "section": "5. Write a conclusion in context of the problem.",
+    "text": "5. Write a conclusion in context of the problem.\nThere was a statistically significant and strong correlation between the body mass (g) and bill length (mm) of penguins (r = 0.595, 95%CI .5220-.6595, p < .0001). The significant positive correlation shows that as the body mass of a penguin increases so does the bill length. These results suggest that 35% (95% CI: 27.2-43.5) of the variance in bill length can be explained by the body mass of the penguin."
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#overview",
+    "href": "slides/lec08-bivariate_modeling.html#overview",
+    "title": "Modeling Bivariate Relationships",
+    "section": "Overview",
+    "text": "Overview\nThe general purpose of regression is to learn more about the relationship between several independent or predictor variables and a quantitative dependent variable.\nThe goal of Simple linear regression is to describe the relationship between a continuous dependent variable Y and a single independent continuous variable X using a straight line.\n\nSee ASCN Ch 7 for the learning content. What follows is just a full 5 step analysis example."
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#example-body-mass-and-bill-length-of-penguins-1",
+    "href": "slides/lec08-bivariate_modeling.html#example-body-mass-and-bill-length-of-penguins-1",
+    "title": "Modeling Bivariate Relationships",
+    "section": "Example: Body mass and bill length of penguins",
+    "text": "Example: Body mass and bill length of penguins\n1. Identify response and explanatory variables\n\nThe quantitative explanatory variable is body mass (g)\nThe quantitative response variable is bill length (mm)"
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#visualize-and-summarise-bivariate-relationship-4",
+    "href": "slides/lec08-bivariate_modeling.html#visualize-and-summarise-bivariate-relationship-4",
+    "title": "Modeling Bivariate Relationships",
+    "section": "2. Visualize and summarise bivariate relationship",
+    "text": "2. Visualize and summarise bivariate relationship\n\n\nShow the code\nggplot(pen, aes(x=body_mass_g, y=bill_length_mm)) + \n  geom_point() + geom_smooth(col = \"red\")\n\n\n\nThere is a strong, positive, mostly linear relationship between the body mass (g) of penguins and their bill length (mm) (r=.595)."
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#write-the-relationship-you-want-to-examine-in-the-form-of-a-research-question.-4",
+    "href": "slides/lec08-bivariate_modeling.html#write-the-relationship-you-want-to-examine-in-the-form-of-a-research-question.-4",
+    "title": "Modeling Bivariate Relationships",
+    "section": "3. Write the relationship you want to examine in the form of a research question.",
+    "text": "3. Write the relationship you want to examine in the form of a research question.\n\nNull Hypothesis: There is no linear relationship between body mass and bill length.\nAlternate Hypothesis: There is a linear relationship between body mass and bill length."
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#perform-an-appropriate-statistical-analysis-using-dr-ds-4-step-method.-4",
+    "href": "slides/lec08-bivariate_modeling.html#perform-an-appropriate-statistical-analysis-using-dr-ds-4-step-method.-4",
+    "title": "Modeling Bivariate Relationships",
+    "section": "4. Perform an appropriate statistical analysis using Dr D’s 4 step method.",
+    "text": "4. Perform an appropriate statistical analysis using Dr D’s 4 step method.\na. Define parameters Let \\(\\beta_1\\) be the true slope parameter that describes the change in bill length of the penguin as body mass increases.\nb. State the null and alternative hypothesis as symbols\n\\(H_{0}: \\beta_{1}=0 \\qquad \\qquad H_{A}: \\beta_{1} \\neq 0\\)"
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#c.-state-and-justify-the-analysis-model.",
+    "href": "slides/lec08-bivariate_modeling.html#c.-state-and-justify-the-analysis-model.",
+    "title": "Modeling Bivariate Relationships",
+    "section": "c. State and justify the analysis model.",
+    "text": "c. State and justify the analysis model.\nBoth the outcome and predictor are continuous variables that have a visible linear relationship, and observations are independent.\nThe rest of the model assumptions can be checked after the model is fit using the check_model(my_model_object_name) function from the performance package."
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#d.-conduct-the-test-and-make-a-decision-about-the-plausibility-of-the-alternative-hypothesis.",
+    "href": "slides/lec08-bivariate_modeling.html#d.-conduct-the-test-and-make-a-decision-about-the-plausibility-of-the-alternative-hypothesis.",
+    "title": "Modeling Bivariate Relationships",
+    "section": "d. Conduct the test and make a decision about the plausibility of the alternative hypothesis.",
+    "text": "d. Conduct the test and make a decision about the plausibility of the alternative hypothesis.\n\n\nShow the code\npen.body.bill <- lm(bill_length_mm ~ body_mass_g, data=pen)\npen.body.bill |> summary()\n\n\n\nCall:\nlm(formula = bill_length_mm ~ body_mass_g, data = pen)\n\nResiduals:\n     Min       1Q   Median       3Q      Max \n-10.1251  -3.0434  -0.8089   2.0711  16.1109 \n\nCoefficients:\n             Estimate Std. Error t value Pr(>|t|)    \n(Intercept) 2.690e+01  1.269e+00   21.19   <2e-16 ***\nbody_mass_g 4.051e-03  2.967e-04   13.65   <2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 4.394 on 340 degrees of freedom\n  (2 observations deleted due to missingness)\nMultiple R-squared:  0.3542,    Adjusted R-squared:  0.3523 \nF-statistic: 186.4 on 1 and 340 DF,  p-value: < 2.2e-16\n\n\nThe p-value for \\(b_{1}\\) is <.0001, so there is sufficient evidence to believe that there is a linear relationship between body mass and bill length."
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#c-cont.-finish-checking-the-assumptions",
+    "href": "slides/lec08-bivariate_modeling.html#c-cont.-finish-checking-the-assumptions",
+    "title": "Modeling Bivariate Relationships",
+    "section": "c (cont). Finish checking the assumptions",
+    "text": "c (cont). Finish checking the assumptions\n\nNormality of residuals – density plotNormality of residuals – “qqplot”Homogeneity of variancePosterior Predictions\n\n\n\n\n\n\n\n\n\n\nMostly normal, pretty heavy right tail. This is indicative of a nonlinear trend somewhere in the data.\n\n\n\n\n\n\n\n\n\n\n\n\nThis is also known as a ‘normal probability plot’. It is used to compare the theoretical quantiles of the data if it were to come from a normal distribution to the observed quantiles. PMA6 Figure 5.4 has more examples and an explanation.\n\n\n\n\n\n\n\n\n\n\n\n\nHoly non-flat relationship Batman. The variance of Y is not constant. This is a warning that our linear model does not fit the data well and we should look into possible refinements and improvements.\n\n\n\n\n\n\n\n\n\n\n\n\nHere we clearly see that the observed distribution of bill length is bimodal, and so the model is overestimating some values and underestimating others. There is clearly some other confounding variable that predicts bill length better than just body mass."
+  },
+  {
+    "objectID": "slides/lec08-bivariate_modeling.html#write-a-conclusion-in-context-of-the-problem.-3",
+    "href": "slides/lec08-bivariate_modeling.html#write-a-conclusion-in-context-of-the-problem.-3",
+    "title": "Modeling Bivariate Relationships",
+    "section": "5. Write a conclusion in context of the problem.",
+    "text": "5. Write a conclusion in context of the problem.\n\n\n\n\nShow the code\npen.body.bill |> coefficients() \n\n\n (Intercept)  body_mass_g \n26.898872424  0.004051417 \n\n\nShow the code\npen.body.bill |> confint()\n\n\n                   2.5 %       97.5 %\n(Intercept) 24.402502194 29.395242653\nbody_mass_g  0.003467795  0.004635038\n\n\nShow the code\npen.body.bill |> r2()\n\n\n# R2 for Linear Regression\n       R2: 0.354\n  adj. R2: 0.352\n\n\n\nEach 1g increase in body mass of a penguin is associated with a significant increase of 0.004 (0.0035, 0.0046) mm of bill length (p<.0001).\nAn increase of 1kg of body mass in a penguin corresponds to a 4(3.5, 4.6) mm increase in bill length.\nBody mass explains 35.4% of the variation in bill length.\n\n\nHowever, model diagnostics indicate that a linear model may not be appropriate for this relationship. The assumption of constant variance is not upheld and there may be another variable that affects bill length.\n\n\n🔗 https://math615.netlify.app / Modeling Bivariate Relationships"
   },
   {
     "objectID": "slides.html",
@@ -1533,559 +2128,6 @@
     "text": "Discussion"
   },
   {
-    "objectID": "topics.html",
-    "href": "topics.html",
-    "title": "Topic Areas",
-    "section": "",
-    "text": "Topic\n\n\nDates\n\n\nDescription\n\n\n\n\n\n\nWelcome to Fall 22\n\n\n8/22\n\n\nIntroduction to class and your learning materials\n\n\n\n\nData Architecture\n\n\n8/22\n\n\nData entry, spreadsheets, metadata, codebooks\n\n\n\n\nFormulating research questions\n\n\n8/29\n\n\nAsking questions is easy. Asking answerable questions is more difficult.\n\n\n\n\nData Management\n\n\n8/31-9/11\n\n\nWhere an inordinate amount of time is spent\n\n\n\n\nDescribing distributions of data\n\n\n9/12-9/18\n\n\nVisualizing your data is the first line of defense against bad data\n\n\n\n\nDescribing Relationships\n\n\n9/19-10/02\n\n\nFirst step in investigating a question about an association\n\n\n\n\nStudy Design\n\n\n10/03\n\n\nHow did the data come to be?\n\n\n\n\nInference with Mathematical Models\n\n\n10/05-10/10\n\n\nIf all else fails, use ‘significant at p>.05 level’ and hope no one notices. Ref: https://xkcd.com/1478/?\n\n\n\n\nModeling Bivariate Relationships\n\n\n10/12 - 10/24\n\n\n\n\n\n\nLinear Regression\n\n\n10/24 - 10/26\n\n\nEverything is a linear model\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#analysis-of-variance-ascn-section-5.4",
-    "href": "slides/lec08-bivariate_modeling.html#analysis-of-variance-ascn-section-5.4",
-    "title": "Modeling Bivariate Relationships",
-    "section": "Analysis of Variance (ASCN Section 5.4)",
-    "text": "Analysis of Variance (ASCN Section 5.4)\n\n\n\nANOVA is a mathematical technique which uses a model based approach to partition the variance in an experiment into different sources of variance. This technique enables us to test if most the variation in the treatment means is due to differences between the groups.\n\n\n\n(See ASCN Section 5.4.0-5.4.4 for modeling notes)"
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#example",
-    "href": "slides/lec08-bivariate_modeling.html#example",
-    "title": "Modeling Bivariate Relationships",
-    "section": "Example",
-    "text": "Example\nLet’s analyze the relationship between a person’s income and perceived level of general health.\nThe categorical explanatory variable is income, binned into 4 ranges (income_cat).\n\n\nShow the code\naddhealth$income_cat <- Hmisc::cut2(addhealth$income, g = 4)"
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#identify-response-and-explanatory-variables-1",
-    "href": "slides/lec08-bivariate_modeling.html#identify-response-and-explanatory-variables-1",
-    "title": "Modeling Bivariate Relationships",
-    "section": "1. Identify response and explanatory variables",
-    "text": "1. Identify response and explanatory variables\n\nSpecies = categorical explanatory variable\nFlipper length = quantitative response variable"
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#visualize-and-summarise-bivariate-relationship-1",
-    "href": "slides/lec08-bivariate_modeling.html#visualize-and-summarise-bivariate-relationship-1",
-    "title": "Modeling Bivariate Relationships",
-    "section": "2. Visualize and summarise bivariate relationship",
-    "text": "2. Visualize and summarise bivariate relationship\n\n\n\n\nShow the code\nlibrary(ggdist) # for the \"half-violin\" plot (stat_slab)\nggplot(pen, aes(x=flipper_length_mm, y=species, fill=species)) + \n      stat_slab(alpha=.5, justification = 0) + \n      geom_boxplot(width = .2,  outlier.shape = NA) + \n      geom_jitter(alpha = 0.5, height = 0.05) +\n      stat_summary(fun=\"mean\", geom=\"point\", col=\"red\", size=4, pch=17) + \n      theme_bw() + \n      labs(x=\"Flipper Length (mm)\", y = \"Species\") + \n      theme(legend.position = \"none\")\n\n\n\n\n\n\n\n\nShow the code\npen %>% group_by(species) %>% \n  summarise(mean=mean(flipper_length_mm, na.rm=TRUE), \n            sd = sd(flipper_length_mm, na.rm=TRUE), \n            IQR = IQR(flipper_length_mm, na.rm=TRUE)) %>%\n  kable(digits = 1)\n\n\n\n\n\nspecies\nmean\nsd\nIQR\n\n\n\n\nAdelie\n190.0\n6.5\n9\n\n\nChinstrap\n195.8\n7.1\n10\n\n\nGentoo\n217.2\n6.5\n9\n\n\n\n\n\n\n\nThe distribution of flipper length varies across the species, with Gentoo having the largest flippers on average at 217.2mm compared to Adelie (190mm) and Chinstrap (195.8mm). The distributions are normally distributed with very similar spreads, Chinstrap has the most variable flipper length with a SD of 7.1 compared to 6.5 for the other two species.\n A blog post about raincloud plots vs violins"
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#write-the-relationship-you-want-to-examine-in-the-form-of-a-research-question.-1",
-    "href": "slides/lec08-bivariate_modeling.html#write-the-relationship-you-want-to-examine-in-the-form-of-a-research-question.-1",
-    "title": "Modeling Bivariate Relationships",
-    "section": "3. Write the relationship you want to examine in the form of a research question.",
-    "text": "3. Write the relationship you want to examine in the form of a research question.\n\nNull Hypothesis: There is no association between flipper length and species.\nAlternate Hypothesis: There is an association between flipper length and species."
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#perform-an-appropriate-statistical-analysis-using-dr-ds-4-step-method.-1",
-    "href": "slides/lec08-bivariate_modeling.html#perform-an-appropriate-statistical-analysis-using-dr-ds-4-step-method.-1",
-    "title": "Modeling Bivariate Relationships",
-    "section": "4. Perform an appropriate statistical analysis using Dr D’s 4 step method.",
-    "text": "4. Perform an appropriate statistical analysis using Dr D’s 4 step method.\na. Define parameters\nLet \\(\\mu_{A}, \\mu_{C}\\) and \\(\\mu_{G}\\) be the average flipper length for the Adelie, Chinstrap and Gentoo species of penguins respectively.\n\n\nb. State the null and alternative hypothesis as symbols\n\\(H_{0}: \\mu_{A} = \\mu_{C} = \\mu_{G}\\)\n\\(H_{A}:\\) At least one \\(\\mu_{j}\\) is different."
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#section-4",
-    "href": "slides/lec08-bivariate_modeling.html#section-4",
-    "title": "Modeling Bivariate Relationships",
-    "section": "",
-    "text": "c. State and justify the analysis model. Check assumptions.\nWe are comparing means from multiple groups, so an ANOVA is the appropriate procedure. We need to check for independence, approximate normality and approximately equal variances across groups.\nIndependence: We are assuming that each penguin was sampled independently of each other, and that the species themselves are independent of each other.\nNormality: The distributions of flipper length within each group are fairly normal\nEqual variances: Both the standard deviation and IQR (as measures of variability) are very similar across all groups."
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#section-5",
-    "href": "slides/lec08-bivariate_modeling.html#section-5",
-    "title": "Modeling Bivariate Relationships",
-    "section": "",
-    "text": "d. Conduct the test and make a decision about the plausibility of the alternative hypothesis.\n\n\nShow the code\naov(flipper_length_mm ~ species, data=pen) |> summary()\n\n\n             Df Sum Sq Mean Sq F value Pr(>F)    \nspecies       2  52473   26237   594.8 <2e-16 ***\nResiduals   339  14953      44                   \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n2 observations deleted due to missingness\n\n\nThe pvalue is very small, so there is evidence to support \\(H_{a}\\): at least one mean is different."
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#write-a-conclusion-in-context-of-the-problem.-include-the-point-estimates-confidence-interval-for-the-difference-and-p-value.-1",
-    "href": "slides/lec08-bivariate_modeling.html#write-a-conclusion-in-context-of-the-problem.-include-the-point-estimates-confidence-interval-for-the-difference-and-p-value.-1",
-    "title": "Modeling Bivariate Relationships",
-    "section": "5. Write a conclusion in context of the problem. Include the point estimates, confidence interval for the difference and p-value.",
-    "text": "5. Write a conclusion in context of the problem. Include the point estimates, confidence interval for the difference and p-value.\nThere is sufficient evidence to believe that the average flipper length is not the same across the Adelie, Chinstrap and Gentoo species of penguins."
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#non-parametric-tests",
-    "href": "slides/lec08-bivariate_modeling.html#non-parametric-tests",
-    "title": "Modeling Bivariate Relationships",
-    "section": "Non-parametric tests",
-    "text": "Non-parametric tests\n\nMany stat tests rely on assumptions that ensure the sample estimate can be modeled with a normal distribution.\nWhat do you do if your assumptions aren’t met?\nWe can “relax” some of those assumptions and perform a more robust, but less powerful test.\n\nless power means you need more data to draw a conclusion with the same amount of confidence.\n\nNo detailed examples will be provided in these notes. You tend to learn/use these on an “as-needed” basis."
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#kruskal-wallis",
-    "href": "slides/lec08-bivariate_modeling.html#kruskal-wallis",
-    "title": "Modeling Bivariate Relationships",
-    "section": "Kruskal-Wallis",
-    "text": "Kruskal-Wallis\n\nThe Kruskal-Wallis test is the most common non-parametric method for testing whether or not groups of observations come from the same overall distribution.\nBy comparing the medians instead of the means, we can remove the normality assumption on the residuals.\nNull hypothesis is now that the medians of all groups are equal vs at least one population median is different.\nRef on how to do this in R from STHDA"
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#example-march-of-the-penguins",
-    "href": "slides/lec08-bivariate_modeling.html#example-march-of-the-penguins",
-    "title": "Modeling Bivariate Relationships",
-    "section": "Example: March of the Penguins",
-    "text": "Example: March of the Penguins\n\n\n\n1. Identify response and explanatory variables\n\nSpecies = categorical explanatory variable\nFlipper length = quantitative response variable"
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#post-hoc-comparisons-which-one-is-different",
-    "href": "slides/lec08-bivariate_modeling.html#post-hoc-comparisons-which-one-is-different",
-    "title": "Modeling Bivariate Relationships",
-    "section": "Post-Hoc comparisons: Which one is different?",
-    "text": "Post-Hoc comparisons: Which one is different?\n\nRun Post Hoc tests (“Tukeys HSD”, or “Duncan”), only if your ANOVA is significant.\nThe overall ANOVA can be significant and NOT have any significant differences when you look at the post hoc results. The reason is that the two analyses ask two different questions.\n\nThe ANOVA is testing the overall pattern of the data and asking if as a whole the explanatory variable has a relationship (or lack thereof) with the response variable.\nThe post hoc is asking if one level of the explanatory variable is significantly different than another for the response variable. The post hoc is not as sensitive to differences as the ANOVA.\n\nDifferences in group means can be non-significant at the post hoc level, but significant at the ANOVA level."
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#section-6",
-    "href": "slides/lec08-bivariate_modeling.html#section-6",
-    "title": "Modeling Bivariate Relationships",
-    "section": "",
-    "text": "Show the code\nTukeyHSD(aov(flipper_length_mm ~ species, data=pen))\n\n\n  Tukey multiple comparisons of means\n    95% family-wise confidence level\n\nFit: aov(formula = flipper_length_mm ~ species, data = pen)\n\n$species\n                      diff       lwr       upr p adj\nChinstrap-Adelie  5.869887  3.586583  8.153191     0\nGentoo-Adelie    27.233349 25.334376 29.132323     0\nGentoo-Chinstrap 21.363462 19.000841 23.726084     0\n\n\nThe results of the Tukey HSD post-hoc test indicate that the average flipper length in mm is significantly different between all pairs of penguin species at the 5% significance level. Chinstrap has an average flipper length 5.87mm(3.59-8.15) larger than Adelie, whereas Gentoo has an average flipper length 27.23mm(25.33-29.13) larger than Adelie."
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#write-a-conclusion-in-context-of-the-problem.",
-    "href": "slides/lec08-bivariate_modeling.html#write-a-conclusion-in-context-of-the-problem.",
-    "title": "Modeling Bivariate Relationships",
-    "section": "5. Write a conclusion in context of the problem.",
-    "text": "5. Write a conclusion in context of the problem.\nThere is sufficient evidence to believe that the average flipper length is significantly different between the Adelie, Chinstrap and Gentoo species of penguins (p<.0001)."
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#multiple-post-hoc-comparisons-which-one-is-different",
-    "href": "slides/lec08-bivariate_modeling.html#multiple-post-hoc-comparisons-which-one-is-different",
-    "title": "Modeling Bivariate Relationships",
-    "section": "Multiple / Post-Hoc comparisons: Which one is different?",
-    "text": "Multiple / Post-Hoc comparisons: Which one is different?\n\nRun Post Hoc tests (“Tukeys HSD”, or “Duncan”), only if your ANOVA is significant.\nThe overall ANOVA can be significant and NOT have any significant differences when you look at the post hoc results. The reason is that the two analyses ask two different questions.\n\nThe ANOVA is testing the overall pattern of the data and asking if as a whole the explanatory variable has a relationship (or lack thereof) with the response variable.\nThe post hoc is asking if one level of the explanatory variable is significantly different than another for the response variable. The post hoc is not as sensitive to differences as the ANOVA.\n\nDifferences in group means can be non-significant at the post hoc level, but significant at the ANOVA level."
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#coefficient-of-determination-r2",
-    "href": "slides/lec08-bivariate_modeling.html#coefficient-of-determination-r2",
-    "title": "Modeling Bivariate Relationships",
-    "section": "Coefficient of Determination \\(R^{2}\\)",
-    "text": "Coefficient of Determination \\(R^{2}\\)\n\n\n             Df Sum Sq Mean Sq F value Pr(>F)    \nspecies       2  52473   26237   594.8 <2e-16 ***\nResiduals   339  14953      44                   \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n2 observations deleted due to missingness\n\n52473/(52473 + 14953)*100\n\n[1] 77.82309\n\n\nThe coefficient of determination is defined as \\(R^{2}=\\frac{SSG}{SST}\\) and can be interpreted as the % of the variation seen in the outcome that is due to subject level variation within each of the treatment groups. The strength of this measure can be thought of in a similar manner as the correlation coefficient \\(\\rho\\), \\(<.3\\) indicates a poor fit, \\(<.5\\) indicates a medium fit, and \\(>.7\\) indicates a good fit.\n\n77.8% of the variation in flipper length can be explained by the species of penguin"
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#coefficient-of-determination-r2-fracssgsst",
-    "href": "slides/lec08-bivariate_modeling.html#coefficient-of-determination-r2-fracssgsst",
-    "title": "Modeling Bivariate Relationships",
-    "section": "Coefficient of Determination \\(R^{2} = \\frac{SSG}{SST}\\)",
-    "text": "Coefficient of Determination \\(R^{2} = \\frac{SSG}{SST}\\)\n\n\n             Df Sum Sq Mean Sq F value Pr(>F)    \nspecies       2  52473   26237   594.8 <2e-16 ***\nResiduals   339  14953      44                   \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n2 observations deleted due to missingness\n\n52473/(52473 + 14953)*100\n\n[1] 77.82309\n\n\nThe coefficient of determination is interpreted as the % of the variation seen in the outcome that is due to subject level variation within each of the treatment groups. The strength of this measure can be thought of in a similar manner as the correlation coefficient \\(\\rho\\), \\(<.3\\) indicates a poor fit, \\(<.5\\) indicates a medium fit, and \\(>.7\\) indicates a good fit.\n\n77.8% of the variation in flipper length can be explained by the species of penguin"
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#multiple-post-hoc-comparisons-which-group-is-different",
-    "href": "slides/lec08-bivariate_modeling.html#multiple-post-hoc-comparisons-which-group-is-different",
-    "title": "Modeling Bivariate Relationships",
-    "section": "Multiple / Post-Hoc comparisons: Which group is different?",
-    "text": "Multiple / Post-Hoc comparisons: Which group is different?\n\nRun Post Hoc tests (“Tukeys HSD”, or “Duncan”), only if your ANOVA is significant.\nThe overall ANOVA can be significant and NOT have any significant differences when you look at the post hoc results. The reason is that the two analyses ask two different questions.\n\nThe ANOVA is testing the overall pattern of the data and asking if as a whole the explanatory variable has a relationship (or lack thereof) with the response variable.\nThe post hoc is asking if one level of the explanatory variable is significantly different than another for the response variable. The post hoc is not as sensitive to differences as the ANOVA.\nThe family-wise error rate of \\(\\alpha\\) is mainained\n\nDifferences in group means can be non-significant at the post hoc level, but significant at the ANOVA level."
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#analysis-of-variance-anovaascn-section-5.4",
-    "href": "slides/lec08-bivariate_modeling.html#analysis-of-variance-anovaascn-section-5.4",
-    "title": "Modeling Bivariate Relationships",
-    "section": "Analysis of Variance (ANOVA)(ASCN Section 5.4)",
-    "text": "Analysis of Variance (ANOVA)(ASCN Section 5.4)\nAnalysis of variance assesses whether the means of two or more groups are statistically different from each other. Does knowing what group an observation is in tell you about the location of the data?\n\\[\ny_{ij} = \\mu_{j} + \\epsilon_{ij} \\qquad \\qquad\n\\epsilon_{ij} \\overset{iid}{\\sim} \\mathcal{N}(0,\\sigma^{2})\n\\]\nfor \\(i=1, \\ldots, I\\) factor levels and \\(j = 1, \\ldots, n_{i}\\) subjects within each factor level. The random error terms are independently and identically distributed (iid) normally with common variance."
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#chi-squared-test-of-equal-proportions-ascn-section-5.5",
-    "href": "slides/lec08-bivariate_modeling.html#chi-squared-test-of-equal-proportions-ascn-section-5.5",
-    "title": "Modeling Bivariate Relationships",
-    "section": "Chi-squared test of equal proportions (ASCN Section 5.5)",
-    "text": "Chi-squared test of equal proportions (ASCN Section 5.5)\nSee ASCN Section 5.5 for modeling notes.\n\n\nFor this first example, we will use a binary outcome variable."
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#distribution-of-penguin-sex-across-islands",
-    "href": "slides/lec08-bivariate_modeling.html#distribution-of-penguin-sex-across-islands",
-    "title": "Modeling Bivariate Relationships",
-    "section": "Distribution of Penguin sex across Islands",
-    "text": "Distribution of Penguin sex across Islands\n\n\n🔗 https://math615.netlify.app / Modeling Bivariate Relationships"
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#example-smoking-and-general-health",
-    "href": "slides/lec08-bivariate_modeling.html#example-smoking-and-general-health",
-    "title": "Modeling Bivariate Relationships",
-    "section": "Example: Smoking and General Health",
-    "text": "Example: Smoking and General Health\nUsing the Addhealth data set, what can we say about the relationship between smoking and a person’s perceived general level of general health?\n1. Identify response and explanatory variables\n\nThe binary explanatory variable is whether the person has ever smoked an entire cigarette (eversmoke_c)\nThe categorical explanatory variable is the person’s general health (genhealth) and has levels “Excellent”, “Very Good”, “Good”, “Fair”, and “Poor”."
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#visualize-and-summarise-bivariate-relationship-2",
-    "href": "slides/lec08-bivariate_modeling.html#visualize-and-summarise-bivariate-relationship-2",
-    "title": "Modeling Bivariate Relationships",
-    "section": "2. Visualize and summarise bivariate relationship",
-    "text": "2. Visualize and summarise bivariate relationship\n\n\nShow the code\nplot_xtab(grp=addhealth$eversmoke_c, x=addhealth$genhealth, \n                  show.total = FALSE, margin=\"row\", legend.title=\"\") \n\n\n\nThe percentage of smokers seems to increase as the general health status decreases. Almost three-quarters (73%, n=40) of those reporting poor health have smoked an entire cigarette at least once in their life compared to 59% (n=573) of those reporting excellent health."
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#write-the-relationship-you-want-to-examine-in-the-form-of-a-research-question.-2",
-    "href": "slides/lec08-bivariate_modeling.html#write-the-relationship-you-want-to-examine-in-the-form-of-a-research-question.-2",
-    "title": "Modeling Bivariate Relationships",
-    "section": "3. Write the relationship you want to examine in the form of a research question.",
-    "text": "3. Write the relationship you want to examine in the form of a research question.\n\nNull Hypothesis: The proportion of smokers is the same across all levels of general health.\nAlternate Hypothesis: At least one group has a different proportion of smokers compared to the other general health groups."
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#perform-an-appropriate-statistical-analysis-using-dr-ds-4-step-method.-2",
-    "href": "slides/lec08-bivariate_modeling.html#perform-an-appropriate-statistical-analysis-using-dr-ds-4-step-method.-2",
-    "title": "Modeling Bivariate Relationships",
-    "section": "4. Perform an appropriate statistical analysis using Dr D’s 4 step method.",
-    "text": "4. Perform an appropriate statistical analysis using Dr D’s 4 step method.\na. Define parameters\nLet \\(p_{1}, p_{2}, \\ldots, p_{5}\\) be the true proportion of smokers in each of the 5 health categories: (1) Excellent to (5) Poor.\n\n\nb. State the null and alternative hypothesis as symbols\n\\(H_{0}: p_{1} = p_{2} = \\ldots p_{5}\\)\n\\(H_{A}:\\) At least one \\(p_{j}\\) is different."
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#section-7",
-    "href": "slides/lec08-bivariate_modeling.html#section-7",
-    "title": "Modeling Bivariate Relationships",
-    "section": "",
-    "text": "c. State and justify the analysis model. Check assumptions.\nI will conduct a \\(\\chi^{2}\\) test of association. There is at least 10 observations in each combination of smoking status and general health.\nd. Conduct the test and make a decision about the plausibility of the alternative hypothesis.\n\n\nShow the code\nchisq.test(addhealth$genhealth, addhealth$eversmoke_c)\n\n\n\n    Pearson's Chi-squared test\n\ndata:  addhealth$genhealth and addhealth$eversmoke_c\nX-squared = 30.795, df = 4, p-value = 3.371e-06\n\n\nWe have strong evidence in favor of the alternative hypothesis, p<.0001"
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#section-8",
-    "href": "slides/lec08-bivariate_modeling.html#section-8",
-    "title": "Modeling Bivariate Relationships",
-    "section": "",
-    "text": "d. Conduct the test and make a decision about the plausibility of the alternative hypothesis.\n\n\nShow the code\ncor.test(pen$body_mass_g, pen$bill_length_mm)\n\n\n\n    Pearson's product-moment correlation\n\ndata:  pen$body_mass_g and pen$bill_length_mm\nt = 13.654, df = 340, p-value < 2.2e-16\nalternative hypothesis: true correlation is not equal to 0\n95 percent confidence interval:\n 0.5220040 0.6595358\nsample estimates:\n      cor \n0.5951098 \n\n\nThe p-value is very small, there is evidence in favor of a non-zero correlation."
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#write-a-conclusion-in-context-of-the-problem.-1",
-    "href": "slides/lec08-bivariate_modeling.html#write-a-conclusion-in-context-of-the-problem.-1",
-    "title": "Modeling Bivariate Relationships",
-    "section": "5. Write a conclusion in context of the problem.",
-    "text": "5. Write a conclusion in context of the problem.\nWe can conclude that there is an association between ever smoking a cigarette in their life and perceived general health (\\(\\chi^{2} = 30.8, df=4, p<.0001\\))."
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#multiple-post-hoc-comparisons-which-group-is-different-1",
-    "href": "slides/lec08-bivariate_modeling.html#multiple-post-hoc-comparisons-which-group-is-different-1",
-    "title": "Modeling Bivariate Relationships",
-    "section": "Multiple / Post-Hoc comparisons: Which group is different?",
-    "text": "Multiple / Post-Hoc comparisons: Which group is different?\nJust like with ANOVA, if we find that the Chi-squared test indicates that at least one proportion is different from the others, it’s our job to figure out which ones might be different! We will analyze the residuals to accomplish this.\nThe residuals are automatically stored in the model output. You can either print them out and look at the values directly:"
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#example-income-and-general-health",
-    "href": "slides/lec08-bivariate_modeling.html#example-income-and-general-health",
-    "title": "Modeling Bivariate Relationships",
-    "section": "Example: Income and General Health",
-    "text": "Example: Income and General Health\nUsing the Addhealth data set, what can we say about the relationship between smoking status and a person’s perceived level of general health?\nIs there an association between lifetime smoking status and perceived general health?"
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#b.-alternative-methods-of-plotting-proportions-by-group",
-    "href": "slides/lec08-bivariate_modeling.html#b.-alternative-methods-of-plotting-proportions-by-group",
-    "title": "Modeling Bivariate Relationships",
-    "section": "2b. Alternative methods of plotting proportions by group",
-    "text": "2b. Alternative methods of plotting proportions by group\n\n\n\n\nShow the code\naddhealth %>% \n  group_by(genhealth) %>% \n  summarize(p = mean(eversmoke_c == \"Smoked at least once\", na.rm=TRUE), \n            n = n()) %>% \n  na.omit() %>% \n  ggplot(aes(x=genhealth, y=p, color=genhealth)) + \n  geom_point(aes(size = n)) + \n  geom_segment(aes(x=genhealth, xend=genhealth, y=0, yend=p)) +\n  scale_color_discrete(guide=\"none\") + theme_bw() + \n  ylab(\"Proportion of smokers\") + \n  xlab(\"Perceived General Health\")\n\n\n\n\n\n\n\n\nShow the code\naddhealth %>% \n  group_by(genhealth) %>% \n  summarize(p = mean(eversmoke_c == \"Smoked at least once\", na.rm=TRUE), \n            n = n()) %>% \n  na.omit() %>% \n  ggplot(aes(x=genhealth, y=p, color=genhealth)) + \n  geom_point(aes(size = n)) + \n  geom_segment(aes(x=genhealth, xend=genhealth, y=0, yend=p)) +\n  scale_color_discrete(guide=\"none\") + theme_bw() + \n  ylab(\"Proportion of smokers\") + \n  xlab(\"Perceived General Health\")"
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#chi-squared-test-of-associationindependence",
-    "href": "slides/lec08-bivariate_modeling.html#chi-squared-test-of-associationindependence",
-    "title": "Modeling Bivariate Relationships",
-    "section": "Chi-Squared test of Association/Independence",
-    "text": "Chi-Squared test of Association/Independence\nWe can still use the \\(\\chi^{2}\\) test of association to compare categorical variables with more than 2 levels. In this case we generalize the statement to ask: Is the distribution of 1 variable the same across levels of another variable?. In this sense, it is very much like an ANOVA.\nMathematically the \\(\\chi^{2}\\) test of association is the exact same as a test of equal proportions."
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#b.-two-alt-methods-of-plotting-proportions-by-group",
-    "href": "slides/lec08-bivariate_modeling.html#b.-two-alt-methods-of-plotting-proportions-by-group",
-    "title": "Modeling Bivariate Relationships",
-    "section": "2b. Two alt methods of plotting proportions by group",
-    "text": "2b. Two alt methods of plotting proportions by group\n\n\n\n\nShow the code\naddhealth %>% \n  group_by(genhealth) %>% \n  summarize(p = mean(eversmoke_c == \"Smoked at least once\", na.rm=TRUE), \n            n = n()) %>% \n  na.omit() %>% \n  ggplot(aes(x=genhealth, y=p, color=genhealth)) + \n  geom_point(aes(size = n)) + \n  geom_segment(aes(x=genhealth, xend=genhealth, y=0, yend=p)) +\n  scale_color_discrete(guide=\"none\") + theme_bw() + \n  ylab(\"Proportion of smokers\") + \n  xlab(\"Perceived General Health\")\n\n\n\n\n\n\n\n\nShow the code\naddhealth %>% \n  count(genhealth, eversmoke_c) %>% \n  na.omit() %>%\n  group_by(genhealth)%>%\n  mutate(p = n/sum(n)*100) %>% \nggplot(aes(x=genhealth, y=p, fill=eversmoke_c, \n           label = paste0(round(p, 1), \"%\"))) + \n  geom_col() + theme_bw() + \n  scale_fill_discrete(name = \"\") + \n  geom_text(position=position_stack(0.5)) + \n  ylab(\"Proportion of smokers\") + \n  xlab(\"Perceived General Health\")\n\n\n\n\n\n\n\nThese methods pre-calculate the proportions first, and then put them on a ggplot canvas. As you build your expertise with R/Ggplot you will find yourself wanting to enhance or move away from the “pre-packaged” plots from sjPlot and ggpubr."
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#b.-other-ways-to-visualize-this-fyi-only",
-    "href": "slides/lec08-bivariate_modeling.html#b.-other-ways-to-visualize-this-fyi-only",
-    "title": "Modeling Bivariate Relationships",
-    "section": "2b. Other ways to visualize this (FYI only)",
-    "text": "2b. Other ways to visualize this (FYI only)\n\n\n\n\nShow the code\naddhealth %>% \n  group_by(genhealth) %>% \n  summarize(p = mean(eversmoke_c == \"Smoked at least once\", na.rm=TRUE)*100, \n            n = n()) %>% \n  na.omit() %>% \n  ggplot(aes(x=genhealth, y=p, color=genhealth)) + \n  geom_point(aes(size = n)) + \n  scale_y_continuous(limits=c(0, 100)) + \n  geom_segment(aes(x=genhealth, xend=genhealth, y=0, yend=p)) +\n  scale_color_discrete(guide=\"none\") + theme_bw() + \n  ylab(\"Proportion of smokers\") + \n  xlab(\"Perceived General Health\")\n\n\n\n\n\n\n\n\nShow the code\naddhealth %>% \n  count(genhealth, eversmoke_c) %>% \n  na.omit() %>%\n  group_by(genhealth)%>%\n  mutate(p = n/sum(n)*100) %>% \nggplot(aes(x=genhealth, y=p, fill=eversmoke_c, \n           label = paste0(round(p, 1), \"%\"))) + \n  geom_col() + theme_bw() + \n  scale_fill_discrete(name = \"\") + \n  geom_text(position=position_stack(0.5)) + \n  ylab(\"Proportion of smokers\") + \n  xlab(\"Perceived General Health\")\n\n\n\n\n\n\n\n These methods pre-calculate the proportions first, and then put them on a ggplot canvas. As you build your expertise with R/Ggplot you will find yourself wanting to enhance or move away from the “pre-packaged” plots from sjPlot and ggpubr."
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#multiple-comparisons-which-group-is-different",
-    "href": "slides/lec08-bivariate_modeling.html#multiple-comparisons-which-group-is-different",
-    "title": "Modeling Bivariate Relationships",
-    "section": "Multiple comparisons: Which group is different?",
-    "text": "Multiple comparisons: Which group is different?\nJust like with ANOVA, if we find that the Chi-squared test indicates that at least one proportion is different from the others, it’s our job to figure out which ones might be different! We will analyze the residuals to accomplish this."
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#examine-the-residuals",
-    "href": "slides/lec08-bivariate_modeling.html#examine-the-residuals",
-    "title": "Modeling Bivariate Relationships",
-    "section": "Examine the residuals",
-    "text": "Examine the residuals\nThe residuals (\\(O_{ij} - E_{ij}\\)) are automatically stored in the model output. You can either print them out and look at the values directly or create a plot. You’re looking for combinations that have much higher, or lower expected proportions.\n\n\n\n\nShow the code\nhealth.smoke.model <- chisq.test(addhealth$genhealth, addhealth$eversmoke_c)\nhealth.smoke.model$residuals |> round(2)\n\n\n                   addhealth$eversmoke_c\naddhealth$genhealth Never Smoked Smoked at least once\n          Excellent         3.45                -2.52\n          Very good         0.48                -0.35\n          Good             -2.44                 1.78\n          Fair             -1.06                 0.77\n          Poor             -0.94                 0.69\n\n\n\n\n\nShow the code\nplot.residuals <- health.smoke.model$residuals %>% data.frame()\nggplot(plot.residuals, aes(x=addhealth.genhealth, y=addhealth.eversmoke_c)) +\n       geom_raster(aes(fill=Freq)) +  scale_fill_viridis_c()\n\n\n\n\n\n\n\nThe proportion of non-smokers in the excellent health category is much higher than expected if there were no relationship between these two variables."
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#examine-the-residuals-o_ij---e_ij",
-    "href": "slides/lec08-bivariate_modeling.html#examine-the-residuals-o_ij---e_ij",
-    "title": "Modeling Bivariate Relationships",
-    "section": "Examine the residuals (\\(O_{ij} - E_{ij}\\))",
-    "text": "Examine the residuals (\\(O_{ij} - E_{ij}\\))\nThe residuals are automatically stored in the model output. You can either print them out and look at the values directly or create a plot.\n\n\n\n\nShow the code\nhealth.smoke.model <- chisq.test(addhealth$genhealth, addhealth$eversmoke_c)\nhealth.smoke.model$residuals |> round(2)\n\n\n                   addhealth$eversmoke_c\naddhealth$genhealth Never Smoked Smoked at least once\n          Excellent         3.45                -2.52\n          Very good         0.48                -0.35\n          Good             -2.44                 1.78\n          Fair             -1.06                 0.77\n          Poor             -0.94                 0.69\n\n\n\n\n\nShow the code\nplot.residuals <- health.smoke.model$residuals %>% data.frame()\nggplot(plot.residuals, aes(x=addhealth.genhealth, y=addhealth.eversmoke_c)) +\n       geom_raster(aes(fill=Freq)) +  scale_fill_viridis_c()"
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#all-pairwise-comparisons",
-    "href": "slides/lec08-bivariate_modeling.html#all-pairwise-comparisons",
-    "title": "Modeling Bivariate Relationships",
-    "section": "All pairwise comparisons",
-    "text": "All pairwise comparisons\n\n\n\n\nShow the code\n# library(rcompanion)\nsmoke.by.genhealth <- table(addhealth$genhealth, addhealth$eversmoke_c)\nrcompanion::pairwiseNominalIndependence(smoke.by.genhealth, fisher = FALSE, gtest=FALSE) |> kable(digits = 3)\n\n\n\n\n\nComparison\np.Chisq\np.adj.Chisq\n\n\n\n\nExcellent : Very good\n0.002\n0.008\n\n\nExcellent : Good\n0.000\n0.000\n\n\nExcellent : Fair\n0.001\n0.005\n\n\nExcellent : Poor\n0.055\n0.110\n\n\nVery good : Good\n0.009\n0.022\n\n\nVery good : Fair\n0.167\n0.278\n\n\nVery good : Poor\n0.269\n0.384\n\n\nGood : Fair\n0.886\n0.886\n\n\nGood : Poor\n0.630\n0.700\n\n\nFair : Poor\n0.601\n0.700\n\n\n\n\n\n\nUsing the adjusted (for multiple comparisons) p-value column, the proportion of smokers in the Excellent group (41.3%) is significantly different from nearly all other groups (35.4% for Very Good, 31.3% for Good, 31.8% for Fair).\nBut why is it not significantly different from the 27.3% in the Poor group?"
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#an-exercise-in-small-sample-sizes",
-    "href": "slides/lec08-bivariate_modeling.html#an-exercise-in-small-sample-sizes",
-    "title": "Modeling Bivariate Relationships",
-    "section": "An exercise in small sample sizes",
-    "text": "An exercise in small sample sizes\nInitially this may not make sense, but the standard error is always dependent on the sample size, and the number of individuals in the Poor health category is much smaller compared to all other groups - so the margin of error will be larger - making it less likely to be statistically significantly different from other groups.\nWhen you have a small numbers (n<10) in one or more cells the distribution of the test statistic can no longer be modeled well using the \\(\\chi^{2}\\) distribution. So we again go to a non-parametric test that uses a randomization based method."
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#fishers-exact-test",
-    "href": "slides/lec08-bivariate_modeling.html#fishers-exact-test",
-    "title": "Modeling Bivariate Relationships",
-    "section": "Fishers Exact Test",
-    "text": "Fishers Exact Test\n\n\nShow the code\nfisher.test(addhealth$genhealth, addhealth$eversmoke_c, \n            simulate.p.value = TRUE)\n\n\n\n    Fisher's Exact Test for Count Data with simulated p-value (based on 2000 replicates)\n\ndata:  addhealth$genhealth and addhealth$eversmoke_c\np-value = 0.0004998\nalternative hypothesis: two.sided\n\n\nThen you can use the pairwiseNominalIndependence function for all pairwise comparisons again, with the fisher argument set to TRUE.\n\n\n\nNote: the simulate.p.value = TRUE argument here is only needed if the randomization space is larger than your workspace. R will let you know when this is needed."
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#advisory-note",
-    "href": "slides/lec08-bivariate_modeling.html#advisory-note",
-    "title": "Modeling Bivariate Relationships",
-    "section": "Advisory note",
-    "text": "Advisory note\n\n\n\nThis set of slides is really long. I recommend using the navigation menu (hamburger menu in the bottom left) to skip to the relevant section."
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#identify-response-and-explanatory-variables-2",
-    "href": "slides/lec08-bivariate_modeling.html#identify-response-and-explanatory-variables-2",
-    "title": "Modeling Bivariate Relationships",
-    "section": "1. Identify response and explanatory variables",
-    "text": "1. Identify response and explanatory variables\n\nThe binary explanatory variable is whether the person has ever smoked an entire cigarette (eversmoke_c).\nThe categorical explanatory variable is the person’s general health (genhealth) and has levels “Excellent”, “Very Good”, “Good”, “Fair”, and “Poor”."
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#the-effect-of-small-sample-sizes",
-    "href": "slides/lec08-bivariate_modeling.html#the-effect-of-small-sample-sizes",
-    "title": "Modeling Bivariate Relationships",
-    "section": "The effect of small sample sizes",
-    "text": "The effect of small sample sizes\nWhy is 41.3% significantly different from 35.4%, but NOT different from 27.3%?\nThe standard error is always dependent on the sample size. Here, the number of individuals in the Poor health category is much smaller compared to all other groups - so the margin of error will be larger - making it less likely to be statistically significantly different from other groups.\nWhen you have a small numbers (n<10) in one or more cells the distribution of the test statistic can no longer be modeled well using the \\(\\chi^{2}\\) distribution. So we again go to a non-parametric test that uses a randomization based method."
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#state-hypothesis",
-    "href": "slides/lec08-bivariate_modeling.html#state-hypothesis",
-    "title": "Modeling Bivariate Relationships",
-    "section": "State Hypothesis",
-    "text": "State Hypothesis\n\nThe income distribution is the same in each of the general health categories (no association)\nThe income distribution differs for at least one of the general health categories (association)"
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#visualize-the-relationship",
-    "href": "slides/lec08-bivariate_modeling.html#visualize-the-relationship",
-    "title": "Modeling Bivariate Relationships",
-    "section": "Visualize the relationship",
-    "text": "Visualize the relationship\n\n\n\n\nShow the code\nplot_xtab(grp=addhealth$income_cat,\n                  x=addhealth$genhealth, \n                  show.total = FALSE, margin=\"row\",\n                  legend.title=\"\") + \n  theme(legend.position = \"top\")\n\n\n\n\n\n\n The income distribution is nearly flat for who rate themselves in excellent or very good condition. However, the proportion of individuals in the lower income categories increase as perceived general health decreases. Over 80% of those that rate themselves as in Poor condition have an annual income less than $35,500.\nSince there are very small cell sizes, we will use a Fishers Exact test."
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#other-analysis-for-categorical-variables",
-    "href": "slides/lec08-bivariate_modeling.html#other-analysis-for-categorical-variables",
-    "title": "Modeling Bivariate Relationships",
-    "section": "Other analysis for categorical variables",
-    "text": "Other analysis for categorical variables\nThere is a slew of methods to analyze categorical data, we can’t get into them all. To learn more start with Categorical Data Analysis by Alan Agresti, who has written extensively on the subject.\nThis R companion page also looks very useful http://rcompanion.org/handbook/H_01.html and where I got the pairwiseNominalIndependence function from."
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#test-the-relationship-make-a-conclusion.",
-    "href": "slides/lec08-bivariate_modeling.html#test-the-relationship-make-a-conclusion.",
-    "title": "Modeling Bivariate Relationships",
-    "section": "Test the relationship & make a conclusion.",
-    "text": "Test the relationship & make a conclusion.\n\n\nShow the code\nfisher.test(addhealth$genhealth, addhealth$income_cat, \n            simulate.p.value = TRUE)\n\n\n\n    Fisher's Exact Test for Count Data with simulated p-value (based on 2000 replicates)\n\ndata:  addhealth$genhealth and addhealth$income_cat\np-value = 0.0004998\nalternative hypothesis: two.sided\n\n\nThere is sufficient evidence to conclude that the distribution of income is not the same across all general health status categories."
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#analysis-of-variance",
-    "href": "slides/lec08-bivariate_modeling.html#analysis-of-variance",
-    "title": "Modeling Bivariate Relationships",
-    "section": "Analysis of Variance",
-    "text": "Analysis of Variance\nBy comparing the portion of the variance in the outcome that is explained by the groups, to the portion that’s leftover due to unexplained randomness. Essentially we’re comparing the ratio of MODEL to RESIDUAL.\n\nTotal Variation = Between Group Variation + Within Group Variation\n\nVariation is measured using the Sum of Squares (SS): The sum of the squares within a group (SSE), the sum of squares between groups (SSG), and the total sum of squares (SST)."
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#chi-squared-test-of-equal-proportions",
-    "href": "slides/lec08-bivariate_modeling.html#chi-squared-test-of-equal-proportions",
-    "title": "Modeling Bivariate Relationships",
-    "section": "Chi-squared test of equal proportions",
-    "text": "Chi-squared test of equal proportions\nSee (ASCN Section 5.5) for modeling notes.\n\n\nWe start with the simpler case and use a binary outcome variable."
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#a-unifying-model-framework",
-    "href": "slides/lec08-bivariate_modeling.html#a-unifying-model-framework",
-    "title": "Modeling Bivariate Relationships",
-    "section": "A unifying model framework",
-    "text": "A unifying model framework\nA good way to think about all statistical models is that the observed data comes from some true model with some random error.\n\nDATA = MODEL + RESIDUAL\n\nThe MODEL is a mathematical formula (like \\(y = f(x)\\)). The formulation of the MODEL will change depending on the number of, and data types of explanatory variables. One goal of inferential analysis is to explain the variation in our data, using information contained in other measures."
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#opening-remarks",
-    "href": "slides/lec08-bivariate_modeling.html#opening-remarks",
-    "title": "Modeling Bivariate Relationships",
-    "section": "Opening Remarks",
-    "text": "Opening Remarks\nIf we are only concerned with testing the hypothesis that the proportion of successes between two groups are equal \\(p_{1}-p_{2}=0\\), we can leverage the Normal distribution and conduct a Z-test for two proportions.\nHowever in this class we will use the more generalizable model via Chi-squared test of association/equal proportions."
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#chi-squared-test-of-equal-proportions-ref-ascn-section-5.5",
-    "href": "slides/lec08-bivariate_modeling.html#chi-squared-test-of-equal-proportions-ref-ascn-section-5.5",
-    "title": "Modeling Bivariate Relationships",
-    "section": "Chi-squared test of equal proportions (Ref: ASCN Section 5.5)",
-    "text": "Chi-squared test of equal proportions (Ref: ASCN Section 5.5)\nA 30-year study was conducted with nearly 90,000 female participants. (Miller AB. 2014) During a 5-year screening period, each woman was randomized to one of two groups: in the first group, women received regular mammograms to screen for breast cancer, and in the second group, women received regular non-mammogram breast cancer exams. No intervention was made during the following 25 years of the study, and we’ll consider death resulting from breast cancer over the full 30-year period."
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#results-from-study",
-    "href": "slides/lec08-bivariate_modeling.html#results-from-study",
-    "title": "Modeling Bivariate Relationships",
-    "section": "Results from study",
-    "text": "Results from study\n\n\n\n\n\n\nAlive\nDead\nSum\n\n\n\n\nControl\n44405\n505\n44910\n\n\nMammogram\n44425\n500\n44925\n\n\nSum\n88830\n1005\n89835\n\n\n\n\n\nThe independent/explanatory variable is treatment (additional mammograms), and the dependent/response variable is death from breast cancer. Are these measures associated?"
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#assume-independenceno-association",
-    "href": "slides/lec08-bivariate_modeling.html#assume-independenceno-association",
-    "title": "Modeling Bivariate Relationships",
-    "section": "Assume independence/no association",
-    "text": "Assume independence/no association\n\nIf mammograms are more effective than non-mammogram breast cancer exams, then we would expect to see additional deaths from breast cancer in the control group (there is a relationship).\nIf mammograms are not as effective as regular breast cancer exams, we would expect to see no difference in breast cancer deaths in the two groups (there is no relationship).\nNeed to figure out how many deaths would be expected, if there was no relationship between treatment death by breast cancer,\nThen examine the residuals - the difference between the observed counts and the expected counts in each cell."
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#data-model",
-    "href": "slides/lec08-bivariate_modeling.html#data-model",
-    "title": "Modeling Bivariate Relationships",
-    "section": "Data model",
-    "text": "Data model\nIn our DATA = MODEL + RESIDUAL framework, the DATA is the observed counts \\(O_{ij}\\), and the MODEL is the expected counts \\(E_{ij}\\).\nContingency tables can be described by \\(i\\) rows and \\(j\\) columns. So the cell in the top left is \\(i=1\\) and \\(j=1\\).\n\n\n\n\n\n\n\n\n\n\\(O_{ij}\\)\nAlive\nDead\nTotal\n\n\n\n\nMammo\n\\(n_{11}\\)\n\\(n_{12}\\)\n\\(n_{1.}\\)\n\n\nControl\n\\(n_{21}\\)\n\\(n_{22}\\)\n\\(n_{2.}\\)\n\n\nTotal\n\\(n_{.1}\\)\n\\(n_{.2}\\)\n\\(N\\)\n\n\n\nThe expected count for each cell is calculated as the row total times the column total for that cell, divided by the overall total. Yes this will end up as a fraction.\n\\[E_{ij} = \\frac{n_{i.}n_{.j}}{N}\\]"
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#table-notation",
-    "href": "slides/lec08-bivariate_modeling.html#table-notation",
-    "title": "Modeling Bivariate Relationships",
-    "section": "Table notation",
-    "text": "Table notation\nTables can be described by \\(i\\) rows and \\(j\\) columns. So the cell in the top left is \\(i=1\\) and \\(j=1\\).\n\n\n\n\n\n\n\n\n\n\\(O_{ij}\\)\nAlive\nDead\nTotal\n\n\n\n\nMammo\n\\(n_{11}\\)\n\\(n_{12}\\)\n\\(n_{1.}\\)\n\n\nControl\n\\(n_{21}\\)\n\\(n_{22}\\)\n\\(n_{2.}\\)\n\n\nTotal\n\\(n_{.1}\\)\n\\(n_{.2}\\)\n\\(N\\)\n\n\n\nIn our DATA = MODEL + RESIDUAL framework, the DATA (\\(n_{11}, n_{12}\\), etc)is the observed counts \\(O_{ij}\\) and the MODEL is the expected counts \\(E_{ij}\\)."
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#calculating-the-expected-count",
-    "href": "slides/lec08-bivariate_modeling.html#calculating-the-expected-count",
-    "title": "Modeling Bivariate Relationships",
-    "section": "Calculating the expected count",
-    "text": "Calculating the expected count\nSince we assume the variables are independent (unless the data show otherwise) the expected count for each cell is calculated as the row total times the column total for that cell, divided by the overall total.\n\\[E_{ij} = \\frac{n_{i.}n_{.j}}{N}\\]\nIn a probability framework this is stated as two variables \\(A\\) and \\(B\\) are independent if \\(P(A \\cap B) = P(A)*P(B) = \\frac{n_{i.}}{N}*\\frac{n_{.j}}{N}\\)"
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#calculating-the-residuals",
-    "href": "slides/lec08-bivariate_modeling.html#calculating-the-residuals",
-    "title": "Modeling Bivariate Relationships",
-    "section": "Calculating the residuals",
-    "text": "Calculating the residuals\nThe residuals are calculated as \\((O_{ij} - E_{ij})\\)\n\n\nExpected\n\n\nShow the code\nchisq.test(a$Tx, a$Outcome)$expected %>% kable(digits=2)\n\n\n\n\n\n\nAlive\nDead\n\n\n\n\nControl\n44407.58\n502.42\n\n\nMammogram\n44422.42\n502.58\n\n\n\n\n\n\nResiduals\n\n\nShow the code\nchisq.test(a$Tx, a$Outcome)$residuals %>% kable(digits=3) \n\n\n\n\n\n\nAlive\nDead\n\n\n\n\nControl\n-0.012\n0.115\n\n\nMammogram\n0.012\n-0.115\n\n\n\n\n\n\n\nIf mammograms were not associated with survival, there were 0.01 fewer people still alive than expected, and 0.11 more people dead."
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#chi2-test-statistic",
-    "href": "slides/lec08-bivariate_modeling.html#chi2-test-statistic",
-    "title": "Modeling Bivariate Relationships",
-    "section": "\\(\\chi^2\\) test statistic",
-    "text": "\\(\\chi^2\\) test statistic\n\n\nThe \\(\\chi^2\\) test statistic is defined as the sum of the squared residuals, divided by the expected counts, and follows a \\(\\chi^2\\) distribution with degrees of freedom (#rows -1)(#cols -1).\n\\[ \\sum_{ij}\\frac{(O_{ij}-E_{ij})^{2}}{E_{ij}} \\]\n\n\n\nShow the code\ndist_chisq(chi2=.027, deg.f=1, geom.colors=c(\"#FDE725FF\", \"#440154FF\"))"
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#hypothesis-specification",
-    "href": "slides/lec08-bivariate_modeling.html#hypothesis-specification",
-    "title": "Modeling Bivariate Relationships",
-    "section": "Hypothesis specification",
-    "text": "Hypothesis specification\nThe null hypothesis is that there is no difference in the mean of the quantitative variable across groups (categorical variable), while the alternative is that there is a difference.\n\n\\(H_0\\): The mean outcome is the same across all groups. \\(\\mu_1 = \\mu_2 = \\cdots = \\mu_j\\)\n\\(H_A\\): At least one mean is different.\n\n\n\n\nA 2-sample t-test is mathematically identical to an ANOVA with 2 groups."
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#sum-of-squares",
-    "href": "slides/lec08-bivariate_modeling.html#sum-of-squares",
-    "title": "Modeling Bivariate Relationships",
-    "section": "Sum of Squares",
-    "text": "Sum of Squares\nSSG (Between groups): Measures the variation of the \\(I\\) group means around the overall mean.\n\\[\n  SSG = \\sum_{i=1}^{I}n_{i}(\\bar{y}_{i.}-\\bar{y}..)^{2} = n_{1}(\\bar{y}_{1.}-\\bar{y}..)^{2} + n_{2}(\\bar{y}_{2.}-\\bar{y}..)^{2} + n_{3}(\\bar{y}_{3.}-\\bar{y}..)^{2}\n\\]\nSSE (Within group): Measures the variation of each observation around its group mean.\n\\[\nSSE = \\sum_{i=1}^{I}\\sum_{j=1}^{n_{i}}(y_{ij}-\\bar{y}_{i.})^{2} = \\sum_{i=1}^{I}(n_{i}-1)Var(Y_{i})\n\\]\nSST (Total): Measures the variation of the \\(N\\) data points around the overall mean.\n\\[\nSST =  \\sum_{i=1}^{I}\\sum_{j=1}^{n_{i}}(y_{ij}-\\bar{y}..)^{2} = (N-1)Var(Y)\n\\]"
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#conclusion",
-    "href": "slides/lec08-bivariate_modeling.html#conclusion",
-    "title": "Modeling Bivariate Relationships",
-    "section": "Conclusion",
-    "text": "Conclusion\nIn this example, the test statistic was 0.017 with p-value 0.895.\nSo there is not enough reason to believe that mammograms in addition to regular exams are associated with a reduced risk of death due to breast cancer.\nThis example demonstrated how we examine the residuals to see how closely our DATA fits a hypothesized MODEL."
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#analysis-of-variance-table",
-    "href": "slides/lec08-bivariate_modeling.html#analysis-of-variance-table",
-    "title": "Modeling Bivariate Relationships",
-    "section": "Analysis of Variance Table",
-    "text": "Analysis of Variance Table\nThe results are typically summarized in an ANOVA table.\n\n\n\n\n\n\n\n\n\n\nSource\nSS\ndf\nMS\nF\n\n\n\n\nGroups\nSSG\n\\(I-1\\)\nMSG = \\(\\frac{SSG}{I-1}\\)\n\\(\\frac{MSG}{MSE}\\)\n\n\nError\nSSE\n\\(N-I\\)\nMSE = \\(\\frac{MSG}{N-I}\\)\n\n\n\nTotal\nSST\n\\(N-1\\)\n\n\n\n\n\nThe value in the F column is the test statistic, and has a F distribution with degrees of freedom (df) dependent on the number of groups (I-1), and the number of observations (N-I)."
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#the-f-distribution",
-    "href": "slides/lec08-bivariate_modeling.html#the-f-distribution",
-    "title": "Modeling Bivariate Relationships",
-    "section": "The F-distribution",
-    "text": "The F-distribution\nThe \\(p\\)-value is the area to the right of the F statistic density curve. This is always to the right because the F-distribution is truncated at 0 and skewed right. This is true regardless of the \\(df\\).\n\n\nShow the code\ncurve(df(x,df1=5, df2=10),xlim=c(0,10), main=\"Example F distribution with df1=5, df2=10\", ylab=\"\",xlab=expression(F))"
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#assumptions",
-    "href": "slides/lec08-bivariate_modeling.html#assumptions",
-    "title": "Modeling Bivariate Relationships",
-    "section": "Assumptions",
-    "text": "Assumptions\nGenerally we must check three conditions on the data before performing ANOVA:\n\nThe observations are independent within and across groups\nThe data within each group are nearly normal\nThe variability across the groups is about equal."
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#opening-remarks-1",
-    "href": "slides/lec08-bivariate_modeling.html#opening-remarks-1",
-    "title": "Modeling Bivariate Relationships",
-    "section": "Opening Remarks",
-    "text": "Opening Remarks\nThe PMA6 textbook (Chapter 7) goes into great detail on this topic, since regression is typically the basis for all advanced models.\nThe book also distinguishes between a “fixed-x” case, where the values of the explanatory variable \\(x\\) only take on pre-specified values, and a “variable-x” case, where the values of \\(x\\) are observations from a population distribution of X’s.\nThis latter case is what we will be concerning ourselves with."
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#correlation",
-    "href": "slides/lec08-bivariate_modeling.html#correlation",
-    "title": "Modeling Bivariate Relationships",
-    "section": "Correlation",
-    "text": "Correlation\nThe correlation coefficient is designated by \\(r\\) for the sample correlation, and \\(\\rho\\) for the population correlation. The correlation is a measure of the strength and direction of a linear relationship between two variables.\nThe correlation ranges from +1 to -1. A correlation of +1 means that there is a perfect, positive linear relationship between the two variables. A correlation of -1 means there is a perfect, negative linear relationship between the two variables. In both cases, knowing the value of one variable, you can perfectly predict the value of the second."
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#strength-of-the-correlation",
-    "href": "slides/lec08-bivariate_modeling.html#strength-of-the-correlation",
-    "title": "Modeling Bivariate Relationships",
-    "section": "Strength of the correlation",
-    "text": "Strength of the correlation\nHere are rough estimates for interpreting the strengths of correlations based on the magnitude of \\(r\\).\n\n\\(|r| \\geq 0.7\\): Very strong relationship\n\\(0.4 \\leq |r| < 0.7\\): Strong relationship\n\\(0.3 \\leq |r| < 0.4\\): Moderate relationship\n\\(0.2 \\leq |r| < 0.3:\\) Weak relationship\n\\(|r| < 0.2:\\) Negligible or no relationship"
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#as-a-measure-of-model-fit",
-    "href": "slides/lec08-bivariate_modeling.html#as-a-measure-of-model-fit",
-    "title": "Modeling Bivariate Relationships",
-    "section": "As a measure of model fit",
-    "text": "As a measure of model fit\nWhen we square \\(r\\) (i.e. \\(R^{2}\\)), it tells us what proportion of the variability in one variable that is described by variation in the second variable.\n\n\nYes, this is mathematically the same as the coefficient of determination we saw in ANOVA."
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#pearson-test-of-correlation",
-    "href": "slides/lec08-bivariate_modeling.html#pearson-test-of-correlation",
-    "title": "Modeling Bivariate Relationships",
-    "section": "Pearson test of correlation",
-    "text": "Pearson test of correlation\nTo test for a linear correlation between two variables we use the Pearson correlation coefficient which is defined as the covariance of the two variables divided by the product of their standard deviations.\n\\[\n\\rho_{X,Y} = \\frac{cov(X,Y)}{\\sigma_{x}\\sigma_{Y}}\n\\]\nThere are many modifications and adjustments to this measure that we will not get into detail with. We are using correlation as a stepping stool to Linear Regression."
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#example-body-mass-and-bill-length-of-penguins",
-    "href": "slides/lec08-bivariate_modeling.html#example-body-mass-and-bill-length-of-penguins",
-    "title": "Modeling Bivariate Relationships",
-    "section": "Example: Body mass and bill length of penguins",
-    "text": "Example: Body mass and bill length of penguins\n1. Identify response and explanatory variables\n\nThe quantitative explanatory variable is body mass (g)\nThe quantitative response variable is bill length (mm)"
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#visualize-and-summarise-bivariate-relationship-3",
-    "href": "slides/lec08-bivariate_modeling.html#visualize-and-summarise-bivariate-relationship-3",
-    "title": "Modeling Bivariate Relationships",
-    "section": "2. Visualize and summarise bivariate relationship",
-    "text": "2. Visualize and summarise bivariate relationship\n\n\n\n\nShow the code\nggplot(pen, aes(x=body_mass_g, y=bill_length_mm)) + \n  geom_point() + geom_smooth(col = \"red\")\n\n\n\n\n\nShow the code\ncor(pen$body_mass_g, pen$bill_length_mm, use = \"pairwise.complete.obs\")\n\n\n[1] 0.5951098\n\n\n\nThere is a strong, positive, mostly linear relationship between the body mass (g) of penguins and their bill length (mm) (r=.595)."
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#write-the-relationship-you-want-to-examine-in-the-form-of-a-research-question.-3",
-    "href": "slides/lec08-bivariate_modeling.html#write-the-relationship-you-want-to-examine-in-the-form-of-a-research-question.-3",
-    "title": "Modeling Bivariate Relationships",
-    "section": "3. Write the relationship you want to examine in the form of a research question.",
-    "text": "3. Write the relationship you want to examine in the form of a research question.\n\nNull Hypothesis: There is no correlation between the body mass and bill length of penguins.\nAlternate Hypothesis: There is a correlation between the body mass and bill length of penguins."
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#perform-an-appropriate-statistical-analysis-using-dr-ds-4-step-method.-3",
-    "href": "slides/lec08-bivariate_modeling.html#perform-an-appropriate-statistical-analysis-using-dr-ds-4-step-method.-3",
-    "title": "Modeling Bivariate Relationships",
-    "section": "4. Perform an appropriate statistical analysis using Dr D’s 4 step method.",
-    "text": "4. Perform an appropriate statistical analysis using Dr D’s 4 step method.\na. Define parameters Let \\(\\rho\\) be the true correlation between body mass and bill length of penguins.\nb. State the null and alternative hypothesis as symbols\n\\(H_{0}: \\rho=0 \\qquad \\qquad H_{A}: \\rho \\neq 0\\)\nc. State and justify the analysis model.\nPearsons test of correlation will be conducted. This is appropriate because both variables are quantitative, the relationship between variables are reasonably linear, and the sample size is large."
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#write-a-conclusion-in-context-of-the-problem.-2",
-    "href": "slides/lec08-bivariate_modeling.html#write-a-conclusion-in-context-of-the-problem.-2",
-    "title": "Modeling Bivariate Relationships",
-    "section": "5. Write a conclusion in context of the problem.",
-    "text": "5. Write a conclusion in context of the problem.\nThere was a statistically significant and strong correlation between the body mass (g) and bill length (mm) of penguins (r = 0.595, 95%CI .5220-.6595, p < .0001). The significant positive correlation shows that as the body mass of a penguin increases so does the bill length. These results suggest that 35% (95% CI: 27.2-43.5) of the variance in bill length can be explained by the body mass of the penguin."
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#ellipse-of-concentration",
-    "href": "slides/lec08-bivariate_modeling.html#ellipse-of-concentration",
-    "title": "Modeling Bivariate Relationships",
-    "section": "Ellipse of concentration",
-    "text": "Ellipse of concentration\nWe can view the ellipse of concentration as measure of strength and direction of the correlation between X and Y.\n\n\nShow the code\nggpubr::ggscatter(pen, x = \"body_mass_g\", y = \"bill_length_mm\",\n   ellipse = TRUE, mean.point = TRUE,\n   star.plot = TRUE)\n\n\n\nSee PMA6 Figure 7.5 for more examples."
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#bivariate-distribution",
-    "href": "slides/lec08-bivariate_modeling.html#bivariate-distribution",
-    "title": "Modeling Bivariate Relationships",
-    "section": "Bivariate distribution",
-    "text": "Bivariate distribution\nThe bivariate distribution describes how of \\(X\\) and \\(Y\\) are jointly distributed, and is best interpreted by a look at the scatter diagram.\n\n\nShow the code\ny.bar <- mean(pen$bill_length_mm, na.rm=TRUE)\nx.bar <- mean(pen$body_mass_g, na.rm=TRUE)\n\np <- ggplot(pen, aes(x=body_mass_g, y=bill_length_mm)) + geom_point() + \n  geom_hline(yintercept = y.bar) + \n  geom_vline(xintercept = x.bar) \nggExtra::ggMarginal(p, type=\"histogram\")\n\n\n\nIf \\(X\\) and \\(Y\\) come from independent normal distributions, the pair \\((X,Y)\\) comes from a bivariate normal distribution, and the data will tend to cluster around the means of \\(X\\) and \\(Y\\)."
-  },
-  {
     "objectID": "topics/t09-regression.html#learning-path",
     "href": "topics/t09-regression.html#learning-path",
     "title": "Linear Regression",
@@ -2114,73 +2156,38 @@
     "text": "Discussion"
   },
   {
-    "objectID": "slides/lec08-bivariate_modeling.html#overview",
-    "href": "slides/lec08-bivariate_modeling.html#overview",
-    "title": "Modeling Bivariate Relationships",
-    "section": "Overview",
-    "text": "Overview\nThe general purpose of regression is to learn more about the relationship between several independent or predictor variables and a quantitative dependent variable.\nThe goal of Simple linear regression is to describe the relationship between a continuous dependent variable Y and a single independent continuous variable X using a straight line.\n\nSee ASCN Ch 7 for the learning content. What follows is just a full 5 step analysis example."
+    "objectID": "topics/t10-mod_strat.html#learning-path",
+    "href": "topics/t10-mod_strat.html#learning-path",
+    "title": "Moderation and Stratification",
+    "section": "Learning Path",
+    "text": "Learning Path\n\nWhere we’ve been\nLearning how to choose and implement an appropriate bivariate analyses, including building simple regression models.\n\n\nWhere we’re at\nReady to learn how to expand regression models to include information contained in other variables.\n\n\nObjectives\n\n\nFit a stratified model\nIdentify if a third variable is a modifier"
   },
   {
-    "objectID": "slides/lec08-bivariate_modeling.html#example-body-mass-and-bill-length-of-penguins-1",
-    "href": "slides/lec08-bivariate_modeling.html#example-body-mass-and-bill-length-of-penguins-1",
-    "title": "Modeling Bivariate Relationships",
-    "section": "Example: Body mass and bill length of penguins",
-    "text": "Example: Body mass and bill length of penguins\n1. Identify response and explanatory variables\n\nThe quantitative explanatory variable is body mass (g)\nThe quantitative response variable is bill length (mm)"
+    "objectID": "topics/t10-mod_strat.html#learning-materials",
+    "href": "topics/t10-mod_strat.html#learning-materials",
+    "title": "Moderation and Stratification",
+    "section": "Learning Materials",
+    "text": "Learning Materials\n📚 Reading\n\n\n\nASCN Ch 8"
   },
   {
-    "objectID": "slides/lec08-bivariate_modeling.html#visualize-and-summarise-bivariate-relationship-4",
-    "href": "slides/lec08-bivariate_modeling.html#visualize-and-summarise-bivariate-relationship-4",
-    "title": "Modeling Bivariate Relationships",
-    "section": "2. Visualize and summarise bivariate relationship",
-    "text": "2. Visualize and summarise bivariate relationship\n\n\nShow the code\nggplot(pen, aes(x=body_mass_g, y=bill_length_mm)) + \n  geom_point() + geom_smooth(col = \"red\")\n\n\n\nThere is a strong, positive, mostly linear relationship between the body mass (g) of penguins and their bill length (mm) (r=.595)."
+    "objectID": "topics/t10-mod_strat.html#assignment",
+    "href": "topics/t10-mod_strat.html#assignment",
+    "title": "Moderation and Stratification",
+    "section": "Assignment",
+    "text": "Assignment\n\n\n\nHW 07 Moderation"
   },
   {
-    "objectID": "slides/lec08-bivariate_modeling.html#write-the-relationship-you-want-to-examine-in-the-form-of-a-research-question.-4",
-    "href": "slides/lec08-bivariate_modeling.html#write-the-relationship-you-want-to-examine-in-the-form-of-a-research-question.-4",
-    "title": "Modeling Bivariate Relationships",
-    "section": "3. Write the relationship you want to examine in the form of a research question.",
-    "text": "3. Write the relationship you want to examine in the form of a research question.\n\nNull Hypothesis: There is no linear relationship between body mass and bill length.\nAlternate Hypothesis: There is a linear relationship between body mass and bill length."
+    "objectID": "topics/t10-mod_strat.html#discussion",
+    "href": "topics/t10-mod_strat.html#discussion",
+    "title": "Moderation and Stratification",
+    "section": "Discussion",
+    "text": "Discussion"
   },
   {
-    "objectID": "slides/lec08-bivariate_modeling.html#perform-an-appropriate-statistical-analysis-using-dr-ds-4-step-method.-4",
-    "href": "slides/lec08-bivariate_modeling.html#perform-an-appropriate-statistical-analysis-using-dr-ds-4-step-method.-4",
-    "title": "Modeling Bivariate Relationships",
-    "section": "4. Perform an appropriate statistical analysis using Dr D’s 4 step method.",
-    "text": "4. Perform an appropriate statistical analysis using Dr D’s 4 step method.\na. Define parameters Let \\(\\beta_1\\) be the true slope parameter that describes the change in bill length of the penguin as body mass increases.\nb. State the null and alternative hypothesis as symbols\n\\(H_{0}: \\beta_{1}=0 \\qquad \\qquad H_{A}: \\beta_{1} \\neq 0\\)"
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#section-9",
-    "href": "slides/lec08-bivariate_modeling.html#section-9",
-    "title": "Modeling Bivariate Relationships",
+    "objectID": "topics.html",
+    "href": "topics.html",
+    "title": "Topic Areas",
     "section": "",
-    "text": "d. Conduct the test and make a decision about the plausibility of the alternative hypothesis.\n\n\nShow the code\npen.body.bill <- lm(bill_length_mm ~ body_mass_g, data=pen)\npen.body.bill |> summary()\n\n\n\nCall:\nlm(formula = bill_length_mm ~ body_mass_g, data = pen)\n\nResiduals:\n     Min       1Q   Median       3Q      Max \n-10.1251  -3.0434  -0.8089   2.0711  16.1109 \n\nCoefficients:\n             Estimate Std. Error t value Pr(>|t|)    \n(Intercept) 2.690e+01  1.269e+00   21.19   <2e-16 ***\nbody_mass_g 4.051e-03  2.967e-04   13.65   <2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 4.394 on 340 degrees of freedom\n  (2 observations deleted due to missingness)\nMultiple R-squared:  0.3542,    Adjusted R-squared:  0.3523 \nF-statistic: 186.4 on 1 and 340 DF,  p-value: < 2.2e-16\n\n\nThe p-value for \\(b_{1}\\) is <.0001, so there is sufficient evidence to believe that there is a linear relationship between body mass and bill length."
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#c-cont.-finish-checking-the-assumptions",
-    "href": "slides/lec08-bivariate_modeling.html#c-cont.-finish-checking-the-assumptions",
-    "title": "Modeling Bivariate Relationships",
-    "section": "c (cont). Finish checking the assumptions",
-    "text": "c (cont). Finish checking the assumptions\n\nNormality of residuals – density plotNormality of residuals – “qqplot”Homogeneity of variancePosterior Predictions\n\n\n\n\n\n\n\n\n\n\nMostly normal, pretty heavy right tail. This is indicative of a nonlinear trend somewhere in the data.\n\n\n\n\n\n\n\n\n\n\n\n\nThis is also known as a ‘normal probability plot’. It is used to compare the theoretical quantiles of the data if it were to come from a normal distribution to the observed quantiles. PMA6 Figure 5.4 has more examples and an explanation.\n\n\n\n\n\n\n\n\n\n\n\n\nHoly non-flat relationship Batman. The variance of Y is not constant. This is a warning that our linear model does not fit the data well and we should look into possible refinements and improvements.\n\n\n\n\n\n\n\n\n\n\n\n\nHere we clearly see that the observed distribution of bill length is bimodal, and so the model is overestimating some values and underestimating others. There is clearly some other confounding variable that predicts bill length better than just body mass."
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#write-a-conclusion-in-context-of-the-problem.-3",
-    "href": "slides/lec08-bivariate_modeling.html#write-a-conclusion-in-context-of-the-problem.-3",
-    "title": "Modeling Bivariate Relationships",
-    "section": "5. Write a conclusion in context of the problem.",
-    "text": "5. Write a conclusion in context of the problem.\n\n\n\n\nShow the code\npen.body.bill |> coefficients() \n\n\n (Intercept)  body_mass_g \n26.898872424  0.004051417 \n\n\nShow the code\npen.body.bill |> confint()\n\n\n                   2.5 %       97.5 %\n(Intercept) 24.402502194 29.395242653\nbody_mass_g  0.003467795  0.004635038\n\n\nShow the code\npen.body.bill |> r2()\n\n\n# R2 for Linear Regression\n       R2: 0.354\n  adj. R2: 0.352\n\n\n\nEach 1g increase in body mass of a penguin is associated with a significant increase of 0.004 (0.0035, 0.0046) mm of bill length (p<.0001).\nAn increase of 1kg of body mass in a penguin corresponds to a 4(3.5, 4.6) mm increase in bill length.\nBody mass explains 35.4% of the variation in bill length.\n\n\nHowever, model diagnostics indicate that a linear model may not be appropriate for this relationship. The assumption of constant variance is not upheld and there may be another variable that affects bill length.\n\n\n🔗 https://math615.netlify.app / Modeling Bivariate Relationships"
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#d.-conduct-the-test-and-make-a-decision-about-the-plausibility-of-the-alternative-hypothesis.",
-    "href": "slides/lec08-bivariate_modeling.html#d.-conduct-the-test-and-make-a-decision-about-the-plausibility-of-the-alternative-hypothesis.",
-    "title": "Modeling Bivariate Relationships",
-    "section": "d. Conduct the test and make a decision about the plausibility of the alternative hypothesis.",
-    "text": "d. Conduct the test and make a decision about the plausibility of the alternative hypothesis.\n\n\nShow the code\npen.body.bill <- lm(bill_length_mm ~ body_mass_g, data=pen)\npen.body.bill |> summary()\n\n\n\nCall:\nlm(formula = bill_length_mm ~ body_mass_g, data = pen)\n\nResiduals:\n     Min       1Q   Median       3Q      Max \n-10.1251  -3.0434  -0.8089   2.0711  16.1109 \n\nCoefficients:\n             Estimate Std. Error t value Pr(>|t|)    \n(Intercept) 2.690e+01  1.269e+00   21.19   <2e-16 ***\nbody_mass_g 4.051e-03  2.967e-04   13.65   <2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 4.394 on 340 degrees of freedom\n  (2 observations deleted due to missingness)\nMultiple R-squared:  0.3542,    Adjusted R-squared:  0.3523 \nF-statistic: 186.4 on 1 and 340 DF,  p-value: < 2.2e-16\n\n\nThe p-value for \\(b_{1}\\) is <.0001, so there is sufficient evidence to believe that there is a linear relationship between body mass and bill length."
-  },
-  {
-    "objectID": "slides/lec08-bivariate_modeling.html#c.-state-and-justify-the-analysis-model.",
-    "href": "slides/lec08-bivariate_modeling.html#c.-state-and-justify-the-analysis-model.",
-    "title": "Modeling Bivariate Relationships",
-    "section": "c. State and justify the analysis model.",
-    "text": "c. State and justify the analysis model.\nBoth the outcome and predictor are continuous variables that have a visible linear relationship, and observations are independent.\nThe rest of the model assumptions can be checked after the model is fit using the check_model(my_model_object_name) function from the performance package."
+    "text": "Topic\n\n\nDates\n\n\nDescription\n\n\n\n\n\n\nWelcome to Fall 22\n\n\n8/22\n\n\nIntroduction to class and your learning materials\n\n\n\n\nData Architecture\n\n\n8/22\n\n\nData entry, spreadsheets, metadata, codebooks\n\n\n\n\nFormulating research questions\n\n\n8/29\n\n\nAsking questions is easy. Asking answerable questions is more difficult.\n\n\n\n\nData Management\n\n\n8/31-9/11\n\n\nWhere an inordinate amount of time is spent\n\n\n\n\nDescribing distributions of data\n\n\n9/12-9/18\n\n\nVisualizing your data is the first line of defense against bad data\n\n\n\n\nDescribing Relationships\n\n\n9/19-10/02\n\n\nFirst step in investigating a question about an association\n\n\n\n\nStudy Design\n\n\n10/03\n\n\nHow did the data come to be?\n\n\n\n\nInference with Mathematical Models\n\n\n10/05-10/10\n\n\nIf all else fails, use ‘significant at p>.05 level’ and hope no one notices. Ref: https://xkcd.com/1478/?\n\n\n\n\nModeling Bivariate Relationships\n\n\n10/12 - 10/24\n\n\n\n\n\n\nLinear Regression\n\n\n10/24 - 10/26\n\n\nEverything is a linear model\n\n\n\n\nModeration and Stratification\n\n\n10/31 - 11/6\n\n\nIdentifing different trends within subgroups\n\n\n\n\n\n\nNo matching items"
   }
 ]

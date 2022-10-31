@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Data Analysis for Graduate Research - Regression Assignment</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<meta name="twitter:title" content="Data Analysis for Graduate Research - Regression Assignment">
+<meta name="twitter:description" content="You will perform 4 regression analyses in this assignment. For each analysis you will">
+<meta name="twitter:creator" content="@norcalbiostat">
+<meta name="twitter:card" content="summary">
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Data Analysis for Graduate Research</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-schedule" role="button" data-bs-toggle="dropdown" aria-expanded="false">Schedule</a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-schedule">    
+        <li>
+    <a class="dropdown-item" href="../schedule.html">
+ <span class="dropdown-text">Weekly Overview</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../calendar.html">
+ <span class="dropdown-text">Calendar (Due dates)</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-materials" role="button" data-bs-toggle="dropdown" aria-expanded="false">Materials</a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-materials">    
+        <li>
+    <a class="dropdown-item" href="../topics.html">
+ <span class="dropdown-text">Topic Areas</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides.html">
+ <span class="dropdown-text">All Slides</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../hw.html">
+ <span class="dropdown-text">Assignments</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../collab_notes.html">
+ <span class="dropdown-text">Collaborative Notes</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://norcalbiostat.github.io/AppliedStatistics_notes/">
+ <span class="dropdown-text">Applied Stats Notebook</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://openintro-ims.netlify.app/">
+ <span class="dropdown-text">Intro to Modern Stats</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link active" href="../project.html" aria-current="page">Project</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../syllabus.html">Syllabus</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../help.html">Get help with…</a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-tools" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tools</a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-tools">    
+        <li>
+    <a class="dropdown-item" href="https://pollev.com/drd"><i class="bi bi-bar-chart" role="img">
+</i> 
+ <span class="dropdown-text">PollEV</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://drive.google.com/drive/folders/1oeVbt6QXvNjiadAu8VspPLXOlfaMmtXP"><i class="bi bi-google" role="img">
+</i> 
+ <span class="dropdown-text">Google Drive</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://hackmd.io/@norcalbiostat/R"><i class="bi bi-file-code" role="img">
+</i> 
+ <span class="dropdown-text">HackMD - R code</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">Regression Assignment</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        <div class="sidebar-tools-collapse tools-wide">
+    <a href="https://pollev.com/drd" title="PollEV" class="sidebar-tool px-1"><i class="bi bi-bar-chart"></i></a>
+    <a href="https://drive.google.com/drive/folders/1oeVbt6QXvNjiadAu8VspPLXOlfaMmtXP" title="Google Drive" class="sidebar-tool px-1"><i class="bi bi-google"></i></a>
+    <a href="https://hackmd.io/#" title="HackMD" class="sidebar-tool px-1"><i class="bi bi-file-code"></i></a>
+</div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Schedule</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../schedule.html" class="sidebar-item-text sidebar-link">Weekly Overview</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../calendar.html" class="sidebar-item-text sidebar-link">Calendar (Due dates)</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../project.html" class="sidebar-item-text sidebar-link">Research Project</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Materials</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../topics.html" class="sidebar-item-text sidebar-link">Topic Areas</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../slides.html" class="sidebar-item-text sidebar-link">All Slides</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../hw.html" class="sidebar-item-text sidebar-link">Assignments</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../collab_notes.html" class="sidebar-item-text sidebar-link">Collaborative Notes</a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#assignment-overview" id="toc-assignment-overview" class="nav-link active" data-scroll-target="#assignment-overview">Assignment Overview</a></li>
+  <li><a href="#instructions" id="toc-instructions" class="nav-link" data-scroll-target="#instructions">Instructions</a></li>
+  <li><a href="#multiple-linear-regression" id="toc-multiple-linear-regression" class="nav-link" data-scroll-target="#multiple-linear-regression">Multiple Linear Regression</a>
+  <ul class="collapse">
+  <li><a href="#identify-variables" id="toc-identify-variables" class="nav-link" data-scroll-target="#identify-variables">1. Identify variables</a></li>
+  <li><a href="#state-hypotheses" id="toc-state-hypotheses" class="nav-link" data-scroll-target="#state-hypotheses">2. State hypotheses</a></li>
+  <li><a href="#fit-the-simple-model" id="toc-fit-the-simple-model" class="nav-link" data-scroll-target="#fit-the-simple-model">3. Fit the simple model</a></li>
+  <li><a href="#fit-the-multivariable-model" id="toc-fit-the-multivariable-model" class="nav-link" data-scroll-target="#fit-the-multivariable-model">4. Fit the multivariable model</a></li>
+  <li><a href="#interpret-the-regression-coefficients-of-the-multivariable-model." id="toc-interpret-the-regression-coefficients-of-the-multivariable-model." class="nav-link" data-scroll-target="#interpret-the-regression-coefficients-of-the-multivariable-model.">5. Interpret the regression coefficients of the multivariable model.</a></li>
+  <li><a href="#template-conclusion" id="toc-template-conclusion" class="nav-link" data-scroll-target="#template-conclusion">6. Template Conclusion</a></li>
+  </ul></li>
+  <li><a href="#logistic-regression" id="toc-logistic-regression" class="nav-link" data-scroll-target="#logistic-regression">Logistic Regression</a>
+  <ul class="collapse">
+  <li><a href="#identify-variables-1" id="toc-identify-variables-1" class="nav-link" data-scroll-target="#identify-variables-1">1. Identify variables</a></li>
+  <li><a href="#state-hypotheses-1" id="toc-state-hypotheses-1" class="nav-link" data-scroll-target="#state-hypotheses-1">2. State hypotheses</a></li>
+  <li><a href="#fit-the-simple-model-1" id="toc-fit-the-simple-model-1" class="nav-link" data-scroll-target="#fit-the-simple-model-1">3. Fit the simple model</a></li>
+  <li><a href="#fit-the-multivariable-model-1" id="toc-fit-the-multivariable-model-1" class="nav-link" data-scroll-target="#fit-the-multivariable-model-1">4. Fit the multivariable model</a></li>
+  <li><a href="#interpret-the-odds-ratio-estimates" id="toc-interpret-the-odds-ratio-estimates" class="nav-link" data-scroll-target="#interpret-the-odds-ratio-estimates">5. Interpret the Odds Ratio estimates</a></li>
+  <li><a href="#template-conclusion-1" id="toc-template-conclusion-1" class="nav-link" data-scroll-target="#template-conclusion-1">6. Template Conclusion</a></li>
+  </ul></li>
+  <li><a href="#log-transformed-response" id="toc-log-transformed-response" class="nav-link" data-scroll-target="#log-transformed-response">Log Transformed Response</a>
+  <ul class="collapse">
+  <li><a href="#identify-variables-2" id="toc-identify-variables-2" class="nav-link" data-scroll-target="#identify-variables-2">1. Identify variables</a></li>
+  <li><a href="#state-hypothesis" id="toc-state-hypothesis" class="nav-link" data-scroll-target="#state-hypothesis">2. State hypothesis</a></li>
+  <li><a href="#fit-the-simple-model-2" id="toc-fit-the-simple-model-2" class="nav-link" data-scroll-target="#fit-the-simple-model-2">3. Fit the simple model</a></li>
+  <li><a href="#fit-the-multivariable-model-2" id="toc-fit-the-multivariable-model-2" class="nav-link" data-scroll-target="#fit-the-multivariable-model-2">4. Fit the multivariable model</a></li>
+  <li><a href="#interpret-the-regression-coefficients." id="toc-interpret-the-regression-coefficients." class="nav-link" data-scroll-target="#interpret-the-regression-coefficients.">5. Interpret the regression coefficients.</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">6. Conclusion</a></li>
+  </ul></li>
+  <li><a href="#categorical-predictors" id="toc-categorical-predictors" class="nav-link" data-scroll-target="#categorical-predictors">Categorical predictors</a>
+  <ul class="collapse">
+  <li><a href="#identify-variables-3" id="toc-identify-variables-3" class="nav-link" data-scroll-target="#identify-variables-3">1. Identify variables</a></li>
+  <li><a href="#write-the-mathematical-model." id="toc-write-the-mathematical-model." class="nav-link" data-scroll-target="#write-the-mathematical-model.">2. Write the mathematical model.</a></li>
+  <li><a href="#fit-the-multivariable-model." id="toc-fit-the-multivariable-model." class="nav-link" data-scroll-target="#fit-the-multivariable-model.">3. Fit the multivariable model.</a></li>
+  <li><a href="#interpret-the-regression-coefficients.-1" id="toc-interpret-the-regression-coefficients.-1" class="nav-link" data-scroll-target="#interpret-the-regression-coefficients.-1">4. Interpret the regression coefficients.</a></li>
+  <li><a href="#conclusion-1" id="toc-conclusion-1" class="nav-link" data-scroll-target="#conclusion-1">5. Conclusion</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/norcalbiostat/math615_test/edit/main/hw/10_MLR_confounding.Rmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/norcalbiostat/math615_test/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">Regression Assignment</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<section id="assignment-overview" class="level1">
+<h1>Assignment Overview</h1>
+<p>You will perform <span style="color:blue">4</span> regression analyses in this assignment. For each analysis you will</p>
+<ul>
+<li>Fit the simple, and multivariable model.</li>
+<li>Test for a potential confounder <span class="math inline">\(Z\)</span>.</li>
+<li>Interpret ALL regression coefficients (including the intercept) of the multivariable model.</li>
+</ul>
+<p><strong>Remember, to test if <span class="math inline">\(Z\)</span> confounds the relationship between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, the relationship between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> must be significant</strong></p>
+<ol type="1">
+<li>Multiple Linear Regression: <span class="math inline">\(Q \sim Q + Z\)</span>
+<ul>
+<li>One quantitative and a potential binary confounder.</li>
+</ul></li>
+<li>Logistic Regression: <span class="math inline">\(logit(B) \sim Q + Z\)</span>
+<ul>
+<li>One quantitative and a potential binary confounder.</li>
+<li>Your binary response variable <span class="math inline">\(Y\)</span> must be coded as 1 (event) and 0 (non-event).</li>
+</ul></li>
+<li>Log-Linear Regression: <span class="math inline">\(log(Q) \sim X + Z\)</span>
+<ul>
+<li><span class="math inline">\(X\)</span> and <span class="math inline">\(Z\)</span> can be of any data type.</li>
+</ul></li>
+<li>Any of the above analyses (or a new model) with a categorical (more than 2 levels) predictor variable e.g.: <span class="math inline">\(Q \sim X + C\)</span>.
+<ul>
+<li>You do NOT need to test a for a potential confounder here.</li>
+<li>Review detailed instructions in the example below. You have to write out the mathematical model.</li>
+</ul></li>
+</ol>
+</section>
+<section id="instructions" class="level1">
+<h1>Instructions</h1>
+<ol type="1">
+<li>Identify variables under consideration
+<ul>
+<li>Determine a third variable <span class="math inline">\(Z\)</span> that you want to test as a potential confounder.</li>
+</ul></li>
+<li>Write out the null, alternative, and confounder Hypotheses statements.
+<ul>
+<li><strong>Null</strong> - that there is no relationship between response and explanatory variables</li>
+<li><strong>Alternative</strong> - that there is a relationship between response and explanatory variables.</li>
+<li><strong>Confounder</strong> - that there is a relationship between response and explanatory variables after controlling for the confounding variable.</li>
+</ul></li>
+<li>Fit the simple bivariate model
+<ul>
+<li>Model the response variable on the explanatory variable <code>y ~ x</code></li>
+<li>Write a simple sentence on whether or not there is a relationship.</li>
+<li>For models where you must test for a confounder, this relationship must be significant.</li>
+</ul></li>
+<li>Fit the multivariable model.
+<ul>
+<li>Model the response variable on the explanatory variable and the third variable. <code>y ~ x + z</code></li>
+<li>Determine if <span class="math inline">\(Z\)</span> is a confounder by looking at the p-value for the explanatory variable.
+<ul>
+<li>If it is still significant, the third variable <strong>is not</strong> a confounding variable.</li>
+<li>If it is no longer significant, the third variable <strong>is</strong> a confounding variable. This means that the third variable is explaining the relationship between the explanatory variable and the response variable.</li>
+</ul></li>
+<li>Assess model fit by examining the residuals.</li>
+</ul></li>
+<li>Interpret all regression coefficients.</li>
+<li>Write a conclusion.</li>
+</ol>
+<hr>
+<div class="cell">
+
+</div>
+</section>
+<section id="multiple-linear-regression" class="level1">
+<h1>Multiple Linear Regression</h1>
+<section id="identify-variables" class="level2">
+<h2 class="anchored" data-anchor-id="identify-variables">1. Identify variables</h2>
+<p>If you have a likert “Strongly Agree” to “Strongly Disagree” variable that has at least 5 levels you can treat it as a pseudo-Quantitative Variable for this assignment.</p>
+<ul>
+<li>Quantitative outcome: Income (variable <code>income</code>).</li>
+<li>Quantitative predictor: Time you wake up in the morning (variable <code>wakeup</code>)</li>
+<li>Binary confounder: Gender (variable <code>female_c</code>)</li>
+</ul>
+</section>
+<section id="state-hypotheses" class="level2">
+<h2 class="anchored" data-anchor-id="state-hypotheses">2. State hypotheses</h2>
+<ul>
+<li>Null: There is no relationship between the time you wake up and your personal earnings</li>
+<li>Alternative: There is a relationship between the time you wake up and your personal earnings</li>
+<li>Confounder: There is still a relationship between the time you wake up and your personal earnings, after controlling for gender.</li>
+</ul>
+</section>
+<section id="fit-the-simple-model" class="level2">
+<h2 class="anchored" data-anchor-id="fit-the-simple-model">3. Fit the simple model</h2>
+<p>Is there a relationship between income and time a person wakes up?</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = income ~ wakeup, data = addhealth)
+
+Residuals:
+   Min     1Q Median     3Q    Max 
+-31297 -15622  -5622   9245 209865 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  43548.4     1126.2  38.667  &lt; 2e-16 ***
+wakeup        -487.7      151.2  -3.225  0.00127 ** 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 24670 on 3812 degrees of freedom
+  (2690 observations deleted due to missingness)
+Multiple R-squared:  0.002721,  Adjusted R-squared:  0.002459 
+F-statistic:  10.4 on 1 and 3812 DF,  p-value: 0.001271</code></pre>
+</div>
+</div>
+<p>The estimate of the regression coefficient for <code>wakeup</code> is significant (b1=-488, p= 0.001). There is reason to believe that the time you wakeup is associated with your income.</p>
+</section>
+<section id="fit-the-multivariable-model" class="level2">
+<h2 class="anchored" data-anchor-id="fit-the-multivariable-model">4. Fit the multivariable model</h2>
+<p>Fit the same multiple linear regression model and include the potential confounding variable. Determine if the third variable is a confounder.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = income ~ wakeup + female_c, data = addhealth)
+
+Residuals:
+   Min     1Q Median     3Q    Max 
+-36047 -15141  -5252   8678 205610 
+
+Coefficients:
+               Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)     48669.4     1206.9  40.325  &lt; 2e-16 ***
+wakeup           -611.3      149.4  -4.092 4.37e-05 ***
+female_cFemale  -8527.1      789.3 -10.803  &lt; 2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 24300 on 3810 degrees of freedom
+  (2691 observations deleted due to missingness)
+Multiple R-squared:  0.03236,   Adjusted R-squared:  0.03185 
+F-statistic:  63.7 on 2 and 3810 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<p>The relationship between income and wake up time is still significant after controlling for gender. Gender is <strong>not</strong> a confounder.</p>
+<blockquote class="blockquote">
+<p>Optional new package <code>stargazer</code> for printing regression models as columns. Great for comparisons, looks like journal articles. Your R code chunk header must look like this: <code>```{r, results='asis'}</code> and be sure to use the correct output format: <code>type='html'</code> or <code>type='latex'</code>. Vignette found at: https://www.jakeruss.com/cheatsheets/stargazer/</p>
+</blockquote>
+
+<table style="text-align:center">
+<tbody><tr>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td colspan="2">
+<em>Dependent variable:</em>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td colspan="2">
+income
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+SLR
+</td>
+<td>
+MLR
+</td>
+</tr>
+<tr>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+wakeup
+</td>
+<td>
+-488<sup>***</sup> (-784, -191)
+</td>
+<td>
+-611<sup>***</sup> (-904, -319)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+female_cFemale
+</td>
+<td>
+</td>
+<td>
+-8,527<sup>***</sup> (-10,074, -6,980)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Constant
+</td>
+<td>
+43,548<sup>***</sup> (41,341, 45,756)
+</td>
+<td>
+48,669<sup>***</sup> (46,304, 51,035)
+</td>
+</tr>
+<tr>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Observations
+</td>
+<td>
+3,814
+</td>
+<td>
+3,813
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Adjusted R<sup>2</sup>
+</td>
+<td>
+0
+</td>
+<td>
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Residual Std. Error
+</td>
+<td>
+24,666 (df = 3812)
+</td>
+<td>
+24,297 (df = 3810)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+F Statistic
+</td>
+<td>
+10<sup>***</sup> (df = 1; 3812)
+</td>
+<td>
+64<sup>***</sup> (df = 2; 3810)
+</td>
+</tr>
+<tr>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<em>Note:</em>
+</td>
+<td colspan="2" style="text-align:right">
+<sup><em></em></sup><em>p&lt;0.1; <sup><strong></strong></sup><strong>p&lt;0.05; <sup></sup></strong></em>p&lt;0.01
+</td>
+</tr>
+
+</tbody></table>
+</section>
+<section id="interpret-the-regression-coefficients-of-the-multivariable-model." class="level2">
+<h2 class="anchored" data-anchor-id="interpret-the-regression-coefficients-of-the-multivariable-model.">5. Interpret the regression coefficients of the multivariable model.</h2>
+<ul>
+<li><span class="math inline">\(b_{0}\)</span>: For a male (gender=0) who wakes up at midnight (wakeup=0), their predicted average income is $48,669.4 (95% CI $46,303.9, $51,035)</li>
+<li><span class="math inline">\(b_{1}\)</span>: Holding gender constant, for every hour later a person wakes up, their predicted average income drops by $611 (95% CI $319, $904).</li>
+<li><span class="math inline">\(b_{2}\)</span>: Controlling for the time someone wakes up in the morning, the predicted average income for females is $8,527 (95% CI $6,980, $10,074) lower than for males.</li>
+</ul>
+</section>
+<section id="template-conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="template-conclusion">6. Template Conclusion</h2>
+<ul>
+<li>Use the numerical results from the multivariable model to fill in the values in the conclusion below.</li>
+<li>Look at the Adjusted <span class="math inline">\(R^{2}\)</span> to see how much of the variance in the response you are accounting for with the predictor.</li>
+</ul>
+<p>Replace the <strong>bold</strong> words with your variables, the <code>highlighted</code> words with data from your analysis, and choose between <em>conclusion options</em>.</p>
+<p>After adjusting for the potential confounding factor of <strong>third variable</strong>, <strong>explanatory variable</strong> (b1 = <code>parameter estimate, CI confidence interval range, p = significance value</code>) was *<strong>significantly/not significantly</strong> and <strong>positively/negatively</strong> associated with <strong>response variable</strong>. Approximately <code>R-Square*100</code> of the variance of <strong>response</strong> can be accounted for by <strong>explanatory</strong> after controlling for <strong>third variable</strong>. Based on these analyses, <strong>third variable</strong> <em>is not/is</em> a confounding factor because the association between <strong>explanatory</strong> and <strong>response</strong> <em>is still/is no longer</em> significant after accounting for <strong>third variable</strong>.</p>
+<p>So the conclusion for this analysis reads:</p>
+<blockquote class="blockquote">
+<p>After adjusting for the potential confounding factor of <strong>gender</strong>, <strong>wake up time</strong> (<span class="math inline">\(b_{1}\)</span> = <code>-611, 95% CI: (-904, -318), p&lt;.0001</code>) was <strong>significantly</strong> and <strong>negatively</strong> associated with <strong>income</strong>. Approximately <code>3.2%</code> of the variance of <strong>income</strong> can be accounted for by <strong>wake up time</strong> after controlling for <strong>gender</strong>. Based on these analyses, <strong>gender</strong> <em>is not</em> a confounding factor because the association between <strong>wake up time</strong> and <strong>income</strong> <em>is still</em> significant after accounting for <strong>gender</strong>.</p>
+</blockquote>
+<p>After wordsmithing/editing for sentence flow,</p>
+<blockquote class="blockquote">
+<p>After adjusting for the potential confounding factor of gender, an adolescent’s weight (Beta = 1.34, 95% CI -0.53, 3.21, p = .1558) was not significantly associated with the number of cigarettes smoked in the past 30 days. Approximately 0.78% of the variance in cigarettes smoked can be accounted for by weight after controlling for gender. Based on these analyses, gender is a confounding factor because the association between weight and cigarettes smoked is no longer significant after accounting for gender.</p>
+</blockquote>
+</section>
+</section>
+<section id="logistic-regression" class="level1">
+<h1>Logistic Regression</h1>
+<p>Your outcome variable must be coded as 1 (event) and 0 (non-event). Recoding this way ensures you are predicting the presence of your categorical variable and not the absence of it.</p>
+<section id="identify-variables-1" class="level2">
+<h2 class="anchored" data-anchor-id="identify-variables-1">1. Identify variables</h2>
+<ul>
+<li>Binary outcome: Poverty (variable <code>poverty</code>). This is an indicator if reported personal income is below $10,210.</li>
+<li>Binary predictor: Ever smoked a cigarette (variable <code>eversmoke_c</code>)</li>
+<li>Binary confounder: Gender (variable <code>female_c</code>)</li>
+</ul>
+</section>
+<section id="state-hypotheses-1" class="level2">
+<h2 class="anchored" data-anchor-id="state-hypotheses-1">2. State hypotheses</h2>
+<ul>
+<li>Null hypothesis: There is no relationship between the probability of living below the poverty level and the time you wake up in the morning.</li>
+<li>Alternative hypothesis: There is a relationship between the probability of living below the poverty level and the time you wake up in the morning.</li>
+<li>Confounding hypothesis: There <em>still is</em> a relationship between the probability of living below the poverty level and the time you wake up in the morning after controlling for gender.</li>
+</ul>
+</section>
+<section id="fit-the-simple-model-1" class="level2">
+<h2 class="anchored" data-anchor-id="fit-the-simple-model-1">3. Fit the simple model</h2>
+<p>Fit the logistic regression model (a.k.a generalized linear model) of the explanatory variable on the response variable. Decide to reject the null hypothesis in favor of the alternative.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+glm(formula = poverty ~ eversmoke_c, family = "binomial", data = addhealth)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-0.7064  -0.7064  -0.7064  -0.6210   1.8659  
+
+Coefficients:
+                                Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept)                     -1.54800    0.06444 -24.021  &lt; 2e-16 ***
+eversmoke_cSmoked at least once  0.28711    0.07737   3.711 0.000207 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 4907.4  on 4834  degrees of freedom
+Residual deviance: 4893.3  on 4833  degrees of freedom
+  (1669 observations deleted due to missingness)
+AIC: 4897.3
+
+Number of Fisher Scoring iterations: 4</code></pre>
+</div>
+</div>
+<p>The p-value for the b1 estimate of the regression coefficient for <code>eversmoke_c</code> is significant at 0.0002. There is reason to believe that smoking status is associated with the probability of living below the poverty level.</p>
+</section>
+<section id="fit-the-multivariable-model-1" class="level2">
+<h2 class="anchored" data-anchor-id="fit-the-multivariable-model-1">4. Fit the multivariable model</h2>
+<p>Fit the same logistic regression model and include the potential confounding variable. <strong>This is only done if there is a significant relationship between the explanatory and response variable.</strong> Determine if the third variable is a confounder.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+glm(formula = poverty ~ eversmoke_c + female_c, family = "binomial", 
+    data = addhealth)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-0.8335  -0.7048  -0.5652  -0.4716   2.1221  
+
+Coefficients:
+                                Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept)                     -2.14045    0.08662  -24.71  &lt; 2e-16 ***
+eversmoke_cSmoked at least once  0.38725    0.07886    4.91 9.09e-07 ***
+female_cFemale                   0.87450    0.07690   11.37  &lt; 2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 4906.9  on 4833  degrees of freedom
+Residual deviance: 4755.4  on 4831  degrees of freedom
+  (1670 observations deleted due to missingness)
+AIC: 4761.4
+
+Number of Fisher Scoring iterations: 4</code></pre>
+</div>
+</div>
+<p>The p-value for the regression coefficient estimate of <code>eversmoke_c</code> is still significant at &lt;.0001 after controlling for gender. Thus gender is <strong>not</strong> a confounder.</p>
+</section>
+<section id="interpret-the-odds-ratio-estimates" class="level2">
+<h2 class="anchored" data-anchor-id="interpret-the-odds-ratio-estimates">5. Interpret the Odds Ratio estimates</h2>
+<p>Below I create a table containing the odds ratio estimates and 95% CI for those estimates using the multivariable model.</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: center;">OR</th>
+<th style="text-align: center;">LCL</th>
+<th style="text-align: center;">UCL</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">(Intercept)</td>
+<td style="text-align: center;">0.12</td>
+<td style="text-align: center;">0.10</td>
+<td style="text-align: center;">0.14</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">eversmoke_cSmoked at least once</td>
+<td style="text-align: center;">1.47</td>
+<td style="text-align: center;">1.26</td>
+<td style="text-align: center;">1.72</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">female_cFemale</td>
+<td style="text-align: center;">2.40</td>
+<td style="text-align: center;">2.06</td>
+<td style="text-align: center;">2.79</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<ul>
+<li>After controlling for gender, smokers have 1.5 (1.3, 1.7) times the odds of reporting making below the federal poverty level compared to non smokers.</li>
+<li>After controlling for smoking status, females have 2.4 (2.1, 2.8) time the odds of reporting annual earned wages below the federal poverty level compared to males.</li>
+</ul>
+</section>
+<section id="template-conclusion-1" class="level2">
+<h2 class="anchored" data-anchor-id="template-conclusion-1">6. Template Conclusion</h2>
+<p>Replace the <strong>bold</strong> words with your variables, the <code>highlighted</code> words with data from your analysis, and choose between <em>conclusion options</em>.</p>
+<p>After adjusting for the potential confounding factor of <strong>third variable</strong>, <strong>explanatory variable</strong> (<code>OR odds ratio estimate, CI confidence interval range, p = significance value</code>) was <em>significantly/not significantly</em> and <em>positively/negatively</em> associated with the likelihood of <strong>response variable</strong>. In this analysis, the odds ratio tells us that those who are <strong>[describe what dummy code 1 of your explanatory variable means here]</strong> are <code>0.05</code> times <em>more (if OR greater than 1)/less (if OR less than 1)</em> likely to <strong>[describe what dummy code 1 of your response variable means here]</strong>. Based on these analyses, <strong>third variable</strong> <em>is not/is</em> a confounding factor because the association between <strong>explanatory</strong> and <strong>response</strong> <em>is still/is no longer</em> significant after accounting for <strong>third variable</strong>.</p>
+<p>So the conclusion for this analysis reads:</p>
+<p>After adjusting for the potential confounding factor of <strong>gender</strong>, <strong>smoking status</strong> (<code>1.47, CI 1.26-1.72, p &lt;.0001</code>) was <em>significantly</em> and <em>positively</em> associated with the likelihood of <strong>earning under the poverty level</strong>. In this analysis, the odds ratio tells us that those who <strong>have ever smoked</strong> are <code>1.47</code> times <em>more</em> likely to <strong>earn income below the federal poverty level</strong>. Based on these analyses, <strong>gender</strong> <em>is not</em> a confounding factor because the association between <strong>smoking</strong> and <strong>poverty status</strong> <em>is still</em> significant after accounting for <strong>gender</strong>.</p>
+</section>
+</section>
+<section id="log-transformed-response" class="level1">
+<h1>Log Transformed Response</h1>
+<section id="identify-variables-2" class="level3">
+<h3 class="anchored" data-anchor-id="identify-variables-2">1. Identify variables</h3>
+<ul>
+<li>Quantitative outcome that has been log transformed: Income (variable <code>logincome</code>)</li>
+<li>Binary predictor: Ever smoked a cigarette (variable <code>eversmoke_c</code>)</li>
+<li>Binary confounder: Gender (variable <code>female_c</code>)</li>
+</ul>
+</section>
+<section id="state-hypothesis" class="level3">
+<h3 class="anchored" data-anchor-id="state-hypothesis">2. State hypothesis</h3>
+<ul>
+<li>Null hypothesis: There is no relationship between the time you wake up in the morning and your income level</li>
+<li>Alternative hypothesis: There is a relationship between the time you wake up in the morning and your income level.</li>
+<li>Confounding hypothesis: There <em>still is</em> a relationship between the time you wake up in the morning and your income, after controlling for gender.</li>
+</ul>
+</section>
+<section id="fit-the-simple-model-2" class="level3">
+<h3 class="anchored" data-anchor-id="fit-the-simple-model-2">3. Fit the simple model</h3>
+<p><span class="math display">\[ln(Y) \sim \beta_{0} + \beta_{1}x_{1}\]</span></p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = logincome ~ wakeup, data = addhealth)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1.23205 -0.34407 -0.00154  0.35211  1.97669 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 10.537321   0.024294 433.738  &lt; 2e-16 ***
+wakeup      -0.012113   0.003262  -3.713 0.000207 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.5321 on 3812 degrees of freedom
+  (2690 observations deleted due to missingness)
+Multiple R-squared:  0.003604,  Adjusted R-squared:  0.003343 
+F-statistic: 13.79 on 1 and 3812 DF,  p-value: 0.0002075</code></pre>
+</div>
+</div>
+<p>There is a significant relationship between the time you wake up and the natural log of your income.</p>
+</section>
+<section id="fit-the-multivariable-model-2" class="level3">
+<h3 class="anchored" data-anchor-id="fit-the-multivariable-model-2">4. Fit the multivariable model</h3>
+<p><span class="math display">\[ln(Y) \sim \beta_{0} + \beta_{1}x_{1} + \beta_{2}x_{2}\]</span></p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = logincome ~ wakeup + female_c, data = addhealth)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1.32215 -0.33473 -0.00461  0.34058  2.01559 
+
+Coefficients:
+                Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)    10.653062   0.025995 409.805  &lt; 2e-16 ***
+wakeup         -0.014907   0.003218  -4.633 3.73e-06 ***
+female_cFemale -0.192710   0.017000 -11.336  &lt; 2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.5233 on 3810 degrees of freedom
+  (2691 observations deleted due to missingness)
+Multiple R-squared:  0.03611,   Adjusted R-squared:  0.0356 
+F-statistic: 71.36 on 2 and 3810 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<p>There is still significant relationship between the time someone wakes up and the natural log of their income.</p>
+</section>
+<section id="interpret-the-regression-coefficients." class="level3">
+<h3 class="anchored" data-anchor-id="interpret-the-regression-coefficients.">5. Interpret the regression coefficients.</h3>
+<ul>
+<li>For every hour later one wakes up in the morning, one can expect to earn <code>1-exp(-0.015)</code> = 1.4% less income than someone who wakes up one hour earlier. This is after controlling for gender.</li>
+<li>Females have on average <code>1-exp(-0.19)</code> = 17% percent lower income than males, after controlling for the wake up time.</li>
+</ul>
+</section>
+<section id="conclusion" class="level3">
+<h3 class="anchored" data-anchor-id="conclusion">6. Conclusion</h3>
+<p>Don’t forget to add the confidence intervals and p-values into your conclusion.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>                    2.5 %      97.5 %
+wakeup         0.02099299 0.008561652
+female_cFemale 0.20231394 0.147326777</code></pre>
+</div>
+</div>
+<p>Both gender and time one wakes up are significantly associated with the amount of personal earnings one makes. Waking up later in the morning is associated with 1.4% (95% CI 0.8%-2%, p&lt;.0001) percent lower income than someone who wakes up one hour earlier. Females have 17% (95% CI 15%-20%, p&lt;.0001) percent lower income than males.</p>
+</section>
+</section>
+<section id="categorical-predictors" class="level1">
+<h1>Categorical predictors</h1>
+<p>For any of the regression models above, or a new model if you choose, add a categorical variable with more than 2 levels.</p>
+<section id="identify-variables-3" class="level3">
+<h3 class="anchored" data-anchor-id="identify-variables-3">1. Identify variables</h3>
+<ul>
+<li>Outcome: BMI (variable <code>BMI</code>). This is a quantitiative measure.</li>
+<li>Predictor: Income (variable <code>income</code>). This is a quantitative measure.</li>
+<li>Predictor: general health (variable <code>genhealth</code>). This is a categorical measure with levels: Excellent (reference), Very good, Good, Fair and Poor.</li>
+</ul>
+</section>
+<section id="write-the-mathematical-model." class="level3">
+<h3 class="anchored" data-anchor-id="write-the-mathematical-model.">2. Write the mathematical model.</h3>
+<p>Define what each <span class="math inline">\(x\)</span> is, and write the mathematical model. State what group is the reference group.</p>
+<ul>
+<li>Let <span class="math inline">\(x_{1}\)</span> be <code>income</code></li>
+<li>Let <span class="math inline">\(x_{2}=1\)</span> when <code>genhealth='Very good'</code>, and 0 otherwise,</li>
+<li>let <span class="math inline">\(x_{3}=1\)</span> when <code>genhealth='Good'</code>, and 0 otherwise,</li>
+<li>let <span class="math inline">\(x_{4}=1\)</span> when <code>genhealth='Fair'</code>, and 0 otherwise,</li>
+<li>let <span class="math inline">\(x_{5}=1\)</span> when <code>genhealth='Poor'</code>, and 0 otherwise.</li>
+</ul>
+<p>The reference group for <code>genhealth</code> is <code>Excellent</code>.</p>
+<p>The mathematical model would look like:</p>
+<p><span class="math display">\[ Y \sim \beta_{0} + \beta_{1}*x_{1} + \beta_{2}x_{2} + \beta_{3}x_{3} + \beta_{4}x_{4} + \beta_{5}x_{5} \]</span></p>
+</section>
+<section id="fit-the-multivariable-model." class="level3">
+<h3 class="anchored" data-anchor-id="fit-the-multivariable-model.">3. Fit the multivariable model.</h3>
+<p>Print out the coefficients and 95% CI’s.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = BMI ~ income + genhealth, data = addhealth)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-16.837  -4.802  -1.091   3.441  39.132 
+
+Coefficients:
+                     Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)         2.652e+01  3.298e-01  80.409  &lt; 2e-16 ***
+income             -4.735e-06  4.686e-06  -1.010    0.312    
+genhealthVery good  1.602e+00  3.100e-01   5.166 2.52e-07 ***
+genhealthGood       4.758e+00  3.245e-01  14.664  &lt; 2e-16 ***
+genhealthFair       6.917e+00  5.039e-01  13.726  &lt; 2e-16 ***
+genhealthPoor       9.350e+00  1.392e+00   6.717 2.13e-11 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 6.967 on 3771 degrees of freedom
+  (2727 observations deleted due to missingness)
+Multiple R-squared:  0.09217,   Adjusted R-squared:  0.09096 
+F-statistic: 76.57 on 5 and 3771 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">2.5 %</th>
+<th style="text-align: right;">97.5 %</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">(Intercept)</td>
+<td style="text-align: right;">25.9</td>
+<td style="text-align: right;">27.2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">income</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">0.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">genhealthVery good</td>
+<td style="text-align: right;">1.0</td>
+<td style="text-align: right;">2.2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">genhealthGood</td>
+<td style="text-align: right;">4.1</td>
+<td style="text-align: right;">5.4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">genhealthFair</td>
+<td style="text-align: right;">5.9</td>
+<td style="text-align: right;">7.9</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">genhealthPoor</td>
+<td style="text-align: right;">6.6</td>
+<td style="text-align: right;">12.1</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="interpret-the-regression-coefficients.-1" class="level3">
+<h3 class="anchored" data-anchor-id="interpret-the-regression-coefficients.-1">4. Interpret the regression coefficients.</h3>
+<ul>
+<li><span class="math inline">\(b_{0}\)</span>: The predicted BMI for individuals with no income and excellent health is 26.5 (25.9, 27.2).</li>
+<li><span class="math inline">\(b_{1}\)</span>: After controlling for general health, for every additional $1 a person makes annually, their BMI decreases .0000047. This is not a significant relationship. A more meaningful interpretation would be to look at a $1000 increase in annual income. For every additional $1,000,000 in income a person makes annually, their BMI decreases by 4.7.</li>
+<li><span class="math inline">\(b_{2}\)</span>: Those reporting very good health have 1.6 (0.99, 2.2, p&lt;.0001) higher BMI compared to those reporting excellent health.</li>
+<li><span class="math inline">\(b_{3}\)</span>:Those reporting good health have 4.8 (4.1, 5.4, p&lt;.0001) higher BMI compared to those reporting excellent health.</li>
+<li><span class="math inline">\(b_{4}\)</span>: Those reporting fair health have 6.9 (5.9, 7.9, p&lt;.0001) higher BMI compared to those reporting excellent health.</li>
+<li><span class="math inline">\(b_{5}\)</span>: Those reporting poor health have 9.4 (6.6, 12.1, p&lt;.0001) higher BMI compared to those reporting excellent health.</li>
+</ul>
+</section>
+<section id="conclusion-1" class="level3">
+<h3 class="anchored" data-anchor-id="conclusion-1">5. Conclusion</h3>
+<p>After controlling for general health, income is not significantly associated with BMI. General health is significantly associated with BMI, the average BMI increases as reported general health decreases.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } 
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">This site is built with <span class="emoji" data-emoji="heart">❤️</span>, <i class="fa-brands fa-r-project" aria-hidden="true"></i> and <a href="https://quarto.org/">Quarto</a> by <a href="www.norcalbiostat.com">Robin Donatello</a>.</div>   
+  </div>
+</footer>
+
+
+
+</body></html>
