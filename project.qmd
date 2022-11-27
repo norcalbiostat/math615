@@ -43,14 +43,22 @@ I will be using [this Google file](https://docs.google.com/spreadsheets/d/10O0Fa
 ## Grading Method
 This project overall is worth 30% of your grade. Instead of assigning specific points to each stage and adding up the points for an overall score, this work will be done through a series of revisions gaining feedback from both your peers and the instructor at each stage. 
 
-* Instead of a point number, for each item to be assessed (currently each slide) you will be marked as either "needing revision", "meeting expectation", or "exemplary". .  
-* See the [Assessment Rubric here](https://docs.google.com/spreadsheets/d/1S7hhnF8hwr1rJ5VTfolkx12fh3IjW5gSRh4GvK3j7Jw)
+* Instead of a point number, for each item to be assessed (currently each slide) you will be marked as either "needing revision", "meeting expectation", or "exemplary".
 * I will update your status column for the slides that are being assessed at that stage. 
     - I will also check on any prior slides that are at 'needs revision' stage. 
 * You can request a reassessment of prior work at (nearly) any time. (You can ask for it, I just may not get to it until the next time I'm reviewing slides.)
+* **You are responsible for keeping track of your status!** Suggestion - use conditional formatting on column F in your sheet. This is the color scheme I use
+    - Go to "Format --> Conditional Formatting"
+    - Single color, apply to range F2:F22
+    - Format cells if 
+        * `Text contains Not Assessible` (Red)
+        * `Text contains ME` (light green)
+        * `Text is exactly E` (dark green)
+        * `Text contains NR` (yellow)
+
 
 :::{.callout-important}
-## Rubric under construction
+## Rubric
 This is a method of 'ungrading' that I have been wanting to try for a while. At the math congress (camping conference) I attended the first week of October a math educator discussed this method with us and so I was inspired to finally test it out. This project is a perfect opportunity to do so. 
 
 This means that the Assessment item descriptions are a work in progress. Right now they are slightly modified from the old grading rubric. I may add, combine, or reword items as I do my revisions to better fit what I am actually looking for. 
@@ -66,7 +74,6 @@ In the end this still has to be converted to a point value/letter grade right? S
 * If you have $\geq$ 80% of assessment items at 'meets expectation' and no more than 2 at 'needs revision', that's "C" work and you get 80 pts. 
 
 This is a graduate level class, so anything below a C is considered not passing. I don't expect anyone to be at that stage by the end of the semester. 
-
 
 
 ## Stage 1: Choose a data set and identify a few research topics
@@ -132,7 +139,7 @@ These slides are pale purple in the template.
 * **Slide 12**. Analyze the relationship discussed in slides 11
 * **Slide 14**. Analyze the relationship discussed in slides 13
 
-* This should be a conclusion written in English, in the contenxt of the problem, includes summary statistics, confidence interval and a p-value. 
+* This should be a conclusion written in English, in the context of the problem, includes summary statistics, confidence interval and a p-value. 
 
 
 ## Stage 5: Multivariable modeling & summarizing findings
@@ -141,29 +148,32 @@ You are trying to understand the relationship between your explanatory and respo
 
 These slides are pale green in the template. 
 
-**Slide 15: Testing for categorical moderator**
-
-* Create a graph to assess if a separate categorical variable is a moderator
-* Include appropriate summary statistics for the bivariate relationship under consideration for each level of the potential moderator
-* Explain in a sentence or two if this new variable is or is not a moderator, using summary numbers and explicit features of the graph to justify your conclusion
-
-
-**Slide 16: Testing for confounding relationships**
-
-* Present the regression analysis results with and without a confounder. 
-* Explain whether or not the variable under consideration is a confounder or not. Use the confounding assignment to guide the written results.  
-* Explain whether or not the additional variable helped improve prediction of response variable. 
-
-**Slide 17: Results from a Multivariable Model**
+**Slide 15: Model Building**
 
 * Build a multivariable model by adding additional predictors to the model. 
-    - See the lecture notes on model building as guidance. 
-    - Include any variables that were found to be significantly associated with the outcome
-    - If you found a moderator, your model should include an interaction term with your moderating variable.
-* A table or a graphic of the regression coefficients (or Odds Ratios) must be presented. 
-    - Make tables in Excel or Powerpoint directly. Do not copy R output
+* Explain your model building process in a few bullet points. 
+  - What variables did you test as other explanatory variables? 
+  - Which ones did you examine as confounders, or as effect moderators? 
+  - How did you determine your final model? 
+
+* See the lecture notes ([ASCN Ch 10](https://norcalbiostat.github.io/AppliedStatistics_notes/model-building.html)) on model building as guidance. 
+* Include any variables that were found to be significantly associated with the outcome
+* If you found a moderator, your model should include an interaction term with your moderating variable.
+* If you have a confounding variable, you still need to keep your primary explanatory variable in the model. 
+
+**Slide 16: Multivariable Model - Summary of results**
+
+* A table or plot of the regression coefficients (or Odds Ratios) must be presented. 
 * At least one coefficient, the primary explanatory variable, must be interpreted in context of the problem. 
 
+**Slide 17. Model Assessment**
+
+* If using a linear or log-linear model; 
+    - present and interpret the model diagnostic plots
+    - report and interpret $R^{2}$
+* If using a logistic regression model; 
+    - report the results of a test for goodness of fit
+    - report and interpret the model accuracy, and the cutpoint used. ([Ref: ASCN Ch 12.5](https://norcalbiostat.github.io/AppliedStatistics_notes/model-performance.html))
 
 **Slide 18. Discussion**
 
@@ -202,34 +212,34 @@ These slides are pale green in the template.
 
 ## Stage 6: Posters Presentations
 
-:::{.callout-important}
-# REVISIONS NEEDED HERE
-The content below needs to be revised for Fall 22
-:::
-
-
+### Creating the poster in a reproducible format
 * You will transfer all findings into a research poster, print the poster, and then present your research to your classmates. 
-    - We will split the class in half. When not presenting, you will be scoring the other half of the class's posters. 
+* You will create a new script file, named `userid_poster.qmd` that replicates all the findings, graphs and analysis done for your poster. 
+    - You will also turn in your data management file (`userid_dm.qmd`) along with this script file. 
+    - I should be able to reproduce every finding in your poster with the raw data, and these two script files. 
+    - The more code I have to change to get your script to run, or if I can't reproduce a finding the lower your score
+* Submit the poster file itself (as PDF) into the `Project-02 Poster Final` Google Drive folder, and the code in the `Poster code submision` subfolder. 
+
+### Presentations & Evaluations
+* We will split the class in half. When not presenting, you will be scoring the other half of the class's posters using [this scoring sheet](https://forms.gle/SWBM96MjcEmMDHGo9)
 * Posters can be in powerpoint (the standard format for research posters), or Google Slides (once appropriately sized)
     - Regardless of the file type, you must use a template. Do not try to reinvent the wheel. 
 
 ### Poster Guidelines
-https://norcalbiostat.netlify.com/lec/poster_guidelines/ 
 
-  * Links to poster templates, 
-  * Details on what each section should contain
-  * Guidance on aesthetics and printing (when appropriate)
-  * Evaluation criteria
-  * Examples of professional and prior student work. 
+See the full guidelines [in this blog post](https://www.norcalbiostat.com/post/2022-11-26-poster-guidelines/). This post includes: 
+
+* [Links to poster templates](https://www.norcalbiostat.com/post/2022-11-26-poster-guidelines/#templates)
+* [Details on what each section should contain](https://www.norcalbiostat.com/post/2022-11-26-poster-guidelines/#content)
+* Guidance on [aesthetics](https://www.norcalbiostat.com/post/2022-11-26-poster-guidelines/#aesthetics) and [printing](https://www.norcalbiostat.com/post/2022-11-26-poster-guidelines/#printing)
+* [Examples of professional and prior student work.](https://www.norcalbiostat.com/post/2022-11-26-poster-guidelines/#examples)
 
 
 ### Draft version
 
-* This draft is graded on how complete the poster is. You should consider this a draft that you would circulate to your colleagues for final review and comments. 
-* Use the [evaluation criteria](https://norcalbiostat.netlify.com/lec/poster_guidelines/#evaluation-criteria) as a guide for what I am looking for.
-*  **This assignment is graded in Blackboard using a rubric** - be sure to look at this before you submit. 
-    - Points are awarded based off how close to presentation quality your poster is by the time the draft is due. 
+* This draft is graded on a 1-10 scale on how complete the poster is. You should consider this a draft that you would circulate to your colleagues for final review and comments. 
     - Basically the more work I think you need to put into your poster to make it presentable, the lower the points you get for the draft. 
+* Use the [evaluation criteria](https://www.norcalbiostat.com/post/2022-11-26-poster-guidelines/#evaluation-criteria) as a guide for what I am looking for.
 
 
 **Submission and Peer Review Instructions**
@@ -249,6 +259,6 @@ https://norcalbiostat.netlify.com/lec/poster_guidelines/
 * Scoring will be done via [Google Forms](https://forms.gle/oFMQ2hqtthZFPq7T7). It looks exactly like the [evaluation criteria](https://norcalbiostat.netlify.com/lec/poster_guidelines/#evaluation-criteria).
     - When not presenting, you will walk around and learn about others research. Ask them questions, fill out the evaluation on your phone as you go. Printed copies will be available upon request so you can submit later. 
 * The final grade will be determined by
-    - Base score = **30%** student score + **70%** instructor score **+ bonus pts** for best in show awards **- 1** point penalty for each day late. 
+    - Base score = **30%** student score + **70%** instructor score **+ bonus pts** for best in show awards. 
 
 
