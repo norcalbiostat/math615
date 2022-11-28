@@ -1,0 +1,76 @@
+---
+title: "Model Building" 
+date: "2022-11-28"
+description: "14"
+author: "Robin Donatello"
+footer: "[🔗 https://math615.netlify.app](https://math615.netlify.app) / Model Building"
+from: markdown+emoji
+format: 
+  revealjs:
+    theme: beige
+    transition: fade
+    slide-number: true
+    incremental: false
+    code-fold: true
+    code-summary: "Show the code"
+    chalkboard: true
+execute:
+  freeze: auto
+  echo: true
+knitr:
+  opts_chunk: 
+    R.options:
+      width: 200
+---
+
+
+## References
+
+* PMA6 Chapter 9, 10 and 12.8
+* ASCN Chapter 10 and 12.  
+
+
+## Linear regression model refinements
+
+# Identifying outliers (PMA6 Ch 7.8)
+
+
+## Outliers in X
+
+Possible outliers in $X$ are measured using a statistic called _leverage_, denoted by ($h$). 
+
+$$
+h = \frac{1}{N} \frac{(X - \bar{X})^2}{\sum(X - \bar{X})^2}
+$$
+
+When $X$ is far away from $\bar{X}$, the leverage is large. Observations with large leverage posses the potential for having a large effect on the slope of the line. 
+
+## Influential Observations
+
+Just looking at outliers in Y or X by themselves is not helpful. Instead you must look at the combination of the two to determine how much influence a single point may have. Ref. Figure 7.8 in PMA6. 
+
+
+
+## What to do about outliers? 
+
+* If an outlier is found then it is important to identify the case/record/observation that contains the suspected value. 
+* Sometimes this process provides a clue as to the nature of the outlier. Then the options are: 
+    * Removal of the outlier (just the single point)
+    * Correct the record (if the outlier is due to a data entry error)
+    * Removal of the entire row/observation
+
+:::{.callout-warning}
+Outliers should not be removed just because they represent outliers. Any decisions regarding outliers should be well justified and made transparent in any report or manuscript. 
+:::
+
+You should always fit the model with, and without the outlier to assess the true impact of that single record. 
+
+
+
+
+## Model Fit
+
+* ANOVA for Regression. How different is our fitted line $\hat{Y}$ from the overall mean $\bar{Y}$? The residual mean squared error (RMSE) is a measure of how poorly or well the regression line fits the actual data points. A large RMSE indicates a poor fit. 
+    - While PMA6 and ASCN chapters 7.8 discuss ANOVA for regression in context of a simple linear regression, this generalizes to multiple regression. It tests all $\beta_p$ are simultaneously equal to 0. 
+
+

@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="11/07 - 11/18">
+<meta name="description" content="11/28 - 11/30">
 
-<title>Data Analysis for Graduate Research - Multiple Regression</title>
+<title>Data Analysis for Graduate Research - Model Building</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -59,8 +59,8 @@ ul.task-list{list-style: none;}
 }</script>
 
 
-<meta name="twitter:title" content="Data Analysis for Graduate Research - Multiple Regression">
-<meta name="twitter:description" content="11/07 - 11/18">
+<meta name="twitter:title" content="Data Analysis for Graduate Research - Model Building">
+<meta name="twitter:description" content="11/28 - 11/30">
 <meta name="twitter:creator" content="@norcalbiostat">
 <meta name="twitter:card" content="summary">
 </head>
@@ -160,7 +160,7 @@ ul.task-list{list-style: none;}
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Multiple Regression</h1>
+      <h1 class="quarto-secondary-nav-title">Model Building</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -253,24 +253,25 @@ ul.task-list{list-style: none;}
   <li><a href="#where-were-at" id="toc-where-were-at" class="nav-link" data-scroll-target="#where-were-at">Where we’re at</a></li>
   <li><a href="#objectives" id="toc-objectives" class="nav-link" data-scroll-target="#objectives">Objectives</a></li>
   </ul></li>
-  <li><a href="#learning-materials" id="toc-learning-materials" class="nav-link" data-scroll-target="#learning-materials">Learning Materials</a></li>
-  <li><a href="#assignment" id="toc-assignment" class="nav-link" data-scroll-target="#assignment">Assignment</a></li>
-  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">Discussion</a></li>
+  <li><a href="#learning-materials" id="toc-learning-materials" class="nav-link" data-scroll-target="#learning-materials">Learning Materials</a>
+  <ul class="collapse">
+  <li><a href="#model-building" id="toc-model-building" class="nav-link" data-scroll-target="#model-building">Model Building</a></li>
+  </ul></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/norcalbiostat/math615_test/edit/main/topics/t11-multiple_regression.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/norcalbiostat/math615_test/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/norcalbiostat/math615_test/edit/main/topics/t12-model_building.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/norcalbiostat/math615_test/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Multiple Regression</h1>
-<p class="subtitle lead">Because life isn’t bivariate</p>
+<h1 class="title d-none d-lg-block">Model Building</h1>
+<p class="subtitle lead">Part science, part art</p>
 </div>
 
 <div>
   <div class="description">
-    11/07 - 11/18
+    11/28 - 11/30
   </div>
 </div>
 
@@ -292,20 +293,18 @@ ul.task-list{list-style: none;}
 <section id="where-weve-been" class="level3">
 <h3 class="anchored" data-anchor-id="where-weve-been">Where we’ve been</h3>
 <ul>
-<li>Learning how to choose and implement an appropriate bivariate analyses, including building simple regression models.<br>
-</li>
-<li>Learning how a bivariate relationship can be altered or changed by the presence of a third variable.</li>
+<li>Practicing building multivariable regression models</li>
 </ul>
 </section>
 <section id="where-were-at" class="level3">
 <h3 class="anchored" data-anchor-id="where-were-at">Where we’re at</h3>
-<p>Ready to learn how to expand regression models to include information contained in other variables.</p>
+<p>Ready to learn how to refine our regression models to</p>
 </section>
 <section id="objectives" class="level3">
 <h3 class="anchored" data-anchor-id="objectives">Objectives</h3>
 <div class="cell">
 <div class="cell-output-display">
-<p>Calculate and interpret estimates for multiple slopes in multiple regression models Calculate and interpret confidence and prediction intervals for the slope value Visually assess assumptions of regression models</p>
+<p>Identify techniques for selecting variables to be included in a model Select between competing models using measures of model fit</p>
 </div>
 </div>
 </section>
@@ -316,30 +315,25 @@ ul.task-list{list-style: none;}
 <div class="cell">
 <div class="cell-output-display">
 <ul>
-<li>PMA6 Ch 8
+<li>PMA6 8.11, 9
 <ul>
-<li><a href="https://norcalbiostat.github.io/AppliedStatistics_notes/mlr.html">ASCN Ch 9</a></li>
+<li>ASCN Ch 10</li>
 </ul></li>
 </ul>
 <!-- end of list -->
 </div>
 </div>
-</section>
-<section id="assignment" class="level2">
-<h2 class="anchored" data-anchor-id="assignment">Assignment</h2>
-<div class="cell">
-<div class="cell-output-display">
+<section id="model-building" class="level3">
+<h3 class="anchored" data-anchor-id="model-building">Model Building</h3>
 <ul>
-<li><a href="../hw/hw08-multiple_regression.html">HW08 Multiple Regression</a></li>
+<li>More on outliers and influencial points: PMA6 Ch 7.8 and 8.8</li>
+<li>Got a moderator? Check out Interaction terms in PMA6 Ch 8.8 and ASCN 10.3</li>
+<li>Multicollinearity (highly correlated X values): PMA6 8.9 and ASCN 10.5</li>
+<li>How to choose variables for your model sensibly: PMA6 Chapter 9, ASCN 10.6</li>
 </ul>
-<!-- end of list -->
-</div>
-</div>
+
+
 </section>
-<section id="discussion" class="level2">
-<h2 class="anchored" data-anchor-id="discussion">Discussion</h2>
-
-
 </section>
 
 </main> <!-- /main -->
