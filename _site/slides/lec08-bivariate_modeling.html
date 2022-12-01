@@ -1749,8 +1749,13 @@ F-statistic: 186.4 on 1 and 340 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div class="columns">
 <div class="column" style="width:60%;">
 <div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a><span class="fu">library</span>(performance)</span>
+<span id="cb43-2"><a href="#cb43-2"></a><span class="fu">plot</span>(<span class="fu">check_normality</span>(pen.body.bill))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
-<p><img data-src="lec08-bivariate_modeling_files/figure-revealjs/unnamed-chunk-33-1.png" width="480"></p>
+<p><img data-src="lec08-bivariate_modeling_files/figure-revealjs/unnamed-chunk-33-1.png" width="384"></p>
 </div>
 </div>
 </div><div class="column" style="width:40%;">
@@ -1762,8 +1767,12 @@ F-statistic: 186.4 on 1 and 340 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div class="columns">
 <div class="column" style="width:60%;">
 <div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a><span class="fu">plot</span>(<span class="fu">check_normality</span>(pen.body.bill), <span class="at">type =</span> <span class="st">"qq"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
-<p><img data-src="lec08-bivariate_modeling_files/figure-revealjs/unnamed-chunk-34-1.png" width="480"></p>
+<p><img data-src="lec08-bivariate_modeling_files/figure-revealjs/unnamed-chunk-34-1.png" width="384"></p>
 </div>
 </div>
 </div><div class="column" style="width:40%;">
@@ -1775,8 +1784,12 @@ F-statistic: 186.4 on 1 and 340 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div class="columns">
 <div class="column" style="width:60%;">
 <div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1"></a><span class="fu">plot</span>(<span class="fu">check_heteroskedasticity</span>(pen.body.bill))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
-<p><img data-src="lec08-bivariate_modeling_files/figure-revealjs/unnamed-chunk-35-1.png" width="480"></p>
+<p><img data-src="lec08-bivariate_modeling_files/figure-revealjs/unnamed-chunk-35-1.png" width="384"></p>
 </div>
 </div>
 </div><div class="column" style="width:40%;">
@@ -1788,8 +1801,12 @@ F-statistic: 186.4 on 1 and 340 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div class="columns">
 <div class="column" style="width:60%;">
 <div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1"></a><span class="fu">plot</span>(<span class="fu">check_posterior_predictions</span>(pen.body.bill))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
-<p><img data-src="lec08-bivariate_modeling_files/figure-revealjs/unnamed-chunk-36-1.png" width="480"></p>
+<p><img data-src="lec08-bivariate_modeling_files/figure-revealjs/unnamed-chunk-36-1.png" width="384"></p>
 </div>
 </div>
 </div><div class="column" style="width:40%;">
@@ -1807,7 +1824,7 @@ F-statistic: 186.4 on 1 and 340 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div class="cell">
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a>pen.body.bill <span class="sc">|&gt;</span> <span class="fu">coefficients</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1"></a>pen.body.bill <span class="sc">|&gt;</span> <span class="fu">coefficients</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code> (Intercept)  body_mass_g 
@@ -1815,7 +1832,7 @@ F-statistic: 186.4 on 1 and 340 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1"></a>pen.body.bill <span class="sc">|&gt;</span> <span class="fu">confint</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1"></a>pen.body.bill <span class="sc">|&gt;</span> <span class="fu">confint</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>                   2.5 %       97.5 %
@@ -1824,7 +1841,7 @@ body_mass_g  0.003467795  0.004635038</code></pre>
 </div>
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1"></a>pen.body.bill <span class="sc">|&gt;</span> <span class="fu">r2</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1"></a>pen.body.bill <span class="sc">|&gt;</span> <span class="fu">r2</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># R2 for Linear Regression

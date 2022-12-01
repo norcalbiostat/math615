@@ -1004,9 +1004,8 @@ The p-value for $b_{1}$ is <.0001, so there is sufficient evidence to believe th
 
 ::: {.column width="60%"}
 ```{r}
-#| echo: false
-#| fig-width: 5
-#| fig-height: 5
+#| fig-width: 4
+#| fig-height: 4
 
 library(performance)
 plot(check_normality(pen.body.bill))
@@ -1027,9 +1026,8 @@ Mostly normal, pretty heavy right tail. This is indicative of a nonlinear trend 
 
 ::: {.column width="60%"}
 ```{r}
-#| echo: false
-#| fig-width: 5
-#| fig-height: 5
+#| fig-width: 4
+#| fig-height: 4
 plot(check_normality(pen.body.bill), type = "qq")
 ```
 :::
@@ -1047,9 +1045,8 @@ This is also known as a 'normal probability plot'. It is used to compare the the
 
 ::: {.column width="60%"}
 ```{r}
-#| echo: false
-#| fig-width: 5
-#| fig-height: 5
+#| fig-width: 4
+#| fig-height: 4
 plot(check_heteroskedasticity(pen.body.bill))
 ```
 :::
@@ -1067,9 +1064,8 @@ Holy non-flat relationship Batman. The variance of Y is not constant. This is a 
 
 ::: {.column width="60%"}
 ```{r}
-#| echo: false
-#| fig-width: 5
-#| fig-height: 5
+#| fig-width: 4
+#| fig-height: 4
 plot(check_posterior_predictions(pen.body.bill))
 ```
 :::
