@@ -24,67 +24,33 @@ website:
   navbar: 
     pinned: true
     background: "#654378"
+    left: 
+      - text: "Topic Overview"
+        file: topics.qmd
+      - text: "All Slides"
+        file: slides.qmd
+      - text: "Assignments"
+        file: hw.qmd
+      - text: "Project"
+        file: project.qmd
+        
     right: 
-      - text: "Schedule"
-        menu:
-          - file: schedule.qmd
-          - file: calendar.qmd
       - text: "Materials"
         menu: 
-          - file: topics.qmd
-          - file: slides.qmd
-          - file: hw.qmd
-          - file: collab_notes.qmd
+          - syllabus.qmd
+          - text: "Collaborative Notes"
+            file: collab_notes.qmd
           - text: "Applied Stats Notebook"
             href: https://norcalbiostat.github.io/AppliedStatistics_notes/
           - text: "Intro to Modern Stats"
             href: "https://openintro-ims.netlify.app/"
-      - text: "Project"
-        file: project.qmd
-      - syllabus.qmd
-      - help.qmd
-      - text: "Tools"
-        menu: 
-          - icon: bar-chart
-            href: https://pollev.com/drd
-            text: PollEV
           - icon: google
             href: https://drive.google.com/drive/folders/1oeVbt6QXvNjiadAu8VspPLXOlfaMmtXP
             text: Google Drive
           - icon: file-code
             href: https://hackmd.io/@norcalbiostat/R
             text: HackMD - R code
-      
-      
-  sidebar:
-    - title: "Content"
-      pinned: true
-      style: "docked"
-      background: dark
-      search: true
-      tools:
-        - icon: bar-chart
-          href: https://pollev.com/drd
-          text: PollEV
-        - icon: google
-          href: https://drive.google.com/drive/folders/1oeVbt6QXvNjiadAu8VspPLXOlfaMmtXP
-          text: Google Drive
-        - icon: file-code
-          href: https://hackmd.io/#
-          text: HackMD
-      contents: 
-        - section: "Schedule"
-          contents:
-            - schedule.qmd
-            - calendar.qmd
-        - project.qmd
-        - section: "Materials"
-          contents:
-            - topics.qmd
-            - slides.qmd
-            - hw.qmd
-            - collab_notes.qmd
-  
+      - help.qmd
 
 from: markdown+emoji
 format:
