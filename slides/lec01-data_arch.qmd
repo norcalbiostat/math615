@@ -1,14 +1,13 @@
 ---
 title: "Data Architecture"
-date: "2022-08-22"
+date: "2023-08-21"
 description: "1"
 author: "Robin Donatello"
 footer: "[🔗 https://math615.netlify.app](https://math615.netlify.app) / Data Architecture"
 from: markdown+emoji
 format: 
   revealjs:
-    theme: beige
-    multiplex: true
+    theme: sky
     transition: fade
     slide-number: true
     incremental: false 
@@ -95,19 +94,24 @@ If they were to keep track of the data like this:
 
 ## What would this data look like in a tidy data format?
 
-. . .
+:::: {.columns}
 
-![](https://datacarpentry.org/spreadsheets-socialsci/fig/single-info.png){width=300 fig-align=center fig-alt="The previous example in tidy data format"}
+::: {.column width="50%"}
+![](https://datacarpentry.org/spreadsheets-socialsci/fig/single-info.png){fig-align=center fig-alt="The previous example in tidy data format"}
+:::
 
-. . . 
-
+::: {.column width="50%"}
 * One row per observation (farmer)
 * One topic per column (animal)
 * Cell value is a count of the unique combination between animal type and farmer. 
+:::
+
+::::
+
 
 # Metadata
 
-## Metadata 
+## Metadata {.smaller}
 
 * Recording data about your data ("metadata"") is essential. 
 * **Think about yourself**. You may know now, but the chances that you will still remember the exact wording of the question you asked about your informants’ water use (the data recorded in the column water use), for example, are slim.
@@ -119,7 +123,7 @@ If they were to keep track of the data like this:
 
 ## Codebooks contain the following information {.small}
 
-:::{layout-ncol=2 layout-valign=middle}
+:::{layout-ncol=2}
 * variable name (for the computer)
 * variable label (for the human) 
 * the prompt (e.g. survey text question)
