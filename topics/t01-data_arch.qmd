@@ -19,8 +19,10 @@ topic_mats <- read_excel("../schedule_615.xlsx", sheet="weekly_schedule") %>%
   clean_names() %>% 
   filter(grepl("t01", topic)) %>%
   mutate(assignment = gsub("hw", "../hw/hw", hw), 
-         slides = sprintf("[%s](%s)", topic_name, paste0("../slides/", lecture, ".html"))) %>% 
-  select(slides, collab, reading, assignment, topic_obj)
+         slides = sprintf("[%s](%s)", lecture, paste0("../slides/", lecture, ".html")), 
+         collab = sprintf("[%s](%s)", collab_notes, collab_notes)
+         ) %>% 
+  select(slides, collab, reading, assignment, topic_obj, quiz)
 ```
 
 ## Learning Path
@@ -64,5 +66,11 @@ pander(str_prep(topic_mats$collab))
 
 ```{r}
 pander(str_prep(topic_mats$assignment))
+```
+
+## Assessment
+
+```{r}
+pander(str_prep(topic_mats$quiz))
 ```
 
