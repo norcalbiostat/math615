@@ -73,9 +73,9 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-description','listing-title',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
+      valueNames: ['listing-date','listing-title','listing-author','listing-subtitle','listing-image','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
-      searchColumns: ["listing-date","listing-title","listing-author"],
+      searchColumns: ["listing-date","listing-title","listing-author","listing-subtitle","listing-image","listing-description"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -207,15 +207,24 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<div class="quarto-listing quarto-listing-container-table" id="listing-listing">
+<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
 <div class="listing-actions-group">
    <div class="input-group input-group-sm quarto-listing-sort">
      <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
      <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
        <option value="" disabled="" selected="" hidden="">Order By</option>
        <option value="index" data-direction="asc">Default</option>
-         <option value="listing-title-sort" data-direction="asc">
-          Slide Deck
+         <option value="listing-title" data-direction="asc">
+          Title
+        </option>
+         <option value="listing-date-sort" data-direction="asc">
+          Date - Oldest
+        </option>
+         <option value="listing-date-sort" data-direction="desc">
+          Date - Newest
+        </option>
+         <option value="listing-author" data-direction="asc">
+          Author
         </option>
      </select>
   </div>
@@ -224,94 +233,117 @@ ul.task-list li input[type="checkbox"] {
       <input type="text" class="search form-control" placeholder="Filter">
     </div>
 </div>
+<div class="list quarto-listing-default">
+<div class="quarto-post image-right" data-index="0" data-listing-date-sort="1692601200000" data-listing-file-modified-sort="1690682282893" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8">
+<div class="thumbnail">
+<p><a href="./slides/lec00-welcome.html"> <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div> </a></p>
+</div>
+<div class="body">
+<a href="./slides/lec00-welcome.html">
+<h3 class="no-anchor listing-title">
+Welcome to MATH 615
+</h3>
+<div class="listing-subtitle">
+Data Analysis for Graduate Research
+</div>
+<div class="listing-description">
+<p>1</p>
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./slides/lec00-welcome.html">
+<div class="listing-date">
+Aug 21, 2023
+</div>
+<div class="listing-author">
+Robin Donatello
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="1" data-listing-date-sort="1692601200000" data-listing-file-modified-sort="1690684472367" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4">
+<div class="thumbnail">
+<p><a href="./slides/lec01-data_arch.html"> <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div> </a></p>
+</div>
+<div class="body">
+<a href="./slides/lec01-data_arch.html">
+<h3 class="no-anchor listing-title">
+Data Architecture
+</h3>
+<div class="listing-subtitle">
 
-<table class="quarto-listing-table table">
-<thead>
-<tr>
-<th>
-Week
-</th>
-<th>
-<a class="sort" data-sort="listing-title-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Slide Deck</a>
-</th>
-</tr>
-</thead>
-<tbody class="list">
-<tr data-index="0" data-listing-date-sort="1692601200000" data-listing-file-modified-sort="1690682282893" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-title-sort="Welcome to MATH 615" data-listing-filename-sort="lec00-welcome.qmd">
-<td>
-<span class="listing-description">1</span>
-</td>
-<td>
-<a href="./slides/lec00-welcome.html" class="title listing-title">Welcome to MATH 615</a>
-</td>
-</tr>
-<tr data-index="1" data-listing-date-sort="1692601200000" data-listing-file-modified-sort="1690684472367" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-title-sort="Data Architecture" data-listing-filename-sort="lec01-data_arch.qmd">
-<td>
-<span class="listing-description">1</span>
-</td>
-<td>
-<a href="./slides/lec01-data_arch.html" class="title listing-title">Data Architecture</a>
-</td>
-</tr>
-<tr data-index="2" data-listing-date-sort="1661756400000" data-listing-file-modified-sort="1690422997010" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-title-sort="Formulating research questions" data-listing-filename-sort="lec02-asking_questions.qmd">
-<td>
-<span class="listing-description">2</span>
-</td>
-<td>
-<a href="./slides/lec02-asking_questions.html" class="title listing-title">Formulating research questions</a>
-</td>
-</tr>
-<tr data-index="3" data-listing-date-sort="1661929200000" data-listing-file-modified-sort="1690422997018" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-title-sort="Preparing your data for analysis" data-listing-filename-sort="lec03-data_management.qmd">
-<td>
-<span class="listing-description">3, 4</span>
-</td>
-<td>
-<a href="./slides/lec03-data_management.html" class="title listing-title">Preparing your data for analysis</a>
-</td>
-</tr>
-<tr data-index="4" data-listing-date-sort="1662966000000" data-listing-file-modified-sort="1661115416734" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-title-sort="Describing Distributions of Data" data-listing-filename-sort="lec04-describing_distributions.qmd">
-<td>
-<span class="listing-description">4</span>
-</td>
-<td>
-<a href="./slides/lec04-describing_distributions.html" class="title listing-title">Describing Distributions of Data</a>
-</td>
-</tr>
-<tr data-index="5" data-listing-date-sort="1663570800000" data-listing-file-modified-sort="1690422997018" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-title-sort="Describing Relationships between variables" data-listing-filename-sort="lec05-describing_relationships.qmd">
-<td>
-<span class="listing-description">5, 6</span>
-</td>
-<td>
-<a href="./slides/lec05-describing_relationships.html" class="title listing-title">Describing Relationships between variables</a>
-</td>
-</tr>
-<tr data-index="6" data-listing-date-sort="1664434800000" data-listing-file-modified-sort="1661115416752" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-title-sort="Best practices in Data Visualization" data-listing-filename-sort="lec06-data_viz_bestpractice.qmd">
-<td>
-<span class="listing-description">6</span>
-</td>
-<td>
-<a href="./slides/lec06-data_viz_bestpractice.html" class="title listing-title">Best practices in Data Visualization</a>
-</td>
-</tr>
-<tr data-index="7" data-listing-date-sort="1664953200000" data-listing-file-modified-sort="1661115416752" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-title-sort="Statistical Inference with Mathematical Models" data-listing-filename-sort="lec07-intro_inference.qmd">
-<td>
-<span class="listing-description">7, 8</span>
-</td>
-<td>
-<a href="./slides/lec07-intro_inference.html" class="title listing-title">Statistical Inference with Mathematical Models</a>
-</td>
-</tr>
-<tr data-index="8" data-listing-date-sort="1665558000000" data-listing-file-modified-sort="1690422997026" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="31" data-listing-title-sort="Modeling Bivariate Relationships" data-listing-filename-sort="lec08-bivariate_modeling.qmd">
-<td>
-<span class="listing-description">8-10</span>
-</td>
-<td>
-<a href="./slides/lec08-bivariate_modeling.html" class="title listing-title">Modeling Bivariate Relationships</a>
-</td>
-</tr>
-</tbody>
+</div>
+<div class="listing-description">
+<p>1</p>
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./slides/lec01-data_arch.html">
+<div class="listing-date">
+Aug 21, 2023
+</div>
+<div class="listing-author">
+Robin Donatello
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="2" data-listing-date-sort="1693206000000" data-listing-file-modified-sort="1690777160578" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2">
+<div class="thumbnail">
+<p><a href="./slides/lec02-asking_questions.html"> <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div> </a></p>
+</div>
+<div class="body">
+<a href="./slides/lec02-asking_questions.html">
+<h3 class="no-anchor listing-title">
+Formulating research questions
+</h3>
+<div class="listing-subtitle">
 
-</table>
+</div>
+<div class="listing-description">
+
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./slides/lec02-asking_questions.html">
+<div class="listing-date">
+Aug 28, 2023
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="3" data-listing-date-sort="1693378800000" data-listing-file-modified-sort="1690774337589" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7">
+<div class="thumbnail">
+<p><a href="./slides/lec03-data_management.html"> <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div> </a></p>
+</div>
+<div class="body">
+<a href="./slides/lec03-data_management.html">
+<h3 class="no-anchor listing-title">
+Preparing your data for analysis
+</h3>
+<div class="listing-subtitle">
+
+</div>
+<div class="listing-description">
+<p>3, 4</p>
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./slides/lec03-data_management.html">
+<div class="listing-date">
+Aug 30, 2023
+</div>
+<div class="listing-author">
+Robin Donatello
+</div>
+</a>
+</div>
+</div>
+</div>
 <div class="listing-no-matching d-none">
 No matching items
 </div>
