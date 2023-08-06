@@ -6,9 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="8/30-9/10">
+<meta name="author" content="Robin Donatello">
+<meta name="dcterms.date" content="2023-08-30">
+<meta name="description" content="3, 4">
 
-<title>Data Analysis for Graduate Research - Preparing Data for Analysis</title>
+<title>Data Analysis for Graduate Research - Preparing your data for analysis</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +22,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -64,10 +100,11 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<meta name="twitter:title" content="Data Analysis for Graduate Research - Preparing Data for Analysis">
-<meta name="twitter:description" content="8/30-9/10">
+<meta name="twitter:title" content="Data Analysis for Graduate Research - Preparing your data for analysis">
+<meta name="twitter:description" content="3, 4">
+<meta name="twitter:image" content="https://d33wubrfki0l68.cloudfront.net/571b056757d68e6df81a3e3853f54d3c76ad6efc/32d37/diagrams/data-science.png">
 <meta name="twitter:creator" content="@norcalbiostat">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
 </head>
 
 <body class="nav-fixed">
@@ -154,43 +191,48 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#learning-path" id="toc-learning-path" class="nav-link active" data-scroll-target="#learning-path">Learning Path</a>
-  <ul class="collapse">
-  <li><a href="#where-weve-been" id="toc-where-weve-been" class="nav-link" data-scroll-target="#where-weve-been">Where we’ve been</a></li>
-  <li><a href="#where-were-at" id="toc-where-were-at" class="nav-link" data-scroll-target="#where-were-at">Where we’re at</a></li>
-  <li><a href="#objectives" id="toc-objectives" class="nav-link" data-scroll-target="#objectives">Objectives</a></li>
-  </ul></li>
-  <li><a href="#preparation" id="toc-preparation" class="nav-link" data-scroll-target="#preparation">Preparation</a></li>
-  <li><a href="#learning-materials" id="toc-learning-materials" class="nav-link" data-scroll-target="#learning-materials">Learning Materials</a></li>
-  <li><a href="#assignments" id="toc-assignments" class="nav-link" data-scroll-target="#assignments">Assignments</a></li>
-  <li><a href="#assessment" id="toc-assessment" class="nav-link" data-scroll-target="#assessment">Assessment</a></li>
-  <li><a href="#other-references" id="toc-other-references" class="nav-link" data-scroll-target="#other-references">Other references</a>
-  <ul class="collapse">
-  <li><a href="#where-youll-start" id="toc-where-youll-start" class="nav-link" data-scroll-target="#where-youll-start">Where you’ll start</a></li>
-  <li><a href="#where-youll-end-up" id="toc-where-youll-end-up" class="nav-link" data-scroll-target="#where-youll-end-up">Where you’ll end up</a></li>
-  </ul></li>
+  <li><a href="#requirements" id="toc-requirements" class="nav-link active" data-scroll-target="#requirements">Requirements</a></li>
+  <li><a href="#import" id="toc-import" class="nav-link" data-scroll-target="#import">Import</a></li>
+  <li><a href="#confirm-import-was-successful" id="toc-confirm-import-was-successful" class="nav-link" data-scroll-target="#confirm-import-was-successful">Confirm import was successful</a></li>
+  <li><a href="#initial-data-screening" id="toc-initial-data-screening" class="nav-link" data-scroll-target="#initial-data-screening">Initial Data Screening</a></li>
+  <li><a href="#check-plausibility-of-data-values" id="toc-check-plausibility-of-data-values" class="nav-link" data-scroll-target="#check-plausibility-of-data-values">Check plausibility of data values</a></li>
+  <li><a href="#data-prep-questions" id="toc-data-prep-questions" class="nav-link" data-scroll-target="#data-prep-questions">Data Prep questions</a></li>
+  <li><a href="#how-do-i-know-what-needs-to-be-done" id="toc-how-do-i-know-what-needs-to-be-done" class="nav-link" data-scroll-target="#how-do-i-know-what-needs-to-be-done">How do I know what needs to be done?</a></li>
+  <li><a href="#how-do-i-actually-make-the-necessary-changes" id="toc-how-do-i-actually-make-the-necessary-changes" class="nav-link" data-scroll-target="#how-do-i-actually-make-the-necessary-changes">How do I actually make the necessary changes?</a></li>
+  <li><a href="#closing-thoughts" id="toc-closing-thoughts" class="nav-link" data-scroll-target="#closing-thoughts">Closing thoughts</a></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/norcalbiostat/math615_test/edit/main/topics/t03-data_prep.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/norcalbiostat/math615_test/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/norcalbiostat/math615_test/edit/main/slides/lec03b-data_prep.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/norcalbiostat/math615_test/issues/new" class="toc-action">Report an issue</a></p></div></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="lec03b-data_prep.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Preparing Data for Analysis</h1>
-<p class="subtitle lead">Where an inordinate amount of time is spent</p>
+<h1 class="title">Preparing your data for analysis</h1>
 </div>
 
 <div>
   <div class="description">
-    8/30-9/10
+    3, 4
   </div>
 </div>
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Robin Donatello </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 30, 2023</p>
+    </div>
+  </div>
   
     
   </div>
@@ -198,150 +240,133 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="learning-path" class="level2">
-<h2 class="anchored" data-anchor-id="learning-path">Learning Path</h2>
-<section id="where-weve-been" class="level3">
-<h3 class="anchored" data-anchor-id="where-weve-been">Where we’ve been</h3>
-<p>Learning how to read our data and ask questions that are potentially answerable with this data.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://r4ds.hadley.nz/intro"><img src="https://d33wubrfki0l68.cloudfront.net/571b056757d68e6df81a3e3853f54d3c76ad6efc/32d37/diagrams/data-science.png" class="img-fluid figure-img" alt="A line diagram of figure 1.1 from the book R for Data science" width="682"></a></p>
+<figcaption class="figure-caption">Data science process</figcaption>
+</figure>
+</div>
+<section id="requirements" class="level2">
+<h2 class="anchored" data-anchor-id="requirements">Requirements</h2>
+<p>These notes assume you have R and R Studio installed, at least the <code>tidyverse</code> and <code>here</code> packages installed, and have successfully rendered a quarto document to PDF.</p>
 </section>
-<section id="where-were-at" class="level3">
-<h3 class="anchored" data-anchor-id="where-were-at">Where we’re at</h3>
-<ul>
-<li>Starting to write code.</li>
-<li>Recognizing that this stage will take time and that you are learning something challenging.</li>
-<li>Willing to ask for help and collaboration</li>
-</ul>
-<div class="callout callout-style-default callout-important no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Monday 9/4 is Labor Day. No Class.
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Enjoy the three day weekend, and consider learning something new about this holiday. (Optional reading)</p>
-<ul>
-<li><a href="https://www.dol.gov/general/laborday/history">US Department of Labor: “History of Labor Day”</a></li>
-<li><a href="https://www.abhmuseum.org/watch-americas-racist-history-of-labor/">America’s Black Holocaust Museum: “America’s Racist History of Labor”</a></li>
-<li><a href="https://www.smithsonianmag.com/history/striking-union-workers-turned-first-labor-day-networking-event-180964705/">Smithsonian: “Striking Union Workers Turned the First Labor Day Into a Networking Event”</a></li>
-<li><a href="https://uaw.org/celbrating-labor-day-celebrating-labor-unions/">UAW: “Celebrating Labor day by Celebrating Labor Unions”</a></li>
-</ul>
-<p>Got more? Share in our Discord channel.</p>
-</div>
-</div>
-<hr>
-</section>
-<section id="objectives" class="level3">
-<h3 class="anchored" data-anchor-id="objectives">Objectives</h3>
-<div class="cell">
-<div class="cell-output-display">
-<ul>
-<li>Know several questions to ask yourself when preparing data for analysis
-<ul>
-<li>Understand options for literate programming</li>
-<li>Import your chosen data into your SPC</li>
-<li>Create a reproducible workflow</li>
-<li>Create a reproducible script file that imports the raw data, performs data management tasks, exports an analysis ready data set</li>
-</ul></li>
-</ul>
-<!-- end of list -->
-</div>
-</div>
-</section>
-</section>
-<section id="preparation" class="level2">
-<h2 class="anchored" data-anchor-id="preparation">Preparation</h2>
+<section id="import" class="level2">
+<h2 class="anchored" data-anchor-id="import">Import</h2>
 <ol type="1">
-<li>Create a <code>MATH615</code> folder on your computer in an easy to find place.
-<ul>
-<li>Create (at least) following subfolders: <code>data</code>, <code>scripts</code></li>
-<li>Download your projct data and codebook into the <code>data</code> subfolder.</li>
-</ul></li>
-<li>Follow the instructions in the Appendix of the <a href="https://norcalbiostat.github.io/AppliedStatistics_notes/setup_intro.html">Applied Stats Course Notes</a> to do the next steps</li>
-<li>Install R and R Studio</li>
-<li>Install the <code>tidyverse</code> and <code>here</code> packages</li>
-<li>Create a R project using the <code>MATH615</code> folder that you created in step 1.</li>
-<li>Read through and follow the <a href="https://quarto.org/docs/get-started/hello/rstudio">“Hello Quarto” tutorial</a></li>
-<li>Go back to the ASCN Appendix and follow the instructions on <a href="https://norcalbiostat.github.io/AppliedStatistics_notes/literate-programming-with-quarto.html#creating-pdfs">how to create PDFs</a> from your Quarto document.</li>
+<li>Open your MATH 615 R Project</li>
+<li>Create a new Quarto file named <code>dm_dataset.qmd</code> where <code>dataset</code> is YOUR dataset name. E.g. <code>dm_addhealth.qmd</code>.</li>
+<li>Save this file in your <code>Math615/scripts</code> folder.</li>
+<li>Copy the following code into a new code chunk.</li>
 </ol>
-<p>If you have difficulty with any of this, visit Community Coding or my office hours.</p>
-</section>
-<section id="learning-materials" class="level2">
-<h2 class="anchored" data-anchor-id="learning-materials">Learning Materials</h2>
-<p><i class="fa-solid fa-person-chalkboard" aria-hidden="true"></i> <strong>Slides (Will open in full screen. Right click to open in a new tab)</strong></p>
-<ul>
-<li><a href="../slides/lec03a-workflow.html">lec03a-workflow</a><br>
-</li>
-<li><a href="../slides/lec03b-data_prep.html">lec03b-data_prep</a></li>
-</ul>
-<p>We will also be using the Data Management chapter of the <a href="https://norcalbiostat.github.io/AppliedStatistics_notes/data-management.html">Applied Stats notebook</a> for this topic.</p>
-<p><span class="emoji" data-emoji="books">📚</span> <strong>Reading</strong></p>
 <div class="cell">
-<div class="cell-output-display">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="do">## raw &lt;- read_csv(here::here("data", "data.csv"))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="5" type="1">
+<li>Replace the <code>data.csv</code> with YOUR data set name exactly as it shows in your files window (bottom right).</li>
+<li>Run this code chunk only (not render)</li>
+</ol>
+</section>
+<section id="confirm-import-was-successful" class="level2">
+<h2 class="anchored" data-anchor-id="confirm-import-was-successful">Confirm import was successful</h2>
+<p>Okay, did it work?</p>
 <ul>
-<li>PMA6 Ch 3
+<li>Look in the top right Environment pane. Do you see a dataset named <code>raw</code>? Does it have an expected number of rows and columns?</li>
+<li>Click on the table icon to open the data set in a spreadsheet like view. Are the variable names correct? Does the data look correct?</li>
+</ul>
+</section>
+<section id="initial-data-screening" class="level2">
+<h2 class="anchored" data-anchor-id="initial-data-screening">Initial Data Screening</h2>
+<p>Use functions like <code>str()</code> or <code>glimpse()</code> to see what data type R thinks your variables are.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(raw)    <span class="co"># look at whole data set</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 344
+Columns: 17
+$ studyName             &lt;chr&gt; "PAL0708", "PAL0708", "PAL0708", "PAL0708", "PAL0708", "PAL0708", "PAL0708", "PAL0708", "PAL0708", "PAL0708", "PAL0708", "PAL0708", "PAL0708", "PAL0708", "PAL0708", "PA…
+$ `Sample Number`       &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 4…
+$ Species               &lt;chr&gt; "Adelie Penguin (Pygoscelis adeliae)", "Adelie Penguin (Pygoscelis adeliae)", "Adelie Penguin (Pygoscelis adeliae)", "Adelie Penguin (Pygoscelis adeliae)", "Adelie Peng…
+$ Region                &lt;chr&gt; "Anvers", "Anvers", "Anvers", "Anvers", "Anvers", "Anvers", "Anvers", "Anvers", "Anvers", "Anvers", "Anvers", "Anvers", "Anvers", "Anvers", "Anvers", "Anvers", "Anvers"…
+$ Island                &lt;chr&gt; "Torgersen", "Torgersen", "Torgersen", "Torgersen", "Torgersen", "Torgersen", "Torgersen", "Torgersen", "Torgersen", "Torgersen", "Torgersen", "Torgersen", "Torgersen",…
+$ Stage                 &lt;chr&gt; "Adult, 1 Egg Stage", "Adult, 1 Egg Stage", "Adult, 1 Egg Stage", "Adult, 1 Egg Stage", "Adult, 1 Egg Stage", "Adult, 1 Egg Stage", "Adult, 1 Egg Stage", "Adult, 1 Egg …
+$ `Individual ID`       &lt;chr&gt; "N1A1", "N1A2", "N2A1", "N2A2", "N3A1", "N3A2", "N4A1", "N4A2", "N5A1", "N5A2", "N6A1", "N6A2", "N7A1", "N7A2", "N8A1", "N8A2", "N9A1", "N9A2", "N10A1", "N10A2", "N11A1…
+$ `Clutch Completion`   &lt;chr&gt; "Yes", "Yes", "Yes", "Yes", "Yes", "Yes", "No", "No", "Yes", "Yes", "Yes", "Yes", "Yes", "Yes", "Yes", "Yes", "Yes", "Yes", "Yes", "Yes", "Yes", "Yes", "Yes", "Yes", "Y…
+$ `Date Egg`            &lt;date&gt; 2007-11-11, 2007-11-11, 2007-11-16, 2007-11-16, 2007-11-16, 2007-11-16, 2007-11-15, 2007-11-15, 2007-11-09, 2007-11-09, 2007-11-09, 2007-11-09, 2007-11-15, 2007-11-15,…
+$ `Culmen Length (mm)`  &lt;dbl&gt; 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1, 42.0, 37.8, 37.8, 41.1, 38.6, 34.6, 36.6, 38.7, 42.5, 34.4, 46.0, 37.8, 37.7, 35.9, 38.2, 38.8, 35.3, 40.6, 40.5, 37…
+$ `Culmen Depth (mm)`   &lt;dbl&gt; 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1, 20.2, 17.1, 17.3, 17.6, 21.2, 21.1, 17.8, 19.0, 20.7, 18.4, 21.5, 18.3, 18.7, 19.2, 18.1, 17.2, 18.9, 18.6, 17.9, 18…
+$ `Flipper Length (mm)` &lt;dbl&gt; 181, 186, 195, NA, 193, 190, 181, 195, 193, 190, 186, 180, 182, 191, 198, 185, 195, 197, 184, 194, 174, 180, 189, 185, 180, 187, 183, 187, 172, 180, 178, 178, 188, 184,…
+$ `Body Mass (g)`       &lt;dbl&gt; 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475, 4250, 3300, 3700, 3200, 3800, 4400, 3700, 3450, 4500, 3325, 4200, 3400, 3600, 3800, 3950, 3800, 3800, 3550, 3200, 31…
+$ Sex                   &lt;chr&gt; "MALE", "FEMALE", "FEMALE", NA, "FEMALE", "MALE", "FEMALE", "MALE", NA, NA, NA, NA, "FEMALE", "MALE", "MALE", "FEMALE", "FEMALE", "MALE", "FEMALE", "MALE", "FEMALE", "M…
+$ `Delta 15 N (o/oo)`   &lt;dbl&gt; NA, 8.94956, 8.36821, NA, 8.76651, 8.66496, 9.18718, 9.46060, NA, 9.13362, 8.63243, NA, NA, NA, 8.55583, NA, 9.18528, 8.67538, 8.47827, 9.11616, 8.73762, 8.66271, 9.222…
+$ `Delta 13 C (o/oo)`   &lt;dbl&gt; NA, -24.69454, -25.33302, NA, -25.32426, -25.29805, -25.21799, -24.89958, NA, -25.09368, -25.21315, NA, NA, NA, -25.22588, NA, -25.06691, -25.13993, -25.23319, -24.7722…
+$ Comments              &lt;chr&gt; "Not enough blood for isotopes.", NA, NA, "Adult not sampled.", NA, NA, "Nest never observed with full clutch.", "Nest never observed with full clutch.", "No blood samp…</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(raw<span class="sc">$</span>Island) <span class="co"># Just check one variable</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "character"</code></pre>
+</div>
+</div>
+</section>
+<section id="check-plausibility-of-data-values" class="level2">
+<h2 class="anchored" data-anchor-id="check-plausibility-of-data-values">Check plausibility of data values</h2>
+<p>Use <code>table()</code> for categorical variables and <code>summary()</code> on numeric variables to see the range of values present. Confirm these values follow the expected values according to the codebook.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(raw<span class="sc">$</span>Island)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+   Biscoe     Dream Torgersen 
+      168       124        52 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(raw<span class="sc">$</span><span class="st">`</span><span class="at">Body Mass (g)</span><span class="st">`</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+   2700    3550    4050    4202    4750    6300       2 </code></pre>
+</div>
+</div>
+</section>
+<section id="data-prep-questions" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="data-prep-questions">Data Prep questions</h2>
+<p>Questions to ask yourself (and the data) while reviewing the codebook to choose variables to be used in an analysis.</p>
 <ul>
-<li>ASCN Ch 1, Appendix</li>
-<li><a href="https://slides.djnavarro.net/">Project Structure by Danielle Navarro</a></li>
+<li>Do you need to code out missing data? (<code>N/A</code>, <code>MISSING</code> ,<code>-99</code>)</li>
+<li>Do you need to make response codes more logical?
+<ul>
+<li>Some systems will record 1=YES and 2=NO. This should be changed so 0=NO.</li>
+</ul></li>
+<li>Do you need to recode numerical variables to categorical?
+<ul>
+<li>Sometimes categorical data will be recorded as 1, 2, 3 etc when those numbers represent named categories.</li>
+</ul></li>
+<li>Do you need to create secondary variables?
+<ul>
+<li>Such as an average across measures to create a score.</li>
 </ul></li>
 </ul>
-<!-- end of list -->
-</div>
-</div>
-<p><span class="emoji" data-emoji="pencil">📝</span> <strong>Collaborative notes</strong></p>
-<div class="cell">
-<div class="cell-output-display">
-<ul>
-<li><a href="https://hackmd.io/@norcalbiostat/03_dm">https://hackmd.io/<span class="citation" data-cites="norcalbiostat/03_dm">@norcalbiostat/03_dm</span></a></li>
-</ul>
-<!-- end of list -->
-</div>
-</div>
 </section>
-<section id="assignments" class="level2">
-<h2 class="anchored" data-anchor-id="assignments">Assignments</h2>
-<div class="cell">
-<div class="cell-output-display">
-<ul>
-<li><a href="../hw/hw03-dm.html">HW03 Data Management</a></li>
-</ul>
-<!-- end of list -->
-</div>
-</div>
+<section id="how-do-i-know-what-needs-to-be-done" class="level2">
+<h2 class="anchored" data-anchor-id="how-do-i-know-what-needs-to-be-done">How do I know what needs to be done?</h2>
+<p>Some of these answers will come only after you look at your data. This can be looking at the raw data itself but also looking at tables and charts generated from the data.</p>
+<p>Often when you try to create a plot or table you will encounter an error or something odd looking that will be the notification that something has to be adjusted.</p>
 </section>
-<section id="assessment" class="level2">
-<h2 class="anchored" data-anchor-id="assessment">Assessment</h2>
-<div class="cell">
-<div class="cell-output-display">
+<section id="how-do-i-actually-make-the-necessary-changes" class="level2">
+<h2 class="anchored" data-anchor-id="how-do-i-actually-make-the-necessary-changes">How do I actually make the necessary changes?</h2>
 <ul>
-<li><a href="">Quiz 02</a></li>
+<li>After you identify what you need to do, you have to find an example of how to code the task you want.</li>
+<li>The <a href="https://norcalbiostat.github.io/AppliedStatistics_notes/data-management.html">Applied Stats Course notes</a> has specific examples on how to handle common changes</li>
+<li>Take it one variable at a time.</li>
 </ul>
-<!-- end of list -->
-</div>
-</div>
 </section>
-<section id="other-references" class="level2">
-<h2 class="anchored" data-anchor-id="other-references">Other references</h2>
+<section id="closing-thoughts" class="level2">
+<h2 class="anchored" data-anchor-id="closing-thoughts">Closing thoughts</h2>
 <ul>
-<li>ANYTHING by <a href="https://slides.djnavarro.net/">Danielle Navarro</a> or <a href="https://www.rstudio.com/authors/jenny-bryan/">Jenny Bryan</a></li>
-<li><a href="https://martinctc.github.io/blog/rstudio-projects-and-working-directories-a-beginner's-guide/">R projects</a></li>
-<li><a href="https://malco.io/2018/11/05/why-should-i-use-the-here-package-when-i-m-already-using-projects/">Why should I use the here package when I’m already using projects?</a></li>
-<li><a href="https://quarto.org/docs/get-started/hello/rstudio.html">Hello, Quarto</a></li>
+<li>Do not underestimate the importance of this step</li>
+<li>It will take you far, far longer than you anticipate to ‘clean’ your data</li>
+<li>Writing code (in any language) will be challenging, but will pay off in the long run</li>
 </ul>
-<section id="where-youll-start" class="level3">
-<h3 class="anchored" data-anchor-id="where-youll-start">Where you’ll start</h3>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/m_MaJDK3VNE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">
-</iframe>
-</section>
-<section id="where-youll-end-up" class="level3">
-<h3 class="anchored" data-anchor-id="where-youll-end-up">Where you’ll end up</h3>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/3Iz7ZMALaCY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">
-</iframe>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
