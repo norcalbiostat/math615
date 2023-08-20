@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.0.36">
+<meta name="generator" content="quarto-1.3.319">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -11,10 +11,15 @@
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-span.underline{text-decoration: underline;}
-div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
 </style>
 
 
@@ -57,212 +62,123 @@ ul.task-list{list-style: none;}
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <meta name="twitter:title" content="Data Analysis for Graduate Research - Syllabus">
-<meta name="twitter:description" content="This course provides a hands-on introduction to using data to rigorously answer research questions.">
+<meta name="twitter:description" content="">
 <meta name="twitter:creator" content="@norcalbiostat">
 <meta name="twitter:card" content="summary">
 </head>
 
-<body class="nav-sidebar docked nav-fixed">
+<body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
-      <a class="navbar-brand" href="./index.html">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Data Analysis for Graduate Research</span>
-  </a>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./topics.html" rel="" target="">
+ <span class="menu-text">Topics</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./slides.html" rel="" target="">
+ <span class="menu-text">Slides</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./hw.html" rel="" target="">
+ <span class="menu-text">Assignments</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./collab_notes.html" rel="" target="">
+ <span class="menu-text">Collab Notes</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./project.html" rel="" target="">
+ <span class="menu-text">Project</span></a>
+  </li>  
+</ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-schedule" role="button" data-bs-toggle="dropdown" aria-expanded="false">Schedule</a>
-    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-schedule">    
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-other-materials" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Other Materials</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-other-materials">    
         <li>
-    <a class="dropdown-item" href="./schedule.html">
- <span class="dropdown-text">Weekly Overview</span></a>
+    <a class="dropdown-item" href="./syllabus.html" rel="" target="">
+ <span class="dropdown-text">Syllabus</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./calendar.html">
- <span class="dropdown-text">Calendar (Due dates)</span></a>
-  </li>  
-    </ul>
-  </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-materials" role="button" data-bs-toggle="dropdown" aria-expanded="false">Materials</a>
-    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-materials">    
-        <li>
-    <a class="dropdown-item" href="./topics.html">
- <span class="dropdown-text">Topic Areas</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./slides.html">
- <span class="dropdown-text">All Slides</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./hw.html">
- <span class="dropdown-text">Assignments</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./collab_notes.html">
- <span class="dropdown-text">Collaborative Notes</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="https://norcalbiostat.github.io/AppliedStatistics_notes/">
+    <a class="dropdown-item" href="https://norcalbiostat.github.io/AppliedStatistics_notes/" rel="" target="">
  <span class="dropdown-text">Applied Stats Notebook</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="https://openintro-ims.netlify.app/">
+    <a class="dropdown-item" href="https://openintro-ims.netlify.app/" rel="" target="">
  <span class="dropdown-text">Intro to Modern Stats</span></a>
   </li>  
-    </ul>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link active" href="./project.html" aria-current="page">Project</a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./syllabus.html">Syllabus</a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./help.html">Get help with…</a>
-  </li>  
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-tools" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tools</a>
-    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-tools">    
         <li>
-    <a class="dropdown-item" href="https://pollev.com/drd"><i class="bi bi-bar-chart" role="img">
-</i> 
- <span class="dropdown-text">PollEV</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="https://drive.google.com/drive/folders/1oeVbt6QXvNjiadAu8VspPLXOlfaMmtXP"><i class="bi bi-google" role="img">
+    <a class="dropdown-item" href="https://drive.google.com/drive/folders/1HdjMCqhIeQ_4L0zbme2XPH296_t5fabr" rel="" target=""><i class="bi bi-google" role="img">
 </i> 
  <span class="dropdown-text">Google Drive</span></a>
   </li>  
-        <li>
-    <a class="dropdown-item" href="https://hackmd.io/@norcalbiostat/R"><i class="bi bi-file-code" role="img">
-</i> 
- <span class="dropdown-text">HackMD - R code</span></a>
-  </li>  
     </ul>
   </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./help.html" rel="" target="">
+ <span class="menu-text">Help!</span></a>
+  </li>  
 </ul>
-              <div class="quarto-toggle-container">
-                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
-              </div>
-              <div id="quarto-search" class="" title="Search"></div>
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Syllabus</h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
-      </button>
-    </div>
-  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
-      <div class="mt-2 flex-shrink-0 align-items-center">
-        <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
-        </div>
-        <div class="sidebar-tools-collapse tools-wide">
-    <a href="https://pollev.com/drd" title="PollEV" class="sidebar-tool px-1"><i class="bi bi-bar-chart"></i></a>
-    <a href="https://drive.google.com/drive/folders/1oeVbt6QXvNjiadAu8VspPLXOlfaMmtXP" title="Google Drive" class="sidebar-tool px-1"><i class="bi bi-google"></i></a>
-    <a href="https://hackmd.io/#" title="HackMD" class="sidebar-tool px-1"><i class="bi bi-file-code"></i></a>
-</div>
-      </div>
-    <div class="sidebar-menu-container"> 
-    <ul class="list-unstyled mt-1">
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Schedule</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./schedule.html" class="sidebar-item-text sidebar-link">Weekly Overview</a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./calendar.html" class="sidebar-item-text sidebar-link">Calendar (Due dates)</a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./project.html" class="sidebar-item-text sidebar-link">Research Project</a>
-  </div>
-</li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Materials</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./topics.html" class="sidebar-item-text sidebar-link">Topic Areas</a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./slides.html" class="sidebar-item-text sidebar-link">All Slides</a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./hw.html" class="sidebar-item-text sidebar-link">Assignments</a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./collab_notes.html" class="sidebar-item-text sidebar-link">Collaborative Notes</a>
-  </div>
-</li>
-      </ul>
-  </li>
-    </ul>
-    </div>
-</nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc">
+        <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
   <li><a href="#course-information" id="toc-course-information" class="nav-link active" data-scroll-target="#course-information">Course Information</a>
   <ul class="collapse">
   <li><a href="#instructor" id="toc-instructor" class="nav-link" data-scroll-target="#instructor">Instructor</a></li>
-  <li><a href="#logistics" id="toc-logistics" class="nav-link" data-scroll-target="#logistics">Logistics</a></li>
-  </ul></li>
-  <li><a href="#what-are-we-going-to-learn-course-learning-outcomes" id="toc-what-are-we-going-to-learn-course-learning-outcomes" class="nav-link" data-scroll-target="#what-are-we-going-to-learn-course-learning-outcomes">What are we going to learn? (Course Learning Outcomes)</a></li>
+  <li><a href="#meeting-logistics" id="toc-meeting-logistics" class="nav-link" data-scroll-target="#meeting-logistics">Meeting Logistics</a></li>
   <li><a href="#required-materials-and-accounts" id="toc-required-materials-and-accounts" class="nav-link" data-scroll-target="#required-materials-and-accounts">Required materials and accounts</a></li>
-  <li><a href="#grading-breakdown" id="toc-grading-breakdown" class="nav-link" data-scroll-target="#grading-breakdown">Grading Breakdown</a></li>
+  </ul></li>
+  <li><a href="#what-are-we-going-to-learn-course-learning-outcomes" id="toc-what-are-we-going-to-learn-course-learning-outcomes" class="nav-link" data-scroll-target="#what-are-we-going-to-learn-course-learning-outcomes">What are we going to learn? (Course Learning Outcomes)</a>
+  <ul class="collapse">
   <li><a href="#schedule-of-topics" id="toc-schedule-of-topics" class="nav-link" data-scroll-target="#schedule-of-topics">Schedule of Topics</a></li>
-  <li><a href="#how-do-you-get-help" id="toc-how-do-you-get-help" class="nav-link" data-scroll-target="#how-do-you-get-help">How do you get help?</a></li>
+  </ul></li>
+  <li><a href="#pre-requisite-statistics-knowledge" id="toc-pre-requisite-statistics-knowledge" class="nav-link" data-scroll-target="#pre-requisite-statistics-knowledge">Pre-requisite statistics Knowledge</a></li>
+  <li><a href="#how-do-you-get-help-with-stuff" id="toc-how-do-you-get-help-with-stuff" class="nav-link" data-scroll-target="#how-do-you-get-help-with-stuff">How do you get help with stuff?</a></li>
+  <li><a href="#coursework-and-assignments" id="toc-coursework-and-assignments" class="nav-link" data-scroll-target="#coursework-and-assignments">Coursework and Assignments</a>
+  <ul class="collapse">
+  <li><a href="#what-am-i-graded-on" id="toc-what-am-i-graded-on" class="nav-link" data-scroll-target="#what-am-i-graded-on">What am I graded on?</a></li>
+  <li><a href="#okay-but-what-about-the-points" id="toc-okay-but-what-about-the-points" class="nav-link" data-scroll-target="#okay-but-what-about-the-points">Okay, but what about the points? ⚠</a></li>
+  </ul></li>
   <li><a href="#class-policies-and-statements" id="toc-class-policies-and-statements" class="nav-link" data-scroll-target="#class-policies-and-statements">Class Policies and statements</a>
   <ul class="collapse">
   <li><a href="#everyone-is-welcome-here" id="toc-everyone-is-welcome-here" class="nav-link" data-scroll-target="#everyone-is-welcome-here">Everyone is welcome here</a></li>
   <li><a href="#attendance" id="toc-attendance" class="nav-link" data-scroll-target="#attendance">Attendance</a></li>
   <li><a href="#late-work" id="toc-late-work" class="nav-link" data-scroll-target="#late-work">Late work</a></li>
   <li><a href="#collaboration" id="toc-collaboration" class="nav-link" data-scroll-target="#collaboration">Collaboration</a></li>
+  <li><a href="#use-of-ai" id="toc-use-of-ai" class="nav-link" data-scroll-target="#use-of-ai">Use of AI</a></li>
   </ul></li>
   <li><a href="#campus-resources" id="toc-campus-resources" class="nav-link" data-scroll-target="#campus-resources">Campus Resources</a>
   <ul class="collapse">
@@ -270,7 +186,6 @@ ul.task-list{list-style: none;}
   </ul></li>
   <li><a href="#university-policies" id="toc-university-policies" class="nav-link" data-scroll-target="#university-policies">University Policies</a>
   <ul class="collapse">
-  <li><a href="#covid-19" id="toc-covid-19" class="nav-link" data-scroll-target="#covid-19">COVID-19</a></li>
   <li><a href="#adding-and-dropping-the-course" id="toc-adding-and-dropping-the-course" class="nav-link" data-scroll-target="#adding-and-dropping-the-course">Adding and Dropping the course</a></li>
   <li><a href="#confidentiality-and-mandatory-reoprting" id="toc-confidentiality-and-mandatory-reoprting" class="nav-link" data-scroll-target="#confidentiality-and-mandatory-reoprting">Confidentiality and Mandatory Reoprting</a></li>
   <li><a href="#academic-integrity" id="toc-academic-integrity" class="nav-link" data-scroll-target="#academic-integrity">Academic Integrity</a></li>
@@ -283,7 +198,7 @@ ul.task-list{list-style: none;}
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Syllabus</h1>
+<h1 class="title">Syllabus</h1>
 </div>
 
 
@@ -291,6 +206,7 @@ ul.task-list{list-style: none;}
 <div class="quarto-title-meta">
 
     
+  
     
   </div>
   
@@ -304,20 +220,35 @@ ul.task-list{list-style: none;}
 <h2 class="anchored" data-anchor-id="instructor">Instructor</h2>
 <ul>
 <li><strong>Name &amp; pronouns:</strong> Dr.&nbsp;Robin Donatello (Dr.&nbsp;D, she/her)</li>
-<li><strong>Website:</strong> <a href="https://www.norcalbiostat.com/">https://www.norcalbiostat.com/</a></li>
+<li><strong>Website:</strong> <a href="https://www.norcalbiostat.com/" class="uri">https://www.norcalbiostat.com/</a></li>
 <li><strong>Office Location:</strong> Holt 202</li>
 <li><strong>E-mail:</strong> rdonatello@csuchico.edu</li>
 <li><strong>Best Contact Method:</strong> Discord</li>
-<li><strong>Student Office Hours:</strong> Holt 202: MW 3-4pm and during community coding</li>
+<li><strong>Student Office Hours:</strong> TBD</li>
 </ul>
 </section>
-<section id="logistics" class="level2">
-<h2 class="anchored" data-anchor-id="logistics">Logistics</h2>
+<section id="meeting-logistics" class="level2">
+<h2 class="anchored" data-anchor-id="meeting-logistics">Meeting Logistics</h2>
 <ul>
-<li><strong>Meeting Pattern:</strong> MW 4-5:30, Holt 291</li>
+<li><strong>Meeting Pattern:</strong> MW 4-5:15, Holt 155</li>
 <li><strong>Prerequisites:</strong> Basic computer literacy. Recent statistics course such as Math 105, MATH 315, or MATH 350.<br>
 </li>
-<li><strong>Mode of Instruction:</strong> In Person. All students are expected to attend class in person each session. At this time there is no specific plan for habitual synchronous hybrid zoom session.</li>
+<li><strong>Mode of Instruction:</strong> In Person.</li>
+</ul>
+</section>
+<section id="required-materials-and-accounts" class="level2">
+<h2 class="anchored" data-anchor-id="required-materials-and-accounts">Required materials and accounts</h2>
+<p>Homework 0 provides a checklist for you to make sure you have everything.</p>
+<ul>
+<li><strong>Class website</strong>: https://norcalbiostat.github.io/MATH615/</li>
+<li><strong>Textbook (Required)</strong>: <em>Practical Multivariate Analysis (PMA6), 6th ed</em> by Afifi, May, Donatello, Clark. <a href="https://www.routledge.com/Practical-Multivariate-Analysis/Afifi-May-Donatello-Clark/p/book/9781032088471">[Link]</a></li>
+<li><strong>Textbook (Required)</strong>: Introduction to Modern Statistics (IMS). Free e-book/pdf at <a href="https://openintro-ims.netlify.app" class="uri">https://openintro-ims.netlify.app</a></li>
+<li><strong>Laptop &amp; Internet</strong>: Expect to bring your laptop to class every day. Contact me if this poses a problem or concern for you. Refer to ITSS for help with internet.</li>
+<li><strong>Data Analysis software</strong>: R recommended but not required. Common statistical programs include SAS, STATA, Python and SPSS.</li>
+<li><strong>Canvas</strong>: Used for recording grades via grading rubric and maintaining the class schedule/calendar</li>
+<li><strong>Google Drive</strong>: You will be added through your campus email (<span class="citation" data-cites="mail.csuchico.edu">@mail.csuchico.edu</span>).</li>
+<li><strong>Discord</strong>: A free discussion platform with a lot of collaborative functionality. The defacto method of communication for the class. Download either the phone app or the desktop app (I use both). This is mandatory. Do not rely on remembering to log in via the web browser. You will miss important notifications.</li>
+<li><strong>Hack MD</strong>: https://hackmd.io/. Interactive collaborative notes. No account needed to view, but account needed for editing (which you will be doing). I recommend you sign up with your campus email (<span class="citation" data-cites="csuchico.edu">@csuchico.edu</span>)</li>
 </ul>
 <hr>
 </section>
@@ -334,43 +265,8 @@ ul.task-list{list-style: none;}
 <li>Understand and implement a reproducible research pipeline.</li>
 <li>Become a data nerd (Optional, but recommended).</li>
 </ul>
-<hr>
-</section>
-<section id="required-materials-and-accounts" class="level1">
-<h1>Required materials and accounts</h1>
-<p>Homework 0 provides a checklist for you to make sure you have everything.</p>
-<ul>
-<li><strong>Class website</strong>: https://norcalbiostat.github.io/MATH615/</li>
-<li><strong>Textbook (Required)</strong>: <em>Practical Multivariate Analysis (PMA6), 6th ed</em> by Afifi, May, Donatello, Clark. <a href="https://www.routledge.com/Practical-Multivariate-Analysis/Afifi-May-Donatello-Clark/p/book/9781032088471">[Link]</a></li>
-<li><strong>Textbook (Required)</strong>: Introduction to Modern Statistics (IMS). Free e-book/pdf at <a href="https://openintro-ims.netlify.app">https://openintro-ims.netlify.app</a></li>
-<li><strong>Laptop &amp; Internet</strong>: Expect to bring your laptop to class every day. Contact me if this poses a problem or concern for you. Refer to ITSS for help with internet.</li>
-<li><strong>Data Analysis software</strong>: R recommended but not required. Common statistical programs include SAS, STATA, Python and SPSS.</li>
-<li><strong>Blackboard Learn (BBL)</strong>: Used for recording grades via grading rubric only.</li>
-<li><strong>Google Drive</strong>: Through your campus email.</li>
-<li><strong>Discord</strong>: A free discussion platform with a lot of collaborative functionality. The defacto method of communication for the class. Download either the phone app or the desktop app (I use both). This is mandatory. Do not rely on remembering to log in via the web browser. You will miss important notifications.</li>
-<li><strong>Hack MD</strong>: https://hackmd.io/. Interactive collaborative notes. No account needed to view, but account needed for editing (which you will be doing). I recommend you sign up with your campus email (<span class="citation" data-cites="csuchico.edu">@csuchico.edu</span>)</li>
-<li><strong>Poll Everywhere</strong>: I will add you to my class using your campus email.</li>
-</ul>
-<hr>
-</section>
-<section id="grading-breakdown" class="level1">
-<h1>Grading Breakdown</h1>
-<ul>
-<li>Your final grade will be a straight sum of points earned and will be displayed as a running total in Blackboard Learn.</li>
-<li>The approximate contributions per category are:
-<ul>
-<li>Peer Reviews: 20%.</li>
-<li>Written Assignments 25%.</li>
-<li>Quizzes: 10%</li>
-<li>Take home Final exam: 15%</li>
-<li>Project related assignments: 30%<br>
-</li>
-</ul></li>
-<li>I use a standard grade cutoff of 100-90%: A, 89-80%: B, 79-70%: C. Plusses and minuses will be as displayed on Blackboard Learn.</li>
-</ul>
-</section>
-<section id="schedule-of-topics" class="level1">
-<h1>Schedule of Topics</h1>
+<section id="schedule-of-topics" class="level2">
+<h2 class="anchored" data-anchor-id="schedule-of-topics">Schedule of Topics</h2>
 <p>The general ordering of topics is:</p>
 <ul>
 <li>Data Collection and recording</li>
@@ -386,12 +282,73 @@ ul.task-list{list-style: none;}
 </ul>
 <hr>
 </section>
-<section id="how-do-you-get-help" class="level1">
-<h1>How do you get help?</h1>
+</section>
+<section id="pre-requisite-statistics-knowledge" class="level1">
+<h1>Pre-requisite statistics Knowledge</h1>
+<p>This class requires a recent statistics course such as Math 105, Math 315 or Math 350. Sometimes you need a refresher on the content that was covered in those classes (such as how to summarize data, probability, distributions). While we will be going over all the basic visualizations and tests again, it will be fast and the emphasis is on interpretation and proper use in research.</p>
+<ul>
+<li>Chapter 6 in the PMA6 textbook contains an overview on how to select appropriate summary measures, graphs (also in chapter 4), and analysis methods. (we’ll go through this chapter)</li>
+<li>The <a href="https://openintro-ims.netlify.app/">Intro to Modern Statistics</a> book can help with this (this is a free required textbook)</li>
+<li>I also like the <a href="https://leanpub.com/os">OpenIntro Statistics</a> book (also available as a free pdf) chapters 1-4.</li>
+</ul>
+<p>Items that you need to know reasonably well are</p>
+<ul>
+<li>types of data (categorical, quantitative, numerical, qualitative)</li>
+<li>appropriate plot types depending on types of data (histogram vs bar chart)</li>
+<li>measures of center (mean, median, mode)</li>
+<li>measures of spread (standard deviation, standard error, IQR, range)</li>
+</ul>
+<p>Items that you need to know at least a little about</p>
+<ul>
+<li>rules of basic probability (e.g.&nbsp;is between 0 and 1, disjoint/mutually exclusive)</li>
+<li>the normal distribution: Z-scores (how to calculate, how to interpret) and probability under the curve (one-tail, two tail)</li>
+</ul>
+<hr>
+</section>
+<section id="how-do-you-get-help-with-stuff" class="level1">
+<h1>How do you get help with stuff?</h1>
 <ul>
 <li>See the <a href="help.html">help</a> page on the course website.</li>
 </ul>
+<p>There is a lot of info on this page as I am trying to keep the syllabus reasonably short.</p>
 <hr>
+</section>
+<section id="coursework-and-assignments" class="level1">
+<h1>Coursework and Assignments</h1>
+<section id="what-am-i-graded-on" class="level2">
+<h2 class="anchored" data-anchor-id="what-am-i-graded-on">What am I graded on?</h2>
+<p>I care both that you are keeping up with the material, but also that by the end of the term you can conduct your own personalized analysis on a new data set. Here is how I check in on your progress throughout the semester</p>
+<ul>
+<li><p><strong>Quizzes</strong> on the current or prior content. Quizzes are a great way to test yourself, enhance recall, and self-assess your comprehension of the subject. Quizzes are administered in Google Forms, and done in two parts.</p>
+<ul>
+<li><strong>Individual</strong>: First try to answer as many questions without looking at your notes. Then use your notes to answer the rest.</li>
+<li><strong>Group</strong>: After the individual quiz closes I will choose 1-4 questions that scored the lowest. We will do a class-wide discussion of those topics, then you will work in groups to redo the selected questions for half credit.</li>
+</ul></li>
+<li><p><strong>Assignments</strong> This is your testing ground, your first round of practice. Can you take what you learned and apply it to a data set. Lots of feedback, graded on completeness and effort.</p></li>
+<li><p><strong>Peer reviews</strong> Helping others enhances your own understanding.</p></li>
+<li><p><strong>Project</strong> Can you weave together data and story to do research? This is your second round of practice. Your work should be more polished than in your homework, and I will be grading them in more detail and using a rubric.</p></li>
+<li><p><strong>Final Exam</strong> Can you analyze a new data set to answer a research question and write a professional report on your results?</p></li>
+</ul>
+</section>
+<section id="okay-but-what-about-the-points" class="level2">
+<h2 class="anchored" data-anchor-id="okay-but-what-about-the-points">Okay, but what about the points? ⚠</h2>
+<ul>
+<li>The gradebook in Canvas contains columns for all graded materials with point values and rubrics.</li>
+<li>The project uses a <em>mastery based</em> grading system that allows you to continue to revise your work until it reaches an acceptable level of quality. The details are described on the <a href="https://math615.netlify.app/project.html#grading-method">Project</a> page.</li>
+<li>See <a href="https://math615.netlify.app/help.html#grading-of-peer-reviews">here</a> for info on grading peer reviews.</li>
+</ul>
+<p>Your final grade will be displayed as a running total in Canvas. The grades are weighted by category as follows:</p>
+<ul>
+<li>Assignments: 30%</li>
+<li>Quizzes: 20%</li>
+<li>Participation: 10%<br>
+</li>
+<li>Take home Final exam: 10%</li>
+<li>Project related assignments: 30%</li>
+</ul>
+<p>I use a standard grade cutoff of 100-90%: A, 89-80%: B, 79-70%: C.</p>
+<hr>
+</section>
 </section>
 <section id="class-policies-and-statements" class="level1">
 <h1>Class Policies and statements</h1>
@@ -417,20 +374,18 @@ ul.task-list{list-style: none;}
 </section>
 <section id="late-work" class="level2">
 <h2 class="anchored" data-anchor-id="late-work">Late work</h2>
-<ul>
-<li>You should strive to submit on time for all draft items the sake of your peers. Do you want your reviews back in a timely manner? You should show them the same courtesy and professionalism.</li>
-<li>I don’t penalize for late work, but I prioritize on time submissions. If you submit an assignment after i’m done grading everyone elses, and we’re moving on to the next topic then your assignment may have to wait a week before I can get back to it.</li>
-</ul>
+<p>I don’t penalize for late work, but I prioritize on time submissions. If you submit an assignment after i’m done grading everyone elses, and we’re moving on to the next topic then your assignment may have to wait a week before I can get back to it. That is likely to negatively impact your ability to move forward and to get feedback in time.</p>
+<p>There are exceptions for when your work is peer reviewed. There is no grace period for peer reviews. You must be responsible and timely for your colleagues.</p>
 </section>
 <section id="collaboration" class="level2">
 <h2 class="anchored" data-anchor-id="collaboration">Collaboration</h2>
 <p>Collaboration on assignments is encouraged. People learn better when they have someone else to talk through concepts with.</p>
-<div class="callout-warning callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Warning
 </div>
 </div>
@@ -438,13 +393,19 @@ Warning
 <p>Collaboration on exams is not allowed.</p>
 </div>
 </div>
+</section>
+<section id="use-of-ai" class="level2">
+<h2 class="anchored" data-anchor-id="use-of-ai">Use of AI</h2>
+<p>As an instructor I recognize there are a variety of AI programs available to assist in creating text and writing code. However, I want to stress that, AI programs are not a replacement for human creativity, originality, and critical thinking. Writing (text and code) is a skill that you must nurture over time in order to develop your own individual voice, style, and view.</p>
+<p>The use of chat GPT is allowed/encouraged <strong>to help you learn how to code</strong> but all code used must be fully explained in text. We will cover what this means and how to do this when we start data management around week 3. <a href="https://www.zdnet.com/article/how-to-use-chatgpt-to-write-code/">How ChatGPT can help you write code</a></p>
+<p>You are responsible for fact checking the accuracy of statements composed by AI language models. When presenting text written by Artificial intelligence (AI) language models, such as ChatGPT, you must include an appropriate citation. <a href="https://apastyle.apa.org/blog/how-to-cite-chatgpt">https://apastyle.apa.org/blog/how-to-cite-chatgpt</a></p>
+<p>Any use outside of this permission constitutes a violation of Chico State’s Integrity Policy and may result in you being reported to the Office of Students Rights and Responsibilities.</p>
 <hr>
 </section>
 </section>
 <section id="campus-resources" class="level1">
 <h1>Campus Resources</h1>
-<p>This <a href="https://www.csuchico.edu/coronavirus/students.shtml">campus website</a> contains a lot of information and resources specific to our COVID-19 situation. Specifically this page contains links to resources to help you keep <a href="https://www.csuchico.edu/keep-learning/index.shtml">learning</a>, and <a href="https://www.csuchico.edu/keep-engaging/index.shtml">engaging</a>, and lots of links to student support services such as emergency grants, basic need such as healthy food and housing, tutoring, health center, financial aid and a lot more.</p>
-<p>You can also check out the resources on the <a href="help.html">Help</a> page.</p>
+<p>Also check out the resources on the <a href="help.html">Help</a> page.</p>
 <section id="americans-with-disabilities-act" class="level2">
 <h2 class="anchored" data-anchor-id="americans-with-disabilities-act">Americans with Disabilities Act</h2>
 <p>If you need course adaptations or accommodations because of a disability or chronic illness, or if you need to make special arrangements in case the building must be evacuated, please make an appointment with me as soon as possible, or see me during office hours. Please also contact Accessibility Resource Center (ARC) as they are the designated department responsible for approving and coordinating reasonable accommodations and services for students with disabilities. ARC will help you understand your rights and responsibilities under the Americans with Disabilities Act and provide you further assistance with requesting and arranging accommodations. We try our best to ensure equal access to materials in accessible formats. Reach out to your me if there is some aspect of the course materials that are inaccessible to you.</p>
@@ -454,11 +415,6 @@ Warning
 </section>
 <section id="university-policies" class="level1">
 <h1>University Policies</h1>
-<section id="covid-19" class="level2">
-<h2 class="anchored" data-anchor-id="covid-19">COVID-19</h2>
-<p>The CSU requires students to be fully vaccinated and boosted against COVID-19 by February 28th, 2022, unless you have an approved exemption. While Chico State has relaxed its stance on mask mandates, for your and my health and safety I <em>request</em> that everyone wear an appropriate face mask covering the nose and mouth while in class.</p>
-<p>Please note that dishonesty relating to the vaccination policy and/or your failure to comply with any other COVID-19 related safety policy or mandate may result in disciplinary action against you through the office of Student Conduct, Rights and Responsibilities, which can include suspension or expulsion from the California State University system.</p>
-</section>
 <section id="adding-and-dropping-the-course" class="level2">
 <h2 class="anchored" data-anchor-id="adding-and-dropping-the-course">Adding and Dropping the course</h2>
 <p>You are responsible for understanding the policies and procedures about add/drops, academic renewal, etc., found in the <a href="http://www.csuchico.edu/catalog/">CSU Chico University Catalog</a>. You should be aware of the new deadlines and penalties for adding and dropping classes.</p>
@@ -547,6 +503,16 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         }
       }
     }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
   }
   const isFileUrl = () => { 
     return window.location.protocol === 'file:';
@@ -598,7 +564,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   // Switch to dark mode if need be
   if (hasAlternateSentinel()) {
     toggleColorMode(true);
-  } 
+  } else {
+    toggleColorMode(false);
+  }
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {
@@ -606,9 +574,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -620,7 +602,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
     button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
     setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
@@ -648,31 +647,136 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      let href = ref.getAttribute('href');
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-    tippyHover(ref, function() {
-      var popup = window.document.createElement('div');
-      cites.forEach(function(cite) {
-        var citeDiv = window.document.createElement('div');
-        citeDiv.classList.add('hanging-indent');
-        citeDiv.classList.add('csl-entry');
-        var biblioDiv = window.document.getElementById('ref-' + cite);
-        if (biblioDiv) {
-          citeDiv.innerHTML = biblioDiv.innerHTML;
-        }
-        popup.appendChild(citeDiv);
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
       });
-      return popup.innerHTML;
-    });
+    }
   }
 });
 </script>
@@ -680,6 +784,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">This site is built with <span class="emoji" data-emoji="heart">❤️</span>, <i class="fa-brands fa-r-project" aria-hidden="true"></i> and <a href="https://quarto.org/">Quarto</a> by <a href="www.norcalbiostat.com">Robin Donatello</a>.</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
   </div>
 </footer>
 

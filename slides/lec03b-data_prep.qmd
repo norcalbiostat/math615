@@ -1,0 +1,114 @@
+---
+title: "Preparing your data for analysis"
+date: "2023-08-30"
+description: "3, 4"
+author: "Robin Donatello"
+footer: "[🔗 https://math615.netlify.app](https://math615.netlify.app) / Preparing your data for analysis"
+from: markdown+emoji
+format: 
+  revealjs:
+    theme: sky
+    transition: fade
+    slide-number: true
+    incremental: false 
+    chalkboard: true
+execute:
+  freeze: auto
+  echo: true
+knitr:
+  opts_chunk: 
+    R.options:
+      width: 200
+---
+
+
+[![Data science process](https://d33wubrfki0l68.cloudfront.net/571b056757d68e6df81a3e3853f54d3c76ad6efc/32d37/diagrams/data-science.png){fig-alt="A line diagram of figure 1.1 from the book R for Data science" width="682"}](https://r4ds.hadley.nz/intro)
+
+## Requirements
+
+These notes assume you have R and R Studio installed, at least the `tidyverse` and `here` packages installed, and have successfully rendered a quarto document to PDF. 
+
+## Import
+
+1. Open your MATH 615 R Project
+2. Create a new Quarto file named `dm_dataset.qmd` where `dataset` is YOUR dataset name. E.g. `dm_addhealth.qmd`.
+3.  Save this file in your `Math615/scripts` folder.
+4.  Copy the following code into a new code chunk.
+
+```{r, eval=1}
+library(tidyverse)
+raw <- read_csv(here::here("data", "data.csv"))
+```
+
+5.  Replace the `data.csv` with YOUR data set name exactly as it shows in your files window (bottom right).
+6.  Run this code chunk only (not render)
+
+```{r, echo=FALSE}
+raw <- palmerpenguins::penguins_raw # for demo only
+```
+
+## Confirm import was successful
+
+Okay, did it work?
+
+* Look in the top right Environment pane. Do you see a dataset named `raw`? Does it have an expected number of rows and columns?
+* Click on the table icon to open the data set in a spreadsheet like view. Are the variable names correct? Does the data look correct? 
+
+
+## Initial Data Screening
+
+Use functions like `str()` or `glimpse()` to see what data type R thinks your variables are.
+
+```{r}
+glimpse(raw)    # look at whole data set
+```
+```{r}
+typeof(raw$Island) # Just check one variable
+```
+
+## Check plausibility of data values
+
+Use `table()` for categorical variables and `summary()` on numeric variables to see the range of values present. Confirm these values follow the expected values according to the codebook. 
+
+```{r}
+table(raw$Island)
+summary(raw$`Body Mass (g)`)
+```
+
+## Data Prep questions {.smaller}
+
+Questions to ask yourself (and the data) while reviewing the codebook to choose variables to be used in an analysis.
+
+-   Do you need to code out missing data? (`N/A`, `MISSING` ,`-99`)
+-   Do you need to make response codes more logical?
+    -   Some systems will record 1=YES and 2=NO. This should be changed so 0=NO.
+-   Do you need to recode numerical variables to categorical?
+    -   Sometimes categorical data will be recorded as 1, 2, 3 etc when those numbers represent named categories.
+-   Do you need to create secondary variables?
+    -   Such as an average across measures to create a score.
+
+## How do I know what needs to be done?
+
+Some of these answers will come only after you look at your data. This can be looking at the raw data itself but also looking at tables and charts generated from the data.
+
+Often when you try to create a plot or table you will encounter an error or something odd looking that will be the notification that something has to be adjusted.
+
+## How do I actually make the necessary changes?
+
+-   After you identify what you need to do, you have to find an example of how to code the task you want.
+-   The [Applied Stats Course notes](https://norcalbiostat.github.io/AppliedStatistics_notes/data-management.html) has specific examples on how to handle common changes
+-   Take it one variable at a time.
+
+## Using Chat GPT to write code
+
+:::{.callout-important}
+### Example
+
+:::
+
+
+## Closing thoughts
+
+-   Do not underestimate the importance of this step
+-   It will take you far, far longer than you anticipate to 'clean' your data
+-   Writing code (in any language) will be challenging, but will pay off in the long run

@@ -1,0 +1,316 @@
+---
+title: "Describing Relationships" # title 
+subtitle: "First step in investigating a question about an association" # sub title
+description: "9/19-10/02" #date range
+---
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse);library(readxl); 
+library(pander); library(janitor)
+
+# Function to clean strings & separate into lists
+str_prep <- function(var){
+  as.list(
+    str_split(var, "\r\n", simplify=TRUE)
+    )
+}
+
+topic_mats <- read_excel("../schedule_615.xlsx", sheet="weekly_schedule") %>%
+  clean_names() %>% 
+  filter(grepl("t05", topic)) %>%
+  mutate(assignment = gsub("hw", "../hw/hw", hw), 
+         slides = sprintf("[%s](%s)", lecture, paste0("../slides/", lecture, ".html")), 
+         collab = sprintf("[%s](%s)", collab_notes, collab_notes)
+         ) %>% 
+  select(slides, collab, reading, assignment, topic_obj)
+```
+
+## Learning Path
+
+### Where we've been
+* Visualizing a single varible
+* Screening for potential errors and additional data management
+* Starting to describe our project data
+
+### Where we're at
+* Ready to visualize associations between multiple variables. 
+
+
+### Objectives
+
+```{r}
+pander(str_prep(topic_mats$topic_obj))
+```
+
+
+## Learning Materials
+
+{{< fa person-chalkboard >}}  **Slides (Will open in full screen. Right click to open in a new tab)**
+
+```{r}
+pander(str_prep(topic_mats$slides))
+```
+
+:books:  **Reading** 
+
+```{r}
+pander(str_prep(topic_mats$reading))
+```
+
+
+:pencil: **Collaborative notes**
+
+```{r}
+pander(str_prep(topic_mats$collab))
+```
+
+## Assignments
+
+```{r}
+pander(str_prep(topic_mats$assignment))
+```
+
+
+---
+
+# Notes
+
+_Bivariate_: Association between **2** variables
+
+### Naming conventions
+
+|      Response      |     Explanatory      |
+|:------------------:|:--------------------:|
+|         y          |          x           |
+|      outcome       |      predictor       |
+| dependent variable | independent variable |
+|                    |      covariate       |
+|                    |       feature        |
+
+\
+
+:::{.callout-tip}
+### Model notation: $y \sim x$
+We will use _model notation_ often to quickly describe what the outcome and predictors are. 
+:::
+
+### Types of combinations
+
+-   Categorical response and categorical explanatory variable. (C \~ C)
+-   Quantitative response and categorical explanatory variable. (Q \~ C)
+-   Quantitative response and quantitative explanatory variable. (Q \~ Q)
+
+```{r}
+#| echo: true
+library(tidyverse);library(palmerpenguins)
+library(sjPlot); library(ggpubr)
+
+pen <- penguins
+```
+
+<img src="../images/penguins.png" width="60%">
+
+## C~C
+Categorical response & Categorical explanatory
+
+::: panel-tabset
+### Two way tables (cross-tabs)
+
+::: columns
+::: {.column width="50%"}
+```{r}
+#| echo: true
+table(pen$species, pen$island)
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+#| echo: true
+table(pen$species, pen$island) |> 
+  prop.table(margin=2) |> round(2)
+```
+:::
+:::
+
+-   All of the 52 penguins on Torgersen island are the *Adelie* species.
+-   74% of penguins on Biscoe island are *Gentoo*.
+
+### Plots
+
+```{r}
+#| echo: true
+plot_xtab(pen$island, grp=pen$species, show.total = FALSE)
+```
+:::
+
+:::{.callout-warning}
+### Watch your margins 
+One of the most common places for a mistake when creating a plot or a table between two categorical variables is by not paying close attention to the choice of denominator. And then also confirming the interpretation matches the table, which matches the plot. 
+:::
+
+::: panel-tabset
+### Tables
+
+::: columns
+::: {.column width="48%"}
+**Row Percents**
+Percentages add up to 100 across the rows. The row levels are the denominator. 
+
+```{r}
+#| echo: true
+table(pen$species, pen$island) |> 
+  prop.table(margin=1) |> round(2)
+```
+
+29% **of *Adelie* penguins** are on Biscoe Island.
+:::
+
+::: {.column width="48%"}
+**Column Percents**
+Percentages add up to 100 down the columns. The column levels are the denominator. 
+
+```{r}
+#| echo: true
+table(pen$species, pen$island) |> 
+  prop.table(margin=2) |> round(2)
+```
+
+74% **of penguins on Biscoe island** are *Gentoo*.
+:::
+:::
+
+### Plots
+
+::: columns
+::: {.column width="50%"}
+Distribution of islands for each species
+
+```{r}
+#| echo: true
+plot_xtab(pen$species, 
+          grp=pen$island, 
+          margin = "row", 
+          show.total = FALSE)
+```
+
+29% **of *Adelie* penguins** are on Biscoe Island.
+:::
+
+::: {.column width="50%"}
+Distribution of species on each island.
+
+```{r}
+#| echo: true
+plot_xtab(pen$island, 
+          grp=pen$species, 
+          margin = "row", 
+          show.total = FALSE)
+```
+
+74% **of penguins on Biscoe island** are *Gentoo*.
+:::
+:::
+:::
+
+## Q~C
+Quantitative response & Categorical explanatory. The method here is to use all of the summary statistics (5 number summary, mean, median, sd etc) and plots (boxplot, histogram) and calculate/create those items _separately for each level of the categorical variable_. 
+
+::: panel-tabset
+### Grouped summary statistics
+
+Mean, median, sd, IQR of the quantitative variable for each level of the categorical level.
+
+```{r}
+#| echo: true
+#| eval: false
+pen %>% group_by(species) %>% 
+  summarize(mean = mean(bill_depth_mm, na.rm = TRUE), 
+            median = median(bill_depth_mm, na.rm = TRUE), 
+            sd = sd(bill_depth_mm, na.rm = TRUE), 
+            IQR = IQR(bill_depth_mm, na.rm = TRUE))
+```
+
+```{r}
+pen %>% group_by(species) %>% 
+  summarize(mean = mean(bill_depth_mm, na.rm = TRUE), 
+            median = median(bill_depth_mm, na.rm = TRUE), 
+            sd = sd(bill_depth_mm, na.rm = TRUE), 
+            IQR = IQR(bill_depth_mm, na.rm = TRUE))
+```
+
+Gentoo penguins have lower average bill depth compared to Adelie or Chinstrap (15.0mm vs 18.3 and 18.4mm respectively). Chinstrap however have a larger IQR at 1.9 compared to 1.5 for the others.
+
+### Plots
+
+::: columns
+::: {.column width="50%"}
+**Overlaid density plots**
+
+```{r}
+#| echo: true
+gghistogram(pen, 
+            x = "bill_depth_mm", 
+            fill = "species", 
+            add_density = TRUE, 
+            add="mean")
+```
+:::
+
+::: {.column width="50%"}
+**Side by side boxplots**
+
+```{r}
+#| echo: true
+ggviolin(pen, 
+         x="species", 
+         y = "bill_depth_mm", 
+         color = "species", 
+         add = c("mean", "boxplot"))
+```
+:::
+:::
+
+The distribution of bill depth are fairly normal for each species, with some higher end values causing a slight right skew for Adelie and Gentoo.
+:::
+
+## Q~Q
+Quantitative response & Quantitative explanatory
+
+::: panel-tabset
+### Summary statistic
+
+```{r}
+#| echo: true
+cor(pen$flipper_length_mm, pen$body_mass_g, 
+    use="pairwise.complete.obs")
+```
+
+The penguin flipper length (mm) has a strong positive correlation with body mass (g), r=0.87
+
+### Plots
+
+::: columns
+::: {.column width="50%"}
+```{r}
+#| echo: true
+ggscatter(pen, 
+          x="flipper_length_mm", 
+          y = "body_mass_g")
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+#| echo: true
+ggscatter(pen, 
+          x="flipper_length_mm", 
+          y = "body_mass_g", 
+          add = "loess", 
+          conf.int = TRUE)
+```
+:::
+
+<small> The relationship between flipper length and body mass in penguins is relatively linear, but there may be possible clustering on a third variable. There appears to be two groups below and above a flipper length of about 205mm. </small>
+:::
+:::
