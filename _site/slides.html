@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.353">
+<meta name="generator" content="quarto-1.3.319">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -73,9 +73,9 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-subtitle','listing-image','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      valueNames: ['listing-date','listing-description','listing-title',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
       
-      searchColumns: ["listing-date","listing-title","listing-author","listing-subtitle","listing-image","listing-description"],
+      searchColumns: ["listing-date","listing-title","listing-author"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -207,24 +207,21 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
+<div class="quarto-listing quarto-listing-container-table" id="listing-listing">
 <div class="listing-actions-group">
    <div class="input-group input-group-sm quarto-listing-sort">
      <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
      <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
        <option value="" disabled="" selected="" hidden="">Order By</option>
        <option value="index" data-direction="asc">Default</option>
-         <option value="listing-title" data-direction="asc">
-          Title
-        </option>
          <option value="listing-date-sort" data-direction="asc">
           Date - Oldest
         </option>
          <option value="listing-date-sort" data-direction="desc">
           Date - Newest
         </option>
-         <option value="listing-author" data-direction="asc">
-          Author
+         <option value="listing-title-sort" data-direction="asc">
+          Topic
         </option>
      </select>
   </div>
@@ -233,145 +230,80 @@ ul.task-list li input[type="checkbox"] {
       <input type="text" class="search form-control" placeholder="Filter">
     </div>
 </div>
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-listing-date-sort="1692601200000" data-listing-file-modified-sort="1690682282893" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8">
-<div class="thumbnail">
-<p><a href="./slides/lec00-welcome.html"> <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div> </a></p>
-</div>
-<div class="body">
-<a href="./slides/lec00-welcome.html">
-<h3 class="no-anchor listing-title">
-Welcome to MATH 615
-</h3>
-<div class="listing-subtitle">
-Data Analysis for Graduate Research
-</div>
-<div class="listing-description">
-<p>1</p>
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./slides/lec00-welcome.html">
-<div class="listing-date">
-Aug 21, 2023
-</div>
-<div class="listing-author">
-Robin Donatello
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-listing-date-sort="1692601200000" data-listing-file-modified-sort="1690684472367" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4">
-<div class="thumbnail">
-<p><a href="./slides/lec01-data_arch.html"> <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div> </a></p>
-</div>
-<div class="body">
-<a href="./slides/lec01-data_arch.html">
-<h3 class="no-anchor listing-title">
-Data Architecture
-</h3>
-<div class="listing-subtitle">
 
-</div>
-<div class="listing-description">
-<p>1</p>
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./slides/lec01-data_arch.html">
-<div class="listing-date">
-Aug 21, 2023
-</div>
-<div class="listing-author">
-Robin Donatello
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-listing-date-sort="1693206000000" data-listing-file-modified-sort="1690777160578" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2">
-<div class="thumbnail">
-<p><a href="./slides/lec02-asking_questions.html"> <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div> </a></p>
-</div>
-<div class="body">
-<a href="./slides/lec02-asking_questions.html">
-<h3 class="no-anchor listing-title">
-Formulating research questions
-</h3>
-<div class="listing-subtitle">
+<table class="quarto-listing-table table">
+<thead>
+<tr>
+<th>
+<a class="sort" data-sort="listing-date-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Date</a>
+</th>
+<th>
+Week Duration
+</th>
+<th>
+<a class="sort" data-sort="listing-title-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Topic</a>
+</th>
+</tr>
+</thead>
+<tbody class="list">
+<tr data-index="0" data-listing-date-sort="1692601200000" data-listing-file-modified-sort="1692554081603" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-title-sort="Welcome to MATH 615" data-listing-filename-sort="lec00-welcome.qmd">
+<td>
+<span class="listing-date">Aug 21, 2023</span>
+</td>
+<td>
+<span class="listing-description">1</span>
+</td>
+<td>
+<a href="./slides/lec00-welcome.html" class="title listing-title">Welcome to MATH 615</a>
+</td>
+</tr>
+<tr data-index="1" data-listing-date-sort="1692601200000" data-listing-file-modified-sort="1692551353205" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-title-sort="Data Architecture" data-listing-filename-sort="lec01-data_arch.qmd">
+<td>
+<span class="listing-date">Aug 21, 2023</span>
+</td>
+<td>
+<span class="listing-description">1</span>
+</td>
+<td>
+<a href="./slides/lec01-data_arch.html" class="title listing-title">Data Architecture</a>
+</td>
+</tr>
+<tr data-index="2" data-listing-date-sort="1693206000000" data-listing-file-modified-sort="1692552559402" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-title-sort="Formulating research questions" data-listing-filename-sort="lec02-asking_questions.qmd">
+<td>
+<span class="listing-date">Aug 28, 2023</span>
+</td>
+<td>
+<span class="listing-description">2</span>
+</td>
+<td>
+<a href="./slides/lec02-asking_questions.html" class="title listing-title">Formulating research questions</a>
+</td>
+</tr>
+<tr data-index="3" data-listing-date-sort="1693378800000" data-listing-file-modified-sort="1692552559441" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-title-sort="Workflows for Reproducibility" data-listing-filename-sort="lec03a-workflow.qmd">
+<td>
+<span class="listing-date">Aug 30, 2023</span>
+</td>
+<td>
+<span class="listing-description">3</span>
+</td>
+<td>
+<a href="./slides/lec03a-workflow.html" class="title listing-title">Workflows for Reproducibility</a>
+</td>
+</tr>
+<tr data-index="4" data-listing-date-sort="1693378800000" data-listing-file-modified-sort="1692553734690" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-title-sort="Preparing your data for analysis" data-listing-filename-sort="lec03b-data_prep.qmd">
+<td>
+<span class="listing-date">Aug 30, 2023</span>
+</td>
+<td>
+<span class="listing-description">3, 4</span>
+</td>
+<td>
+<a href="./slides/lec03b-data_prep.html" class="title listing-title">Preparing your data for analysis</a>
+</td>
+</tr>
+</tbody>
 
-</div>
-<div class="listing-description">
-
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./slides/lec02-asking_questions.html">
-<div class="listing-date">
-Aug 28, 2023
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-listing-date-sort="1693378800000" data-listing-file-modified-sort="1691296843440" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3">
-<div class="thumbnail">
-<p><a href="./slides/lec03a-workflow.html"> <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div> </a></p>
-</div>
-<div class="body">
-<a href="./slides/lec03a-workflow.html">
-<h3 class="no-anchor listing-title">
-Workflows for Reproducibility
-</h3>
-<div class="listing-subtitle">
-
-</div>
-<div class="listing-description">
-<p>3, 4</p>
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./slides/lec03a-workflow.html">
-<div class="listing-date">
-Aug 30, 2023
-</div>
-<div class="listing-author">
-Robin Donatello
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="4" data-listing-date-sort="1693378800000" data-listing-file-modified-sort="1691297822598" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3">
-<div class="thumbnail">
-<p><a href="./slides/lec03b-data_prep.html"> <p class="card-img-top"><img src="https://d33wubrfki0l68.cloudfront.net/571b056757d68e6df81a3e3853f54d3c76ad6efc/32d37/diagrams/data-science.png" alt="A line diagram of figure 1.1 from the book R for Data science"  class="thumbnail-image card-img"/></p> </a></p>
-</div>
-<div class="body">
-<a href="./slides/lec03b-data_prep.html">
-<h3 class="no-anchor listing-title">
-Preparing your data for analysis
-</h3>
-<div class="listing-subtitle">
-
-</div>
-<div class="listing-description">
-<p>3, 4</p>
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./slides/lec03b-data_prep.html">
-<div class="listing-date">
-Aug 30, 2023
-</div>
-<div class="listing-author">
-Robin Donatello
-</div>
-</a>
-</div>
-</div>
-</div>
+</table>
 <div class="listing-no-matching d-none">
 No matching items
 </div>
