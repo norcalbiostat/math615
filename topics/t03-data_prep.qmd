@@ -1,7 +1,7 @@
 ---
-title: "Data Management" # title 
+title: "Preparing Data for Analysis" # title 
 subtitle: "Where an inordinate amount of time is spent" # sub title
-description: "8/31-9/11" #date range
+description: "8/30-9/10" #date range
 ---
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
@@ -15,12 +15,14 @@ str_prep <- function(var){
     )
 }
 
-topic_mats <- read_excel("../schedule_615.xlsx", sheet="weekly_schedule") %>%
+topic_mats <- read_excel(here::here("schedule_615.xlsx"), sheet="weekly_schedule") %>%
   clean_names() %>% 
   filter(grepl("t03", topic)) %>%
   mutate(assignment = gsub("hw", "../hw/hw", hw), 
-         slides = sprintf("[%s](%s)", topic_name, paste0("../slides/", lecture, ".html"))) %>% 
-  select(slides, collab, reading, assignment, topic_obj)
+         slides = sprintf("[%s](%s)", lecture, paste0("../slides/", lecture, ".html")), 
+         collab = sprintf("[%s](%s)", collab_notes, collab_notes)
+         ) %>% 
+  select(slides, collab, reading, assignment, topic_obj, quiz)
 ```
 
 ## Learning Path
@@ -35,7 +37,7 @@ Learning how to read our data and ask questions that are potentially answerable 
 
 
 :::{.callout-important icon=false}
-## Monday 9/5 is Labor Day. No Class. 
+## Monday 9/4 is Labor Day. No Class. 
 Enjoy the three day weekend, and consider learning something new about this holiday. (Optional reading)
 
 * [US Department of Labor: "History of Labor Day"](https://www.dol.gov/general/laborday/history)
@@ -55,14 +57,27 @@ Got more? Share in our Discord channel.
 pander(str_prep(topic_mats$topic_obj))
 ```
 
+## Preparation 
+
+1. Create a `MATH615` folder on your computer in an easy to find place. 
+    - Create (at least) following subfolders: `data`, `scripts`
+    - Download your projct data and codebook into the `data` subfolder. 
+2. Follow the instructions in the Appendix of the [Applied Stats Course Notes](https://norcalbiostat.github.io/AppliedStatistics_notes/setup_intro.html) to do the next steps
+3. Install R and R Studio
+4. Install the `tidyverse` and `here` packages
+5. Create a R project using the `MATH615` folder that you created in step 1. 
+6. Read through and follow the ["Hello Quarto" tutorial](https://quarto.org/docs/get-started/hello/rstudio)
+7. Go back to the ASCN Appendix and follow the instructions on [how to create PDFs](https://norcalbiostat.github.io/AppliedStatistics_notes/literate-programming-with-quarto.html#creating-pdfs) from your Quarto document. 
+
+If you have difficulty with any of this, visit Community Coding or my office hours. 
 
 ## Learning Materials
 
 {{< fa person-chalkboard >}}  **Slides (Will open in full screen. Right click to open in a new tab)**
 
-```{r}
-pander(str_prep(topic_mats$slides))
-```
+* [lec03a-workflow](../slides/lec03a-workflow.html)  
+* [lec03b-data_prep](../slides/lec03b-data_prep.html)
+
 
 We will also be using the Data Management chapter of the [Applied Stats notebook](https://norcalbiostat.github.io/AppliedStatistics_notes/data-management.html) for this topic.
 
@@ -83,6 +98,12 @@ pander(str_prep(topic_mats$collab))
 
 ```{r}
 pander(str_prep(topic_mats$assignment))
+```
+
+## Assessment
+
+```{r}
+pander(str_prep(topic_mats$quiz))
 ```
 
 ## Other references
