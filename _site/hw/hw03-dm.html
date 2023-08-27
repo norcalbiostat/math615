@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="8/30-9/10">
 
-<title>Data Analysis for Graduate Research - Preparing Data for Analysis</title>
+<title>Data Analysis for Graduate Research - HW 03: Data Management</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -64,10 +97,13 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<meta name="twitter:title" content="Data Analysis for Graduate Research - Preparing Data for Analysis">
-<meta name="twitter:description" content="8/30-9/10">
+<meta name="twitter:title" content="Data Analysis for Graduate Research - HW 03: Data Management">
+<meta name="twitter:description" content="Wrangling your data into analyzable form">
+<meta name="twitter:image" content="https://norcalbiostat.github.io/MATH615/hw/hw03-dm_files/figure-html/unnamed-chunk-5-1.png">
 <meta name="twitter:creator" content="@norcalbiostat">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:image-height" content="960">
+<meta name="twitter:image-width" content="1344">
+<meta name="twitter:card" content="summary_large_image">
 </head>
 
 <body class="nav-fixed">
@@ -154,38 +190,31 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#learning-path" id="toc-learning-path" class="nav-link active" data-scroll-target="#learning-path">Learning Path</a>
+  <li><a href="#purpose" id="toc-purpose" class="nav-link active" data-scroll-target="#purpose">Purpose</a></li>
+  <li><a href="#instructions" id="toc-instructions" class="nav-link" data-scroll-target="#instructions">Instructions</a></li>
+  <li><a href="#submission-instructions" id="toc-submission-instructions" class="nav-link" data-scroll-target="#submission-instructions">Submission instructions</a></li>
+  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example">Example</a>
   <ul class="collapse">
-  <li><a href="#where-weve-been" id="toc-where-weve-been" class="nav-link" data-scroll-target="#where-weve-been">Where we’ve been</a></li>
-  <li><a href="#where-were-at" id="toc-where-were-at" class="nav-link" data-scroll-target="#where-were-at">Where we’re at</a></li>
-  <li><a href="#objectives" id="toc-objectives" class="nav-link" data-scroll-target="#objectives">Objectives</a></li>
+  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a>
+  <ul class="collapse">
+  <li><a href="#general-health" id="toc-general-health" class="nav-link" data-scroll-target="#general-health">General Health</a></li>
+  <li><a href="#cesd" id="toc-cesd" class="nav-link" data-scroll-target="#cesd">CESD</a></li>
+  <li><a href="#indicator-of-depression" id="toc-indicator-of-depression" class="nav-link" data-scroll-target="#indicator-of-depression">Indicator of Depression</a></li>
   </ul></li>
-  <li><a href="#preparation" id="toc-preparation" class="nav-link" data-scroll-target="#preparation">Preparation</a></li>
-  <li><a href="#learning-materials" id="toc-learning-materials" class="nav-link" data-scroll-target="#learning-materials">Learning Materials</a></li>
-  <li><a href="#assignments" id="toc-assignments" class="nav-link" data-scroll-target="#assignments">Assignments</a></li>
-  <li><a href="#assessment" id="toc-assessment" class="nav-link" data-scroll-target="#assessment">Assessment</a></li>
-  <li><a href="#other-references" id="toc-other-references" class="nav-link" data-scroll-target="#other-references">Other references</a>
-  <ul class="collapse">
-  <li><a href="#where-youll-start" id="toc-where-youll-start" class="nav-link" data-scroll-target="#where-youll-start">Where you’ll start</a></li>
-  <li><a href="#where-youll-end-up" id="toc-where-youll-end-up" class="nav-link" data-scroll-target="#where-youll-end-up">Where you’ll end up</a></li>
+  <li><a href="#export-cleaned-data-set" id="toc-export-cleaned-data-set" class="nav-link" data-scroll-target="#export-cleaned-data-set">Export cleaned data set</a></li>
   </ul></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/norcalbiostat/math615_test/edit/main/topics/t03-data_prep.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/norcalbiostat/math615_test/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/norcalbiostat/math615_test/edit/main/hw/hw03-dm.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/norcalbiostat/math615_test/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Preparing Data for Analysis</h1>
-<p class="subtitle lead">Where an inordinate amount of time is spent</p>
+<h1 class="title">HW 03: Data Management</h1>
+<p class="subtitle lead">Wrangling your data into analyzable form</p>
 </div>
 
-<div>
-  <div class="description">
-    8/30-9/10
-  </div>
-</div>
 
 
 <div class="quarto-title-meta">
@@ -198,146 +227,227 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="learning-path" class="level2">
-<h2 class="anchored" data-anchor-id="learning-path">Learning Path</h2>
-<section id="where-weve-been" class="level3">
-<h3 class="anchored" data-anchor-id="where-weve-been">Where we’ve been</h3>
-<p>Learning how to read our data and ask questions that are potentially answerable with this data.</p>
+<section id="purpose" class="level1">
+<h1>Purpose</h1>
+<p>By now you should know what variables you want to use, and you’ve looked over the codebook enough now that you have an idea of some potential problems that you will encounter. This assignment uses your chosen research data, and the variables that you chose in the last assignment when you created a personal research codebook. You will thoughtfully review the variables you are interested in, document which ones will need changed and how.</p>
+<p>All raw data needs to stay raw, and all changes need to be documented. You will create a script/code file that will make all changes to the data in a programatically and reproducible way. You will create a single code file that imports your raw data, performs some data cleaning steps, and saves out an analysis ready data set that you will use throughout the semester.</p>
+<p>You are <strong>not</strong> expected to have completed data management for every one of your variables under consideration by the submission date. I want to see a VERY good effort has been made (raw data read in, at least 2 quant and 2 cat variables dealt with, analysis data saved out.)</p>
+<p>Check the rubric in Canvas for more grade specific details.</p>
+<hr>
 </section>
-<section id="where-were-at" class="level3">
-<h3 class="anchored" data-anchor-id="where-were-at">Where we’re at</h3>
+<section id="instructions" class="level1">
+<h1>Instructions</h1>
+<ol type="1">
+<li>Create a new script file named <code>dm_dataname_username.qmd</code> (e.g.&nbsp;<code>dm_addhealth_rdonatello.qmd</code>)
 <ul>
-<li>Starting to write code.</li>
-<li>Recognizing that this stage will take time and that you are learning something challenging.</li>
-<li>Willing to ask for help and collaboration</li>
+<li>Make sure this is your <strong>math615/script</strong> folder, and your data is in your <strong>math615/data</strong> folder</li>
+</ul></li>
+<li>After you load the data, restrict the variables to only the ones you are investigating using the <code>select</code> function from the <code>dplyr</code> package.</li>
+<li>Explore and clean at least 2 categorical and 2 numeric variables. One by one, check each variable for necessary adjustments. Complete each of the following steps for each variable.
+<ul>
+<li>First explain in English what the variable name is and what it measures.</li>
+<li>Then examine the variable using the <code>table()</code>, <code>summary()</code> and <code>hist()</code> functions.</li>
+<li>Identify the data type of the variable using the <code>class()</code> or <code>typeof()</code> functions. Ask (and answer) the question “Does this match with the intended data type?”</li>
+<li>Recode the data as necessary</li>
+<li>Always confirm your recodes worked as intended by creating another table or summary.</li>
+</ul></li>
+<li>Save the resulting data set to your <code>data</code> folder as <code>datasetname_clean.Rdata</code>, e.g.&nbsp;<code>addhealth_clean.Rdata</code> using the <code>save()</code> function</li>
+</ol>
+<p>Reference <a href="../slides/lec03b-data_prep.html">lec03b-data_prep</a> and <a href="https://norcalbiostat.github.io/AppliedStatistics_notes/">ASCN Chapter 1</a> on how you can explore your data and start to make data edits using R.</p>
+<hr>
+</section>
+<section id="submission-instructions" class="level1">
+<h1>Submission instructions</h1>
+<ul>
+<li>You will submit your code file to Canvas. This must run on my computer.
+<ul>
+<li>What comes out is what I grade.</li>
+<li>Render your script file to PDF before you submit to ensure that it works and looks the way you expect it to.</li>
+</ul></li>
 </ul>
-<div class="callout callout-style-default callout-important no-icon callout-titled">
+<blockquote class="blockquote">
+<p>Exceptions: If you are working on a personal data set then you must submit a PDF to Canvas demonstrating reproducibility. If there are questions I may ask you to demonstrate your code to me in person.</p>
+</blockquote>
+
+<!---
+### Draft
+
+Upload your <span style="color:red">PDF</span> file to the `03 Data Management` folder in Google Drive. 
+
+* R users compile your `qmd` file to create a PDF (render to PDF)
+* SPSS users will have to present additional output to demonstrate that the recodes were successful. 
+    - Include the `FREQUENCIES` code in your `dm` file to create tables or summaries of the modified variables, so that it shows up in your output window. 
+    - After you are done, close & restart SPSS by opening your `dm` file. Click "Run all" 
+    - Export your **output** file as PDF and upload it to Google Drive
+
+### Peer Review instructions
+
+As a reviewer, this is what you're checking for: 
+
+* Check that they have 2 quantitative and 2 categorical variables present
+* Did they check for missing, out of range values? 
+* Did they present some sort of proof that a certain recode worked as intended? 
+* Does their work appear to be reproducible? 
+
+
+--->
+<hr>
+</section>
+<section id="example" class="level1">
+<h1>Example</h1>
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
+<i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Monday 9/4 is Labor Day. No Class.
+Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Enjoy the three day weekend, and consider learning something new about this holiday. (Optional reading)</p>
-<ul>
-<li><a href="https://www.dol.gov/general/laborday/history">US Department of Labor: “History of Labor Day”</a></li>
-<li><a href="https://www.abhmuseum.org/watch-americas-racist-history-of-labor/">America’s Black Holocaust Museum: “America’s Racist History of Labor”</a></li>
-<li><a href="https://www.smithsonianmag.com/history/striking-union-workers-turned-first-labor-day-networking-event-180964705/">Smithsonian: “Striking Union Workers Turned the First Labor Day Into a Networking Event”</a></li>
-<li><a href="https://uaw.org/celbrating-labor-day-celebrating-labor-unions/">UAW: “Celebrating Labor day by Celebrating Labor Unions”</a></li>
-</ul>
-<p>Got more? Share in our Discord channel.</p>
+<p>Here is an example using R Markdown/Quarto. Everything you see below this line comes is written in the <code>.qmd</code> script itself. This is an example of literate programming where you write what you are going to do, do it in code, and then write what you have learned after each step.</p>
 </div>
 </div>
-<hr>
-</section>
-<section id="objectives" class="level3">
-<h3 class="anchored" data-anchor-id="objectives">Objectives</h3>
+<section id="setup" class="level2">
+<h2 class="anchored" data-anchor-id="setup">Setup</h2>
 <div class="cell">
-<div class="cell-output-display">
-<ul>
-<li>Know several questions to ask yourself when preparing data for analysis
-<ul>
-<li>Understand options for literate programming</li>
-<li>Import your chosen data into your SPC</li>
-<li>Create a reproducible workflow</li>
-<li>Create a reproducible script file that imports the raw data, performs data management tasks, exports an analysis ready data set</li>
-</ul></li>
-</ul>
-<!-- end of list -->
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load libraries</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in the data </span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>raw <span class="ot">&lt;-</span> <span class="fu">read.delim</span>(<span class="st">"https://norcalbiostat.netlify.com/data/depress_081217.txt"</span>, </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>                  <span class="at">sep=</span><span class="st">"</span><span class="sc">\t</span><span class="st">"</span>,  <span class="at">header=</span><span class="cn">TRUE</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Select only the variables that I am interested in</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>mydata  <span class="ot">&lt;-</span> raw <span class="sc">%&gt;%</span> <span class="fu">select</span>(age, marital, cesd, health)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-</section>
-</section>
-<section id="preparation" class="level2">
-<h2 class="anchored" data-anchor-id="preparation">Preparation</h2>
-<p>In Homework 00 you downloaded and installed R and R Studio, and used it to import a data file in Homework 01. There are a few more steps to take that will allow you to be best setup for using R to analyze data.</p>
-<p>Follow the instructions in the Appendix of the <a href="https://norcalbiostat.github.io/AppliedStatistics_notes/setup_intro.html">Applied Stats Course Notes</a> to do the following:</p>
-<ol type="1">
-<li>Set preferences for sanity (19.5)</li>
-<li>Install the <code>tidyverse</code> and <code>here</code> packages (19.6)</li>
-<li>Create a R project using the <code>MATH615</code> folder that you created in step 1. (ASCN 19.7)
-<ul>
-<li>Shut down R studio fully, navigate to your class folder, and open your project file (the cube) before you continue.</li>
-</ul></li>
-<li>Read through and follow the <a href="https://quarto.org/docs/get-started/hello/rstudio">“Hello Quarto” tutorial</a> (19.8 intro)</li>
-<li>Install the <code>tinytex</code> program so you can <a href="https://norcalbiostat.github.io/AppliedStatistics_notes/literate-programming-with-quarto.html#creating-pdfs">create PDFs</a> from your Quarto document. This is required (19.8)</li>
-</ol>
-<p>If you have difficulty with any of this, visit Community Coding, my office hours, or post in Discord.</p>
-</section>
-<section id="learning-materials" class="level2">
-<h2 class="anchored" data-anchor-id="learning-materials">Learning Materials</h2>
-<p><i class="fa-solid fa-person-chalkboard" aria-hidden="true"></i> <strong>Slides (Will open in full screen. Right click to open in a new tab)</strong></p>
-<ul>
-<li><a href="../slides/lec03a-workflow.html">lec03a-workflow</a><br>
-</li>
-<li><a href="../slides/lec03b-data_prep.html">lec03b-data_prep</a></li>
-</ul>
-<p>We will also be using the Data Management chapter of the <a href="https://norcalbiostat.github.io/AppliedStatistics_notes/data-management.html">Applied Stats notebook</a> for this topic.</p>
-<p><span class="emoji" data-emoji="books">📚</span> <strong>Reading</strong></p>
+<section id="general-health" class="level3">
+<h3 class="anchored" data-anchor-id="general-health">General Health</h3>
+<p>The variable <code>health</code> records a persons perceived general health as being either Excellent, Good, Fair or Poor. This is considered an ordinal categorical variable.</p>
 <div class="cell">
-<div class="cell-output-display">
-<ul>
-<li>PMA6 Ch 3
-<ul>
-<li>ASCN Ch 1, Appendix</li>
-<li><a href="https://slides.djnavarro.net/">Project Structure by Danielle Navarro</a></li>
-</ul></li>
-</ul>
-<!-- end of list -->
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(mydata<span class="sc">$</span>health)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  1   2   3   4 
+130 115  35  14 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(mydata<span class="sc">$</span>health)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "integer"</code></pre>
 </div>
 </div>
-<p><span class="emoji" data-emoji="pencil">📝</span> <strong>Collaborative notes</strong></p>
+<p>The variable <code>health</code> currently is an integer with numeric values 1-4, but the codebook states that this is a categorical variable where 1=Excellent, 2=Good, 3=Fair, 4=Poor. So I need to convert this numeric variable to a factor variable. There are no values outside the 1-4 range, such as a -9 that codes for missing data so I do not need to make any further adjustments (You want to code out missing before you convert variables to factors)</p>
 <div class="cell">
-<div class="cell-output-display">
-<ul>
-<li><a href="NA">NA</a></li>
-</ul>
-<!-- end of list -->
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>mydata<span class="sc">$</span>health_cat <span class="ot">&lt;-</span> <span class="fu">factor</span>(mydata<span class="sc">$</span>health, <span class="at">labels=</span><span class="fu">c</span>(<span class="st">"Excellent"</span>, <span class="st">"Good"</span>, <span class="st">"Fair"</span>, <span class="st">"Poor"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-</section>
-<section id="assignments" class="level2">
-<h2 class="anchored" data-anchor-id="assignments">Assignments</h2>
+<p>I will confirm that the recode worked by making a two-way <code>table</code></p>
 <div class="cell">
-<div class="cell-output-display">
-<ul>
-<li><a href="../hw/hw03-dm.html">HW03 Data Management</a></li>
-</ul>
-<!-- end of list -->
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(mydata<span class="sc">$</span>health, mydata<span class="sc">$</span>health_cat, <span class="at">useNA=</span><span class="st">"always"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      
+       Excellent Good Fair Poor &lt;NA&gt;
+  1          130    0    0    0    0
+  2            0  115    0    0    0
+  3            0    0   35    0    0
+  4            0    0    0   14    0
+  &lt;NA&gt;         0    0    0    0    0</code></pre>
 </div>
 </div>
+<p>This shows that all 1’s are now ‘excellent’, 4’s are now ‘poor’ and so forth.</p>
 </section>
-<section id="assessment" class="level2">
-<h2 class="anchored" data-anchor-id="assessment">Assessment</h2>
+<section id="cesd" class="level3">
+<h3 class="anchored" data-anchor-id="cesd">CESD</h3>
+<p>The numeric variable <code>CESD</code> represents the depression index scale, which is a sum of 20 component variables. A high score indicates a person who is depressed, with 16 being the typical cutoff for creating a binary indicator of depression.</p>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mydata<span class="sc">$</span>cesd)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  0.000   3.000   7.000   8.884  12.000  47.000 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(mydata<span class="sc">$</span>cesd)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<ul>
-<li><a href="">Quiz 02</a></li>
-</ul>
-<!-- end of list -->
+<p><img src="hw03-dm_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>There are no values outside of the expected range, and no missing values.</p>
 </section>
-<section id="other-references" class="level2">
-<h2 class="anchored" data-anchor-id="other-references">Other references</h2>
-<ul>
-<li>ANYTHING by <a href="https://slides.djnavarro.net/">Danielle Navarro</a> or <a href="https://www.rstudio.com/authors/jenny-bryan/">Jenny Bryan</a></li>
-<li><a href="https://martinctc.github.io/blog/rstudio-projects-and-working-directories-a-beginner's-guide/">R projects</a></li>
-<li><a href="https://malco.io/2018/11/05/why-should-i-use-the-here-package-when-i-m-already-using-projects/">Why should I use the here package when I’m already using projects?</a></li>
-<li><a href="https://quarto.org/docs/get-started/hello/rstudio.html">Hello, Quarto</a></li>
-</ul>
-<section id="where-youll-start" class="level3">
-<h3 class="anchored" data-anchor-id="where-youll-start">Where you’ll start</h3>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/m_MaJDK3VNE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">
-</iframe>
+<section id="indicator-of-depression" class="level3">
+<h3 class="anchored" data-anchor-id="indicator-of-depression">Indicator of Depression</h3>
+<p>Create the binary indicator of depression using CESD</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>mydata<span class="sc">$</span>depressed <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(mydata<span class="sc">$</span>cesd <span class="sc">&gt;</span> <span class="dv">16</span>, <span class="st">"depressed"</span>, <span class="st">"not depressed"</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(mydata<span class="sc">$</span>depressed, <span class="at">useNA=</span><span class="st">"always"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    depressed not depressed          &lt;NA&gt; 
+           45           249             0 </code></pre>
+</div>
+</div>
+<p>No missing values were accidentally generated,</p>
 </section>
-<section id="where-youll-end-up" class="level3">
-<h3 class="anchored" data-anchor-id="where-youll-end-up">Where you’ll end up</h3>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/3Iz7ZMALaCY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">
-</iframe>
+</section>
+<section id="export-cleaned-data-set" class="level2">
+<h2 class="anchored" data-anchor-id="export-cleaned-data-set">Export cleaned data set</h2>
+<p>Keep only selected variables and save to an external file</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>clean <span class="ot">&lt;-</span> mydata <span class="sc">%&gt;%</span> <span class="fu">select</span>(age, marital, cesd, depressed, health_cat)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(clean, <span class="at">file=</span><span class="st">"depression_clean.Rdata"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<!---
+:::{.callout-caution icon=false}
+## SPSS
+Here is an example of what a data management script for SPSS would look like. 
+:::
+
+
+
+```
+\* This is how to write a comment
+
+\* import the data 
+GET FILE='/Users/rdonatello/Box/F19/hw03/data/AddHealth_Wave_IV.sav'
+/KEEP BIO_SEX H4GH1. /                   \* Only keep certain variables.
+EXECUTE.
+
+DATASET NAME addhealth WINDOW = FRONT./  \*brings the data window up.
+
+\*\--SEX
+
+FREQUENCIES VARIABLES= BIO_SEX
+/ORDER=ANALYSIS.
+
+\* BIO_SEX is coded as 1=male, 2=female, 6=missing.
+
+\* I want to recode this into a binary indicator of being female.
+
+RECODE BIO_SEX (1=0) (2=1) (6=SYSMIS) INTO FEMALE.
+
+\* Confirm it worked.
+
+FREQUENCIES VARIABLES= FEMALE
+/ORDER=ANALYSIS.
+
+\* apply variable and value labels.
+
+VARIABLE LABELS 'FEMALE'.
+VALUE LABELS FEMALE
+0 'male'
+1 'female'.
+EXECUTE.
+
+FREQUENCIES VARIABLES= FEMALE
+/ORDER=ANALYSIS.
+
+
+\* Save dataset for analysis.
+
+SAVE OUTFILE='/Users/rdonatello/Box/F19/hw03/data/addhealth_clean.sav'
+/ DROP BIO_SEX
+/ COMPRESSED.
+
+```
+
+--->
 
 
 </section>
