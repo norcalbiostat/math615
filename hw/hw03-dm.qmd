@@ -146,7 +146,7 @@ Keep only selected variables and save to an external file
 ```{r}
 #| eval: false
 clean <- mydata %>% select(age, marital, cesd, depressed, health_cat)
-save(clean, file="depression_clean.Rdata")
+save(clean, file=here::here("data/depression_clean.Rdata"))
 ```
 
 

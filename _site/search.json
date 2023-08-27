@@ -165,7 +165,7 @@
     "href": "hw/hw03-dm.html#export-cleaned-data-set",
     "title": "HW 03: Data Management",
     "section": "Export cleaned data set",
-    "text": "Export cleaned data set\nKeep only selected variables and save to an external file\n\nclean &lt;- mydata %&gt;% select(age, marital, cesd, depressed, health_cat)\nsave(clean, file=\"depression_clean.Rdata\")"
+    "text": "Export cleaned data set\nKeep only selected variables and save to an external file\n\nclean &lt;- mydata %&gt;% select(age, marital, cesd, depressed, health_cat)\nsave(clean, file=here::here(\"data/depression_clean.Rdata\"))"
   },
   {
     "objectID": "hw.html",
