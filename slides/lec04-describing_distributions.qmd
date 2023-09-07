@@ -1,22 +1,20 @@
 ---
 title: "Describing Distributions of Data"
-date: "2022-09-12"
+date: "2023-09-12"
 description: "4"
 author: "Robin Donatello"
 footer: "[🔗 https://math615.netlify.app](https://math615.netlify.app) / Describing  Distributions of Data"
 from: markdown+emoji
 format: 
   revealjs:
-    theme: beige
-    multiplex: true
+    theme: sky
     transition: fade
     slide-number: true
     incremental: false 
     chalkboard: true
-    preview-links: true
 execute:
   freeze: auto
-  echo: false
+  echo: true
 knitr:
   opts_chunk: 
     R.options:
@@ -75,13 +73,11 @@ pen <- penguins
 
 **Frequencies (N)**
 ```{r}
-#| echo: true
 table(pen$species)
 ```
 
 **Percents (%)**
 ```{r}
-#| echo: true
 table(pen$species) |> proportions() |> round(digits=2)
 ```
 
@@ -90,7 +86,6 @@ Penguin species _Adelie_ make up 44% of the sample (n=152)
 ### Plots
 
 ```{r}
-#| echo: true
 #| fig.height:  4
 sjPlot::plot_frq(pen$species) + xlab("Species")
 ```
@@ -102,7 +97,6 @@ sjPlot::plot_frq(pen$species) + xlab("Species")
 ::: {.panel-tabset}
 ### Center
 ```{r}
-#| echo: true
 summary(pen$bill_depth_mm)
 sd(pen$bill_depth_mm, na.rm=TRUE)
 ```
@@ -114,7 +108,6 @@ The average bill depth is 17.15mm, with a standard deviation of 1.9mm.
 ### Spread
 
 ```{r}
-#| echo: true
 summary(pen$bill_depth_mm)
 IQR(pen$bill_depth_mm, na.rm=TRUE)
 ```
@@ -129,7 +122,6 @@ Bill depth ranges from 13.1 to 21.5mm, and has an IQR of 3.1mm.
 
 ::: {.column width="50%"}
 ```{r}
-#| echo: true
 ggpubr::gghistogram(pen$bill_depth_mm, add_density = TRUE)
 ```
 
@@ -137,7 +129,6 @@ ggpubr::gghistogram(pen$bill_depth_mm, add_density = TRUE)
 
 ::: {.column width="50%"}
 ```{r}
-#| echo: true
 ggpubr::ggviolin(pen$bill_depth_mm, add = c("jitter", "boxplot")) + coord_flip()
 ```
 
@@ -165,3 +156,7 @@ The distribution of bill depth appears to be bimodal with peaks around 15 and 18
 * Applied Stats course Notes Chapter 2.3 for examples and code
 * HackMD Notes for Code specific notes
 * R specific help on the [Math 130](https://norcalbiostat.github.io/MATH130/faq.html) class page
+* `sjPlot` vignette: https://strengejacke.github.io/sjPlot/index.html
+* `ggpubr` vignette: https://rpkgs.datanovia.com/ggpubr/
+* `ggplot` vignette: https://ggplot2.tidyverse.org/index.html
+* R graphics cookbook: https://r-graphics.org/ 

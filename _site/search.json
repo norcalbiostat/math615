@@ -168,11 +168,46 @@
     "text": "Export cleaned data set\nKeep only selected variables and save to an external file\n\nclean &lt;- mydata %&gt;% select(age, marital, cesd, depressed, health_cat)\nsave(clean, file=here::here(\"data/depression_clean.Rdata\"))"
   },
   {
+    "objectID": "hw/hw04-describing_distributions.html",
+    "href": "hw/hw04-describing_distributions.html",
+    "title": "HW 04: Describing Distributions",
+    "section": "",
+    "text": "There are a variety of conventional ways to visualize data - tables, histograms, bar graphs, etc. The purpose is always to examine the distribution of variables related to your research question. You will create a plot, follow up each graphic with a table of summary statistics (for quantitative variables) or frequency and proportion table (for categorical), and then a summary paragraph that brings it all together."
+  },
+  {
+    "objectID": "hw/hw04-describing_distributions.html#basic-categorical",
+    "href": "hw/hw04-describing_distributions.html#basic-categorical",
+    "title": "HW 04: Describing Distributions",
+    "section": "Basic categorical",
+    "text": "Basic categorical\nDraft style plot, direct computer output showing/copied. Poor grammar and/or sentence structure, no attempt at explaining what the variable means, extra unnecessary or incorrect information included. Typos.\n\ntable(mpg$class)\n\n\n   2seater    compact    midsize    minivan     pickup subcompact        suv \n         5         47         41         11         33         35         62 \n\n\n\nclass has more suvs than compacts. 2% are 2seaters. there are 5 2seaters 47 cmpact 41 midize 11 minivans 33 pickups 35% subcompacts, 62 suv and 234 total cars."
+  },
+  {
+    "objectID": "hw/hw04-describing_distributions.html#proficient-categorical",
+    "href": "hw/hw04-describing_distributions.html#proficient-categorical",
+    "title": "HW 04: Describing Distributions",
+    "section": "Proficient categorical",
+    "text": "Proficient categorical\nCleaned up plot, full English sentences, useful text formatting of variable names and levels. Explained what the variable was named and what it measured.\n\nThe class variable from the mpg data set is a catgorical variable that describes the type of vehicle being measured. Some levels of this categorical variable include compact, pickup and suv.\n\n\nplot_frq(mpg$class)\n\n\n\n\n\n\n\n\n\nSub compact cars are the most frequently reported type of car, making up over one-quarter (26.5%) of the cars in this data set with n=62 cars represented. The least represented car is a compact car with n=5 (2.1%) records."
+  },
+  {
+    "objectID": "hw/hw04-describing_distributions.html#basic-quantitative",
+    "href": "hw/hw04-describing_distributions.html#basic-quantitative",
+    "title": "HW 04: Describing Distributions",
+    "section": "Basic quantitative",
+    "text": "Basic quantitative\nA “for your eyes only” quality plot, minimal description of characteristics, no information about the variable provided.\n\nhist(mpg$cty)\n\n\n\nsummary(mpg$cty)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n   9.00   14.00   17.00   16.86   19.00   35.00 \n\n\n\ncty is normally distributed between 5 and 35 with mean 17."
+  },
+  {
+    "objectID": "hw/hw04-describing_distributions.html#proficient-quantitative",
+    "href": "hw/hw04-describing_distributions.html#proficient-quantitative",
+    "title": "HW 04: Describing Distributions",
+    "section": "Proficient quantitative",
+    "text": "Proficient quantitative\nOverlaid a density curve on the histogram, added a dashed line at the mean. Table of summary statistics present in a nicely formatted way, digits rounded appropriately. Plot cleaned up with appropriate axis and titles.\n\nThe cty variable records the miles per gallon (mpg) achieved during city driving. This is a quantititative numeric variable.\n\n\n# this function is from the ggpubr package\ngghistogram(data=mpg, x = \"cty\", add = \"mean\", fill = \"skyblue\", add_density = TRUE, \n            xlab = \"MPG\", title = \"City miles per gallon (MPG)\")\n\n\n\n\n\n\n\nsummary(mpg$cty)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n   9.00   14.00   17.00   16.86   19.00   35.00 \n\n\n\nThe MPG in the city ranges from 9 to 35, unimodal and is slightly skewed right with a mean of 16.9 close to the median of 17 and a standard deviation of 4.3mpg. The histogram indicates that there are at a few upper end potential outliers achieving a city MPG of approximately over 30 mpg."
+  },
+  {
     "objectID": "hw.html",
     "href": "hw.html",
     "title": "Assignments",
     "section": "",
-    "text": "Assignment\n\n\nLearning Objective\n\n\n\n\n\n\nHW 00: Getting setup\n\n\nGetting all the materials and tools for the class\n\n\n\n\nHW 01: Data Entry\n\n\nRecording data to maintain your sanity.\n\n\n\n\nHW 02: Formulating a research hypothesis\n\n\nBrainstorming research questions to investigate\n\n\n\n\nHW 03: Data Management\n\n\nWrangling your data into analyzable form\n\n\n\n\n\n\nNo matching items"
+    "text": "Assignment\n\n\nLearning Objective\n\n\n\n\n\n\nHW 00: Getting setup\n\n\nGetting all the materials and tools for the class\n\n\n\n\nHW 01: Data Entry\n\n\nRecording data to maintain your sanity.\n\n\n\n\nHW 02: Formulating a research hypothesis\n\n\nBrainstorming research questions to investigate\n\n\n\n\nHW 03: Data Management\n\n\nWrangling your data into analyzable form\n\n\n\n\nHW 04: Describing Distributions\n\n\nLet the data be beautiful\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "index.html",
@@ -483,36 +518,36 @@
     "text": "Codebooks contain the following information\n\n\n\n\nvariable name (for the computer)\nvariable label (for the human)\nthe prompt (e.g. survey text question)\nplausible values\ncategorical value labels"
   },
   {
-    "objectID": "slides/lec02-asking_questions.html#a-research-hypothesis-poses-a-question-about-the-relationship-between-two-or-more-measurable-characteristics.",
-    "href": "slides/lec02-asking_questions.html#a-research-hypothesis-poses-a-question-about-the-relationship-between-two-or-more-measurable-characteristics.",
+    "objectID": "slides/lec02-asking_q.html#a-research-hypothesis-poses-a-question-about-the-relationship-between-two-or-more-measurable-characteristics.",
+    "href": "slides/lec02-asking_q.html#a-research-hypothesis-poses-a-question-about-the-relationship-between-two-or-more-measurable-characteristics.",
     "title": "Formulating research questions",
     "section": "A Research Hypothesis poses a question about the relationship between two or more measurable characteristics.",
     "text": "A Research Hypothesis poses a question about the relationship between two or more measurable characteristics.\n\n\n\nExample\n\n\nIs there a relationship between smoking frequency and suicide?"
   },
   {
-    "objectID": "slides/lec02-asking_questions.html#simple-vs-complex",
-    "href": "slides/lec02-asking_questions.html#simple-vs-complex",
+    "objectID": "slides/lec02-asking_q.html#simple-vs-complex",
+    "href": "slides/lec02-asking_q.html#simple-vs-complex",
     "title": "Formulating research questions",
     "section": "Simple vs Complex",
     "text": "Simple vs Complex\n\n\n\n\n\n\nSimple Hypothesis\n\n\nIs there a relationship between smoking frequency and suicide?\n\n\n\n\n\n\nSimple relationship between two measures\nCan be answered with a ‘yes’ or ‘no’\n\n\n\n\n\n\n\n\nComplex Hypothesis\n\n\nDoes smoking frequency exacerbate poor mental health outcomes such as anxiety, depression and suicide?\n\n\n\n\n\n\nStated as a relationship between multiple variables\nCan’t be answered directly but through multiple sub-questions"
   },
   {
-    "objectID": "slides/lec02-asking_questions.html#null-vs-alternative",
-    "href": "slides/lec02-asking_questions.html#null-vs-alternative",
+    "objectID": "slides/lec02-asking_q.html#null-vs-alternative",
+    "href": "slides/lec02-asking_q.html#null-vs-alternative",
     "title": "Formulating research questions",
     "section": "Null vs Alternative",
     "text": "Null vs Alternative\nAKA Statistical Hypothesis\n\n\n\n\n\n\nNull Hypothesis\n\n\nDrug X has no affect on outcome Y\n\n\n\n\n\n\nStated as no relationship\nthe ‘status quo’ or current status\n\n\n\n\n\n\n\n\nAlternative Hypothesis\n\n\nDrug X is associated with a change in outcome Y\n\n\n\n\n\n\nstated as a relationship exists\ntypically what you hope to show"
   },
   {
-    "objectID": "slides/lec02-asking_questions.html#collaborative-discussion",
-    "href": "slides/lec02-asking_questions.html#collaborative-discussion",
+    "objectID": "slides/lec02-asking_q.html#collaborative-discussion",
+    "href": "slides/lec02-asking_q.html#collaborative-discussion",
     "title": "Formulating research questions",
     "section": "Collaborative discussion",
     "text": "Collaborative discussion\n\n\n\nDiscuss each question below with your neighbor.\n\n\nRespond to the first three prompts in the HackMD Formulating Research Questions collaborative notes. Put your names next to your answer.\n\n\n\n\nWhat are the characteristics of a good research question?\n\nWhat is the one essential document you need to review before you can formulate a research question?\nWrite an example of a research question"
   },
   {
-    "objectID": "slides/lec02-asking_questions.html#where-to-find-prior-information-on-your-research-topic",
-    "href": "slides/lec02-asking_questions.html#where-to-find-prior-information-on-your-research-topic",
+    "objectID": "slides/lec02-asking_q.html#where-to-find-prior-information-on-your-research-topic",
+    "href": "slides/lec02-asking_q.html#where-to-find-prior-information-on-your-research-topic",
     "title": "Formulating research questions",
     "section": "Where to find prior information on your research topic?",
     "text": "Where to find prior information on your research topic?\n\nGoogle ofc.\nLibrary for primary and secondary sources\n\n\n\n\nWhat are primary and secondary sources?\n\n\nAnswer the next set of questions in HackMD\n\n\n\n\nGive an example of a primary source of information.\nGive an example of a secondary source of information.\nWhat are some problems with secondary source literature?\n\n\n\n🔗 https://math615.netlify.app / Formulating research questions"
@@ -602,11 +637,11 @@
     "text": "Confirm import was successful\nOkay, did it work?\n\nLook in the top right Environment pane. Do you see a dataset named raw? Does it have an expected number of rows and columns?\nClick on the table icon to open the data set in a spreadsheet like view. Are the variable names correct? Does the data look correct?"
   },
   {
-    "objectID": "slides/lec03b-data_prep.html#initial-data-screening---whole-data-set",
-    "href": "slides/lec03b-data_prep.html#initial-data-screening---whole-data-set",
+    "objectID": "slides/lec03b-data_prep.html#initial-data-screening",
+    "href": "slides/lec03b-data_prep.html#initial-data-screening",
     "title": "Preparing your data for analysis",
-    "section": "Initial Data Screening - whole data set",
-    "text": "Initial Data Screening - whole data set\nUse functions like str() or glimpse() to see what data type R thinks your variables are for the whole data set\n\nglimpsestr\n\n\n\nglimpse(raw)    # from the tidyverse/dplyr dataset\n\nRows: 344\nColumns: 17\n$ studyName             &lt;chr&gt; \"PAL0708\", \"PAL0708\", \"PAL0708\", \"PAL0708\", \"PAL0708\", \"PAL0708\", \"PAL0708\", \"PAL0708\", \"PAL0708\", \"PAL0708\", \"PAL0708\", \"PAL0708\", \"PAL0708\", \"PAL0708\", \"PAL0708\", \"PA…\n$ `Sample Number`       &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 4…\n$ Species               &lt;chr&gt; \"Adelie Penguin (Pygoscelis adeliae)\", \"Adelie Penguin (Pygoscelis adeliae)\", \"Adelie Penguin (Pygoscelis adeliae)\", \"Adelie Penguin (Pygoscelis adeliae)\", \"Adelie Peng…\n$ Region                &lt;chr&gt; \"Anvers\", \"Anvers\", \"Anvers\", \"Anvers\", \"Anvers\", \"Anvers\", \"Anvers\", \"Anvers\", \"Anvers\", \"Anvers\", \"Anvers\", \"Anvers\", \"Anvers\", \"Anvers\", \"Anvers\", \"Anvers\", \"Anvers\"…\n$ Island                &lt;chr&gt; \"Torgersen\", \"Torgersen\", \"Torgersen\", \"Torgersen\", \"Torgersen\", \"Torgersen\", \"Torgersen\", \"Torgersen\", \"Torgersen\", \"Torgersen\", \"Torgersen\", \"Torgersen\", \"Torgersen\",…\n$ Stage                 &lt;chr&gt; \"Adult, 1 Egg Stage\", \"Adult, 1 Egg Stage\", \"Adult, 1 Egg Stage\", \"Adult, 1 Egg Stage\", \"Adult, 1 Egg Stage\", \"Adult, 1 Egg Stage\", \"Adult, 1 Egg Stage\", \"Adult, 1 Egg …\n$ `Individual ID`       &lt;chr&gt; \"N1A1\", \"N1A2\", \"N2A1\", \"N2A2\", \"N3A1\", \"N3A2\", \"N4A1\", \"N4A2\", \"N5A1\", \"N5A2\", \"N6A1\", \"N6A2\", \"N7A1\", \"N7A2\", \"N8A1\", \"N8A2\", \"N9A1\", \"N9A2\", \"N10A1\", \"N10A2\", \"N11A1…\n$ `Clutch Completion`   &lt;chr&gt; \"Yes\", \"Yes\", \"Yes\", \"Yes\", \"Yes\", \"Yes\", \"No\", \"No\", \"Yes\", \"Yes\", \"Yes\", \"Yes\", \"Yes\", \"Yes\", \"Yes\", \"Yes\", \"Yes\", \"Yes\", \"Yes\", \"Yes\", \"Yes\", \"Yes\", \"Yes\", \"Yes\", \"Y…\n$ `Date Egg`            &lt;date&gt; 2007-11-11, 2007-11-11, 2007-11-16, 2007-11-16, 2007-11-16, 2007-11-16, 2007-11-15, 2007-11-15, 2007-11-09, 2007-11-09, 2007-11-09, 2007-11-09, 2007-11-15, 2007-11-15,…\n$ `Culmen Length (mm)`  &lt;dbl&gt; 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1, 42.0, 37.8, 37.8, 41.1, 38.6, 34.6, 36.6, 38.7, 42.5, 34.4, 46.0, 37.8, 37.7, 35.9, 38.2, 38.8, 35.3, 40.6, 40.5, 37…\n$ `Culmen Depth (mm)`   &lt;dbl&gt; 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1, 20.2, 17.1, 17.3, 17.6, 21.2, 21.1, 17.8, 19.0, 20.7, 18.4, 21.5, 18.3, 18.7, 19.2, 18.1, 17.2, 18.9, 18.6, 17.9, 18…\n$ `Flipper Length (mm)` &lt;dbl&gt; 181, 186, 195, NA, 193, 190, 181, 195, 193, 190, 186, 180, 182, 191, 198, 185, 195, 197, 184, 194, 174, 180, 189, 185, 180, 187, 183, 187, 172, 180, 178, 178, 188, 184,…\n$ `Body Mass (g)`       &lt;dbl&gt; 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475, 4250, 3300, 3700, 3200, 3800, 4400, 3700, 3450, 4500, 3325, 4200, 3400, 3600, 3800, 3950, 3800, 3800, 3550, 3200, 31…\n$ Sex                   &lt;chr&gt; \"MALE\", \"FEMALE\", \"FEMALE\", NA, \"FEMALE\", \"MALE\", \"FEMALE\", \"MALE\", NA, NA, NA, NA, \"FEMALE\", \"MALE\", \"MALE\", \"FEMALE\", \"FEMALE\", \"MALE\", \"FEMALE\", \"MALE\", \"FEMALE\", \"M…\n$ `Delta 15 N (o/oo)`   &lt;dbl&gt; NA, 8.94956, 8.36821, NA, 8.76651, 8.66496, 9.18718, 9.46060, NA, 9.13362, 8.63243, NA, NA, NA, 8.55583, NA, 9.18528, 8.67538, 8.47827, 9.11616, 8.73762, 8.66271, 9.222…\n$ `Delta 13 C (o/oo)`   &lt;dbl&gt; NA, -24.69454, -25.33302, NA, -25.32426, -25.29805, -25.21799, -24.89958, NA, -25.09368, -25.21315, NA, NA, NA, -25.22588, NA, -25.06691, -25.13993, -25.23319, -24.7722…\n$ Comments              &lt;chr&gt; \"Not enough blood for isotopes.\", NA, NA, \"Adult not sampled.\", NA, NA, \"Nest never observed with full clutch.\", \"Nest never observed with full clutch.\", \"No blood samp…\n\n\n\n\n\nstr(raw)    \n\ntibble [344 × 17] (S3: tbl_df/tbl/data.frame)\n $ studyName          : chr [1:344] \"PAL0708\" \"PAL0708\" \"PAL0708\" \"PAL0708\" ...\n $ Sample Number      : num [1:344] 1 2 3 4 5 6 7 8 9 10 ...\n $ Species            : chr [1:344] \"Adelie Penguin (Pygoscelis adeliae)\" \"Adelie Penguin (Pygoscelis adeliae)\" \"Adelie Penguin (Pygoscelis adeliae)\" \"Adelie Penguin (Pygoscelis adeliae)\" ...\n $ Region             : chr [1:344] \"Anvers\" \"Anvers\" \"Anvers\" \"Anvers\" ...\n $ Island             : chr [1:344] \"Torgersen\" \"Torgersen\" \"Torgersen\" \"Torgersen\" ...\n $ Stage              : chr [1:344] \"Adult, 1 Egg Stage\" \"Adult, 1 Egg Stage\" \"Adult, 1 Egg Stage\" \"Adult, 1 Egg Stage\" ...\n $ Individual ID      : chr [1:344] \"N1A1\" \"N1A2\" \"N2A1\" \"N2A2\" ...\n $ Clutch Completion  : chr [1:344] \"Yes\" \"Yes\" \"Yes\" \"Yes\" ...\n $ Date Egg           : Date[1:344], format: \"2007-11-11\" \"2007-11-11\" \"2007-11-16\" \"2007-11-16\" ...\n $ Culmen Length (mm) : num [1:344] 39.1 39.5 40.3 NA 36.7 39.3 38.9 39.2 34.1 42 ...\n $ Culmen Depth (mm)  : num [1:344] 18.7 17.4 18 NA 19.3 20.6 17.8 19.6 18.1 20.2 ...\n $ Flipper Length (mm): num [1:344] 181 186 195 NA 193 190 181 195 193 190 ...\n $ Body Mass (g)      : num [1:344] 3750 3800 3250 NA 3450 ...\n $ Sex                : chr [1:344] \"MALE\" \"FEMALE\" \"FEMALE\" NA ...\n $ Delta 15 N (o/oo)  : num [1:344] NA 8.95 8.37 NA 8.77 ...\n $ Delta 13 C (o/oo)  : num [1:344] NA -24.7 -25.3 NA -25.3 ...\n $ Comments           : chr [1:344] \"Not enough blood for isotopes.\" NA NA \"Adult not sampled.\" ...\n - attr(*, \"spec\")=\n  .. cols(\n  ..   studyName = col_character(),\n  ..   `Sample Number` = col_double(),\n  ..   Species = col_character(),\n  ..   Region = col_character(),\n  ..   Island = col_character(),\n  ..   Stage = col_character(),\n  ..   `Individual ID` = col_character(),\n  ..   `Clutch Completion` = col_character(),\n  ..   `Date Egg` = col_date(format = \"\"),\n  ..   `Culmen Length (mm)` = col_double(),\n  ..   `Culmen Depth (mm)` = col_double(),\n  ..   `Flipper Length (mm)` = col_double(),\n  ..   `Body Mass (g)` = col_double(),\n  ..   Sex = col_character(),\n  ..   `Delta 15 N (o/oo)` = col_double(),\n  ..   `Delta 13 C (o/oo)` = col_double(),\n  ..   Comments = col_character()\n  .. )\n\n\n\n\n\nBoth views show you the variable names, data types, and what the data in the first few rows looks like."
+    "section": "Initial Data Screening",
+    "text": "Initial Data Screening\nUse functions like str() or glimpse() to see what data type R thinks your variables are for the whole data set\n\nglimpsestr\n\n\n\nglimpse(raw)    # from the tidyverse/dplyr dataset\n\nRows: 344\nColumns: 17\n$ studyName             &lt;chr&gt; \"PAL0708\", \"PAL0708\", \"PAL0708\", \"PAL0708\", \"PAL0708\", \"PAL0708\", \"PAL0708\", \"PAL0708\", \"PAL0708\", \"PAL0708\", \"PAL0708\", \"PAL0708\", \"PAL0708\", \"PAL0708\", \"PAL0708\", \"PA…\n$ `Sample Number`       &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 4…\n$ Species               &lt;chr&gt; \"Adelie Penguin (Pygoscelis adeliae)\", \"Adelie Penguin (Pygoscelis adeliae)\", \"Adelie Penguin (Pygoscelis adeliae)\", \"Adelie Penguin (Pygoscelis adeliae)\", \"Adelie Peng…\n$ Region                &lt;chr&gt; \"Anvers\", \"Anvers\", \"Anvers\", \"Anvers\", \"Anvers\", \"Anvers\", \"Anvers\", \"Anvers\", \"Anvers\", \"Anvers\", \"Anvers\", \"Anvers\", \"Anvers\", \"Anvers\", \"Anvers\", \"Anvers\", \"Anvers\"…\n$ Island                &lt;chr&gt; \"Torgersen\", \"Torgersen\", \"Torgersen\", \"Torgersen\", \"Torgersen\", \"Torgersen\", \"Torgersen\", \"Torgersen\", \"Torgersen\", \"Torgersen\", \"Torgersen\", \"Torgersen\", \"Torgersen\",…\n$ Stage                 &lt;chr&gt; \"Adult, 1 Egg Stage\", \"Adult, 1 Egg Stage\", \"Adult, 1 Egg Stage\", \"Adult, 1 Egg Stage\", \"Adult, 1 Egg Stage\", \"Adult, 1 Egg Stage\", \"Adult, 1 Egg Stage\", \"Adult, 1 Egg …\n$ `Individual ID`       &lt;chr&gt; \"N1A1\", \"N1A2\", \"N2A1\", \"N2A2\", \"N3A1\", \"N3A2\", \"N4A1\", \"N4A2\", \"N5A1\", \"N5A2\", \"N6A1\", \"N6A2\", \"N7A1\", \"N7A2\", \"N8A1\", \"N8A2\", \"N9A1\", \"N9A2\", \"N10A1\", \"N10A2\", \"N11A1…\n$ `Clutch Completion`   &lt;chr&gt; \"Yes\", \"Yes\", \"Yes\", \"Yes\", \"Yes\", \"Yes\", \"No\", \"No\", \"Yes\", \"Yes\", \"Yes\", \"Yes\", \"Yes\", \"Yes\", \"Yes\", \"Yes\", \"Yes\", \"Yes\", \"Yes\", \"Yes\", \"Yes\", \"Yes\", \"Yes\", \"Yes\", \"Y…\n$ `Date Egg`            &lt;date&gt; 2007-11-11, 2007-11-11, 2007-11-16, 2007-11-16, 2007-11-16, 2007-11-16, 2007-11-15, 2007-11-15, 2007-11-09, 2007-11-09, 2007-11-09, 2007-11-09, 2007-11-15, 2007-11-15,…\n$ `Culmen Length (mm)`  &lt;dbl&gt; 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1, 42.0, 37.8, 37.8, 41.1, 38.6, 34.6, 36.6, 38.7, 42.5, 34.4, 46.0, 37.8, 37.7, 35.9, 38.2, 38.8, 35.3, 40.6, 40.5, 37…\n$ `Culmen Depth (mm)`   &lt;dbl&gt; 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1, 20.2, 17.1, 17.3, 17.6, 21.2, 21.1, 17.8, 19.0, 20.7, 18.4, 21.5, 18.3, 18.7, 19.2, 18.1, 17.2, 18.9, 18.6, 17.9, 18…\n$ `Flipper Length (mm)` &lt;dbl&gt; 181, 186, 195, NA, 193, 190, 181, 195, 193, 190, 186, 180, 182, 191, 198, 185, 195, 197, 184, 194, 174, 180, 189, 185, 180, 187, 183, 187, 172, 180, 178, 178, 188, 184,…\n$ `Body Mass (g)`       &lt;dbl&gt; 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475, 4250, 3300, 3700, 3200, 3800, 4400, 3700, 3450, 4500, 3325, 4200, 3400, 3600, 3800, 3950, 3800, 3800, 3550, 3200, 31…\n$ Sex                   &lt;chr&gt; \"MALE\", \"FEMALE\", \"FEMALE\", NA, \"FEMALE\", \"MALE\", \"FEMALE\", \"MALE\", NA, NA, NA, NA, \"FEMALE\", \"MALE\", \"MALE\", \"FEMALE\", \"FEMALE\", \"MALE\", \"FEMALE\", \"MALE\", \"FEMALE\", \"M…\n$ `Delta 15 N (o/oo)`   &lt;dbl&gt; NA, 8.94956, 8.36821, NA, 8.76651, 8.66496, 9.18718, 9.46060, NA, 9.13362, 8.63243, NA, NA, NA, 8.55583, NA, 9.18528, 8.67538, 8.47827, 9.11616, 8.73762, 8.66271, 9.222…\n$ `Delta 13 C (o/oo)`   &lt;dbl&gt; NA, -24.69454, -25.33302, NA, -25.32426, -25.29805, -25.21799, -24.89958, NA, -25.09368, -25.21315, NA, NA, NA, -25.22588, NA, -25.06691, -25.13993, -25.23319, -24.7722…\n$ Comments              &lt;chr&gt; \"Not enough blood for isotopes.\", NA, NA, \"Adult not sampled.\", NA, NA, \"Nest never observed with full clutch.\", \"Nest never observed with full clutch.\", \"No blood samp…\n\n\n\n\n\nstr(raw)    \n\ntibble [344 × 17] (S3: tbl_df/tbl/data.frame)\n $ studyName          : chr [1:344] \"PAL0708\" \"PAL0708\" \"PAL0708\" \"PAL0708\" ...\n $ Sample Number      : num [1:344] 1 2 3 4 5 6 7 8 9 10 ...\n $ Species            : chr [1:344] \"Adelie Penguin (Pygoscelis adeliae)\" \"Adelie Penguin (Pygoscelis adeliae)\" \"Adelie Penguin (Pygoscelis adeliae)\" \"Adelie Penguin (Pygoscelis adeliae)\" ...\n $ Region             : chr [1:344] \"Anvers\" \"Anvers\" \"Anvers\" \"Anvers\" ...\n $ Island             : chr [1:344] \"Torgersen\" \"Torgersen\" \"Torgersen\" \"Torgersen\" ...\n $ Stage              : chr [1:344] \"Adult, 1 Egg Stage\" \"Adult, 1 Egg Stage\" \"Adult, 1 Egg Stage\" \"Adult, 1 Egg Stage\" ...\n $ Individual ID      : chr [1:344] \"N1A1\" \"N1A2\" \"N2A1\" \"N2A2\" ...\n $ Clutch Completion  : chr [1:344] \"Yes\" \"Yes\" \"Yes\" \"Yes\" ...\n $ Date Egg           : Date[1:344], format: \"2007-11-11\" \"2007-11-11\" \"2007-11-16\" \"2007-11-16\" ...\n $ Culmen Length (mm) : num [1:344] 39.1 39.5 40.3 NA 36.7 39.3 38.9 39.2 34.1 42 ...\n $ Culmen Depth (mm)  : num [1:344] 18.7 17.4 18 NA 19.3 20.6 17.8 19.6 18.1 20.2 ...\n $ Flipper Length (mm): num [1:344] 181 186 195 NA 193 190 181 195 193 190 ...\n $ Body Mass (g)      : num [1:344] 3750 3800 3250 NA 3450 ...\n $ Sex                : chr [1:344] \"MALE\" \"FEMALE\" \"FEMALE\" NA ...\n $ Delta 15 N (o/oo)  : num [1:344] NA 8.95 8.37 NA 8.77 ...\n $ Delta 13 C (o/oo)  : num [1:344] NA -24.7 -25.3 NA -25.3 ...\n $ Comments           : chr [1:344] \"Not enough blood for isotopes.\" NA NA \"Adult not sampled.\" ...\n - attr(*, \"spec\")=\n  .. cols(\n  ..   studyName = col_character(),\n  ..   `Sample Number` = col_double(),\n  ..   Species = col_character(),\n  ..   Region = col_character(),\n  ..   Island = col_character(),\n  ..   Stage = col_character(),\n  ..   `Individual ID` = col_character(),\n  ..   `Clutch Completion` = col_character(),\n  ..   `Date Egg` = col_date(format = \"\"),\n  ..   `Culmen Length (mm)` = col_double(),\n  ..   `Culmen Depth (mm)` = col_double(),\n  ..   `Flipper Length (mm)` = col_double(),\n  ..   `Body Mass (g)` = col_double(),\n  ..   Sex = col_character(),\n  ..   `Delta 15 N (o/oo)` = col_double(),\n  ..   `Delta 13 C (o/oo)` = col_double(),\n  ..   Comments = col_character()\n  .. )\n\n\n\n\n\nBoth views show you the variable names, data types, and what the data in the first few rows looks like."
   },
   {
     "objectID": "slides/lec03b-data_prep.html#initial-data-screening---single-variable",
@@ -679,11 +714,67 @@
     "text": "Closing thoughts\n\nDo not underestimate the importance of this step\nIt will take you far, far longer than you anticipate to ‘clean’ your data\nWriting code (in any language) will be challenging, but will pay off in the long run\n\n\n\n🔗 https://math615.netlify.app / Preparing your data for analysis"
   },
   {
+    "objectID": "slides/lec04-describing_distributions.html#motivation",
+    "href": "slides/lec04-describing_distributions.html#motivation",
+    "title": "Describing Distributions of Data",
+    "section": "Motivation",
+    "text": "Motivation\nVisualizing your data is hands down the most important thing you can learn to do.\n\nScreen for data entry errors\nOut of range variables\nMistakes in coding\nViolation of model assumptions"
+  },
+  {
+    "objectID": "slides/lec04-describing_distributions.html#level-of-care-depends-on-the-audience",
+    "href": "slides/lec04-describing_distributions.html#level-of-care-depends-on-the-audience",
+    "title": "Describing Distributions of Data",
+    "section": "Level of care depends on the audience",
+    "text": "Level of care depends on the audience\nThere are three main audiences in mind when creating data visualizations:\n\nFor your eyes only (FYEO). These are quick and dirty plots, without annotation. Meant to be looked at once or twice.\n\nYou’ll create a TON of these. Don’t spend a ton of time on them.\n\n\n\n\nTo share with others internally. These mostly need to stand on their own. Axes labels, titles, colors as needed, possibly captions.\n\nYou’ll create a lot of these, and you’ll get better with practice at adding necessary annotation without a lot of time\n\n\n\n\n\nProfessional - Contains all bells and whistles needed to make it publication quality.\n\nYou’ll create very few of these, but they demand a lot of time, detail and thought."
+  },
+  {
+    "objectID": "slides/lec04-describing_distributions.html#graphing-with-intent",
+    "href": "slides/lec04-describing_distributions.html#graphing-with-intent",
+    "title": "Describing Distributions of Data",
+    "section": "Graphing with intent",
+    "text": "Graphing with intent\nAlong with having the audience in mind, it is important to give thought to the purpose of the chart.\n\nThe effectiveness of any visualization can be measured according to how well it fulfills the tasks it was designed for. (A. Cairo, 2018)."
+  },
+  {
+    "objectID": "slides/lec04-describing_distributions.html#choosing-appropriate-visualization",
+    "href": "slides/lec04-describing_distributions.html#choosing-appropriate-visualization",
+    "title": "Describing Distributions of Data",
+    "section": "Choosing Appropriate Visualization",
+    "text": "Choosing Appropriate Visualization\n75% of your choice is determined by the data type\nhttps://r-graph-gallery.com/"
+  },
+  {
+    "objectID": "slides/lec04-describing_distributions.html#single-categorical",
+    "href": "slides/lec04-describing_distributions.html#single-categorical",
+    "title": "Describing Distributions of Data",
+    "section": "Single Categorical",
+    "text": "Single Categorical\n\nTablesPlots\n\n\nFrequencies (N)\n\ntable(pen$species)\n\n\n   Adelie Chinstrap    Gentoo \n      152        68       124 \n\n\nPercents (%)\n\ntable(pen$species) |&gt; proportions() |&gt; round(digits=2)\n\n\n   Adelie Chinstrap    Gentoo \n     0.44      0.20      0.36 \n\n\nPenguin species Adelie make up 44% of the sample (n=152)\n\n\n\nsjPlot::plot_frq(pen$species) + xlab(\"Species\")"
+  },
+  {
+    "objectID": "slides/lec04-describing_distributions.html#single-numeric",
+    "href": "slides/lec04-describing_distributions.html#single-numeric",
+    "title": "Describing Distributions of Data",
+    "section": "Single Numeric",
+    "text": "Single Numeric\n\nCenterSpreadPlots\n\n\n\nsummary(pen$bill_depth_mm)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's \n  13.10   15.60   17.30   17.15   18.70   21.50       2 \n\nsd(pen$bill_depth_mm, na.rm=TRUE)\n\n[1] 1.974793\n\n\n\n\nThe average bill depth is 17.15mm, with a standard deviation of 1.9mm.\n\n\n\nsummary(pen$bill_depth_mm)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's \n  13.10   15.60   17.30   17.15   18.70   21.50       2 \n\nIQR(pen$bill_depth_mm, na.rm=TRUE)\n\n[1] 3.1\n\n\n\n\nBill depth ranges from 13.1 to 21.5mm, and has an IQR of 3.1mm.\n\n\n\n\n\nggpubr::gghistogram(pen$bill_depth_mm, add_density = TRUE)\n\n\n\n\n\n\nggpubr::ggviolin(pen$bill_depth_mm, add = c(\"jitter\", \"boxplot\")) + coord_flip()\n\n\n\n\n\n\nThe distribution of bill depth appears to be bimodal with peaks around 15 and 18mm."
+  },
+  {
+    "objectID": "slides/lec04-describing_distributions.html#how-to-create-graphs",
+    "href": "slides/lec04-describing_distributions.html#how-to-create-graphs",
+    "title": "Describing Distributions of Data",
+    "section": "How to create graphs",
+    "text": "How to create graphs\n\nSimilar to the data management section, after identifying what you want to do, you go look up how to do that thing.\nDon’t expect to remember the exact code yet, just know where to look up an example and copy from there\n\nPrior semester SPSS students crated a HackMD collaborative notes file for sharing code. [LINK]\nNeed these for other languages!\n\ncopy/paste/pray\nKeep graphs simple until you get more comfortable."
+  },
+  {
+    "objectID": "slides/lec04-describing_distributions.html#references",
+    "href": "slides/lec04-describing_distributions.html#references",
+    "title": "Describing Distributions of Data",
+    "section": "References",
+    "text": "References\n\nPMA6 Chapter 4 for appropriate plot choices\nApplied Stats course Notes Chapter 2.3 for examples and code\nHackMD Notes for Code specific notes\nR specific help on the Math 130 class page\nsjPlot vignette: https://strengejacke.github.io/sjPlot/index.html\nggpubr vignette: https://rpkgs.datanovia.com/ggpubr/\nggplot vignette: https://ggplot2.tidyverse.org/index.html\nR graphics cookbook: https://r-graphics.org/\n\n\n\n🔗 https://math615.netlify.app / Describing Distributions of Data"
+  },
+  {
     "objectID": "slides.html",
     "href": "slides.html",
     "title": "All Slides",
     "section": "",
-    "text": "Slides will open in full screen. Right click to open in a new tab\n\n\n\n\n\n\n\n\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Topic\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\nWeek Duration\n\n\nTopic\n\n\n\n\n\n\nAug 21, 2023\n\n\n1\n\n\nWelcome to MATH 615\n\n\n\n\nAug 21, 2023\n\n\n1\n\n\nData Architecture\n\n\n\n\nAug 28, 2023\n\n\n2\n\n\nFormulating research questions\n\n\n\n\nAug 30, 2023\n\n\n3\n\n\nWorkflows for Reproducibility\n\n\n\n\nAug 30, 2023\n\n\n3, 4\n\n\nPreparing your data for analysis\n\n\n\n\n\n\nNo matching items"
+    "text": "Slides will open in full screen. Right click to open in a new tab\n\n\n\n\n\n\n\n\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Topic\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\nWeek Duration\n\n\nTopic\n\n\n\n\n\n\nAug 21, 2023\n\n\n1\n\n\nWelcome to MATH 615\n\n\n\n\nAug 21, 2023\n\n\n1\n\n\nData Architecture\n\n\n\n\nAug 28, 2023\n\n\n2\n\n\nFormulating research questions\n\n\n\n\nAug 30, 2023\n\n\n3\n\n\nWorkflows for Reproducibility\n\n\n\n\nAug 30, 2023\n\n\n2, 3\n\n\nPreparing your data for analysis\n\n\n\n\nSep 12, 2023\n\n\n4\n\n\nDescribing Distributions of Data\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "syllabus.html",
@@ -959,59 +1050,38 @@
     "text": "Other references\n\nANYTHING by Danielle Navarro or Jenny Bryan\nR projects\nWhy should I use the here package when I’m already using projects?\nHello, Quarto\n\n\nWhere you’ll start\n\n\n\n\nWhere you’ll end up"
   },
   {
+    "objectID": "topics/t04-describing_distributions.html",
+    "href": "topics/t04-describing_distributions.html",
+    "title": "Describing distributions of data",
+    "section": "",
+    "text": "Importing & starting to wrangle our data\n\n\n\nReady to visualize and learn characteristics of our data.\n\n\n\n\n\n\nCreate appropriate summary statistics and visualizations for different types of data."
+  },
+  {
+    "objectID": "topics/t04-describing_distributions.html#learning-path",
+    "href": "topics/t04-describing_distributions.html#learning-path",
+    "title": "Describing distributions of data",
+    "section": "",
+    "text": "Importing & starting to wrangle our data\n\n\n\nReady to visualize and learn characteristics of our data.\n\n\n\n\n\n\nCreate appropriate summary statistics and visualizations for different types of data."
+  },
+  {
+    "objectID": "topics/t04-describing_distributions.html#learning-materials",
+    "href": "topics/t04-describing_distributions.html#learning-materials",
+    "title": "Describing distributions of data",
+    "section": "Learning Materials",
+    "text": "Learning Materials\n Slides (Will open in full screen. Right click to open in a new tab)\n\n\n\nlec04-describing_distributions\n\n\n\n\n📚 Reading\n\n\n\nPMA6 Ch 4\n\nASCN Ch 2.3\n\n\n\n\n\n📝 Collaborative notes\n\n\n\nNA"
+  },
+  {
+    "objectID": "topics/t04-describing_distributions.html#assignments",
+    "href": "topics/t04-describing_distributions.html#assignments",
+    "title": "Describing distributions of data",
+    "section": "Assignments",
+    "text": "Assignments\n\n\n\nHW04 Describing Distributions"
+  },
+  {
     "objectID": "topics.html",
     "href": "topics.html",
     "title": "Topic Areas",
     "section": "",
-    "text": "This is the place to start to find all content related to a topic.\n\n\n\n\n\n\n\n\n\n\nTopic\n\n\nDates\n\n\nDescription\n\n\n\n\n\n\nWelcome to Fall 23\n\n\n8/21\n\n\nIntroduction to class and your learning materials\n\n\n\n\nData Architecture\n\n\n8/21\n\n\nData entry, spreadsheets, metadata, codebooks\n\n\n\n\nFormulating research questions\n\n\n8/28\n\n\nAsking questions is easy. Asking answerable questions is more difficult.\n\n\n\n\nPreparing Data for Analysis\n\n\n8/30-9/10\n\n\nWhere an inordinate amount of time is spent\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "slides/lec03b-data_prep.html#initial-data-screening",
-    "href": "slides/lec03b-data_prep.html#initial-data-screening",
-    "title": "Preparing your data for analysis",
-    "section": "Initial Data Screening",
-    "text": "Initial Data Screening\nUse functions like str() or glimpse() to see what data type R thinks your variables are for the whole data set\n\nglimpsestr\n\n\n\nglimpse(raw)    # from the tidyverse/dplyr dataset\n\nRows: 344\nColumns: 17\n$ studyName             &lt;chr&gt; \"PAL0708\", \"PAL0708\", \"PAL0708\", \"PAL0708\", \"PAL0708\", \"PAL0708\", \"PAL0708\", \"PAL0708\", \"PAL0708\", \"PAL0708\", \"PAL0708\", \"PAL0708\", \"PAL0708\", \"PAL0708\", \"PAL0708\", \"PA…\n$ `Sample Number`       &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 4…\n$ Species               &lt;chr&gt; \"Adelie Penguin (Pygoscelis adeliae)\", \"Adelie Penguin (Pygoscelis adeliae)\", \"Adelie Penguin (Pygoscelis adeliae)\", \"Adelie Penguin (Pygoscelis adeliae)\", \"Adelie Peng…\n$ Region                &lt;chr&gt; \"Anvers\", \"Anvers\", \"Anvers\", \"Anvers\", \"Anvers\", \"Anvers\", \"Anvers\", \"Anvers\", \"Anvers\", \"Anvers\", \"Anvers\", \"Anvers\", \"Anvers\", \"Anvers\", \"Anvers\", \"Anvers\", \"Anvers\"…\n$ Island                &lt;chr&gt; \"Torgersen\", \"Torgersen\", \"Torgersen\", \"Torgersen\", \"Torgersen\", \"Torgersen\", \"Torgersen\", \"Torgersen\", \"Torgersen\", \"Torgersen\", \"Torgersen\", \"Torgersen\", \"Torgersen\",…\n$ Stage                 &lt;chr&gt; \"Adult, 1 Egg Stage\", \"Adult, 1 Egg Stage\", \"Adult, 1 Egg Stage\", \"Adult, 1 Egg Stage\", \"Adult, 1 Egg Stage\", \"Adult, 1 Egg Stage\", \"Adult, 1 Egg Stage\", \"Adult, 1 Egg …\n$ `Individual ID`       &lt;chr&gt; \"N1A1\", \"N1A2\", \"N2A1\", \"N2A2\", \"N3A1\", \"N3A2\", \"N4A1\", \"N4A2\", \"N5A1\", \"N5A2\", \"N6A1\", \"N6A2\", \"N7A1\", \"N7A2\", \"N8A1\", \"N8A2\", \"N9A1\", \"N9A2\", \"N10A1\", \"N10A2\", \"N11A1…\n$ `Clutch Completion`   &lt;chr&gt; \"Yes\", \"Yes\", \"Yes\", \"Yes\", \"Yes\", \"Yes\", \"No\", \"No\", \"Yes\", \"Yes\", \"Yes\", \"Yes\", \"Yes\", \"Yes\", \"Yes\", \"Yes\", \"Yes\", \"Yes\", \"Yes\", \"Yes\", \"Yes\", \"Yes\", \"Yes\", \"Yes\", \"Y…\n$ `Date Egg`            &lt;date&gt; 2007-11-11, 2007-11-11, 2007-11-16, 2007-11-16, 2007-11-16, 2007-11-16, 2007-11-15, 2007-11-15, 2007-11-09, 2007-11-09, 2007-11-09, 2007-11-09, 2007-11-15, 2007-11-15,…\n$ `Culmen Length (mm)`  &lt;dbl&gt; 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1, 42.0, 37.8, 37.8, 41.1, 38.6, 34.6, 36.6, 38.7, 42.5, 34.4, 46.0, 37.8, 37.7, 35.9, 38.2, 38.8, 35.3, 40.6, 40.5, 37…\n$ `Culmen Depth (mm)`   &lt;dbl&gt; 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1, 20.2, 17.1, 17.3, 17.6, 21.2, 21.1, 17.8, 19.0, 20.7, 18.4, 21.5, 18.3, 18.7, 19.2, 18.1, 17.2, 18.9, 18.6, 17.9, 18…\n$ `Flipper Length (mm)` &lt;dbl&gt; 181, 186, 195, NA, 193, 190, 181, 195, 193, 190, 186, 180, 182, 191, 198, 185, 195, 197, 184, 194, 174, 180, 189, 185, 180, 187, 183, 187, 172, 180, 178, 178, 188, 184,…\n$ `Body Mass (g)`       &lt;dbl&gt; 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475, 4250, 3300, 3700, 3200, 3800, 4400, 3700, 3450, 4500, 3325, 4200, 3400, 3600, 3800, 3950, 3800, 3800, 3550, 3200, 31…\n$ Sex                   &lt;chr&gt; \"MALE\", \"FEMALE\", \"FEMALE\", NA, \"FEMALE\", \"MALE\", \"FEMALE\", \"MALE\", NA, NA, NA, NA, \"FEMALE\", \"MALE\", \"MALE\", \"FEMALE\", \"FEMALE\", \"MALE\", \"FEMALE\", \"MALE\", \"FEMALE\", \"M…\n$ `Delta 15 N (o/oo)`   &lt;dbl&gt; NA, 8.94956, 8.36821, NA, 8.76651, 8.66496, 9.18718, 9.46060, NA, 9.13362, 8.63243, NA, NA, NA, 8.55583, NA, 9.18528, 8.67538, 8.47827, 9.11616, 8.73762, 8.66271, 9.222…\n$ `Delta 13 C (o/oo)`   &lt;dbl&gt; NA, -24.69454, -25.33302, NA, -25.32426, -25.29805, -25.21799, -24.89958, NA, -25.09368, -25.21315, NA, NA, NA, -25.22588, NA, -25.06691, -25.13993, -25.23319, -24.7722…\n$ Comments              &lt;chr&gt; \"Not enough blood for isotopes.\", NA, NA, \"Adult not sampled.\", NA, NA, \"Nest never observed with full clutch.\", \"Nest never observed with full clutch.\", \"No blood samp…\n\n\n\n\n\nstr(raw)    \n\ntibble [344 × 17] (S3: tbl_df/tbl/data.frame)\n $ studyName          : chr [1:344] \"PAL0708\" \"PAL0708\" \"PAL0708\" \"PAL0708\" ...\n $ Sample Number      : num [1:344] 1 2 3 4 5 6 7 8 9 10 ...\n $ Species            : chr [1:344] \"Adelie Penguin (Pygoscelis adeliae)\" \"Adelie Penguin (Pygoscelis adeliae)\" \"Adelie Penguin (Pygoscelis adeliae)\" \"Adelie Penguin (Pygoscelis adeliae)\" ...\n $ Region             : chr [1:344] \"Anvers\" \"Anvers\" \"Anvers\" \"Anvers\" ...\n $ Island             : chr [1:344] \"Torgersen\" \"Torgersen\" \"Torgersen\" \"Torgersen\" ...\n $ Stage              : chr [1:344] \"Adult, 1 Egg Stage\" \"Adult, 1 Egg Stage\" \"Adult, 1 Egg Stage\" \"Adult, 1 Egg Stage\" ...\n $ Individual ID      : chr [1:344] \"N1A1\" \"N1A2\" \"N2A1\" \"N2A2\" ...\n $ Clutch Completion  : chr [1:344] \"Yes\" \"Yes\" \"Yes\" \"Yes\" ...\n $ Date Egg           : Date[1:344], format: \"2007-11-11\" \"2007-11-11\" \"2007-11-16\" \"2007-11-16\" ...\n $ Culmen Length (mm) : num [1:344] 39.1 39.5 40.3 NA 36.7 39.3 38.9 39.2 34.1 42 ...\n $ Culmen Depth (mm)  : num [1:344] 18.7 17.4 18 NA 19.3 20.6 17.8 19.6 18.1 20.2 ...\n $ Flipper Length (mm): num [1:344] 181 186 195 NA 193 190 181 195 193 190 ...\n $ Body Mass (g)      : num [1:344] 3750 3800 3250 NA 3450 ...\n $ Sex                : chr [1:344] \"MALE\" \"FEMALE\" \"FEMALE\" NA ...\n $ Delta 15 N (o/oo)  : num [1:344] NA 8.95 8.37 NA 8.77 ...\n $ Delta 13 C (o/oo)  : num [1:344] NA -24.7 -25.3 NA -25.3 ...\n $ Comments           : chr [1:344] \"Not enough blood for isotopes.\" NA NA \"Adult not sampled.\" ...\n - attr(*, \"spec\")=\n  .. cols(\n  ..   studyName = col_character(),\n  ..   `Sample Number` = col_double(),\n  ..   Species = col_character(),\n  ..   Region = col_character(),\n  ..   Island = col_character(),\n  ..   Stage = col_character(),\n  ..   `Individual ID` = col_character(),\n  ..   `Clutch Completion` = col_character(),\n  ..   `Date Egg` = col_date(format = \"\"),\n  ..   `Culmen Length (mm)` = col_double(),\n  ..   `Culmen Depth (mm)` = col_double(),\n  ..   `Flipper Length (mm)` = col_double(),\n  ..   `Body Mass (g)` = col_double(),\n  ..   Sex = col_character(),\n  ..   `Delta 15 N (o/oo)` = col_double(),\n  ..   `Delta 13 C (o/oo)` = col_double(),\n  ..   Comments = col_character()\n  .. )\n\n\n\n\n\nBoth views show you the variable names, data types, and what the data in the first few rows looks like."
-  },
-  {
-    "objectID": "slides/lec02-asking_q.html",
-    "href": "slides/lec02-asking_q.html",
-    "title": "Formulating research questions",
-    "section": "",
-    "text": "Example\n\n\n\nIs there a relationship between smoking frequency and suicide?"
-  },
-  {
-    "objectID": "slides/lec02-asking_q.html#a-research-hypothesis-poses-a-question-about-the-relationship-between-two-or-more-measurable-characteristics.",
-    "href": "slides/lec02-asking_q.html#a-research-hypothesis-poses-a-question-about-the-relationship-between-two-or-more-measurable-characteristics.",
-    "title": "Formulating research questions",
-    "section": "A Research Hypothesis poses a question about the relationship between two or more measurable characteristics.",
-    "text": "A Research Hypothesis poses a question about the relationship between two or more measurable characteristics.\n\n\n\nExample\n\n\nIs there a relationship between smoking frequency and suicide?"
-  },
-  {
-    "objectID": "slides/lec02-asking_q.html#simple-vs-complex",
-    "href": "slides/lec02-asking_q.html#simple-vs-complex",
-    "title": "Formulating research questions",
-    "section": "Simple vs Complex",
-    "text": "Simple vs Complex\n\n\n\n\n\n\nSimple Hypothesis\n\n\nIs there a relationship between smoking frequency and suicide?\n\n\n\n\n\n\nSimple relationship between two measures\nCan be answered with a ‘yes’ or ‘no’\n\n\n\n\n\n\n\n\nComplex Hypothesis\n\n\nDoes smoking frequency exacerbate poor mental health outcomes such as anxiety, depression and suicide?\n\n\n\n\n\n\nStated as a relationship between multiple variables\nCan’t be answered directly but through multiple sub-questions"
-  },
-  {
-    "objectID": "slides/lec02-asking_q.html#null-vs-alternative",
-    "href": "slides/lec02-asking_q.html#null-vs-alternative",
-    "title": "Formulating research questions",
-    "section": "Null vs Alternative",
-    "text": "Null vs Alternative\nAKA Statistical Hypothesis\n\n\n\n\n\n\nNull Hypothesis\n\n\nDrug X has no affect on outcome Y\n\n\n\n\n\n\nStated as no relationship\nthe ‘status quo’ or current status\n\n\n\n\n\n\n\n\nAlternative Hypothesis\n\n\nDrug X is associated with a change in outcome Y\n\n\n\n\n\n\nstated as a relationship exists\ntypically what you hope to show"
-  },
-  {
-    "objectID": "slides/lec02-asking_q.html#collaborative-discussion",
-    "href": "slides/lec02-asking_q.html#collaborative-discussion",
-    "title": "Formulating research questions",
-    "section": "Collaborative discussion",
-    "text": "Collaborative discussion\n\n\n\nDiscuss each question below with your neighbor.\n\n\nRespond to the first three prompts in the HackMD Formulating Research Questions collaborative notes. Put your names next to your answer.\n\n\n\n\nWhat are the characteristics of a good research question?\n\nWhat is the one essential document you need to review before you can formulate a research question?\nWrite an example of a research question"
-  },
-  {
-    "objectID": "slides/lec02-asking_q.html#where-to-find-prior-information-on-your-research-topic",
-    "href": "slides/lec02-asking_q.html#where-to-find-prior-information-on-your-research-topic",
-    "title": "Formulating research questions",
-    "section": "Where to find prior information on your research topic?",
-    "text": "Where to find prior information on your research topic?\n\nGoogle ofc.\nLibrary for primary and secondary sources\n\n\n\n\nWhat are primary and secondary sources?\n\n\nAnswer the next set of questions in HackMD\n\n\n\n\nGive an example of a primary source of information.\nGive an example of a secondary source of information.\nWhat are some problems with secondary source literature?\n\n\n\n🔗 https://math615.netlify.app / Formulating research questions"
+    "text": "This is the place to start to find all content related to a topic.\n\n\n\n\n\n\n\n\n\n\nTopic\n\n\nDates\n\n\nDescription\n\n\n\n\n\n\nWelcome to Fall 23\n\n\n8/21\n\n\nIntroduction to class and your learning materials\n\n\n\n\nData Architecture\n\n\n8/21\n\n\nData entry, spreadsheets, metadata, codebooks\n\n\n\n\nFormulating research questions\n\n\n8/28\n\n\nAsking questions is easy. Asking answerable questions is more difficult.\n\n\n\n\nPreparing Data for Analysis\n\n\n8/30-9/10\n\n\nWhere an inordinate amount of time is spent\n\n\n\n\nDescribing distributions of data\n\n\n9/11-9/17\n\n\nVisualizing your data is the first line of defense against bad data\n\n\n\n\n\n\nNo matching items"
   }
 ]
