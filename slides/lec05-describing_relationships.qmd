@@ -1,14 +1,12 @@
 ---
 title: "Describing Relationships between variables"
-date: "2022-09-19"
+date: "2023-09-18"
 description: "5, 6"
 author: "Robin Donatello"
-footer: "[🔗 https://math615.netlify.app](https://math615.netlify.app) / Describing  Relationships"
 from: markdown+emoji
 format: 
   revealjs:
-    theme: beige
-    multiplex: true
+    theme: sky
     transition: fade
     slide-number: true
     incremental: false 
@@ -18,8 +16,6 @@ format:
 execute:
   freeze: auto
   echo: true
-  message: false
-  warning: false
 knitr:
   opts_chunk: 
     R.options:
@@ -51,13 +47,14 @@ Model notation: $y \sim x$
 #  {background-image="images/penguins.png" background-size="60%"}
 
 ```{r}
-library(tidyverse);
-library(palmerpenguins);  library(sjPlot); library(ggpubr)
-
+#| code-fold: false
+library(tidyverse); library(ggpubr)
+library(palmerpenguins);  library(sjPlot)
 pen <- penguins
 ```
 
-## Categorical response & Categorical explanatory
+## C \~ C {.smaller}
+Categorical Response vs Categorical Explanatory
 
 ::: panel-tabset
 ### Two way tables (cross-tabs)
@@ -158,7 +155,9 @@ plot_xtab(pen$island, grp=pen$species,
 :::
 :::
 
-## Quantitative response & Categorical explanatory {.smaller}
+## Q \~ C {.smaller}
+
+Quantitative Response vs Categorical Explanatory
 
 ::: panel-tabset
 ### Grouped summary statistics
@@ -214,7 +213,8 @@ ggviolin(pen,
 The distribution of bill depth are fairly normal for each species, with some higher end values causing a slight right skew for Adelie and Gentoo.
 :::
 
-## Quantitative response & Quantitative explanatory
+## Q \~ Q {.smaller}
+Quantitative Response vs Quantitative Explanatory 
 
 ::: panel-tabset
 ### Summary statistic

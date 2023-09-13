@@ -11,8 +11,8 @@
   <meta name="generator" content="quarto-1.3.353">
 
   <meta name="author" content="Robin Donatello">
-  <meta name="dcterms.date" content="2023-09-12">
-  <title>Data Analysis for Graduate Research - Describing Distributions of Data</title>
+  <meta name="dcterms.date" content="2023-09-18">
+  <title>Data Analysis for Graduate Research - Describing Relationships between variables</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -387,8 +387,8 @@
       margin-right: 0; 
     }
   </style>
-<meta name="twitter:title" content="Data Analysis for Graduate Research - Describing Distributions of Data">
-<meta name="twitter:description" content="4">
+<meta name="twitter:title" content="Data Analysis for Graduate Research - Describing Relationships between variables">
+<meta name="twitter:description" content="5, 6">
 <meta name="twitter:creator" content="@norcalbiostat">
 <meta name="twitter:card" content="summary">
 </head>
@@ -397,7 +397,7 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Describing Distributions of Data</h1>
+  <h1 class="title">Describing Relationships between variables</h1>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -407,191 +407,344 @@ Robin Donatello
 </div>
 </div>
 
-  <p class="date">2023-09-12</p>
-</section>
-<section id="motivation" class="slide level2">
-<h2>Motivation</h2>
-<p>Visualizing your data is hands down the most important thing you can learn to do.</p>
-<ul>
-<li>Screen for data entry errors</li>
-<li>Out of range variables</li>
-<li>Mistakes in coding</li>
-<li>Violation of model assumptions</li>
-</ul>
-</section>
-<section id="level-of-care-depends-on-the-audience" class="slide level2 smaller">
-<h2>Level of care depends on the audience</h2>
-<p>There are three main audiences in mind when creating data visualizations:</p>
-<ol type="1">
-<li>For your eyes only (FYEO). These are quick and dirty plots, without annotation. Meant to be looked at once or twice.
-<ul>
-<li>You’ll create a TON of these. Don’t spend a ton of time on them.</li>
-</ul></li>
-</ol>
-<div class="fragment">
-<ol start="2" type="1">
-<li>To share with others internally. These mostly need to stand on their own. Axes labels, titles, colors as needed, possibly captions.
-<ul>
-<li>You’ll create a lot of these, and you’ll get better with practice at adding necessary annotation without a lot of time</li>
-</ul></li>
-</ol>
-</div>
-<div class="fragment">
-<ol start="3" type="1">
-<li>Professional - Contains all bells and whistles needed to make it publication quality.
-<ul>
-<li>You’ll create very few of these, but they demand a lot of time, detail and thought.</li>
-</ul></li>
-</ol>
-</div>
-</section>
-<section id="graphing-with-intent" class="slide level2">
-<h2>Graphing with intent</h2>
-<p>Along with having the audience in mind, it is important to give thought to the purpose of the chart.</p>
-<blockquote>
-<p>The effectiveness of any visualization can be measured according to how well it fulfills the tasks it was designed for. (A. Cairo, 2018).</p>
-</blockquote>
-</section>
-<section id="choosing-appropriate-visualization" class="slide level2">
-<h2>Choosing Appropriate Visualization</h2>
-<p>75% of your choice is determined by the data type</p>
-<p><a href="https://r-graph-gallery.com/">https://r-graph-gallery.com/</a></p>
+  <p class="date">2023-09-18</p>
 </section>
 <section>
-<section id="section" class="title-slide slide level1 center" data-background-image="images/penguins.png" data-background-size="50%">
-<h1></h1>
+<section id="bivariate-association-between-2-variables" class="title-slide slide level1 center">
+<h1>Bivariate: Association between 2 variables</h1>
 
 </section>
-<h3 id="meet-the-palmer-penguins">Meet the Palmer Penguins</h3>
+<section id="naming-conventions" class="slide level2">
+<h2>Naming conventions</h2>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Response</th>
+<th style="text-align: center;">Explanatory</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">y</td>
+<td style="text-align: center;">x</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">outcome</td>
+<td style="text-align: center;">predictor</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">dependent variable</td>
+<td style="text-align: center;">independent variable</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;">covariate</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: center;">feature</td>
+</tr>
+</tbody>
+</table>
+<p><br>
+</p>
+<p>Model notation: <span class="math inline">\(y \sim x\)</span></p>
+</section>
+<section id="types-of-combinations" class="slide level2">
+<h2>Types of combinations</h2>
+<ul>
+<li>Categorical response and categorical explanatory variable. (C ~ C)</li>
+<li>Quantitative response and categorical explanatory variable. (Q ~ C)</li>
+<li>Quantitative response and quantitative explanatory variable. (Q ~ Q)</li>
+</ul>
+</section></section>
+<section>
+<section id="section" class="title-slide slide level1 center" data-background-image="images/penguins.png" data-background-size="60%">
+<h1></h1>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(palmerpenguins)</span>
-<span id="cb1-2"><a href="#cb1-2"></a>pen <span class="ot">&lt;-</span> penguins <span class="co"># because i don't want to type out penguins every time</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<section id="single-categorical" class="slide level2" data-background-image="images/penguins.png" data-background-size="20%" data-background-position="80% 10%">
-<h2>Single Categorical</h2>
-<div class="panel-tabset">
-<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">Tables</a></li><li><a href="#tabset-1-2">Plots</a></li></ul>
-<div class="tab-content">
-<div id="tabset-1-1">
-<p><strong>Frequencies (N)</strong></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">table</span>(pen<span class="sc">$</span>species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-   Adelie Chinstrap    Gentoo 
-      152        68       124 </code></pre>
-</div>
-</div>
-<p><strong>Percents (%)</strong></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">table</span>(pen<span class="sc">$</span>species) <span class="sc">|&gt;</span> <span class="fu">proportions</span>() <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="at">digits=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-   Adelie Chinstrap    Gentoo 
-     0.44      0.20      0.36 </code></pre>
-</div>
-</div>
-<p>Penguin species <em>Adelie</em> make up 44% of the sample (n=152)</p>
-</div>
-<div id="tabset-1-2">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>sjPlot<span class="sc">::</span><span class="fu">plot_frq</span>(pen<span class="sc">$</span>species) <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">"Species"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img data-src="lec04-describing_distributions_files/figure-revealjs/unnamed-chunk-4-1.png" width="960"></p>
-</div>
-</div>
-</div>
-</div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse); <span class="fu">library</span>(ggpubr)</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(palmerpenguins);  <span class="fu">library</span>(sjPlot)</span>
+<span id="cb1-3"><a href="#cb1-3"></a>pen <span class="ot">&lt;-</span> penguins</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="single-numeric" class="slide level2" data-background-image="images/culmen_depth.png" data-background-size="25%" data-background-position="100% 0%">
-<h2>Single Numeric</h2>
+<section id="c-c" class="slide level2 smaller">
+<h2>C ~ C</h2>
+<p>Categorical Response vs Categorical Explanatory</p>
 <div class="panel-tabset">
-<ul id="tabset-2" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-2-1">Center</a></li><li><a href="#tabset-2-2">Spread</a></li><li><a href="#tabset-2-3">Plots</a></li></ul>
+<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">Two way tables (cross-tabs)</a></li><li><a href="#tabset-1-2">Plots</a></li></ul>
 <div class="tab-content">
-<div id="tabset-2-1">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">summary</span>(pen<span class="sc">$</span>bill_depth_mm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
-  13.10   15.60   17.30   17.15   18.70   21.50       2 </code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">sd</span>(pen<span class="sc">$</span>bill_depth_mm, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 1.974793</code></pre>
-</div>
-</div>
-<p><br>
-</p>
-<p>The average bill depth is 17.15mm, with a standard deviation of 1.9mm.</p>
-</div>
-<div id="tabset-2-2">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">summary</span>(pen<span class="sc">$</span>bill_depth_mm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
-  13.10   15.60   17.30   17.15   18.70   21.50       2 </code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">IQR</span>(pen<span class="sc">$</span>bill_depth_mm, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 3.1</code></pre>
-</div>
-</div>
-<p><br>
-</p>
-<p>Bill depth ranges from 13.1 to 21.5mm, and has an IQR of 3.1mm.</p>
-</div>
-<div id="tabset-2-3">
+<div id="tabset-1-1">
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>ggpubr<span class="sc">::</span><span class="fu">gghistogram</span>(pen<span class="sc">$</span>bill_depth_mm, <span class="at">add_density =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img data-src="lec04-describing_distributions_files/figure-revealjs/unnamed-chunk-7-1.png" width="960"></p>
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">table</span>(pen<span class="sc">$</span>species, pen<span class="sc">$</span>island)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>           
+            Biscoe Dream Torgersen
+  Adelie        44    56        52
+  Chinstrap      0    68         0
+  Gentoo       124     0         0</code></pre>
 </div>
 </div>
 </div><div class="column" style="width:50%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>ggpubr<span class="sc">::</span><span class="fu">ggviolin</span>(pen<span class="sc">$</span>bill_depth_mm, <span class="at">add =</span> <span class="fu">c</span>(<span class="st">"jitter"</span>, <span class="st">"boxplot"</span>)) <span class="sc">+</span> <span class="fu">coord_flip</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">table</span>(pen<span class="sc">$</span>species, pen<span class="sc">$</span>island) <span class="sc">|&gt;</span> </span>
+<span id="cb4-2"><a href="#cb4-2"></a>  <span class="fu">prop.table</span>(<span class="at">margin=</span><span class="dv">2</span>) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>           
+            Biscoe Dream Torgersen
+  Adelie      0.26  0.45      1.00
+  Chinstrap   0.00  0.55      0.00
+  Gentoo      0.74  0.00      0.00</code></pre>
+</div>
+</div>
+</div>
+</div>
+<ul>
+<li>All of the 52 penguins on Torgersen island are the <em>Adelie</em> species.</li>
+<li>74% of penguins on Biscoe island are <em>Gentoo</em>.</li>
+</ul>
+</div>
+<div id="tabset-1-2">
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">plot_xtab</span>(pen<span class="sc">$</span>island, <span class="at">grp=</span>pen<span class="sc">$</span>species, </span>
+<span id="cb6-2"><a href="#cb6-2"></a>          <span class="at">show.total =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
-<p><img data-src="lec04-describing_distributions_files/figure-revealjs/unnamed-chunk-8-1.png" width="960"></p>
+<p><img data-src="lec05-describing_relationships_files/figure-revealjs/unnamed-chunk-4-1.png" width="960"></p>
 </div>
 </div>
-</div>
-</div>
-<p>The distribution of bill depth appears to be bimodal with peaks around 15 and 18mm.</p>
 </div>
 </div>
 </div>
 </section>
-<section id="how-to-create-graphs" class="slide level2">
-<h2>How to create graphs</h2>
-<ul>
-<li>Similar to the data management section, after identifying what you want to do, you go look up how to do that thing.</li>
-<li>Don’t expect to remember the exact code yet, just know where to look up an example and copy from there
-<ul>
-<li>Prior semester SPSS students crated a HackMD collaborative notes file for sharing code. <a href="https://hackmd.io/@norcalbiostat/SPSS">[LINK]</a></li>
-<li>Need these for other languages!</li>
-</ul></li>
-<li>copy/paste/pray</li>
-<li>Keep graphs simple until you get more comfortable.</li>
-</ul>
+<section id="watch-your-margins" class="slide level2">
+<h2>Watch your margins</h2>
+<div class="callout callout-warning callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Always double check your work</strong></p>
+</div>
+<div class="callout-content">
+<p>One of the most common places for a mistake when creating a plot or a table between two categorical variables is by not paying close attention to the choice of denominator. And then also confirming the interpretation matches the table, which matches the plot.</p>
+</div>
+</div>
+</div>
 </section>
-<section id="references" class="slide level2">
-<h2>References</h2>
-<ul>
-<li>PMA6 Chapter 4 for appropriate plot choices</li>
-<li>Applied Stats course Notes Chapter 2.3 for examples and code</li>
-<li>HackMD Notes for Code specific notes</li>
-<li>R specific help on the <a href="https://norcalbiostat.github.io/MATH130/faq.html">Math 130</a> class page</li>
-<li><code>sjPlot</code> vignette: https://strengejacke.github.io/sjPlot/index.html</li>
-<li><code>ggpubr</code> vignette: https://rpkgs.datanovia.com/ggpubr/</li>
-<li><code>ggplot</code> vignette: https://ggplot2.tidyverse.org/index.html</li>
-<li>R graphics cookbook: https://r-graphics.org/</li>
-</ul>
+<section id="watch-your-margins-1" class="slide level2 smaller">
+<h2>Watch your margins</h2>
+<div class="panel-tabset">
+<ul id="tabset-2" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-2-1">Tables</a></li><li><a href="#tabset-2-2">Plots</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1">
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Row Percents</strong></p>
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">table</span>(pen<span class="sc">$</span>species, pen<span class="sc">$</span>island) <span class="sc">|&gt;</span> </span>
+<span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">prop.table</span>(<span class="at">margin=</span><span class="dv">1</span>) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>           
+            Biscoe Dream Torgersen
+  Adelie      0.29  0.37      0.34
+  Chinstrap   0.00  1.00      0.00
+  Gentoo      1.00  0.00      0.00</code></pre>
+</div>
+</div>
+<p>29% <strong>of <em>Adelie</em> penguins</strong> are on Biscoe Island.</p>
+</div><div class="column" style="width:50%;">
+<p><strong>Column Percents</strong></p>
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">table</span>(pen<span class="sc">$</span>species, pen<span class="sc">$</span>island) <span class="sc">|&gt;</span> </span>
+<span id="cb9-2"><a href="#cb9-2"></a>  <span class="fu">prop.table</span>(<span class="at">margin=</span><span class="dv">2</span>) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>           
+            Biscoe Dream Torgersen
+  Adelie      0.26  0.45      1.00
+  Chinstrap   0.00  0.55      0.00
+  Gentoo      0.74  0.00      0.00</code></pre>
+</div>
+</div>
+<p>74% <strong>of penguins on Biscoe island</strong> are <em>Gentoo</em>.</p>
+</div>
+</div>
+</div>
+<div id="tabset-2-2">
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>Distribution of islands for each species</p>
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">plot_xtab</span>(pen<span class="sc">$</span>species, <span class="at">grp=</span>pen<span class="sc">$</span>island, </span>
+<span id="cb11-2"><a href="#cb11-2"></a>          <span class="at">margin =</span> <span class="st">"row"</span>, <span class="at">show.total =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img data-src="lec05-describing_relationships_files/figure-revealjs/unnamed-chunk-7-1.png" width="960"></p>
+</div>
+</div>
+<p>29% <strong>of <em>Adelie</em> penguins</strong> are on Biscoe Island.</p>
+</div><div class="column" style="width:50%;">
+<p>Distribution of species on each island.</p>
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">plot_xtab</span>(pen<span class="sc">$</span>island, <span class="at">grp=</span>pen<span class="sc">$</span>species, </span>
+<span id="cb12-2"><a href="#cb12-2"></a>          <span class="at">margin =</span> <span class="st">"row"</span>, <span class="at">show.total =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img data-src="lec05-describing_relationships_files/figure-revealjs/unnamed-chunk-8-1.png" width="960"></p>
+</div>
+</div>
+<p>74% <strong>of penguins on Biscoe island</strong> are <em>Gentoo</em>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="q-c" class="slide level2 smaller">
+<h2>Q ~ C</h2>
+<p>Quantitative Response vs Categorical Explanatory</p>
+<div class="panel-tabset">
+<ul id="tabset-3" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-3-1">Grouped summary statistics</a></li><li><a href="#tabset-3-2">Plots</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1">
+<p>Mean, median, sd, IQR of the quantitative variable for each level of the categorical level.</p>
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>pen <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(species) <span class="sc">%&gt;%</span> </span>
+<span id="cb13-2"><a href="#cb13-2"></a>  <span class="fu">summarize</span>(<span class="at">mean =</span> <span class="fu">mean</span>(bill_depth_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb13-3"><a href="#cb13-3"></a>            <span class="at">median =</span> <span class="fu">median</span>(bill_depth_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb13-4"><a href="#cb13-4"></a>            <span class="at">sd =</span> <span class="fu">sd</span>(bill_depth_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb13-5"><a href="#cb13-5"></a>            <span class="at">IQR =</span> <span class="fu">IQR</span>(bill_depth_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>pen <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(species) <span class="sc">%&gt;%</span> </span>
+<span id="cb14-2"><a href="#cb14-2"></a>  <span class="fu">summarize</span>(<span class="at">mean   =</span> <span class="fu">mean</span>(bill_depth_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb14-3"><a href="#cb14-3"></a>            <span class="at">median =</span> <span class="fu">median</span>(bill_depth_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb14-4"><a href="#cb14-4"></a>            <span class="at">sd     =</span> <span class="fu">sd</span>(bill_depth_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb14-5"><a href="#cb14-5"></a>            <span class="at">IQR    =</span> <span class="fu">IQR</span>(bill_depth_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 5
+  species    mean median    sd   IQR
+  &lt;fct&gt;     &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1 Adelie     18.3   18.4 1.22   1.5 
+2 Chinstrap  18.4   18.4 1.14   1.90
+3 Gentoo     15.0   15   0.981  1.5 </code></pre>
+</div>
+</div>
+<p>Gentoo penguins have lower average bill depth compared to Adelie or Chinstrap (15.0mm vs 18.3 and 18.4mm respectively). Chinstrap however have a larger IQR at 1.9 compared to 1.5 for the others.</p>
+</div>
+<div id="tabset-3-2">
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Overlaid density plots</strong></p>
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">gghistogram</span>(pen, </span>
+<span id="cb16-2"><a href="#cb16-2"></a>    <span class="at">x =</span> <span class="st">"bill_depth_mm"</span>, <span class="at">fill =</span> <span class="st">"species"</span>, </span>
+<span id="cb16-3"><a href="#cb16-3"></a>    <span class="at">add_density =</span> <span class="cn">TRUE</span>, <span class="at">add=</span><span class="st">"mean"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img data-src="lec05-describing_relationships_files/figure-revealjs/unnamed-chunk-11-1.png" width="960"></p>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<p><strong>Side by side boxplots</strong></p>
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">ggviolin</span>(pen, </span>
+<span id="cb17-2"><a href="#cb17-2"></a>  <span class="at">x=</span><span class="st">"species"</span>, <span class="at">y =</span> <span class="st">"bill_depth_mm"</span>, </span>
+<span id="cb17-3"><a href="#cb17-3"></a>  <span class="at">color =</span> <span class="st">"species"</span>, <span class="at">add =</span> <span class="fu">c</span>(<span class="st">"mean"</span>, <span class="st">"boxplot"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img data-src="lec05-describing_relationships_files/figure-revealjs/unnamed-chunk-12-1.png" width="960"></p>
+</div>
+</div>
+</div>
+</div>
+<p>The distribution of bill depth are fairly normal for each species, with some higher end values causing a slight right skew for Adelie and Gentoo.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="q-q" class="slide level2 smaller">
+<h2>Q ~ Q</h2>
+<p>Quantitative Response vs Quantitative Explanatory</p>
+<div class="panel-tabset">
+<ul id="tabset-4" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-4-1">Summary statistic</a></li><li><a href="#tabset-4-2">Plots</a></li></ul>
+<div class="tab-content">
+<div id="tabset-4-1">
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">cor</span>(pen<span class="sc">$</span>flipper_length_mm, pen<span class="sc">$</span>body_mass_g, </span>
+<span id="cb18-2"><a href="#cb18-2"></a>    <span class="at">use=</span><span class="st">"pairwise.complete.obs"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.8712018</code></pre>
+</div>
+</div>
+<p>The penguin flipper length (mm) has a strong positive correlation with body mass (g), r=0.87</p>
+</div>
+<div id="tabset-4-2">
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="fu">ggscatter</span>(pen, </span>
+<span id="cb20-2"><a href="#cb20-2"></a>  <span class="at">x=</span><span class="st">"flipper_length_mm"</span>, <span class="at">y =</span> <span class="st">"body_mass_g"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img data-src="lec05-describing_relationships_files/figure-revealjs/unnamed-chunk-14-1.png" width="960"></p>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">ggscatter</span>(pen, </span>
+<span id="cb21-2"><a href="#cb21-2"></a>  <span class="at">x=</span><span class="st">"flipper_length_mm"</span>, <span class="at">y =</span> <span class="st">"body_mass_g"</span>, </span>
+<span id="cb21-3"><a href="#cb21-3"></a>  <span class="at">add =</span> <span class="st">"loess"</span>, <span class="at">conf.int =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img data-src="lec05-describing_relationships_files/figure-revealjs/unnamed-chunk-15-1.png" width="960"></p>
+</div>
+</div>
+</div><p><small> The relationship between flipper length and body mass in penguins is relatively linear, but there may be possible clustering on a third variable. There appears to be two groups below and above a flipper length of about 205mm. </small></p>
+</div>
+</div>
+</div>
+</div>
 
 <div class="footer footer-default">
-<p><a href="https://math615.netlify.app">🔗 https://math615.netlify.app</a> / Describing Distributions of Data</p>
+
 </div>
 </section></section>
     </div>

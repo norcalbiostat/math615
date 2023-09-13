@@ -59,11 +59,13 @@ Along with having the audience in mind, it is important to give thought to the p
 
 [https://r-graph-gallery.com/](https://r-graph-gallery.com/)
 
-# Meet the Palmer Penguins {background-image="images/penguins.png" background-size="90%" background-position="right"}
+#  {background-image="images/penguins.png" background-size="50%"}
+### Meet the Palmer Penguins
 ```{r}
-#| echo: false
-library(palmerpenguins); library(ggplot2)
-pen <- penguins
+#| echo: -1
+library(tidyverse);library(sjPlot); library(ggpubr)
+library(palmerpenguins)
+pen <- penguins # because i don't want to type out penguins every time
 ```
 
 ## Single Categorical {background-image="images/penguins.png" background-size="20%" background-position="80% 10%"}
