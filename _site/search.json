@@ -205,28 +205,28 @@
   {
     "objectID": "hw/hw05-describing_relationships.html",
     "href": "hw/hw05-describing_relationships.html",
-    "title": "HW 05: Describing Distributions",
+    "title": "HW 05: Describing Relationships",
     "section": "",
     "text": "To fully explore the relationship between two variables both summary statistics and visualizations are important."
   },
   {
     "objectID": "hw/hw05-describing_relationships.html#before-you-start",
     "href": "hw/hw05-describing_relationships.html#before-you-start",
-    "title": "HW 05: Describing Distributions",
+    "title": "HW 05: Describing Relationships",
     "section": "Before you start,",
     "text": "Before you start,\n\nDetermine what variables you want to graph based on your research topic.\n\nYou will need a mixture of categorical and quantitative variables for this assignment.\nYou should use variables that are relevant to your research topic.\nIf you have not yet identified both a quantitative (Q), a binary (B), and a categorical (C) variable that you are interested in, now is the time to go back to the codebook and figure this out.\n\nRecode variables as needed.\n\nIf your response variable is categorical with many levels, you may want to collapse it down to fewer than 5 levels.\n\n\nIf you do not already have a binary (B) variable in your clean data you can either a) go back and edit your dm file to include a binary varible, or b) dichotomize one of your categorical (C) varibles into two levels. (Make a new variable, don’t overwrite your categorical variable)."
   },
   {
     "objectID": "hw/hw05-describing_relationships.html#for-each-bivariate-relationship-under-consideration-you-will-do-the-following",
     "href": "hw/hw05-describing_relationships.html#for-each-bivariate-relationship-under-consideration-you-will-do-the-following",
-    "title": "HW 05: Describing Distributions",
+    "title": "HW 05: Describing Relationships",
     "section": "For each bivariate relationship under consideration you will do the following:",
     "text": "For each bivariate relationship under consideration you will do the following:\n\nName and explain the two variables under consideration.\nCreate the appropriate graphic for bivariate relationship under consideration. For these plots binary variables are treated as categorical variables with only 2 levels.\n\nC ~ C: Side by side barplot\nQ ~ C: Paneled histogram with density overlaid, or a grouped boxplot with overlaid violin plot.\nQ ~ Q: Scatterplot. Add both lowess and linear trend lines.\n\nCalculate appropriate grouped summary statistics\n\nFor continuous outcomes you’ll want to describe measures including the sample size, mean, median, range and variance for each level of the categorical variable.\nFor categorical outcomes you’ll want to calculate %’s of your outcome measurement across levels of your covariate.\n\ni.e. proportion of males who are smokers compared to proportion of females who are smokers\nor proportion of smokers who are male, compared to proportion of non-smokers who are male.\n\n\nExplain the relationship or trends you see in the data in a summary paragraph. Put this paragraph below the graphic.\n\nUse summary statistics in your text explanation.\nUse specific features of the graphic in your text explanation.\n\ni.e. are there outliers only in one group?\nDo the data seem clumped or clustered in one region of the scatterplot?\nIs there a linear or non-linear pattern?\nDoes one combination of categorical levels (C~C) seem to hold most the data?\nAre there any outlying data points? Don’t list off each one, just state if there is and where approximately it’s at."
   },
   {
     "objectID": "hw/hw05-describing_relationships.html#example",
     "href": "hw/hw05-describing_relationships.html#example",
-    "title": "HW 05: Describing Distributions",
+    "title": "HW 05: Describing Relationships",
     "section": "Example",
     "text": "Example\nIn these examples I use a combination of ggplot2 and sjPlot for plotting, dplyr for data management and to create summary statistics, knitr to create nice tables, gridExtra to put plots side by side. You do not need to report this information in your assignment. This is for your knowledge only. I also explain what I’m doing in code here for you to learn. you do not need to explain your own code.\n\nlibrary(ggplot2); library(dplyr); library(knitr); \nlibrary(scales); library(gridExtra); library(sjPlot)\nknitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)\n\n\nC ~ C Association\nFor this example I am using the NC Births data set, data on 1000 births in 2004 from North Carolina. This example explores the association between the smoking status of the mother (habit) and whether or not the baby was born prematurely (premie).\nFrequency tables to get counts, and row percents because I specifically want to compare the percent of premie babies within the smoking and non-smoking groups.\n\nnc %&gt;% select(habit, premie) %&gt;% table() %&gt;% addmargins %&gt;% kable()\n\n\n\n\n\nfull term\npremie\nSum\n\n\n\n\nnonsmoker\n739\n133\n872\n\n\nsmoker\n107\n19\n126\n\n\nSum\n846\n152\n998\n\n\n\n\nnc %&gt;% select(habit, premie) %&gt;% table() %&gt;% prop.table(margin=1) %&gt;% kable(digits=3)\n\n\n\n\n\nfull term\npremie\n\n\n\n\nnonsmoker\n0.847\n0.153\n\n\nsmoker\n0.849\n0.151\n\n\n\n\n\n\nplot_xtab(x=nc$habit, grp=nc$premie, show.total=FALSE, margin='row')\n\n\n\n\nContrary to what I was expecting, there is equal proportion of prematurely born babies to non-smokers (133/739, 15.2%) compared to babies born to smokers (19/107, 15.1%). There is no association between the smoking status of the mother and the likelihood of the baby being born prematurely.\n\n\nQ ~ C Association\nThis example explores the association between the length of an iris petal and the species of iris. The quantitative response variable is petal length (Petal.Length) and the categorical explanatory variable is species (Species).\n\niris %&gt;% group_by(Species) %&gt;% \n         summarise(mean=mean(Petal.Length), \n                   sd=sd(Petal.Length), \n                   n=n()) %&gt;% \n         kable(digits=2)\n\n\n\n\nSpecies\nmean\nsd\nn\n\n\n\n\nsetosa\n1.46\n0.17\n50\n\n\nversicolor\n4.26\n0.47\n50\n\n\nvirginica\n5.55\n0.55\n50\n\n\n\n\nggplot(iris, aes(x=Species, y=Petal.Length, fill=Species)) + \n  geom_boxplot(width=.4) + geom_violin(alpha=.3) + \n  stat_summary(fun.y=\"mean\", geom=\"point\", size=3, pch=17, \n    position=position_dodge(width=0.75)) + theme_bw()\n\n\n\n\n\n\n\n\nThere are 50 iris plants within each species. There is clear difference in the average Petal length across the pecies. Setosa has the smallest average petal length of 1.46 cm and the smallest variation with a standard deviation of 0.17cm. Veriscolor has an average petal length of 4.26cm with SD of 0.47cm, and Virginica has the largest average petal length of 5.55cm and the largest variation with a standard deviation of 0.55cm.\n\n\nQ ~ Q Association\nThis example explores the association between length of an iris petal and the length of the sepal. The quantitative response variable is petal length (Petal.Length) and the quantitative explanatory variable is sepal length (Sepal.Length).\n\ncor(iris$Petal.Length, iris$Sepal.Length) # calculate the correlation\n\n[1] 0.8717538\n\nggplot(iris, aes(x=Sepal.Length, y=Petal.Length)) + geom_point() + \n  geom_smooth(se=FALSE, col=\"brown\") + geom_smooth(se=FALSE, method=\"lm\")\n\n\n\n\nThere is a positive association between sepal and petal length of an iris. The correlation coefficient is 0.87, but the form of the data may not be linear. There is a cluster of values below 2cm petal length which are separated away from the rest of the data. It is hard to assess the linearity of this relationship due to the separate clusters."
   },
@@ -235,7 +235,7 @@
     "href": "hw.html",
     "title": "Assignments",
     "section": "",
-    "text": "Assignment\n\n\nLearning Objective\n\n\n\n\n\n\nHW 00: Getting setup\n\n\nGetting all the materials and tools for the class\n\n\n\n\nHW 01: Data Entry\n\n\nRecording data to maintain your sanity.\n\n\n\n\nHW 02: Formulating a research hypothesis\n\n\nBrainstorming research questions to investigate\n\n\n\n\nHW 03: Data Management\n\n\nWrangling your data into analyzable form\n\n\n\n\nHW 04: Describing Distributions\n\n\nLet the data be beautiful\n\n\n\n\nHW 05: Describing Distributions\n\n\nExploring Associations between two variables\n\n\n\n\n\n\nNo matching items"
+    "text": "Assignment\n\n\nLearning Objective\n\n\n\n\n\n\nHW 00: Getting setup\n\n\nGetting all the materials and tools for the class\n\n\n\n\nHW 01: Data Entry\n\n\nRecording data to maintain your sanity.\n\n\n\n\nHW 02: Formulating a research hypothesis\n\n\nBrainstorming research questions to investigate\n\n\n\n\nHW 03: Data Management\n\n\nWrangling your data into analyzable form\n\n\n\n\nHW 04: Describing Distributions\n\n\nLet the data be beautiful\n\n\n\n\nHW 05: Describing Relationships\n\n\nExploring Associations between two variables\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "index.html",
@@ -1187,7 +1187,7 @@
     "href": "topics/t05-describing_relationships.html#assignments",
     "title": "Describing Relationships",
     "section": "Assignments",
-    "text": "Assignments\n\n\n\nHW05 Graphing Relationships"
+    "text": "Assignments\n\n\n\nHW05 Describing Relationships"
   },
   {
     "objectID": "topics/t05-describing_relationships.html#assessment",
