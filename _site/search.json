@@ -4,14 +4,14 @@
     "href": "collab_notes.html",
     "title": "Collaborative Notes",
     "section": "",
-    "text": "What is HackMD\n\nData architecture\nFormulating Research Questions"
+    "text": "What is HackMD\n\nData architecture\nFormulating Research Questions\nStudy Design\nStatistical Inference with Mathematical models"
   },
   {
     "objectID": "collab_notes.html#notes",
     "href": "collab_notes.html#notes",
     "title": "Collaborative Notes",
     "section": "",
-    "text": "What is HackMD\n\nData architecture\nFormulating Research Questions"
+    "text": "What is HackMD\n\nData architecture\nFormulating Research Questions\nStudy Design\nStatistical Inference with Mathematical models"
   },
   {
     "objectID": "help.html",
@@ -231,11 +231,39 @@
     "text": "Example\nIn these examples I use a combination of ggplot2 and sjPlot for plotting, dplyr for data management and to create summary statistics, knitr to create nice tables, gridExtra to put plots side by side. You do not need to report this information in your assignment. This is for your knowledge only. I also explain what I’m doing in code here for you to learn. you do not need to explain your own code.\n\nlibrary(ggplot2); library(dplyr); library(knitr); \nlibrary(scales); library(gridExtra); library(sjPlot)\nknitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)\n\n\nC ~ C Association\nFor this example I am using the NC Births data set, data on 1000 births in 2004 from North Carolina. This example explores the association between the smoking status of the mother (habit) and whether or not the baby was born prematurely (premie).\nFrequency tables to get counts, and row percents because I specifically want to compare the percent of premie babies within the smoking and non-smoking groups.\n\nnc %&gt;% select(habit, premie) %&gt;% table() %&gt;% addmargins %&gt;% kable()\n\n\n\n\n\nfull term\npremie\nSum\n\n\n\n\nnonsmoker\n739\n133\n872\n\n\nsmoker\n107\n19\n126\n\n\nSum\n846\n152\n998\n\n\n\n\nnc %&gt;% select(habit, premie) %&gt;% table() %&gt;% prop.table(margin=1) %&gt;% kable(digits=3)\n\n\n\n\n\nfull term\npremie\n\n\n\n\nnonsmoker\n0.847\n0.153\n\n\nsmoker\n0.849\n0.151\n\n\n\n\n\n\nplot_xtab(x=nc$habit, grp=nc$premie, show.total=FALSE, margin='row')\n\n\n\n\nContrary to what I was expecting, there is equal proportion of prematurely born babies to non-smokers (133/739, 15.2%) compared to babies born to smokers (19/107, 15.1%). There is no association between the smoking status of the mother and the likelihood of the baby being born prematurely.\n\n\nQ ~ C Association\nThis example explores the association between the length of an iris petal and the species of iris. The quantitative response variable is petal length (Petal.Length) and the categorical explanatory variable is species (Species).\n\niris %&gt;% group_by(Species) %&gt;% \n         summarise(mean=mean(Petal.Length), \n                   sd=sd(Petal.Length), \n                   n=n()) %&gt;% \n         kable(digits=2)\n\n\n\n\nSpecies\nmean\nsd\nn\n\n\n\n\nsetosa\n1.46\n0.17\n50\n\n\nversicolor\n4.26\n0.47\n50\n\n\nvirginica\n5.55\n0.55\n50\n\n\n\n\nggplot(iris, aes(x=Species, y=Petal.Length, fill=Species)) + \n  geom_boxplot(width=.4) + geom_violin(alpha=.3) + \n  stat_summary(fun.y=\"mean\", geom=\"point\", size=3, pch=17, \n    position=position_dodge(width=0.75)) + theme_bw()\n\n\n\n\n\n\n\n\nThere are 50 iris plants within each species. There is clear difference in the average Petal length across the pecies. Setosa has the smallest average petal length of 1.46 cm and the smallest variation with a standard deviation of 0.17cm. Veriscolor has an average petal length of 4.26cm with SD of 0.47cm, and Virginica has the largest average petal length of 5.55cm and the largest variation with a standard deviation of 0.55cm.\n\n\nQ ~ Q Association\nThis example explores the association between length of an iris petal and the length of the sepal. The quantitative response variable is petal length (Petal.Length) and the quantitative explanatory variable is sepal length (Sepal.Length).\n\ncor(iris$Petal.Length, iris$Sepal.Length) # calculate the correlation\n\n[1] 0.8717538\n\nggplot(iris, aes(x=Sepal.Length, y=Petal.Length)) + geom_point() + \n  geom_smooth(se=FALSE, col=\"brown\") + geom_smooth(se=FALSE, method=\"lm\")\n\n\n\n\nThere is a positive association between sepal and petal length of an iris. The correlation coefficient is 0.87, but the form of the data may not be linear. There is a cluster of values below 2cm petal length which are separated away from the rest of the data. It is hard to assess the linearity of this relationship due to the separate clusters."
   },
   {
+    "objectID": "hw/hw06-foundations_for_inference.html",
+    "href": "hw/hw06-foundations_for_inference.html",
+    "title": "HW 06: Foundations for Inference",
+    "section": "",
+    "text": "To understand the conceptual and mathematical foundations for statistical inference.\n\n\n\nIn EACH section below, answer at least two (2) questions. It is expected that you are able to answer all of these questions.\nThis is a long assignment, covering both sections in this module.\n\n\n\n\nDownload this [QMD] file and use it to write your answers in.\n\nRight click and ‘save as’, put this in your scripts folder.\nAdd a line for your name (author) in the YAML header under subtitle.\nDelete the instructions and questions that you are choosing not to answer. If you answer more than two 🎉, i will only grade the first two.\n\nRender to pdf and upload your final PDF to Canvas by the due date."
+  },
+  {
+    "objectID": "hw/hw06-foundations_for_inference.html#purpose",
+    "href": "hw/hw06-foundations_for_inference.html#purpose",
+    "title": "HW 06: Foundations for Inference",
+    "section": "",
+    "text": "To understand the conceptual and mathematical foundations for statistical inference."
+  },
+  {
+    "objectID": "hw/hw06-foundations_for_inference.html#instructions",
+    "href": "hw/hw06-foundations_for_inference.html#instructions",
+    "title": "HW 06: Foundations for Inference",
+    "section": "",
+    "text": "In EACH section below, answer at least two (2) questions. It is expected that you are able to answer all of these questions.\nThis is a long assignment, covering both sections in this module."
+  },
+  {
+    "objectID": "hw/hw06-foundations_for_inference.html#submission-instructions",
+    "href": "hw/hw06-foundations_for_inference.html#submission-instructions",
+    "title": "HW 06: Foundations for Inference",
+    "section": "",
+    "text": "Download this [QMD] file and use it to write your answers in.\n\nRight click and ‘save as’, put this in your scripts folder.\nAdd a line for your name (author) in the YAML header under subtitle.\nDelete the instructions and questions that you are choosing not to answer. If you answer more than two 🎉, i will only grade the first two.\n\nRender to pdf and upload your final PDF to Canvas by the due date."
+  },
+  {
     "objectID": "hw.html",
     "href": "hw.html",
     "title": "Assignments",
     "section": "",
-    "text": "Assignment\n\n\nLearning Objective\n\n\n\n\n\n\nHW 00: Getting setup\n\n\nGetting all the materials and tools for the class\n\n\n\n\nHW 01: Data Entry\n\n\nRecording data to maintain your sanity.\n\n\n\n\nHW 02: Formulating a research hypothesis\n\n\nBrainstorming research questions to investigate\n\n\n\n\nHW 03: Data Management\n\n\nWrangling your data into analyzable form\n\n\n\n\nHW 04: Describing Distributions\n\n\nLet the data be beautiful\n\n\n\n\nHW 05: Describing Relationships\n\n\nExploring Associations between two variables\n\n\n\n\n\n\nNo matching items"
+    "text": "Assignment\n\n\nLearning Objective\n\n\n\n\n\n\nHW 00: Getting setup\n\n\nGetting all the materials and tools for the class\n\n\n\n\nHW 01: Data Entry\n\n\nRecording data to maintain your sanity.\n\n\n\n\nHW 02: Formulating a research hypothesis\n\n\nBrainstorming research questions to investigate\n\n\n\n\nHW 03: Data Management\n\n\nWrangling your data into analyzable form\n\n\n\n\nHW 04: Describing Distributions\n\n\nLet the data be beautiful\n\n\n\n\nHW 05: Describing Relationships\n\n\nExploring Associations between two variables\n\n\n\n\nHW 06: Foundations for Inference\n\n\nSample design, probability and inference\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "index.html",
@@ -1026,28 +1054,28 @@
     "href": "topics/t00-welcome.html",
     "title": "Welcome to Fall 23",
     "section": "",
-    "text": "Summer Break!\n\n\n\nReady to learn\n\n\n\n\n\n\nGet connected to all the class materials & tools"
+    "text": "Summer Break!\n\n\n\nReady to learn\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nGet connected to all the class materials & tools"
   },
   {
     "objectID": "topics/t00-welcome.html#learning-path",
     "href": "topics/t00-welcome.html#learning-path",
     "title": "Welcome to Fall 23",
     "section": "",
-    "text": "Summer Break!\n\n\n\nReady to learn\n\n\n\n\n\n\nGet connected to all the class materials & tools"
+    "text": "Summer Break!\n\n\n\nReady to learn\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nGet connected to all the class materials & tools"
   },
   {
     "objectID": "topics/t00-welcome.html#learning-materials",
     "href": "topics/t00-welcome.html#learning-materials",
     "title": "Welcome to Fall 23",
     "section": "Learning Materials",
-    "text": "Learning Materials\n Slides (Will open in full screen. Right click to open in a new tab)\n\n\n\nlec00-welcome\n\n\n\n\n Reading\n\n\n\nSyllabus\n\nHelp page\nPMA6 Ch 2\n\n\n\n\n\n Collaborative notes\n\n\n\nhttps://hackmd.io/@norcalbiostat/intro_hackmd"
+    "text": "Learning Materials\n Slides (Will open in full screen. Right click to open in a new tab)\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nlec00-welcome\n\n\n\n\n\n\n\n\n📚 Reading\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nSyllabus\n\n\n\n\nHelp page\n\n\n\n\nPMA6 Ch 2\n\n\n\n\n\n\n\n\n📝 Collaborative notes\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nhttps://hackmd.io/@norcalbiostat/intro_hackmd"
   },
   {
     "objectID": "topics/t00-welcome.html#assignments",
     "href": "topics/t00-welcome.html#assignments",
     "title": "Welcome to Fall 23",
     "section": "Assignments",
-    "text": "Assignments\n\n\n\nHW00 Getting Setup"
+    "text": "Assignments\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nHW00 Getting Setup"
   },
   {
     "objectID": "topics/t00-welcome.html#discussion",
@@ -1061,91 +1089,77 @@
     "href": "topics/t01-data_arch.html",
     "title": "Data Architecture",
     "section": "",
-    "text": "Getting all of our learning tools together.\n\n\n\nReady to learn how to interact with data.\n\n\n\n\n\n\nData is recorded in different manners\n\nSpreadsheets are a common method of recording data\nCodebooks are an essential piece in learning about the data\nThere is a difference between human readable and computer readable data formats"
+    "text": "Getting all of our learning tools together.\n\n\n\nReady to learn how to interact with data.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nData is recorded in different manners\n\n\n\n\nSpreadsheets are a common method of recording data\n\n\n\n\nCodebooks are an essential piece in learning about the data\n\n\n\n\nThere is a difference between human readable and computer readable data formats"
   },
   {
     "objectID": "topics/t01-data_arch.html#learning-path",
     "href": "topics/t01-data_arch.html#learning-path",
     "title": "Data Architecture",
     "section": "",
-    "text": "Getting all of our learning tools together.\n\n\n\nReady to learn how to interact with data.\n\n\n\n\n\n\nData is recorded in different manners\n\nSpreadsheets are a common method of recording data\nCodebooks are an essential piece in learning about the data\nThere is a difference between human readable and computer readable data formats"
+    "text": "Getting all of our learning tools together.\n\n\n\nReady to learn how to interact with data.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nData is recorded in different manners\n\n\n\n\nSpreadsheets are a common method of recording data\n\n\n\n\nCodebooks are an essential piece in learning about the data\n\n\n\n\nThere is a difference between human readable and computer readable data formats"
   },
   {
     "objectID": "topics/t01-data_arch.html#learning-materials",
     "href": "topics/t01-data_arch.html#learning-materials",
     "title": "Data Architecture",
     "section": "Learning Materials",
-    "text": "Learning Materials\n Slides (Will open in full screen. Right click to open in a new tab)\n\n\n\nlec01-data_arch\n\n\n\n\n📚 Reading\n\n\n\nTidy data principles (Optional but highly recommended)\n\n\n\n\n📝 Collaborative notes\n\n\n\nhttps://hackmd.io/@norcalbiostat/01_data_arch"
+    "text": "Learning Materials\n Slides (Will open in full screen. Right click to open in a new tab)\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nlec01-data_arch\n\n\n\n\n\n\n\n\n📚 Reading\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nTidy data principles (Optional but highly recommended)\n\n\n\n\n\n\n\n\n📝 Collaborative notes\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nhttps://hackmd.io/@norcalbiostat/01_data_arch"
   },
   {
     "objectID": "topics/t01-data_arch.html#assignments",
     "href": "topics/t01-data_arch.html#assignments",
     "title": "Data Architecture",
     "section": "Assignments",
-    "text": "Assignments\n\n\n\nHW01 Data Entry"
+    "text": "Assignments\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nhttps://hackmd.io/@norcalbiostat/01_data_arch"
   },
   {
     "objectID": "topics/t01-data_arch.html#assessment",
     "href": "topics/t01-data_arch.html#assessment",
     "title": "Data Architecture",
     "section": "Assessment",
-    "text": "Assessment\n\n\n\nQuiz 01 - Data Architecture"
+    "text": "Assessment\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nQuiz 01 - Data Architecture"
   },
   {
     "objectID": "topics/t02-asking_q.html",
     "href": "topics/t02-asking_q.html",
     "title": "Formulating research questions",
     "section": "",
-    "text": "Learning how to interact with data\nReviewing the available data and thinking of a topic area of interest\n\n\n\n\nReady to start asking research questions to explore for the rest of the term.\n\n\n\n\n\n\nWrite down several research questions"
+    "text": "Learning how to interact with data\nReviewing the available data and thinking of a topic area of interest\n\n\n\n\nReady to start asking research questions to explore for the rest of the term.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nWrite down several research questions"
   },
   {
     "objectID": "topics/t02-asking_q.html#learning-path",
     "href": "topics/t02-asking_q.html#learning-path",
     "title": "Formulating research questions",
     "section": "",
-    "text": "Learning how to interact with data\nReviewing the available data and thinking of a topic area of interest\n\n\n\n\nReady to start asking research questions to explore for the rest of the term.\n\n\n\n\n\n\nWrite down several research questions"
+    "text": "Learning how to interact with data\nReviewing the available data and thinking of a topic area of interest\n\n\n\n\nReady to start asking research questions to explore for the rest of the term.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nWrite down several research questions"
   },
   {
     "objectID": "topics/t02-asking_q.html#learning-materials",
     "href": "topics/t02-asking_q.html#learning-materials",
     "title": "Formulating research questions",
     "section": "Learning Materials",
-    "text": "Learning Materials\n Slides (Will open in full screen. Right click to open in a new tab)\n\n\n\nlec02-asking_q\n\n\n\n\n📚 Reading\n\n\n\nHow to Write an Effective Research Question\n\n\n\n\n📝 Collaborative notes\n\n\n\nhttps://hackmd.io/@norcalbiostat/02_rq"
+    "text": "Learning Materials\n Slides (Will open in full screen. Right click to open in a new tab)\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nlec02-asking_q\n\n\n\n\n\n\n\n\n📚 Reading\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nHow to Write an Effective Research Question\n\n\n\n\n\n\n\n\n📝 Collaborative notes\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nhttps://hackmd.io/@norcalbiostat/02_rq"
   },
   {
     "objectID": "topics/t02-asking_q.html#assignments",
     "href": "topics/t02-asking_q.html#assignments",
     "title": "Formulating research questions",
     "section": "Assignments",
-    "text": "Assignments\n\n\n\nHW02 RQ Formulation"
-  },
-  {
-    "objectID": "topics/t02-asking_q.html#assessment",
-    "href": "topics/t02-asking_q.html#assessment",
-    "title": "Formulating research questions",
-    "section": "Assessment",
-    "text": "Assessment\n\n\n\nNA"
-  },
-  {
-    "objectID": "topics/t02-asking_q.html#discussion",
-    "href": "topics/t02-asking_q.html#discussion",
-    "title": "Formulating research questions",
-    "section": "Discussion",
-    "text": "Discussion"
+    "text": "Assignments\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nHW02 RQ Formulation"
   },
   {
     "objectID": "topics/t03-data_prep.html",
     "href": "topics/t03-data_prep.html",
     "title": "Preparing Data for Analysis",
     "section": "",
-    "text": "Learning how to read our data and ask questions that are potentially answerable with this data.\n\n\n\n\nStarting to write code.\nRecognizing that this stage will take time and that you are learning something challenging.\nWilling to ask for help and collaboration\n\n\n\n\n\n\n\nMonday 9/4 is Labor Day. No Class.\n\n\n\nEnjoy the three day weekend, and consider learning something new about this holiday. (Optional reading)\n\nUS Department of Labor: “History of Labor Day”\nAmerica’s Black Holocaust Museum: “America’s Racist History of Labor”\nSmithsonian: “Striking Union Workers Turned the First Labor Day Into a Networking Event”\nUAW: “Celebrating Labor day by Celebrating Labor Unions”\n\nGot more? Share in our Discord channel.\n\n\n\n\n\n\n\n\n\nKnow several questions to ask yourself when preparing data for analysis\n\nUnderstand options for literate programming\nImport your chosen data into your SPC\nCreate a reproducible workflow\nCreate a reproducible script file that imports the raw data, performs data management tasks, exports an analysis ready data set"
+    "text": "Learning how to read our data and ask questions that are potentially answerable with this data.\n\n\n\n\nStarting to write code.\nRecognizing that this stage will take time and that you are learning something challenging.\nWilling to ask for help and collaboration\n\n\n\n\n\n\n\nMonday 9/4 is Labor Day. No Class.\n\n\n\nEnjoy the three day weekend, and consider learning something new about this holiday. (Optional reading)\n\nUS Department of Labor: “History of Labor Day”\nAmerica’s Black Holocaust Museum: “America’s Racist History of Labor”\nSmithsonian: “Striking Union Workers Turned the First Labor Day Into a Networking Event”\nUAW: “Celebrating Labor day by Celebrating Labor Unions”\n\nGot more? Share in our Discord channel.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nKnow several questions to ask yourself when preparing data for analysis\n\n\n\n\nUnderstand options for literate programming\n\n\n\n\nImport your chosen data into your SPC\n\n\n\n\nCreate a reproducible workflow\n\n\n\n\nCreate a reproducible script file that imports the raw data, performs data management tasks, exports an analysis ready data set"
   },
   {
     "objectID": "topics/t03-data_prep.html#learning-path",
     "href": "topics/t03-data_prep.html#learning-path",
     "title": "Preparing Data for Analysis",
     "section": "",
-    "text": "Learning how to read our data and ask questions that are potentially answerable with this data.\n\n\n\n\nStarting to write code.\nRecognizing that this stage will take time and that you are learning something challenging.\nWilling to ask for help and collaboration\n\n\n\n\n\n\n\nMonday 9/4 is Labor Day. No Class.\n\n\n\nEnjoy the three day weekend, and consider learning something new about this holiday. (Optional reading)\n\nUS Department of Labor: “History of Labor Day”\nAmerica’s Black Holocaust Museum: “America’s Racist History of Labor”\nSmithsonian: “Striking Union Workers Turned the First Labor Day Into a Networking Event”\nUAW: “Celebrating Labor day by Celebrating Labor Unions”\n\nGot more? Share in our Discord channel.\n\n\n\n\n\n\n\n\n\nKnow several questions to ask yourself when preparing data for analysis\n\nUnderstand options for literate programming\nImport your chosen data into your SPC\nCreate a reproducible workflow\nCreate a reproducible script file that imports the raw data, performs data management tasks, exports an analysis ready data set"
+    "text": "Learning how to read our data and ask questions that are potentially answerable with this data.\n\n\n\n\nStarting to write code.\nRecognizing that this stage will take time and that you are learning something challenging.\nWilling to ask for help and collaboration\n\n\n\n\n\n\n\nMonday 9/4 is Labor Day. No Class.\n\n\n\nEnjoy the three day weekend, and consider learning something new about this holiday. (Optional reading)\n\nUS Department of Labor: “History of Labor Day”\nAmerica’s Black Holocaust Museum: “America’s Racist History of Labor”\nSmithsonian: “Striking Union Workers Turned the First Labor Day Into a Networking Event”\nUAW: “Celebrating Labor day by Celebrating Labor Unions”\n\nGot more? Share in our Discord channel.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nKnow several questions to ask yourself when preparing data for analysis\n\n\n\n\nUnderstand options for literate programming\n\n\n\n\nImport your chosen data into your SPC\n\n\n\n\nCreate a reproducible workflow\n\n\n\n\nCreate a reproducible script file that imports the raw data, performs data management tasks, exports an analysis ready data set"
   },
   {
     "objectID": "topics/t03-data_prep.html#preparation",
@@ -1159,21 +1173,21 @@
     "href": "topics/t03-data_prep.html#learning-materials",
     "title": "Preparing Data for Analysis",
     "section": "Learning Materials",
-    "text": "Learning Materials\n Slides (Will open in full screen. Right click to open in a new tab)\n\nlec03a-workflow\n\nlec03b-data_prep\n\nWe will also be using the Data Management chapter of the Applied Stats notebook for this topic.\n📚 Reading\n\n\n\nPMA6 Ch 3\n\nASCN Ch 1, Appendix\nProject Structure by Danielle Navarro\n\n\n\n\n\n📝 Collaborative notes\n\n\n\nNA"
+    "text": "Learning Materials\n Slides (Will open in full screen. Right click to open in a new tab)\n\nlec03a-workflow\n\nlec03b-data_prep\n\nWe will also be using the Data Management chapter of the Applied Stats notebook for this topic.\n📚 Reading\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nPMA6 Ch 3\n\n\n\n\nASCN Ch 1, Appendix\n\n\n\n\nProject Structure by Danielle Navarro\n\n\n\n\n\n\n\n\n📝 Collaborative notes\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nNA"
   },
   {
     "objectID": "topics/t03-data_prep.html#assignments",
     "href": "topics/t03-data_prep.html#assignments",
     "title": "Preparing Data for Analysis",
     "section": "Assignments",
-    "text": "Assignments\n\n\n\nHW03 Data Management"
+    "text": "Assignments\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nHW03 Data Management"
   },
   {
     "objectID": "topics/t03-data_prep.html#assessment",
     "href": "topics/t03-data_prep.html#assessment",
     "title": "Preparing Data for Analysis",
     "section": "Assessment",
-    "text": "Assessment\nThis quiz will contain questions that reference topics in the PMA6. Don’t rely only on the slides for your answers.\n\n\n\nQuiz 02"
+    "text": "Assessment\nThis quiz will contain questions that reference topics in the PMA6. Don’t rely only on the slides for your answers.\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nQuiz 02"
   },
   {
     "objectID": "topics/t03-data_prep.html#other-references",
@@ -1187,76 +1201,111 @@
     "href": "topics/t04-describing_distributions.html",
     "title": "Describing distributions of data",
     "section": "",
-    "text": "Importing & starting to wrangle our data\n\n\n\nReady to visualize and learn characteristics of our data.\n\n\n\n\n\n\nCreate appropriate summary statistics and visualizations for different types of data."
+    "text": "Importing & starting to wrangle our data\n\n\n\nReady to visualize and learn characteristics of our data.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nCreate appropriate summary statistics and visualizations for different types of data."
   },
   {
     "objectID": "topics/t04-describing_distributions.html#learning-path",
     "href": "topics/t04-describing_distributions.html#learning-path",
     "title": "Describing distributions of data",
     "section": "",
-    "text": "Importing & starting to wrangle our data\n\n\n\nReady to visualize and learn characteristics of our data.\n\n\n\n\n\n\nCreate appropriate summary statistics and visualizations for different types of data."
+    "text": "Importing & starting to wrangle our data\n\n\n\nReady to visualize and learn characteristics of our data.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nCreate appropriate summary statistics and visualizations for different types of data."
   },
   {
     "objectID": "topics/t04-describing_distributions.html#learning-materials",
     "href": "topics/t04-describing_distributions.html#learning-materials",
     "title": "Describing distributions of data",
     "section": "Learning Materials",
-    "text": "Learning Materials\n Slides (Will open in full screen. Right click to open in a new tab)\n\n\n\nlec04-describing_distributions\n\n\n\n\n📚 Reading\n\n\n\nPMA6 Ch 4\n\nASCN Ch 2.3\n\n\n\n\n\n📝 Collaborative notes\n\n\n\nNA"
+    "text": "Learning Materials\n Slides (Will open in full screen. Right click to open in a new tab)\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nlec04-describing_distributions\n\n\n\n\n\n\n\n\n📚 Reading\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nPMA6 Ch 4\n\n\n\n\nASCN Ch 2.3"
   },
   {
     "objectID": "topics/t04-describing_distributions.html#assignments",
     "href": "topics/t04-describing_distributions.html#assignments",
     "title": "Describing distributions of data",
     "section": "Assignments",
-    "text": "Assignments\n\n\n\nHW04 Describing Distributions"
+    "text": "Assignments\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nHW04 Describing Distributions"
   },
   {
     "objectID": "topics/t04-describing_distributions.html#assessment",
     "href": "topics/t04-describing_distributions.html#assessment",
     "title": "Describing distributions of data",
     "section": "Assessment",
-    "text": "Assessment\n\n\n\nQuiz 03"
+    "text": "Assessment\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nQuiz 03"
   },
   {
     "objectID": "topics/t05-describing_relationships.html",
     "href": "topics/t05-describing_relationships.html",
     "title": "Describing Relationships",
     "section": "",
-    "text": "Visualizing a single varible\nScreening for potential errors and additional data management\nStarting to describe our project data\n\n\n\n\n\nReady to visualize associations between multiple variables.\n\n\n\n\n\n\n\nCreate appropriate summary statistics and visualizations for combinations of two measures.\n\nBeing intentional about graph features and aestetics.\nJust because you can add it to a graph, doesn’t mean you should."
+    "text": "Visualizing a single variable\nScreening for potential errors and additional data management\nStarting to describe our project data\n\n\n\n\n\nReady to visualize associations between multiple variables.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nCreate appropriate summary statistics and visualizations for combinations of two measures.\n\n\n\n\nBeing intentional about graph features and aestetics.\n\n\n\n\nJust because you can add it to a graph, doesn't mean you should."
   },
   {
     "objectID": "topics/t05-describing_relationships.html#learning-path",
     "href": "topics/t05-describing_relationships.html#learning-path",
     "title": "Describing Relationships",
     "section": "",
-    "text": "Visualizing a single varible\nScreening for potential errors and additional data management\nStarting to describe our project data\n\n\n\n\n\nReady to visualize associations between multiple variables.\n\n\n\n\n\n\n\nCreate appropriate summary statistics and visualizations for combinations of two measures.\n\nBeing intentional about graph features and aestetics.\nJust because you can add it to a graph, doesn’t mean you should."
+    "text": "Visualizing a single variable\nScreening for potential errors and additional data management\nStarting to describe our project data\n\n\n\n\n\nReady to visualize associations between multiple variables.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nCreate appropriate summary statistics and visualizations for combinations of two measures.\n\n\n\n\nBeing intentional about graph features and aestetics.\n\n\n\n\nJust because you can add it to a graph, doesn't mean you should."
   },
   {
     "objectID": "topics/t05-describing_relationships.html#learning-materials",
     "href": "topics/t05-describing_relationships.html#learning-materials",
     "title": "Describing Relationships",
     "section": "Learning Materials",
-    "text": "Learning Materials\n Slides (Will open in full screen. Right click to open in a new tab)\n\n\n\nlec05a-describing_relationships\n\nlec05b-data_viz_bestpractice\n\n\n\n\n\n📚 Reading\n\n\n\nPMA6 Ch 4\n\nPMA6 Ch 4.6\nASCN Ch 2.4"
+    "text": "Learning Materials\n Slides (Will open in full screen. Right click to open in a new tab)\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nlec05a-describing_relationships\n\n\n\n\nlec05b-data_viz_bestpractice\n\n\n\n\n\n\n\n\n📚 Reading\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nIMS 1.2.4 Explantory and Response Variables\n\n\n\n\nPMA6 Ch 4.6\n\n\n\n\nPMA6 Ch 4\n\n\n\n\nASCN Ch 2.4"
   },
   {
     "objectID": "topics/t05-describing_relationships.html#assignments",
     "href": "topics/t05-describing_relationships.html#assignments",
     "title": "Describing Relationships",
     "section": "Assignments",
-    "text": "Assignments\n\n\n\nHW05 Describing Relationships"
+    "text": "Assignments\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nHW05 Describing Relationships"
   },
   {
     "objectID": "topics/t05-describing_relationships.html#assessment",
     "href": "topics/t05-describing_relationships.html#assessment",
     "title": "Describing Relationships",
     "section": "Assessment",
-    "text": "Assessment\n\n\n\nTBD"
+    "text": "Assessment\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nQuiz 04"
+  },
+  {
+    "objectID": "topics/t06-study_design.html",
+    "href": "topics/t06-study_design.html",
+    "title": "Study Design",
+    "section": "",
+    "text": "Learning how to explore and visualize our data.\nVisually consider patterns, identify potential relationships\n\n\n\n\n\nThink about how data come to be. That is, if the data are to be used to make broad and complete conclusions, then it is important to understand who or what the data represent.\n\nKnowing how the observational units were selected will allow for generalizations back to the population from which the data were selected.\nBy understanding the structure of the study, causal relationships can be separated from those relationships which are only associated.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nIdentify and distinguish between a parameter and a statistic\n\n\n\n\nExplain how to test a hypothsis using randomization\n\n\n\n\nDescribe multiple sampling methods\n\n\n\n\nAssess a research question using a hypothesis test\n\n\n\n\nIdentify if a causal statement can be made given a data collection method\n\n\n\n\nUse the Normal distribution to calculate a probability\n\n\n\n\nDescribe the concept of sampling variability\n\n\n\n\nCalculate the mean and sd of the sampling distribution based on population parameters\n\n\n\n\nExplain the Central Limit Theorem\n\n\n\n\nConstruct and Interpret a confidence interval in context of the problem\n\n\n\n\nUse a confidence interval to make an inferential hypothesis statement"
+  },
+  {
+    "objectID": "topics/t06-study_design.html#learning-path",
+    "href": "topics/t06-study_design.html#learning-path",
+    "title": "Study Design",
+    "section": "",
+    "text": "Learning how to explore and visualize our data.\nVisually consider patterns, identify potential relationships\n\n\n\n\n\nThink about how data come to be. That is, if the data are to be used to make broad and complete conclusions, then it is important to understand who or what the data represent.\n\nKnowing how the observational units were selected will allow for generalizations back to the population from which the data were selected.\nBy understanding the structure of the study, causal relationships can be separated from those relationships which are only associated.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nIdentify and distinguish between a parameter and a statistic\n\n\n\n\nExplain how to test a hypothsis using randomization\n\n\n\n\nDescribe multiple sampling methods\n\n\n\n\nAssess a research question using a hypothesis test\n\n\n\n\nIdentify if a causal statement can be made given a data collection method\n\n\n\n\nUse the Normal distribution to calculate a probability\n\n\n\n\nDescribe the concept of sampling variability\n\n\n\n\nCalculate the mean and sd of the sampling distribution based on population parameters\n\n\n\n\nExplain the Central Limit Theorem\n\n\n\n\nConstruct and Interpret a confidence interval in context of the problem\n\n\n\n\nUse a confidence interval to make an inferential hypothesis statement"
+  },
+  {
+    "objectID": "topics/t06-study_design.html#learning-materials",
+    "href": "topics/t06-study_design.html#learning-materials",
+    "title": "Study Design",
+    "section": "Learning Materials",
+    "text": "Learning Materials\n📚 Reading\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nIMS - Chapter 2\n\n\n\n\nIMS Chapter 11-11.1\n\n\n\n\nIMS - Chapter 13.1-13.3\n\n\n\n\n\n\n\n\n📝 Collaborative notes\nWe will be using the Jigsaw technique, which is a method of learning by teaching. You have been assigned (possibly with a partner) to read and summarize one section in the textbook.\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nhttps://hackmd.io/@norcalbiostat/06-study_design\n\n\n\n\nhttps://hackmd.io/@norcalbiostat/07-intro_inference"
+  },
+  {
+    "objectID": "topics/t06-study_design.html#assignments",
+    "href": "topics/t06-study_design.html#assignments",
+    "title": "Study Design",
+    "section": "Assignments",
+    "text": "Assignments\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nHW06 Foundations for Inference\n\n\n\n\nQuiz: Quantifying Uncertainty\n\n\n\n\nQuiz: Foundations for Inference"
+  },
+  {
+    "objectID": "topics/t06-study_design.html#assessment",
+    "href": "topics/t06-study_design.html#assessment",
+    "title": "Study Design",
+    "section": "Assessment",
+    "text": "Assessment\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nQuiz 05"
   },
   {
     "objectID": "topics.html",
     "href": "topics.html",
     "title": "Topic Areas",
     "section": "",
-    "text": "This is the place to start to find all content related to a topic.\n\n\n\n\n\n\n\n\n\n\nTopic\n\n\nDates\n\n\nDescription\n\n\n\n\n\n\nWelcome to Fall 23\n\n\n8/21\n\n\nIntroduction to class and your learning materials\n\n\n\n\nData Architecture\n\n\n8/21\n\n\nData entry, spreadsheets, metadata, codebooks\n\n\n\n\nFormulating research questions\n\n\n8/28\n\n\nAsking questions is easy. Asking answerable questions is more difficult.\n\n\n\n\nPreparing Data for Analysis\n\n\n8/30-9/10\n\n\nWhere an inordinate amount of time is spent\n\n\n\n\nDescribing distributions of data\n\n\n9/11-9/17\n\n\nVisualizing your data is the first line of defense against bad data\n\n\n\n\nDescribing Relationships\n\n\n9/18-10/01\n\n\nFirst step in investigating a question about an association\n\n\n\n\n\n\nNo matching items"
+    "text": "This is the place to start to find all content related to a topic.\n\n\n\n\n\n\n\n\n\n\nTopic\n\n\nDates\n\n\nDescription\n\n\n\n\n\n\nWelcome to Fall 23\n\n\n8/21\n\n\nIntroduction to class and your learning materials\n\n\n\n\nData Architecture\n\n\n8/21\n\n\nData entry, spreadsheets, metadata, codebooks\n\n\n\n\nFormulating research questions\n\n\n8/28\n\n\nAsking questions is easy. Asking answerable questions is more difficult.\n\n\n\n\nPreparing Data for Analysis\n\n\n8/30-9/10\n\n\nWhere an inordinate amount of time is spent\n\n\n\n\nDescribing distributions of data\n\n\n9/11-9/17\n\n\nVisualizing your data is the first line of defense against bad data\n\n\n\n\nDescribing Relationships\n\n\n9/18-10/01\n\n\nFirst step in investigating a question about an association\n\n\n\n\nStudy Design\n\n\n9/25-9/27\n\n\nHow did the data come to be?\n\n\n\n\n\n\nNo matching items"
   }
 ]

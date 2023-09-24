@@ -4,25 +4,10 @@ subtitle: "Data entry, spreadsheets, metadata, codebooks"
 description: "8/21"
 ---
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE}
-library(tidyverse);library(readxl); 
-library(pander); library(janitor)
-
-# Function to clean strings & separate into lists
-str_prep <- function(var){
-  as.list(
-    str_split(var, "\r\n", simplify=TRUE)
-    )
-}
-
-topic_mats <- read_excel("../schedule_615.xlsx", sheet="weekly_schedule") %>%
-  clean_names() %>% 
-  filter(grepl("t01", topic)) %>%
-  mutate(assignment = gsub("hw", "../hw/hw", hw), 
-         slides = sprintf("[%s](%s)", lecture, paste0("../slides/", lecture, ".html")), 
-         collab = sprintf("[%s](%s)", collab_notes, collab_notes)
-         ) %>% 
-  select(slides, collab, reading, assignment, topic_obj, quiz)
+```{r}
+library(pander)
+source("common_code.R")
+this_topic <- topic_mats %>% filter(grepl("t01", topic))
 ```
 
 ## Learning Path
@@ -37,7 +22,7 @@ Ready to learn how to interact with data.
 ### Objectives
 
 ```{r}
-pander(str_prep(topic_mats$topic_obj))
+create_tabled_list(this_topic$topic_obj)
 ```
 
 
@@ -46,31 +31,31 @@ pander(str_prep(topic_mats$topic_obj))
 {{< fa person-chalkboard >}} **Slides (Will open in full screen. Right click to open in a new tab)**
 
 ```{r}
-pander(str_prep(topic_mats$slides))
+create_tabled_list(this_topic$slides)
 ```
 
 :books:  **Reading** 
 
 ```{r}
-pander(str_prep(topic_mats$reading))
+create_tabled_list(this_topic$reading)
 ```
 
 
 :pencil: **Collaborative notes**
 
 ```{r}
-pander(str_prep(topic_mats$collab))
+create_tabled_list(this_topic$collab)
 ```
 
 ## Assignments
 
 ```{r}
-pander(str_prep(topic_mats$assignment))
+create_tabled_list(this_topic$collab)
 ```
 
 ## Assessment
 
 ```{r}
-pander(str_prep(topic_mats$quiz))
+create_tabled_list(this_topic$quiz)
 ```
 
