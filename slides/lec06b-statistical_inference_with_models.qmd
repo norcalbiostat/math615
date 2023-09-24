@@ -1,97 +1,11 @@
 ---
-title: "Statistical Inference with Mathematical Models"
-date: "2022-10-05"
-description: "7, 8"
-author: "Robin Donatello"
-footer: "[🔗 https://math615.netlify.app](https://math615.netlify.app) / Statistical Inference with Mathematical Models"
-from: markdown+emoji
-format: 
-  revealjs:
-    theme: beige
-    multiplex: true
-    transition: fade
-    slide-number: true
-    incremental: false 
-    chalkboard: true
-execute:
-  freeze: auto
-  echo: false
-knitr:
-  opts_chunk: 
-    R.options:
-      width: 200
+title: "Statistical Inference with Mathmatical Models"
+date: "2023-10-02"
+description: "8"
 ---
 
 
-# Statistical Inference
-
-(A.K.A Hypothesis Testing)
-
-![https://xkcd.com/1478/](https://imgs.xkcd.com/comics/p_values.png)
-
-## Statistical Inference
-
-::: incremental
--   Primarily concerned with understanding and quantifying the uncertainty of parameter estimates.
--   Equations and details change depending on the setting, the foundations for inference are the same throughout all of statistics.
--   We start with a case studies designed to motivate the process of making decisions about research claims.
--   We formalize the process through the introduction of the hypothesis testing framework, which allows us to formally evaluate claims about the population.
-:::
-
-## Variability in data 
-
-::: incremental
-* Sometimes the dataset at hand represents the entire research question.
-* More often than not, the data have been collected to answer a research question about a larger group of which the data are a (hopefully) representative subset.
-* One dataset will not be identical to a second dataset even if they are both collected from the same population using the same methods.
-:::
-
-## 
-
-::: {.callout-warning icon="false"}
-## Could it be chance?
-
-Suppose your professor splits the students in your class into two groups: students who sit on the left side of the classroom and students who sit on the right side of the classroom. 
-
-If $p_{L}$ represents the proportion of students who prefer to read books on screen who sit on the left side of the classroom and $p_{R}$ represents the proportion of students who prefer to read books on screen who sit on the right side of the classroom, would you be surprised if $p_{L}$ did not exactly equal $p_{R}$?
-:::
-
-. . . 
-
-::: {.callout-info icon="false"}
-## Assumptions
-If we do not think the side of the room a person sits on in class is related to whether they prefer to read books on screen, what assumption are we making about the relationship between these two variables (side of room and preferring to read books)?
-:::
-
-## Randomization 
-
-To decide whether variability in data is due to (1) the causal mechanism (the randomized explanatory variable in the experiment) or (2) natural variability inherent to the data we set up a sham randomized experiment as a comparison. 
-
-* We assume that each observational unit would have gotten the exact same response value regardless of the treatment level. 
-* By reassigning the treatments many many times, we can compare the actual experiment to the sham experiment. 
-
-## Decision
-
-If the actual experiment has **more extreme results** than any of the sham experiments, we are led to believe that it is the explanatory variable which is causing the result and not just variability inherent to the data. 
-
-
-## Case Study: Sex discrimination
-
-Open the collaborative notes and work with your neighbor to answer the following questions. You will be randomly assigned to write out your answer in this document. 
-
-[https://hackmd.io/\@norcalbiostat/07-intro_inference](https://hackmd.io/@norcalbiostat/07-intro_inference)
-
-## 
-
-\
-
-::: {.callout-note icon="false"}
-## Statistical inference is the practice of making decisions and conclusions from data in the context of uncertainty. 
-
-Errors do occur, just like rare events, and the dataset at hand might lead us to the wrong conclusion. While a given dataset may not always lead us to a correct conclusion, statistical inference gives us tools to control and evaluate how often these errors occur. 
-:::
-
-# Inference with Mathematical Models
+# Data
 
 ```{r}
 stent30 <- openintro::stent30
@@ -110,11 +24,10 @@ The normal distribution is used to describe the variability associated with samp
 
 
 
-
 ## Collaborative Notes
 Return to the collaborative notes and answer your assigned questions. 
 
-[https://hackmd.io/\@norcalbiostat/07-intro_inference](https://hackmd.io/@norcalbiostat/07-intro_inference)
+[https://hackmd.io/@norcalbiostat/07-intro_inference](https://hackmd.io/@norcalbiostat/07-intro_inference)
 
 # Case study: Stents
 
