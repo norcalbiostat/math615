@@ -1,6 +1,5 @@
 ---
 title: "HW 06: Foundations for Inference"
-subtitle: "Sample design, probability and inference"
 execute:
   echo: true
   warning: false
@@ -14,26 +13,18 @@ execute:
 To understand the conceptual and mathematical foundations for statistical inference. 
 
 
-## Instructions 
-
-In **EACH** section below, answer at least two (2) questions. It is expected that you are able to answer _all_ of these questions. 
-
-This is a long assignment, covering both sections in this module. 
-
-
 ## Submission instructions
 
 
 * Download this [[QMD]](hw06-foundations_for_inference.qmd) file and use it to write your answers in. 
   - Right click and 'save as', put this in your `scripts` folder.
-  - Add a line for your name (`author`) in the YAML header under `subtitle`.
-  - Delete the instructions and questions that you are choosing not to answer. If you answer more than two :tada:, i will only grade the first two. 
+  - Add a line for your name (`author`) in the YAML header under `title`.
 * Render to pdf and upload your final PDF to Canvas by the due date. 
 
 ----
 
 
-# Study Design ([IMS Ch 2.5](https://openintro-ims.netlify.app/data-design#chp2-exercises))
+# Study Design (IMS Ch 2.5)
 
 ### 1 Parameters and statistics. 
 
@@ -123,6 +114,93 @@ Identify the flaw(s) in reasoning in the following scenarios. Explain what the i
 
 
 **c. An orthopedist administers a questionnaire to 30 of his patients who do not have any joint problems and finds that 20 of them regularly go running. He concludes that running decreases the risk of joint problems.**
+
+
+
+# Sampling Distribution Theory (IMS Ch 13.1)
+
+Describe what a sampling distribution is, what the central limit theorem states, and what are the technical conditions that must be met to use the normal model for inference. 
+
+:warning: Come prepared to class to share out these answers. You can use chat GPT to aid your understanding, there are also videos in the topic overview webpage. But your writing must be your own.
+
+
+
+**1. Sampling Distribution**
+
+
+
+**2. Central Limit Theorem**
+
+
+
+**3. Conditions for a normal approximation to provide valid inference**
+
+
+
+
+# The Normal Model (IMS 13.2)
+
+
+::: info
+**R commands for working with the Normal Model**
+
+If $X \sim N(\mu, \sigma^{2})$, and $P$ means "the probability of"
+
+1. you can find $P(X < x)$ using the R command `pnorm(x, mu, sigma)`
+2. you can find $a$ such that $P(X < a) = q$ using the R command `qnorm(q, mu, sigma)`
+:::
+
+
+
+1. **What are the two parameters that govern the shape and location of a Normal distribution? Write the symbol, and what it means in words**
+
+
+
+2. **What does $X \sim N(\mu, \sigma^{2})$ mean in English? What is this type of notation called? (You may have to Google this)** 
+
+
+
+3. **What is a Z score? (in a sentence)**
+
+
+
+4. **Example: Head lengths of brushtail possums follow a nearly normal distribution with mean 92.6 mm and standard deviation 3.6 mm. Compute the Z scores for possums with head lengths of 95.4 mm and 85.8 mm.**
+
+
+
+5. **What does the area under the Normal distribution correspond to?**
+
+
+
+
+6. **Let $X$ be the head length of a brushtail possum, where $X \sim N(92.6, 3.6^{2})$ Use R to calculate the probability that a possum will have a head length lower than 85mm. That is, find $P(X < 85)$**.
+
+
+
+7. **Would you consider it to be unusual if you found a possum with a head smaller than 85mm? Explain your answer.**
+
+
+
+8. **Suppose test scores are distributed normally with mean of 115 and standard deviation of 15.**
+
+    a. **Let $X$ be the value of the test scores. Write the distributional notation for X.** 
+    
+
+    b. **What values bound the middle 75% of test scores? Give a lower and an upper value.**
+
+    c. **What percent of students have test scores less than 83? Show your code and answer**
+
+
+9. **A study found that the mean amount of time cars spent in drive-through of a certain fast-food restaurant was 154.6 seconds. Assume drive-through times are normally distributed with a standard deviation of 27 seconds**
+
+    a. **What is the probability that someone spends more than 230 seconds in the drive through?**
+    
+    b. **How long do 75% of the cars typically have to wait in the drive through? (That is, what is the 75th percentile?)**
+
+
+10. **Bonita computed a z-score after receiving the results of her exam in order to compare her results with the rest of the class. Her z-score was 2.1. Interpret her Z score in a sentence.**
+
+
 
 
     

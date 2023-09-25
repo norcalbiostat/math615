@@ -1,19 +1,15 @@
 ---
-title: "Statistical Inference with Mathmatical Models"
-date: "2023-10-02"
-description: "8"
+title: "The Normal Model"
+date: "2023-10-04"
+description: "7,8"
 ---
 
 
-# Data
-
-```{r}
-stent30 <- openintro::stent30
-```
+## Refresher on the Normal Distribution 
 
 ![](images/paranormal.png)
 
-## Refresher on the Normal Distribution 
+## Describes Variability {.smaller}
 
 :::{layout-ncol=2}
 The normal distribution is used to describe the variability associated with sample statistics which are taken from either repeated samples or repeated experiments. The normal distribution is quite powerful in that it describes the variability of many different statistics such as the sample mean and sample proportions. 
@@ -22,14 +18,96 @@ The normal distribution is used to describe the variability associated with samp
 
 :::
 
+## Sampling Distribution Theory {.incremental}
+
+Turn to a neighbor and discuss your answers to the following questions. We will share out to the class after each one. 
+
+* 👥 What is a Sampling Distribution? 
+* 👥 What does the Central Limit Theorem state? 
+* 👥 What assumptions are needed for the normal approximation (model) to provide valid inference?
 
 
-## Collaborative Notes
-Return to the collaborative notes and answer your assigned questions. 
+# The Normal Distribution
 
-[https://hackmd.io/@norcalbiostat/07-intro_inference](https://hackmd.io/@norcalbiostat/07-intro_inference)
+Board work following [IMS 13.2](https://openintro-ims.netlify.app/foundations-mathematical.html#normalDist)
+
+* Distributional Notation
+* Standardizing with Z-scores
+* Normal Probabilies (qnorm, pnorm)
+
+# Quantifying variability of a statistic
+
+Follows [IMS 13.3](https://openintro-ims.netlify.app/foundations-mathematical.html#quantifying-the-variability-of-a-statistic)
+
+
+## 68-95-99.7 rule
+
+![](https://openintro-ims.netlify.app/13-foundations-mathematical_files/figure-html/er6895997-1.png)
+
+## 
+:::{.callout-tip icon=false}
+### Example
+SAT scores closely follow $N\sim(1500, 90,000)$. 
+
+About what percent of test takers score 900 to 2100? 
+What percent score between 1500 and 2100?
+:::
+
+![](https://openintro-ims.netlify.app/13-foundations-mathematical_files/figure-html/er6895997-1.png)
+
+## 
+:::{.callout-tip icon=false}
+### Example
+SAT scores closely follow $N\sim(1500, 90,000)$. So $\sigma = 300$.
+
+About what percent of test takers score 900 to 2100? 
+What percent score between 1500 and 2100?
+:::
+
+* 900 has a z-score of -2, 1500 has a z-score of 0, 2100 has a z-score of 2
+
+```{r}
+#| code-fold: false
+pnorm(2100, mean=1500, sd = 300) - pnorm(900, mean=1500, sd = 300)
+```
+
+
+## Standard Error
+
+:::{.callout-important}
+### Definition: Standard Deviation (SD)
+Variability of the data values ($x$)
+:::
+
+:::{.callout-important}
+### Definition: Standard Error (SE)
+Variability of the sample statistic (e.g. $\bar{x}$ or $\hat{p}$)
+:::
+
+
+## Margin of Error 
+
+:::{.callout-important}
+### Definition: Margin of Error (MOE)
+The margin of error describes how far away observations are from their mean.
+
+Often approximated as $2 * SE$
+:::
+
+
+* 95% of the observations are within one margin of error of the mean.
+* If the spread of the observations goes from some lower bound to some upper bound, a rough approximation of the $SE$ is to divide the range by 4. 
+    - If you notice the sample proportions go from 0.1 to 0.4, the SE can be approximated to be 0.075.
+
+
 
 # Case study: Stents
+
+This example and data comes from [IMS 13.6](https://openintro-ims.netlify.app/foundations-mathematical.html#casestent)
+```{r}
+stent30 <- openintro::stent30
+```
+
 
 ## Observed data
 
@@ -161,13 +239,18 @@ $H_{0}: p_{trmt} - p_{ctrl} = 0$
 
 $H_{A}: p_{trmt} - p_{ctrl} \neq 0$
 
-## Calculating a test statistic
+## Calculating a test statistic 
 
 $$ Z = \frac{\mbox{point estimate - null value}}{SE}$$
+
 . . . 
+
 $$ Z = \frac{(p_{trmt} - p_{ctrl}) - 0}{SE_{p_{trmt} - p_{ctrl}}} = \frac{.090}{.028} = 3.21 $$
+
 . . . 
+
 $$ P(Z > 3.2) = .00068 \qquad \mbox{ (the p-value)}$$ 
+
 . . . 
 
 If the true difference in proportions was 0, then the probability of observing a difference of 0.09 due to random chance is 0.00068. 

@@ -30,71 +30,6 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
-    /* CSS for syntax highlighting */
-    pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-    pre > code.sourceCode > span:empty { height: 1.2em; }
-    .sourceCode { overflow: visible; }
-    code.sourceCode > span { color: inherit; text-decoration: inherit; }
-    div.sourceCode { margin: 1em 0; }
-    pre.sourceCode { margin: 0; }
-    @media screen {
-    div.sourceCode { overflow: auto; }
-    }
-    @media print {
-    pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-    }
-    pre.numberSource code
-      { counter-reset: source-line 0; }
-    pre.numberSource code > span
-      { position: relative; left: -4em; counter-increment: source-line; }
-    pre.numberSource code > span > a:first-child::before
-      { content: counter(source-line);
-        position: relative; left: -1em; text-align: right; vertical-align: baseline;
-        border: none; display: inline-block;
-        -webkit-touch-callout: none; -webkit-user-select: none;
-        -khtml-user-select: none; -moz-user-select: none;
-        -ms-user-select: none; user-select: none;
-        padding: 0 4px; width: 4em;
-        color: #aaaaaa;
-      }
-    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-    div.sourceCode
-      { color: #003b4f; background-color: #f1f3f5; }
-    @media screen {
-    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-    }
-    code span { color: #003b4f; } /* Normal */
-    code span.al { color: #ad0000; } /* Alert */
-    code span.an { color: #5e5e5e; } /* Annotation */
-    code span.at { color: #657422; } /* Attribute */
-    code span.bn { color: #ad0000; } /* BaseN */
-    code span.bu { } /* BuiltIn */
-    code span.cf { color: #003b4f; } /* ControlFlow */
-    code span.ch { color: #20794d; } /* Char */
-    code span.cn { color: #8f5902; } /* Constant */
-    code span.co { color: #5e5e5e; } /* Comment */
-    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
-    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
-    code span.dt { color: #ad0000; } /* DataType */
-    code span.dv { color: #ad0000; } /* DecVal */
-    code span.er { color: #ad0000; } /* Error */
-    code span.ex { } /* Extension */
-    code span.fl { color: #ad0000; } /* Float */
-    code span.fu { color: #4758ab; } /* Function */
-    code span.im { color: #00769e; } /* Import */
-    code span.in { color: #5e5e5e; } /* Information */
-    code span.kw { color: #003b4f; } /* Keyword */
-    code span.op { color: #5e5e5e; } /* Operator */
-    code span.ot { color: #003b4f; } /* Other */
-    code span.pp { color: #ad0000; } /* Preprocessor */
-    code span.sc { color: #5e5e5e; } /* SpecialChar */
-    code span.ss { color: #20794d; } /* SpecialString */
-    code span.st { color: #20794d; } /* String */
-    code span.va { color: #111111; } /* Variable */
-    code span.vs { color: #20794d; } /* VerbatimString */
-    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css" id="theme">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -436,15 +371,15 @@ Robin Donatello
 </ul>
 </div>
 </section>
-<section id="section" class="slide level2">
-<h2></h2>
+<section id="experiment-time" class="slide level2">
+<h2>Experiment time!</h2>
+<p>Split the class into two mutually exclusive groups: students who sit on the left side of the classroom and students who sit on the right side of the classroom.</p>
 <div class="callout callout-warning no-icon callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
 <p><strong>Could it be chance?</strong></p>
 </div>
 <div class="callout-content">
-<p>Suppose your professor splits the students in your class into two groups: students who sit on the left side of the classroom and students who sit on the right side of the classroom.</p>
 <p>If <span class="math inline">\(p_{L}\)</span> represents the proportion of students who prefer to read books on screen who sit on the left side of the classroom and <span class="math inline">\(p_{R}\)</span> represents the proportion of students who prefer to read books on screen who sit on the right side of the classroom, would you be surprised if <span class="math inline">\(p_{L}\)</span> did not exactly equal <span class="math inline">\(p_{R}\)</span>?</p>
 </div>
 </div>
@@ -456,9 +391,21 @@ Robin Donatello
 </section>
 <section id="randomization" class="slide level2">
 <h2>Randomization</h2>
-<p>To decide whether variability in data is due to (1) the causal mechanism (the randomized explanatory variable in the experiment) or (2) natural variability inherent to the data we set up a sham randomized experiment as a comparison.</p>
+<p>To decide whether variability in data is due to</p>
 <ul>
-<li>We assume that each observational unit would have gotten the exact same response value regardless of the treatment level.</li>
+<li><ol type="1">
+<li>the causal mechanism (the randomized explanatory variable in the experiment)</li>
+</ol></li>
+<li><ol start="2" type="1">
+<li>natural variability inherent to the data</li>
+</ol></li>
+</ul>
+<p>we set up a sham randomized experiment as a comparison.</p>
+</section>
+<section id="sham-randomized-experiment" class="slide level2">
+<h2>“Sham” randomized experiment</h2>
+<ul>
+<li>We assume that each observational unit (student) would have gotten the exact same response value (likes to read or not) regardless of the treatment level (side of the room).</li>
 <li>By reassigning the treatments many many times, we can compare the actual experiment to the sham experiment.</li>
 </ul>
 </section>
@@ -468,230 +415,12 @@ Robin Donatello
 </section>
 <section id="case-study-sex-discrimination" class="slide level2">
 <h2>Case Study: Sex discrimination</h2>
-<p>Open the collaborative notes and work with your neighbor to answer the following questions. You will be randomly assigned to write out your answer in this document.</p>
+<p>Open the collaborative notes and work with your neighbor to answer the following questions under the “Inference using Randomization” section.</p>
 <p><a href="https://hackmd.io/@norcalbiostat/06b-stat_inference">https://hackmd.io/<span class="citation" data-cites="norcalbiostat/06b-stat_inference">@norcalbiostat/06b-stat_inference</span></a></p>
 </section>
-<section id="section-1" class="slide level2">
-<h2></h2>
-<p><br>
-</p>
-<div class="callout callout-note no-icon callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<p><strong>Statistical inference is the practice of making decisions and conclusions from data in the context of uncertainty.</strong></p>
-</div>
-<div class="callout-content">
+<section id="statistical-inference-is-the-practice-of-making-decisions-and-conclusions-from-data-in-the-context-of-uncertainty." class="slide level2">
+<h2>Statistical inference is the practice of making decisions and conclusions from data in the context of uncertainty.</h2>
 <p>Errors do occur, just like rare events, and the dataset at hand might lead us to the wrong conclusion. While a given dataset may not always lead us to a correct conclusion, statistical inference gives us tools to control and evaluate how often these errors occur.</p>
-</div>
-</div>
-</div>
-</section></section>
-<section>
-<section id="inference-with-mathematical-models" class="title-slide slide level1 center">
-<h1>Inference with Mathematical Models</h1>
-<div class="cell">
-<details>
-<summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>stent30 <span class="ot">&lt;-</span> openintro<span class="sc">::</span>stent30</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-
-<img data-src="images/paranormal.png" class="r-stretch"></section>
-<section id="refresher-on-the-normal-distribution" class="slide level2">
-<h2>Refresher on the Normal Distribution</h2>
-<div class="quarto-layout-panel">
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p>The normal distribution is used to describe the variability associated with sample statistics which are taken from either repeated samples or repeated experiments. The normal distribution is quite powerful in that it describes the variability of many different statistics such as the sample mean and sample proportions.</p>
-</div>
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><a href="https://twitter.com/RiddleMeCam/status/1557402268395139077?ref_src=twsrc%5Etfw"><img data-src="images/clt_twitter.png"></a></p>
-</div>
-</div>
-</div>
-</section>
-<section id="collaborative-notes" class="slide level2">
-<h2>Collaborative Notes</h2>
-<p>Return to the collaborative notes and answer your assigned questions.</p>
-<p><a href="https://hackmd.io/@norcalbiostat/07-intro_inference">https://hackmd.io/@norcalbiostat/07-intro_inference</a></p>
-</section></section>
-<section>
-<section id="case-study-stents" class="title-slide slide level1 center">
-<h1>Case study: Stents</h1>
-
-</section>
-<section id="observed-data" class="slide level2">
-<h2>Observed data</h2>
-<p>Consider an experiment that examined whether implanting a stent in the brain of a patient at risk for a stroke helps reduce the risk of a stroke. The results from the first 30 days of this study are summarized in the following table.</p>
-<div class="columns">
-<div class="column" style="width:50%;">
-<div class="cell">
-<details>
-<summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">table</span>(stent30<span class="sc">$</span>group, stent30<span class="sc">$</span>outcome) <span class="sc">|&gt;</span> <span class="fu">addmargins</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>           
-            no event stroke Sum
-  control        214     13 227
-  treatment      191     33 224
-  Sum            405     46 451</code></pre>
-</div>
-</div>
-</div><div class="column" style="width:50%;">
-<div class="cell">
-<details>
-<summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">table</span>(stent30<span class="sc">$</span>group, stent30<span class="sc">$</span>outcome) <span class="sc">|&gt;</span>  <span class="fu">prop.table</span>(<span class="at">margin=</span><span class="dv">1</span>) <span class="sc">|&gt;</span><span class="fu">round</span>(<span class="at">digits=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>           
-            no event stroke
-  control       0.94   0.06
-  treatment     0.85   0.15</code></pre>
-</div>
-</div>
-</div>
-</div>
-<p>These results are surprising! The point estimate suggests that patients who received stents may have a higher risk of stroke: <span class="math inline">\(p_{trmt}−p_{ctrl}=0.090\)</span>.</p>
-</section>
-<section id="point-estimate-vs-interval-estimate" class="slide level2">
-<h2>Point estimate vs Interval estimate</h2>
-<p>The point estimate for the difference in proportions <span class="math inline">\(p_{trmt}−p_{ctrl}=0.090\)</span> is a single point estimate, based on this single sample.</p>
-<p><br>
-</p>
-<p>A <em>point estimate</em> is our best guess for the value of the parameter, so it makes sense to build the confidence interval around that value.</p>
-</section>
-<section id="constructing-a-95-confidence-interval-ci" class="slide level2">
-<h2>Constructing a 95% confidence interval (CI)</h2>
-<p>When the sampling distribution of a point estimate can <em>reasonably be modeled as having a normal distribution</em>, the point estimate we observe will be within 1.96 standard errors of the true value of interest about 95% of the time. Thus, a 95% confidence interval for such a point estimate can be constructed:</p>
-<p><span class="math display">\[\mbox{point estimate} \pm 1.96 × SE\]</span></p>
-<p>We can be 95% confident this interval captures the true value.</p>
-</section>
-<section id="construct-a-95-ci-for-the-stent-example" class="slide level2 smaller">
-<h2>Construct a 95% CI for the stent example</h2>
-<p>The conditions necessary to ensure the point estimate <span class="math inline">\(p_{trmt}−p_{ctrl}\)</span> is nearly normal have been verified for you, and the estimate’s standard error is <span class="math inline">\(SE = 0.028\)</span>.</p>
-<ul>
-<li>Construct a 95% confidence interval for the change in 30-day stroke rates from usage of the stent.</li>
-<li>Interpret this interval in context of the problem.</li>
-</ul>
-<div class="fragment">
-<p><span class="math display">\[0.090 \pm 1.96×0.028 = (0.035,0.145)\]</span></p>
-<p>We are 95% confident that implanting a stent in a stroke patient’s brain increased the risk of stroke within 30 days by a rate of 0.035 to 0.145.</p>
-</div>
-</section>
-<section id="important-note" class="slide level2">
-<h2>Important note</h2>
-<p><span class="emoji" data-emoji="warning">⚠️</span> it’s incorrect to say that we can be 95% confident that the true value is inside the mean.</p>
-
-<img data-src="https://openintro-ims.netlify.app/13-foundations-mathematical_files/figure-html/95PercentConfidenceInterval-1.png" class="r-stretch quarto-figure-center"><p class="caption">Figure 13.11: Twenty-five samples of size n=300 were collected from a population with p=0.30. For each sample, a confidence interval was created to try to capture the true proportion p.&nbsp;However, 1 of these 25 intervals did not capture p=0.30.</p></section>
-<section id="section-2" class="slide level2">
-<h2></h2>
-<ul>
-<li>This is one of the most common errors: while it might be useful to think of it as a probability, the confidence level only quantifies how plausible it is that the parameter is in the interval.</li>
-<li>Our intervals say nothing about the confidence of capturing individual observations, a proportion of the observations, or about capturing point estimates.</li>
-<li>Confidence intervals provide an interval estimate for and attempt to capture population parameters.</li>
-</ul>
-</section>
-<section id="hypothesis-test" class="slide level2">
-<h2>Hypothesis test</h2>
-<div class="callout callout-note no-icon callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<p><strong>First draft</strong></p>
-</div>
-<div class="callout-content">
-<p>Let’s setup a hypothesis to test if stents work to reduce the risk of a stroke.</p>
-</div>
-</div>
-</div>
-<p><br>
-</p>
-<p><span class="math inline">\(H_{0}\)</span>: Stents don’t work</p>
-<p><span class="math inline">\(H_{A}\)</span>: Stents reduce the risk of a stroke</p>
-</section>
-<section id="hypothesis-test-1" class="slide level2">
-<h2>Hypothesis test</h2>
-<div class="callout callout-note no-icon callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<p><strong>Revision 1:</strong></p>
-</div>
-<div class="callout-content">
-<p>Making it a statement about two groups</p>
-</div>
-</div>
-</div>
-<p><span class="math inline">\(H_{0}\)</span>: Patients who have a stent have the same risk of a stroke as patients who don’t have a stent</p>
-<p><span class="math inline">\(H_{A}\)</span>: Patients who have a stent have lower risk of a stroke as patients who don’t have a stent</p>
-</section>
-<section id="hypothesis-test-2" class="slide level2">
-<h2>Hypothesis test</h2>
-<div class="callout callout-note no-icon callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<p><strong>Revision 2:</strong></p>
-</div>
-<div class="callout-content">
-<p>Make it a statement using summary statistics and removing the directionality of the hypothesis</p>
-</div>
-</div>
-</div>
-<p>&nbsp;</p>
-<p><span class="math inline">\(H_{0}\)</span>: The proportion of patients with a stent who have a stroke is the same as the proportion of patients without a stent who have a stroke.</p>
-<p><span class="math inline">\(H_{A}\)</span>: The proportion of patients with a stent who have a stroke is different than the proportion of patients without a stent who have a stroke.</p>
-</section>
-<section id="hypothesis-test-3" class="slide level2">
-<h2>Hypothesis test</h2>
-<div class="callout callout-note no-icon callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<p><strong>Revision 3:</strong></p>
-</div>
-<div class="callout-content">
-<p>Writing it in symbols</p>
-</div>
-</div>
-</div>
-<p>Let <span class="math inline">\(p_{trmt}\)</span> be the proportion of patients with a stent who have a stroke, and <span class="math inline">\(p_{ctrl}\)</span> be the proportion of patients without a stent who have a stroke</p>
-<p><br>
-</p>
-<p><span class="math inline">\(H_{0}: p_{trmt} = p_{ctrl}\)</span></p>
-<p><span class="math inline">\(H_{A}: p_{trmt} \neq p_{ctrl}\)</span></p>
-</section>
-<section id="hypothesis-test-4" class="slide level2">
-<h2>Hypothesis test</h2>
-<div class="callout callout-note no-icon callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<p><strong>Revision 3.5:</strong></p>
-</div>
-<div class="callout-content">
-<p>Rewriting as a difference in parameters</p>
-</div>
-</div>
-</div>
-<p>Let <span class="math inline">\(p_{1}\)</span> be the proportion of patients with a stent who have a stroke, and <span class="math inline">\(p_{ctrl}\)</span> be the proportion of patients without a stent who have a stroke</p>
-<p><br>
-</p>
-<p><span class="math inline">\(H_{0}: p_{trmt} - p_{ctrl} = 0\)</span></p>
-<p><span class="math inline">\(H_{A}: p_{trmt} - p_{ctrl} \neq 0\)</span></p>
-</section>
-<section id="calculating-a-test-statistic" class="slide level2">
-<h2>Calculating a test statistic</h2>
-<p><span class="math display">\[ Z = \frac{\mbox{point estimate - null value}}{SE}\]</span> . . . <span class="math display">\[ Z = \frac{(p_{trmt} - p_{ctrl}) - 0}{SE_{p_{trmt} - p_{ctrl}}} = \frac{.090}{.028} = 3.21 \]</span> . . . <span class="math display">\[ P(Z &gt; 3.2) = .00068 \qquad \mbox{ (the p-value)}\]</span> . . .</p>
-<p>If the true difference in proportions was 0, then the probability of observing a difference of 0.09 due to random chance is 0.00068.</p>
-</section>
-<section id="section-3" class="slide level2">
-<h2></h2>
-
-<img data-src="https://imgs.xkcd.com/comics/p_values.png" class="r-stretch quarto-figure-center"><p class="caption">https://xkcd.com/1478/</p></section>
-<section id="using-confidence-intervals-to-test-a-hypothesis" class="slide level2">
-<h2>Using Confidence Intervals to test a hypothesis</h2>
-<blockquote>
-<p>We are 95% confident that implanting a stent in a stroke patient’s brain increased the risk of stroke within 30 days by a rate of 0.035 to 0.145.</p>
-</blockquote>
-<p>Since the interval does not contain the null hypothesized value of 0 (is completely above 0), it means the data provide convincing evidence that the stent used in the study changed the risk of stroke within 30 days</p>
 
 <div class="footer footer-default">
 <p><a href="https://math615.netlify.app/slides">🔗 https://math615.netlify.app</a></p>
@@ -910,44 +639,6 @@ Robin Donatello
         ]
       });
     </script>
-    
-    <script>
-      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-      // slide changes (different for each slide format).
-      (function () {
-        // dispatch for htmlwidgets
-        function fireSlideEnter() {
-          const event = window.document.createEvent("Event");
-          event.initEvent("slideenter", true, true);
-          window.document.dispatchEvent(event);
-        }
-
-        function fireSlideChanged(previousSlide, currentSlide) {
-          fireSlideEnter();
-
-          // dispatch for shiny
-          if (window.jQuery) {
-            if (previousSlide) {
-              window.jQuery(previousSlide).trigger("hidden");
-            }
-            if (currentSlide) {
-              window.jQuery(currentSlide).trigger("shown");
-            }
-          }
-        }
-
-        // hookup for slidy
-        if (window.w3c_slidy) {
-          window.w3c_slidy.add_observer(function (slide_num) {
-            // slide_num starts at position 1
-            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-          });
-        }
-
-      })();
-    </script>
-
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {

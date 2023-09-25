@@ -11,8 +11,8 @@
   <meta name="generator" content="quarto-1.3.319">
 
   <meta name="author" content="Robin Donatello">
-  <meta name="dcterms.date" content="2023-10-02">
-  <title>Data Analysis for Graduate Research - Statistical Inference with Mathmatical Models</title>
+  <meta name="dcterms.date" content="2023-10-04">
+  <title>Data Analysis for Graduate Research - The Normal Model</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -387,8 +387,8 @@
       margin-right: 0; 
     }
   </style>
-<meta name="twitter:title" content="Data Analysis for Graduate Research - Statistical Inference with Mathmatical Models">
-<meta name="twitter:description" content="8">
+<meta name="twitter:title" content="Data Analysis for Graduate Research - The Normal Model">
+<meta name="twitter:description" content="7,8">
 <meta name="twitter:creator" content="@norcalbiostat">
 <meta name="twitter:card" content="summary">
 </head>
@@ -397,7 +397,7 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Statistical Inference with Mathmatical Models</h1>
+  <h1 class="title">The Normal Model</h1>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -407,21 +407,14 @@ Robin Donatello
 </div>
 </div>
 
-  <p class="date">2023-10-02</p>
+  <p class="date">2023-10-04</p>
 </section>
-<section>
-<section id="data" class="title-slide slide level1 center">
-<h1>Data</h1>
-<div class="cell">
-<details>
-<summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>stent30 <span class="ot">&lt;-</span> openintro<span class="sc">::</span>stent30</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-
-<img data-src="images/paranormal.png" class="r-stretch"></section>
 <section id="refresher-on-the-normal-distribution" class="slide level2">
 <h2>Refresher on the Normal Distribution</h2>
+
+<img data-src="images/paranormal.png" class="r-stretch"></section>
+<section id="describes-variability" class="slide level2 smaller">
+<h2>Describes Variability</h2>
 <div class="quarto-layout-panel">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
@@ -433,15 +426,135 @@ Robin Donatello
 </div>
 </div>
 </section>
-<section id="collaborative-notes" class="slide level2">
-<h2>Collaborative Notes</h2>
-<p>Return to the collaborative notes and answer your assigned questions.</p>
-<p><a href="https://hackmd.io/@norcalbiostat/07-intro_inference">https://hackmd.io/<span class="citation" data-cites="norcalbiostat/07-intro_inference">@norcalbiostat/07-intro_inference</span></a></p>
+<section id="sampling-distribution-theory" class="slide level2 incremental">
+<h2>Sampling Distribution Theory</h2>
+<p>Turn to a neighbor and discuss your answers to the following questions. We will share out to the class after each one.</p>
+<ul>
+<li>👥 What is a Sampling Distribution?</li>
+<li>👥 What does the Central Limit Theorem state?</li>
+<li>👥 What assumptions are needed for the normal approximation (model) to provide valid inference?</li>
+</ul>
+</section>
+<section id="the-normal-distribution" class="title-slide slide level1 center">
+<h1>The Normal Distribution</h1>
+<p>Board work following <a href="https://openintro-ims.netlify.app/foundations-mathematical.html#normalDist">IMS 13.2</a></p>
+<ul>
+<li>Distributional Notation</li>
+<li>Standardizing with Z-scores</li>
+<li>Normal Probabilies (qnorm, pnorm)</li>
+</ul>
+</section>
+
+<section>
+<section id="quantifying-variability-of-a-statistic" class="title-slide slide level1 center">
+<h1>Quantifying variability of a statistic</h1>
+<p>Follows <a href="https://openintro-ims.netlify.app/foundations-mathematical.html#quantifying-the-variability-of-a-statistic">IMS 13.3</a></p>
+</section>
+<section id="rule" class="slide level2">
+<h2>68-95-99.7 rule</h2>
+
+<img data-src="https://openintro-ims.netlify.app/13-foundations-mathematical_files/figure-html/er6895997-1.png" class="r-stretch"></section>
+<section id="section" class="slide level2">
+<h2></h2>
+<div class="callout callout-tip no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>Example</strong></p>
+</div>
+<div class="callout-content">
+<p>SAT scores closely follow <span class="math inline">\(N\sim(1500, 90,000)\)</span>.</p>
+<p>About what percent of test takers score 900 to 2100? What percent score between 1500 and 2100?</p>
+</div>
+</div>
+</div>
+
+<img data-src="https://openintro-ims.netlify.app/13-foundations-mathematical_files/figure-html/er6895997-1.png" class="r-stretch"></section>
+<section id="section-1" class="slide level2">
+<h2></h2>
+<div class="callout callout-tip no-icon callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>Example</strong></p>
+</div>
+<div class="callout-content">
+<p>SAT scores closely follow <span class="math inline">\(N\sim(1500, 90,000)\)</span>. So <span class="math inline">\(\sigma = 300\)</span>.</p>
+<p>About what percent of test takers score 900 to 2100? What percent score between 1500 and 2100?</p>
+</div>
+</div>
+</div>
+<ul>
+<li>900 has a z-score of -2, 1500 has a z-score of 0, 2100 has a z-score of 2</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">pnorm</span>(<span class="dv">2100</span>, <span class="at">mean=</span><span class="dv">1500</span>, <span class="at">sd =</span> <span class="dv">300</span>) <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="dv">900</span>, <span class="at">mean=</span><span class="dv">1500</span>, <span class="at">sd =</span> <span class="dv">300</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.9544997</code></pre>
+</div>
+</div>
+</section>
+<section id="standard-error" class="slide level2">
+<h2>Standard Error</h2>
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Definition: Standard Deviation (SD)</strong></p>
+</div>
+<div class="callout-content">
+<p>Variability of the data values (<span class="math inline">\(x\)</span>)</p>
+</div>
+</div>
+</div>
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Definition: Standard Error (SE)</strong></p>
+</div>
+<div class="callout-content">
+<p>Variability of the sample statistic (e.g.&nbsp;<span class="math inline">\(\bar{x}\)</span> or <span class="math inline">\(\hat{p}\)</span>)</p>
+</div>
+</div>
+</div>
+</section>
+<section id="margin-of-error" class="slide level2">
+<h2>Margin of Error</h2>
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Definition: Margin of Error (MOE)</strong></p>
+</div>
+<div class="callout-content">
+<p>The margin of error describes how far away observations are from their mean.</p>
+<p>Often approximated as <span class="math inline">\(2 * SE\)</span></p>
+</div>
+</div>
+</div>
+<ul>
+<li>95% of the observations are within one margin of error of the mean.</li>
+<li>If the spread of the observations goes from some lower bound to some upper bound, a rough approximation of the <span class="math inline">\(SE\)</span> is to divide the range by 4.
+<ul>
+<li>If you notice the sample proportions go from 0.1 to 0.4, the SE can be approximated to be 0.075.</li>
+</ul></li>
+</ul>
 </section></section>
 <section>
 <section id="case-study-stents" class="title-slide slide level1 center">
 <h1>Case study: Stents</h1>
-
+<p>This example and data comes from <a href="https://openintro-ims.netlify.app/foundations-mathematical.html#casestent">IMS 13.6</a></p>
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>stent30 <span class="ot">&lt;-</span> openintro<span class="sc">::</span>stent30</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 </section>
 <section id="observed-data" class="slide level2">
 <h2>Observed data</h2>
@@ -451,7 +564,7 @@ Robin Donatello
 <div class="cell">
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">table</span>(stent30<span class="sc">$</span>group, stent30<span class="sc">$</span>outcome) <span class="sc">|&gt;</span> <span class="fu">addmargins</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">table</span>(stent30<span class="sc">$</span>group, stent30<span class="sc">$</span>outcome) <span class="sc">|&gt;</span> <span class="fu">addmargins</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>           
@@ -465,7 +578,7 @@ Robin Donatello
 <div class="cell">
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">table</span>(stent30<span class="sc">$</span>group, stent30<span class="sc">$</span>outcome) <span class="sc">|&gt;</span>  <span class="fu">prop.table</span>(<span class="at">margin=</span><span class="dv">1</span>) <span class="sc">|&gt;</span><span class="fu">round</span>(<span class="at">digits=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">table</span>(stent30<span class="sc">$</span>group, stent30<span class="sc">$</span>outcome) <span class="sc">|&gt;</span>  <span class="fu">prop.table</span>(<span class="at">margin=</span><span class="dv">1</span>) <span class="sc">|&gt;</span><span class="fu">round</span>(<span class="at">digits=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>           
@@ -508,7 +621,7 @@ Robin Donatello
 <p><span class="emoji" data-emoji="warning">⚠️</span> it’s incorrect to say that we can be 95% confident that the true value is inside the mean.</p>
 
 <img data-src="https://openintro-ims.netlify.app/13-foundations-mathematical_files/figure-html/95PercentConfidenceInterval-1.png" class="r-stretch quarto-figure-center"><p class="caption">Figure 13.11: Twenty-five samples of size n=300 were collected from a population with p=0.30. For each sample, a confidence interval was created to try to capture the true proportion p.&nbsp;However, 1 of these 25 intervals did not capture p=0.30.</p></section>
-<section id="section" class="slide level2">
+<section id="section-2" class="slide level2">
 <h2></h2>
 <ul>
 <li>This is one of the most common errors: while it might be useful to think of it as a probability, the confidence level only quantifies how plausible it is that the parameter is in the interval.</li>
@@ -602,10 +715,18 @@ Robin Donatello
 </section>
 <section id="calculating-a-test-statistic" class="slide level2">
 <h2>Calculating a test statistic</h2>
-<p><span class="math display">\[ Z = \frac{\mbox{point estimate - null value}}{SE}\]</span> . . . <span class="math display">\[ Z = \frac{(p_{trmt} - p_{ctrl}) - 0}{SE_{p_{trmt} - p_{ctrl}}} = \frac{.090}{.028} = 3.21 \]</span> . . . <span class="math display">\[ P(Z &gt; 3.2) = .00068 \qquad \mbox{ (the p-value)}\]</span> . . .</p>
+<p><span class="math display">\[ Z = \frac{\mbox{point estimate - null value}}{SE}\]</span></p>
+<div class="fragment">
+<p><span class="math display">\[ Z = \frac{(p_{trmt} - p_{ctrl}) - 0}{SE_{p_{trmt} - p_{ctrl}}} = \frac{.090}{.028} = 3.21 \]</span></p>
+</div>
+<div class="fragment">
+<p><span class="math display">\[ P(Z &gt; 3.2) = .00068 \qquad \mbox{ (the p-value)}\]</span></p>
+</div>
+<div class="fragment">
 <p>If the true difference in proportions was 0, then the probability of observing a difference of 0.09 due to random chance is 0.00068.</p>
+</div>
 </section>
-<section id="section-1" class="slide level2">
+<section id="section-3" class="slide level2">
 <h2></h2>
 
 <img data-src="https://imgs.xkcd.com/comics/p_values.png" class="r-stretch quarto-figure-center"><p class="caption">https://xkcd.com/1478/</p></section>
@@ -833,44 +954,6 @@ Robin Donatello
         ]
       });
     </script>
-    
-    <script>
-      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-      // slide changes (different for each slide format).
-      (function () {
-        // dispatch for htmlwidgets
-        function fireSlideEnter() {
-          const event = window.document.createEvent("Event");
-          event.initEvent("slideenter", true, true);
-          window.document.dispatchEvent(event);
-        }
-
-        function fireSlideChanged(previousSlide, currentSlide) {
-          fireSlideEnter();
-
-          // dispatch for shiny
-          if (window.jQuery) {
-            if (previousSlide) {
-              window.jQuery(previousSlide).trigger("hidden");
-            }
-            if (currentSlide) {
-              window.jQuery(currentSlide).trigger("shown");
-            }
-          }
-        }
-
-        // hookup for slidy
-        if (window.w3c_slidy) {
-          window.w3c_slidy.add_observer(function (slide_num) {
-            // slide_num starts at position 1
-            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-          });
-        }
-
-      })();
-    </script>
-
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {

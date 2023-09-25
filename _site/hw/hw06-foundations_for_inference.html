@@ -60,9 +60,11 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <meta name="twitter:title" content="Data Analysis for Graduate Research - HW 06: Foundations for Inference">
-<meta name="twitter:description" content="Sample design, probability and inference">
+<meta name="twitter:description" content="">
 <meta name="twitter:creator" content="@norcalbiostat">
 <meta name="twitter:card" content="summary">
 </head>
@@ -154,7 +156,6 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a>
   <ul class="collapse">
   <li><a href="#purpose" id="toc-purpose" class="nav-link" data-scroll-target="#purpose">Purpose</a></li>
-  <li><a href="#instructions" id="toc-instructions" class="nav-link" data-scroll-target="#instructions">Instructions</a></li>
   <li><a href="#submission-instructions" id="toc-submission-instructions" class="nav-link" data-scroll-target="#submission-instructions">Submission instructions</a></li>
   </ul></li>
   <li><a href="#study-design-ims-ch-2.5" id="toc-study-design-ims-ch-2.5" class="nav-link" data-scroll-target="#study-design-ims-ch-2.5">Study Design (IMS Ch 2.5)</a>
@@ -167,6 +168,8 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#reading-the-paper" id="toc-reading-the-paper" class="nav-link" data-scroll-target="#reading-the-paper">18 Reading the paper</a></li>
   <li><a href="#flawed-reasoning" id="toc-flawed-reasoning" class="nav-link" data-scroll-target="#flawed-reasoning">27. Flawed Reasoning</a></li>
   </ul></li>
+  <li><a href="#sampling-distribution-theory-ims-ch-13.1" id="toc-sampling-distribution-theory-ims-ch-13.1" class="nav-link" data-scroll-target="#sampling-distribution-theory-ims-ch-13.1">Sampling Distribution Theory (IMS Ch 13.1)</a></li>
+  <li><a href="#the-normal-model-ims-13.2" id="toc-the-normal-model-ims-13.2" class="nav-link" data-scroll-target="#the-normal-model-ims-13.2">The Normal Model (IMS 13.2)</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/norcalbiostat/math615_test/edit/main/hw/hw06-foundations_for_inference.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/norcalbiostat/math615_test/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
@@ -176,7 +179,6 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">HW 06: Foundations for Inference</h1>
-<p class="subtitle lead">Sample design, probability and inference</p>
 </div>
 
 
@@ -197,19 +199,13 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="purpose">Purpose</h2>
 <p>To understand the conceptual and mathematical foundations for statistical inference.</p>
 </section>
-<section id="instructions" class="level2">
-<h2 class="anchored" data-anchor-id="instructions">Instructions</h2>
-<p>In <strong>EACH</strong> section below, answer at least two (2) questions. It is expected that you are able to answer <em>all</em> of these questions.</p>
-<p>This is a long assignment, covering both sections in this module.</p>
-</section>
 <section id="submission-instructions" class="level2">
 <h2 class="anchored" data-anchor-id="submission-instructions">Submission instructions</h2>
 <ul>
 <li>Download this <a href="../hw/hw06-foundations_for_inference.html">[QMD]</a> file and use it to write your answers in.
 <ul>
 <li>Right click and ‘save as’, put this in your <code>scripts</code> folder.</li>
-<li>Add a line for your name (<code>author</code>) in the YAML header under <code>subtitle</code>.</li>
-<li>Delete the instructions and questions that you are choosing not to answer. If you answer more than two <span class="emoji" data-emoji="tada">🎉</span>, i will only grade the first two.</li>
+<li>Add a line for your name (<code>author</code>) in the YAML header under <code>title</code>.</li>
 </ul></li>
 <li>Render to pdf and upload your final PDF to Canvas by the due date.</li>
 </ul>
@@ -217,7 +213,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 </section>
 <section id="study-design-ims-ch-2.5" class="level1">
-<h1>Study Design (<a href="https://openintro-ims.netlify.app/data-design#chp2-exercises">IMS Ch 2.5</a>)</h1>
+<h1>Study Design (IMS Ch 2.5)</h1>
 <section id="parameters-and-statistics." class="level3">
 <h3 class="anchored" data-anchor-id="parameters-and-statistics.">1 Parameters and statistics.</h3>
 <p>Identify which value represents the sample mean and which value represents the claimed population mean.</p>
@@ -264,9 +260,49 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>a. Students at an elementary school are given a questionnaire that they are asked to return after their parents have completed it. One of the questions asked is, “Do you find that your work schedule makes it difficult for you to spend time with your kids after school?” Of the parents who replied, 85% said “no”. Based on these results, the school officials conclude that a great majority of the parents have no difficulty spending time with their kids after school.</strong></p>
 <p><strong>b. A survey is conducted on a simple random sample of 1,000 women who recently gave birth, asking them about whether they smoked during pregnancy. A follow-up survey asking if the children have respiratory problems is conducted 3 years later. However, only 567 of these women are reached at the same address. The researcher reports that these 567 women are representative of all mothers.</strong></p>
 <p><strong>c.&nbsp;An orthopedist administers a questionnaire to 30 of his patients who do not have any joint problems and finds that 20 of them regularly go running. He concludes that running decreases the risk of joint problems.</strong></p>
-
-
 </section>
+</section>
+<section id="sampling-distribution-theory-ims-ch-13.1" class="level1">
+<h1>Sampling Distribution Theory (IMS Ch 13.1)</h1>
+<p>Describe what a sampling distribution is, what the central limit theorem states, and what are the technical conditions that must be met to use the normal model for inference.</p>
+<p><span class="emoji" data-emoji="warning">⚠️</span> Come prepared to class to share out these answers. You can use chat GPT to aid your understanding, there are also videos in the topic overview webpage. But your writing must be your own.</p>
+<p><strong>1. Sampling Distribution</strong></p>
+<p><strong>2. Central Limit Theorem</strong></p>
+<p><strong>3. Conditions for a normal approximation to provide valid inference</strong></p>
+</section>
+<section id="the-normal-model-ims-13.2" class="level1">
+<h1>The Normal Model (IMS 13.2)</h1>
+<div class="info">
+<p><strong>R commands for working with the Normal Model</strong></p>
+<p>If <span class="math inline">\(X \sim N(\mu, \sigma^{2})\)</span>, and <span class="math inline">\(P\)</span> means “the probability of”</p>
+<ol type="1">
+<li>you can find <span class="math inline">\(P(X &lt; x)\)</span> using the R command <code>pnorm(x, mu, sigma)</code></li>
+<li>you can find <span class="math inline">\(a\)</span> such that <span class="math inline">\(P(X &lt; a) = q\)</span> using the R command <code>qnorm(q, mu, sigma)</code></li>
+</ol>
+</div>
+<ol type="1">
+<li><p><strong>What are the two parameters that govern the shape and location of a Normal distribution? Write the symbol, and what it means in words</strong></p></li>
+<li><p><strong>What does <span class="math inline">\(X \sim N(\mu, \sigma^{2})\)</span> mean in English? What is this type of notation called? (You may have to Google this)</strong></p></li>
+<li><p><strong>What is a Z score? (in a sentence)</strong></p></li>
+<li><p><strong>Example: Head lengths of brushtail possums follow a nearly normal distribution with mean 92.6 mm and standard deviation 3.6 mm. Compute the Z scores for possums with head lengths of 95.4 mm and 85.8 mm.</strong></p></li>
+<li><p><strong>What does the area under the Normal distribution correspond to?</strong></p></li>
+<li><p><strong>Let <span class="math inline">\(X\)</span> be the head length of a brushtail possum, where <span class="math inline">\(X \sim N(92.6, 3.6^{2})\)</span> Use R to calculate the probability that a possum will have a head length lower than 85mm. That is, find <span class="math inline">\(P(X &lt; 85)\)</span></strong>.</p></li>
+<li><p><strong>Would you consider it to be unusual if you found a possum with a head smaller than 85mm? Explain your answer.</strong></p></li>
+<li><p><strong>Suppose test scores are distributed normally with mean of 115 and standard deviation of 15.</strong></p>
+<ol type="a">
+<li><p><strong>Let <span class="math inline">\(X\)</span> be the value of the test scores. Write the distributional notation for X.</strong></p></li>
+<li><p><strong>What values bound the middle 75% of test scores? Give a lower and an upper value.</strong></p></li>
+<li><p><strong>What percent of students have test scores less than 83? Show your code and answer</strong></p></li>
+</ol></li>
+<li><p><strong>A study found that the mean amount of time cars spent in drive-through of a certain fast-food restaurant was 154.6 seconds. Assume drive-through times are normally distributed with a standard deviation of 27 seconds</strong></p>
+<ol type="a">
+<li><p><strong>What is the probability that someone spends more than 230 seconds in the drive through?</strong></p></li>
+<li><p><strong>How long do 75% of the cars typically have to wait in the drive through? (That is, what is the 75th percentile?)</strong></p></li>
+</ol></li>
+<li><p><strong>Bonita computed a z-score after receiving the results of her exam in order to compare her results with the rest of the class. Her z-score was 2.1. Interpret her Z score in a sentence.</strong></p></li>
+</ol>
+
+
 </section>
 
 </main> <!-- /main -->

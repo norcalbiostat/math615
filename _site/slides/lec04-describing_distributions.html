@@ -509,7 +509,7 @@ Robin Donatello
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>sjPlot<span class="sc">::</span><span class="fu">plot_frq</span>(pen<span class="sc">$</span>species) <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">"Species"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img data-src="lec04-describing_distributions_files/figure-revealjs/unnamed-chunk-4-1.png" width="960"></p>
+<p><img data-src="lec04-describing_distributions_files/figure-html/unnamed-chunk-4-1.png" width="672"></p>
 </div>
 </div>
 </div>
@@ -574,7 +574,7 @@ Robin Donatello
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>ggpubr<span class="sc">::</span><span class="fu">gghistogram</span>(pen<span class="sc">$</span>bill_depth_mm, <span class="at">add_density =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img data-src="lec04-describing_distributions_files/figure-revealjs/unnamed-chunk-7-1.png" width="960"></p>
+<p><img data-src="lec04-describing_distributions_files/figure-html/unnamed-chunk-7-1.png" width="672"></p>
 </div>
 </div>
 </div><div class="column" style="width:50%;">
@@ -584,7 +584,7 @@ Robin Donatello
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>ggpubr<span class="sc">::</span><span class="fu">ggviolin</span>(pen<span class="sc">$</span>bill_depth_mm, <span class="at">add =</span> <span class="fu">c</span>(<span class="st">"jitter"</span>, <span class="st">"boxplot"</span>)) <span class="sc">+</span> <span class="fu">coord_flip</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img data-src="lec04-describing_distributions_files/figure-revealjs/unnamed-chunk-8-1.png" width="960"></p>
+<p><img data-src="lec04-describing_distributions_files/figure-html/unnamed-chunk-8-1.png" width="672"></p>
 </div>
 </div>
 </div>
@@ -837,44 +837,6 @@ Robin Donatello
         ]
       });
     </script>
-    
-    <script>
-      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-      // slide changes (different for each slide format).
-      (function () {
-        // dispatch for htmlwidgets
-        function fireSlideEnter() {
-          const event = window.document.createEvent("Event");
-          event.initEvent("slideenter", true, true);
-          window.document.dispatchEvent(event);
-        }
-
-        function fireSlideChanged(previousSlide, currentSlide) {
-          fireSlideEnter();
-
-          // dispatch for shiny
-          if (window.jQuery) {
-            if (previousSlide) {
-              window.jQuery(previousSlide).trigger("hidden");
-            }
-            if (currentSlide) {
-              window.jQuery(currentSlide).trigger("shown");
-            }
-          }
-        }
-
-        // hookup for slidy
-        if (window.w3c_slidy) {
-          window.w3c_slidy.add_observer(function (slide_num) {
-            // slide_num starts at position 1
-            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-          });
-        }
-
-      })();
-    </script>
-
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {
