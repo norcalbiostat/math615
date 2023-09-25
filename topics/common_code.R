@@ -20,7 +20,7 @@ create_tabled_list <- function(var){
   colnames(Z) <- "Items"
   
   Z |>
-    filter(Items != "[NA](NA)") |>
+    filter(!grepl("[NA]", Items)) |>
     gt() |>
     fmt_markdown(columns = everything()) |>
     opt_row_striping() |>
