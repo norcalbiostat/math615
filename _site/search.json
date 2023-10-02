@@ -500,8 +500,8 @@
     "objectID": "slides/lec01-data_arch.html#shared-experiences",
     "href": "slides/lec01-data_arch.html#shared-experiences",
     "title": "Data Architecture",
-    "section": "Shared experiences",
-    "text": "Shared experiences\n\n\n\nAnswer each of the following questions\n\n\nAnswer directly in the HackMD Data Architecture collaborative notes. Put your name next to your answer.\n\n\n\n❓ What is data?\n❓ In what manner/forms are data found?\n❓ How and where do you store data?\n❓ What do we use data for?"
+    "section": "",
+    "text": "Answer each of the following questions\n\n\n\nAnswer directly in the HackMD Data Architecture collaborative notes. Put your name next to your answer.\n\n\n❓ What is data?\n❓ In what manner/forms are data found?\n❓ How and where do you store data?\n❓ What do we use data for?"
   },
   {
     "objectID": "slides/lec01-data_arch.html#shared-experiences-1",
@@ -529,7 +529,7 @@
     "href": "slides/lec01-data_arch.html#tidy-data-principles",
     "title": "Data Architecture",
     "section": "Tidy Data principles",
-    "text": "Tidy Data principles\n\nPut all variables in columns - this is the thing that you’re measuring (weight, temp, address)\nOne observation per row\nDon’t combine multiple pieces of information in once cell.\npct_5_10_F : percent of females between 5 & 10 years old in that county\n\n\n\n\n\n\n\nTip\n\n\nExcellent read: Tidy data principles by Hadley Wickham."
+    "text": "Tidy Data principles\n\nPut all variables in columns - this is the thing that you’re measuring (weight, temp, address)\nOne observation per row\nDon’t combine multiple pieces of information in once cell.\npct_5_10_F : percent of females between 5 & 10 years old in that county\n\n\n\n\n\n\n\nTip\n\n\n\nExcellent read: Tidy data principles by Hadley Wickham."
   },
   {
     "objectID": "slides/lec01-data_arch.html#example---livestock-data",
@@ -543,7 +543,7 @@
     "href": "slides/lec01-data_arch.html#data-for-humans",
     "title": "Data Architecture",
     "section": "Data for humans",
-    "text": "Data for humans\nIf they were to keep track of the data like this:\n\n❓ What are some of the problems with this? (Work with your neighbor and answer this in HackMD)\n❓ What is actually being measured?"
+    "text": "Data for humans\nIf they were to keep track of the data like this:\n\n\n\n\n\n❓ What are some of the problems with this? (Work with your neighbor and answer this in HackMD)\n❓ What is actually being measured?"
   },
   {
     "objectID": "slides/lec01-data_arch.html#what-would-this-data-look-like-in-a-tidy-data-format",
@@ -822,57 +822,57 @@
     "objectID": "slides/lec05a-describing_relationships.html#naming-conventions",
     "href": "slides/lec05a-describing_relationships.html#naming-conventions",
     "title": "Describing Relationships between variables",
-    "section": "Naming conventions",
-    "text": "Naming conventions\n\n\n\nResponse\nExplanatory\n\n\n\n\ny\nx\n\n\noutcome\npredictor\n\n\ndependent variable\nindependent variable\n\n\n\ncovariate\n\n\n\nfeature\n\n\n\n\n\nModel notation: \\(y \\sim x\\)"
+    "section": "",
+    "text": "Response\nExplanatory\n\n\n\n\ny\nx\n\n\noutcome\npredictor\n\n\ndependent variable\nindependent variable\n\n\n\ncovariate\n\n\n\nfeature\n\n\n\n\n\nModel notation: \\(y \\sim x\\)"
   },
   {
     "objectID": "slides/lec05a-describing_relationships.html#types-of-combinations",
     "href": "slides/lec05a-describing_relationships.html#types-of-combinations",
     "title": "Describing Relationships between variables",
-    "section": "Types of combinations",
-    "text": "Types of combinations\n\nCategorical response and categorical explanatory variable. (C ~ C)\nQuantitative response and categorical explanatory variable. (Q ~ C)\nQuantitative response and quantitative explanatory variable. (Q ~ Q)"
+    "section": "",
+    "text": "Categorical response and categorical explanatory variable. (C ~ C)\nQuantitative response and categorical explanatory variable. (Q ~ C)\nQuantitative response and quantitative explanatory variable. (Q ~ Q)"
   },
   {
     "objectID": "slides/lec05a-describing_relationships.html#c-c",
     "href": "slides/lec05a-describing_relationships.html#c-c",
     "title": "Describing Relationships between variables",
     "section": "C ~ C",
-    "text": "C ~ C\nCategorical Response vs Categorical Explanatory\n\nTwo way tables (cross-tabs)Plots\n\n\n\n\n\n\nShow the code\ntable(pen$species, pen$island)\n\n\n           \n            Biscoe Dream Torgersen\n  Adelie        44    56        52\n  Chinstrap      0    68         0\n  Gentoo       124     0         0\n\n\n\n\n\nShow the code\ntable(pen$species, pen$island) |&gt; \n  prop.table(margin=2) |&gt; round(2)\n\n\n           \n            Biscoe Dream Torgersen\n  Adelie      0.26  0.45      1.00\n  Chinstrap   0.00  0.55      0.00\n  Gentoo      0.74  0.00      0.00\n\n\n\n\n\nAll of the 52 penguins on Torgersen island are the Adelie species.\n74% of penguins on Biscoe island are Gentoo.\n\n\n\n\n\nShow the code\nplot_xtab(pen$island, grp=pen$species, \n          show.total = FALSE)"
+    "text": "C ~ C\nCategorical Response vs Categorical Explanatory\n\nTwo way tables (cross-tabs)Plots\n\n\n\n\n\ntable(pen$species, pen$island)\n\n           \n            Biscoe Dream Torgersen\n  Adelie        44    56        52\n  Chinstrap      0    68         0\n  Gentoo       124     0         0\n\n\n\n\ntable(pen$species, pen$island) |&gt; \n  prop.table(margin=2) |&gt; round(2)\n\n           \n            Biscoe Dream Torgersen\n  Adelie      0.26  0.45      1.00\n  Chinstrap   0.00  0.55      0.00\n  Gentoo      0.74  0.00      0.00\n\n\n\n\n\nAll of the 52 penguins on Torgersen island are the Adelie species.\n74% of penguins on Biscoe island are Gentoo.\n\n\n\n\nplot_xtab(pen$island, grp=pen$species, \n          show.total = FALSE)"
   },
   {
     "objectID": "slides/lec05a-describing_relationships.html#watch-your-margins",
     "href": "slides/lec05a-describing_relationships.html#watch-your-margins",
     "title": "Describing Relationships between variables",
     "section": "Watch your margins",
-    "text": "Watch your margins\n\n\n\n\n\n\nAlways double check your work\n\n\nOne of the most common places for a mistake when creating a plot or a table between two categorical variables is by not paying close attention to the choice of denominator. And then also confirming the interpretation matches the table, which matches the plot."
+    "text": "Watch your margins\n\n\n\n\n\n\nAlways double check your work\n\n\n\nOne of the most common places for a mistake when creating a plot or a table between two categorical variables is by not paying close attention to the choice of denominator. And then also confirming the interpretation matches the table, which matches the plot."
   },
   {
     "objectID": "slides/lec05a-describing_relationships.html#watch-your-margins-1",
     "href": "slides/lec05a-describing_relationships.html#watch-your-margins-1",
     "title": "Describing Relationships between variables",
     "section": "Watch your margins",
-    "text": "Watch your margins\n\nTablesPlots\n\n\n\n\nRow Percents\n\n\nShow the code\ntable(pen$species, pen$island) |&gt; \n  prop.table(margin=1) |&gt; round(2)\n\n\n           \n            Biscoe Dream Torgersen\n  Adelie      0.29  0.37      0.34\n  Chinstrap   0.00  1.00      0.00\n  Gentoo      1.00  0.00      0.00\n\n\n29% of Adelie penguins are on Biscoe Island.\n\nColumn Percents\n\n\nShow the code\ntable(pen$species, pen$island) |&gt; \n  prop.table(margin=2) |&gt; round(2)\n\n\n           \n            Biscoe Dream Torgersen\n  Adelie      0.26  0.45      1.00\n  Chinstrap   0.00  0.55      0.00\n  Gentoo      0.74  0.00      0.00\n\n\n74% of penguins on Biscoe island are Gentoo.\n\n\n\n\n\n\nDistribution of islands for each species\n\n\nShow the code\nplot_xtab(pen$species, grp=pen$island, \n          margin = \"row\", show.total = FALSE)\n\n\n\n\n\n29% of Adelie penguins are on Biscoe Island.\n\nDistribution of species on each island.\n\n\nShow the code\nplot_xtab(pen$island, grp=pen$species, \n          margin = \"row\", show.total = FALSE)\n\n\n\n\n\n74% of penguins on Biscoe island are Gentoo."
+    "text": "Watch your margins\n\nTablesPlots\n\n\n\n\nRow Percents\n\ntable(pen$species, pen$island) |&gt; \n  prop.table(margin=1) |&gt; round(2)\n\n           \n            Biscoe Dream Torgersen\n  Adelie      0.29  0.37      0.34\n  Chinstrap   0.00  1.00      0.00\n  Gentoo      1.00  0.00      0.00\n\n\n29% of Adelie penguins are on Biscoe Island.\n\nColumn Percents\n\ntable(pen$species, pen$island) |&gt; \n  prop.table(margin=2) |&gt; round(2)\n\n           \n            Biscoe Dream Torgersen\n  Adelie      0.26  0.45      1.00\n  Chinstrap   0.00  0.55      0.00\n  Gentoo      0.74  0.00      0.00\n\n\n74% of penguins on Biscoe island are Gentoo.\n\n\n\n\n\n\nDistribution of islands for each species\n\nplot_xtab(pen$species, grp=pen$island, \n          margin = \"row\", show.total = FALSE)\n\n\n\n\n29% of Adelie penguins are on Biscoe Island.\n\nDistribution of species on each island.\n\nplot_xtab(pen$island, grp=pen$species, \n          margin = \"row\", show.total = FALSE)\n\n\n\n\n74% of penguins on Biscoe island are Gentoo."
   },
   {
     "objectID": "slides/lec05a-describing_relationships.html#q-c",
     "href": "slides/lec05a-describing_relationships.html#q-c",
     "title": "Describing Relationships between variables",
     "section": "Q ~ C",
-    "text": "Q ~ C\nQuantitative Response vs Categorical Explanatory\n\nGrouped summary statisticsPlots\n\n\nMean, median, sd, IQR of the quantitative variable for each level of the categorical level.\n\n\nShow the code\npen %&gt;% group_by(species) %&gt;% \n  summarize(mean = mean(bill_depth_mm, na.rm = TRUE), \n            median = median(bill_depth_mm, na.rm = TRUE), \n            sd = sd(bill_depth_mm, na.rm = TRUE), \n            IQR = IQR(bill_depth_mm, na.rm = TRUE))\n\n\n\n\nShow the code\npen %&gt;% group_by(species) %&gt;% \n  summarize(mean   = mean(bill_depth_mm, na.rm = TRUE), \n            median = median(bill_depth_mm, na.rm = TRUE), \n            sd     = sd(bill_depth_mm, na.rm = TRUE), \n            IQR    = IQR(bill_depth_mm, na.rm = TRUE))\n\n\n# A tibble: 3 × 5\n  species    mean median    sd   IQR\n  &lt;fct&gt;     &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 Adelie     18.3   18.4 1.22   1.5 \n2 Chinstrap  18.4   18.4 1.14   1.90\n3 Gentoo     15.0   15   0.981  1.5 \n\n\nGentoo penguins have lower average bill depth compared to Adelie or Chinstrap (15.0mm vs 18.3 and 18.4mm respectively). Chinstrap however have a larger IQR at 1.9 compared to 1.5 for the others.\n\n\n\n\nOverlaid density plots\n\n\nShow the code\ngghistogram(pen, \n    x = \"bill_depth_mm\", fill = \"species\", \n    add_density = TRUE, add=\"mean\")\n\n\n\n\n\n\nSide by side boxplots\n\n\nShow the code\nggviolin(pen, \n  x=\"species\", y = \"bill_depth_mm\", \n  color = \"species\", add = c(\"mean\", \"boxplot\"))\n\n\n\n\n\n\n\nThe distribution of bill depth are fairly normal for each species, with some higher end values causing a slight right skew for Adelie and Gentoo."
+    "text": "Q ~ C\nQuantitative Response vs Categorical Explanatory\n\nGrouped summary statisticsPlots\n\n\nMean, median, sd, IQR of the quantitative variable for each level of the categorical level.\n\npen %&gt;% group_by(species) %&gt;% \n  summarize(mean = mean(bill_depth_mm, na.rm = TRUE), \n            median = median(bill_depth_mm, na.rm = TRUE), \n            sd = sd(bill_depth_mm, na.rm = TRUE), \n            IQR = IQR(bill_depth_mm, na.rm = TRUE))\n\n\npen %&gt;% group_by(species) %&gt;% \n  summarize(mean   = mean(bill_depth_mm, na.rm = TRUE), \n            median = median(bill_depth_mm, na.rm = TRUE), \n            sd     = sd(bill_depth_mm, na.rm = TRUE), \n            IQR    = IQR(bill_depth_mm, na.rm = TRUE))\n\n# A tibble: 3 × 5\n  species    mean median    sd   IQR\n  &lt;fct&gt;     &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 Adelie     18.3   18.4 1.22   1.5 \n2 Chinstrap  18.4   18.4 1.14   1.90\n3 Gentoo     15.0   15   0.981  1.5 \n\n\nGentoo penguins have lower average bill depth compared to Adelie or Chinstrap (15.0mm vs 18.3 and 18.4mm respectively). Chinstrap however have a larger IQR at 1.9 compared to 1.5 for the others.\n\n\n\n\nOverlaid density plots\n\ngghistogram(pen, \n    x = \"bill_depth_mm\", fill = \"species\", \n    add_density = TRUE, add=\"mean\")\n\n\n\n\n\nSide by side boxplots\n\nggviolin(pen, \n  x=\"species\", y = \"bill_depth_mm\", \n  color = \"species\", add = c(\"mean\", \"boxplot\"))\n\n\n\n\n\n\nThe distribution of bill depth are fairly normal for each species, with some higher end values causing a slight right skew for Adelie and Gentoo."
   },
   {
     "objectID": "slides/lec05a-describing_relationships.html#q-q",
     "href": "slides/lec05a-describing_relationships.html#q-q",
     "title": "Describing Relationships between variables",
     "section": "Q ~ Q",
-    "text": "Q ~ Q\nQuantitative Response vs Quantitative Explanatory\n\nSummary statisticPlots\n\n\n\n\nShow the code\ncor(pen$flipper_length_mm, pen$body_mass_g, \n    use=\"pairwise.complete.obs\")\n\n\n[1] 0.8712018\n\n\nThe penguin flipper length (mm) has a strong positive correlation with body mass (g), r=0.87\n\n\n\n\n\n\nShow the code\nggscatter(pen, \n  x=\"flipper_length_mm\", y = \"body_mass_g\")\n\n\n\n\n\n\n\n\nShow the code\nggscatter(pen, \n  x=\"flipper_length_mm\", y = \"body_mass_g\", \n  add = \"loess\", conf.int = TRUE)\n\n\n\n\n\n The relationship between flipper length and body mass in penguins is relatively linear, but there may be possible clustering on a third variable. There appears to be two groups below and above a flipper length of about 205mm. \n\n\n\n\n\n\n🔗 https://math615.netlify.app"
+    "text": "Q ~ Q\nQuantitative Response vs Quantitative Explanatory\n\nSummary statisticPlots\n\n\n\ncor(pen$flipper_length_mm, pen$body_mass_g, \n    use=\"pairwise.complete.obs\")\n\n[1] 0.8712018\n\n\nThe penguin flipper length (mm) has a strong positive correlation with body mass (g), r=0.87\n\n\n\n\n\nggscatter(pen, \n  x=\"flipper_length_mm\", y = \"body_mass_g\")\n\n\n\n\n\n\nggscatter(pen, \n  x=\"flipper_length_mm\", y = \"body_mass_g\", \n  add = \"loess\", conf.int = TRUE)\n\n\n\n\n The relationship between flipper length and body mass in penguins is relatively linear, but there may be possible clustering on a third variable. There appears to be two groups below and above a flipper length of about 205mm."
   },
   {
     "objectID": "slides/lec05b-data_viz_bestpractice.html#recap-level-of-care-depends-on-the-audience",
     "href": "slides/lec05b-data_viz_bestpractice.html#recap-level-of-care-depends-on-the-audience",
     "title": "Best practices in Data Visualization",
-    "section": "Recap: Level of care depends on the audience",
-    "text": "Recap: Level of care depends on the audience\nThere are three main audiences in mind when creating data visualizations:\n\nFor your eyes only (FYEO). These are quick and dirty plots, without annotation. Meant to be looked at once or twice.\nTo share with others internally. These mostly need to stand on their own. Axes labels, titles, colors as needed, possibly captions.\nProfessional - Contains all bells and whistles needed to make it publication quality."
+    "section": "",
+    "text": "There are three main audiences in mind when creating data visualizations:\n\nFor your eyes only (FYEO). These are quick and dirty plots, without annotation. Meant to be looked at once or twice.\nTo share with others internally. These mostly need to stand on their own. Axes labels, titles, colors as needed, possibly captions.\nProfessional - Contains all bells and whistles needed to make it publication quality."
   },
   {
     "objectID": "slides/lec05b-data_viz_bestpractice.html#highly-recommended-references",
@@ -921,7 +921,7 @@
     "href": "slides/lec05b-data_viz_bestpractice.html#inspirations",
     "title": "Best practices in Data Visualization",
     "section": "Inspirations",
-    "text": "Inspirations\nNot sure what type of graph to create?\n\nPoke around on the R Graph Gallery or Python version. Appropriate for all languages as the goal is to identify the graph type\nfrom Data to Viz: a decision tree for graph options\n\n\n\n🔗 https://math615.netlify.app"
+    "text": "Inspirations\nNot sure what type of graph to create?\n\nPoke around on the R Graph Gallery or Python version. Appropriate for all languages as the goal is to identify the graph type\nfrom Data to Viz: a decision tree for graph options"
   },
   {
     "objectID": "slides/lec06a-statistical_inference_with_randomization.html#statistical-inference-1",
@@ -963,7 +963,7 @@
     "href": "slides/lec06a-statistical_inference_with_randomization.html#sham-randomized-experiment",
     "title": "Statistical Inference with Randomization",
     "section": "“Sham” randomized experiment",
-    "text": "“Sham” randomized experiment\n\nWe assume that each observational unit (student) would have gotten the exact same response value (likes to read or not) regardless of the treatment level (side of the room).\nBy reassigning the treatments many many times, we can compare the actual experiment to the sham experiment."
+    "text": "“Sham” randomized experiment\n\nWe assume that each observational unit (person) would have gotten the exact same response value (shot by police) regardless of the treatment level (race).\nBy reassigning the treatments many many times, we can compare the actual experiment to the sham experiment."
   },
   {
     "objectID": "slides/lec06a-statistical_inference_with_randomization.html#decision",
@@ -977,7 +977,7 @@
     "href": "slides/lec06a-statistical_inference_with_randomization.html#case-study-sex-discrimination",
     "title": "Statistical Inference with Randomization",
     "section": "Case Study: Sex discrimination",
-    "text": "Case Study: Sex discrimination\nOpen the collaborative notes and work with your neighbor to answer the following questions under the “Inference using Randomization” section.\nhttps://hackmd.io/@norcalbiostat/06b-stat_inference"
+    "text": "Case Study: Sex discrimination\nTurning to something equally important, but less potentially distressful, let’s do an experiment on sex discrimination in promotional decisions\n(in class)"
   },
   {
     "objectID": "slides/lec06a-statistical_inference_with_randomization.html#statistical-inference-is-the-practice-of-making-decisions-and-conclusions-from-data-in-the-context-of-uncertainty.",
@@ -1264,28 +1264,28 @@
     "href": "topics/t00-welcome.html",
     "title": "Welcome to Fall 23",
     "section": "",
-    "text": "Summer Break!\n\n\n\nReady to learn\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nGet connected to all the class materials & tools"
+    "text": "Summer Break!\n\n\n\nReady to learn\n\n\n\n\n\n\n\n\n\n  \n    \n    \n      Items\n    \n  \n  \n    Get connected to all the class materials & tools"
   },
   {
     "objectID": "topics/t00-welcome.html#learning-path",
     "href": "topics/t00-welcome.html#learning-path",
     "title": "Welcome to Fall 23",
     "section": "",
-    "text": "Summer Break!\n\n\n\nReady to learn\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nGet connected to all the class materials & tools"
+    "text": "Summer Break!\n\n\n\nReady to learn\n\n\n\n\n\n\n\n\n\n  \n    \n    \n      Items\n    \n  \n  \n    Get connected to all the class materials & tools"
   },
   {
     "objectID": "topics/t00-welcome.html#learning-materials",
     "href": "topics/t00-welcome.html#learning-materials",
     "title": "Welcome to Fall 23",
     "section": "Learning Materials",
-    "text": "Learning Materials\n Slides (Will open in full screen. Right click to open in a new tab)\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nlec00-welcome\n\n\n\n\n\n\n\n\n📚 Reading\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nSyllabus\n\n\n\n\nHelp page\n\n\n\n\nPMA6 Ch 2\n\n\n\n\n\n\n\n\n📝 Collaborative notes\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nhttps://hackmd.io/@norcalbiostat/intro_hackmd"
+    "text": "Learning Materials\n Slides (Will open in full screen. Right click to open in a new tab)\n\n\n\n\n\n\n  \n    \n    \n      Items\n    \n  \n  \n    lec00-welcome\n\n  \n  \n  \n\n\n\n\n📚 Reading\n\n\n\n\n\n\n  \n    \n    \n      Items\n    \n  \n  \n    Syllabus\n\n    Help page\n\n  \n  \n  \n\n\n\n\n📝 Collaborative notes\n\n\n\n\n\n\n  \n    \n    \n      Items\n    \n  \n  \n    https://hackmd.io/@norcalbiostat/intro_hackmd"
   },
   {
     "objectID": "topics/t00-welcome.html#assignments",
     "href": "topics/t00-welcome.html#assignments",
     "title": "Welcome to Fall 23",
     "section": "Assignments",
-    "text": "Assignments\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nHW00 Getting Setup"
+    "text": "Assignments\n\n\n\n\n\n\n  \n    \n    \n      Items\n    \n  \n  \n    HW00 Getting Setup"
   },
   {
     "objectID": "topics/t00-welcome.html#discussion",
@@ -1299,77 +1299,77 @@
     "href": "topics/t01-data_arch.html",
     "title": "Data Architecture",
     "section": "",
-    "text": "Getting all of our learning tools together.\n\n\n\nReady to learn how to interact with data.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nData is recorded in different manners\n\n\n\n\nSpreadsheets are a common method of recording data\n\n\n\n\nCodebooks are an essential piece in learning about the data\n\n\n\n\nThere is a difference between human readable and computer readable data formats"
+    "text": "Getting all of our learning tools together.\n\n\n\nReady to learn how to interact with data.\n\n\n\n\n\n\n\n\n\n  \n    \n    \n      Items\n    \n  \n  \n    Data is recorded in different manners\n\n    Spreadsheets are a common method of recording data\n\n    Codebooks are an essential piece in learning about the data\n\n    There is a difference between human readable and computer readable data formats"
   },
   {
     "objectID": "topics/t01-data_arch.html#learning-path",
     "href": "topics/t01-data_arch.html#learning-path",
     "title": "Data Architecture",
     "section": "",
-    "text": "Getting all of our learning tools together.\n\n\n\nReady to learn how to interact with data.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nData is recorded in different manners\n\n\n\n\nSpreadsheets are a common method of recording data\n\n\n\n\nCodebooks are an essential piece in learning about the data\n\n\n\n\nThere is a difference between human readable and computer readable data formats"
+    "text": "Getting all of our learning tools together.\n\n\n\nReady to learn how to interact with data.\n\n\n\n\n\n\n\n\n\n  \n    \n    \n      Items\n    \n  \n  \n    Data is recorded in different manners\n\n    Spreadsheets are a common method of recording data\n\n    Codebooks are an essential piece in learning about the data\n\n    There is a difference between human readable and computer readable data formats"
   },
   {
     "objectID": "topics/t01-data_arch.html#learning-materials",
     "href": "topics/t01-data_arch.html#learning-materials",
     "title": "Data Architecture",
     "section": "Learning Materials",
-    "text": "Learning Materials\n Slides (Will open in full screen. Right click to open in a new tab)\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nlec01-data_arch\n\n\n\n\n\n\n\n\n📚 Reading\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nTidy data principles (Optional but highly recommended)\n\n\n\n\n\n\n\n\n📝 Collaborative notes\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nhttps://hackmd.io/@norcalbiostat/01_data_arch"
+    "text": "Learning Materials\n Slides (Will open in full screen. Right click to open in a new tab)\n\n\n\n\n\n\n  \n    \n    \n      Items\n    \n  \n  \n    lec01-data_arch\n\n  \n  \n  \n\n\n\n\n📚 Reading\n\n\n\n\n\n\n  \n    \n    \n      Items\n    \n  \n  \n    Tidy data principles (Optional but highly recommended)\n\n  \n  \n  \n\n\n\n\n📝 Collaborative notes\n\n\n\n\n\n\n  \n    \n    \n      Items\n    \n  \n  \n    https://hackmd.io/@norcalbiostat/01_data_arch"
   },
   {
     "objectID": "topics/t01-data_arch.html#assignments",
     "href": "topics/t01-data_arch.html#assignments",
     "title": "Data Architecture",
     "section": "Assignments",
-    "text": "Assignments\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nhttps://hackmd.io/@norcalbiostat/01_data_arch"
+    "text": "Assignments\n\n\n\n\n\n\n  \n    \n    \n      Items\n    \n  \n  \n    https://hackmd.io/@norcalbiostat/01_data_arch"
   },
   {
     "objectID": "topics/t01-data_arch.html#assessment",
     "href": "topics/t01-data_arch.html#assessment",
     "title": "Data Architecture",
     "section": "Assessment",
-    "text": "Assessment\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nQuiz 01 - Data Architecture"
+    "text": "Assessment\n\n\n\n\n\n\n  \n    \n    \n      Items"
   },
   {
     "objectID": "topics/t02-asking_q.html",
     "href": "topics/t02-asking_q.html",
     "title": "Formulating research questions",
     "section": "",
-    "text": "Learning how to interact with data\nReviewing the available data and thinking of a topic area of interest\n\n\n\n\nReady to start asking research questions to explore for the rest of the term.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nWrite down several research questions"
+    "text": "Learning how to interact with data\nReviewing the available data and thinking of a topic area of interest\n\n\n\n\nReady to start asking research questions to explore for the rest of the term.\n\n\n\n\n\n\n\n\n\n  \n    \n    \n      Items\n    \n  \n  \n    Write down several research questions"
   },
   {
     "objectID": "topics/t02-asking_q.html#learning-path",
     "href": "topics/t02-asking_q.html#learning-path",
     "title": "Formulating research questions",
     "section": "",
-    "text": "Learning how to interact with data\nReviewing the available data and thinking of a topic area of interest\n\n\n\n\nReady to start asking research questions to explore for the rest of the term.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nWrite down several research questions"
+    "text": "Learning how to interact with data\nReviewing the available data and thinking of a topic area of interest\n\n\n\n\nReady to start asking research questions to explore for the rest of the term.\n\n\n\n\n\n\n\n\n\n  \n    \n    \n      Items\n    \n  \n  \n    Write down several research questions"
   },
   {
     "objectID": "topics/t02-asking_q.html#learning-materials",
     "href": "topics/t02-asking_q.html#learning-materials",
     "title": "Formulating research questions",
     "section": "Learning Materials",
-    "text": "Learning Materials\n Slides (Will open in full screen. Right click to open in a new tab)\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nlec02-asking_q\n\n\n\n\n\n\n\n\n📚 Reading\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nHow to Write an Effective Research Question\n\n\n\n\n\n\n\n\n📝 Collaborative notes\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nhttps://hackmd.io/@norcalbiostat/02_rq"
+    "text": "Learning Materials\n Slides (Will open in full screen. Right click to open in a new tab)\n\n\n\n\n\n\n  \n    \n    \n      Items\n    \n  \n  \n    lec02-asking_q\n\n  \n  \n  \n\n\n\n\n📚 Reading\n\n\n\n\n\n\n  \n    \n    \n      Items\n    \n  \n  \n    How to Write an Effective Research Question\n\n  \n  \n  \n\n\n\n\n📝 Collaborative notes\n\n\n\n\n\n\n  \n    \n    \n      Items\n    \n  \n  \n    https://hackmd.io/@norcalbiostat/02_rq"
   },
   {
     "objectID": "topics/t02-asking_q.html#assignments",
     "href": "topics/t02-asking_q.html#assignments",
     "title": "Formulating research questions",
     "section": "Assignments",
-    "text": "Assignments\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nHW02 RQ Formulation"
+    "text": "Assignments\n\n\n\n\n\n\n  \n    \n    \n      Items\n    \n  \n  \n    HW02 RQ Formulation"
   },
   {
     "objectID": "topics/t03-data_prep.html",
     "href": "topics/t03-data_prep.html",
     "title": "Preparing Data for Analysis",
     "section": "",
-    "text": "Learning how to read our data and ask questions that are potentially answerable with this data.\n\n\n\n\nStarting to write code.\nRecognizing that this stage will take time and that you are learning something challenging.\nWilling to ask for help and collaboration\n\n\n\n\n\n\n\nMonday 9/4 is Labor Day. No Class.\n\n\n\nEnjoy the three day weekend, and consider learning something new about this holiday. (Optional reading)\n\nUS Department of Labor: “History of Labor Day”\nAmerica’s Black Holocaust Museum: “America’s Racist History of Labor”\nSmithsonian: “Striking Union Workers Turned the First Labor Day Into a Networking Event”\nUAW: “Celebrating Labor day by Celebrating Labor Unions”\n\nGot more? Share in our Discord channel.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nKnow several questions to ask yourself when preparing data for analysis\n\n\n\n\nUnderstand options for literate programming\n\n\n\n\nImport your chosen data into your SPC\n\n\n\n\nCreate a reproducible workflow\n\n\n\n\nCreate a reproducible script file that imports the raw data, performs data management tasks, exports an analysis ready data set"
+    "text": "Learning how to read our data and ask questions that are potentially answerable with this data.\n\n\n\n\nStarting to write code.\nRecognizing that this stage will take time and that you are learning something challenging.\nWilling to ask for help and collaboration\n\n\n\n\n\n\n\nMonday 9/4 is Labor Day. No Class.\n\n\n\nEnjoy the three day weekend, and consider learning something new about this holiday. (Optional reading)\n\nUS Department of Labor: “History of Labor Day”\nAmerica’s Black Holocaust Museum: “America’s Racist History of Labor”\nSmithsonian: “Striking Union Workers Turned the First Labor Day Into a Networking Event”\nUAW: “Celebrating Labor day by Celebrating Labor Unions”\n\nGot more? Share in our Discord channel.\n\n\n\n\n\n\n\n\n\n\n\n\n  \n    \n    \n      Items\n    \n  \n  \n    Know several questions to ask yourself when preparing data for analysis\n\n    Understand options for literate programming\n\n    Import your chosen data into your SPC\n\n    Create a reproducible workflow\n\n    Create a reproducible script file that imports the raw data, performs data management tasks, exports an analysis ready data set"
   },
   {
     "objectID": "topics/t03-data_prep.html#learning-path",
     "href": "topics/t03-data_prep.html#learning-path",
     "title": "Preparing Data for Analysis",
     "section": "",
-    "text": "Learning how to read our data and ask questions that are potentially answerable with this data.\n\n\n\n\nStarting to write code.\nRecognizing that this stage will take time and that you are learning something challenging.\nWilling to ask for help and collaboration\n\n\n\n\n\n\n\nMonday 9/4 is Labor Day. No Class.\n\n\n\nEnjoy the three day weekend, and consider learning something new about this holiday. (Optional reading)\n\nUS Department of Labor: “History of Labor Day”\nAmerica’s Black Holocaust Museum: “America’s Racist History of Labor”\nSmithsonian: “Striking Union Workers Turned the First Labor Day Into a Networking Event”\nUAW: “Celebrating Labor day by Celebrating Labor Unions”\n\nGot more? Share in our Discord channel.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nKnow several questions to ask yourself when preparing data for analysis\n\n\n\n\nUnderstand options for literate programming\n\n\n\n\nImport your chosen data into your SPC\n\n\n\n\nCreate a reproducible workflow\n\n\n\n\nCreate a reproducible script file that imports the raw data, performs data management tasks, exports an analysis ready data set"
+    "text": "Learning how to read our data and ask questions that are potentially answerable with this data.\n\n\n\n\nStarting to write code.\nRecognizing that this stage will take time and that you are learning something challenging.\nWilling to ask for help and collaboration\n\n\n\n\n\n\n\nMonday 9/4 is Labor Day. No Class.\n\n\n\nEnjoy the three day weekend, and consider learning something new about this holiday. (Optional reading)\n\nUS Department of Labor: “History of Labor Day”\nAmerica’s Black Holocaust Museum: “America’s Racist History of Labor”\nSmithsonian: “Striking Union Workers Turned the First Labor Day Into a Networking Event”\nUAW: “Celebrating Labor day by Celebrating Labor Unions”\n\nGot more? Share in our Discord channel.\n\n\n\n\n\n\n\n\n\n\n\n\n  \n    \n    \n      Items\n    \n  \n  \n    Know several questions to ask yourself when preparing data for analysis\n\n    Understand options for literate programming\n\n    Import your chosen data into your SPC\n\n    Create a reproducible workflow\n\n    Create a reproducible script file that imports the raw data, performs data management tasks, exports an analysis ready data set"
   },
   {
     "objectID": "topics/t03-data_prep.html#preparation",
@@ -1383,21 +1383,21 @@
     "href": "topics/t03-data_prep.html#learning-materials",
     "title": "Preparing Data for Analysis",
     "section": "Learning Materials",
-    "text": "Learning Materials\n Slides (Will open in full screen. Right click to open in a new tab)\n\nlec03a-workflow\n\nlec03b-data_prep\n\nWe will also be using the Data Management chapter of the Applied Stats notebook for this topic.\n📚 Reading\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nPMA6 Ch 3\n\n\n\n\nASCN Ch 1, Appendix\n\n\n\n\nProject Structure by Danielle Navarro\n\n\n\n\n\n\n\n\n📝 Collaborative notes\n\n\n\n\n\n\n\n\n\nItems"
+    "text": "Learning Materials\n Slides (Will open in full screen. Right click to open in a new tab)\n\nlec03a-workflow\n\nlec03b-data_prep\n\nWe will also be using the Data Management chapter of the Applied Stats notebook for this topic.\n📚 Reading\n\n\n\n\n\n\n  \n    \n    \n      Items\n    \n  \n  \n  \n  \n\n\n\n\n📝 Collaborative notes\n\n\n\n\n\n\n  \n    \n    \n      Items"
   },
   {
     "objectID": "topics/t03-data_prep.html#assignments",
     "href": "topics/t03-data_prep.html#assignments",
     "title": "Preparing Data for Analysis",
     "section": "Assignments",
-    "text": "Assignments\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nHW03 Data Management"
+    "text": "Assignments\n\n\n\n\n\n\n  \n    \n    \n      Items\n    \n  \n  \n    HW03 Data Management"
   },
   {
     "objectID": "topics/t03-data_prep.html#assessment",
     "href": "topics/t03-data_prep.html#assessment",
     "title": "Preparing Data for Analysis",
     "section": "Assessment",
-    "text": "Assessment\nThis quiz will contain questions that reference topics in the PMA6. Don’t rely only on the slides for your answers.\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nQuiz 02"
+    "text": "Assessment\nThis quiz will contain questions that reference topics in the PMA6. Don’t rely only on the slides for your answers.\n\n\n\n\n\n\n  \n    \n    \n      Items\n    \n  \n  \n    Quiz 02"
   },
   {
     "objectID": "topics/t03-data_prep.html#other-references",
@@ -1411,70 +1411,70 @@
     "href": "topics/t04-describing_distributions.html",
     "title": "Describing distributions of data",
     "section": "",
-    "text": "Importing & starting to wrangle our data\n\n\n\nReady to visualize and learn characteristics of our data.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nCreate appropriate summary statistics and visualizations for different types of data."
+    "text": "Importing & starting to wrangle our data\n\n\n\nReady to visualize and learn characteristics of our data.\n\n\n\n\n\n\n\n\n\n  \n    \n    \n      Items\n    \n  \n  \n    Create appropriate summary statistics and visualizations for different types of data."
   },
   {
     "objectID": "topics/t04-describing_distributions.html#learning-path",
     "href": "topics/t04-describing_distributions.html#learning-path",
     "title": "Describing distributions of data",
     "section": "",
-    "text": "Importing & starting to wrangle our data\n\n\n\nReady to visualize and learn characteristics of our data.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nCreate appropriate summary statistics and visualizations for different types of data."
+    "text": "Importing & starting to wrangle our data\n\n\n\nReady to visualize and learn characteristics of our data.\n\n\n\n\n\n\n\n\n\n  \n    \n    \n      Items\n    \n  \n  \n    Create appropriate summary statistics and visualizations for different types of data."
   },
   {
     "objectID": "topics/t04-describing_distributions.html#learning-materials",
     "href": "topics/t04-describing_distributions.html#learning-materials",
     "title": "Describing distributions of data",
     "section": "Learning Materials",
-    "text": "Learning Materials\n Slides (Will open in full screen. Right click to open in a new tab)\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nlec04-describing_distributions\n\n\n\n\n\n\n\n\n📚 Reading\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nPMA6 Ch 4\n\n\n\n\nASCN Ch 2.3"
+    "text": "Learning Materials\n Slides (Will open in full screen. Right click to open in a new tab)\n\n\n\n\n\n\n  \n    \n    \n      Items\n    \n  \n  \n    lec04-describing_distributions\n\n  \n  \n  \n\n\n\n\n📚 Reading\n\n\n\n\n\n\n  \n    \n    \n      Items"
   },
   {
     "objectID": "topics/t04-describing_distributions.html#assignments",
     "href": "topics/t04-describing_distributions.html#assignments",
     "title": "Describing distributions of data",
     "section": "Assignments",
-    "text": "Assignments\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nHW04 Describing Distributions"
+    "text": "Assignments\n\n\n\n\n\n\n  \n    \n    \n      Items\n    \n  \n  \n    HW04 Describing Distributions"
   },
   {
     "objectID": "topics/t04-describing_distributions.html#assessment",
     "href": "topics/t04-describing_distributions.html#assessment",
     "title": "Describing distributions of data",
     "section": "Assessment",
-    "text": "Assessment\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nQuiz 03"
+    "text": "Assessment\n\n\n\n\n\n\n  \n    \n    \n      Items\n    \n  \n  \n    Quiz 03"
   },
   {
     "objectID": "topics/t05-describing_relationships.html",
     "href": "topics/t05-describing_relationships.html",
     "title": "Describing Relationships",
     "section": "",
-    "text": "Visualizing a single variable\nScreening for potential errors and additional data management\nStarting to describe our project data\n\n\n\n\n\nReady to visualize associations between multiple variables.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nCreate appropriate summary statistics and visualizations for combinations of two measures.\n\n\n\n\nBeing intentional about graph features and aestetics.\n\n\n\n\nJust because you can add it to a graph, doesn't mean you should."
+    "text": "Visualizing a single variable\nScreening for potential errors and additional data management\nStarting to describe our project data\n\n\n\n\n\nReady to visualize associations between multiple variables.\n\n\n\n\n\n\n\n\n\n\n  \n    \n    \n      Items\n    \n  \n  \n    Create appropriate summary statistics and visualizations for combinations of two measures.\n\n    Being intentional about graph features and aestetics.\n\n    Just because you can add it to a graph, doesn’t mean you should."
   },
   {
     "objectID": "topics/t05-describing_relationships.html#learning-path",
     "href": "topics/t05-describing_relationships.html#learning-path",
     "title": "Describing Relationships",
     "section": "",
-    "text": "Visualizing a single variable\nScreening for potential errors and additional data management\nStarting to describe our project data\n\n\n\n\n\nReady to visualize associations between multiple variables.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nCreate appropriate summary statistics and visualizations for combinations of two measures.\n\n\n\n\nBeing intentional about graph features and aestetics.\n\n\n\n\nJust because you can add it to a graph, doesn't mean you should."
+    "text": "Visualizing a single variable\nScreening for potential errors and additional data management\nStarting to describe our project data\n\n\n\n\n\nReady to visualize associations between multiple variables.\n\n\n\n\n\n\n\n\n\n\n  \n    \n    \n      Items\n    \n  \n  \n    Create appropriate summary statistics and visualizations for combinations of two measures.\n\n    Being intentional about graph features and aestetics.\n\n    Just because you can add it to a graph, doesn’t mean you should."
   },
   {
     "objectID": "topics/t05-describing_relationships.html#learning-materials",
     "href": "topics/t05-describing_relationships.html#learning-materials",
     "title": "Describing Relationships",
     "section": "Learning Materials",
-    "text": "Learning Materials\n Slides (Will open in full screen. Right click to open in a new tab)\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nlec05a-describing_relationships\n\n\n\n\nlec05b-data_viz_bestpractice\n\n\n\n\n\n\n\n\n📚 Reading\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nIMS 1.2.4 Explantory and Response Variables\n\n\n\n\nPMA6 Ch 4.6\n\n\n\n\nPMA6 Ch 4\n\n\n\n\nASCN Ch 2.4"
+    "text": "Learning Materials\n Slides (Will open in full screen. Right click to open in a new tab)\n\n\n\n\n\n\n  \n    \n    \n      Items\n    \n  \n  \n    lec05a-describing_relationships\n\n    lec05b-data_viz_bestpractice\n\n  \n  \n  \n\n\n\n\n📚 Reading\n\n\n\n\n\n\n  \n    \n    \n      Items\n    \n  \n  \n    IMS 1.2.4 Explantory and Response Variables"
   },
   {
     "objectID": "topics/t05-describing_relationships.html#assignments",
     "href": "topics/t05-describing_relationships.html#assignments",
     "title": "Describing Relationships",
     "section": "Assignments",
-    "text": "Assignments\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nHW05 Describing Relationships"
+    "text": "Assignments\n\n\n\n\n\n\n  \n    \n    \n      Items\n    \n  \n  \n    HW05 Describing Relationships"
   },
   {
     "objectID": "topics/t05-describing_relationships.html#assessment",
     "href": "topics/t05-describing_relationships.html#assessment",
     "title": "Describing Relationships",
     "section": "Assessment",
-    "text": "Assessment\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nQuiz 04"
+    "text": "Assessment\n\n\n\n\n\n\n  \n    \n    \n      Items"
   },
   {
     "objectID": "topics/t06-foundations_for_inference.html",
@@ -1517,5 +1517,47 @@
     "title": "Topic Areas",
     "section": "",
     "text": "This is the place to start to find all content related to a topic. These are organized into “Modules” in Canvas.\n\n\n\n\n\n\n\n\n\n\nTopic\n\n\nDates\n\n\nDescription\n\n\n\n\n\n\nWelcome to Fall 23\n\n\n8/21\n\n\nIntroduction to class and your learning materials\n\n\n\n\nData Architecture\n\n\n8/21\n\n\nData entry, spreadsheets, metadata, codebooks\n\n\n\n\nFormulating research questions\n\n\n8/28\n\n\nAsking questions is easy. Asking answerable questions is more difficult.\n\n\n\n\nPreparing Data for Analysis\n\n\n8/30-9/10\n\n\nWhere an inordinate amount of time is spent\n\n\n\n\nDescribing distributions of data\n\n\n9/11-9/17\n\n\nVisualizing your data is the first line of defense against bad data\n\n\n\n\nDescribing Relationships\n\n\n9/18-10/01\n\n\nFirst step in investigating a question about an association\n\n\n\n\nFoundations for Statistical Inference\n\n\n9/27-10/9\n\n\nStudy Design, Inference using randomization and the Normal Model\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "slides/lec06a-statistical_inference_with_randomization.html",
+    "href": "slides/lec06a-statistical_inference_with_randomization.html",
+    "title": "Statistical Inference with Randomization",
+    "section": "",
+    "text": "(A.K.A Hypothesis Testing)\n\n\n\nhttps://xkcd.com/1478/\n\n\n\n\n\n\nPrimarily concerned with understanding and quantifying the uncertainty of parameter estimates.\nEquations and details change depending on the setting, the foundations for inference are the same throughout all of statistics.\nWe start with a case studies designed to motivate the process of making decisions about research claims.\nWe formalize the process through the introduction of the hypothesis testing framework, which allows us to formally evaluate claims about the population.\n\n\n\n\n\n\n\nSometimes the dataset at hand represents the entire research question.\nMore often than not, the data have been collected to answer a research question about a larger group of which the data are a (hopefully) representative subset.\nOne dataset will not be identical to a second dataset even if they are both collected from the same population using the same methods.\n\n\n\n\n\nThe Washington Post has been keeping a database on use of fatal force by police since 2015. This database tracks all incidents where someone was shot by police, and records various characteristics such as the seniority level of the officer, date, location, gender, age and ethnicity of the victim along with information on if the person was armed, fleeing or acting erratic.\n(board work)\n\n\n\nTo decide whether variability in data is due to\n\n\nthe causal mechanism (the randomized explanatory variable in the experiment)\n\n\nnatural variability inherent to the data\n\n\nwe set up a sham randomized experiment as a comparison.\n\n\n\n\nWe assume that each observational unit (person) would have gotten the exact same response value (shot by police) regardless of the treatment level (race).\nBy reassigning the treatments many many times, we can compare the actual experiment to the sham experiment.\n\n\n\n\nIf the actual experiment has more extreme results than any of the sham experiments, we are led to believe that it is the explanatory variable which is causing the result and not just variability inherent to the data.\n\n\n\nTurning to something equally important, but less potentially distressful, let’s do an experiment on sex discrimination in promotional decisions\n(in class)\n\n\n\nOpen the collaborative notes and work with your neighbor to answer the following questions under the “Inference using Randomization” section.\nhttps://hackmd.io/@norcalbiostat/06b-stat_inference\n\n\n\nErrors do occur, just like rare events, and the dataset at hand might lead us to the wrong conclusion. While a given dataset may not always lead us to a correct conclusion, statistical inference gives us tools to control and evaluate how often these errors occur."
+  },
+  {
+    "objectID": "slides/lec06a-statistical_inference_with_randomization.html#motivating-example-police-shootings-since-2015",
+    "href": "slides/lec06a-statistical_inference_with_randomization.html#motivating-example-police-shootings-since-2015",
+    "title": "Statistical Inference with Randomization",
+    "section": "Motivating Example: Police Shootings since 2015",
+    "text": "Motivating Example: Police Shootings since 2015\nThe Washington Post has been keeping a database on use of fatal force by police since 2015. This database tracks all incidents where someone was shot by police, and records various characteristics such as the seniority level of the officer, date, location, gender, age and ethnicity of the victim along with information on if the person was armed, fleeing or acting erratic.\n(board work)"
+  },
+  {
+    "objectID": "slides/lec06a-statistical_inference_with_randomization.html#case-study-sex-discrimination---collab-notes",
+    "href": "slides/lec06a-statistical_inference_with_randomization.html#case-study-sex-discrimination---collab-notes",
+    "title": "Statistical Inference with Randomization",
+    "section": "Case Study: Sex discrimination - collab notes",
+    "text": "Case Study: Sex discrimination - collab notes\nOpen the collaborative notes and work with your neighbor to answer the following questions under the “Inference using Randomization” section.\nhttps://hackmd.io/@norcalbiostat/06b-stat_inference"
+  },
+  {
+    "objectID": "slides/lec01-data_arch.html",
+    "href": "slides/lec01-data_arch.html",
+    "title": "Data Architecture",
+    "section": "",
+    "text": "Answer each of the following questions\n\n\n\nAnswer directly in the HackMD Data Architecture collaborative notes. Put your name next to your answer.\n\n\n❓ What is data?\n❓ In what manner/forms are data found?\n❓ How and where do you store data?\n❓ What do we use data for?"
+  },
+  {
+    "objectID": "slides/lec05a-describing_relationships.html",
+    "href": "slides/lec05a-describing_relationships.html",
+    "title": "Describing Relationships between variables",
+    "section": "",
+    "text": "Response\nExplanatory\n\n\n\n\ny\nx\n\n\noutcome\npredictor\n\n\ndependent variable\nindependent variable\n\n\n\ncovariate\n\n\n\nfeature\n\n\n\n\n\nModel notation: \\(y \\sim x\\)\n\n\n\n\nCategorical response and categorical explanatory variable. (C ~ C)\nQuantitative response and categorical explanatory variable. (Q ~ C)\nQuantitative response and quantitative explanatory variable. (Q ~ Q)"
+  },
+  {
+    "objectID": "slides/lec05b-data_viz_bestpractice.html",
+    "href": "slides/lec05b-data_viz_bestpractice.html",
+    "title": "Best practices in Data Visualization",
+    "section": "",
+    "text": "There are three main audiences in mind when creating data visualizations:\n\nFor your eyes only (FYEO). These are quick and dirty plots, without annotation. Meant to be looked at once or twice.\nTo share with others internally. These mostly need to stand on their own. Axes labels, titles, colors as needed, possibly captions.\nProfessional - Contains all bells and whistles needed to make it publication quality."
   }
 ]
