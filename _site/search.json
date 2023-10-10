@@ -4,14 +4,14 @@
     "href": "collab_notes.html",
     "title": "Collaborative Notes",
     "section": "",
-    "text": "What is HackMD\n\nData architecture\nFormulating Research Questions\nStudy Design\nStatistical Inference"
+    "text": "What is HackMD\n\nData architecture\nFormulating Research Questions\nStudy Design\nStatistical Inference\nChoosing appropriate analysis"
   },
   {
     "objectID": "collab_notes.html#notes",
     "href": "collab_notes.html#notes",
     "title": "Collaborative Notes",
     "section": "",
-    "text": "What is HackMD\n\nData architecture\nFormulating Research Questions\nStudy Design\nStatistical Inference"
+    "text": "What is HackMD\n\nData architecture\nFormulating Research Questions\nStudy Design\nStatistical Inference\nChoosing appropriate analysis"
   },
   {
     "objectID": "help.html",
@@ -252,11 +252,18 @@
     "text": "Download this [QMD] file and use it to write your answers in.\n\nRight click and ‘save as’, put this in your scripts folder.\n\nRender to pdf and upload your final PDF to Canvas by the due date."
   },
   {
+    "objectID": "hw/hw07-bivariate_modeling.html",
+    "href": "hw/hw07-bivariate_modeling.html",
+    "title": "HW 07: Bivariate Modeling",
+    "section": "",
+    "text": "Purpose\nWe’ve been visually exploring relationships between two variables by creating appropriate plots to assess how the distribution of a primary outcome (response/dependent) variable changes according to the level of a predictor (explanatory/independent/covariate) variable. We can learn a lot by conducting exploratory data analysis, and if description is the goal then this is where your work can stop.\nHowever, if you want to make conclusions or inference about a relationship, then formal statistical analysis techniques are needed. We start here by formally testing if relationships or associations between two measures exist, then later will see how additional third variables can potentially disrupt or enhance any association that you may find.\n\n\n\nSubmission instructions\n\nUse the QMD template answer the questions.\nThis is a big assignment, so it will be broken into two stages.\n\nFirst draft will be on analyses 1-2, to make sure you are making correct progress.\nThe final version will Second draft will be on analyses 3-4.\nupload PDFs of your work to the assignment in Canvas\n\n\n\n\n\n\n\n\nRevise between stages\n\n\n\nBefore you upload your final version check for comments on your prior analyses and make any suggested/recommended adjustments.\n\n\n\n\n\nInstructions\nIn this assignment you will practice FOUR(4) different types of bivariate analysis:\n\n(Q~B) Quantitative Outcome ~ Binary Categorical Explanatory == Two-sample t-tests for a difference in means\n(Q~C) Quantitative Outcome ~ Categorical Explanatory == ANOVA\n(B~C) Binary Outcome ~ Categorical (or Binary) Explanatory == \\(\\chi^{2}\\) test of Association.\n(Q~Q) Quantitative Outcome ~ Quantitative Explanatory == Linear regression analysis\n\nFor each analysis you will do the following steps:\n\nState which variable (including the variable name from your codebook) will be your explanatory variable and which will be your response variable.\n\nRemember, you have some variables in your codebook that can act as both categorical and quantitative.\nDecide which of those variables makes sense to “explain” the other. Don’t just blindly pick a bunch of variables.\nThink about the relationship among your variables, keeping in mind your original research questions. You may use gender as your categorical explanatory variable if you are struggling to find an explanatory and response relationship that makes sense.\n\nCreate an appropriate bivariate plot to visualize the relationship you are exploring. Calculate appropriate summary statistics. Summarize the relationship between the explanatory and outcome variables in short paragraph form.\nWrite the relationship you want to examine in the form of a research question.\n\nState the null and alternative hypotheses as sentences.\n\nPerform an appropriate statistical analysis using the full four step method as outlined in class and described below.\n\na. Define the parameters being tested. (\\(\\rho\\), \\(p_{1}\\), \\(\\mu_{1}\\), \\(\\beta_{1}\\) etc)\nb. Translate the null and alternative hypotheses into \\(H_{0}\\) and \\(H_{A}\\) with symbols.\nc. State and verify assumptions of the test. Even if these assumptions are potentially violated, for the purposes of this assignment, acknowledge this limitation and continue with the prescribed analysis. (If a non-parametric test is appropriate, state it here.)\nd. Conduct the analysis using your software program of choice. Make a decision whether or not to reject the null hypothesis and state your justification.\n\nWrite a conclusion in context of the problem that includes a point estimate, confidence interval, and p-value."
+  },
+  {
     "objectID": "hw.html",
     "href": "hw.html",
     "title": "Assignments",
     "section": "",
-    "text": "Assignment\n\n\nLearning Objective\n\n\n\n\n\n\nHW 00: Getting setup\n\n\nGetting all the materials and tools for the class\n\n\n\n\nHW 01: Data Entry\n\n\nRecording data to maintain your sanity.\n\n\n\n\nHW 02: Formulating a research hypothesis\n\n\nBrainstorming research questions to investigate\n\n\n\n\nHW 03: Data Management\n\n\nWrangling your data into analyzable form\n\n\n\n\nHW 04: Describing Distributions\n\n\nLet the data be beautiful\n\n\n\n\nHW 05: Describing Relationships\n\n\nExploring Associations between two variables\n\n\n\n\nHW 06: Foundations for Inference\n\n\nundefined\n\n\n\n\n\n\nNo matching items"
+    "text": "Assignment\n\n\nLearning Objective\n\n\n\n\n\n\nHW 00: Getting setup\n\n\nGetting all the materials and tools for the class\n\n\n\n\nHW 01: Data Entry\n\n\nRecording data to maintain your sanity.\n\n\n\n\nHW 02: Formulating a research hypothesis\n\n\nBrainstorming research questions to investigate\n\n\n\n\nHW 03: Data Management\n\n\nWrangling your data into analyzable form\n\n\n\n\nHW 04: Describing Distributions\n\n\nLet the data be beautiful\n\n\n\n\nHW 05: Describing Relationships\n\n\nExploring Associations between two variables\n\n\n\n\nHW 06: Foundations for Inference\n\n\nundefined\n\n\n\n\nHW 07: Bivariate Modeling\n\n\nundefined\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "index.html",
@@ -1141,11 +1148,60 @@
     "text": "Using Confidence Intervals to test a hypothesis\n\nWe are 95% confident that implanting a stent in a stroke patient’s brain increased the risk of stroke within 30 days by a rate of 0.035 to 0.145.\n\nSince the interval does not contain the null hypothesized value of 0 (is completely above 0), it means the data provide convincing evidence that the stent used in the study changed the risk of stroke within 30 days\n\n\n🔗 https://math615.netlify.app"
   },
   {
+    "objectID": "slides/lec07a-choosing_analysis.html#a-unifying-model-framework",
+    "href": "slides/lec07a-choosing_analysis.html#a-unifying-model-framework",
+    "title": "Choosing Appropriate Analysis",
+    "section": "A unifying model framework",
+    "text": "A unifying model framework\nA good way to think about all statistical models is that the observed data comes from some true model with some random error.\n\nDATA = MODEL + RESIDUAL\n\nThe MODEL is a mathematical formula (like \\(y = f(x)\\)).\nThe formulation of the MODEL will change depending on the number of, and data types of explanatory variables. One goal of inferential analysis is to explain the variation in our data, using information contained in other measures."
+  },
+  {
+    "objectID": "slides/lec07a-choosing_analysis.html#which-model-to-use",
+    "href": "slides/lec07a-choosing_analysis.html#which-model-to-use",
+    "title": "Choosing Appropriate Analysis",
+    "section": "Which model to use?",
+    "text": "Which model to use?\nMoving from:\n\n“What descriptive measures should be used to examine the data”\n\nto\n\n“What statistical analyses should be performed?\n\n\n\nREF: PMA6 Chapter 6"
+  },
+  {
+    "objectID": "slides/lec07a-choosing_analysis.html#why-selection-can-be-difficult",
+    "href": "slides/lec07a-choosing_analysis.html#why-selection-can-be-difficult",
+    "title": "Choosing Appropriate Analysis",
+    "section": "Why selection can be difficult",
+    "text": "Why selection can be difficult\n\n\nClassroom instruction tends to present methods in logical order from a learning perspective. Building from simple to more complex. Exposure to complex models limited.\nReal life data often contain a mixture of data types, missing data and complex patterns. This can make the choice of analysis somewhat arbitrary at times.\nTwo trained statisticians presented with the same data will often approach the analysis from different perspectives, and may different analyses depending on what assumptions they are willing to make."
+  },
+  {
+    "objectID": "slides/lec07a-choosing_analysis.html#not-always-clear",
+    "href": "slides/lec07a-choosing_analysis.html#not-always-clear",
+    "title": "Choosing Appropriate Analysis",
+    "section": "Not always clear",
+    "text": "Not always clear\n\nThe primary assumption of most standard statistical procedures is that the records are independent of each other.\nOften program evaluation relies on paired measurements before and after a certain exposure or treatment (pre-post).\n\nIn this case, the approach is to calculate a pairwise difference for each individual and compare the average difference to 0 (any change vs no change).\n\nFor the purposes of this class, we will only concern ourselves with independent groups.\n\nRepeated measures is a topic typically taught in MATH 456 (but also covered in Chapter 18 of PMA6)"
+  },
+  {
+    "objectID": "slides/lec07a-choosing_analysis.html#choose-your-adventure",
+    "href": "slides/lec07a-choosing_analysis.html#choose-your-adventure",
+    "title": "Choosing Appropriate Analysis",
+    "section": "Choose your adventure",
+    "text": "Choose your adventure\nTable 6.2 in PMA6 shows which statistical analyses procedures are appropriate depending on the combination of explanatory and response variable."
+  },
+  {
+    "objectID": "slides/lec07a-choosing_analysis.html#case-study-practice",
+    "href": "slides/lec07a-choosing_analysis.html#case-study-practice",
+    "title": "Choosing Appropriate Analysis",
+    "section": "Case study practice",
+    "text": "Case study practice\nGo to the HackMD collaborative notes on Choosing appropriate analysis and work in pairs to answer an assigned question."
+  },
+  {
+    "objectID": "slides/lec07a-choosing_analysis.html#additional-references",
+    "href": "slides/lec07a-choosing_analysis.html#additional-references",
+    "title": "Choosing Appropriate Analysis",
+    "section": "Additional References",
+    "text": "Additional References\nPMA6 does not go over T-test, ANOVA or \\(\\chi^{2}\\) tests. To see more examples (with R code) and more mathematical detail see Chapter 5 in the Applied Stats Course Notes\n\n\n🔗 https://math615.netlify.app"
+  },
+  {
     "objectID": "slides.html",
     "href": "slides.html",
     "title": "All Slides",
     "section": "",
-    "text": "Slides will open in full screen. Right click to open in a new tab\n\n\n\n\n\n\n\n\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Topic\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\nWeek Duration\n\n\nTopic\n\n\n\n\n\n\nAug 21, 2023\n\n\n1\n\n\nWelcome to MATH 615\n\n\n\n\nAug 21, 2023\n\n\n1\n\n\nData Architecture\n\n\n\n\nAug 28, 2023\n\n\n2\n\n\nFormulating research questions\n\n\n\n\nAug 30, 2023\n\n\n3\n\n\nWorkflows for Reproducibility\n\n\n\n\nAug 30, 2023\n\n\n2, 3\n\n\nPreparing your data for analysis\n\n\n\n\nSep 12, 2023\n\n\n4\n\n\nDescribing Distributions of Data\n\n\n\n\nSep 18, 2023\n\n\n5, 6\n\n\nDescribing Relationships between variables\n\n\n\n\nSep 20, 2023\n\n\n6\n\n\nBest practices in Data Visualization\n\n\n\n\nOct 2, 2023\n\n\n7\n\n\nStatistical Inference with Randomization\n\n\n\n\nOct 4, 2023\n\n\n7,8\n\n\nStatistical Inference using Models\n\n\n\n\n\n\nNo matching items"
+    "text": "Slides will open in full screen. Right click to open in a new tab\n\n\n\n\n\n\n\n\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Topic\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\nWeek Duration\n\n\nTopic\n\n\n\n\n\n\nAug 21, 2023\n\n\n1\n\n\nWelcome to MATH 615\n\n\n\n\nAug 21, 2023\n\n\n1\n\n\nData Architecture\n\n\n\n\nAug 28, 2023\n\n\n2\n\n\nFormulating research questions\n\n\n\n\nAug 30, 2023\n\n\n3\n\n\nWorkflows for Reproducibility\n\n\n\n\nAug 30, 2023\n\n\n2, 3\n\n\nPreparing your data for analysis\n\n\n\n\nSep 12, 2023\n\n\n4\n\n\nDescribing Distributions of Data\n\n\n\n\nSep 18, 2023\n\n\n5, 6\n\n\nDescribing Relationships between variables\n\n\n\n\nSep 20, 2023\n\n\n6\n\n\nBest practices in Data Visualization\n\n\n\n\nOct 2, 2023\n\n\n7\n\n\nStatistical Inference with Randomization\n\n\n\n\nOct 4, 2023\n\n\n7,8\n\n\nStatistical Inference using Models\n\n\n\n\nOct 11, 2023\n\n\n8\n\n\nChoosing Appropriate Analysis\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "syllabus.html",
@@ -1512,10 +1568,45 @@
     "text": "Assessment\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nQuiz 05 - Study Design\n\n\n\n\nQuiz 06: Quantifying Uncertainty & Statistical Inference"
   },
   {
+    "objectID": "topics/t07-bivariate_modeling.html",
+    "href": "topics/t07-bivariate_modeling.html",
+    "title": "Modeling Bivariate Relationships",
+    "section": "",
+    "text": "Visually exploring relationships between two variables by creating appropriate plots to assess how the distribution of a primary outcome (response/dependent) variable changes according to the level of a predictor (explanatory/independent/covariate) variable.\nLearning how probability is used to make inferential statements about parameters\n\n\n\n\nReady to make some statistical statements about relationships between variables.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nIdentify the most appropriate analysis for a given research topic."
+  },
+  {
+    "objectID": "topics/t07-bivariate_modeling.html#learning-path",
+    "href": "topics/t07-bivariate_modeling.html#learning-path",
+    "title": "Modeling Bivariate Relationships",
+    "section": "",
+    "text": "Visually exploring relationships between two variables by creating appropriate plots to assess how the distribution of a primary outcome (response/dependent) variable changes according to the level of a predictor (explanatory/independent/covariate) variable.\nLearning how probability is used to make inferential statements about parameters\n\n\n\n\nReady to make some statistical statements about relationships between variables.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nIdentify the most appropriate analysis for a given research topic."
+  },
+  {
+    "objectID": "topics/t07-bivariate_modeling.html#learning-materials",
+    "href": "topics/t07-bivariate_modeling.html#learning-materials",
+    "title": "Modeling Bivariate Relationships",
+    "section": "Learning Materials",
+    "text": "Learning Materials\n Slides (Will open in full screen. Right click to open in a new tab)\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nlec07a-choosing_analysis\n\n\n\n\nlec07b-bivariate_modeling\n\n\n\n\n\n\n\n\n📚 Reading\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nIMS - Chapter 22\n\n\n\n\nIMS - Chapter 20\n\n\n\n\n\n\n\n\n🎦 Video\nPre-recorded lectures from last year are available in Canvas. The slides are mostly the same, but this is dense content and so these videos give you a chance to review.\n📝 Collaborative notes\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\n[Choosing appropriate analysis](Choosing appropriate analysis)"
+  },
+  {
+    "objectID": "topics/t07-bivariate_modeling.html#assignments",
+    "href": "topics/t07-bivariate_modeling.html#assignments",
+    "title": "Modeling Bivariate Relationships",
+    "section": "Assignments",
+    "text": "Assignments\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nHW07 Bivariate Modeling\n\n\n\n\nQuiz: Chi-Square"
+  },
+  {
+    "objectID": "topics/t07-bivariate_modeling.html#assessment",
+    "href": "topics/t07-bivariate_modeling.html#assessment",
+    "title": "Modeling Bivariate Relationships",
+    "section": "Assessment",
+    "text": "Assessment\n\n\n\n\n\n\n\n\n\nItems"
+  },
+  {
     "objectID": "topics.html",
     "href": "topics.html",
     "title": "Topic Areas",
     "section": "",
-    "text": "This is the place to start to find all content related to a topic. These are organized into “Modules” in Canvas.\n\n\n\n\n\n\n\n\n\n\nTopic\n\n\nDates\n\n\nDescription\n\n\n\n\n\n\nWelcome to Fall 23\n\n\n8/21\n\n\nIntroduction to class and your learning materials\n\n\n\n\nData Architecture\n\n\n8/21\n\n\nData entry, spreadsheets, metadata, codebooks\n\n\n\n\nFormulating research questions\n\n\n8/28\n\n\nAsking questions is easy. Asking answerable questions is more difficult.\n\n\n\n\nPreparing Data for Analysis\n\n\n8/30-9/10\n\n\nWhere an inordinate amount of time is spent\n\n\n\n\nDescribing distributions of data\n\n\n9/11-9/17\n\n\nVisualizing your data is the first line of defense against bad data\n\n\n\n\nDescribing Relationships\n\n\n9/18-10/01\n\n\nFirst step in investigating a question about an association\n\n\n\n\nFoundations for Statistical Inference\n\n\n9/27-10/9\n\n\nStudy Design, Inference using randomization and the Normal Model\n\n\n\n\n\n\nNo matching items"
+    "text": "This is the place to start to find all content related to a topic. These are organized into “Modules” in Canvas.\n\n\n\n\n\n\n\n\n\n\nTopic\n\n\nDates\n\n\nDescription\n\n\n\n\n\n\nWelcome to Fall 23\n\n\n8/21\n\n\nIntroduction to class and your learning materials\n\n\n\n\nData Architecture\n\n\n8/21\n\n\nData entry, spreadsheets, metadata, codebooks\n\n\n\n\nFormulating research questions\n\n\n8/28\n\n\nAsking questions is easy. Asking answerable questions is more difficult.\n\n\n\n\nPreparing Data for Analysis\n\n\n8/30-9/10\n\n\nWhere an inordinate amount of time is spent\n\n\n\n\nDescribing distributions of data\n\n\n9/11-9/17\n\n\nVisualizing your data is the first line of defense against bad data\n\n\n\n\nDescribing Relationships\n\n\n9/18-10/01\n\n\nFirst step in investigating a question about an association\n\n\n\n\nFoundations for Statistical Inference\n\n\n9/27-10/9\n\n\nStudy Design, Inference using randomization and the Normal Model\n\n\n\n\nModeling Bivariate Relationships\n\n\n10/11 - 10/25\n\n\nIdentify and conduct the most appropriate analysis for a given research topic. \n\n\n\n\n\n\nNo matching items"
   }
 ]

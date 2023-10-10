@@ -1,0 +1,221 @@
+---
+title: "Simple Linear Regression"
+date: "2023-10-25"
+description: "10"
+---
+
+```{r, warning=FALSE, message=FALSE, include=FALSE}
+library(knitr)
+library(dplyr)
+library(ggplot2)
+library(forcats)
+library(scales)
+library(sjPlot)
+library(gtsummary)
+
+load("C:/Box/Data/AddHealth/addhealth_clean.Rdata")
+
+# Function to plot overlapping density functions
+plot_2norm <- function(mean1=0, mean2=0, sd1=1, sd2=1, n = 100) {
+  
+  # Generate two random samples from normal distributions
+  sample1 <- rnorm(n, mean = mean1, sd = sd1)
+  sample2 <- rnorm(n, mean = mean2, sd = sd2)
+  
+  # Create data frames for ggplot
+  df1 <- data.frame(x = seq(min(sample1, sample2), max(sample1, sample2), length.out = 1000),
+                    y = dnorm(seq(min(sample1, sample2), max(sample1, sample2), length.out = 1000), 
+                              mean = mean1, sd = sd1))
+  
+  df2 <- data.frame(x = seq(min(sample1, sample2), max(sample1, sample2), length.out = 1000),
+                    y = dnorm(seq(min(sample1, sample2), max(sample1, sample2), length.out = 1000), 
+                              mean = mean2, sd = sd2))
+  
+  df <- data.frame(Group = rep(c("Sample 1", "Sample 2"), each = 1000),
+                   x = c(df1$x, df2$x), 
+                   y = c(df1$y, df2$y))
+  
+  ggplot(df, aes(x=x, y=y, color = Group)) + 
+    geom_line(linewidth = 1) +
+    geom_vline(xintercept = c(mean1, mean2), linetype = "dashed") +
+    theme_minimal() + 
+    theme(legend.position = "top", 
+          axis.line=element_blank(),
+          axis.text.x=element_blank(),
+          axis.text.y=element_blank(),
+          axis.ticks=element_blank(),
+          axis.title.x=element_blank(),
+          axis.title.y=element_blank(),
+         # legend.position="none",
+          panel.background=element_blank(),
+          panel.border=element_blank(),
+          panel.grid.major=element_blank(),
+          panel.grid.minor=element_blank(),
+          plot.background=element_blank()
+          )
+}
+```
+
+# Simple Linear Regression {background-color="#6c972b"}
+
+## Overview
+The general purpose of regression is to learn more about the relationship between several independent or predictor variables and a quantitative dependent variable.
+
+The goal of _Simple linear regression_ is to describe the relationship between a continuous dependent variable Y and a single independent continuous variable X using a straight line.
+
+> See [ASCN Ch 7](https://norcalbiostat.github.io/AppliedStatistics_notes/slr.html) for the learning content. What follows is just a full 5 step analysis example. 
+
+## Example: Body mass and bill length of penguins
+
+### 1. Identify response and explanatory variables
+
+* The quantitative explanatory variable is body mass (g)
+* The quantitative response variable is bill length (mm)
+
+## 2. Visualize and summarise bivariate relationship {.smaller}
+
+```{r}
+ggplot(pen, aes(x=body_mass_g, y=bill_length_mm)) + 
+  geom_point() + geom_smooth(col = "red")
+```
+
+There is a strong, positive, mostly linear relationship between the body mass (g) of penguins and their bill length (mm) (r=.595). 
+
+
+## 3. Write the relationship you want to examine in the form of a research question.
+
+* Null Hypothesis: There is no linear relationship between body mass and bill length. 
+* Alternate Hypothesis:  There is a linear relationship between body mass and bill length. 
+
+## 4. Perform an appropriate statistical analysis using Dr D's 4 step method.
+ 
+**a. Define parameters**
+Let $\beta_1$ be the true slope parameter that describes the change in bill length of the penguin as body mass increases. 
+
+**b. State the null and alternative hypothesis as symbols**
+
+$H_{0}: \beta_{1}=0 \qquad \qquad  H_{A}: \beta_{1} \neq 0$ 
+
+## c. State and justify the analysis model.
+
+Both the outcome and predictor are continuous variables that have a visible linear relationship, and observations are independent. 
+
+The rest of the model assumptions can be checked after the model is fit using the `check_model(my_model_object_name)` function from the `performance` package. 
+
+
+## d. Conduct the test and make a decision about the plausibility of the alternative hypothesis. {.smaller}
+
+```{r}
+pen.body.bill <- lm(bill_length_mm ~ body_mass_g, data=pen)
+pen.body.bill |> summary()
+```
+
+The p-value for $b_{1}$ is <.0001, so there is sufficient evidence to believe that there is a linear relationship between body mass and bill length. 
+
+## c (cont). Finish checking the assumptions {.smaller}
+
+::: {.panel-tabset}
+## Normality of residuals -- density plot
+
+:::: {.columns}
+
+::: {.column width="60%"}
+```{r}
+#| fig-width: 4
+#| fig-height: 4
+
+library(performance)
+plot(check_normality(pen.body.bill))
+```
+:::
+
+::: {.column width="40%"}
+Mostly normal, pretty heavy right tail. This is indicative of a nonlinear trend somewhere in the data.
+:::
+
+::::
+
+
+
+## Normality of residuals -- "qqplot"
+
+:::: {.columns}
+
+::: {.column width="60%"}
+```{r}
+#| fig-width: 4
+#| fig-height: 4
+plot(check_normality(pen.body.bill), type = "qq")
+```
+:::
+
+::: {.column width="40%"}
+This is also known as a 'normal probability plot'. It is used to compare the theoretical quantiles of the data _if it were to come from a normal distribution_ to the observed quantiles. PMA6 Figure 5.4 has more examples and an explanation. 
+:::
+
+::::
+
+
+## Homogeneity of variance
+
+:::: {.columns}
+
+::: {.column width="60%"}
+```{r}
+#| fig-width: 4
+#| fig-height: 4
+plot(check_heteroskedasticity(pen.body.bill))
+```
+:::
+
+::: {.column width="40%"}
+Holy non-flat relationship Batman. The variance of Y is not constant. This is a warning that our linear model does _not_ fit the data well and we should look into possible refinements and improvements. 
+:::
+
+::::
+
+
+## Posterior Predictions
+
+:::: {.columns}
+
+::: {.column width="60%"}
+```{r}
+#| fig-width: 4
+#| fig-height: 4
+plot(check_posterior_predictions(pen.body.bill))
+```
+:::
+
+::: {.column width="40%"}
+Here we clearly see that the observed distribution of bill length is bimodal, and so the model is overestimating some values and underestimating others. There is clearly some other _confounding_ variable that predicts bill length better than just body mass. 
+:::
+
+::::
+
+:::
+
+## 5. Write a conclusion in context of the problem. {.smaller}
+
+:::: {.columns}
+
+::: {.column width="40%"}
+```{r}
+pen.body.bill |> coefficients() 
+pen.body.bill |> confint()
+pen.body.bill |> r2()
+```
+:::
+
+::: {.column width="60%"}
+Each 1g increase in body mass of a penguin is associated with a significant increase of 0.004 (0.0035, 0.0046) mm of bill length (p<.0001). 
+
+An increase of 1kg of body mass in a penguin corresponds to a 4(3.5, 4.6) mm increase in bill length.
+
+Body mass explains 35.4% of the variation in bill length. 
+:::
+::::
+
+However, model diagnostics indicate that a linear model may not be appropriate for this relationship. The assumption of constant variance is not upheld and there may be another variable that affects bill length. 
+
+

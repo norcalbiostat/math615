@@ -1,119 +1,8 @@
 ---
-title: "Modeling Bivariate Relationships" 
-date: "2022-10-12"
+title: "Modeling Bivariate Relationships"
+date: "2023-10-11"
 description: "8-10"
-author: "Robin Donatello"
-footer: "[🔗 https://math615.netlify.app](https://math615.netlify.app) / Modeling Bivariate Relationships"
-from: markdown+emoji
-format: 
-  revealjs:
-    theme: beige
-    multiplex: true
-    transition: fade
-    slide-number: true
-    incremental: false
-    code-fold: true
-    code-summary: "Show the code"
-    chalkboard: true
-execute:
-  freeze: auto
-  echo: true
-knitr:
-  opts_chunk: 
-    R.options:
-      width: 200
 ---
-
-## Advisory note
-
-:::{.callout-warning appearance=minimal}
-This set of slides is really long. I recommend using the navigation menu (hamburger menu in the bottom left) to skip to the relevant section. 
-:::
-
-
-## Which analyseses to perform? 
-
-Moving from: 
-
-> "What descriptive measures should be used to examine the data"
-
-to
-
-> "What statistical analyses should be performed? 
-
-\
-
-REF: PMA6 Chapter 6
-
-
-## Why selection can be difficult 
-
-::: {.incremental}
-
-* Classroom instruction tends to present methods in logical order from a learning perspective. Building from simple to more complex. Exposure to complex models limited. 
-* Real life data often contain a mixture of data types, missing data and complex patterns. This can make the choice of analysis somewhat arbitrary at times. 
-* Two trained statisticians presented with the same data will often approach the analysis from different perspectives, and run different analyses depending on what assumptions they are willing to make. 
-
-:::
-
-## Not always clear {.smaller}
-
-* The primary assumption of most standard statistical procedures is that the records are independent of each other. 
-* Often program evaluation relies on paired measurements before and after a certain exposure or treatment (pre-post).
-    - In this case, the approach is to calculate a pairwise difference for each individual and compare the average difference to 0 (any change vs no change).
-* For the purposes of this class, we will only concern ourselves with independent groups. 
-
-Repeated measures is a topic typically taught in MATH 456 (but also covered in Chapter 18 of PMA6)
-
-## Choose your adventure
-
-Table 6.2 in PMA6 shows which statistical analyses procedures are appropriate depending on the combination of explanatory and response variable. 
-
-![](images/pma6_analysis_table.png)
-
-## Case study practice
-
-Go to the HackMD collaborative notes on [Choosing appropriate analysis](https://hackmd.io/@norcalbiostat/08-choosing-analysis) and work in pairs to answer an assigned question. 
-
-## 
-
-<a href="https://twitter.com/patilindrajeets/status/1360137736859095042">
-<img src = "images/everything_is_lm.png" 
-     alt = "Tweet from Indrajeet Patil saying 'Your periodic reminder that the most common statistical tests are nothing but special cases of linear models.  https://lindeloev.github.io/tests-as-linear/. I wish someone had pointed out this beautiful simplicity and parsimony when I was learning statistics'" 
-     width = "50%" height = "60%">
-</a>
-
-## Additional References
-
-PMA6 does not go over T-test, ANOVA or $\chi^{2}$ tests. To see more examples (with R code) and more mathematical detail see [Chapter 5 in the Applied Stats Course Notes](https://norcalbiostat.github.io/AppliedStatistics_notes/bivariate-analysis.html) 
-
-
-## A unifying model framework
-
-A good way to think about all statistical models is that the observed data comes from some true model with some random error.
-
-> DATA = MODEL + RESIDUAL
-
-The `MODEL` is a mathematical formula (like $y = f(x)$). 
-The formulation of the `MODEL` will change depending on the number of, and data types of explanatory variables. One goal of inferential analysis is to explain the variation in our data, using information contained in other measures. 
-
-# Quantitative Outcome ~ Binary Covariate {background-color="#6c972b"}
-
-## T-test for difference in means between two groups [(ASCN Section 5.3)](https://norcalbiostat.github.io/AppliedStatistics_notes/bv-ttest.html) {.smaller}
-
-* Parameter: $\mu_{1} - \mu_{2}$, Estimate:  $\bar{x}_{1} - \bar{x}_{2}$
-* Assumptions: 
-    - Groups are mutually exclusive and independent
-    - Difference $\bar{x}_{1} - \bar{x}_{2}$ is normally distributed
-    - Variances are approximately the same
-
-$H_{0}: \mu_{1} - \mu_{2} = 0$: There is no difference in the averages between groups.
-
-$H_{A}: \mu_{1} - \mu_{2} \neq 0$: There is a difference in the averages between groups. 
-
-
-## Example: BMI vs smoking
-We would like to know, is there convincing evidence that the average BMI differs between those who have ever smoked a cigarette in their life compared to those who have never smoked? 
 
 ```{r, warning=FALSE, message=FALSE, include=FALSE}
 library(knitr)
@@ -122,9 +11,99 @@ library(ggplot2)
 library(forcats)
 library(scales)
 library(sjPlot)
+library(gtsummary)
 
 load("C:/Box/Data/AddHealth/addhealth_clean.Rdata")
+
+# Function to plot overlapping density functions
+plot_2norm <- function(mean1=0, mean2=0, sd1=1, sd2=1, n = 100) {
+  
+  # Generate two random samples from normal distributions
+  sample1 <- rnorm(n, mean = mean1, sd = sd1)
+  sample2 <- rnorm(n, mean = mean2, sd = sd2)
+  
+  # Create data frames for ggplot
+  df1 <- data.frame(x = seq(min(sample1, sample2), max(sample1, sample2), length.out = 1000),
+                    y = dnorm(seq(min(sample1, sample2), max(sample1, sample2), length.out = 1000), 
+                              mean = mean1, sd = sd1))
+  
+  df2 <- data.frame(x = seq(min(sample1, sample2), max(sample1, sample2), length.out = 1000),
+                    y = dnorm(seq(min(sample1, sample2), max(sample1, sample2), length.out = 1000), 
+                              mean = mean2, sd = sd2))
+  
+  df <- data.frame(Group = rep(c("Sample 1", "Sample 2"), each = 1000),
+                   x = c(df1$x, df2$x), 
+                   y = c(df1$y, df2$y))
+  
+  ggplot(df, aes(x=x, y=y, color = Group)) + 
+    geom_line(linewidth = 1) +
+    geom_vline(xintercept = c(mean1, mean2), linetype = "dashed") +
+    theme_minimal() + 
+    theme(legend.position = "top", 
+          axis.line=element_blank(),
+          axis.text.x=element_blank(),
+          axis.text.y=element_blank(),
+          axis.ticks=element_blank(),
+          axis.title.x=element_blank(),
+          axis.title.y=element_blank(),
+         # legend.position="none",
+          panel.background=element_blank(),
+          panel.border=element_blank(),
+          panel.grid.major=element_blank(),
+          panel.grid.minor=element_blank(),
+          plot.background=element_blank()
+          )
+}
 ```
+
+## Advisory note
+
+* This set of slides is really long. 
+* I recommend using the navigation menu (hamburger menu in the bottom left) to skip to the relevant section. 
+* You can also download these slides as PDF in that same side menu
+* Similar/more details on coding for this section found in ASCN Ch 5
+
+## A unifying model framework
+
+A good way to think about all statistical models is that the observed data comes from some true model with some random error.
+
+> DATA = MODEL + RESIDUAL
+
+The `MODEL` is a mathematical formula like $y = f(x)$. 
+The formulation of the `MODEL` will change depending on the number of, and data types of explanatory variables. One goal of inferential analysis is to explain the variation in our data, using information contained in other measures. 
+
+
+```{r}
+#| echo: false
+plot_2norm(mean1 = 20, mean2 = 55, sd1 = 10, sd2 = 10, n = 100)
+ggsave(filename="plot2norm.png")
+```
+
+# Quantitative Outcome ~ Binary Covariate {background-color="#6c972b" background-image="plot2norm.png" background-opacity="0.7"}
+
+$$y_{ij} = \mu_{j} + \epsilon_i \, , \qquad x_{j} \sim \mathcal{N}(\mu_{j}, \sigma^2)$$
+
+* Response data $y_{ij}$ from observation $i=1\ldots n$ belonging to group $j=1,2$ 
+* Explanatory data $x_{ij}$ is normally distributed around a group mean $\mu_j$
+
+
+
+## T-test for difference in means between two groups {.smaller}
+
+* Parameter: $\mu_{1} - \mu_{2}$
+* Estimate:  $\bar{x}_{1} - \bar{x}_{2}$
+* Assumptions: 
+    - Group 1 & 2 are mutually exclusive and independent
+    - Difference $\bar{x}_{1} - \bar{x}_{2}$ is normally distributed
+    - Variance within each group are approximately the same ($\sigma$)
+
+$H_{0}: \mu_{1} - \mu_{2} = 0$: There is no difference in the averages between groups.
+
+$H_{A}: \mu_{1} - \mu_{2} \neq 0$: There is a difference in the averages between groups. 
+
+
+## Example: BMI vs smoking
+We would like to know, is there convincing evidence that the average BMI differs between those who have ever smoked a cigarette in their life compared to those who have never smoked? 
 
 ::: {.callout-important}
 ## Nitty gritty detail
@@ -157,15 +136,17 @@ ggplot(plot.bmi.smoke, aes(x=eversmoke_c, y=BMI, fill=eversmoke_c)) +
 
 ::: {.column width="50%"}
 ```{r}
-plot.bmi.smoke %>% group_by(eversmoke_c) %>% 
-              summarise(mean=mean(BMI, na.rm=TRUE), 
-                        sd = sd(BMI, na.rm=TRUE)) %>%
-              kable(digits = 1)
+plot.bmi.smoke %>% 
+  tbl_summary(
+    by="eversmoke_c",
+    digits = all_continuous() ~ 1,     
+    statistic = list(
+      all_continuous() ~ "{mean} ({sd})"
+    ))
 ```
 :::
 
 ::::
-
 
 
 Smokers have on average BMI of 28.8, smaller than the average BMI of non-smokers at 29.7. Non-smokers have more variation in their weights (7.8 vs 7.3lbs), but the distributions both look normal, if slightly skewed right. 
@@ -300,8 +281,8 @@ The results are typically summarized in an ANOVA table.
 +:=========+:======:+:=====:+:=========================:+:=====:+
 | Groups   | SSG    | $I-1$ | MSG = $\frac{SSG}{I-1}$   | $\frac{MSG}{MSE}$ |
 +----------+--------+-------+---------------------------+-------+
-| Error    | SSE    | $N-I$ | MSE = $\frac{MSG}{N-I}$   |
-+----------+--------+-------+---------------------------+
+| Error    | SSE    | $N-I$ | MSE = $\frac{MSG}{N-I}$   |       |
++----------+--------+-------+---------------------------+-------+
 |**Total** | **SST**| $N-1$ |       |
 +----------+--------+-------+-------+
 
@@ -938,167 +919,5 @@ The p-value is very small, there is evidence in favor of a non-zero correlation.
 
 There was a statistically significant and strong correlation between the body mass (g) and bill length (mm) of penguins (r = 0.595, 95%CI .5220-.6595, p < .0001). The significant positive correlation shows that as the body mass of a penguin increases so does the bill length. These results suggest that 35% (95% CI: 27.2-43.5) of the variance in bill length can be explained by the body mass of the penguin. 
 
-
-# Simple Linear Regression {background-color="#6c972b"}
-
-## Overview
-The general purpose of regression is to learn more about the relationship between several independent or predictor variables and a quantitative dependent variable.
-
-The goal of _Simple linear regression_ is to describe the relationship between a continuous dependent variable Y and a single independent continuous variable X using a straight line.
-
-> See [ASCN Ch 7](https://norcalbiostat.github.io/AppliedStatistics_notes/slr.html) for the learning content. What follows is just a full 5 step analysis example. 
-
-## Example: Body mass and bill length of penguins
-
-### 1. Identify response and explanatory variables
-
-* The quantitative explanatory variable is body mass (g)
-* The quantitative response variable is bill length (mm)
-
-## 2. Visualize and summarise bivariate relationship {.smaller}
-
-```{r}
-ggplot(pen, aes(x=body_mass_g, y=bill_length_mm)) + 
-  geom_point() + geom_smooth(col = "red")
-```
-
-There is a strong, positive, mostly linear relationship between the body mass (g) of penguins and their bill length (mm) (r=.595). 
-
-
-## 3. Write the relationship you want to examine in the form of a research question.
-
-* Null Hypothesis: There is no linear relationship between body mass and bill length. 
-* Alternate Hypothesis:  There is a linear relationship between body mass and bill length. 
-
-## 4. Perform an appropriate statistical analysis using Dr D's 4 step method.
- 
-**a. Define parameters**
-Let $\beta_1$ be the true slope parameter that describes the change in bill length of the penguin as body mass increases. 
-
-**b. State the null and alternative hypothesis as symbols**
-
-$H_{0}: \beta_{1}=0 \qquad \qquad  H_{A}: \beta_{1} \neq 0$ 
-
-## c. State and justify the analysis model.
-
-Both the outcome and predictor are continuous variables that have a visible linear relationship, and observations are independent. 
-
-The rest of the model assumptions can be checked after the model is fit using the `check_model(my_model_object_name)` function from the `performance` package. 
-
-
-## d. Conduct the test and make a decision about the plausibility of the alternative hypothesis. {.smaller}
-
-```{r}
-pen.body.bill <- lm(bill_length_mm ~ body_mass_g, data=pen)
-pen.body.bill |> summary()
-```
-
-The p-value for $b_{1}$ is <.0001, so there is sufficient evidence to believe that there is a linear relationship between body mass and bill length. 
-
-## c (cont). Finish checking the assumptions {.smaller}
-
-::: {.panel-tabset}
-## Normality of residuals -- density plot
-
-:::: {.columns}
-
-::: {.column width="60%"}
-```{r}
-#| fig-width: 4
-#| fig-height: 4
-
-library(performance)
-plot(check_normality(pen.body.bill))
-```
-:::
-
-::: {.column width="40%"}
-Mostly normal, pretty heavy right tail. This is indicative of a nonlinear trend somewhere in the data.
-:::
-
-::::
-
-
-
-## Normality of residuals -- "qqplot"
-
-:::: {.columns}
-
-::: {.column width="60%"}
-```{r}
-#| fig-width: 4
-#| fig-height: 4
-plot(check_normality(pen.body.bill), type = "qq")
-```
-:::
-
-::: {.column width="40%"}
-This is also known as a 'normal probability plot'. It is used to compare the theoretical quantiles of the data _if it were to come from a normal distribution_ to the observed quantiles. PMA6 Figure 5.4 has more examples and an explanation. 
-:::
-
-::::
-
-
-## Homogeneity of variance
-
-:::: {.columns}
-
-::: {.column width="60%"}
-```{r}
-#| fig-width: 4
-#| fig-height: 4
-plot(check_heteroskedasticity(pen.body.bill))
-```
-:::
-
-::: {.column width="40%"}
-Holy non-flat relationship Batman. The variance of Y is not constant. This is a warning that our linear model does _not_ fit the data well and we should look into possible refinements and improvements. 
-:::
-
-::::
-
-
-## Posterior Predictions
-
-:::: {.columns}
-
-::: {.column width="60%"}
-```{r}
-#| fig-width: 4
-#| fig-height: 4
-plot(check_posterior_predictions(pen.body.bill))
-```
-:::
-
-::: {.column width="40%"}
-Here we clearly see that the observed distribution of bill length is bimodal, and so the model is overestimating some values and underestimating others. There is clearly some other _confounding_ variable that predicts bill length better than just body mass. 
-:::
-
-::::
-
-:::
-
-## 5. Write a conclusion in context of the problem. {.smaller}
-
-:::: {.columns}
-
-::: {.column width="40%"}
-```{r}
-pen.body.bill |> coefficients() 
-pen.body.bill |> confint()
-pen.body.bill |> r2()
-```
-:::
-
-::: {.column width="60%"}
-Each 1g increase in body mass of a penguin is associated with a significant increase of 0.004 (0.0035, 0.0046) mm of bill length (p<.0001). 
-
-An increase of 1kg of body mass in a penguin corresponds to a 4(3.5, 4.6) mm increase in bill length.
-
-Body mass explains 35.4% of the variation in bill length. 
-:::
-::::
-
-However, model diagnostics indicate that a linear model may not be appropriate for this relationship. The assumption of constant variance is not upheld and there may be another variable that affects bill length. 
 
 
