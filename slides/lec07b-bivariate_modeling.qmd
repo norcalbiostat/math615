@@ -2,9 +2,6 @@
 title: "Modeling Bivariate Relationships"
 date: "2023-10-11"
 description: "8-10"
-editor: 
-  markdown: 
-    wrap: 72
 ---
 
 ```{r, warning=FALSE, message=FALSE, include=FALSE}
@@ -135,10 +132,10 @@ measures.
 ```{r}
 #| echo: false
 plot_2norm(mean1 = 20, mean2 = 55, sd1 = 10, sd2 = 10, n = 100)
-ggsave(filename="plot2norm.png")
+ggsave(filename="images/plot2norm.png")
 ```
 
-# Quantitative Outcome \~ Binary Covariate {background-image="plot2norm.png" background-opacity="0.3"}
+# Quantitative Outcome \~ Binary Covariate {background-image="images/plot2norm.png" background-opacity="0.3"}
 
 -   Does knowing what group an observation is in tell you about the
     location of the data?
@@ -306,13 +303,14 @@ https://allisonhorst.com/](https://cdn.myportfolio.com/45214904-6a61-4e23-98d6-b
 -   We will see shortly however how to conduct multiple comparisons
     while maintaining our "family-wise" error rate at $\alpha$
 
-# Quant ~ Cat {background-image="plot3norm.png" background-opacity="0.3"}
 
 ```{r, include=FALSE}
 #| echo: false
 plot_3norm(mean1 = 20, mean2 = 25, mean3=45, sd1 = 10, sd2 = 8, sd3=15, n = 100)
-ggsave(filename="plot3norm.png")
+ggsave(filename="images/plot3norm.png")
 ```
+
+# Quant ~ Cat {background-image="images/plot3norm.png" background-opacity="0.3"}
 
 -   Does knowing what group an observation is in tell you about the
     location of the data?

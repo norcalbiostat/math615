@@ -1620,8 +1620,8 @@
     "objectID": "slides/lec07b-bivariate_modeling.html#advisory-note",
     "href": "slides/lec07b-bivariate_modeling.html#advisory-note",
     "title": "Modeling Bivariate Relationships",
-    "section": "",
-    "text": "This set of slides is really long.\nI recommend using the navigation menu (hamburger menu in the bottom left) to skip to the relevant section.\nYou can also download these slides as PDF in that same side menu\nSimilar/more details on coding for this section found in ASCN Ch 5"
+    "section": "Advisory note",
+    "text": "Advisory note\n\nThis set of slides is really long.\nI recommend using the navigation menu (hamburger menu in the bottom left) to skip to the relevant section.\nYou can also download these slides as PDF in that same side menu\nSimilar/more details on coding for this section found in ASCN Ch 5"
   },
   {
     "objectID": "slides/lec07b-bivariate_modeling.html#a-unifying-model-framework",
@@ -1642,7 +1642,7 @@
     "href": "slides/lec07b-bivariate_modeling.html#example-bmi-vs-smoking",
     "title": "Modeling Bivariate Relationships",
     "section": "Example: BMI vs smoking",
-    "text": "Example: BMI vs smoking\nWe would like to know, is there convincing evidence that the average BMI differs between those who have ever smoked a cigarette in their life compared to those who have never smoked?\n\n\n\n\n\n\nNitty gritty detail\n\n\n\nFor the purposes of learning, you will be writing out each step in the analysis in depth. As you begin to master these analyses, it is natural to slowly start to blend and some steps. However it is important for you to have a baseline reference."
+    "text": "Example: BMI vs smoking\nWe would like to know, is there convincing evidence that the average BMI differs between those who have ever smoked a cigarette in their life compared to those who have never smoked?\n\n\n\n\n\n\nNitty gritty detail\n\n\nFor the purposes of learning, you will be writing out each step in the analysis in depth. As you begin to master these analyses, it is natural to slowly start to blend and some steps. However it is important for you to have a baseline reference."
   },
   {
     "objectID": "slides/lec07b-bivariate_modeling.html#identify-response-and-explanatory-variables",
@@ -1656,7 +1656,7 @@
     "href": "slides/lec07b-bivariate_modeling.html#visualize-and-summarise-bivariate-relationship",
     "title": "Modeling Bivariate Relationships",
     "section": "2. Visualize and summarise bivariate relationship",
-    "text": "2. Visualize and summarise bivariate relationship\n\n\n\nplot.bmi.smoke &lt;- addhealth %&gt;% select(eversmoke_c, BMI) %&gt;% na.omit()\n\nggplot(plot.bmi.smoke, aes(x=eversmoke_c, y=BMI, fill=eversmoke_c)) + \n      geom_boxplot(width=.3) + geom_violin(alpha=.4) + theme_bw() + \n      labs(x=\"Smoking status\") + \n      scale_fill_manual(values=c(\"skyblue\", \"orange\"), guide = \"none\") + \n      stat_summary(fun=\"mean\", geom=\"point\", size=3, pch=17, \n      position=position_dodge(width=0.75))\n\n\n\n\n\n\nplot.bmi.smoke %&gt;% \n  tbl_summary(\n    by=\"eversmoke_c\",\n    digits = all_continuous() ~ 1,     \n    statistic = list(\n      all_continuous() ~ \"{mean} ({sd})\"\n    ))\n\n\n\n\n\n\n\n\nCharacteristic\nNever Smoked, N = 1,7501\nSmoked at least once, N = 3,2761\n\n\n\n\nBMI\n29.7 (7.8)\n28.8 (7.3)\n\n\n\n1 Mean (SD)\n\n\n\n\n\n\n\n\n\n\nSmokers have on average BMI of 28.8, smaller than the average BMI of non-smokers at 29.7. Non-smokers have more variation in their weights (7.8 vs 7.3lbs), but the distributions both look normal, if slightly skewed right."
+    "text": "2. Visualize and summarise bivariate relationship\n\n\n\n\nShow the code\nplot.bmi.smoke &lt;- addhealth %&gt;% select(eversmoke_c, BMI) %&gt;% na.omit()\n\nggplot(plot.bmi.smoke, aes(x=eversmoke_c, y=BMI, fill=eversmoke_c)) + \n      geom_boxplot(width=.3) + geom_violin(alpha=.4) + theme_bw() + \n      labs(x=\"Smoking status\") + \n      scale_fill_manual(values=c(\"skyblue\", \"orange\"), guide = \"none\") + \n      stat_summary(fun=\"mean\", geom=\"point\", size=3, pch=17, \n      position=position_dodge(width=0.75))\n\n\n\n\n\n\n\n\nShow the code\nplot.bmi.smoke %&gt;% \n  tbl_summary(\n    by=\"eversmoke_c\",\n    digits = all_continuous() ~ 1,     \n    statistic = list(\n      all_continuous() ~ \"{mean} ({sd})\"\n    ))\n\n\n\n\n\n\n\n\n\nCharacteristic\nNever Smoked, N = 1,7501\nSmoked at least once, N = 3,2761\n\n\n\n\nBMI\n29.7 (7.8)\n28.8 (7.3)\n\n\n\n1 Mean (SD)\n\n\n\n\n\n\n\n\n\n\nSmokers have on average BMI of 28.8, smaller than the average BMI of non-smokers at 29.7. Non-smokers have more variation in their weights (7.8 vs 7.3lbs), but the distributions both look normal, if slightly skewed right."
   },
   {
     "objectID": "slides/lec07b-bivariate_modeling.html#write-the-relationship-you-want-to-examine-in-the-form-of-a-research-question.",
@@ -1684,7 +1684,7 @@
     "href": "slides/lec07b-bivariate_modeling.html#section-1",
     "title": "Modeling Bivariate Relationships",
     "section": "",
-    "text": "d. Conduct the test and make a decision about the plausibility of the alternative hypothesis.\n\nt.test(BMI ~ eversmoke_c, data=addhealth)\n\n\n    Welch Two Sample t-test\n\ndata:  BMI by eversmoke_c\nt = 3.6937, df = 3395.3, p-value = 0.0002245\nalternative hypothesis: true difference in means between group Never Smoked and group Smoked at least once is not equal to 0\n95 percent confidence interval:\n 0.3906204 1.2744780\nsample estimates:\n        mean in group Never Smoked mean in group Smoked at least once \n                          29.67977                           28.84722 \n\n\nThere is strong evidence in favor of the alternative hypothesis. The interval for the differences (0.4, 1.3) does not contain zero and the p-value = .0002."
+    "text": "d. Conduct the test and make a decision about the plausibility of the alternative hypothesis.\n\n\nShow the code\nt.test(BMI ~ eversmoke_c, data=addhealth)\n\n\n\n    Welch Two Sample t-test\n\ndata:  BMI by eversmoke_c\nt = 3.6937, df = 3395.3, p-value = 0.0002245\nalternative hypothesis: true difference in means between group Never Smoked and group Smoked at least once is not equal to 0\n95 percent confidence interval:\n 0.3906204 1.2744780\nsample estimates:\n        mean in group Never Smoked mean in group Smoked at least once \n                          29.67977                           28.84722 \n\n\nThere is strong evidence in favor of the alternative hypothesis. The interval for the differences (0.4, 1.3) does not contain zero and the p-value = .0002."
   },
   {
     "objectID": "slides/lec07b-bivariate_modeling.html#write-a-conclusion-in-context-of-the-problem.-include-the-point-estimates-confidence-interval-for-the-difference-and-p-value.",
@@ -1747,7 +1747,7 @@
     "href": "slides/lec07b-bivariate_modeling.html#the-f-distribution",
     "title": "Modeling Bivariate Relationships",
     "section": "The F-distribution",
-    "text": "The F-distribution\nThe \\(p\\)-value is the area to the right of the F statistic density curve. This is always to the right because the F-distribution is truncated at 0 and skewed right. This is true regardless of the \\(df\\).\n\ndf1 &lt;- c(3, 5, 8)\ndf2 &lt;- c(4, 6, 10)\n\nplot(NULL, xlim = c(0, 5), ylim = c(0, 1), xlab = expression(F), ylab=\"\", main = \"F Distribution\", axes=FALSE)\naxis(2, labels = FALSE, tick = FALSE)\naxis(1); box()\nfor (i in 1:3) {\n  curve(df(x, df1[i], df2[i]), from = 0, to = 5, col = i, add = TRUE, lty = i, lwd=2)\n}\nlegend(\"topright\", legend = paste(\"df1 =\", df1, \", df2 =\", df2), col = 1:3, lty = 1:3)"
+    "text": "The F-distribution\nThe \\(p\\)-value is the area to the right of the F statistic density curve. This is always to the right because the F-distribution is truncated at 0 and skewed right. This is true regardless of the \\(df\\).\n\n\nShow the code\ndf1 &lt;- c(3, 5, 8)\ndf2 &lt;- c(4, 6, 10)\n\nplot(NULL, xlim = c(0, 5), ylim = c(0, 1), xlab = expression(F), ylab=\"\", main = \"F Distribution\", axes=FALSE)\naxis(2, labels = FALSE, tick = FALSE)\naxis(1); box()\nfor (i in 1:3) {\n  curve(df(x, df1[i], df2[i]), from = 0, to = 5, col = i, add = TRUE, lty = i, lwd=2)\n}\nlegend(\"topright\", legend = paste(\"df1 =\", df1, \", df2 =\", df2), col = 1:3, lty = 1:3)"
   },
   {
     "objectID": "slides/lec07b-bivariate_modeling.html#assumptions",
@@ -1761,14 +1761,14 @@
     "href": "slides/lec07b-bivariate_modeling.html#example-march-of-the-penguins",
     "title": "Modeling Bivariate Relationships",
     "section": "Example: March of the Penguins",
-    "text": "Example: March of the Penguins\n\npen &lt;- palmerpenguins::penguins"
+    "text": "Example: March of the Penguins\n\n\nShow the code\npen &lt;- palmerpenguins::penguins"
   },
   {
     "objectID": "slides/lec07b-bivariate_modeling.html#visualize-and-summarise-bivariate-relationship-1",
     "href": "slides/lec07b-bivariate_modeling.html#visualize-and-summarise-bivariate-relationship-1",
     "title": "Modeling Bivariate Relationships",
     "section": "2. Visualize and summarise bivariate relationship",
-    "text": "2. Visualize and summarise bivariate relationship\n\n\n\nlibrary(ggdist) # for the \"half-violin\" plot (stat_slab)\nggplot(pen, aes(x=flipper_length_mm, y=species, fill=species)) + \n      stat_slab(alpha=.5, justification = 0) + \n      geom_boxplot(width = .2,  outlier.shape = NA) + \n      geom_jitter(alpha = 0.5, height = 0.05) +\n      stat_summary(fun=\"mean\", geom=\"point\", col=\"red\", size=4, pch=17) + \n      theme_bw() + \n      labs(x=\"Flipper Length (mm)\", y = \"Species\") + \n      theme(legend.position = \"none\")\n\n\n\n\n\n\npen %&gt;% group_by(species) %&gt;% \n  summarise(mean=mean(flipper_length_mm, na.rm=TRUE), \n            sd = sd(flipper_length_mm, na.rm=TRUE), \n            IQR = IQR(flipper_length_mm, na.rm=TRUE)) %&gt;%\n  kable(digits = 1)\n\n\n\n\nspecies\nmean\nsd\nIQR\n\n\n\n\nAdelie\n190.0\n6.5\n9\n\n\nChinstrap\n195.8\n7.1\n10\n\n\nGentoo\n217.2\n6.5\n9\n\n\n\n\n\n\n\nThe distribution of flipper length varies across the species, with Gentoo having the largest flippers on average at 217.2mm compared to Adelie (190mm) and Chinstrap (195.8mm). The distributions are normally distributed with very similar spreads, Chinstrap has the most variable flipper length with a SD of 7.1 compared to 6.5 for the other two species.\n A blog post about raincloud plots vs violins"
+    "text": "2. Visualize and summarise bivariate relationship\n\n\n\n\nShow the code\nlibrary(ggdist) # for the \"half-violin\" plot (stat_slab)\nggplot(pen, aes(x=flipper_length_mm, y=species, fill=species)) + \n      stat_slab(alpha=.5, justification = 0) + \n      geom_boxplot(width = .2,  outlier.shape = NA) + \n      geom_jitter(alpha = 0.5, height = 0.05) +\n      stat_summary(fun=\"mean\", geom=\"point\", col=\"red\", size=4, pch=17) + \n      theme_bw() + \n      labs(x=\"Flipper Length (mm)\", y = \"Species\") + \n      theme(legend.position = \"none\")\n\n\n\n\n\n\n\n\nShow the code\npen %&gt;% group_by(species) %&gt;% \n  summarise(mean=mean(flipper_length_mm, na.rm=TRUE), \n            sd = sd(flipper_length_mm, na.rm=TRUE), \n            IQR = IQR(flipper_length_mm, na.rm=TRUE)) %&gt;%\n  kable(digits = 1)\n\n\n\n\n\nspecies\nmean\nsd\nIQR\n\n\n\n\nAdelie\n190.0\n6.5\n9\n\n\nChinstrap\n195.8\n7.1\n10\n\n\nGentoo\n217.2\n6.5\n9\n\n\n\n\n\n\n\nThe distribution of flipper length varies across the species, with Gentoo having the largest flippers on average at 217.2mm compared to Adelie (190mm) and Chinstrap (195.8mm). The distributions are normally distributed with very similar spreads, Chinstrap has the most variable flipper length with a SD of 7.1 compared to 6.5 for the other two species.\n A blog post about raincloud plots vs violins"
   },
   {
     "objectID": "slides/lec07b-bivariate_modeling.html#write-the-relationship-you-want-to-examine-in-the-form-of-a-research-question.-1",
@@ -1796,7 +1796,7 @@
     "href": "slides/lec07b-bivariate_modeling.html#section-4",
     "title": "Modeling Bivariate Relationships",
     "section": "",
-    "text": "d. Conduct the test and make a decision about the plausibility of the alternative hypothesis.\n\naov(flipper_length_mm ~ species, data=pen) |&gt; summary()\n\n             Df Sum Sq Mean Sq F value Pr(&gt;F)    \nspecies       2  52473   26237   594.8 &lt;2e-16 ***\nResiduals   339  14953      44                   \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n2 observations deleted due to missingness\n\n\nThe pvalue is very small, so there is evidence to support \\(H_{a}\\): at least one mean is different."
+    "text": "d. Conduct the test and make a decision about the plausibility of the alternative hypothesis.\n\n\nShow the code\naov(flipper_length_mm ~ species, data=pen) |&gt; summary()\n\n\n             Df Sum Sq Mean Sq F value Pr(&gt;F)    \nspecies       2  52473   26237   594.8 &lt;2e-16 ***\nResiduals   339  14953      44                   \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n2 observations deleted due to missingness\n\n\nThe pvalue is very small, so there is evidence to support \\(H_{a}\\): at least one mean is different."
   },
   {
     "objectID": "slides/lec07b-bivariate_modeling.html#write-a-conclusion-in-context-of-the-problem.",
@@ -1817,7 +1817,7 @@
     "href": "slides/lec07b-bivariate_modeling.html#section-5",
     "title": "Modeling Bivariate Relationships",
     "section": "",
-    "text": "TukeyHSD(aov(flipper_length_mm ~ species, data=pen))\n\n  Tukey multiple comparisons of means\n    95% family-wise confidence level\n\nFit: aov(formula = flipper_length_mm ~ species, data = pen)\n\n$species\n                      diff       lwr       upr p adj\nChinstrap-Adelie  5.869887  3.586583  8.153191     0\nGentoo-Adelie    27.233349 25.334376 29.132323     0\nGentoo-Chinstrap 21.363462 19.000841 23.726084     0\n\n\nThe results of the Tukey HSD post-hoc test indicate that the average flipper length in mm is significantly different between all pairs of penguin species at the 5% significance level. Chinstrap has an average flipper length 5.87mm(3.59-8.15) larger than Adelie, whereas Gentoo has an average flipper length 27.23mm(25.33-29.13) larger than Adelie."
+    "text": "Show the code\nTukeyHSD(aov(flipper_length_mm ~ species, data=pen))\n\n\n  Tukey multiple comparisons of means\n    95% family-wise confidence level\n\nFit: aov(formula = flipper_length_mm ~ species, data = pen)\n\n$species\n                      diff       lwr       upr p adj\nChinstrap-Adelie  5.869887  3.586583  8.153191     0\nGentoo-Adelie    27.233349 25.334376 29.132323     0\nGentoo-Chinstrap 21.363462 19.000841 23.726084     0\n\n\nThe results of the Tukey HSD post-hoc test indicate that the average flipper length in mm is significantly different between all pairs of penguin species at the 5% significance level. Chinstrap has an average flipper length 5.87mm(3.59-8.15) larger than Adelie, whereas Gentoo has an average flipper length 27.23mm(25.33-29.13) larger than Adelie."
   },
   {
     "objectID": "slides/lec07b-bivariate_modeling.html#coefficient-of-determination-r2-fracssgsst",
@@ -1887,14 +1887,14 @@
     "href": "slides/lec07b-bivariate_modeling.html#calculating-the-residuals",
     "title": "Modeling Bivariate Relationships",
     "section": "Calculating the residuals",
-    "text": "Calculating the residuals\nThe residuals are calculated as \\((O_{ij} - E_{ij})\\)\n\n\nExpected\n\nchisq.test(a$Tx, a$Outcome)$expected %&gt;% kable(digits=2)\n\n\n\n\n\nAlive\nDead\n\n\n\n\nControl\n44407.58\n502.42\n\n\nMammogram\n44422.42\n502.58\n\n\n\n\n\n\nResiduals\n\nchisq.test(a$Tx, a$Outcome)$residuals %&gt;% kable(digits=3) \n\n\n\n\n\nAlive\nDead\n\n\n\n\nControl\n-0.012\n0.115\n\n\nMammogram\n0.012\n-0.115\n\n\n\n\n\n\n\nIf mammograms were not associated with survival, there were 0.01 fewer people still alive than expected, and 0.11 more people dead."
+    "text": "Calculating the residuals\nThe residuals are calculated as \\((O_{ij} - E_{ij})\\)\n\n\nExpected\n\n\nShow the code\nchisq.test(a$Tx, a$Outcome)$expected %&gt;% kable(digits=2)\n\n\n\n\n\n\nAlive\nDead\n\n\n\n\nControl\n44407.58\n502.42\n\n\nMammogram\n44422.42\n502.58\n\n\n\n\n\n\nResiduals\n\n\nShow the code\nchisq.test(a$Tx, a$Outcome)$residuals %&gt;% kable(digits=3) \n\n\n\n\n\n\nAlive\nDead\n\n\n\n\nControl\n-0.012\n0.115\n\n\nMammogram\n0.012\n-0.115\n\n\n\n\n\n\n\nIf mammograms were not associated with survival, there were 0.01 fewer people still alive than expected, and 0.11 more people dead."
   },
   {
     "objectID": "slides/lec07b-bivariate_modeling.html#chi2-test-statistic",
     "href": "slides/lec07b-bivariate_modeling.html#chi2-test-statistic",
     "title": "Modeling Bivariate Relationships",
     "section": "\\(\\chi^2\\) test statistic",
-    "text": "\\(\\chi^2\\) test statistic\n\n\nThe \\(\\chi^2\\) test statistic is defined as the sum of the squared residuals, divided by the expected counts, and follows a \\(\\chi^2\\) distribution with degrees of freedom (#rows -1)(#cols -1).\n\\[ \\sum_{ij}\\frac{(O_{ij}-E_{ij})^{2}}{E_{ij}} \\]\n\n\ndist_chisq(chi2=.027, deg.f=1, geom.colors=c(\"#FDE725FF\", \"#440154FF\"))"
+    "text": "\\(\\chi^2\\) test statistic\n\n\nThe \\(\\chi^2\\) test statistic is defined as the sum of the squared residuals, divided by the expected counts, and follows a \\(\\chi^2\\) distribution with degrees of freedom (#rows -1)(#cols -1).\n\\[ \\sum_{ij}\\frac{(O_{ij}-E_{ij})^{2}}{E_{ij}} \\]\n\n\n\nShow the code\ndist_chisq(chi2=.027, deg.f=1, geom.colors=c(\"#FDE725FF\", \"#440154FF\"))"
   },
   {
     "objectID": "slides/lec07b-bivariate_modeling.html#conclusion",
@@ -1922,14 +1922,14 @@
     "href": "slides/lec07b-bivariate_modeling.html#visualize-and-summarise-bivariate-relationship-2",
     "title": "Modeling Bivariate Relationships",
     "section": "2. Visualize and summarise bivariate relationship",
-    "text": "2. Visualize and summarise bivariate relationship\n\nplot_xtab(grp=addhealth$eversmoke_c, x=addhealth$genhealth, \n                  show.total = FALSE, margin=\"row\", legend.title=\"\") \n\n\n\n\nThe percentage of smokers seems to increase as the general health status decreases. Almost three-quarters (73%, n=40) of those reporting poor health have smoked an entire cigarette at least once in their life compared to 59% (n=573) of those reporting excellent health."
+    "text": "2. Visualize and summarise bivariate relationship\n\n\nShow the code\nplot_xtab(grp=addhealth$eversmoke_c, x=addhealth$genhealth, \n                  show.total = FALSE, margin=\"row\", legend.title=\"\") \n\n\n\nThe percentage of smokers seems to increase as the general health status decreases. Almost three-quarters (73%, n=40) of those reporting poor health have smoked an entire cigarette at least once in their life compared to 59% (n=573) of those reporting excellent health."
   },
   {
     "objectID": "slides/lec07b-bivariate_modeling.html#b.-other-ways-to-visualize-this-fyi-only",
     "href": "slides/lec07b-bivariate_modeling.html#b.-other-ways-to-visualize-this-fyi-only",
     "title": "Modeling Bivariate Relationships",
     "section": "2b. Other ways to visualize this (FYI only)",
-    "text": "2b. Other ways to visualize this (FYI only)\n\n\n\naddhealth %&gt;% \n  group_by(genhealth) %&gt;% \n  summarize(p = mean(eversmoke_c == \"Smoked at least once\", na.rm=TRUE)*100, \n            n = n()) %&gt;% \n  na.omit() %&gt;% \n  ggplot(aes(x=genhealth, y=p, color=genhealth)) + \n  geom_point(aes(size = n)) + \n  scale_y_continuous(limits=c(0, 100)) + \n  geom_segment(aes(x=genhealth, xend=genhealth, y=0, yend=p)) +\n  scale_color_discrete(guide=\"none\") + theme_bw() + \n  ylab(\"Proportion of smokers\") + \n  xlab(\"Perceived General Health\")\n\n\n\n\n\n\naddhealth %&gt;% \n  count(genhealth, eversmoke_c) %&gt;% \n  na.omit() %&gt;%\n  group_by(genhealth)%&gt;%\n  mutate(p = n/sum(n)*100) %&gt;% \nggplot(aes(x=genhealth, y=p, fill=eversmoke_c, \n           label = paste0(round(p, 1), \"%\"))) + \n  geom_col() + theme_bw() + \n  scale_fill_discrete(name = \"\") + \n  geom_text(position=position_stack(0.5)) + \n  ylab(\"Proportion of smokers\") + \n  xlab(\"Perceived General Health\")\n\n\n\n\n\n\n These methods pre-calculate the proportions first, and then put them on a ggplot canvas. As you build your expertise with R/Ggplot you will find yourself wanting to enhance or move away from the “pre-packaged” plots from sjPlot and ggpubr."
+    "text": "2b. Other ways to visualize this (FYI only)\n\n\n\n\nShow the code\naddhealth %&gt;% \n  group_by(genhealth) %&gt;% \n  summarize(p = mean(eversmoke_c == \"Smoked at least once\", na.rm=TRUE)*100, \n            n = n()) %&gt;% \n  na.omit() %&gt;% \n  ggplot(aes(x=genhealth, y=p, color=genhealth)) + \n  geom_point(aes(size = n)) + \n  scale_y_continuous(limits=c(0, 100)) + \n  geom_segment(aes(x=genhealth, xend=genhealth, y=0, yend=p)) +\n  scale_color_discrete(guide=\"none\") + theme_bw() + \n  ylab(\"Proportion of smokers\") + \n  xlab(\"Perceived General Health\")\n\n\n\n\n\n\n\n\nShow the code\naddhealth %&gt;% \n  count(genhealth, eversmoke_c) %&gt;% \n  na.omit() %&gt;%\n  group_by(genhealth)%&gt;%\n  mutate(p = n/sum(n)*100) %&gt;% \nggplot(aes(x=genhealth, y=p, fill=eversmoke_c, \n           label = paste0(round(p, 1), \"%\"))) + \n  geom_col() + theme_bw() + \n  scale_fill_discrete(name = \"\") + \n  geom_text(position=position_stack(0.5)) + \n  ylab(\"Proportion of smokers\") + \n  xlab(\"Perceived General Health\")\n\n\n\n\n\n\n\n These methods pre-calculate the proportions first, and then put them on a ggplot canvas. As you build your expertise with R/Ggplot you will find yourself wanting to enhance or move away from the “pre-packaged” plots from sjPlot and ggpubr."
   },
   {
     "objectID": "slides/lec07b-bivariate_modeling.html#write-the-relationship-you-want-to-examine-in-the-form-of-a-research-question.-2",
@@ -1950,7 +1950,7 @@
     "href": "slides/lec07b-bivariate_modeling.html#section-6",
     "title": "Modeling Bivariate Relationships",
     "section": "",
-    "text": "c. State and justify the analysis model. Check assumptions.\nI will conduct a \\(\\chi^{2}\\) test of association. There is at least 10 observations in each combination of smoking status and general health.\nd. Conduct the test and make a decision about the plausibility of the alternative hypothesis.\n\nchisq.test(addhealth$genhealth, addhealth$eversmoke_c)\n\n\n    Pearson's Chi-squared test\n\ndata:  addhealth$genhealth and addhealth$eversmoke_c\nX-squared = 30.795, df = 4, p-value = 3.371e-06\n\n\nWe have strong evidence in favor of the alternative hypothesis, p&lt;.0001"
+    "text": "c. State and justify the analysis model. Check assumptions.\nI will conduct a \\(\\chi^{2}\\) test of association. There is at least 10 observations in each combination of smoking status and general health.\nd. Conduct the test and make a decision about the plausibility of the alternative hypothesis.\n\n\nShow the code\nchisq.test(addhealth$genhealth, addhealth$eversmoke_c)\n\n\n\n    Pearson's Chi-squared test\n\ndata:  addhealth$genhealth and addhealth$eversmoke_c\nX-squared = 30.795, df = 4, p-value = 3.371e-06\n\n\nWe have strong evidence in favor of the alternative hypothesis, p&lt;.0001"
   },
   {
     "objectID": "slides/lec07b-bivariate_modeling.html#write-a-conclusion-in-context-of-the-problem.-1",
@@ -1971,14 +1971,14 @@
     "href": "slides/lec07b-bivariate_modeling.html#examine-the-residuals",
     "title": "Modeling Bivariate Relationships",
     "section": "Examine the residuals",
-    "text": "Examine the residuals\nThe residuals (\\(O_{ij} - E_{ij}\\)) are automatically stored in the model output. You can either print them out and look at the values directly or create a plot. You’re looking for combinations that have much higher, or lower expected proportions.\n\n\n\nhealth.smoke.model &lt;- chisq.test(addhealth$genhealth, addhealth$eversmoke_c)\nhealth.smoke.model$residuals |&gt; round(2)\n\n                   addhealth$eversmoke_c\naddhealth$genhealth Never Smoked Smoked at least once\n          Excellent         3.45                -2.52\n          Very good         0.48                -0.35\n          Good             -2.44                 1.78\n          Fair             -1.06                 0.77\n          Poor             -0.94                 0.69\n\n\n\n\nplot.residuals &lt;- health.smoke.model$residuals %&gt;% data.frame()\nggplot(plot.residuals, aes(x=addhealth.genhealth, y=addhealth.eversmoke_c)) +\n       geom_raster(aes(fill=Freq)) +  scale_fill_viridis_c()\n\n\n\n\n\n\nThe proportion of non-smokers in the excellent health category is much higher than expected if there were no relationship between these two variables."
+    "text": "Examine the residuals\nThe residuals (\\(O_{ij} - E_{ij}\\)) are automatically stored in the model output. You can either print them out and look at the values directly or create a plot. You’re looking for combinations that have much higher, or lower expected proportions.\n\n\n\n\nShow the code\nhealth.smoke.model &lt;- chisq.test(addhealth$genhealth, addhealth$eversmoke_c)\nhealth.smoke.model$residuals |&gt; round(2)\n\n\n                   addhealth$eversmoke_c\naddhealth$genhealth Never Smoked Smoked at least once\n          Excellent         3.45                -2.52\n          Very good         0.48                -0.35\n          Good             -2.44                 1.78\n          Fair             -1.06                 0.77\n          Poor             -0.94                 0.69\n\n\n\n\n\nShow the code\nplot.residuals &lt;- health.smoke.model$residuals %&gt;% data.frame()\nggplot(plot.residuals, aes(x=addhealth.genhealth, y=addhealth.eversmoke_c)) +\n       geom_raster(aes(fill=Freq)) +  scale_fill_viridis_c()\n\n\n\n\n\n\n\nThe proportion of non-smokers in the excellent health category is much higher than expected if there were no relationship between these two variables."
   },
   {
     "objectID": "slides/lec07b-bivariate_modeling.html#all-pairwise-comparisons",
     "href": "slides/lec07b-bivariate_modeling.html#all-pairwise-comparisons",
     "title": "Modeling Bivariate Relationships",
     "section": "All pairwise comparisons",
-    "text": "All pairwise comparisons\n\n\n\n# library(rcompanion)\nsmoke.by.genhealth &lt;- table(addhealth$genhealth, addhealth$eversmoke_c)\nrcompanion::pairwiseNominalIndependence(smoke.by.genhealth, fisher = FALSE, gtest=FALSE) |&gt; kable(digits = 3)\n\n\n\n\nComparison\np.Chisq\np.adj.Chisq\n\n\n\n\nExcellent : Very good\n0.002\n0.008\n\n\nExcellent : Good\n0.000\n0.000\n\n\nExcellent : Fair\n0.001\n0.005\n\n\nExcellent : Poor\n0.055\n0.110\n\n\nVery good : Good\n0.009\n0.022\n\n\nVery good : Fair\n0.167\n0.278\n\n\nVery good : Poor\n0.269\n0.384\n\n\nGood : Fair\n0.886\n0.886\n\n\nGood : Poor\n0.630\n0.700\n\n\nFair : Poor\n0.601\n0.700\n\n\n\n\n\n\nUsing the adjusted (for multiple comparisons) p-value column, the proportion of smokers in the Excellent group (41.3%) is significantly different from nearly all other groups (35.4% for Very Good, 31.3% for Good, 31.8% for Fair).\nBut why is it not significantly different from the 27.3% in the Poor group?"
+    "text": "All pairwise comparisons\n\n\n\n\nShow the code\n# library(rcompanion)\nsmoke.by.genhealth &lt;- table(addhealth$genhealth, addhealth$eversmoke_c)\nrcompanion::pairwiseNominalIndependence(smoke.by.genhealth, fisher = FALSE, gtest=FALSE) |&gt; kable(digits = 3)\n\n\n\n\n\nComparison\np.Chisq\np.adj.Chisq\n\n\n\n\nExcellent : Very good\n0.002\n0.008\n\n\nExcellent : Good\n0.000\n0.000\n\n\nExcellent : Fair\n0.001\n0.005\n\n\nExcellent : Poor\n0.055\n0.110\n\n\nVery good : Good\n0.009\n0.022\n\n\nVery good : Fair\n0.167\n0.278\n\n\nVery good : Poor\n0.269\n0.384\n\n\nGood : Fair\n0.886\n0.886\n\n\nGood : Poor\n0.630\n0.700\n\n\nFair : Poor\n0.601\n0.700\n\n\n\n\n\n\nUsing the adjusted (for multiple comparisons) p-value column, the proportion of smokers in the Excellent group (41.3%) is significantly different from nearly all other groups (35.4% for Very Good, 31.3% for Good, 31.8% for Fair).\nBut why is it not significantly different from the 27.3% in the Poor group?"
   },
   {
     "objectID": "slides/lec07b-bivariate_modeling.html#the-effect-of-small-sample-sizes",
@@ -1992,7 +1992,7 @@
     "href": "slides/lec07b-bivariate_modeling.html#fishers-exact-test",
     "title": "Modeling Bivariate Relationships",
     "section": "Fishers Exact Test",
-    "text": "Fishers Exact Test\n\nfisher.test(addhealth$genhealth, addhealth$eversmoke_c, \n            simulate.p.value = TRUE)\n\n\n    Fisher's Exact Test for Count Data with simulated p-value (based on 2000 replicates)\n\ndata:  addhealth$genhealth and addhealth$eversmoke_c\np-value = 0.0004998\nalternative hypothesis: two.sided\n\n\nThen you can use the pairwiseNominalIndependence function for all pairwise comparisons again, with the fisher argument set to TRUE.\n\n\n\n\n\n\nNote: the simulate.p.value = TRUE argument here is only needed if the randomization space is larger than your workspace. R will let you know when this is needed."
+    "text": "Fishers Exact Test\n\n\nShow the code\nfisher.test(addhealth$genhealth, addhealth$eversmoke_c, \n            simulate.p.value = TRUE)\n\n\n\n    Fisher's Exact Test for Count Data with simulated p-value (based on 2000 replicates)\n\ndata:  addhealth$genhealth and addhealth$eversmoke_c\np-value = 0.0004998\nalternative hypothesis: two.sided\n\n\nThen you can use the pairwiseNominalIndependence function for all pairwise comparisons again, with the fisher argument set to TRUE.\n\n\n\nNote: the simulate.p.value = TRUE argument here is only needed if the randomization space is larger than your workspace. R will let you know when this is needed."
   },
   {
     "objectID": "slides/lec07b-bivariate_modeling.html#chi-squared-test-of-associationindependence",
@@ -2006,7 +2006,7 @@
     "href": "slides/lec07b-bivariate_modeling.html#example",
     "title": "Modeling Bivariate Relationships",
     "section": "Example",
-    "text": "Example\nLet’s analyze the relationship between a person’s income and perceived level of general health.\nThe categorical explanatory variable is income, binned into 4 ranges (income_cat).\n\naddhealth$income_cat &lt;- Hmisc::cut2(addhealth$income, g = 4)"
+    "text": "Example\nLet’s analyze the relationship between a person’s income and perceived level of general health.\nThe categorical explanatory variable is income, binned into 4 ranges (income_cat).\n\n\nShow the code\naddhealth$income_cat &lt;- Hmisc::cut2(addhealth$income, g = 4)"
   },
   {
     "objectID": "slides/lec07b-bivariate_modeling.html#state-hypothesis",
@@ -2020,14 +2020,14 @@
     "href": "slides/lec07b-bivariate_modeling.html#visualize-the-relationship",
     "title": "Modeling Bivariate Relationships",
     "section": "Visualize the relationship",
-    "text": "Visualize the relationship\n\n\n\nplot_xtab(grp=addhealth$income_cat,\n                  x=addhealth$genhealth, \n                  show.total = FALSE, margin=\"row\",\n                  legend.title=\"\") + \n  theme(legend.position = \"top\")\n\n\n\n\n\n The income distribution is nearly flat for who rate themselves in excellent or very good condition. However, the proportion of individuals in the lower income categories increase as perceived general health decreases. Over 80% of those that rate themselves as in Poor condition have an annual income less than $35,500.\nSince there are very small cell sizes, we will use a Fishers Exact test."
+    "text": "Visualize the relationship\n\n\n\n\nShow the code\nplot_xtab(grp=addhealth$income_cat,\n                  x=addhealth$genhealth, \n                  show.total = FALSE, margin=\"row\",\n                  legend.title=\"\") + \n  theme(legend.position = \"top\")\n\n\n\n\n\n\n The income distribution is nearly flat for who rate themselves in excellent or very good condition. However, the proportion of individuals in the lower income categories increase as perceived general health decreases. Over 80% of those that rate themselves as in Poor condition have an annual income less than $35,500.\nSince there are very small cell sizes, we will use a Fishers Exact test."
   },
   {
     "objectID": "slides/lec07b-bivariate_modeling.html#test-the-relationship-make-a-conclusion.",
     "href": "slides/lec07b-bivariate_modeling.html#test-the-relationship-make-a-conclusion.",
     "title": "Modeling Bivariate Relationships",
     "section": "Test the relationship & make a conclusion.",
-    "text": "Test the relationship & make a conclusion.\n\nfisher.test(addhealth$genhealth, addhealth$income_cat, \n            simulate.p.value = TRUE)\n\n\n    Fisher's Exact Test for Count Data with simulated p-value (based on 2000 replicates)\n\ndata:  addhealth$genhealth and addhealth$income_cat\np-value = 0.0004998\nalternative hypothesis: two.sided\n\n\nThere is sufficient evidence to conclude that the distribution of income is not the same across all general health status categories."
+    "text": "Test the relationship & make a conclusion.\n\n\nShow the code\nfisher.test(addhealth$genhealth, addhealth$income_cat, \n            simulate.p.value = TRUE)\n\n\n\n    Fisher's Exact Test for Count Data with simulated p-value (based on 2000 replicates)\n\ndata:  addhealth$genhealth and addhealth$income_cat\np-value = 0.0004998\nalternative hypothesis: two.sided\n\n\nThere is sufficient evidence to conclude that the distribution of income is not the same across all general health status categories."
   },
   {
     "objectID": "slides/lec07b-bivariate_modeling.html#other-analysis-for-categorical-variables",
@@ -2048,14 +2048,14 @@
     "href": "slides/lec07b-bivariate_modeling.html#bivariate-distribution",
     "title": "Modeling Bivariate Relationships",
     "section": "Bivariate distribution",
-    "text": "Bivariate distribution\nThe bivariate distribution describes how of \\(X\\) and \\(Y\\) are jointly distributed, and is best interpreted by a look at the scatter diagram.\n\ny.bar &lt;- mean(pen$bill_length_mm, na.rm=TRUE)\nx.bar &lt;- mean(pen$body_mass_g, na.rm=TRUE)\n\np &lt;- ggplot(pen, aes(x=body_mass_g, y=bill_length_mm)) + geom_point() + \n  geom_hline(yintercept = y.bar) + \n  geom_vline(xintercept = x.bar) \nggExtra::ggMarginal(p, type=\"histogram\")\n\n\n\n\n\n\n\n\nIf \\(X\\) and \\(Y\\) come from independent normal distributions, the pair \\((X,Y)\\) comes from a bivariate normal distribution, and the data will tend to cluster around the means of \\(X\\) and \\(Y\\)."
+    "text": "Bivariate distribution\nThe bivariate distribution describes how of \\(X\\) and \\(Y\\) are jointly distributed, and is best interpreted by a look at the scatter diagram.\n\n\nShow the code\ny.bar &lt;- mean(pen$bill_length_mm, na.rm=TRUE)\nx.bar &lt;- mean(pen$body_mass_g, na.rm=TRUE)\n\np &lt;- ggplot(pen, aes(x=body_mass_g, y=bill_length_mm)) + geom_point() + \n  geom_hline(yintercept = y.bar) + \n  geom_vline(xintercept = x.bar) \nggExtra::ggMarginal(p, type=\"histogram\")\n\n\n\nIf \\(X\\) and \\(Y\\) come from independent normal distributions, the pair \\((X,Y)\\) comes from a bivariate normal distribution, and the data will tend to cluster around the means of \\(X\\) and \\(Y\\)."
   },
   {
     "objectID": "slides/lec07b-bivariate_modeling.html#ellipse-of-concentration",
     "href": "slides/lec07b-bivariate_modeling.html#ellipse-of-concentration",
     "title": "Modeling Bivariate Relationships",
     "section": "Ellipse of concentration",
-    "text": "Ellipse of concentration\nWe can view the ellipse of concentration as measure of strength and direction of the correlation between X and Y.\n\nggpubr::ggscatter(pen, x = \"body_mass_g\", y = \"bill_length_mm\",\n   ellipse = TRUE, mean.point = TRUE,\n   star.plot = TRUE)\n\n\n\n\n\n\n\n\nSee PMA6 Figure 7.5 for more examples."
+    "text": "Ellipse of concentration\nWe can view the ellipse of concentration as measure of strength and direction of the correlation between X and Y.\n\n\nShow the code\nggpubr::ggscatter(pen, x = \"body_mass_g\", y = \"bill_length_mm\",\n   ellipse = TRUE, mean.point = TRUE,\n   star.plot = TRUE)\n\n\n\nSee PMA6 Figure 7.5 for more examples."
   },
   {
     "objectID": "slides/lec07b-bivariate_modeling.html#correlation",
@@ -2090,14 +2090,14 @@
     "href": "slides/lec07b-bivariate_modeling.html#example-body-mass-and-bill-length-of-penguins",
     "title": "Modeling Bivariate Relationships",
     "section": "Example: Body mass and bill length of penguins",
-    "text": "Example: Body mass and bill length of penguins\n\n1. Identify response and explanatory variables\n\nThe quantitative explanatory variable is body mass (g)\nThe quantitative response variable is bill length (mm)"
+    "text": "Example: Body mass and bill length of penguins\n1. Identify response and explanatory variables\n\nThe quantitative explanatory variable is body mass (g)\nThe quantitative response variable is bill length (mm)"
   },
   {
     "objectID": "slides/lec07b-bivariate_modeling.html#visualize-and-summarise-bivariate-relationship-3",
     "href": "slides/lec07b-bivariate_modeling.html#visualize-and-summarise-bivariate-relationship-3",
     "title": "Modeling Bivariate Relationships",
     "section": "2. Visualize and summarise bivariate relationship",
-    "text": "2. Visualize and summarise bivariate relationship\n\n\n\nggplot(pen, aes(x=body_mass_g, y=bill_length_mm)) + \n  geom_point() + geom_smooth(col = \"red\")\n\n\n\ncor(pen$body_mass_g, pen$bill_length_mm, use = \"pairwise.complete.obs\")\n\n[1] 0.5951098\n\n\n\nThere is a strong, positive, mostly linear relationship between the body mass (g) of penguins and their bill length (mm) (r=.595)."
+    "text": "2. Visualize and summarise bivariate relationship\n\n\n\n\nShow the code\nggplot(pen, aes(x=body_mass_g, y=bill_length_mm)) + \n  geom_point() + geom_smooth(col = \"red\")\n\n\n\n\n\nShow the code\ncor(pen$body_mass_g, pen$bill_length_mm, use = \"pairwise.complete.obs\")\n\n\n[1] 0.5951098\n\n\n\nThere is a strong, positive, mostly linear relationship between the body mass (g) of penguins and their bill length (mm) (r=.595)."
   },
   {
     "objectID": "slides/lec07b-bivariate_modeling.html#write-the-relationship-you-want-to-examine-in-the-form-of-a-research-question.-3",
@@ -2118,14 +2118,14 @@
     "href": "slides/lec07b-bivariate_modeling.html#section-7",
     "title": "Modeling Bivariate Relationships",
     "section": "",
-    "text": "d. Conduct the test and make a decision about the plausibility of the alternative hypothesis.\n\ncor.test(pen$body_mass_g, pen$bill_length_mm)\n\n\n    Pearson's product-moment correlation\n\ndata:  pen$body_mass_g and pen$bill_length_mm\nt = 13.654, df = 340, p-value &lt; 2.2e-16\nalternative hypothesis: true correlation is not equal to 0\n95 percent confidence interval:\n 0.5220040 0.6595358\nsample estimates:\n      cor \n0.5951098 \n\n\nThe p-value is very small, there is evidence in favor of a non-zero correlation."
+    "text": "d. Conduct the test and make a decision about the plausibility of the alternative hypothesis.\n\n\nShow the code\ncor.test(pen$body_mass_g, pen$bill_length_mm)\n\n\n\n    Pearson's product-moment correlation\n\ndata:  pen$body_mass_g and pen$bill_length_mm\nt = 13.654, df = 340, p-value &lt; 2.2e-16\nalternative hypothesis: true correlation is not equal to 0\n95 percent confidence interval:\n 0.5220040 0.6595358\nsample estimates:\n      cor \n0.5951098 \n\n\nThe p-value is very small, there is evidence in favor of a non-zero correlation."
   },
   {
     "objectID": "slides/lec07b-bivariate_modeling.html#write-a-conclusion-in-context-of-the-problem.-2",
     "href": "slides/lec07b-bivariate_modeling.html#write-a-conclusion-in-context-of-the-problem.-2",
     "title": "Modeling Bivariate Relationships",
     "section": "5. Write a conclusion in context of the problem.",
-    "text": "5. Write a conclusion in context of the problem.\nThere was a statistically significant and strong correlation between the body mass (g) and bill length (mm) of penguins (r = 0.595, 95%CI .5220-.6595, p &lt; .0001). The significant positive correlation shows that as the body mass of a penguin increases so does the bill length. These results suggest that 35% (95% CI: 27.2-43.5) of the variance in bill length can be explained by the body mass of the penguin."
+    "text": "5. Write a conclusion in context of the problem.\nThere was a statistically significant and strong correlation between the body mass (g) and bill length (mm) of penguins (r = 0.595, 95%CI .5220-.6595, p &lt; .0001). The significant positive correlation shows that as the body mass of a penguin increases so does the bill length. These results suggest that 35% (95% CI: 27.2-43.5) of the variance in bill length can be explained by the body mass of the penguin.\n\n\n🔗 https://math615.netlify.app"
   },
   {
     "objectID": "slides/lec06a-statistical_inference_with_randomization.html",
@@ -2160,14 +2160,14 @@
     "href": "slides/lec07b-bivariate_modeling.html#assumption-samples-come-from-the-same-population",
     "title": "Modeling Bivariate Relationships",
     "section": "Assumption: Samples come from the same population",
-    "text": "Assumption: Samples come from the same population\n\n\n\nCredit: Allison Horst https://allisonhorst.com/"
+    "text": "Assumption: Samples come from the same population\n\nCredit: Allison Horst https://allisonhorst.com/"
   },
   {
     "objectID": "slides/lec07b-bivariate_modeling.html#but-we-could-be-wrong",
     "href": "slides/lec07b-bivariate_modeling.html#but-we-could-be-wrong",
     "title": "Modeling Bivariate Relationships",
     "section": "But we could be wrong",
-    "text": "But we could be wrong\n\n\n\nCredit: Allison Horst https://allisonhorst.com/"
+    "text": "But we could be wrong\n\nCredit: Allison Horst https://allisonhorst.com/"
   },
   {
     "objectID": "slides/lec07b-bivariate_modeling.html#analysis-of-variance-anova-model",
@@ -2195,7 +2195,7 @@
     "href": "slides/lec07b-bivariate_modeling.html#but-we-could-be-wrong-1",
     "title": "Modeling Bivariate Relationships",
     "section": "But we could be wrong",
-    "text": "But we could be wrong\n\n\n\nCredit: Allison Horst https://allisonhorst.com/"
+    "text": "But we could be wrong\n\nCredit: Allison Horst https://allisonhorst.com/"
   },
   {
     "objectID": "slides/lec07b-bivariate_modeling.html#sum-of-squares-1",
