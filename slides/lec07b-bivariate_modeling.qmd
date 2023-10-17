@@ -518,7 +518,7 @@ the *Adelie, Chinstrap* and *Gentoo* species of penguins respectively.
 $H_{0}: \mu_{A} = \mu_{C} = \mu_{G}$\
 $H_{A}:$ At least one $\mu_{j}$ is different.
 
-## {.smaller}
+## 4. Analyze (cont.) {.smaller}
 
 **c. State and justify the analysis model. Check assumptions.**
 
@@ -536,7 +536,7 @@ fairly normal
 **Equal variances**: Both the standard deviation and IQR (as measures of
 variability) are very similar across all groups.
 
-## 
+## 4. Analyze (cont.)
 
 **d. Conduct the test and make a decision about the plausibility of the
 alternative hypothesis.**
@@ -572,7 +572,7 @@ species of penguins (p\<.0001).
 -   Differences in group means can be non-significant at the post hoc
     level, but significant at the ANOVA level.
 
-## {.smaller}
+## Tukey HSD {.smaller}
 
 ```{r}
 TukeyHSD(aov(flipper_length_mm ~ species, data=pen))
@@ -629,7 +629,7 @@ indicates a good fit.
 -   [Ref on how to do this in R from
     STHDA](http://www.sthda.com/english/wiki/kruskal-wallis-test-in-r)
 
-# Categorical Outcome \~ Categorical Covariate {background-color="#6c972b"}
+# Categorical Outcome \~ Categorical Covariate
 
 ## Opening Remarks
 
@@ -641,7 +641,7 @@ proportions.
 However in this class we will use the more generalizable model via
 Chi-squared test of association/equal proportions.
 
-## Chi-squared test of equal proportions [(Ref: ASCN Section 5.5)](https://norcalbiostat.github.io/AppliedStatistics_notes/bv-chisq.html)
+## Chi-squared test of equal proportions
 
 A 30-year study was conducted with nearly 90,000 female participants.
 (Miller AB. 2014) During a 5-year screening period, each woman was
@@ -662,9 +662,9 @@ a <- data.frame(Tx = c(rep("Mammogram", 500), rep("Control", 505),
 addmargins(table(a$Tx, a$Outcome))%>% kable() 
 ```
 
-The independent/explanatory variable is treatment (additional
-mammograms), and the dependent/response variable is death from breast
-cancer. Are these measures associated?
+The explanatory variable is treatment (additional mammograms), and the response variable is death from breast cancer. 
+
+Are these measures associated?
 
 ## Assume independence/no association {.smaller .incremental}
 
@@ -686,8 +686,8 @@ top left is $i=1$ and $j=1$.
 
 | $O_{ij}$ |  Alive   |         Dead         |        Total         |
 |:---------|:--------:|:--------------------:|:--------------------:|
-| Mammo    | $n_{11}$ | $n_{12}$ \| $n_{1.}$ |                      |
-|          | Control  |       $n_{21}$       | $n_{22}$ \| $n_{2.}$ |
+| Mammo    | $n_{11}$ |       $n_{12}$       |      $n_{1.}$        |
+| Control  | $n_{21}$ |       $n_{22}$       |      $n_{2.}$        |
 | Total    | $n_{.1}$ |       $n_{.2}$       |         $N$          |
 
 In our DATA = MODEL + RESIDUAL framework, the DATA ($n_{11}, n_{12}$,
@@ -781,21 +781,30 @@ general health?
 
 ## 2. Visualize and summarise bivariate relationship {.smaller}
 
+::: columns
+::: {.column width="50%"}
 ```{r}
 plot_xtab(grp=addhealth$eversmoke_c, x=addhealth$genhealth, 
                   show.total = FALSE, margin="row", legend.title="") 
 ```
+:::
 
+::: {.column width="50%"}
 The percentage of smokers seems to increase as the general health status
 decreases. Almost three-quarters (73%, n=40) of those reporting poor
 health have smoked an entire cigarette at least once in their life
 compared to 59% (n=573) of those reporting excellent health.
+:::
+:::
+
+
 
 ## 2b. Other ways to visualize this (FYI only)
 
 ::: columns
 ::: {.column width="50%"}
 ```{r}
+#| fig-height: 4
 addhealth %>% 
   group_by(genhealth) %>% 
   summarize(p = mean(eversmoke_c == "Smoked at least once", na.rm=TRUE)*100, 
@@ -813,6 +822,7 @@ addhealth %>%
 
 ::: {.column width="50%"}
 ```{r}
+#| fig-height: 4
 addhealth %>% 
   count(genhealth, eversmoke_c) %>% 
   na.omit() %>%
@@ -855,7 +865,7 @@ each of the 5 health categories: (1) Excellent to (5) Poor.
 $H_{0}: p_{1} = p_{2} = \ldots p_{5}$\
 $H_{A}:$ At least one $p_{j}$ is different.
 
-## 
+## 4. Analysis cont. {.smaller}
 
 **c. State and justify the analysis model. Check assumptions.**
 
@@ -877,7 +887,7 @@ We can conclude that there is an association between ever smoking a
 cigarette in their life and perceived general health
 ($\chi^{2} = 30.8, df=4, p<.0001$).
 
-## Multiple comparisons: Which group is different? {.smaller}
+## Multiple comparisons: Which group is different? 
 
 Just like with ANOVA, if we find that the Chi-squared test indicates
 that at least one proportion is different from the others, it's our job
@@ -901,6 +911,7 @@ health.smoke.model$residuals |> round(2)
 
 ::: {.column width="50%"}
 ```{r}
+#| fig-height: 4
 plot.residuals <- health.smoke.model$residuals %>% data.frame()
 ggplot(plot.residuals, aes(x=addhealth.genhealth, y=addhealth.eversmoke_c)) +
        geom_raster(aes(fill=Freq)) +  scale_fill_viridis_c()
@@ -934,7 +945,7 @@ group?
 :::
 :::
 
-## The effect of small sample sizes
+## The effect of small sample sizes {.smaller}
 
 Why is 41.3% significantly different from 35.4%, but NOT different from
 27.3%?
@@ -950,7 +961,7 @@ distribution of the test statistic can no longer be modeled well using
 the $\chi^{2}$ distribution. So we again go to a non-parametric test
 that uses a randomization based method.
 
-## Fishers Exact Test
+## Fishers Exact Test (Non-Parametric)
 
 ```{r}
 fisher.test(addhealth$genhealth, addhealth$eversmoke_c, 
@@ -989,19 +1000,19 @@ The categorical explanatory variable is income, binned into 4 ranges
 addhealth$income_cat <- Hmisc::cut2(addhealth$income, g = 4)
 ```
 
-## State Hypothesis
+## 1. State Hypothesis
 
 -   The income distribution is the same in each of the general health
     categories (no association)
 -   The income distribution differs for at least one of the general
     health categories (association)
 
-## Visualize the relationship
+## 2 & 3. Visualize the relationship
 
 ::: columns
 ::: {.column width="60%"}
 ```{r}
-#| fig.height = 10
+#| fig.height = 4
 plot_xtab(grp=addhealth$income_cat,
                   x=addhealth$genhealth, 
                   show.total = FALSE, margin="row",
@@ -1022,7 +1033,7 @@ Since there are very small cell sizes, we will use a Fishers Exact test.
 :::
 :::
 
-## Test the relationship & make a conclusion.
+## 4. Test the relationship & make a conclusion.
 
 ```{r}
 fisher.test(addhealth$genhealth, addhealth$income_cat, 
