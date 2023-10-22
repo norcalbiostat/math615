@@ -1057,19 +1057,25 @@ http://rcompanion.org/handbook/H_01.html and where I got the
 #| echo: false
 ans <- datasets::anscombe
 
-png(filename = here::here("slides/images/ansQtet.png"), 
-    width=1000, height = 800)
-par(mfrow=c(2,2), mai=c(0,0,0,0), omi = c(2.5,.5,2.5,.5))
-plot(ans$x1, ans$y1, axes = F, xlab="", ylab="", pch=19); 
-abline(lm(y1 ~ x1, data = ans), col = "blue");box()
-plot(ans$x2, ans$y2, axes = F, xlab="", ylab="", pch=19); box()
-abline(lm(y2 ~ x2, data = ans), col = "blue");box()
-plot(ans$x3, ans$y3, axes = F, xlab="", ylab="", pch=19); box()
-abline(lm(y3 ~ x3, data = ans), col = "blue");box()
-plot(ans$x4, ans$y4, axes = F, xlab="", ylab="", pch=19); box()
-abline(lm(y4 ~ x4, data = ans), col = "blue");box()
-dev.off()
+ans.long <- ans %>% mutate(rowid = 1:n()) %>% 
+  tidyr::pivot_longer(cols = -rowid, 
+                     names_to = c("dim", "ds"), 
+                     names_pattern = "([x-y])([\\d])", 
+                     values_to = "val") %>%
+  tidyr::pivot_wider(names_from = "dim", 
+              values_from = "val") %>%
+  mutate(dataset = paste("Data", ds))
 
+ggplot(ans.long, aes(x=x, y=y, color = dataset)) + 
+  geom_point(size = 2) + 
+  geom_smooth(method = "lm", color = "black", se=FALSE) + 
+  geom_smooth(se=FALSE) + 
+  facet_wrap(~dataset, ncol=2) + 
+  theme_bw() + 
+  scale_color_discrete(guide = "none")
+
+ggsave(filename = here::here("slides/images/ansQtet.png"))
+#width=1000, height = 800)
 ```
 
 

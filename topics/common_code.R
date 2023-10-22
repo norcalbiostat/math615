@@ -20,11 +20,10 @@ create_tabled_list <- function(var){
   colnames(Z) <- "Items"
   
   Z |>
-    filter(!grepl("[NA]", Items)) |>
+    filter(!grepl("[NA]", Items, fixed=TRUE)) |>
     gt() |>
     fmt_markdown(columns = everything()) |>
     opt_row_striping() |>
     tab_options(table.align = "left")
 }
-
 

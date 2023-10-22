@@ -1,0 +1,176 @@
+---
+title: "Simple Linear Regression"
+date: "2023-10-23"
+description: "10"
+---
+
+```{r, warning=FALSE, message=FALSE, include=FALSE}
+library(tidyverse)
+library(scales)
+library(sjPlot)
+library(gtsummary)
+
+load("C:/Box/Data/AddHealth/addhealth_clean.Rdata")
+pen <- palmerpenguins::penguins
+```
+
+# Always visualized before you model
+
+![Anscombs Quartet are four datasets have the same correlation value and similar slope of the regression line.](images/ansQtet.png){fig-align="center"}
+
+So does this [datasaurus](https://www.openintro.org/blog/article/2021-10-17-summary-statistics-and-the-datasaurus-dozen/)! 
+
+## Overview
+
+The general purpose of regression is to learn more about the relationship between several independent or predictor variables and a quantitative dependent variable.
+
+The goal of *Simple linear regression* is to describe the relationship between a continuous dependent variable Y and a single independent continuous variable X using a straight line.
+
+# External Instructional Notes
+
+:::{.callout-important}
+### Applied Stats Course Notes
+See [ASCN Ch 7](https://norcalbiostat.github.io/AppliedStatistics_notes/slr.html) for the learning content.
+:::
+
+These slides contain an example of a full 5 step analysis. 
+ 
+## Example: Body mass and bill length of penguins
+
+### 1. Identify response and explanatory variables
+
+-   The quantitative explanatory variable is body mass (g)
+-   The quantitative response variable is bill length (mm)
+
+## 2. Visualize and summarise bivariate relationship {.smaller}
+
+```{r}
+ggplot(pen, aes(x=body_mass_g, y=bill_length_mm)) + 
+  geom_point() + geom_smooth(col = "red")
+```
+
+There is a strong, positive, mostly linear relationship between the body mass (g) of penguins and their bill length (mm) (r=.595).
+
+## 3. Write the relationship you want to examine in the form of a research question.
+
+-   Null Hypothesis: There is no linear relationship between body mass and bill length.
+-   Alternate Hypothesis: There is a linear relationship between body mass and bill length.
+
+## 4. Perform an appropriate statistical analysis using Dr D's 4 step method.
+
+**a. Define parameters** Let $\beta_1$ be the true slope parameter that describes the change in bill length of the penguin as body mass increases.
+
+**b. State the null and alternative hypothesis as symbols**
+
+$H_{0}: \beta_{1}=0 \qquad \qquad H_{A}: \beta_{1} \neq 0$
+
+## c. State and justify the analysis model.
+
+Both the outcome and predictor are continuous variables that have a visible linear relationship, and observations are independent.
+
+The rest of the model assumptions can be checked after the model is fit using the `check_model(my_model_object_name)` function from the `performance` package.
+
+## d. Conduct the analysis and write a conclusion. {.smaller}
+
+```{r}
+pen.body.bill <- lm(bill_length_mm ~ body_mass_g, data=pen)
+pen.body.bill |> summary()
+```
+
+The p-value for $b_{1}$ is \<.0001, so there is sufficient evidence to believe that there is a linear relationship between body mass and bill length.
+
+## c (_cont_). Finish checking the assumptions {.smaller}
+
+This section uses functions from the `performance` package. 
+```{r}
+#| code-fold: show
+library(performance)
+```
+
+## Assumption: Normality of residuals 
+
+::: columns
+::: {.column width="40%"}
+```{r}
+#| fig-width: 4
+#| fig-height: 4
+plot(check_normality(pen.body.bill))
+```
+:::
+
+::: {.column width="60%"}
+The distribution of the residuals is mostly normal, pretty heavy right tail. This is indicative of a nonlinear trend somewhere in the data.
+:::
+:::
+
+## Assumption: Normality of residuals
+
+::: columns
+::: {.column width="40%"}
+```{r}
+#| fig-width: 4
+#| fig-height: 4
+plot(check_normality(pen.body.bill), type = "qq")
+```
+:::
+
+::: {.column width="60%"}
+This is also known as a 'normal probability plot' or a 'qqplot'. It is used to compare the theoretical quantiles of the data *if it were to come from a normal distribution* to the observed quantiles. PMA6 Figure 5.4 has more examples and an explanation.
+:::
+:::
+
+## Assumption: Homogeneity of variance
+
+::: columns
+::: {.column width="40%"}
+```{r}
+#| fig-width: 4
+#| fig-height: 4
+plot(check_heteroskedasticity(pen.body.bill))
+```
+:::
+
+::: {.column width="60%"}
+Holy non-flat relationship Batman. The variance of Y is not constant. This is a warning that our linear model does *not* fit the data well and we should look into possible refinements and improvements.
+:::
+:::
+
+## Model-check Posterior Predictions {.smaller}
+
+::: columns
+::: {.column width="50%"}
+```{r}
+#| fig-width: 4
+#| fig-height: 4
+plot(check_posterior_predictions(pen.body.bill))
+```
+:::
+
+::: {.column width="50%"}
+This check compares the distribution of predicted values to the distribution of observed values. 
+In this example the observed distribution of bill length is bimodal, and so the model is overestimating some values and underestimating others. There is clearly some other *confounding* variable that predicts bill length better than just body mass.
+:::
+:::
+
+
+## 5. Write a conclusion in context of the problem. {.smaller}
+
+::: columns
+::: {.column width="40%"}
+```{r}
+pen.body.bill |> coefficients() 
+pen.body.bill |> confint()
+pen.body.bill |> r2()
+```
+:::
+
+::: {.column width="60%"}
+Each 1g increase in body mass of a penguin is associated with a significant increase of 0.004 (0.0035, 0.0046) mm of bill length (p\<.0001).
+
+An increase of 1kg of body mass in a penguin corresponds to a 4(3.5, 4.6) mm increase in bill length.
+
+Body mass explains 35.4% of the variation in bill length.
+:::
+:::
+
+However, model diagnostics indicate that a linear model may not be appropriate for this relationship. The assumption of constant variance is not upheld and there may be another variable that affects bill length.

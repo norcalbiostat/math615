@@ -11,8 +11,8 @@
   <meta name="generator" content="quarto-1.3.319">
 
   <meta name="author" content="Robin Donatello">
-  <meta name="dcterms.date" content="2023-10-02">
-  <title>Data Analysis for Graduate Research - Statistical Inference with Randomization</title>
+  <meta name="dcterms.date" content="2023-10-23">
+  <title>Data Analysis for Graduate Research - Simple Linear Regression</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -30,6 +30,71 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css" id="theme">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -322,8 +387,8 @@
       margin-right: 0; 
     }
   </style>
-<meta name="twitter:title" content="Data Analysis for Graduate Research - Statistical Inference with Randomization">
-<meta name="twitter:description" content="7">
+<meta name="twitter:title" content="Data Analysis for Graduate Research - Simple Linear Regression">
+<meta name="twitter:description" content="10">
 <meta name="twitter:creator" content="@norcalbiostat">
 <meta name="twitter:card" content="summary">
 </head>
@@ -332,7 +397,7 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Statistical Inference with Randomization</h1>
+  <h1 class="title">Simple Linear Regression</h1>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -342,77 +407,228 @@ Robin Donatello
 </div>
 </div>
 
-  <p class="date">2023-10-02</p>
+  <p class="date">2023-10-23</p>
 </section>
 <section>
-<section id="statistical-inference" class="title-slide slide level1 center">
-<h1>Statistical Inference</h1>
-<p>(A.K.A Hypothesis Testing)</p>
+<section id="always-visualized-before-you-model" class="title-slide slide level1 center">
+<h1>Always visualized before you model</h1>
 
-<img data-src="https://imgs.xkcd.com/comics/p_values.png" class="r-stretch quarto-figure-center"><p class="caption">https://xkcd.com/1478/</p></section>
-<section id="statistical-inference-1" class="slide level2">
-<h2>Statistical Inference</h2>
-<div>
+<img data-src="images/ansQtet.png" class="r-stretch quarto-figure-center"><p class="caption">Anscombs Quartet are four datasets have the same correlation value and similar slope of the regression line.</p><p>So does this <a href="https://www.openintro.org/blog/article/2021-10-17-summary-statistics-and-the-datasaurus-dozen/">datasaurus</a>!</p>
+</section>
+<section id="overview" class="slide level2">
+<h2>Overview</h2>
+<p>The general purpose of regression is to learn more about the relationship between several independent or predictor variables and a quantitative dependent variable.</p>
+<p>The goal of <em>Simple linear regression</em> is to describe the relationship between a continuous dependent variable Y and a single independent continuous variable X using a straight line.</p>
+</section></section>
+<section>
+<section id="external-instructional-notes" class="title-slide slide level1 center">
+<h1>External Instructional Notes</h1>
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Applied Stats Course Notes</strong></p>
+</div>
+<div class="callout-content">
+<p>See <a href="https://norcalbiostat.github.io/AppliedStatistics_notes/slr.html">ASCN Ch 7</a> for the learning content.</p>
+</div>
+</div>
+</div>
+<p>These slides contain an example of a full 5 step analysis.</p>
+</section>
+<section id="example-body-mass-and-bill-length-of-penguins" class="slide level2">
+<h2>Example: Body mass and bill length of penguins</h2>
+<h3 id="identify-response-and-explanatory-variables">1. Identify response and explanatory variables</h3>
 <ul>
-<li class="fragment">Primarily concerned with understanding and quantifying the uncertainty of parameter estimates.</li>
-<li class="fragment">Equations and details change depending on the setting, the foundations for inference are the same throughout all of statistics.</li>
-<li class="fragment">We start with a case studies designed to motivate the process of making decisions about research claims.</li>
-<li class="fragment">We formalize the process through the introduction of the hypothesis testing framework, which allows us to formally evaluate claims about the population.</li>
+<li>The quantitative explanatory variable is body mass (g)</li>
+<li>The quantitative response variable is bill length (mm)</li>
 </ul>
+</section>
+<section id="visualize-and-summarise-bivariate-relationship" class="slide level2 smaller">
+<h2>2. Visualize and summarise bivariate relationship</h2>
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">ggplot</span>(pen, <span class="fu">aes</span>(<span class="at">x=</span>body_mass_g, <span class="at">y=</span>bill_length_mm)) <span class="sc">+</span> </span>
+<span id="cb1-2"><a href="#cb1-2"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">col =</span> <span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+
+</div>
+<img data-src="lec07c-regression_files/figure-html/unnamed-chunk-2-1.png" width="672" class="r-stretch"><p>There is a strong, positive, mostly linear relationship between the body mass (g) of penguins and their bill length (mm) (r=.595).</p>
+</section>
+<section id="write-the-relationship-you-want-to-examine-in-the-form-of-a-research-question." class="slide level2">
+<h2>3. Write the relationship you want to examine in the form of a research question.</h2>
+<ul>
+<li>Null Hypothesis: There is no linear relationship between body mass and bill length.</li>
+<li>Alternate Hypothesis: There is a linear relationship between body mass and bill length.</li>
+</ul>
+</section>
+<section id="perform-an-appropriate-statistical-analysis-using-dr-ds-4-step-method." class="slide level2">
+<h2>4. Perform an appropriate statistical analysis using Dr D’s 4 step method.</h2>
+<p><strong>a. Define parameters</strong> Let <span class="math inline">\(\beta_1\)</span> be the true slope parameter that describes the change in bill length of the penguin as body mass increases.</p>
+<p><strong>b. State the null and alternative hypothesis as symbols</strong></p>
+<p><span class="math inline">\(H_{0}: \beta_{1}=0 \qquad \qquad H_{A}: \beta_{1} \neq 0\)</span></p>
+</section>
+<section id="c.-state-and-justify-the-analysis-model." class="slide level2">
+<h2>c.&nbsp;State and justify the analysis model.</h2>
+<p>Both the outcome and predictor are continuous variables that have a visible linear relationship, and observations are independent.</p>
+<p>The rest of the model assumptions can be checked after the model is fit using the <code>check_model(my_model_object_name)</code> function from the <code>performance</code> package.</p>
+</section>
+<section id="d.-conduct-the-analysis-and-write-a-conclusion." class="slide level2 smaller">
+<h2>d.&nbsp;Conduct the analysis and write a conclusion.</h2>
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>pen.body.bill <span class="ot">&lt;-</span> <span class="fu">lm</span>(bill_length_mm <span class="sc">~</span> body_mass_g, <span class="at">data=</span>pen)</span>
+<span id="cb2-2"><a href="#cb2-2"></a>pen.body.bill <span class="sc">|&gt;</span> <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = bill_length_mm ~ body_mass_g, data = pen)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-10.1251  -3.0434  -0.8089   2.0711  16.1109 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 2.690e+01  1.269e+00   21.19   &lt;2e-16 ***
+body_mass_g 4.051e-03  2.967e-04   13.65   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 4.394 on 340 degrees of freedom
+  (2 observations deleted due to missingness)
+Multiple R-squared:  0.3542,    Adjusted R-squared:  0.3523 
+F-statistic: 186.4 on 1 and 340 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<p>The p-value for <span class="math inline">\(b_{1}\)</span> is &lt;.0001, so there is sufficient evidence to believe that there is a linear relationship between body mass and bill length.</p>
+</section>
+<section id="c-cont.-finish-checking-the-assumptions" class="slide level2 smaller">
+<h2>c (<em>cont</em>). Finish checking the assumptions</h2>
+<p>This section uses functions from the <code>performance</code> package.</p>
+<div class="cell">
+<details open="">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">library</span>(performance)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
-<section id="variability-in-data" class="slide level2">
-<h2>Variability in data</h2>
-<div>
-<ul>
-<li class="fragment">Sometimes the dataset at hand represents the entire research question.</li>
-<li class="fragment">More often than not, the data have been collected to answer a research question about a larger group of which the data are a (hopefully) representative subset.</li>
-<li class="fragment">One dataset will not be identical to a second dataset even if they are both collected from the same population using the same methods.</li>
-</ul>
+<section id="assumption-normality-of-residuals" class="slide level2">
+<h2>Assumption: Normality of residuals</h2>
+<div class="columns">
+<div class="column" style="width:40%;">
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">plot</span>(<span class="fu">check_normality</span>(pen.body.bill))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img data-src="lec07c-regression_files/figure-html/unnamed-chunk-5-1.png" width="384"></p>
+</div>
+</div>
+</div><div class="column" style="width:60%;">
+<p>The distribution of the residuals is mostly normal, pretty heavy right tail. This is indicative of a nonlinear trend somewhere in the data.</p>
+</div>
 </div>
 </section>
-<section id="motivating-example-police-shootings-since-2015" class="slide level2">
-<h2>Motivating Example: Police Shootings since 2015</h2>
-<p>The Washington Post has been keeping a database on <a href="https://www.washingtonpost.com/graphics/investigations/police-shootings-database/">use of fatal force by police</a> since 2015. This database tracks all incidents where someone was shot by police, and records various characteristics such as the seniority level of the officer, date, location, gender, age and ethnicity of the victim along with information on if the person was armed, fleeing or acting erratic.</p>
-<p>(board work)</p>
+<section id="assumption-normality-of-residuals-1" class="slide level2">
+<h2>Assumption: Normality of residuals</h2>
+<div class="columns">
+<div class="column" style="width:40%;">
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">plot</span>(<span class="fu">check_normality</span>(pen.body.bill), <span class="at">type =</span> <span class="st">"qq"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img data-src="lec07c-regression_files/figure-html/unnamed-chunk-6-1.png" width="384"></p>
+</div>
+</div>
+</div><div class="column" style="width:60%;">
+<p>This is also known as a ‘normal probability plot’ or a ‘qqplot’. It is used to compare the theoretical quantiles of the data <em>if it were to come from a normal distribution</em> to the observed quantiles. PMA6 Figure 5.4 has more examples and an explanation.</p>
+</div>
+</div>
 </section>
-<section id="randomization" class="slide level2">
-<h2>Randomization</h2>
-<p>To decide whether variability in data is due to</p>
-<ul>
-<li><ol type="1">
-<li>the causal mechanism (the randomized explanatory variable in the experiment)</li>
-</ol></li>
-<li><ol start="2" type="1">
-<li>natural variability inherent to the data</li>
-</ol></li>
-</ul>
-<p>we set up a sham randomized experiment as a comparison.</p>
+<section id="assumption-homogeneity-of-variance" class="slide level2">
+<h2>Assumption: Homogeneity of variance</h2>
+<div class="columns">
+<div class="column" style="width:40%;">
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">plot</span>(<span class="fu">check_heteroskedasticity</span>(pen.body.bill))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img data-src="lec07c-regression_files/figure-html/unnamed-chunk-7-1.png" width="384"></p>
+</div>
+</div>
+</div><div class="column" style="width:60%;">
+<p>Holy non-flat relationship Batman. The variance of Y is not constant. This is a warning that our linear model does <em>not</em> fit the data well and we should look into possible refinements and improvements.</p>
+</div>
+</div>
 </section>
-<section id="sham-randomized-experiment" class="slide level2">
-<h2>“Sham” randomized experiment</h2>
-<ul>
-<li>We assume that each observational unit (person) would have gotten the exact same response value (shot by police) regardless of the treatment level (race).</li>
-<li>By reassigning the treatments many many times, we can compare the actual experiment to the sham experiment.</li>
-</ul>
+<section id="model-check-posterior-predictions" class="slide level2 smaller">
+<h2>Model-check Posterior Predictions</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">plot</span>(<span class="fu">check_posterior_predictions</span>(pen.body.bill))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img data-src="lec07c-regression_files/figure-html/unnamed-chunk-8-1.png" width="384"></p>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<p>This check compares the distribution of predicted values to the distribution of observed values. In this example the observed distribution of bill length is bimodal, and so the model is overestimating some values and underestimating others. There is clearly some other <em>confounding</em> variable that predicts bill length better than just body mass.</p>
+</div>
+</div>
 </section>
-<section id="decision" class="slide level2">
-<h2>Decision</h2>
-<p>If the actual experiment has <strong>more extreme results</strong> than any of the sham experiments, we are led to believe that it is the explanatory variable which is causing the result and not just variability inherent to the data.</p>
-</section>
-<section id="case-study-sex-discrimination" class="slide level2">
-<h2>Case Study: Sex discrimination</h2>
-<p>Turning to something equally important, but less potentially distressful, let’s do an experiment on sex discrimination in promotional decisions</p>
-<p>(in class)</p>
-</section>
-<section id="case-study-sex-discrimination---collab-notes" class="slide level2">
-<h2>Case Study: Sex discrimination - collab notes</h2>
-<p>Open the collaborative notes and work with your neighbor to answer the following questions under the “Inference using Randomization” section.</p>
-<p><a href="https://hackmd.io/@norcalbiostat/06b-stat_inference">https://hackmd.io/<span class="citation" data-cites="norcalbiostat/06b-stat_inference">@norcalbiostat/06b-stat_inference</span></a></p>
-</section>
-<section id="statistical-inference-is-the-practice-of-making-decisions-and-conclusions-from-data-in-the-context-of-uncertainty." class="slide level2">
-<h2>Statistical inference is the practice of making decisions and conclusions from data in the context of uncertainty.</h2>
-<p>Errors do occur, just like rare events, and the dataset at hand might lead us to the wrong conclusion. While a given dataset may not always lead us to a correct conclusion, statistical inference gives us tools to control and evaluate how often these errors occur.</p>
+<section id="write-a-conclusion-in-context-of-the-problem." class="slide level2 smaller">
+<h2>5. Write a conclusion in context of the problem.</h2>
+<div class="columns">
+<div class="column" style="width:40%;">
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>pen.body.bill <span class="sc">|&gt;</span> <span class="fu">coefficients</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code> (Intercept)  body_mass_g 
+26.898872424  0.004051417 </code></pre>
+</div>
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>pen.body.bill <span class="sc">|&gt;</span> <span class="fu">confint</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>                   2.5 %       97.5 %
+(Intercept) 24.402502194 29.395242653
+body_mass_g  0.003467795  0.004635038</code></pre>
+</div>
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>pen.body.bill <span class="sc">|&gt;</span> <span class="fu">r2</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># R2 for Linear Regression
+       R2: 0.354
+  adj. R2: 0.352</code></pre>
+</div>
+</div>
+</div><div class="column" style="width:60%;">
+<p>Each 1g increase in body mass of a penguin is associated with a significant increase of 0.004 (0.0035, 0.0046) mm of bill length (p&lt;.0001).</p>
+<p>An increase of 1kg of body mass in a penguin corresponds to a 4(3.5, 4.6) mm increase in bill length.</p>
+<p>Body mass explains 35.4% of the variation in bill length.</p>
+</div>
+</div>
+<p>However, model diagnostics indicate that a linear model may not be appropriate for this relationship. The assumption of constant variance is not upheld and there may be another variable that affects bill length.</p>
 
 <div class="footer footer-default">
 <p><a href="https://math615.netlify.app/slides">🔗 https://math615.netlify.app</a></p>
