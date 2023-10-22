@@ -1712,7 +1712,7 @@
     "href": "slides/lec07b-bivariate_modeling.html#section-2",
     "title": "Modeling Bivariate Relationships",
     "section": "",
-    "text": "Why not multiple T-tests between all pairs of groups?\n\n\nEach time you conduct a test, you risk coming to the wrong conclusion.\nRepeated tests compound that chance of being wrong.\n\n\nImg Ref: https://xkcd.com/882"
+    "text": "d. Conduct the test and make a decision about the plausibility of the alternative hypothesis.\n\n\nShow the code\ncor.test(pen$body_mass_g, pen$bill_length_mm)\n\n\n\n    Pearson's product-moment correlation\n\ndata:  pen$body_mass_g and pen$bill_length_mm\nt = 13.654, df = 340, p-value &lt; 2.2e-16\nalternative hypothesis: true correlation is not equal to 0\n95 percent confidence interval:\n 0.5220040 0.6595358\nsample estimates:\n      cor \n0.5951098 \n\n\nThe p-value is very small, there is evidence in favor of a non-zero correlation."
   },
   {
     "objectID": "slides/lec07b-bivariate_modeling.html#type-i-and-type-ii-error-an-important-side-topic",
@@ -2252,5 +2252,19 @@
     "title": "Modeling Bivariate Relationships",
     "section": "Fishers Exact Test (Non-Parametric)",
     "text": "Fishers Exact Test (Non-Parametric)\n\n\nShow the code\nfisher.test(addhealth$genhealth, addhealth$eversmoke_c, \n            simulate.p.value = TRUE)\n\n\n\n    Fisher's Exact Test for Count Data with simulated p-value (based on 2000 replicates)\n\ndata:  addhealth$genhealth and addhealth$eversmoke_c\np-value = 0.0004998\nalternative hypothesis: two.sided\n\n\nThen you can use the pairwiseNominalIndependence function for all pairwise comparisons again, with the fisher argument set to TRUE.\n\n\n\nNote: the simulate.p.value = TRUE argument here is only needed if the randomization space is larger than your workspace. R will let you know when this is needed."
+  },
+  {
+    "objectID": "slides/lec07b-bivariate_modeling.html#multiple-comparison",
+    "href": "slides/lec07b-bivariate_modeling.html#multiple-comparison",
+    "title": "Modeling Bivariate Relationships",
+    "section": "Multiple Comparison",
+    "text": "Multiple Comparison\n\n\nWhy not multiple T-tests between all pairs of groups?\n\n\nEach time you conduct a test, you risk coming to the wrong conclusion.\nRepeated tests compound that chance of being wrong.\n\n\nImg Ref: https://xkcd.com/882"
+  },
+  {
+    "objectID": "slides/lec07b-bivariate_modeling.html#perform-an-appropriate-statistical-analysis",
+    "href": "slides/lec07b-bivariate_modeling.html#perform-an-appropriate-statistical-analysis",
+    "title": "Modeling Bivariate Relationships",
+    "section": "4. Perform an appropriate statistical analysis",
+    "text": "4. Perform an appropriate statistical analysis\na. Define parameters Let \\(\\rho\\) be the true correlation between body mass and bill length of penguins.\nb. State the null and alternative hypothesis as symbols\n\\(H_{0}: \\rho=0 \\qquad \\qquad H_{A}: \\rho \\neq 0\\)\nc. State and justify the analysis model.\nPearsons test of correlation will be conducted. This is appropriate because both variables are quantitative, the relationship between variables are reasonably linear, and the sample size is large."
   }
 ]

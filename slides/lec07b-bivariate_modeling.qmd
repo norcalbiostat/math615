@@ -341,7 +341,7 @@ alternative is that there is a difference.
     $\mu_1 = \mu_2 = \cdots = \mu_j$
 -   $H_A$: At least one mean is different.
 
-##  {background-image="https://imgs.xkcd.com/comics/significant.png" background-size="300px" background-position="85% 50%"}
+## Multiple Comparison {background-image="https://imgs.xkcd.com/comics/significant.png" background-size="300px" background-position="85% 50%"}
 
 ::: columns
 ::: {.column width="60%"}
@@ -1053,7 +1053,27 @@ This R companion page also looks very useful
 http://rcompanion.org/handbook/H_01.html and where I got the
 `pairwiseNominalIndependence` function from.
 
-# Quantitative Outcome \~ Quantitative Covariate {background-color="#6c972b"}
+```{r, include=FALSE}
+#| echo: false
+ans <- datasets::anscombe
+
+png(filename = here::here("slides/images/ansQtet.png"), 
+    width=1000, height = 800)
+par(mfrow=c(2,2), mai=c(0,0,0,0), omi = c(2.5,.5,2.5,.5))
+plot(ans$x1, ans$y1, axes = F, xlab="", ylab="", pch=19); 
+abline(lm(y1 ~ x1, data = ans), col = "blue");box()
+plot(ans$x2, ans$y2, axes = F, xlab="", ylab="", pch=19); box()
+abline(lm(y2 ~ x2, data = ans), col = "blue");box()
+plot(ans$x3, ans$y3, axes = F, xlab="", ylab="", pch=19); box()
+abline(lm(y3 ~ x3, data = ans), col = "blue");box()
+plot(ans$x4, ans$y4, axes = F, xlab="", ylab="", pch=19); box()
+abline(lm(y4 ~ x4, data = ans), col = "blue");box()
+dev.off()
+
+```
+
+
+# Quantitative Outcome \~ Quantitative Covariate  {background-image="images/ansQtet.png" background-opacity="0.3"}
 
 ## Opening Remarks
 
@@ -1186,7 +1206,7 @@ mass (g) of penguins and their bill length (mm) (r=.595).
 -   Alternate Hypothesis: There is a correlation between the body mass
     and bill length of penguins.
 
-## 4. Perform an appropriate statistical analysis using Dr D's 4 step method.
+## 4. Perform an appropriate statistical analysis
 
 **a. Define parameters** Let $\rho$ be the true correlation between body
 mass and bill length of penguins.
