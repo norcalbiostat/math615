@@ -569,7 +569,7 @@ Robin Donatello
 <span id="cb2-2"><a href="#cb2-2"></a>          <span class="at">color =</span> <span class="st">"island"</span>, <span class="at">ellipse =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img data-src="lec08_moderation_files/figure-html/unnamed-chunk-3-1.png" width="672"></p>
+<p><img data-src="lec08-moderation_files/figure-html/unnamed-chunk-3-1.png" width="672"></p>
 </div>
 </div>
 </div><div class="column" style="width:50%;">
@@ -720,7 +720,13 @@ Robin Donatello
 <section id="example-anova" class="slide level2 smaller">
 <h2>Example: ANOVA</h2>
 <p>Does sex modify the relationship between flipper length and species?</p>
-<div>
+<div class="panel-tabset">
+<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">Overall</a></li><li><a href="#tabset-1-2">By Sex</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1">
+<div class="columns">
+<div class="column" style="width:60%;">
+<div class="cell">
 <details>
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">ggplot</span>(pen, <span class="fu">aes</span>(<span class="at">x=</span>flipper_length_mm, <span class="at">y=</span>species, <span class="at">fill=</span>species)) <span class="sc">+</span> </span>
@@ -730,44 +736,59 @@ Robin Donatello
 <span id="cb3-5"><a href="#cb3-5"></a>      <span class="fu">stat_summary</span>(<span class="at">fun=</span><span class="st">"mean"</span>, <span class="at">geom=</span><span class="st">"point"</span>, <span class="at">col=</span><span class="st">"red"</span>, <span class="at">size=</span><span class="dv">4</span>, <span class="at">pch=</span><span class="dv">17</span>) <span class="sc">+</span> </span>
 <span id="cb3-6"><a href="#cb3-6"></a>      <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
 <span id="cb3-7"><a href="#cb3-7"></a>      <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Flipper Length (mm)"</span>, <span class="at">y =</span> <span class="st">"Species"</span>, <span class="at">title =</span> <span class="st">"Overall"</span>) <span class="sc">+</span> </span>
-<span id="cb3-8"><a href="#cb3-8"></a>      <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span>
-<span id="cb3-9"><a href="#cb3-9"></a>pen <span class="sc">%&gt;%</span> <span class="fu">select</span>(flipper_length_mm, species, sex) <span class="sc">%&gt;%</span> <span class="fu">na.omit</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb3-10"><a href="#cb3-10"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>flipper_length_mm, <span class="at">y=</span>species, <span class="at">fill=</span>species)) <span class="sc">+</span> </span>
-<span id="cb3-11"><a href="#cb3-11"></a>      <span class="fu">stat_slab</span>(<span class="at">alpha=</span>.<span class="dv">5</span>, <span class="at">justification =</span> <span class="dv">0</span>) <span class="sc">+</span> </span>
-<span id="cb3-12"><a href="#cb3-12"></a>      <span class="fu">geom_boxplot</span>(<span class="at">width =</span> .<span class="dv">2</span>,  <span class="at">outlier.shape =</span> <span class="cn">NA</span>) <span class="sc">+</span> </span>
-<span id="cb3-13"><a href="#cb3-13"></a>      <span class="fu">geom_jitter</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">height =</span> <span class="fl">0.05</span>) <span class="sc">+</span></span>
-<span id="cb3-14"><a href="#cb3-14"></a>      <span class="fu">stat_summary</span>(<span class="at">fun=</span><span class="st">"mean"</span>, <span class="at">geom=</span><span class="st">"point"</span>, <span class="at">col=</span><span class="st">"red"</span>, <span class="at">size=</span><span class="dv">4</span>, <span class="at">pch=</span><span class="dv">17</span>) <span class="sc">+</span> </span>
-<span id="cb3-15"><a href="#cb3-15"></a>      <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
-<span id="cb3-16"><a href="#cb3-16"></a>      <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Flipper Length (mm)"</span>, <span class="at">y =</span> <span class="st">"Species"</span>, <span class="at">title =</span> <span class="st">"By Sex"</span>) <span class="sc">+</span> </span>
-<span id="cb3-17"><a href="#cb3-17"></a>      <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span> </span>
-<span id="cb3-18"><a href="#cb3-18"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>sex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-8"><a href="#cb3-8"></a>      <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell quarto-layout-panel">
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img data-src="lec08_moderation_files/figure-html/unnamed-chunk-4-1.png" width="672"></p>
+<div class="cell-output-display">
+<p><img data-src="lec08-moderation_files/figure-html/unnamed-chunk-4-1.png" width="672"></p>
 </div>
-<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img data-src="lec08_moderation_files/figure-html/unnamed-chunk-4-2.png" width="672"></p>
 </div>
+</div><div class="column" style="width:40%;">
+<p>Gentoo have the larger flipper length by far, then Chinstrap is similar to Adelie but a little larger.</p>
 </div>
 </div>
 </div>
+<div id="tabset-1-2">
+<div class="columns">
+<div class="column" style="width:60%;">
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>pen <span class="sc">%&gt;%</span> <span class="fu">select</span>(flipper_length_mm, species, sex) <span class="sc">%&gt;%</span> <span class="fu">na.omit</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>flipper_length_mm, <span class="at">y=</span>species, <span class="at">fill=</span>species)) <span class="sc">+</span> </span>
+<span id="cb4-3"><a href="#cb4-3"></a>      <span class="fu">stat_slab</span>(<span class="at">alpha=</span>.<span class="dv">5</span>, <span class="at">justification =</span> <span class="dv">0</span>) <span class="sc">+</span> </span>
+<span id="cb4-4"><a href="#cb4-4"></a>      <span class="fu">geom_boxplot</span>(<span class="at">width =</span> .<span class="dv">2</span>,  <span class="at">outlier.shape =</span> <span class="cn">NA</span>) <span class="sc">+</span> </span>
+<span id="cb4-5"><a href="#cb4-5"></a>      <span class="fu">geom_jitter</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">height =</span> <span class="fl">0.05</span>) <span class="sc">+</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a>      <span class="fu">stat_summary</span>(<span class="at">fun=</span><span class="st">"mean"</span>, <span class="at">geom=</span><span class="st">"point"</span>, <span class="at">col=</span><span class="st">"red"</span>, <span class="at">size=</span><span class="dv">4</span>, <span class="at">pch=</span><span class="dv">17</span>) <span class="sc">+</span> </span>
+<span id="cb4-7"><a href="#cb4-7"></a>      <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb4-8"><a href="#cb4-8"></a>      <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Flipper Length (mm)"</span>, <span class="at">y =</span> <span class="st">"Species"</span>, <span class="at">title =</span> <span class="st">"By Sex"</span>) <span class="sc">+</span> </span>
+<span id="cb4-9"><a href="#cb4-9"></a>      <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span> </span>
+<span id="cb4-10"><a href="#cb4-10"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>sex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img data-src="lec08-moderation_files/figure-html/unnamed-chunk-5-1.png" width="672"></p>
+</div>
+</div>
+</div><div class="column" style="width:40%;">
 <p>The pattern of distributions of flipper length by species seems the same for both sexes of penguin. Sex is likely <em>not</em> a moderator.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
 </section>
 <section id="example-anova-cont." class="slide level2">
 <h2>Example: ANOVA (cont.)</h2>
 <div class="panel-tabset">
-<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">Overall</a></li><li><a href="#tabset-1-2">By Sex</a></li><li><a href="#tabset-1-3">Conclusion</a></li></ul>
+<ul id="tabset-2" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-2-1">Overall</a></li><li><a href="#tabset-2-2">By Sex</a></li><li><a href="#tabset-2-3">Conclusion</a></li></ul>
 <div class="tab-content">
-<div id="tabset-1-1">
+<div id="tabset-2-1">
 <div class="columns">
 <div class="column" style="width:80%;">
 <div class="scrolling">
 <div class="cell">
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">aov</span>(pen<span class="sc">$</span>flipper_length_mm <span class="sc">~</span> pen<span class="sc">$</span>species) <span class="sc">|&gt;</span> <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">aov</span>(pen<span class="sc">$</span>flipper_length_mm <span class="sc">~</span> pen<span class="sc">$</span>species) <span class="sc">|&gt;</span> <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>             Df Sum Sq Mean Sq F value Pr(&gt;F)    
@@ -779,7 +800,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 </div>
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">aov</span>(pen<span class="sc">$</span>flipper_length_mm <span class="sc">~</span> pen<span class="sc">$</span>species) <span class="sc">|&gt;</span> performance<span class="sc">::</span><span class="fu">r2</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">aov</span>(pen<span class="sc">$</span>flipper_length_mm <span class="sc">~</span> pen<span class="sc">$</span>species) <span class="sc">|&gt;</span> performance<span class="sc">::</span><span class="fu">r2</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># R2 for Anova Regression
@@ -793,18 +814,18 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 </div>
 </div>
 </div>
-<div id="tabset-1-2">
+<div id="tabset-2-2">
 <div class="columns">
 <div class="column" style="width:70%;">
 <div class="scrolling">
 <div class="cell">
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">by</span>(pen, pen<span class="sc">$</span>sex, <span class="cf">function</span>(x) {</span>
-<span id="cb8-2"><a href="#cb8-2"></a>  p <span class="ot">&lt;-</span> <span class="fu">aov</span>(x<span class="sc">$</span>flipper_length_mm <span class="sc">~</span> x<span class="sc">$</span>species) <span class="sc">|&gt;</span> <span class="fu">summary</span>()</span>
-<span id="cb8-3"><a href="#cb8-3"></a>  r <span class="ot">&lt;-</span> <span class="fu">aov</span>(x<span class="sc">$</span>flipper_length_mm <span class="sc">~</span> x<span class="sc">$</span>species) <span class="sc">|&gt;</span> performance<span class="sc">::</span><span class="fu">r2</span>()</span>
-<span id="cb8-4"><a href="#cb8-4"></a>  <span class="fu">return</span>(<span class="at">list=</span><span class="fu">c</span>(p, r))</span>
-<span id="cb8-5"><a href="#cb8-5"></a>  })</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">by</span>(pen, pen<span class="sc">$</span>sex, <span class="cf">function</span>(x) {</span>
+<span id="cb9-2"><a href="#cb9-2"></a>  p <span class="ot">&lt;-</span> <span class="fu">aov</span>(x<span class="sc">$</span>flipper_length_mm <span class="sc">~</span> x<span class="sc">$</span>species) <span class="sc">|&gt;</span> <span class="fu">summary</span>()</span>
+<span id="cb9-3"><a href="#cb9-3"></a>  r <span class="ot">&lt;-</span> <span class="fu">aov</span>(x<span class="sc">$</span>flipper_length_mm <span class="sc">~</span> x<span class="sc">$</span>species) <span class="sc">|&gt;</span> performance<span class="sc">::</span><span class="fu">r2</span>()</span>
+<span id="cb9-4"><a href="#cb9-4"></a>  <span class="fu">return</span>(<span class="at">list=</span><span class="fu">c</span>(p, r))</span>
+<span id="cb9-5"><a href="#cb9-5"></a>  })</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>pen$sex: female
@@ -847,64 +868,190 @@ adjusted R2
 </div>
 </div>
 </div>
-<div id="tabset-1-3">
+<div id="tabset-2-3">
 <p>Sex is <strong>not</strong> a modifier, the relationship between species and flipper length is the same within male and female penguins.</p>
 </div>
 </div>
 </div>
 </section>
-<section id="example-chi-squared" class="slide level2">
+<section id="example-chi-squared" class="slide level2 smaller">
 <h2>Example: Chi-Squared</h2>
 <p>Does gender modify the relationship between smoking and general health?</p>
-</section>
-<section id="example-regression" class="slide level2">
-<h2>Example: Regression</h2>
-<p>Does the species of an iris moderate the relationship between the length of the sepal and the length of it’s petal.</p>
+<div class="panel-tabset">
+<ul id="tabset-3" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-3-1">Overall</a></li><li><a href="#tabset-3-2">By Gender</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1">
 <div class="columns">
-<div class="column" style="width:50%;">
-<div>
+<div class="column" style="width:70%;">
+<div class="cell">
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">ggscatter</span>(iris, <span class="at">x=</span><span class="st">"Sepal.Length"</span>, <span class="at">y =</span> <span class="st">"Petal.Length"</span>, </span>
-<span id="cb10-2"><a href="#cb10-2"></a>                     <span class="at">add =</span> <span class="st">"reg.line"</span>, <span class="at">ellipse =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb10-3"><a href="#cb10-3"></a><span class="fu">ggscatter</span>(iris, <span class="at">x=</span><span class="st">"Sepal.Length"</span>, <span class="at">y =</span> <span class="st">"Petal.Length"</span>, <span class="at">add =</span> <span class="st">"reg.line"</span>, </span>
-<span id="cb10-4"><a href="#cb10-4"></a>          <span class="at">color =</span> <span class="st">"Species"</span>, <span class="at">ellipse =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">plot_xtab</span>(addhealth<span class="sc">$</span>genhealth, addhealth<span class="sc">$</span>eversmoke_c, <span class="at">show.total =</span> <span class="cn">FALSE</span>, <span class="at">margin =</span> <span class="st">"row"</span>) <span class="sc">+</span> </span>
+<span id="cb11-2"><a href="#cb11-2"></a>  <span class="fu">ggtitle</span>(<span class="st">"Overall"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell quarto-layout-panel">
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img data-src="lec08_moderation_files/figure-html/unnamed-chunk-7-1.png" width="672"></p>
-</div>
-<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img data-src="lec08_moderation_files/figure-html/unnamed-chunk-7-2.png" width="672"></p>
+<div class="cell-output-display">
+<p><img data-src="lec08-moderation_files/figure-html/unnamed-chunk-8-1.png" width="672"></p>
 </div>
 </div>
+</div><div class="column" style="width:30%;">
+<p>The proportion of smokers increases as the level of general health decreases.</p>
+</div>
+</div>
+</div>
+<div id="tabset-3-2">
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>addhealth <span class="sc">%&gt;%</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a>  <span class="fu">select</span>(female_c, genhealth, eversmoke_c) <span class="sc">%&gt;%</span> <span class="fu">na.omit</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb12-3"><a href="#cb12-3"></a>  <span class="fu">group_by</span>(female_c, genhealth) <span class="sc">%&gt;%</span> </span>
+<span id="cb12-4"><a href="#cb12-4"></a>  <span class="fu">summarize</span>(<span class="at">pct_smoke =</span> <span class="fu">mean</span>(eversmoke_c <span class="sc">==</span> <span class="st">"Smoked at least once"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb12-5"><a href="#cb12-5"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>genhealth, <span class="at">y =</span> pct_smoke, <span class="at">fill =</span> female_c)) <span class="sc">+</span> </span>
+<span id="cb12-6"><a href="#cb12-6"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">5</span>, <span class="at">alpha=</span><span class="fl">0.7</span>, <span class="at">shape=</span><span class="dv">21</span>, <span class="at">stroke=</span><span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb12-7"><a href="#cb12-7"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, .<span class="dv">8</span>), <span class="at">labels =</span> percent) <span class="sc">+</span> </span>
+<span id="cb12-8"><a href="#cb12-8"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img data-src="lec08-moderation_files/figure-html/unnamed-chunk-9-1.png" width="672"></p>
 </div>
 </div>
 </div><div class="column" style="width:50%;">
-<p>The slope of the lowess line between virginica and versicolor appear similar in strength, whereas the slope of the line for setosa is closer to zero. Species <em>may</em> be a moderator.</p>
+<p>Mostly similar pattern within males and females</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="example-chi-squared-cont" class="slide level2">
+<h2>Example: Chi-Squared (cont)</h2>
+<div class="panel-tabset">
+<ul id="tabset-4" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-4-1">Overall</a></li><li><a href="#tabset-4-2">By Gender</a></li><li><a href="#tabset-4-3">Conclusion</a></li></ul>
+<div class="tab-content">
+<div id="tabset-4-1">
+<div class="columns">
+<div class="column" style="width:80%;">
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">chisq.test</span>(addhealth<span class="sc">$</span>eversmoke_c, addhealth<span class="sc">$</span>genhealth)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pearson's Chi-squared test
+
+data:  addhealth$eversmoke_c and addhealth$genhealth
+X-squared = 30.795, df = 4, p-value = 3.371e-06</code></pre>
+</div>
+</div>
+</div><div class="column" style="width:20%;">
+<p>Highly significant p-value</p>
+</div>
+</div>
+</div>
+<div id="tabset-4-2">
+<div class="columns">
+<div class="column" style="width:70%;">
+<div class="scrolling">
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">by</span>(addhealth, addhealth<span class="sc">$</span>female_c, <span class="cf">function</span>(x) <span class="fu">chisq.test</span>(x<span class="sc">$</span>eversmoke_c, x<span class="sc">$</span>genhealth))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>addhealth$female_c: Male
+
+    Pearson's Chi-squared test
+
+data:  x$eversmoke_c and x$genhealth
+X-squared = 19.455, df = 4, p-value = 0.0006395
+
+------------------------------------------------------------------------------------------------------------------------------------------------------ 
+addhealth$female_c: Female
+
+    Pearson's Chi-squared test
+
+data:  x$eversmoke_c and x$genhealth
+X-squared = 19.998, df = 4, p-value = 0.0004998</code></pre>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:30%;">
+<p>P-value still &lt;.0001 in each group</p>
+</div>
+</div>
+</div>
+<div id="tabset-4-3">
+<p>The relationship between smoking status and general health is significant in both the main effects and the stratified model. The distribution of smoking status across general health categories does not differ between females and males. Gender is <strong>not</strong> a moderator for this analysis.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="example-regression" class="slide level2 smaller">
+<h2>Example: Regression</h2>
+<div class="panel-tabset">
+<ul id="tabset-5" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-5-1">Overall</a></li><li><a href="#tabset-5-2">By Species</a></li></ul>
+<div class="tab-content">
+<div id="tabset-5-1">
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">ggscatter</span>(iris, <span class="at">x=</span><span class="st">"Sepal.Length"</span>, <span class="at">y =</span> <span class="st">"Petal.Length"</span>, </span>
+<span id="cb17-2"><a href="#cb17-2"></a>                     <span class="at">add =</span> <span class="st">"reg.line"</span>, <span class="at">ellipse =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img data-src="lec08-moderation_files/figure-html/unnamed-chunk-12-1.png" width="672"></p>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<p>Does the Species of an iris moderate the relationship between the length of the sepal and the length of it’s petal?</p>
+</div>
+</div>
+</div>
+<div id="tabset-5-2">
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">ggscatter</span>(iris, <span class="at">x=</span><span class="st">"Sepal.Length"</span>, <span class="at">y =</span> <span class="st">"Petal.Length"</span>, <span class="at">add =</span> <span class="st">"reg.line"</span>, </span>
+<span id="cb18-2"><a href="#cb18-2"></a>          <span class="at">color =</span> <span class="st">"Species"</span>, <span class="at">ellipse =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img data-src="lec08-moderation_files/figure-html/unnamed-chunk-13-1.png" width="672"></p>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<p>The slope of the lowess line between virginica and versicolor appear similar in strength, whereas the slope of the line for setosa is closer to zero.</p>
+</div>
+</div>
+</div>
 </div>
 </div>
 </section>
 <section id="example-regression-cont." class="slide level2">
 <h2>Example: Regression (cont.)</h2>
 <div class="panel-tabset">
-<ul id="tabset-2" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-2-1">Correlation</a></li><li><a href="#tabset-2-2">Regression</a></li><li><a href="#tabset-2-3">Conclusion</a></li></ul>
+<ul id="tabset-6" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-6-1">Correlation</a></li><li><a href="#tabset-6-2">Regression</a></li><li><a href="#tabset-6-3">Conclusion</a></li></ul>
 <div class="tab-content">
-<div id="tabset-2-1">
+<div id="tabset-6-1">
 <div class="columns">
 <div class="column" style="width:60%;">
 <div class="cell">
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">cor</span>(iris<span class="sc">$</span>Sepal.Length, iris<span class="sc">$</span>Petal.Length)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">cor</span>(iris<span class="sc">$</span>Sepal.Length, iris<span class="sc">$</span>Petal.Length)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.8717538</code></pre>
 </div>
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">by</span>(iris, iris<span class="sc">$</span>Species, <span class="cf">function</span>(x) <span class="fu">cor</span>(x<span class="sc">$</span>Sepal.Length, x<span class="sc">$</span>Petal.Length))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">by</span>(iris, iris<span class="sc">$</span>Species, <span class="cf">function</span>(x) <span class="fu">cor</span>(x<span class="sc">$</span>Sepal.Length, x<span class="sc">$</span>Petal.Length))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>iris$Species: setosa
@@ -918,21 +1065,20 @@ iris$Species: virginica
 </div>
 </div>
 </div><div class="column" style="width:40%;">
-<p>The correlation coefficient r for virginica and veriscolor are similar to the overall r value, 0.86 and 0.75 respectively compared to 0.87.</p>
-<p>However the correlation between sepal and petal length for species setosa is only 0.26.</p>
+<p><span class="math inline">\(r\)</span> for virginica (.86) and veriscolor (.75) are similar to the overall correlation value (.87), but <span class="math inline">\(r\)</span> for setosa (.27) is much smaller.</p>
 </div>
 </div>
 </div>
-<div id="tabset-2-2">
+<div id="tabset-6-2">
 <div class="columns">
-<div class="column" style="width:50%;">
+<div class="column" style="width:70%;">
 <div class="scrolling">
 <div class="cell">
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">by</span>(iris, iris<span class="sc">$</span>Species, <span class="cf">function</span>(x) {</span>
-<span id="cb15-2"><a href="#cb15-2"></a>  <span class="fu">lm</span>(x<span class="sc">$</span>Petal.Length <span class="sc">~</span> x<span class="sc">$</span>Sepal.Length) <span class="sc">|&gt;</span> <span class="fu">summary</span>() <span class="sc">|&gt;</span> broom<span class="sc">::</span><span class="fu">tidy</span>()</span>
-<span id="cb15-3"><a href="#cb15-3"></a>  })</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="fu">by</span>(iris, iris<span class="sc">$</span>Species, <span class="cf">function</span>(x) {</span>
+<span id="cb23-2"><a href="#cb23-2"></a>  <span class="fu">lm</span>(x<span class="sc">$</span>Petal.Length <span class="sc">~</span> x<span class="sc">$</span>Sepal.Length) <span class="sc">|&gt;</span> <span class="fu">summary</span>() <span class="sc">|&gt;</span> broom<span class="sc">::</span><span class="fu">tidy</span>()</span>
+<span id="cb23-3"><a href="#cb23-3"></a>  })</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>iris$Species: setosa
@@ -958,17 +1104,22 @@ iris$Species: virginica
 </div>
 </div>
 </div>
-</div><div class="column" style="width:50%;">
+</div><div class="column" style="width:30%;">
+<p><small></small></p><small>
 <ul>
-<li>Overall: -7.1 + 1.86x, p&lt;.0001</li>
-<li>Setosa: 0.08 + 0.13x, p=.06</li>
-<li>Versicolor: 0.19 + 0.69x, p&lt;.0001</li>
-<li>Virginica: 0.61 + 0.75x, p&lt;.0001</li>
+<li>Overall: <span class="math inline">\(-7.1 + 1.86x\)</span>, p&lt;.0001<br>
+</li>
+<li>Setosa: <span class="math inline">\(0.08 + 0.13x\)</span>, p=.06<br>
+</li>
+<li>Versicolor: <span class="math inline">\(0.19 + 0.69x\)</span>, p&lt;.0001<br>
+</li>
+<li>Virginica: <span class="math inline">\(0.61 + 0.75x\)</span>, p&lt;.0001</li>
 </ul>
+</small><p><small></small></p>
 </div>
 </div>
 </div>
-<div id="tabset-2-3">
+<div id="tabset-6-3">
 <p>Iris specis <strong>moderates</strong> the relationship between sepal and petal length.</p>
 </div>
 </div>

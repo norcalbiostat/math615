@@ -1753,22 +1753,22 @@
     "objectID": "slides/lec07c-regression.html#overview",
     "href": "slides/lec07c-regression.html#overview",
     "title": "Simple Linear Regression",
-    "section": "Overview",
-    "text": "Overview\nThe general purpose of regression is to learn more about the relationship between several independent or predictor variables and a quantitative dependent variable.\nThe goal of Simple linear regression is to describe the relationship between a continuous dependent variable Y and a single independent continuous variable X using a straight line."
+    "section": "",
+    "text": "The general purpose of regression is to learn more about the relationship between several independent or predictor variables and a quantitative dependent variable.\nThe goal of Simple linear regression is to describe the relationship between a continuous dependent variable Y and a single independent continuous variable X using a straight line."
   },
   {
     "objectID": "slides/lec07c-regression.html#example-body-mass-and-bill-length-of-penguins",
     "href": "slides/lec07c-regression.html#example-body-mass-and-bill-length-of-penguins",
     "title": "Simple Linear Regression",
     "section": "Example: Body mass and bill length of penguins",
-    "text": "Example: Body mass and bill length of penguins\n1. Identify response and explanatory variables\n\nThe quantitative explanatory variable is body mass (g)\nThe quantitative response variable is bill length (mm)"
+    "text": "Example: Body mass and bill length of penguins\n\n1. Identify response and explanatory variables\n\nThe quantitative explanatory variable is body mass (g)\nThe quantitative response variable is bill length (mm)"
   },
   {
     "objectID": "slides/lec07c-regression.html#visualize-and-summarise-bivariate-relationship",
     "href": "slides/lec07c-regression.html#visualize-and-summarise-bivariate-relationship",
     "title": "Simple Linear Regression",
     "section": "2. Visualize and summarise bivariate relationship",
-    "text": "2. Visualize and summarise bivariate relationship\n\n\nShow the code\nggplot(pen, aes(x=body_mass_g, y=bill_length_mm)) + \n  geom_point() + geom_smooth(col = \"red\")\n\n\n\nThere is a strong, positive, mostly linear relationship between the body mass (g) of penguins and their bill length (mm) (r=.595)."
+    "text": "2. Visualize and summarise bivariate relationship\n\nggplot(pen, aes(x=body_mass_g, y=bill_length_mm)) + \n  geom_point() + geom_smooth(col = \"red\")\n\n\n\n\nThere is a strong, positive, mostly linear relationship between the body mass (g) of penguins and their bill length (mm) (r=.595)."
   },
   {
     "objectID": "slides/lec07c-regression.html#write-the-relationship-you-want-to-examine-in-the-form-of-a-research-question.",
@@ -1796,49 +1796,49 @@
     "href": "slides/lec07c-regression.html#d.-conduct-the-analysis-and-write-a-conclusion.",
     "title": "Simple Linear Regression",
     "section": "d. Conduct the analysis and write a conclusion.",
-    "text": "d. Conduct the analysis and write a conclusion.\n\n\nShow the code\npen.body.bill &lt;- lm(bill_length_mm ~ body_mass_g, data=pen)\npen.body.bill |&gt; summary()\n\n\n\nCall:\nlm(formula = bill_length_mm ~ body_mass_g, data = pen)\n\nResiduals:\n     Min       1Q   Median       3Q      Max \n-10.1251  -3.0434  -0.8089   2.0711  16.1109 \n\nCoefficients:\n             Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) 2.690e+01  1.269e+00   21.19   &lt;2e-16 ***\nbody_mass_g 4.051e-03  2.967e-04   13.65   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 4.394 on 340 degrees of freedom\n  (2 observations deleted due to missingness)\nMultiple R-squared:  0.3542,    Adjusted R-squared:  0.3523 \nF-statistic: 186.4 on 1 and 340 DF,  p-value: &lt; 2.2e-16\n\n\nThe p-value for \\(b_{1}\\) is &lt;.0001, so there is sufficient evidence to believe that there is a linear relationship between body mass and bill length."
+    "text": "d. Conduct the analysis and write a conclusion.\n\npen.body.bill &lt;- lm(bill_length_mm ~ body_mass_g, data=pen)\npen.body.bill |&gt; summary()\n\n\nCall:\nlm(formula = bill_length_mm ~ body_mass_g, data = pen)\n\nResiduals:\n     Min       1Q   Median       3Q      Max \n-10.1251  -3.0434  -0.8089   2.0711  16.1109 \n\nCoefficients:\n             Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) 2.690e+01  1.269e+00   21.19   &lt;2e-16 ***\nbody_mass_g 4.051e-03  2.967e-04   13.65   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 4.394 on 340 degrees of freedom\n  (2 observations deleted due to missingness)\nMultiple R-squared:  0.3542,    Adjusted R-squared:  0.3523 \nF-statistic: 186.4 on 1 and 340 DF,  p-value: &lt; 2.2e-16\n\n\nThe p-value for \\(b_{1}\\) is &lt;.0001, so there is sufficient evidence to believe that there is a linear relationship between body mass and bill length."
   },
   {
     "objectID": "slides/lec07c-regression.html#c-cont.-finish-checking-the-assumptions",
     "href": "slides/lec07c-regression.html#c-cont.-finish-checking-the-assumptions",
     "title": "Simple Linear Regression",
     "section": "c (cont). Finish checking the assumptions",
-    "text": "c (cont). Finish checking the assumptions\nThis section uses functions from the performance package.\n\n\nShow the code\nlibrary(performance)"
+    "text": "c (cont). Finish checking the assumptions\nThis section uses functions from the performance package.\n\n\nCode\nlibrary(performance)"
   },
   {
     "objectID": "slides/lec07c-regression.html#assumption-normality-of-residuals",
     "href": "slides/lec07c-regression.html#assumption-normality-of-residuals",
     "title": "Simple Linear Regression",
     "section": "Assumption: Normality of residuals",
-    "text": "Assumption: Normality of residuals\n\n\n\n\nShow the code\nplot(check_normality(pen.body.bill))\n\n\n\n\n\n\nThe distribution of the residuals is mostly normal, pretty heavy right tail. This is indicative of a nonlinear trend somewhere in the data."
+    "text": "Assumption: Normality of residuals\n\n\n\nplot(check_normality(pen.body.bill))\n\n\n\n\n\nThe distribution of the residuals is mostly normal, pretty heavy right tail. This is indicative of a nonlinear trend somewhere in the data."
   },
   {
     "objectID": "slides/lec07c-regression.html#assumption-normality-of-residuals-1",
     "href": "slides/lec07c-regression.html#assumption-normality-of-residuals-1",
     "title": "Simple Linear Regression",
     "section": "Assumption: Normality of residuals",
-    "text": "Assumption: Normality of residuals\n\n\n\n\nShow the code\nplot(check_normality(pen.body.bill), type = \"qq\")\n\n\n\n\n\n\nThis is also known as a ‘normal probability plot’ or a ‘qqplot’. It is used to compare the theoretical quantiles of the data if it were to come from a normal distribution to the observed quantiles. PMA6 Figure 5.4 has more examples and an explanation."
+    "text": "Assumption: Normality of residuals\n\n\n\nplot(check_normality(pen.body.bill), type = \"qq\")\n\n\n\n\n\nThis is also known as a ‘normal probability plot’ or a ‘qqplot’. It is used to compare the theoretical quantiles of the data if it were to come from a normal distribution to the observed quantiles. PMA6 Figure 5.4 has more examples and an explanation."
   },
   {
     "objectID": "slides/lec07c-regression.html#assumption-homogeneity-of-variance",
     "href": "slides/lec07c-regression.html#assumption-homogeneity-of-variance",
     "title": "Simple Linear Regression",
     "section": "Assumption: Homogeneity of variance",
-    "text": "Assumption: Homogeneity of variance\n\n\n\n\nShow the code\nplot(check_heteroskedasticity(pen.body.bill))\n\n\n\n\n\n\nHoly non-flat relationship Batman. The variance of Y is not constant. This is a warning that our linear model does not fit the data well and we should look into possible refinements and improvements."
+    "text": "Assumption: Homogeneity of variance\n\n\n\nplot(check_heteroskedasticity(pen.body.bill))\n\n\n\n\n\nHoly non-flat relationship Batman. The variance of Y is not constant. This is a warning that our linear model does not fit the data well and we should look into possible refinements and improvements."
   },
   {
     "objectID": "slides/lec07c-regression.html#model-check-posterior-predictions",
     "href": "slides/lec07c-regression.html#model-check-posterior-predictions",
     "title": "Simple Linear Regression",
     "section": "Model-check Posterior Predictions",
-    "text": "Model-check Posterior Predictions\n\n\n\n\nShow the code\nplot(check_posterior_predictions(pen.body.bill))\n\n\n\n\n\n\nThis check compares the distribution of predicted values to the distribution of observed values. In this example the observed distribution of bill length is bimodal, and so the model is overestimating some values and underestimating others. There is clearly some other confounding variable that predicts bill length better than just body mass."
+    "text": "Model-check Posterior Predictions\n\n\n\nplot(check_posterior_predictions(pen.body.bill))\n\n\n\n\n\nThis check compares the distribution of predicted values to the distribution of observed values. In this example the observed distribution of bill length is bimodal, and so the model is overestimating some values and underestimating others. There is clearly some other confounding variable that predicts bill length better than just body mass."
   },
   {
     "objectID": "slides/lec07c-regression.html#write-a-conclusion-in-context-of-the-problem.",
     "href": "slides/lec07c-regression.html#write-a-conclusion-in-context-of-the-problem.",
     "title": "Simple Linear Regression",
     "section": "5. Write a conclusion in context of the problem.",
-    "text": "5. Write a conclusion in context of the problem.\n\n\n\n\nShow the code\npen.body.bill |&gt; coefficients() \n\n\n (Intercept)  body_mass_g \n26.898872424  0.004051417 \n\n\nShow the code\npen.body.bill |&gt; confint()\n\n\n                   2.5 %       97.5 %\n(Intercept) 24.402502194 29.395242653\nbody_mass_g  0.003467795  0.004635038\n\n\nShow the code\npen.body.bill |&gt; r2()\n\n\n# R2 for Linear Regression\n       R2: 0.354\n  adj. R2: 0.352\n\n\n\nEach 1g increase in body mass of a penguin is associated with a significant increase of 0.004 (0.0035, 0.0046) mm of bill length (p&lt;.0001).\nAn increase of 1kg of body mass in a penguin corresponds to a 4(3.5, 4.6) mm increase in bill length.\nBody mass explains 35.4% of the variation in bill length.\n\n\nHowever, model diagnostics indicate that a linear model may not be appropriate for this relationship. The assumption of constant variance is not upheld and there may be another variable that affects bill length.\n\n\n🔗 https://math615.netlify.app"
+    "text": "5. Write a conclusion in context of the problem.\n\n\n\npen.body.bill |&gt; coefficients() \n\n (Intercept)  body_mass_g \n26.898872424  0.004051417 \n\npen.body.bill |&gt; confint()\n\n                   2.5 %       97.5 %\n(Intercept) 24.402502194 29.395242653\nbody_mass_g  0.003467795  0.004635038\n\npen.body.bill |&gt; r2()\n\n# R2 for Linear Regression\n       R2: 0.354\n  adj. R2: 0.352\n\n\n\nEach 1g increase in body mass of a penguin is associated with a significant increase of 0.004 (0.0035, 0.0046) mm of bill length (p&lt;.0001).\nAn increase of 1kg of body mass in a penguin corresponds to a 4(3.5, 4.6) mm increase in bill length.\nBody mass explains 35.4% of the variation in bill length.\n\n\nHowever, model diagnostics indicate that a linear model may not be appropriate for this relationship. The assumption of constant variance is not upheld and there may be another variable that affects bill length."
   },
   {
     "objectID": "slides.html",
@@ -2300,7 +2300,7 @@
     "href": "slides/lec08_moderation.html",
     "title": "Moderation and Stratification",
     "section": "",
-    "text": "Code\nlibrary(tidyverse)  # general use\nlibrary(ggdist)     # for the \"half-violin\" plot (stat_slab)\nlibrary(ggpubr)     # ggscatter\nlibrary(scales)     # axes labeling\nlibrary(sjPlot)     # side by side barcharts with numbers\nlibrary(gtsummary)  # regression tables\n\npen &lt;- palmerpenguins::penguins\n\n\n\n\nBelow are the admissions figures for Fall 1973 at UC Berkeley.\n\nTable of admissions rates at UC Berkeley in 1973\n\n\n\nApplicants\nAdmitted\n\n\n\n\nTotal\n12,763\n41%\n\n\nMen\n8,442\n44%\n\n\nWomen\n4,321\n35%\n\n\n\nIs there evidence of gender bias in college admissions? Do you think a difference of 35% vs 44% is too large to be by chance?\n\n\n\n\nThe table of admissions rates for the 6 largest departments show a different story.\n\n\n\n\n\n\n\n\n\n\n\n\nAll\n\nMen\n\nWomen\n\n\n\nDepartment\nApplicants\nAdmitted\nApplicants\nAdmitted\nApplicants\nAdmitted\n\n\nA\n933\n64%\n825\n62%\n108\n82%\n\n\nB\n585\n63%\n560\n63%\n25\n68%\n\n\nC\n918\n35%\n325\n37%\n593\n34%\n\n\nD\n792\n34%\n417\n33%\n375\n35%\n\n\nE\n584\n25%\n191\n28%\n393\n24%\n\n\nF\n714\n6%\n373\n6%\n341\n7%\n\n\nTotal\n4526\n39%\n2691\n45%\n1835\n30%\n\n\n\nAfter adjusting for features such as size and competitiveness of the department, the pooled data showed a “small but statistically significant bias in favor of women”\n\n\n\nCan we predict penguin body mass from the flipper length?\n\n\n\nggscatter(pen, x=\"flipper_length_mm\", y = \"body_mass_g\", add = \"reg.line\", \n          color = \"species\", ellipse = TRUE)\n\n\n\n\n\nProbably, but the relationship between flipper length and body mass changes depending on the penguin species."
+    "text": "Code\nlibrary(tidyverse)  # general use\nlibrary(ggdist)     # for the \"half-violin\" plot (stat_slab)\nlibrary(ggpubr)     # ggscatter\nlibrary(scales)     # axes labeling\nlibrary(sjPlot)     # side by side barcharts with numbers\nlibrary(gtsummary)  # regression tables\n\npen &lt;- palmerpenguins::penguins\n\n\n\n\nBelow are the admissions figures for Fall 1973 at UC Berkeley.\n\nTable of admissions rates at UC Berkeley in 1973\n\n\n\nApplicants\nAdmitted\n\n\n\n\nTotal\n12,763\n41%\n\n\nMen\n8,442\n44%\n\n\nWomen\n4,321\n35%\n\n\n\nIs there evidence of gender bias in college admissions? Do you think a difference of 35% vs 44% is too large to be by chance?\n\n\n\n\nThe table of admissions rates for the 6 largest departments show a different story.\n\n\n\n\n\n\n\n\n\n\n\n\nAll\n\nMen\n\nWomen\n\n\n\nDepartment\nApplicants\nAdmitted\nApplicants\nAdmitted\nApplicants\nAdmitted\n\n\nA\n933\n64%\n825\n62%\n108\n82%\n\n\nB\n585\n63%\n560\n63%\n25\n68%\n\n\nC\n918\n35%\n325\n37%\n593\n34%\n\n\nD\n792\n34%\n417\n33%\n375\n35%\n\n\nE\n584\n25%\n191\n28%\n393\n24%\n\n\nF\n714\n6%\n373\n6%\n341\n7%\n\n\nTotal\n4526\n39%\n2691\n45%\n1835\n30%\n\n\n\nAfter adjusting for features such as size and competitiveness of the department, the pooled data showed a “small but statistically significant bias in favor of women”\n\n\n\nCan we predict penguin body mass from the flipper length?\n\n\n\nggscatter(pen, x=\"flipper_length_mm\", y = \"body_mass_g\", add = \"reg.line\", \n          color = \"island\", ellipse = TRUE)\n\n\n\n\n\nProbably, but the relationship between flipper length and body mass changes depending on what island they are found on."
   },
   {
     "objectID": "slides/lec08_moderation.html#moderation",
@@ -2363,6 +2363,202 @@
     "href": "slides/lec08_moderation.html#motivation-ex.-2",
     "title": "Moderation and Stratification",
     "section": "Motivation Ex. 2",
-    "text": "Motivation Ex. 2\nCan we predict penguin body mass from the flipper length?\n\n\n\n\nShow the code\nggscatter(pen, x=\"flipper_length_mm\", y = \"body_mass_g\", add = \"reg.line\", \n          color = \"species\", ellipse = TRUE)\n\n\n\n\n\n\nProbably, but the relationship between flipper length and body mass changes depending on the penguin species."
+    "text": "Motivation Ex. 2\nCan we predict penguin body mass from the flipper length?\n\n\n\n\nShow the code\nggscatter(pen, x=\"flipper_length_mm\", y = \"body_mass_g\", add = \"reg.line\", \n          color = \"island\", ellipse = TRUE)\n\n\n\n\n\n\nProbably, but the relationship between flipper length and body mass changes depending on what island they are found on."
+  },
+  {
+    "objectID": "slides/lec08_moderation.html#stratification-cont.",
+    "href": "slides/lec08_moderation.html#stratification-cont.",
+    "title": "Moderation and Stratification",
+    "section": "Stratification (cont.)",
+    "text": "Stratification (cont.)\n\n\n\n\n\n\nBenefits\n\n\n\nIn each model, the intercept, slope, and variance of the residuals can all be different.\n\\(Y_{ij} \\sim \\beta_{0j} + \\beta_{1j}*x_{i} + \\epsilon_{ij} \\qquad \\epsilon_{ij} \\sim \\mathcal{N}(0,\\sigma^{2}_{j})\\)\nThis is the unique and powerful feature of stratified models.\n\n\n\n\n\n\n\n\n\n\nConsequences\n\n\n\nEach model is only fit on the amount of data in that particular subset.\nEach model has 3 parameters that need to be estimated: \\(\\beta_{0}, \\beta_{1}\\), and \\(\\sigma^{2}\\)\n\nTotal of 9 for the three models.\n\nThe more parameters that need to be estimated, the more data we need."
+  },
+  {
+    "objectID": "slides/lec08_moderation.html#stratification-1",
+    "href": "slides/lec08_moderation.html#stratification-1",
+    "title": "Moderation and Stratification",
+    "section": "Stratification",
+    "text": "Stratification\n\n\n\n\n\n\nBenefits\n\n\n\nIn each model, the intercept, slope, and variance of the residuals can all be different.\n\n\\(Y_{ij} \\sim \\beta_{0j} + \\beta_{1j}*x_{i} + \\epsilon_{ij} \\qquad \\epsilon_{ij} \\sim \\mathcal{N}(0,\\sigma^{2}_{j})\\)\n\nThis is the unique and powerful feature of stratified models.\n\n\n\n\n\n\n\n\n\n\nConsequences\n\n\n\nEach model is only fit on the amount of data in that particular subset.\nEach model has 3 parameters that need to be estimated: \\(\\beta_{0}, \\beta_{1}\\), and \\(\\sigma^{2}\\)\n\nTotal of 9 for the three models.\n\nThe more parameters that need to be estimated, the more data we need."
+  },
+  {
+    "objectID": "slides/lec08_moderation.html#significant-non-significant",
+    "href": "slides/lec08_moderation.html#significant-non-significant",
+    "title": "Moderation and Stratification",
+    "section": "Significant –> Non-Significant",
+    "text": "Significant –&gt; Non-Significant\n\nSignificant relationship at bivariate level\n\nWe expect the effect to exist in the entire population\n\nWithin at least one level of the third variable the strength of the relationship changes\n\nP-value is no longer significant within at least one subgroup"
+  },
+  {
+    "objectID": "slides/lec08_moderation.html#non-significant-significant",
+    "href": "slides/lec08_moderation.html#non-significant-significant",
+    "title": "Moderation and Stratification",
+    "section": "Non-Significant –> Significant",
+    "text": "Non-Significant –&gt; Significant\n\nNon-significant relationship at bivariate level\n\nWe do not expect the effect to exist in the entire population\n\nWithin at least one level of the third variable the relationship becomes significant\n\nP-value is now significant within at least one subgroup"
+  },
+  {
+    "objectID": "slides/lec08_moderation.html#change-in-direction-of-association",
+    "href": "slides/lec08_moderation.html#change-in-direction-of-association",
+    "title": "Moderation and Stratification",
+    "section": "Change in Direction of Association",
+    "text": "Change in Direction of Association\n\nSignificant relationship at bivariate level\n\nWe expect the effect to exist in the entire population\n\nWithin at least one level of the third variable the direction of the relationship changes\n\nMeans change order, positive to negative correlation etc."
+  },
+  {
+    "objectID": "slides/lec08_moderation.html#what-to-look-for",
+    "href": "slides/lec08_moderation.html#what-to-look-for",
+    "title": "Moderation and Stratification",
+    "section": "What to look for",
+    "text": "What to look for\n\n\n\n\n\n\n\n\nANOVA\nChi-Square\nRegression\n\n\n\n\n\\(p\\)-value, \\(R^2\\), means, density/boxplot\n\\(p\\)-value, col percents, side by side barcharts\ncorrelation coefficient (\\(r\\)), \\(p\\)-value, \\(\\beta\\) coefficients, \\(r\\)-squared, scatterplot\n\n\n\nCompare these values within each level of the potential moderator to the values in the overall model."
+  },
+  {
+    "objectID": "slides/lec08_moderation.html#example-regression",
+    "href": "slides/lec08_moderation.html#example-regression",
+    "title": "Moderation and Stratification",
+    "section": "Example: Regression",
+    "text": "Example: Regression\nDoes the species of an iris moderate the relationship between the length of the sepal and the length of it’s petal.\n\n\n\n\nShow the code\nggscatter(iris, x=\"Sepal.Length\", y = \"Petal.Length\", \n                     add = \"reg.line\", ellipse = TRUE)\nggscatter(iris, x=\"Sepal.Length\", y = \"Petal.Length\", add = \"reg.line\", \n          color = \"Species\", ellipse = TRUE)\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe slope of the lowess line between virginica and versicolor appear similar in strength, whereas the slope of the line for setosa is closer to zero. Species may be a moderator."
+  },
+  {
+    "objectID": "slides/lec08_moderation.html#example-anova",
+    "href": "slides/lec08_moderation.html#example-anova",
+    "title": "Moderation and Stratification",
+    "section": "Example: ANOVA",
+    "text": "Example: ANOVA\nDoes sex modify the relationship between flipper length and species?\n\n\nShow the code\nggplot(pen, aes(x=flipper_length_mm, y=species, fill=species)) + \n      stat_slab(alpha=.5, justification = 0) + \n      geom_boxplot(width = .2,  outlier.shape = NA) + \n      geom_jitter(alpha = 0.5, height = 0.05) +\n      stat_summary(fun=\"mean\", geom=\"point\", col=\"red\", size=4, pch=17) + \n      theme_bw() + \n      labs(x=\"Flipper Length (mm)\", y = \"Species\", title = \"Overall\") + \n      theme(legend.position = \"none\")\npen %&gt;% select(flipper_length_mm, species, sex) %&gt;% na.omit() %&gt;%\nggplot(aes(x=flipper_length_mm, y=species, fill=species)) + \n      stat_slab(alpha=.5, justification = 0) + \n      geom_boxplot(width = .2,  outlier.shape = NA) + \n      geom_jitter(alpha = 0.5, height = 0.05) +\n      stat_summary(fun=\"mean\", geom=\"point\", col=\"red\", size=4, pch=17) + \n      theme_bw() + \n      labs(x=\"Flipper Length (mm)\", y = \"Species\", title = \"By Sex\") + \n      theme(legend.position = \"none\") + \n  facet_wrap(~sex)\n\n\n\n\n\n\n\n\n\n\n\n\nThe pattern of distributions of flipper length by species seems the same for both sexes of penguin. Sex is likely not a moderator."
+  },
+  {
+    "objectID": "slides/lec08_moderation.html#example-anova-cont.",
+    "href": "slides/lec08_moderation.html#example-anova-cont.",
+    "title": "Moderation and Stratification",
+    "section": "Example: ANOVA (cont.)",
+    "text": "Example: ANOVA (cont.)\n\nOverallBy SexConclusion\n\n\n\n\n\n\n\nShow the code\naov(pen$flipper_length_mm ~ pen$species) |&gt; summary()\n\n\n             Df Sum Sq Mean Sq F value Pr(&gt;F)    \npen$species   2  52473   26237   594.8 &lt;2e-16 ***\nResiduals   339  14953      44                   \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n2 observations deleted due to missingness\n\n\nShow the code\naov(pen$flipper_length_mm ~ pen$species) |&gt; performance::r2()\n\n\n# R2 for Anova Regression\n       R2: 0.778\n  adj. R2: 0.777\n\n\n\n\nHighly significant p-value, \\(R^2\\) value of 0.77\n\n\n\n\n\n\n\n\n\nShow the code\nby(pen, pen$sex, function(x) {\n  p &lt;- aov(x$flipper_length_mm ~ x$species) |&gt; summary()\n  r &lt;- aov(x$flipper_length_mm ~ x$species) |&gt; performance::r2()\n  return(list=c(p, r))\n  })\n\n\npen$sex: female\n[[1]]\n             Df  Sum Sq Mean Sq F value    Pr(&gt;F)    \nx$species     2 21415.6   10708  411.79 &lt; 2.2e-16 ***\nResiduals   162  4212.6      26                      \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n$R2\n       R2 \n0.8356281 \n\n$R2_adjusted\nadjusted R2 \n  0.8335988 \n\n------------------------------------------------------------------------------------------------------------------------------------------------------ \npen$sex: male\n[[1]]\n             Df  Sum Sq Mean Sq F value    Pr(&gt;F)    \nx$species     2 29098.4 14549.2  384.37 &lt; 2.2e-16 ***\nResiduals   165  6245.6    37.9                      \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n$R2\n       R2 \n0.8232924 \n\n$R2_adjusted\nadjusted R2 \n  0.8211504 \n\n\n\n\nP-value still &lt;.0001 in each group, \\(R^2_{f}= 0.84, R^2_m = 0.82\\). Same pattern.\n\n\n\n\nSex is not a modifier, the relationship between species and flipper length is the same within male and female penguins."
+  },
+  {
+    "objectID": "slides/lec08_moderation.html#example-chi-squared",
+    "href": "slides/lec08_moderation.html#example-chi-squared",
+    "title": "Moderation and Stratification",
+    "section": "Example: Chi-Squared",
+    "text": "Example: Chi-Squared\nDoes gender modify the relationship between smoking and general health?"
+  },
+  {
+    "objectID": "slides/lec08_moderation.html#example-regression-cont.",
+    "href": "slides/lec08_moderation.html#example-regression-cont.",
+    "title": "Moderation and Stratification",
+    "section": "Example: Regression (cont.)",
+    "text": "Example: Regression (cont.)\n\nCorrelationRegressionConclusion\n\n\n\n\n\n\nShow the code\ncor(iris$Sepal.Length, iris$Petal.Length)\n\n\n[1] 0.8717538\n\n\nShow the code\nby(iris, iris$Species, function(x) cor(x$Sepal.Length, x$Petal.Length))\n\n\niris$Species: setosa\n[1] 0.2671758\n------------------------------------------------------------------------------------------------------------------------------------------------------ \niris$Species: versicolor\n[1] 0.754049\n------------------------------------------------------------------------------------------------------------------------------------------------------ \niris$Species: virginica\n[1] 0.8642247\n\n\n\nThe correlation coefficient r for virginica and veriscolor are similar to the overall r value, 0.86 and 0.75 respectively compared to 0.87.\nHowever the correlation between sepal and petal length for species setosa is only 0.26.\n\n\n\n\n\n\n\n\n\nShow the code\nby(iris, iris$Species, function(x) {\n  lm(x$Petal.Length ~ x$Sepal.Length) |&gt; summary() |&gt; broom::tidy()\n  })\n\n\niris$Species: setosa\n# A tibble: 2 × 5\n  term           estimate std.error statistic p.value\n  &lt;chr&gt;             &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;\n1 (Intercept)       0.803    0.344       2.34  0.0238\n2 x$Sepal.Length    0.132    0.0685      1.92  0.0607\n------------------------------------------------------------------------------------------------------------------------------------------------------ \niris$Species: versicolor\n# A tibble: 2 × 5\n  term           estimate std.error statistic  p.value\n  &lt;chr&gt;             &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;\n1 (Intercept)       0.185    0.514      0.360 7.20e- 1\n2 x$Sepal.Length    0.686    0.0863     7.95  2.59e-10\n------------------------------------------------------------------------------------------------------------------------------------------------------ \niris$Species: virginica\n# A tibble: 2 × 5\n  term           estimate std.error statistic  p.value\n  &lt;chr&gt;             &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;\n1 (Intercept)       0.610    0.417       1.46 1.50e- 1\n2 x$Sepal.Length    0.750    0.0630     11.9  6.30e-16\n\n\n\n\n\nOverall: -7.1 + 1.86x, p&lt;.0001\nSetosa: 0.08 + 0.13x, p=.06\nVersicolor: 0.19 + 0.69x, p&lt;.0001\nVirginica: 0.61 + 0.75x, p&lt;.0001\n\n\n\n\n\nIris specis moderates the relationship between sepal and petal length.\n\n\n\n\n\n🔗 https://math615.netlify.app"
+  },
+  {
+    "objectID": "slides/lec07c-regression.html",
+    "href": "slides/lec07c-regression.html",
+    "title": "Simple Linear Regression",
+    "section": "",
+    "text": "Anscombs Quartet are four datasets have the same correlation value and similar slope of the regression line.\n\n\nSo does this datasaurus!\n\n\nThe general purpose of regression is to learn more about the relationship between several independent or predictor variables and a quantitative dependent variable.\nThe goal of Simple linear regression is to describe the relationship between a continuous dependent variable Y and a single independent continuous variable X using a straight line."
+  },
+  {
+    "objectID": "slides/lec08-moderation.html",
+    "href": "slides/lec08-moderation.html",
+    "title": "Moderation and Stratification",
+    "section": "",
+    "text": "Code\nlibrary(tidyverse)  # general use\nlibrary(ggdist)     # for the \"half-violin\" plot (stat_slab)\nlibrary(ggpubr)     # ggscatter\nlibrary(scales)     # axes labeling\nlibrary(sjPlot)     # side by side barcharts with numbers\nlibrary(gtsummary)  # regression tables\n\npen &lt;- palmerpenguins::penguins\n\n\n\n\nBelow are the admissions figures for Fall 1973 at UC Berkeley.\n\nTable of admissions rates at UC Berkeley in 1973\n\n\n\nApplicants\nAdmitted\n\n\n\n\nTotal\n12,763\n41%\n\n\nMen\n8,442\n44%\n\n\nWomen\n4,321\n35%\n\n\n\nIs there evidence of gender bias in college admissions? Do you think a difference of 35% vs 44% is too large to be by chance?\n\n\n\n\nThe table of admissions rates for the 6 largest departments show a different story.\n\n\n\n\n\n\n\n\n\n\n\n\nAll\n\nMen\n\nWomen\n\n\n\nDepartment\nApplicants\nAdmitted\nApplicants\nAdmitted\nApplicants\nAdmitted\n\n\nA\n933\n64%\n825\n62%\n108\n82%\n\n\nB\n585\n63%\n560\n63%\n25\n68%\n\n\nC\n918\n35%\n325\n37%\n593\n34%\n\n\nD\n792\n34%\n417\n33%\n375\n35%\n\n\nE\n584\n25%\n191\n28%\n393\n24%\n\n\nF\n714\n6%\n373\n6%\n341\n7%\n\n\nTotal\n4526\n39%\n2691\n45%\n1835\n30%\n\n\n\nAfter adjusting for features such as size and competitiveness of the department, the pooled data showed a “small but statistically significant bias in favor of women”\n\n\n\nCan we predict penguin body mass from the flipper length?\n\n\n\nggscatter(pen, x=\"flipper_length_mm\", y = \"body_mass_g\", add = \"reg.line\", \n          color = \"island\", ellipse = TRUE)\n\n\n\n\n\nProbably, but the relationship between flipper length and body mass changes depending on what island they are found on."
+  },
+  {
+    "objectID": "slides/lec08-moderation.html#motivation---ex.-1",
+    "href": "slides/lec08-moderation.html#motivation---ex.-1",
+    "title": "Moderation and Stratification",
+    "section": "Motivation - Ex. 1",
+    "text": "Motivation - Ex. 1\nBelow are the admissions figures for Fall 1973 at UC Berkeley.\n\nTable of admissions rates at UC Berkeley in 1973\n\n\n\nApplicants\nAdmitted\n\n\n\n\nTotal\n12,763\n41%\n\n\nMen\n8,442\n44%\n\n\nWomen\n4,321\n35%\n\n\n\nIs there evidence of gender bias in college admissions? Do you think a difference of 35% vs 44% is too large to be by chance?"
+  },
+  {
+    "objectID": "slides/lec08-moderation.html#department-specific-data",
+    "href": "slides/lec08-moderation.html#department-specific-data",
+    "title": "Moderation and Stratification",
+    "section": "Department specific data",
+    "text": "Department specific data\n\nThe table of admissions rates for the 6 largest departments show a different story.\n\n\n\n\n\n\n\n\n\n\n\n\nAll\n\nMen\n\nWomen\n\n\n\nDepartment\nApplicants\nAdmitted\nApplicants\nAdmitted\nApplicants\nAdmitted\n\n\nA\n933\n64%\n825\n62%\n108\n82%\n\n\nB\n585\n63%\n560\n63%\n25\n68%\n\n\nC\n918\n35%\n325\n37%\n593\n34%\n\n\nD\n792\n34%\n417\n33%\n375\n35%\n\n\nE\n584\n25%\n191\n28%\n393\n24%\n\n\nF\n714\n6%\n373\n6%\n341\n7%\n\n\nTotal\n4526\n39%\n2691\n45%\n1835\n30%\n\n\n\nAfter adjusting for features such as size and competitiveness of the department, the pooled data showed a “small but statistically significant bias in favor of women”"
+  },
+  {
+    "objectID": "slides/lec08-moderation.html#motivation-ex.-2",
+    "href": "slides/lec08-moderation.html#motivation-ex.-2",
+    "title": "Moderation and Stratification",
+    "section": "Motivation Ex. 2",
+    "text": "Motivation Ex. 2\nCan we predict penguin body mass from the flipper length?\n\n\n\n\nShow the code\nggscatter(pen, x=\"flipper_length_mm\", y = \"body_mass_g\", add = \"reg.line\", \n          color = \"island\", ellipse = TRUE)\n\n\n\n\n\n\nProbably, but the relationship between flipper length and body mass changes depending on what island they are found on."
+  },
+  {
+    "objectID": "slides/lec08-moderation.html#stratification-1",
+    "href": "slides/lec08-moderation.html#stratification-1",
+    "title": "Moderation and Stratification",
+    "section": "Stratification",
+    "text": "Stratification\n\n\n\n\n\n\nBenefits\n\n\n\nIn each model, the intercept, slope, and variance of the residuals can all be different.\n\n\\(Y_{ij} \\sim \\beta_{0j} + \\beta_{1j}*x_{i} + \\epsilon_{ij} \\qquad \\epsilon_{ij} \\sim \\mathcal{N}(0,\\sigma^{2}_{j})\\)\n\nThis is the unique and powerful feature of stratified models.\n\n\n\n\n\n\n\n\n\n\nConsequences\n\n\n\nEach model is only fit on the amount of data in that particular subset.\nEach model has 3 parameters that need to be estimated: \\(\\beta_{0}, \\beta_{1}\\), and \\(\\sigma^{2}\\)\n\nTotal of 9 for the three models.\n\nThe more parameters that need to be estimated, the more data we need."
+  },
+  {
+    "objectID": "slides/lec08-moderation.html#significant-non-significant",
+    "href": "slides/lec08-moderation.html#significant-non-significant",
+    "title": "Moderation and Stratification",
+    "section": "Significant –> Non-Significant",
+    "text": "Significant –&gt; Non-Significant\n\nSignificant relationship at bivariate level\n\nWe expect the effect to exist in the entire population\n\nWithin at least one level of the third variable the strength of the relationship changes\n\nP-value is no longer significant within at least one subgroup"
+  },
+  {
+    "objectID": "slides/lec08-moderation.html#non-significant-significant",
+    "href": "slides/lec08-moderation.html#non-significant-significant",
+    "title": "Moderation and Stratification",
+    "section": "Non-Significant –> Significant",
+    "text": "Non-Significant –&gt; Significant\n\nNon-significant relationship at bivariate level\n\nWe do not expect the effect to exist in the entire population\n\nWithin at least one level of the third variable the relationship becomes significant\n\nP-value is now significant within at least one subgroup"
+  },
+  {
+    "objectID": "slides/lec08-moderation.html#change-in-direction-of-association",
+    "href": "slides/lec08-moderation.html#change-in-direction-of-association",
+    "title": "Moderation and Stratification",
+    "section": "Change in Direction of Association",
+    "text": "Change in Direction of Association\n\nSignificant relationship at bivariate level\n\nWe expect the effect to exist in the entire population\n\nWithin at least one level of the third variable the direction of the relationship changes\n\nMeans change order, positive to negative correlation etc."
+  },
+  {
+    "objectID": "slides/lec08-moderation.html#what-to-look-for",
+    "href": "slides/lec08-moderation.html#what-to-look-for",
+    "title": "Moderation and Stratification",
+    "section": "What to look for",
+    "text": "What to look for\n\n\n\n\n\n\n\n\nANOVA\nChi-Square\nRegression\n\n\n\n\n\\(p\\)-value, \\(R^2\\), means, density/boxplot\n\\(p\\)-value, col percents, side by side barcharts\ncorrelation coefficient (\\(r\\)), \\(p\\)-value, \\(\\beta\\) coefficients, \\(r\\)-squared, scatterplot\n\n\n\nCompare these values within each level of the potential moderator to the values in the overall model."
+  },
+  {
+    "objectID": "slides/lec08-moderation.html#example-anova",
+    "href": "slides/lec08-moderation.html#example-anova",
+    "title": "Moderation and Stratification",
+    "section": "Example: ANOVA",
+    "text": "Example: ANOVA\nDoes sex modify the relationship between flipper length and species?\n\nOverallBy Sex\n\n\n\n\n\n\nShow the code\nggplot(pen, aes(x=flipper_length_mm, y=species, fill=species)) + \n      stat_slab(alpha=.5, justification = 0) + \n      geom_boxplot(width = .2,  outlier.shape = NA) + \n      geom_jitter(alpha = 0.5, height = 0.05) +\n      stat_summary(fun=\"mean\", geom=\"point\", col=\"red\", size=4, pch=17) + \n      theme_bw() + \n      labs(x=\"Flipper Length (mm)\", y = \"Species\", title = \"Overall\") + \n      theme(legend.position = \"none\")\n\n\n\n\n\n\nGentoo have the larger flipper length by far, then Chinstrap is similar to Adelie but a little larger.\n\n\n\n\n\n\n\n\nShow the code\npen %&gt;% select(flipper_length_mm, species, sex) %&gt;% na.omit() %&gt;%\nggplot(aes(x=flipper_length_mm, y=species, fill=species)) + \n      stat_slab(alpha=.5, justification = 0) + \n      geom_boxplot(width = .2,  outlier.shape = NA) + \n      geom_jitter(alpha = 0.5, height = 0.05) +\n      stat_summary(fun=\"mean\", geom=\"point\", col=\"red\", size=4, pch=17) + \n      theme_bw() + \n      labs(x=\"Flipper Length (mm)\", y = \"Species\", title = \"By Sex\") + \n      theme(legend.position = \"none\") + \n  facet_wrap(~sex)\n\n\n\n\n\n\nThe pattern of distributions of flipper length by species seems the same for both sexes of penguin. Sex is likely not a moderator."
+  },
+  {
+    "objectID": "slides/lec08-moderation.html#example-anova-cont.",
+    "href": "slides/lec08-moderation.html#example-anova-cont.",
+    "title": "Moderation and Stratification",
+    "section": "Example: ANOVA (cont.)",
+    "text": "Example: ANOVA (cont.)\n\nOverallBy SexConclusion\n\n\n\n\n\n\n\nShow the code\naov(pen$flipper_length_mm ~ pen$species) |&gt; summary()\n\n\n             Df Sum Sq Mean Sq F value Pr(&gt;F)    \npen$species   2  52473   26237   594.8 &lt;2e-16 ***\nResiduals   339  14953      44                   \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n2 observations deleted due to missingness\n\n\nShow the code\naov(pen$flipper_length_mm ~ pen$species) |&gt; performance::r2()\n\n\n# R2 for Anova Regression\n       R2: 0.778\n  adj. R2: 0.777\n\n\n\n\nHighly significant p-value, \\(R^2\\) value of 0.77\n\n\n\n\n\n\n\n\n\nShow the code\nby(pen, pen$sex, function(x) {\n  p &lt;- aov(x$flipper_length_mm ~ x$species) |&gt; summary()\n  r &lt;- aov(x$flipper_length_mm ~ x$species) |&gt; performance::r2()\n  return(list=c(p, r))\n  })\n\n\npen$sex: female\n[[1]]\n             Df  Sum Sq Mean Sq F value    Pr(&gt;F)    \nx$species     2 21415.6   10708  411.79 &lt; 2.2e-16 ***\nResiduals   162  4212.6      26                      \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n$R2\n       R2 \n0.8356281 \n\n$R2_adjusted\nadjusted R2 \n  0.8335988 \n\n------------------------------------------------------------------------------------------------------------------------------------------------------ \npen$sex: male\n[[1]]\n             Df  Sum Sq Mean Sq F value    Pr(&gt;F)    \nx$species     2 29098.4 14549.2  384.37 &lt; 2.2e-16 ***\nResiduals   165  6245.6    37.9                      \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n$R2\n       R2 \n0.8232924 \n\n$R2_adjusted\nadjusted R2 \n  0.8211504 \n\n\n\n\nP-value still &lt;.0001 in each group, \\(R^2_{f}= 0.84, R^2_m = 0.82\\). Same pattern.\n\n\n\n\nSex is not a modifier, the relationship between species and flipper length is the same within male and female penguins."
+  },
+  {
+    "objectID": "slides/lec08-moderation.html#example-chi-squared",
+    "href": "slides/lec08-moderation.html#example-chi-squared",
+    "title": "Moderation and Stratification",
+    "section": "Example: Chi-Squared",
+    "text": "Example: Chi-Squared\nDoes gender modify the relationship between smoking and general health?\n\nOverallBy Gender\n\n\n\n\n\n\nShow the code\nplot_xtab(addhealth$genhealth, addhealth$eversmoke_c, show.total = FALSE, margin = \"row\") + \n  ggtitle(\"Overall\")\n\n\n\n\n\n\nThe proportion of smokers increases as the level of general health decreases.\n\n\n\n\n\n\n\n\nShow the code\naddhealth %&gt;%\n  select(female_c, genhealth, eversmoke_c) %&gt;% na.omit() %&gt;% \n  group_by(female_c, genhealth) %&gt;% \n  summarize(pct_smoke = mean(eversmoke_c == \"Smoked at least once\")) %&gt;%\n  ggplot(aes(x=genhealth, y = pct_smoke, fill = female_c)) + \n  geom_point(size=5, alpha=0.7, shape=21, stroke=2) +\n  scale_y_continuous(limits = c(0, .8), labels = percent) + \n  theme_bw()\n\n\n\n\n\n\nMostly similar pattern within males and females"
+  },
+  {
+    "objectID": "slides/lec08-moderation.html#example-regression",
+    "href": "slides/lec08-moderation.html#example-regression",
+    "title": "Moderation and Stratification",
+    "section": "Example: Regression",
+    "text": "Example: Regression\n\nOverallBy Species\n\n\n\n\n\n\nShow the code\nggscatter(iris, x=\"Sepal.Length\", y = \"Petal.Length\", \n                     add = \"reg.line\", ellipse = TRUE)\n\n\n\n\n\n\nDoes the Species of an iris moderate the relationship between the length of the sepal and the length of it’s petal?\n\n\n\n\n\n\n\n\nShow the code\nggscatter(iris, x=\"Sepal.Length\", y = \"Petal.Length\", add = \"reg.line\", \n          color = \"Species\", ellipse = TRUE)\n\n\n\n\n\n\nThe slope of the lowess line between virginica and versicolor appear similar in strength, whereas the slope of the line for setosa is closer to zero."
+  },
+  {
+    "objectID": "slides/lec08-moderation.html#example-regression-cont.",
+    "href": "slides/lec08-moderation.html#example-regression-cont.",
+    "title": "Moderation and Stratification",
+    "section": "Example: Regression (cont.)",
+    "text": "Example: Regression (cont.)\n\nCorrelationRegressionConclusion\n\n\n\n\n\n\nShow the code\ncor(iris$Sepal.Length, iris$Petal.Length)\n\n\n[1] 0.8717538\n\n\nShow the code\nby(iris, iris$Species, function(x) cor(x$Sepal.Length, x$Petal.Length))\n\n\niris$Species: setosa\n[1] 0.2671758\n------------------------------------------------------------------------------------------------------------------------------------------------------ \niris$Species: versicolor\n[1] 0.754049\n------------------------------------------------------------------------------------------------------------------------------------------------------ \niris$Species: virginica\n[1] 0.8642247\n\n\n\n\\(r\\) for virginica (.86) and veriscolor (.75) are similar to the overall correlation value (.87), but \\(r\\) for setosa (.27) is much smaller.\n\n\n\n\n\n\n\n\n\nShow the code\nby(iris, iris$Species, function(x) {\n  lm(x$Petal.Length ~ x$Sepal.Length) |&gt; summary() |&gt; broom::tidy()\n  })\n\n\niris$Species: setosa\n# A tibble: 2 × 5\n  term           estimate std.error statistic p.value\n  &lt;chr&gt;             &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;\n1 (Intercept)       0.803    0.344       2.34  0.0238\n2 x$Sepal.Length    0.132    0.0685      1.92  0.0607\n------------------------------------------------------------------------------------------------------------------------------------------------------ \niris$Species: versicolor\n# A tibble: 2 × 5\n  term           estimate std.error statistic  p.value\n  &lt;chr&gt;             &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;\n1 (Intercept)       0.185    0.514      0.360 7.20e- 1\n2 x$Sepal.Length    0.686    0.0863     7.95  2.59e-10\n------------------------------------------------------------------------------------------------------------------------------------------------------ \niris$Species: virginica\n# A tibble: 2 × 5\n  term           estimate std.error statistic  p.value\n  &lt;chr&gt;             &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;\n1 (Intercept)       0.610    0.417       1.46 1.50e- 1\n2 x$Sepal.Length    0.750    0.0630     11.9  6.30e-16\n\n\n\n\n\n\nOverall: \\(-7.1 + 1.86x\\), p&lt;.0001\n\nSetosa: \\(0.08 + 0.13x\\), p=.06\n\nVersicolor: \\(0.19 + 0.69x\\), p&lt;.0001\n\nVirginica: \\(0.61 + 0.75x\\), p&lt;.0001\n\n\n\n\n\n\nIris specis moderates the relationship between sepal and petal length.\n\n\n\n\n\n🔗 https://math615.netlify.app"
+  },
+  {
+    "objectID": "slides/lec08-moderation.html#example-chi-squared-cont",
+    "href": "slides/lec08-moderation.html#example-chi-squared-cont",
+    "title": "Moderation and Stratification",
+    "section": "Example: Chi-Squared (cont)",
+    "text": "Example: Chi-Squared (cont)\n\nOverallBy GenderConclusion\n\n\n\n\n\n\nShow the code\nchisq.test(addhealth$eversmoke_c, addhealth$genhealth)\n\n\n\n    Pearson's Chi-squared test\n\ndata:  addhealth$eversmoke_c and addhealth$genhealth\nX-squared = 30.795, df = 4, p-value = 3.371e-06\n\n\n\nHighly significant p-value\n\n\n\n\n\n\n\n\n\nShow the code\nby(addhealth, addhealth$female_c, function(x) chisq.test(x$eversmoke_c, x$genhealth))\n\n\naddhealth$female_c: Male\n\n    Pearson's Chi-squared test\n\ndata:  x$eversmoke_c and x$genhealth\nX-squared = 19.455, df = 4, p-value = 0.0006395\n\n------------------------------------------------------------------------------------------------------------------------------------------------------ \naddhealth$female_c: Female\n\n    Pearson's Chi-squared test\n\ndata:  x$eversmoke_c and x$genhealth\nX-squared = 19.998, df = 4, p-value = 0.0004998\n\n\n\n\nP-value still &lt;.0001 in each group\n\n\n\n\nThe relationship between smoking status and general health is significant in both the main effects and the stratified model. The distribution of smoking status across general health categories does not differ between females and males. Gender is not a moderator for this analysis."
+  },
+  {
+    "objectID": "slides/lec08-moderation.html#by-sex",
+    "href": "slides/lec08-moderation.html#by-sex",
+    "title": "Moderation and Stratification",
+    "section": "By Sex",
+    "text": "By Sex\n\n\n\n\nShow the code\npen %&gt;% select(flipper_length_mm, species, sex) %&gt;% na.omit() %&gt;%\nggplot(aes(x=flipper_length_mm, y=species, fill=species)) + \n      stat_slab(alpha=.5, justification = 0) + \n      geom_boxplot(width = .2,  outlier.shape = NA) + \n      geom_jitter(alpha = 0.5, height = 0.05) +\n      stat_summary(fun=\"mean\", geom=\"point\", col=\"red\", size=4, pch=17) + \n      theme_bw() + \n      labs(x=\"Flipper Length (mm)\", y = \"Species\", title = \"By Sex\") + \n      theme(legend.position = \"none\") + \n  facet_wrap(~sex)\n\n\n\n\n\n\nThe pattern of distributions of flipper length by species seems the same for both sexes of penguin. Sex is likely not a moderator."
   }
 ]
