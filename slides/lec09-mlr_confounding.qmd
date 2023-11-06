@@ -13,7 +13,6 @@ library(performance) # model diagnostics
 library(gtsummary)   # regression tables
 library(broom)       # tidy regression output
 
-pen <- palmerpenguins::penguins
 fev <- read.delim("https://norcalbiostat.netlify.com/data/Lung_081217.txt", sep="\t", header=TRUE)
 load("C:/Box/Data/AddHealth/addhealth_clean.Rdata")
 #load("C:/Users/rdonatello/Box/Data/AddHealth/addhealth_clean.Rdata")
@@ -138,7 +137,7 @@ Other factors (characteristics/variables) could also be explaining part of the v
 This means that the third variable is explaining the relationship between the explanatory variable and the response variable.
         
 
-# Example 1: Does the early bird get the worm?
+# Example: Does the early bird get the worm?
 
 
 ## 1. Identify variables
@@ -150,18 +149,30 @@ This means that the third variable is explaining the relationship between the ex
 
 ## 2. State hypotheses
 
-* Null: There is no relationship between the time you wake up and your personal earnings
-* Alternative: There is a relationship between the time you wake up and your personal earnings
+* Null: There is no relationship between the time you wake up and your personal earnings 
+    - $y \sim \beta_{0} + \beta_{1}x_{1}, \qquad H_{0}: \beta_{1}=0$
+* Alternative: There is a relationship between the time you wake up and your personal earnings 
+    - $y \sim \beta_{0} + \beta_{1}x_{1}, \qquad H_{0}: \beta_{1} \neq 0$ 
 * Confounder:  There is still a relationship between the time you wake up and your personal earnings, after controlling for gender. 
+  - $y \sim \beta_{0} + \beta_{1}x_{1} + \beta_{2}x_{2}, \qquad H_{0}: \beta_{1} \neq 0$ 
 
-## 3. Visualize and describe the relationships. Make a statement whether or not you think a relationship exists. 
+## 3. Visualize and Assess
 
+:::: {.columns}
+
+::: {.column width="60%"}
 ```{r}
-ggplot(addhealth, aes(x=wakeup, y = income, color = female_c)) + 
+addhealth %>% select(wakeup, income, female_c) %>% na.omit() %>%
+  ggplot(aes(x=wakeup, y = income, color = female_c)) + 
   geom_point() + geom_smooth() + theme_bw()
 ```
+:::
 
-There appears to be a flat, and somewhat linear trend between the time someone wakes up and their income. The trend for males looks slightly different than for females. A linear model may not be the best fit for this relationship given the skewness that is present in both income and wakeup time. Since the trend is flat, I do not expect there to be a significant slope between wake up time and income. I also expect that there may be a significant impact of gender on income given how much higher the male trend line is compared to the female trend line.  
+::: {.column width="40%"}
+Flat, somewhat linear trend, looks slightly different for males vs females, before 11am. 
+:::
+
+::::
 
 
 ## 4. Fit the simple model
@@ -174,16 +185,9 @@ tidy(lm.mod1)
 The estimate of the regression coefficient for `wakeup` is significant (b1=-488, p= 0.001). There is reason to believe that the time you wakeup is associated with your income. 
 
 
-## 5. Fit the multivariable model, write the mathematical model.
+## 5. Fit the multivariable model
 
-**Fit the same multiple linear regression model and include the potential confounding variable. Determine if the third variable is a confounder. **
-
-
-* Let $y$ be `income`
-* Let $x_{1}$ be time when someone wakes up `wakeup`
-* Let $x_{2}=1$ when `female_c = 1`, and 0 otherwise,
-
-$$y = \beta_{0} + \beta_{1}x_{1} + \beta_{2}x_{2}$$
+Determine if the third variable is a confounder.
 
 ```{r}
 lm.mod2 <- lm(income ~ wakeup + female_c, data=addhealth) 
@@ -198,32 +202,36 @@ The relationship between income and wake up time is still significant after cont
 check_model(lm.mod2)
 ```
 
-This model doesn't fit the data incredibly well. The residuals are somewhat not normal, with predicted income higher than the observed. There is indication of non-constant variance as well, there is a quadratic trend to the standardized residuals when the fitted income is above 40k. 
+## 6. Assess model fit
 
+This model doesn't fit the data incredibly well. 
 
-## 7. Interpret the regression coefficients of the multivariable model.
+* The residuals are somewhat not normal
+* predicted income higher than the observed. 
+* There is indication of non-constant variance as well,
+* Quadratic trend to the standardized residuals when the fitted income is above 40k. 
 
+## 7. Interpret the coefficients {.smaller}
+
+:::: {.columns}
+
+::: {.column width="50%"}
 ```{r}
 tbl_regression(lm.mod2, intercept = TRUE) %>% 
    add_glance_table(include = c(adj.r.squared))
 ```
+:::
 
+::: {.column width="50%"}
 * $b_{0}$: For a male (`gender=0`) who wakes up at midnight (`wakeup=0`), their predicted average income is \$48,669.4 (95% CI \$46,303.9, \$51,035)
 * $b_{1}$: Holding gender constant, for every hour later a person wakes up, their predicted average income drops by \$611 (95% CI \$319, \$904). 
-* $b_{2}$: Controlling for the time someone wakes up in the morning, the predicted average income for females is \$8,527 (95% CI \$6,980, \$10,074) lower than for males. 
+* $b_{2}$: Controlling for the time someone wakes up in the morning, the predicted average income for females is \$8,527 (95% CI \$6,980, \$10,074) lower than for males.
+:::
 
-## 8. Write a templated conclusion
-
-**Use the numerical results from the multivariable model to fill in the values in the conclusion below. Replace the bold words with your variables, the `highlighted` words with data from your analysis, and choose between _conclusion options_.** 
+::::
 
 
-After adjusting for the potential confounding factor of **third variable**, **explanatory variable** (b1 = `parameter estimate, CI confidence interval range, p = significance value`) was ***significantly/not significantly** and **positively/negatively** associated with **response variable**. Approximately `R-Square*100` of the variance of **response** can be accounted for by **explanatory** after controlling for **third variable**. Based on these analyses, **third variable** _is not/is_ a confounding factor because the association between **explanatory** and **response** _is still/is no longer_ significant after accounting for **third variable**. 
+## 8. Write a conclusion
 
-So the conclusion for this analysis reads: 
-
-> After adjusting for the potential confounding factor of **gender**, **wake up time** ($b_{1}$ = `-611, 95% CI: (-904, -318), p<.0001`) was **significantly** and **negatively** associated with **income**. Approximately `3.2%` of the variance of **income** can be accounted for by **wake up time** after controlling for **gender**. Based on these analyses, **gender** _is not_ a confounding factor because the association between **wake up time** and **income** _is still_ significant after accounting for **gender**.
-
-After wordsmithing/editing for sentence flow, 
-
-> After adjusting for the potential confounding factor of gender, an adolescent’s weight (Beta = 1.34, 95% CI -0.53, 3.21, p = .1558) was not significantly associated with the number of cigarettes smoked in the past 30 days. Approximately 0.78% of the variance in cigarettes smoked can be accounted for by weight after controlling for gender. Based on these analyses, gender is a confounding factor because the association between weight and cigarettes smoked is no longer significant after accounting for gender. 
+After adjusting for the potential confounding factor of gender, wake up time ($b_{1}$ = `-611, 95% CI: (-904, -318), p<.0001`) was significantly and negatively associated with income. Approximately `3.2%` of the variance of income can be accounted for by wake up time after controlling for gender. Based on these analyses, gender _is not_ a confounding factor because the association between wake up time and income _is still_ significant after accounting for gender.
 
