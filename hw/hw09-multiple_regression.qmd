@@ -1,5 +1,7 @@
 ---
 title: "HW 09: Fitting Multiple Regression models"
+execute: 
+  echo: true
 ---
 
 # Purpose
@@ -16,11 +18,12 @@ The instructions differ slightly for each model. Read the examples below careful
     - Test for a potential confounder
 2. Multiple Linear Regression with a categorical predictor: $Y \sim X_{1} + X_{2} \ldots X_{p}$. 
     - Use at least one quantitative and one categorical predictor. 
-3. Logistic Regression: $logit(Y) \sim X_{1} + X_{2}$. 
+3. Regression on a log transformed outcome: $ln(Y) \sim X_{1} + X_{2}$. 
+    - $X_{1}$ and $X_{2}$ can be of any data type. 
+4. Logistic Regression: $logit(Y) \sim X_{1} + X_{2}$. 
     - Use one quantitative and one binary predictor.  
     - Your binary response variable $Y$ must be coded as numeric 1 (event) and 0 (non-event).
-4. Regression on a log transformed outcome: $ln(Y) \sim X_{1} + X_{2}$. 
-    - $X_{1}$ and $X_{2}$ can be of any data type. 
+
 
 # General Instructions
 
@@ -30,7 +33,7 @@ The instructions differ slightly for each model. Read the examples below careful
     - **Alternative** - that there is a relationship between response and explanatory variables.
     - **Confounder** - that there is a relationship between response and explanatory variables after controlling for the confounding variable. (MLR only)
 3. Visualize and describe the relationships between the three variables under consideration
-4. Fit the simple bivariate model
+4. Fit the simple bivariate model (MLR only)
     - Model the response variable on the explanatory variable `y ~ x`
     - Write a simple sentence on whether or not there is a relationship between x and y.
 5. Fit the multivariable model. 
@@ -49,7 +52,8 @@ The instructions differ slightly for each model. Read the examples below careful
 
 # Submission instructions
 
-* Use the template provided: [[QMD]](_templates/hw09_multiple_regression_template.qmd). 
+* No template this time! Training wheels are off. Use the structure structure of prior assignments as a guide to create your own nicely formatted report. 
+
 * Upload your rendered **PDF** to Canvas.
 
 ----
@@ -122,6 +126,7 @@ The relationship between income and wake up time is still significant after cont
 ## 6. Assess model fit
 
 ```{r}
+#| fig-height: 8
 check_model(lm.mod2)
 ```
 
@@ -188,7 +193,7 @@ $$ Y \sim \beta_{0} + \beta_{1}*x_{1} + \beta_{2}x_{2} + \beta_{3}x_{3} + \beta_
 
 ```{r}
 gh.model <- lm(BMI~income + genhealth, data=addhealth)
-summary(gh.model)
+tbl_regression(gh.model)
 ```
 
 ### 4. Interpret the regression coefficients. 
@@ -215,93 +220,6 @@ This model fits the data The predicted income is still higher than the observed,
 After controlling for general health, income is not significantly associated with BMI. Because each level of general health is significantly different from the reference group, we can say that it is also associated with BMI. 
 
 
------
-
-<!---
-
-# Logistic Regression
-
-## 1. Identify variables
-
-* Binary outcome: Poverty (variable `poverty`). This is an indicator if reported personal income is below $10,210. 
-* Quantitative predictor: Sleep duration `sleep_duration`
-* Binary potential confounder: Gender (variable `female_c`)
-
-## 2. State hypotheses
-
-* Null hypothesis: There is no relationship between the probability of living below the poverty level and the amount you sleep. 
-* Alternative hypothesis: There is a relationship between the probability of living below the poverty level and amount you sleep.
-* Confounding hypothesis: There is a relationship between the probability of living below the poverty level and amount you sleep after controlling for gender.
-
-## 3. Visualize and describe the relationships. Make a statement whether or not you think a relationship exists. 
-
-
-```{r}
-addhealth %>% 
-  select(sleep_duration, poverty, female_c) %>%
-  filter(sleep_duration > 0) %>% 
-  mutate(poverty = factor(poverty, 
-           labels = c("Under poverty line", "Over poverty line"))) %>%
-  na.omit() %>%
-  ggpubr::ggdensity(x = "sleep_duration", 
-                    fill = "poverty", facet.by = "female_c")
-```
-
-The relationship between the amount of sleep and whether or not they live under the poverty line does not seem to differ depending on gender. 
-
-
-## 3. Fit the simple model
-**Fit the logistic regression model of the explanatory variable on the response variable. Write a simple statement.**
-
-```{r}
-log.mod.1 <- glm(poverty ~ sleep_duration, 
-                 data=addhealth, family='binomial')
-tidy(log.mod.1, digits = 3)
-```
-
-The p-value for the b1 estimate of the regression coefficient for `sleep_duration` is not significant at 0.9. There is not enough reason to believe that the amount someone sleeps is associated with the probability of living below the poverty level. 
-
-## 4. Fit the multivariable model, write the mathematical model. 
-
-**Fit the same logistic regression model and include the potential confounding variable. If the bivariate relationship was significant, additionally determine if the third variable is a confounder.**
-
-* Let $p$ be the probability that a person reported an annual personal income below $10,210.
-* Let $x_{1}$ be 1 for smokers and 0 for non-smokers.
-* Let $x_{2}$ be 1 for females, and 0 for males. 
-
-$$log(\frac{p}{1-p}) \sim \beta_{0} + \beta_{1}x_{1} + \beta_{1}x_{2}$$
-
-```{r}
-log.mod.2 <- glm(poverty~eversmoke_c + female_c, data=addhealth, family='binomial')
-tidy(log.mod.2)
-```
-
-The p-value for the regression coefficient estimate of `eversmoke_c` is still significant at <.0001 after controlling for gender. Thus gender is **not** a confounder. 
-
-
-## 5. Interpret the Odds Ratio estimates
-
-```{r}
-tbl_regression(log.mod.2, exponentiate = TRUE)
-```
-
-
-* After controlling for gender, smokers have 1.5 (1.3, 1.7) times the odds of reporting making below the federal poverty level compared to non smokers. 
-* After controlling for smoking status, females have 2.4 (2.1, 2.8) time the odds of reporting annual earned wages below the federal poverty level compared to males.
-
-
-## 6. Template Conclusion
-
-**Replace the bold words with your variables, the `highlighted` words with data from your analysis, and choose between _conclusion options_.**
-
-
-After adjusting for the potential confounding factor of **third variable**, **explanatory variable** (`OR odds ratio estimate, CI confidence interval range, p = significance value`) was _significantly/not significantly_ and _positively/negatively_ associated with the likelihood of **response variable**. In this analysis, the odds ratio tells us that those who are **[describe what dummy code 1 of your explanatory variable means here]** are `0.05` times _more (if OR greater than 1)/less (if OR less than 1)_ likely to **[describe what dummy code 1 of your response variable means here]**.  Based on these analyses, **third variable** _is not/is_ a confounding factor because the association between **explanatory** and **response** _is still/is no longer_ significant after accounting for **third variable**. 
-
-So the conclusion for this analysis reads:
-
-After adjusting for the potential confounding factor of **gender**, **smoking status** (`1.47, CI 1.26-1.72, p <.0001`) was _significantly_ and _positively_ associated with the likelihood of **earning under the poverty level**. In this analysis, the odds ratio tells us that those who **have ever smoked** are `1.47` times _more_ likely to **earn income below the federal poverty level**.  Based on these analyses, **gender** _is not_ a confounding factor because the association between **smoking** and **poverty status** _is still_ significant after accounting for **gender**. 
-
-
 ----
 
 # Log Transformed Response 
@@ -311,22 +229,25 @@ In the first example modeling income based on wakeup time and gender the model d
 
 * Quantitative outcome that has been log transformed: Income (variable `logincome`)
 * Quantitative predictor: Time you wake up in the morning (variable `wakeup`)
-* Binary confounder: Gender (variable `female_c`)
+* Binary predictor: Gender (variable `female_c`)
  
  
 ### 2. State hypothesis
-* Null hypothesis: There is no relationship between the time you wake up in the morning and your income level
-* Alternative hypothesis: There is a relationship between the time you wake up in the morning and your income level.
-* Confounding hypothesis: There _still is_ a relationship between the time you wake up in the morning and your income, after controlling for gender. 
+* Null hypothesis: There is no relationship between the time you wake up in the morning and your income level after controlling for gender.
+* Alternative hypothesis: There is a relationship between the time you wake up in the morning and your income level after controlling for gender.
 
 ## 3. Visualize and describe the relationships. Make a statement whether or not you think a relationship exists. 
 
 ```{r}
-ggplot(addhealth, aes(x=wakeup, y = logincome, color = female_c)) + 
+addhealth %>%
+  select(wakeup, logincome, female_c) %>% na.omit() %>%
+  ggplot(aes(x=wakeup, y = logincome, color = female_c)) + 
   geom_point() + geom_smooth() + theme_bw()
 ```
 
-The relationship looks the same as it did in the first example. This shouldn't be much of a surprise since all log transforming does is shift the distribution to the higher values. 
+There appears to be a flat, and somewhat linear trend between the time someone wakes up and their income. The trend for males looks slightly different than for females. A linear model may not be the best fit for this relationship given the skewness that is present in both income and wakeup time. Since the trend is flat, I do not expect there to be a significant slope between wake up time and income. I also expect that there may be a significant impact of gender on income given how much higher the male trend line is compared to the female trend line.  
+
+At the earlier wakeup times, (before 10am) there seems to be a negative relationship between wakeup time and log-income, but only for men. I expect there to be a significant gender difference, as the bands for the lowess lines for each gender are pretty separated and don't overlap. 
 
 
 ### 4. Fit the multivariable model, write the mathematical model. 
@@ -335,14 +256,16 @@ $$ln(Y) \sim \beta_{0} + \beta_{1}x_{1} + \beta_{2}x_{2}$$
 
 ```{r}
 ln.mod.2 <- lm(logincome~wakeup + female_c, data=addhealth)
-summary(ln.mod.2)
+tbl_regression(ln.mod.2) %>% 
+   add_glance_table(include = c(adj.r.squared))
 ```
 
-There is still significant relationship between the time someone wakes up and the natural log of their income. 
+There is a significant relationship between the time someone wakes up and the natural log of their income, after controlling for gender. 
 
 ## 5. Assess model fit
 
 ```{r}
+#| fig-height: 8
 check_model(ln.mod.2)
 ```
 
@@ -364,4 +287,72 @@ The model fit has improved! The predicted distribution matches the observed data
 Both gender and time one wakes up are significantly associated with the amount of personal earnings one makes. Waking up later in the morning is associated with 1.4% (95% CI 0.8%-2%, p<.0001) percent lower income than someone who wakes up one hour earlier. Females have 17% (95% CI 15%-20%, p<.0001) percent lower income than males. Time that someone wakes up and their gender explain 3.6\% of the variability in someones annual income. 
 
 
---->
+----
+
+
+# Logistic Regression
+
+## 1. Identify variables
+
+* Binary outcome: Poverty (variable `poverty`). This is an indicator if reported personal income is below $10,210. 
+* Binary predictor: Gender (variable `female_c`)
+* Quantitative predictor: Sleep duration `sleep_duration`
+
+
+## 2. State hypotheses
+
+> Note the hypothesis is a statement about testing a relationship between one variable and the outcome after controlling for the other variable. 
+
+* Null hypothesis: There is no relationship between the probability of living below the poverty level and gender after controlling for the amount of sleep. 
+* Alternative hypothesis: There is a relationship between the probability of living below the poverty level and gender after controlling for the amount of sleep. 
+
+## 3. Visualize and describe the relationships. Make a statement whether or not you think a relationship exists. 
+
+
+```{r}
+addhealth %>% 
+  select(sleep_duration, poverty, female_c) %>%
+  filter(sleep_duration > 0) %>% 
+  mutate(poverty = factor(poverty, 
+           labels = c("Under poverty line", "Over poverty line"))) %>%
+  na.omit() %>%
+  ggpubr::ggdensity(x = "sleep_duration", 
+                    fill = "poverty", facet.by = "female_c")
+```
+
+The distribution of sleep duration seems to be shifted slightly higher for those living over the poverty line compared to those living under, and does not seem to differ depending on gender. 
+
+
+## 4. Fit the multivariable model, write the mathematical model. 
+
+* Let $p$ be the probability that a person reported an annual personal income below $10,210.
+* Let $x_{1}$ be sleep duration
+* Let $x_{2}$ be 1 for females, and 0 for males. 
+
+$$log(\frac{p}{1-p}) \sim \beta_{0} + \beta_{1}x_{1} + \beta_{1}x_{2}$$
+
+```{r}
+log.mod <- glm(poverty~sleep_duration + female_c, data=addhealth, family='binomial')
+tbl_regression(log.mod, exponentiate = TRUE)
+```
+
+The p-value for the regression coefficient estimate of `gender` is highly significant. There is reason to believe that there is an association between gender and probability of living under the poverty line. 
+
+
+## 5. Interpret the Odds Ratio estimates
+
+* After controlling for gender, every additional hour someone sleeps is associated with 0.99 (0.98, 1.01) times the odds of living under the poverty level. This is a non-significant difference.
+* After controlling for sleep duration, females have 2.31 (1.99, 2.68) time the odds of reporting annual earned wages below the federal poverty level compared to males.
+
+
+## 6. Template Conclusion
+
+**Replace the bold words with your variables, the `highlighted` words with data from your analysis, and choose between _conclusion options_.**
+
+
+After adjusting for the potential confounding factor of **third variable**, **explanatory variable** (`OR odds ratio estimate, CI confidence interval range, p = significance value`) was _significantly/not significantly_ and _positively/negatively_ associated with the likelihood of **response variable**. In this analysis, the odds ratio tells us that those who are **[describe what dummy code 1 of your explanatory variable means here]** are `0.05` times _more (if OR greater than 1)/less (if OR less than 1)_ likely to **[describe what dummy code 1 of your response variable means here]**. 
+
+So the conclusion for this analysis reads:
+
+After adjusting for the potential confounding factor of **sleep duration**, **gender** (`2.31, CI 1.99-2.68, p <.0001`) was _significantly_ and _positively_ associated with the likelihood of **earning under the poverty level**. In this analysis, the odds ratio tells us that those who **identify as female** are `2.31` times _more_ likely to **earn income below the federal poverty level**. 
+

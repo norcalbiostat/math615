@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -184,6 +218,29 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#write-a-conclusion." id="toc-write-a-conclusion." class="nav-link" data-scroll-target="#write-a-conclusion.">6. Write a conclusion.</a></li>
   </ul></li>
   </ul></li>
+  <li><a href="#log-transformed-response" id="toc-log-transformed-response" class="nav-link" data-scroll-target="#log-transformed-response">Log Transformed Response</a>
+  <ul class="collapse">
+  <li><a href="#identify-variables-1" id="toc-identify-variables-1" class="nav-link" data-scroll-target="#identify-variables-1">1. Identify variables</a></li>
+  <li><a href="#state-hypothesis" id="toc-state-hypothesis" class="nav-link" data-scroll-target="#state-hypothesis">2. State hypothesis</a></li>
+  <li><a href="#visualize-and-describe-the-relationships.-make-a-statement-whether-or-not-you-think-a-relationship-exists.-2" id="toc-visualize-and-describe-the-relationships.-make-a-statement-whether-or-not-you-think-a-relationship-exists.-2" class="nav-link" data-scroll-target="#visualize-and-describe-the-relationships.-make-a-statement-whether-or-not-you-think-a-relationship-exists.-2">3. Visualize and describe the relationships. Make a statement whether or not you think a relationship exists.</a>
+  <ul class="collapse">
+  <li><a href="#fit-the-multivariable-model-write-the-mathematical-model.-1" id="toc-fit-the-multivariable-model-write-the-mathematical-model.-1" class="nav-link" data-scroll-target="#fit-the-multivariable-model-write-the-mathematical-model.-1">4. Fit the multivariable model, write the mathematical model.</a></li>
+  </ul></li>
+  <li><a href="#assess-model-fit-2" id="toc-assess-model-fit-2" class="nav-link" data-scroll-target="#assess-model-fit-2">5. Assess model fit</a>
+  <ul class="collapse">
+  <li><a href="#interpret-the-regression-coefficients.-1" id="toc-interpret-the-regression-coefficients.-1" class="nav-link" data-scroll-target="#interpret-the-regression-coefficients.-1">6. Interpret the regression coefficients.</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">7. Conclusion</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#logistic-regression" id="toc-logistic-regression" class="nav-link" data-scroll-target="#logistic-regression">Logistic Regression</a>
+  <ul class="collapse">
+  <li><a href="#identify-variables-2" id="toc-identify-variables-2" class="nav-link" data-scroll-target="#identify-variables-2">1. Identify variables</a></li>
+  <li><a href="#state-hypotheses-1" id="toc-state-hypotheses-1" class="nav-link" data-scroll-target="#state-hypotheses-1">2. State hypotheses</a></li>
+  <li><a href="#visualize-and-describe-the-relationships.-make-a-statement-whether-or-not-you-think-a-relationship-exists.-3" id="toc-visualize-and-describe-the-relationships.-make-a-statement-whether-or-not-you-think-a-relationship-exists.-3" class="nav-link" data-scroll-target="#visualize-and-describe-the-relationships.-make-a-statement-whether-or-not-you-think-a-relationship-exists.-3">3. Visualize and describe the relationships. Make a statement whether or not you think a relationship exists.</a></li>
+  <li><a href="#fit-the-multivariable-model-write-the-mathematical-model.-2" id="toc-fit-the-multivariable-model-write-the-mathematical-model.-2" class="nav-link" data-scroll-target="#fit-the-multivariable-model-write-the-mathematical-model.-2">4. Fit the multivariable model, write the mathematical model.</a></li>
+  <li><a href="#interpret-the-odds-ratio-estimates" id="toc-interpret-the-odds-ratio-estimates" class="nav-link" data-scroll-target="#interpret-the-odds-ratio-estimates">5. Interpret the Odds Ratio estimates</a></li>
+  <li><a href="#template-conclusion" id="toc-template-conclusion" class="nav-link" data-scroll-target="#template-conclusion">6. Template Conclusion</a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/norcalbiostat/math615_test/edit/main/hw/hw09-multiple_regression.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/norcalbiostat/math615_test/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
@@ -224,15 +281,15 @@ ul.task-list li input[type="checkbox"] {
 <ul>
 <li>Use at least one quantitative and one categorical predictor.</li>
 </ul></li>
+<li>Regression on a log transformed outcome: <span class="math inline">\(ln(Y) \sim X_{1} + X_{2}\)</span>.
+<ul>
+<li><span class="math inline">\(X_{1}\)</span> and <span class="math inline">\(X_{2}\)</span> can be of any data type.</li>
+</ul></li>
 <li>Logistic Regression: <span class="math inline">\(logit(Y) \sim X_{1} + X_{2}\)</span>.
 <ul>
 <li>Use one quantitative and one binary predictor.<br>
 </li>
 <li>Your binary response variable <span class="math inline">\(Y\)</span> must be coded as numeric 1 (event) and 0 (non-event).</li>
-</ul></li>
-<li>Regression on a log transformed outcome: <span class="math inline">\(ln(Y) \sim X_{1} + X_{2}\)</span>.
-<ul>
-<li><span class="math inline">\(X_{1}\)</span> and <span class="math inline">\(X_{2}\)</span> can be of any data type.</li>
 </ul></li>
 </ol>
 </section>
@@ -247,7 +304,7 @@ ul.task-list li input[type="checkbox"] {
 <li><strong>Confounder</strong> - that there is a relationship between response and explanatory variables after controlling for the confounding variable. (MLR only)</li>
 </ul></li>
 <li>Visualize and describe the relationships between the three variables under consideration</li>
-<li>Fit the simple bivariate model
+<li>Fit the simple bivariate model (MLR only)
 <ul>
 <li>Model the response variable on the explanatory variable <code>y ~ x</code></li>
 <li>Write a simple sentence on whether or not there is a relationship between x and y.</li>
@@ -273,10 +330,16 @@ ul.task-list li input[type="checkbox"] {
 <section id="submission-instructions" class="level1">
 <h1>Submission instructions</h1>
 <ul>
-<li>Use the template provided: <a href="_templates/hw09_multiple_regression_template.qmd">[QMD]</a>.</li>
-<li>Upload your rendered <strong>PDF</strong> to Canvas.</li>
+<li><p>No template this time! Training wheels are off. Use the structure structure of prior assignments as a guide to create your own nicely formatted report.</p></li>
+<li><p>Upload your rendered <strong>PDF</strong> to Canvas.</p></li>
 </ul>
 <hr>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr);<span class="fu">library</span>(ggplot2); <span class="fu">library</span>(scales)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtsummary); <span class="fu">library</span>(broom);<span class="fu">library</span>(performance)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">"C:/Box/Data/AddHealth/addhealth_clean.Rdata"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <hr>
 </section>
 <section id="multiple-linear-regression" class="level1">
@@ -301,6 +364,8 @@ ul.task-list li input[type="checkbox"] {
 <section id="visualize-and-describe-the-relationships.-make-a-statement-whether-or-not-you-think-a-relationship-exists." class="level2">
 <h2 class="anchored" data-anchor-id="visualize-and-describe-the-relationships.-make-a-statement-whether-or-not-you-think-a-relationship-exists.">3. Visualize and describe the relationships. Make a statement whether or not you think a relationship exists.</h2>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(addhealth, <span class="fu">aes</span>(<span class="at">x=</span>wakeup, <span class="at">y =</span> income, <span class="at">color =</span> female_c)) <span class="sc">+</span> </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>() <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="hw09-multiple_regression_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -311,6 +376,8 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="fit-the-simple-model">4. Fit the simple model</h2>
 <p>Is there a relationship between income and time a person wakes up?</p>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>lm.mod1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(income <span class="sc">~</span> wakeup, <span class="at">data=</span>addhealth) </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(lm.mod1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 5
   term        estimate std.error statistic   p.value
@@ -331,6 +398,8 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 <p><span class="math display">\[y = \beta_{0} + \beta_{1}x_{1} + \beta_{2}x_{2}\]</span></p>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>lm.mod2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(income <span class="sc">~</span> wakeup <span class="sc">+</span> female_c, <span class="at">data=</span>addhealth) </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(lm.mod2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 5
   term           estimate std.error statistic   p.value
@@ -345,6 +414,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="assess-model-fit" class="level2">
 <h2 class="anchored" data-anchor-id="assess-model-fit">6. Assess model fit</h2>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">check_model</span>(lm.mod2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="hw09-multiple_regression_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -354,14 +424,16 @@ ul.task-list li input[type="checkbox"] {
 <section id="interpret-the-regression-coefficients-of-the-multivariable-model." class="level2">
 <h2 class="anchored" data-anchor-id="interpret-the-regression-coefficients-of-the-multivariable-model.">7. Interpret the regression coefficients of the multivariable model.</h2>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tbl_regression</span>(lm.mod2, <span class="at">intercept =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">add_glance_table</span>(<span class="at">include =</span> <span class="fu">c</span>(adj.r.squared))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
-<div id="yskmpldlkv" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="aieujdnnyi" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#yskmpldlkv .gt_table {
+#aieujdnnyi .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -386,7 +458,7 @@ ul.task-list li input[type="checkbox"] {
   border-left-color: #D3D3D3;
 }
 
-#yskmpldlkv .gt_heading {
+#aieujdnnyi .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -398,7 +470,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#yskmpldlkv .gt_title {
+#aieujdnnyi .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -410,7 +482,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-width: 0;
 }
 
-#yskmpldlkv .gt_subtitle {
+#aieujdnnyi .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -422,13 +494,13 @@ ul.task-list li input[type="checkbox"] {
   border-top-width: 0;
 }
 
-#yskmpldlkv .gt_bottom_border {
+#aieujdnnyi .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#yskmpldlkv .gt_col_headings {
+#aieujdnnyi .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -443,7 +515,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#yskmpldlkv .gt_col_heading {
+#aieujdnnyi .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -463,7 +535,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#yskmpldlkv .gt_column_spanner_outer {
+#aieujdnnyi .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -475,15 +547,15 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 4px;
 }
 
-#yskmpldlkv .gt_column_spanner_outer:first-child {
+#aieujdnnyi .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#yskmpldlkv .gt_column_spanner_outer:last-child {
+#aieujdnnyi .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#yskmpldlkv .gt_column_spanner {
+#aieujdnnyi .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -495,7 +567,7 @@ ul.task-list li input[type="checkbox"] {
   width: 100%;
 }
 
-#yskmpldlkv .gt_group_heading {
+#aieujdnnyi .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -520,7 +592,7 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 
-#yskmpldlkv .gt_empty_group_heading {
+#aieujdnnyi .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -535,15 +607,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 
-#yskmpldlkv .gt_from_md > :first-child {
+#aieujdnnyi .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#yskmpldlkv .gt_from_md > :last-child {
+#aieujdnnyi .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#yskmpldlkv .gt_row {
+#aieujdnnyi .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -562,7 +634,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#yskmpldlkv .gt_stub {
+#aieujdnnyi .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -575,7 +647,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#yskmpldlkv .gt_stub_row_group {
+#aieujdnnyi .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -589,11 +661,11 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: top;
 }
 
-#yskmpldlkv .gt_row_group_first td {
+#aieujdnnyi .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#yskmpldlkv .gt_summary_row {
+#aieujdnnyi .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -603,16 +675,16 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#yskmpldlkv .gt_first_summary_row {
+#aieujdnnyi .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#yskmpldlkv .gt_first_summary_row.thick {
+#aieujdnnyi .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#yskmpldlkv .gt_last_summary_row {
+#aieujdnnyi .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -622,7 +694,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#yskmpldlkv .gt_grand_summary_row {
+#aieujdnnyi .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -632,7 +704,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#yskmpldlkv .gt_first_grand_summary_row {
+#aieujdnnyi .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -642,11 +714,11 @@ ul.task-list li input[type="checkbox"] {
   border-top-color: #D3D3D3;
 }
 
-#yskmpldlkv .gt_striped {
+#aieujdnnyi .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#yskmpldlkv .gt_table_body {
+#aieujdnnyi .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -655,7 +727,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#yskmpldlkv .gt_footnotes {
+#aieujdnnyi .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -669,7 +741,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#yskmpldlkv .gt_footnote {
+#aieujdnnyi .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -678,7 +750,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#yskmpldlkv .gt_sourcenotes {
+#aieujdnnyi .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -692,7 +764,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#yskmpldlkv .gt_sourcenote {
+#aieujdnnyi .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -700,36 +772,36 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#yskmpldlkv .gt_left {
+#aieujdnnyi .gt_left {
   text-align: left;
 }
 
-#yskmpldlkv .gt_center {
+#aieujdnnyi .gt_center {
   text-align: center;
 }
 
-#yskmpldlkv .gt_right {
+#aieujdnnyi .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#yskmpldlkv .gt_font_normal {
+#aieujdnnyi .gt_font_normal {
   font-weight: normal;
 }
 
-#yskmpldlkv .gt_font_bold {
+#aieujdnnyi .gt_font_bold {
   font-weight: bold;
 }
 
-#yskmpldlkv .gt_font_italic {
+#aieujdnnyi .gt_font_italic {
   font-style: italic;
 }
 
-#yskmpldlkv .gt_super {
+#aieujdnnyi .gt_super {
   font-size: 65%;
 }
 
-#yskmpldlkv .gt_two_val_uncert {
+#aieujdnnyi .gt_two_val_uncert {
   display: inline-block;
   line-height: 1em;
   text-align: right;
@@ -738,31 +810,31 @@ ul.task-list li input[type="checkbox"] {
   margin-left: 0.1em;
 }
 
-#yskmpldlkv .gt_footnote_marks {
+#aieujdnnyi .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-#yskmpldlkv .gt_asterisk {
+#aieujdnnyi .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#yskmpldlkv .gt_slash_mark {
+#aieujdnnyi .gt_slash_mark {
   font-size: 0.7em;
   line-height: 0.7em;
   vertical-align: 0.15em;
 }
 
-#yskmpldlkv .gt_fraction_numerator {
+#aieujdnnyi .gt_fraction_numerator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: 0.45em;
 }
 
-#yskmpldlkv .gt_fraction_denominator {
+#aieujdnnyi .gt_fraction_denominator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: -0.05em;
@@ -855,6 +927,8 @@ ul.task-list li input[type="checkbox"] {
 <section id="visualize-and-describe-the-relationships.-make-a-statement-whether-or-not-you-think-a-relationship-exists.-1" class="level2">
 <h2 class="anchored" data-anchor-id="visualize-and-describe-the-relationships.-make-a-statement-whether-or-not-you-think-a-relationship-exists.-1">2. Visualize and describe the relationships. Make a statement whether or not you think a relationship exists.</h2>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(addhealth, <span class="fu">aes</span>(<span class="at">x=</span>income, <span class="at">y =</span> BMI, <span class="at">color =</span> genhealth)) <span class="sc">+</span> </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>() <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="hw09-multiple_regression_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -875,148 +949,16 @@ ul.task-list li input[type="checkbox"] {
 <p>The mathematical model would look like:</p>
 <p><span class="math display">\[ Y \sim \beta_{0} + \beta_{1}*x_{1} + \beta_{2}x_{2} + \beta_{3}x_{3} + \beta_{4}x_{4} + \beta_{5}x_{5} \]</span></p>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Call:
-lm(formula = BMI ~ income + genhealth, data = addhealth)
-
-Residuals:
-    Min      1Q  Median      3Q     Max 
--16.837  -4.802  -1.091   3.441  39.132 
-
-Coefficients:
-                     Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)         2.652e+01  3.298e-01  80.409  &lt; 2e-16 ***
-income             -4.735e-06  4.686e-06  -1.010    0.312    
-genhealthVery good  1.602e+00  3.100e-01   5.166 2.52e-07 ***
-genhealthGood       4.758e+00  3.245e-01  14.664  &lt; 2e-16 ***
-genhealthFair       6.917e+00  5.039e-01  13.726  &lt; 2e-16 ***
-genhealthPoor       9.350e+00  1.392e+00   6.717 2.13e-11 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Residual standard error: 6.967 on 3771 degrees of freedom
-  (2727 observations deleted due to missingness)
-Multiple R-squared:  0.09217,   Adjusted R-squared:  0.09096 
-F-statistic: 76.57 on 5 and 3771 DF,  p-value: &lt; 2.2e-16</code></pre>
-</div>
-</div>
-</section>
-<section id="interpret-the-regression-coefficients." class="level3">
-<h3 class="anchored" data-anchor-id="interpret-the-regression-coefficients.">4. Interpret the regression coefficients.</h3>
-<ul>
-<li><span class="math inline">\(b_{0}\)</span>: The predicted BMI for individuals with no income and excellent health is 26.5 (25.9, 27.2).</li>
-<li><span class="math inline">\(b_{1}\)</span>: After controlling for general health, for every additional $1 a person makes annually, their BMI decreases .0000047. This is not a significant relationship. A more meaningful interpretation would be to look at a $1000 increase in annual income. For every additional $1,000,000 in income a person makes annually, their BMI decreases by 4.7.</li>
-<li><span class="math inline">\(b_{2}\)</span>: Those reporting very good health have 1.6 (0.99, 2.2, p&lt;.0001) higher BMI compared to those reporting excellent health.</li>
-<li><span class="math inline">\(b_{3}\)</span>:Those reporting good health have 4.8 (4.1, 5.4, p&lt;.0001) higher BMI compared to those reporting excellent health.</li>
-<li><span class="math inline">\(b_{4}\)</span>: Those reporting fair health have 6.9 (5.9, 7.9, p&lt;.0001) higher BMI compared to those reporting excellent health.</li>
-<li><span class="math inline">\(b_{5}\)</span>: Those reporting poor health have 9.4 (6.6, 12.1, p&lt;.0001) higher BMI compared to those reporting excellent health.</li>
-</ul>
-</section>
-</section>
-<section id="assess-model-fit-1" class="level2">
-<h2 class="anchored" data-anchor-id="assess-model-fit-1">5. Assess model fit</h2>
-<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>gh.model <span class="ot">&lt;-</span> <span class="fu">lm</span>(BMI<span class="sc">~</span>income <span class="sc">+</span> genhealth, <span class="at">data=</span>addhealth)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tbl_regression</span>(gh.model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="hw09-multiple_regression_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-<p>This model fits the data The predicted income is still higher than the observed, but perhaps less so compared to the model in the last example. However the non-constant variance is very clear, the variance of the residuals increase as the fitted values increase.</p>
-<section id="write-a-conclusion." class="level3">
-<h3 class="anchored" data-anchor-id="write-a-conclusion.">6. Write a conclusion.</h3>
-<p>After controlling for general health, income is not significantly associated with BMI. Because each level of general health is significantly different from the reference group, we can say that it is also associated with BMI.</p>
-<hr>
 
-<!---
-
-# Logistic Regression
-
-## 1. Identify variables
-
-* Binary outcome: Poverty (variable `poverty`). This is an indicator if reported personal income is below $10,210. 
-* Quantitative predictor: Sleep duration `sleep_duration`
-* Binary potential confounder: Gender (variable `female_c`)
-
-## 2. State hypotheses
-
-* Null hypothesis: There is no relationship between the probability of living below the poverty level and the amount you sleep. 
-* Alternative hypothesis: There is a relationship between the probability of living below the poverty level and amount you sleep.
-* Confounding hypothesis: There is a relationship between the probability of living below the poverty level and amount you sleep after controlling for gender.
-
-## 3. Visualize and describe the relationships. Make a statement whether or not you think a relationship exists. 
-
-
-
-::: {.cell}
-::: {.cell-output-display}
-![](hw09-multiple_regression_files/figure-html/unnamed-chunk-10-1.png){width=672}
-:::
-:::
-
-
-The relationship between the amount of sleep and whether or not they live under the poverty line does not seem to differ depending on gender. 
-
-
-## 3. Fit the simple model
-**Fit the logistic regression model of the explanatory variable on the response variable. Write a simple statement.**
-
-
-::: {.cell}
-::: {.cell-output .cell-output-stdout}
-```
-# A tibble: 2 × 5
-  term            estimate std.error statistic   p.value
-  <chr>              <dbl>     <dbl>     <dbl>     <dbl>
-1 (Intercept)    -1.35       0.0516   -26.2    7.61e-151
-2 sleep_duration -0.000626   0.00688   -0.0909 9.28e-  1
-```
-:::
-:::
-
-
-The p-value for the b1 estimate of the regression coefficient for `sleep_duration` is not significant at 0.9. There is not enough reason to believe that the amount someone sleeps is associated with the probability of living below the poverty level. 
-
-## 4. Fit the multivariable model, write the mathematical model. 
-
-**Fit the same logistic regression model and include the potential confounding variable. If the bivariate relationship was significant, additionally determine if the third variable is a confounder.**
-
-* Let $p$ be the probability that a person reported an annual personal income below $10,210.
-* Let $x_{1}$ be 1 for smokers and 0 for non-smokers.
-* Let $x_{2}$ be 1 for females, and 0 for males. 
-
-$$log(\frac{p}{1-p}) \sim \beta_{0} + \beta_{1}x_{1} + \beta_{1}x_{2}$$
-
-
-::: {.cell}
-::: {.cell-output .cell-output-stdout}
-```
-# A tibble: 3 × 5
-  term                            estimate std.error statistic   p.value
-  <chr>                              <dbl>     <dbl>     <dbl>     <dbl>
-1 (Intercept)                       -2.14     0.0866    -24.7  8.19e-135
-2 eversmoke_cSmoked at least once    0.387    0.0789      4.91 9.09e-  7
-3 female_cFemale                     0.874    0.0769     11.4  5.82e- 30
-```
-:::
-:::
-
-
-The p-value for the regression coefficient estimate of `eversmoke_c` is still significant at <.0001 after controlling for gender. Thus gender is **not** a confounder. 
-
-
-## 5. Interpret the Odds Ratio estimates
-
-
-::: {.cell}
-::: {.cell-output-display}
-
-```{=html}
-<div id="wyajshzpnj" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="lcguxlleqw" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#wyajshzpnj .gt_table {
+#lcguxlleqw .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -1041,7 +983,7 @@ The p-value for the regression coefficient estimate of `eversmoke_c` is still si
   border-left-color: #D3D3D3;
 }
 
-#wyajshzpnj .gt_heading {
+#lcguxlleqw .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1053,7 +995,7 @@ The p-value for the regression coefficient estimate of `eversmoke_c` is still si
   border-right-color: #D3D3D3;
 }
 
-#wyajshzpnj .gt_title {
+#lcguxlleqw .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1065,7 +1007,7 @@ The p-value for the regression coefficient estimate of `eversmoke_c` is still si
   border-bottom-width: 0;
 }
 
-#wyajshzpnj .gt_subtitle {
+#lcguxlleqw .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1077,13 +1019,13 @@ The p-value for the regression coefficient estimate of `eversmoke_c` is still si
   border-top-width: 0;
 }
 
-#wyajshzpnj .gt_bottom_border {
+#lcguxlleqw .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#wyajshzpnj .gt_col_headings {
+#lcguxlleqw .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1098,7 +1040,7 @@ The p-value for the regression coefficient estimate of `eversmoke_c` is still si
   border-right-color: #D3D3D3;
 }
 
-#wyajshzpnj .gt_col_heading {
+#lcguxlleqw .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1118,7 +1060,7 @@ The p-value for the regression coefficient estimate of `eversmoke_c` is still si
   overflow-x: hidden;
 }
 
-#wyajshzpnj .gt_column_spanner_outer {
+#lcguxlleqw .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1130,15 +1072,15 @@ The p-value for the regression coefficient estimate of `eversmoke_c` is still si
   padding-right: 4px;
 }
 
-#wyajshzpnj .gt_column_spanner_outer:first-child {
+#lcguxlleqw .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#wyajshzpnj .gt_column_spanner_outer:last-child {
+#lcguxlleqw .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#wyajshzpnj .gt_column_spanner {
+#lcguxlleqw .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1150,7 +1092,7 @@ The p-value for the regression coefficient estimate of `eversmoke_c` is still si
   width: 100%;
 }
 
-#wyajshzpnj .gt_group_heading {
+#lcguxlleqw .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1175,7 +1117,7 @@ The p-value for the regression coefficient estimate of `eversmoke_c` is still si
   vertical-align: middle;
 }
 
-#wyajshzpnj .gt_empty_group_heading {
+#lcguxlleqw .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1190,15 +1132,15 @@ The p-value for the regression coefficient estimate of `eversmoke_c` is still si
   vertical-align: middle;
 }
 
-#wyajshzpnj .gt_from_md > :first-child {
+#lcguxlleqw .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#wyajshzpnj .gt_from_md > :last-child {
+#lcguxlleqw .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#wyajshzpnj .gt_row {
+#lcguxlleqw .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1217,7 +1159,7 @@ The p-value for the regression coefficient estimate of `eversmoke_c` is still si
   overflow-x: hidden;
 }
 
-#wyajshzpnj .gt_stub {
+#lcguxlleqw .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1230,7 +1172,7 @@ The p-value for the regression coefficient estimate of `eversmoke_c` is still si
   padding-right: 5px;
 }
 
-#wyajshzpnj .gt_stub_row_group {
+#lcguxlleqw .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1244,11 +1186,11 @@ The p-value for the regression coefficient estimate of `eversmoke_c` is still si
   vertical-align: top;
 }
 
-#wyajshzpnj .gt_row_group_first td {
+#lcguxlleqw .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#wyajshzpnj .gt_summary_row {
+#lcguxlleqw .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1258,16 +1200,16 @@ The p-value for the regression coefficient estimate of `eversmoke_c` is still si
   padding-right: 5px;
 }
 
-#wyajshzpnj .gt_first_summary_row {
+#lcguxlleqw .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#wyajshzpnj .gt_first_summary_row.thick {
+#lcguxlleqw .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#wyajshzpnj .gt_last_summary_row {
+#lcguxlleqw .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1277,7 +1219,7 @@ The p-value for the regression coefficient estimate of `eversmoke_c` is still si
   border-bottom-color: #D3D3D3;
 }
 
-#wyajshzpnj .gt_grand_summary_row {
+#lcguxlleqw .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1287,7 +1229,7 @@ The p-value for the regression coefficient estimate of `eversmoke_c` is still si
   padding-right: 5px;
 }
 
-#wyajshzpnj .gt_first_grand_summary_row {
+#lcguxlleqw .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1297,11 +1239,11 @@ The p-value for the regression coefficient estimate of `eversmoke_c` is still si
   border-top-color: #D3D3D3;
 }
 
-#wyajshzpnj .gt_striped {
+#lcguxlleqw .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#wyajshzpnj .gt_table_body {
+#lcguxlleqw .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1310,7 +1252,7 @@ The p-value for the regression coefficient estimate of `eversmoke_c` is still si
   border-bottom-color: #D3D3D3;
 }
 
-#wyajshzpnj .gt_footnotes {
+#lcguxlleqw .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1324,7 +1266,7 @@ The p-value for the regression coefficient estimate of `eversmoke_c` is still si
   border-right-color: #D3D3D3;
 }
 
-#wyajshzpnj .gt_footnote {
+#lcguxlleqw .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -1333,7 +1275,7 @@ The p-value for the regression coefficient estimate of `eversmoke_c` is still si
   padding-right: 5px;
 }
 
-#wyajshzpnj .gt_sourcenotes {
+#lcguxlleqw .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1347,7 +1289,7 @@ The p-value for the regression coefficient estimate of `eversmoke_c` is still si
   border-right-color: #D3D3D3;
 }
 
-#wyajshzpnj .gt_sourcenote {
+#lcguxlleqw .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1355,36 +1297,36 @@ The p-value for the regression coefficient estimate of `eversmoke_c` is still si
   padding-right: 5px;
 }
 
-#wyajshzpnj .gt_left {
+#lcguxlleqw .gt_left {
   text-align: left;
 }
 
-#wyajshzpnj .gt_center {
+#lcguxlleqw .gt_center {
   text-align: center;
 }
 
-#wyajshzpnj .gt_right {
+#lcguxlleqw .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#wyajshzpnj .gt_font_normal {
+#lcguxlleqw .gt_font_normal {
   font-weight: normal;
 }
 
-#wyajshzpnj .gt_font_bold {
+#lcguxlleqw .gt_font_bold {
   font-weight: bold;
 }
 
-#wyajshzpnj .gt_font_italic {
+#lcguxlleqw .gt_font_italic {
   font-style: italic;
 }
 
-#wyajshzpnj .gt_super {
+#lcguxlleqw .gt_super {
   font-size: 65%;
 }
 
-#wyajshzpnj .gt_two_val_uncert {
+#lcguxlleqw .gt_two_val_uncert {
   display: inline-block;
   line-height: 1em;
   text-align: right;
@@ -1393,63 +1335,596 @@ The p-value for the regression coefficient estimate of `eversmoke_c` is still si
   margin-left: 0.1em;
 }
 
-#wyajshzpnj .gt_footnote_marks {
+#lcguxlleqw .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-#wyajshzpnj .gt_asterisk {
+#lcguxlleqw .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#wyajshzpnj .gt_slash_mark {
+#lcguxlleqw .gt_slash_mark {
   font-size: 0.7em;
   line-height: 0.7em;
   vertical-align: 0.15em;
 }
 
-#wyajshzpnj .gt_fraction_numerator {
+#lcguxlleqw .gt_fraction_numerator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: 0.45em;
 }
 
-#wyajshzpnj .gt_fraction_denominator {
+#lcguxlleqw .gt_fraction_denominator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: -0.05em;
 }
 </style>
 
-<table class="gt_table" data-quarto-postprocess="true">
+<table class="gt_table table table-sm table-striped small" data-quarto-postprocess="true">
 <thead class="gt_col_headings">
 <tr class="header">
 <th class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th"><strong>Characteristic</strong></th>
-<th class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th"><strong>OR</strong><sup>1</sup></th>
+<th class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th"><strong>Beta</strong></th>
 <th class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th"><strong>95% CI</strong><sup>1</sup></th>
 <th class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th"><strong>p-value</strong></th>
 </tr>
 </thead>
 <tbody class="gt_table_body">
 <tr class="odd">
-<td class="gt_row gt_left">eversmoke_c</td>
-<td class="gt_row gt_center"></td>
-<td class="gt_row gt_center"></td>
-<td class="gt_row gt_center"></td>
+<td class="gt_row gt_left">income</td>
+<td class="gt_row gt_center">0.00</td>
+<td class="gt_row gt_center">0.00, 0.00</td>
+<td class="gt_row gt_center">0.3</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">Never Smoked</td>
-<td class="gt_row gt_center">—</td>
-<td class="gt_row gt_center">—</td>
+<td class="gt_row gt_left">genhealth</td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center"></td>
 <td class="gt_row gt_center"></td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">Smoked at least once</td>
-<td class="gt_row gt_center">1.47</td>
-<td class="gt_row gt_center">1.26, 1.72</td>
+<td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">Excellent</td>
+<td class="gt_row gt_center">—</td>
+<td class="gt_row gt_center">—</td>
+<td class="gt_row gt_center"></td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">Very good</td>
+<td class="gt_row gt_center">1.6</td>
+<td class="gt_row gt_center">1.0, 2.2</td>
+<td class="gt_row gt_center">&lt;0.001</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">Good</td>
+<td class="gt_row gt_center">4.8</td>
+<td class="gt_row gt_center">4.1, 5.4</td>
+<td class="gt_row gt_center">&lt;0.001</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">Fair</td>
+<td class="gt_row gt_center">6.9</td>
+<td class="gt_row gt_center">5.9, 7.9</td>
+<td class="gt_row gt_center">&lt;0.001</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">Poor</td>
+<td class="gt_row gt_center">9.4</td>
+<td class="gt_row gt_center">6.6, 12</td>
+<td class="gt_row gt_center">&lt;0.001</td>
+</tr>
+</tbody><tfoot class="gt_footnotes">
+<tr class="even">
+<td colspan="4" class="gt_footnote"><sup>1</sup> CI = Confidence Interval</td>
+</tr>
+</tfoot>
+
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="interpret-the-regression-coefficients." class="level3">
+<h3 class="anchored" data-anchor-id="interpret-the-regression-coefficients.">4. Interpret the regression coefficients.</h3>
+<ul>
+<li><span class="math inline">\(b_{0}\)</span>: The predicted BMI for individuals with no income and excellent health is 26.5 (25.9, 27.2).</li>
+<li><span class="math inline">\(b_{1}\)</span>: After controlling for general health, for every additional $1 a person makes annually, their BMI decreases .0000047. This is not a significant relationship. A more meaningful interpretation would be to look at a $1000 increase in annual income. For every additional $1,000,000 in income a person makes annually, their BMI decreases by 4.7.</li>
+<li><span class="math inline">\(b_{2}\)</span>: Those reporting very good health have 1.6 (0.99, 2.2, p&lt;.0001) higher BMI compared to those reporting excellent health.</li>
+<li><span class="math inline">\(b_{3}\)</span>:Those reporting good health have 4.8 (4.1, 5.4, p&lt;.0001) higher BMI compared to those reporting excellent health.</li>
+<li><span class="math inline">\(b_{4}\)</span>: Those reporting fair health have 6.9 (5.9, 7.9, p&lt;.0001) higher BMI compared to those reporting excellent health.</li>
+<li><span class="math inline">\(b_{5}\)</span>: Those reporting poor health have 9.4 (6.6, 12.1, p&lt;.0001) higher BMI compared to those reporting excellent health.</li>
+</ul>
+</section>
+</section>
+<section id="assess-model-fit-1" class="level2">
+<h2 class="anchored" data-anchor-id="assess-model-fit-1">5. Assess model fit</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">check_model</span>(gh.model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="hw09-multiple_regression_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>This model fits the data The predicted income is still higher than the observed, but perhaps less so compared to the model in the last example. However the non-constant variance is very clear, the variance of the residuals increase as the fitted values increase.</p>
+<section id="write-a-conclusion." class="level3">
+<h3 class="anchored" data-anchor-id="write-a-conclusion.">6. Write a conclusion.</h3>
+<p>After controlling for general health, income is not significantly associated with BMI. Because each level of general health is significantly different from the reference group, we can say that it is also associated with BMI.</p>
+<hr>
+</section>
+</section>
+</section>
+<section id="log-transformed-response" class="level1">
+<h1>Log Transformed Response</h1>
+<section id="identify-variables-1" class="level3">
+<h3 class="anchored" data-anchor-id="identify-variables-1">1. Identify variables</h3>
+<p>In the first example modeling income based on wakeup time and gender the model didn’t fit the data well and I believe it may be related to the skewness of the income measure. So in this analysis I will log transform income and model that as the outcome.</p>
+<ul>
+<li>Quantitative outcome that has been log transformed: Income (variable <code>logincome</code>)</li>
+<li>Quantitative predictor: Time you wake up in the morning (variable <code>wakeup</code>)</li>
+<li>Binary predictor: Gender (variable <code>female_c</code>)</li>
+</ul>
+</section>
+<section id="state-hypothesis" class="level3">
+<h3 class="anchored" data-anchor-id="state-hypothesis">2. State hypothesis</h3>
+<ul>
+<li>Null hypothesis: There is no relationship between the time you wake up in the morning and your income level after controlling for gender.</li>
+<li>Alternative hypothesis: There is a relationship between the time you wake up in the morning and your income level after controlling for gender.</li>
+</ul>
+</section>
+<section id="visualize-and-describe-the-relationships.-make-a-statement-whether-or-not-you-think-a-relationship-exists.-2" class="level2">
+<h2 class="anchored" data-anchor-id="visualize-and-describe-the-relationships.-make-a-statement-whether-or-not-you-think-a-relationship-exists.-2">3. Visualize and describe the relationships. Make a statement whether or not you think a relationship exists.</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>addhealth <span class="sc">%&gt;%</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(wakeup, logincome, female_c) <span class="sc">%&gt;%</span> <span class="fu">na.omit</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>wakeup, <span class="at">y =</span> logincome, <span class="at">color =</span> female_c)) <span class="sc">+</span> </span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>() <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="hw09-multiple_regression_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>There appears to be a flat, and somewhat linear trend between the time someone wakes up and their income. The trend for males looks slightly different than for females. A linear model may not be the best fit for this relationship given the skewness that is present in both income and wakeup time. Since the trend is flat, I do not expect there to be a significant slope between wake up time and income. I also expect that there may be a significant impact of gender on income given how much higher the male trend line is compared to the female trend line.</p>
+<p>At the earlier wakeup times, (before 10am) there seems to be a negative relationship between wakeup time and log-income, but only for men. I expect there to be a significant gender difference, as the bands for the lowess lines for each gender are pretty separated and don’t overlap.</p>
+<section id="fit-the-multivariable-model-write-the-mathematical-model.-1" class="level3">
+<h3 class="anchored" data-anchor-id="fit-the-multivariable-model-write-the-mathematical-model.-1">4. Fit the multivariable model, write the mathematical model.</h3>
+<p><span class="math display">\[ln(Y) \sim \beta_{0} + \beta_{1}x_{1} + \beta_{2}x_{2}\]</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>ln.mod<span class="fl">.2</span> <span class="ot">&lt;-</span> <span class="fu">lm</span>(logincome<span class="sc">~</span>wakeup <span class="sc">+</span> female_c, <span class="at">data=</span>addhealth)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tbl_regression</span>(ln.mod<span class="fl">.2</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">add_glance_table</span>(<span class="at">include =</span> <span class="fu">c</span>(adj.r.squared))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div id="oefglinmzv" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#oefglinmzv .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#oefglinmzv .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#oefglinmzv .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#oefglinmzv .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#oefglinmzv .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#oefglinmzv .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#oefglinmzv .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#oefglinmzv .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#oefglinmzv .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#oefglinmzv .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#oefglinmzv .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#oefglinmzv .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#oefglinmzv .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#oefglinmzv .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#oefglinmzv .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#oefglinmzv .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#oefglinmzv .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#oefglinmzv .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#oefglinmzv .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#oefglinmzv .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#oefglinmzv .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#oefglinmzv .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#oefglinmzv .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#oefglinmzv .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#oefglinmzv .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#oefglinmzv .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#oefglinmzv .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#oefglinmzv .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#oefglinmzv .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#oefglinmzv .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#oefglinmzv .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#oefglinmzv .gt_left {
+  text-align: left;
+}
+
+#oefglinmzv .gt_center {
+  text-align: center;
+}
+
+#oefglinmzv .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#oefglinmzv .gt_font_normal {
+  font-weight: normal;
+}
+
+#oefglinmzv .gt_font_bold {
+  font-weight: bold;
+}
+
+#oefglinmzv .gt_font_italic {
+  font-style: italic;
+}
+
+#oefglinmzv .gt_super {
+  font-size: 65%;
+}
+
+#oefglinmzv .gt_two_val_uncert {
+  display: inline-block;
+  line-height: 1em;
+  text-align: right;
+  font-size: 60%;
+  vertical-align: -0.25em;
+  margin-left: 0.1em;
+}
+
+#oefglinmzv .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#oefglinmzv .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#oefglinmzv .gt_slash_mark {
+  font-size: 0.7em;
+  line-height: 0.7em;
+  vertical-align: 0.15em;
+}
+
+#oefglinmzv .gt_fraction_numerator {
+  font-size: 0.6em;
+  line-height: 0.6em;
+  vertical-align: 0.45em;
+}
+
+#oefglinmzv .gt_fraction_denominator {
+  font-size: 0.6em;
+  line-height: 0.6em;
+  vertical-align: -0.05em;
+}
+</style>
+
+<table class="gt_table table table-sm table-striped small" data-quarto-postprocess="true">
+<thead class="gt_col_headings">
+<tr class="header">
+<th class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th"><strong>Characteristic</strong></th>
+<th class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th"><strong>Beta</strong></th>
+<th class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th"><strong>95% CI</strong><sup>1</sup></th>
+<th class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th"><strong>p-value</strong></th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left">wakeup</td>
+<td class="gt_row gt_center">-0.01</td>
+<td class="gt_row gt_center">-0.02, -0.01</td>
 <td class="gt_row gt_center">&lt;0.001</td>
 </tr>
 <tr class="even">
@@ -1466,8 +1941,561 @@ The p-value for the regression coefficient estimate of `eversmoke_c` is still si
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">Female</td>
-<td class="gt_row gt_center">2.40</td>
-<td class="gt_row gt_center">2.06, 2.79</td>
+<td class="gt_row gt_center">-0.19</td>
+<td class="gt_row gt_center">-0.23, -0.16</td>
+<td class="gt_row gt_center">&lt;0.001</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" style="border-top-width: 2px; border-top-style: solid; border-top-color: #D3D3D3">Adjusted R²</td>
+<td class="gt_row gt_center" style="border-top-width: 2px; border-top-style: solid; border-top-color: #D3D3D3">0.036</td>
+<td class="gt_row gt_center" style="border-top-width: 2px; border-top-style: solid; border-top-color: #D3D3D3"></td>
+<td class="gt_row gt_center" style="border-top-width: 2px; border-top-style: solid; border-top-color: #D3D3D3"></td>
+</tr>
+</tbody><tfoot class="gt_footnotes">
+<tr class="even">
+<td colspan="4" class="gt_footnote"><sup>1</sup> CI = Confidence Interval</td>
+</tr>
+</tfoot>
+
+</table>
+
+</div>
+</div>
+</div>
+<p>There is a significant relationship between the time someone wakes up and the natural log of their income, after controlling for gender.</p>
+</section>
+</section>
+<section id="assess-model-fit-2" class="level2">
+<h2 class="anchored" data-anchor-id="assess-model-fit-2">5. Assess model fit</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">check_model</span>(ln.mod<span class="fl">.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="hw09-multiple_regression_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>The model fit has improved! The predicted distribution matches the observed data better, the residuals are more normally distributed. Noteworthy that the lack of homogeneity of variance is still somewhat present, but not nearly at the extent from the non-transformed variable.</p>
+<section id="interpret-the-regression-coefficients.-1" class="level3">
+<h3 class="anchored" data-anchor-id="interpret-the-regression-coefficients.-1">6. Interpret the regression coefficients.</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">-</span><span class="fu">exp</span>(<span class="fu">coef</span>(ln.mod<span class="fl">.2</span>)[<span class="sc">-</span><span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        wakeup female_cFemale 
+    0.01479693     0.17527851 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">-</span><span class="fu">exp</span>(<span class="fu">confint</span>(ln.mod<span class="fl">.2</span>)[<span class="sc">-</span><span class="dv">1</span>,])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                    2.5 %      97.5 %
+wakeup         0.02099299 0.008561652
+female_cFemale 0.20231394 0.147326777</code></pre>
+</div>
+</div>
+<ul>
+<li>For every hour later one wakes up in the morning, one can expect to earn <code>1-exp(-0.015)</code> = 1.4% less income than someone who wakes up one hour earlier. This is after controlling for gender.</li>
+<li>Females have on average <code>1-exp(-0.19)</code> = 17% percent lower income than males, after controlling for the wake up time.</li>
+</ul>
+</section>
+<section id="conclusion" class="level3">
+<h3 class="anchored" data-anchor-id="conclusion">7. Conclusion</h3>
+<p>Both gender and time one wakes up are significantly associated with the amount of personal earnings one makes. Waking up later in the morning is associated with 1.4% (95% CI 0.8%-2%, p&lt;.0001) percent lower income than someone who wakes up one hour earlier. Females have 17% (95% CI 15%-20%, p&lt;.0001) percent lower income than males. Time that someone wakes up and their gender explain 3.6% of the variability in someones annual income.</p>
+<hr>
+</section>
+</section>
+</section>
+<section id="logistic-regression" class="level1">
+<h1>Logistic Regression</h1>
+<section id="identify-variables-2" class="level2">
+<h2 class="anchored" data-anchor-id="identify-variables-2">1. Identify variables</h2>
+<ul>
+<li>Binary outcome: Poverty (variable <code>poverty</code>). This is an indicator if reported personal income is below $10,210.</li>
+<li>Binary predictor: Gender (variable <code>female_c</code>)</li>
+<li>Quantitative predictor: Sleep duration <code>sleep_duration</code></li>
+</ul>
+</section>
+<section id="state-hypotheses-1" class="level2">
+<h2 class="anchored" data-anchor-id="state-hypotheses-1">2. State hypotheses</h2>
+<blockquote class="blockquote">
+<p>Note the hypothesis is a statement about testing a relationship between one variable and the outcome after controlling for the other variable.</p>
+</blockquote>
+<ul>
+<li>Null hypothesis: There is no relationship between the probability of living below the poverty level and gender after controlling for the amount of sleep.</li>
+<li>Alternative hypothesis: There is a relationship between the probability of living below the poverty level and gender after controlling for the amount of sleep.</li>
+</ul>
+</section>
+<section id="visualize-and-describe-the-relationships.-make-a-statement-whether-or-not-you-think-a-relationship-exists.-3" class="level2">
+<h2 class="anchored" data-anchor-id="visualize-and-describe-the-relationships.-make-a-statement-whether-or-not-you-think-a-relationship-exists.-3">3. Visualize and describe the relationships. Make a statement whether or not you think a relationship exists.</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>addhealth <span class="sc">%&gt;%</span> </span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(sleep_duration, poverty, female_c) <span class="sc">%&gt;%</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(sleep_duration <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">poverty =</span> <span class="fu">factor</span>(poverty, </span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Under poverty line"</span>, <span class="st">"Over poverty line"</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">na.omit</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  ggpubr<span class="sc">::</span><span class="fu">ggdensity</span>(<span class="at">x =</span> <span class="st">"sleep_duration"</span>, </span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>                    <span class="at">fill =</span> <span class="st">"poverty"</span>, <span class="at">facet.by =</span> <span class="st">"female_c"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="hw09-multiple_regression_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>The distribution of sleep duration seems to be shifted slightly higher for those living over the poverty line compared to those living under, and does not seem to differ depending on gender.</p>
+</section>
+<section id="fit-the-multivariable-model-write-the-mathematical-model.-2" class="level2">
+<h2 class="anchored" data-anchor-id="fit-the-multivariable-model-write-the-mathematical-model.-2">4. Fit the multivariable model, write the mathematical model.</h2>
+<ul>
+<li>Let <span class="math inline">\(p\)</span> be the probability that a person reported an annual personal income below $10,210.</li>
+<li>Let <span class="math inline">\(x_{1}\)</span> be sleep duration</li>
+<li>Let <span class="math inline">\(x_{2}\)</span> be 1 for females, and 0 for males.</li>
+</ul>
+<p><span class="math display">\[log(\frac{p}{1-p}) \sim \beta_{0} + \beta_{1}x_{1} + \beta_{1}x_{2}\]</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>log.mod <span class="ot">&lt;-</span> <span class="fu">glm</span>(poverty<span class="sc">~</span>sleep_duration <span class="sc">+</span> female_c, <span class="at">data=</span>addhealth, <span class="at">family=</span><span class="st">'binomial'</span>)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tbl_regression</span>(log.mod, <span class="at">exponentiate =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div id="drhsxwvkmq" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#drhsxwvkmq .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#drhsxwvkmq .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#drhsxwvkmq .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#drhsxwvkmq .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#drhsxwvkmq .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#drhsxwvkmq .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#drhsxwvkmq .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#drhsxwvkmq .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#drhsxwvkmq .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#drhsxwvkmq .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#drhsxwvkmq .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#drhsxwvkmq .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#drhsxwvkmq .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#drhsxwvkmq .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#drhsxwvkmq .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#drhsxwvkmq .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#drhsxwvkmq .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#drhsxwvkmq .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#drhsxwvkmq .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#drhsxwvkmq .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#drhsxwvkmq .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#drhsxwvkmq .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#drhsxwvkmq .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#drhsxwvkmq .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#drhsxwvkmq .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#drhsxwvkmq .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#drhsxwvkmq .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#drhsxwvkmq .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#drhsxwvkmq .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#drhsxwvkmq .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#drhsxwvkmq .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#drhsxwvkmq .gt_left {
+  text-align: left;
+}
+
+#drhsxwvkmq .gt_center {
+  text-align: center;
+}
+
+#drhsxwvkmq .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#drhsxwvkmq .gt_font_normal {
+  font-weight: normal;
+}
+
+#drhsxwvkmq .gt_font_bold {
+  font-weight: bold;
+}
+
+#drhsxwvkmq .gt_font_italic {
+  font-style: italic;
+}
+
+#drhsxwvkmq .gt_super {
+  font-size: 65%;
+}
+
+#drhsxwvkmq .gt_two_val_uncert {
+  display: inline-block;
+  line-height: 1em;
+  text-align: right;
+  font-size: 60%;
+  vertical-align: -0.25em;
+  margin-left: 0.1em;
+}
+
+#drhsxwvkmq .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#drhsxwvkmq .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#drhsxwvkmq .gt_slash_mark {
+  font-size: 0.7em;
+  line-height: 0.7em;
+  vertical-align: 0.15em;
+}
+
+#drhsxwvkmq .gt_fraction_numerator {
+  font-size: 0.6em;
+  line-height: 0.6em;
+  vertical-align: 0.45em;
+}
+
+#drhsxwvkmq .gt_fraction_denominator {
+  font-size: 0.6em;
+  line-height: 0.6em;
+  vertical-align: -0.05em;
+}
+</style>
+
+<table class="gt_table table table-sm table-striped small" data-quarto-postprocess="true">
+<thead class="gt_col_headings">
+<tr class="header">
+<th class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th"><strong>Characteristic</strong></th>
+<th class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th"><strong>OR</strong><sup>1</sup></th>
+<th class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th"><strong>95% CI</strong><sup>1</sup></th>
+<th class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th"><strong>p-value</strong></th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left">sleep_duration</td>
+<td class="gt_row gt_center">0.99</td>
+<td class="gt_row gt_center">0.98, 1.01</td>
+<td class="gt_row gt_center">0.3</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left">female_c</td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center"></td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">Male</td>
+<td class="gt_row gt_center">—</td>
+<td class="gt_row gt_center">—</td>
+<td class="gt_row gt_center"></td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">Female</td>
+<td class="gt_row gt_center">2.31</td>
+<td class="gt_row gt_center">1.99, 2.68</td>
 <td class="gt_row gt_center">&lt;0.001</td>
 </tr>
 </tbody><tfoot class="gt_footnotes">
@@ -1479,140 +2507,25 @@ The p-value for the regression coefficient estimate of `eversmoke_c` is still si
 </table>
 
 </div>
-```
-
-:::
-:::
-
-
-
-* After controlling for gender, smokers have 1.5 (1.3, 1.7) times the odds of reporting making below the federal poverty level compared to non smokers. 
-* After controlling for smoking status, females have 2.4 (2.1, 2.8) time the odds of reporting annual earned wages below the federal poverty level compared to males.
-
-
-## 6. Template Conclusion
-
-**Replace the bold words with your variables, the `highlighted` words with data from your analysis, and choose between _conclusion options_.**
-
-
-After adjusting for the potential confounding factor of **third variable**, **explanatory variable** (`OR odds ratio estimate, CI confidence interval range, p = significance value`) was _significantly/not significantly_ and _positively/negatively_ associated with the likelihood of **response variable**. In this analysis, the odds ratio tells us that those who are **[describe what dummy code 1 of your explanatory variable means here]** are `0.05` times _more (if OR greater than 1)/less (if OR less than 1)_ likely to **[describe what dummy code 1 of your response variable means here]**.  Based on these analyses, **third variable** _is not/is_ a confounding factor because the association between **explanatory** and **response** _is still/is no longer_ significant after accounting for **third variable**. 
-
-So the conclusion for this analysis reads:
-
-After adjusting for the potential confounding factor of **gender**, **smoking status** (`1.47, CI 1.26-1.72, p <.0001`) was _significantly_ and _positively_ associated with the likelihood of **earning under the poverty level**. In this analysis, the odds ratio tells us that those who **have ever smoked** are `1.47` times _more_ likely to **earn income below the federal poverty level**.  Based on these analyses, **gender** _is not_ a confounding factor because the association between **smoking** and **poverty status** _is still_ significant after accounting for **gender**. 
-
-
-----
-
-# Log Transformed Response 
-
-### 1. Identify variables
-In the first example modeling income based on wakeup time and gender the model didn't fit the data well and I believe it may be related to the skewness of the income measure. So in this analysis I will log transform income and model that as the outcome. 
-
-* Quantitative outcome that has been log transformed: Income (variable `logincome`)
-* Quantitative predictor: Time you wake up in the morning (variable `wakeup`)
-* Binary confounder: Gender (variable `female_c`)
- 
- 
-### 2. State hypothesis
-* Null hypothesis: There is no relationship between the time you wake up in the morning and your income level
-* Alternative hypothesis: There is a relationship between the time you wake up in the morning and your income level.
-* Confounding hypothesis: There _still is_ a relationship between the time you wake up in the morning and your income, after controlling for gender. 
-
-## 3. Visualize and describe the relationships. Make a statement whether or not you think a relationship exists. 
-
-
-::: {.cell}
-::: {.cell-output-display}
-![](hw09-multiple_regression_files/figure-html/unnamed-chunk-14-1.png){width=672}
-:::
-:::
-
-
-The relationship looks the same as it did in the first example. This shouldn't be much of a surprise since all log transforming does is shift the distribution to the higher values. 
-
-
-### 4. Fit the multivariable model, write the mathematical model. 
-
-$$ln(Y) \sim \beta_{0} + \beta_{1}x_{1} + \beta_{2}x_{2}$$
-
-
-::: {.cell}
-::: {.cell-output .cell-output-stdout}
-```
-
-Call:
-lm(formula = logincome ~ wakeup + female_c, data = addhealth)
-
-Residuals:
-     Min       1Q   Median       3Q      Max 
--1.32215 -0.33473 -0.00461  0.34058  2.01559 
-
-Coefficients:
-                Estimate Std. Error t value Pr(>|t|)    
-(Intercept)    10.653062   0.025995 409.805  < 2e-16 ***
-wakeup         -0.014907   0.003218  -4.633 3.73e-06 ***
-female_cFemale -0.192710   0.017000 -11.336  < 2e-16 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Residual standard error: 0.5233 on 3810 degrees of freedom
-  (2691 observations deleted due to missingness)
-Multiple R-squared:  0.03611,   Adjusted R-squared:  0.0356 
-F-statistic: 71.36 on 2 and 3810 DF,  p-value: < 2.2e-16
-```
-:::
-:::
-
-
-There is still significant relationship between the time someone wakes up and the natural log of their income. 
-
-## 5. Assess model fit
-
-
-::: {.cell}
-::: {.cell-output-display}
-![](hw09-multiple_regression_files/figure-html/unnamed-chunk-16-1.png){width=672}
-:::
-:::
-
-
-The model fit has improved! The predicted distribution matches the observed data better, the residuals are more normally distributed. Noteworthy that the lack of homogeneity of variance is still somewhat present, but not nearly at the extent from the non-transformed variable. 
-
-
-### 6. Interpret the regression coefficients.
-
-::: {.cell}
-::: {.cell-output .cell-output-stdout}
-```
-        wakeup female_cFemale 
-    0.01479693     0.17527851 
-```
-:::
-
-::: {.cell-output .cell-output-stdout}
-```
-                    2.5 %      97.5 %
-wakeup         0.02099299 0.008561652
-female_cFemale 0.20231394 0.147326777
-```
-:::
-:::
-
-
-* For every hour later one wakes up in the morning, one can expect to earn `1-exp(-0.015)` = 1.4% less income than someone who wakes up one hour earlier. This is after controlling for gender. 
-* Females have on average `1-exp(-0.19)` = 17% percent lower income than males, after controlling for the wake up time. 
-
-
-### 7. Conclusion
-
-Both gender and time one wakes up are significantly associated with the amount of personal earnings one makes. Waking up later in the morning is associated with 1.4% (95% CI 0.8%-2%, p<.0001) percent lower income than someone who wakes up one hour earlier. Females have 17% (95% CI 15%-20%, p<.0001) percent lower income than males. Time that someone wakes up and their gender explain 3.6\% of the variability in someones annual income. 
-
-
---->
-
-
+</div>
+</div>
+<p>The p-value for the regression coefficient estimate of <code>gender</code> is highly significant. There is reason to believe that there is an association between gender and probability of living under the poverty line.</p>
 </section>
+<section id="interpret-the-odds-ratio-estimates" class="level2">
+<h2 class="anchored" data-anchor-id="interpret-the-odds-ratio-estimates">5. Interpret the Odds Ratio estimates</h2>
+<ul>
+<li>After controlling for gender, every additional hour someone sleeps is associated with 0.99 (0.98, 1.01) times the odds of living under the poverty level. This is a non-significant difference.</li>
+<li>After controlling for sleep duration, females have 2.31 (1.99, 2.68) time the odds of reporting annual earned wages below the federal poverty level compared to males.</li>
+</ul>
+</section>
+<section id="template-conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="template-conclusion">6. Template Conclusion</h2>
+<p><strong>Replace the bold words with your variables, the <code>highlighted</code> words with data from your analysis, and choose between <em>conclusion options</em>.</strong></p>
+<p>After adjusting for the potential confounding factor of <strong>third variable</strong>, <strong>explanatory variable</strong> (<code>OR odds ratio estimate, CI confidence interval range, p = significance value</code>) was <em>significantly/not significantly</em> and <em>positively/negatively</em> associated with the likelihood of <strong>response variable</strong>. In this analysis, the odds ratio tells us that those who are <strong>[describe what dummy code 1 of your explanatory variable means here]</strong> are <code>0.05</code> times <em>more (if OR greater than 1)/less (if OR less than 1)</em> likely to <strong>[describe what dummy code 1 of your response variable means here]</strong>.</p>
+<p>So the conclusion for this analysis reads:</p>
+<p>After adjusting for the potential confounding factor of <strong>sleep duration</strong>, <strong>gender</strong> (<code>2.31, CI 1.99-2.68, p &lt;.0001</code>) was <em>significantly</em> and <em>positively</em> associated with the likelihood of <strong>earning under the poverty level</strong>. In this analysis, the odds ratio tells us that those who <strong>identify as female</strong> are <code>2.31</code> times <em>more</em> likely to <strong>earn income below the federal poverty level</strong>.</p>
+
+
 </section>
 </section>
 
