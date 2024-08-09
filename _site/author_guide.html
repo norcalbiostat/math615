@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data Analysis for Graduate Research</title>
+<title>Data Analysis for Graduate Research - Journal of Math 615 Guide for Authors</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -142,22 +142,43 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#manuscript-preparation" id="toc-manuscript-preparation" class="nav-link" data-scroll-target="#manuscript-preparation">Manuscript Preparation</a></li>
+  <li><a href="#style-guide" id="toc-style-guide" class="nav-link" data-scroll-target="#style-guide">Style Guide</a>
+  <ul class="collapse">
+  <li><a href="#page-limits" id="toc-page-limits" class="nav-link" data-scroll-target="#page-limits">Page Limits</a></li>
+  <li><a href="#font-size-and-spacing" id="toc-font-size-and-spacing" class="nav-link" data-scroll-target="#font-size-and-spacing">Font Size and Spacing</a></li>
+  <li><a href="#title-and-author-information" id="toc-title-and-author-information" class="nav-link" data-scroll-target="#title-and-author-information">Title and Author Information</a></li>
+  <li><a href="#abstract-and-keywords" id="toc-abstract-and-keywords" class="nav-link" data-scroll-target="#abstract-and-keywords">Abstract and Keywords</a></li>
+  <li><a href="#article-body-structure" id="toc-article-body-structure" class="nav-link" data-scroll-target="#article-body-structure">Article Body Structure</a></li>
+  <li><a href="#tables-and-figures" id="toc-tables-and-figures" class="nav-link" data-scroll-target="#tables-and-figures">Tables and Figures</a></li>
+  </ul></li>
+  <li><a href="#decimal-numerals" id="toc-decimal-numerals" class="nav-link" data-scroll-target="#decimal-numerals">Decimal Numerals</a></li>
+  <li><a href="#acknowledgments" id="toc-acknowledgments" class="nav-link" data-scroll-target="#acknowledgments">Acknowledgments</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  <li><a href="#supplemental-materials" id="toc-supplemental-materials" class="nav-link" data-scroll-target="#supplemental-materials">Supplemental Materials</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/norcalbiostat/MATH615/edit/main/author_guide.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/norcalbiostat/MATH615/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
 <!-- main -->
-<main class="content column-page" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Data Analysis for Graduate Research</h1>
-<p class="subtitle lead"></p><p>MATH 615 • Fall 2024 <br> California State University, Chico</p><p></p>
+<h1 class="title">Journal of Math 615 Guide for Authors</h1>
 </div>
 
 
 
-<div class="quarto-title-meta column-page">
+<div class="quarto-title-meta">
 
     
   
@@ -169,48 +190,79 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="course-information" class="level2">
-<h2 class="anchored" data-anchor-id="course-information">Course Information</h2>
-<p>This course provides a hands-on introduction to using data to rigorously answer research questions. Students practice cleaning and manipulating data, creating data visualizations, and conducting introductory level statistical analysis using real-world data sets that are relevant to their field. Analysis topics include single and two-sample inference, analysis of variance, multiple regression, analysis of co-variance, experimental design, repeated measures, nonparametric procedures, and categorical data analysis. Reproducible research is required through the use of statistical computing software (e.g.&nbsp;SPSS, Stata, SAS, R, Python). Recommended for all majors that use data for research.</p>
-<div class="grid course-details">
-<section id="course-details" class="level3 g-col-4">
-<h3 class="anchored" data-anchor-id="course-details">Course details</h3>
-<p>📅 &nbsp; Mon &amp; Wed<br>
-🕓 &nbsp; 4:00 - 5:15 PM<br>
-🏛 &nbsp; Holt 155<br>
-👥️ &nbsp; In Person</p>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>The <em>Journal of MATH 615</em> is the official internal publication of the Data Analysis for Graduate Research course at California State University at Chico. Specific details as to project deadlines, rubrics, and more can be found for current students on the Canvas course page. The details below are meant to mimic those of real journal websites for submission to provide practice for future submissions.</p>
 </section>
-<div class="g-col-4">
-<section id="pre-reqs" class="level4">
-<h4 class="anchored" data-anchor-id="pre-reqs">Pre-reqs</h4>
-<p>Basic computer literacy. Recent statistics course such as Math 105, MATH 315, or MATH 350.</p>
+<section id="manuscript-preparation" class="level2">
+<h2 class="anchored" data-anchor-id="manuscript-preparation">Manuscript Preparation</h2>
+<p>All new submissions must provide the following documents:</p>
+<ul>
+<li>PDF manuscript in the journal style outlined below</li>
+<li>HTML formatted manuscript with code showing</li>
+</ul>
+<p>To ensure reproducibility and provide transparency, all results from the manuscript must be generated via a single, commented standalone replication script. This includes any necessary data preparation steps. Code that was ultimately not used in the final report should be excluded. To facilitate authoring manuscripts in the required style, we recommend using this <a href="">Quarto template</a>.</p>
+<p>Manuscripts must be written in English using the Quarto R and text processing system. The journal Style Guide must be followed for formatting manuscripts. Only PDF and HTML files can be submitted. It is the responsibility of the authors to provide a submission in the appropriate format, paying very close attention to the style instructions. Manuscripts not meeting these requirements will be returned to the authors immediately.</p>
 </section>
-<section id="student-drop-in-hours" class="level4">
-<h4 class="anchored" data-anchor-id="student-drop-in-hours">Student Drop in Hours</h4>
-<p>MTh 2-3pm Holt 202; Wednesday 1-3pm at <a href="https://www.csuchico.edu/datascience/community-coding.shtml">Community Coding</a></p>
+<section id="style-guide" class="level2">
+<h2 class="anchored" data-anchor-id="style-guide">Style Guide</h2>
+<section id="page-limits" class="level3">
+<h3 class="anchored" data-anchor-id="page-limits">Page Limits</h3>
+<p>Articles have an expected page length of at least 3 pages and no more than 5 pages. These pages limits include the required figure(s) and table(s), but not references or acknowledgements.</p>
 </section>
-</div>
-<section id="instructor" class="level3 g-col-4">
-<h3 class="anchored" data-anchor-id="instructor">Instructor</h3>
-<p>🐾 &nbsp; <a href="https://www.norcalbiostat.com">Dr.&nbsp;Robin Donatello</a><br>
-🚪 &nbsp; Holt 202<br>
-📧 &nbsp; <a href="mailto:rdonatello@csuchico.edu">rdonatello@csuchico.edu</a><br>
-🙋 &nbsp; <a href="https://dr-donatello.youcanbook.me/">Schedule an appointment</a></p>
+<section id="font-size-and-spacing" class="level3">
+<h3 class="anchored" data-anchor-id="font-size-and-spacing">Font Size and Spacing</h3>
+<p>Use a standard font size and any standard font. Articles should be single spaced.</p>
 </section>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>You can toggle dark mode by clicking the {{&lt; fa toggle-off &gt;}} button in the top right navigation bar.</p>
-</div>
-</div>
+<section id="title-and-author-information" class="level3">
+<h3 class="anchored" data-anchor-id="title-and-author-information">Title and Author Information</h3>
+<p>The article should have an informative title. Additionally, author information should include:</p>
+<ul>
+<li>Author name</li>
+<li>Author degrees</li>
+<li>Author affiliation (e.g., BIOL MS Student, MSDSA Student, Center for Regenerative Agriculture, etc.)</li>
+</ul>
+</section>
+<section id="abstract-and-keywords" class="level3">
+<h3 class="anchored" data-anchor-id="abstract-and-keywords">Abstract and Keywords</h3>
+<p>A short abstract should describe the problem, data, and results.</p>
+<p>Immediately after the abstract, provide a maximum of 5 keywords, avoiding general and plural terms and multiple concepts (avoid, for example, ‘and’, ‘of’). These keywords will be used for indexing purposes.</p>
+</section>
+<section id="article-body-structure" class="level3">
+<h3 class="anchored" data-anchor-id="article-body-structure">Article Body Structure</h3>
+<p>Articles should follow a similar structure to that outlined below:</p>
+<ul>
+<li>Introduction, Background</li>
+<li>Study Design and Data collection</li>
+<li>Data Preparation and Statistical Analysis Methods</li>
+<li>Results</li>
+<li>Discussion, Conclusion</li>
+</ul>
+<p>Note, these exact names do not need to be used and can be customized to your given article, analysis, and context.</p>
+</section>
+<section id="tables-and-figures" class="level3">
+<h3 class="anchored" data-anchor-id="tables-and-figures">Tables and Figures</h3>
+<p>A minimum of one table and one figure is required for all publications.</p>
+<p>All tables and figures should be “publication ready” with informative titles, labels, and captions. Where applicable, units of measurement should be included. Variable names from code should be replaced with meaningful labels (e.g., instead of <code>outcome_variable4</code> write the actual outcome).</p>
+<p>Articles must include a “Table 1” that describes the study population in a tabular format. Additional tables and figures may be included as necessary to present and summarize results. These count towards the page limit.</p>
+</section>
+</section>
+<section id="decimal-numerals" class="level2">
+<h2 class="anchored" data-anchor-id="decimal-numerals">Decimal Numerals</h2>
+<p>To enhance readability and clarity of the text as well as tables and figures, decimal numerals should - with the obvious exception of P-values - be rounded to the unit whenever possible (i.e.&nbsp;in all cases in which the rounding procedure does not change the meaning).</p>
+</section>
+<section id="acknowledgments" class="level2">
+<h2 class="anchored" data-anchor-id="acknowledgments">Acknowledgments</h2>
+<p>Collate acknowledgements in a separate section at the end of the article before the references and do not, therefore, include them on the title page, as a footnote to the title or otherwise. List here those individuals who provided help during the research (e.g., providing language help, writing assistance or proof reading the article, etc.).</p>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<p>Any style of reference is acceptable as long as formatting is consistent. See <a href="">this guide</a> for information on how to cite references in Quarto.</p>
+</section>
+<section id="supplemental-materials" class="level2">
+<h2 class="anchored" data-anchor-id="supplemental-materials">Supplemental Materials</h2>
+<p>Given the small page limits, it is acceptable to include <em>additional</em> tables and figures beyond the required minimum of one table and one figure in a Supplemental Materials section if needed. These figures and tables should be referenced in the text as <strong>Figure S1</strong>, <strong>Table S1</strong>, etc.</p>
+<p>While you should direct the reader to the Supplemental Materials to access the additional tables, figures, or information, the paper itself should be able to be largely understood as though a reader did not have access to the supplement.</p>
 
 
 </section>
@@ -777,7 +829,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><ul><li><a href="https://github.com/norcalbiostat/MATH615/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/norcalbiostat/MATH615/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/norcalbiostat/MATH615/edit/main/author_guide.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/norcalbiostat/MATH615/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

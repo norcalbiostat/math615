@@ -10,32 +10,34 @@ output:
     #     - header-tracker.html
 ---
 
-# Introduction
-The *Journal of MATH 615* is the official internal publication of the Biostatistical Methods I course at the University of Colorado Anschutz Medical Campus. Each year (volume) of the journal encompasses two distinct issues: one focusing on simulation studies and another on applied data analysis. Specific details as to project deadlines, rubrics, and more can be found for current students on the Canvas course page. The details below are meant to mimic those of real journal websites for submission to provide practice for future submissions.
+## Introduction
+The *Journal of MATH 615* is the official internal publication of the Data Analysis for Graduate Research course at California State University at Chico. Specific details as to project deadlines, rubrics, and more can be found for current students on the Canvas course page. The details below are meant to mimic those of real journal websites for submission to provide practice for future submissions.
 
 
+## Manuscript Preparation
 
-# Preparation
+All new submissions must provide the following documents:
 
-> get language here
+* PDF manuscript in the journal style outlined below
+* HTML formatted manuscript with code showing
 
+To ensure reproducibility and provide transparency, all results from the manuscript must be generated via a single, commented standalone replication script. This includes any necessary data preparation steps. Code that was ultimately not used in the final report should be excluded. To facilitate authoring manuscripts in the required style, we recommend using this [Quarto template](). 
 
-## File Formats
-Articles should be submitted in a format compatible with [Canvas SpeedGrader](https://community.canvaslms.com/t5/Instructor-Guide/What-types-of-files-can-be-previewed-in-Canvas/ta-p/607) (e.g., DOCX or PDF). 
-
-Preferably, articles will be written using R Markdown. All files will ultimately be converted to PDF for inclusion in the journal issue disseminated internally within the class. 
-
-
-## Page Limits
-
-Articles have an expected page length of at least 3 pages and no more than 5 pages. These pages limits include the required figure(s) and table(s), but not references. 
+Manuscripts must be written in English using the Quarto R and text processing system. The journal Style Guide must be followed for formatting manuscripts. Only PDF and HTML files can be submitted. It is the responsibility of the authors to provide a submission in the appropriate format, paying very close attention to the style instructions. Manuscripts not meeting these requirements will be returned to the authors immediately.
 
 
-## Font Size and Spacing
+## Style Guide
+
+### Page Limits
+
+Articles have an expected page length of at least 3 pages and no more than 5 pages. These pages limits include the required figure(s) and table(s), but not references or acknowledgements. 
+
+
+### Font Size and Spacing
 Use a standard font size and any standard font. Articles should be single spaced.
 
 
-## Title and Author Information
+### Title and Author Information
 The article should have an informative title. Additionally, author information should include:
 
 * Author name
@@ -43,13 +45,13 @@ The article should have an informative title. Additionally, author information s
 * Author affiliation (e.g., BIOL MS Student, MSDSA Student, Center for Regenerative Agriculture, etc.)
 
 
-## Abstract and Keywords
+### Abstract and Keywords
 A short abstract should describe the problem, data, and results.
 
 Immediately after the abstract, provide a maximum of 5 keywords, avoiding general and plural terms and multiple concepts (avoid, for example, 'and', 'of'). These keywords will be used for indexing purposes.
 
 
-## Article Body Structure
+### Article Body Structure
 Articles should follow a similar structure to that outlined below:
 
 * Introduction, Background
@@ -61,10 +63,13 @@ Articles should follow a similar structure to that outlined below:
 Note, these exact names do not need to be used and can be customized to your given article, analysis, and context.
 
 
-## Tables and Figures
-All tables and figures should be "publication ready" with informative titles and labels. Where applicable, units of measurement should be included. Variable names from code should be replaced with meaningful labels (e.g., instead of `outcome_variable4` write the actual outcome). 
+### Tables and Figures
 
-Articles must include a "Table 1" that describes the study population in a tabular format. Additional tables and figures may be included as necessary to present and summarize results. These count towards the three page limit.
+A minimum of one table and one figure is required for all publications. 
+
+All tables and figures should be "publication ready" with informative titles, labels, and captions. Where applicable, units of measurement should be included. Variable names from code should be replaced with meaningful labels (e.g., instead of `outcome_variable4` write the actual outcome). 
+
+Articles must include a "Table 1" that describes the study population in a tabular format. Additional tables and figures may be included as necessary to present and summarize results. These count towards the page limit. 
 
 
 ## Decimal Numerals
@@ -72,18 +77,16 @@ To enhance readability and clarity of the text as well as tables and figures, de
 
 
 ## Acknowledgments
-Collate acknowledgements in a separate section at the end of the article before the references and do not, therefore, include them on the title page, as a footnote to the title or otherwise. List here those individuals who provided help during the research (e.g., providing language help, writing assistance or proof reading the article, etc.).
+Collate acknowledgements in a separate section at the end of the article before the references and do not, therefore, include them on the title page, as a footnote to the title or otherwise. List here those individuals who provided help during the research (e.g., providing language help, writing assistance or proof reading the article, etc.). 
 
 
 ## References
-Any style of reference is acceptable as long as formatting is consistent.
-
+Any style of reference is acceptable as long as formatting is consistent. See [this guide]() for information on how to cite references in Quarto. 
 
 ## Supplemental Materials
+
 Given the small page limits, it is acceptable to include *additional* tables and figures beyond the required minimum of one table and one figure in a Supplemental Materials section if needed. These figures and tables should be referenced in the text as **Figure S1**, **Table S1**, etc. 
 
 While you should direct the reader to the Supplemental Materials to access the additional tables, figures, or information, the paper itself should be able to be largely understood as though a reader did not have access to the supplement.
 
 
-## Reproducible Research Principles
-An *appendix* with R, SAS, or other code should be included starting on a new page after your references with code that is clearly commented for the simulations, analyses, figures, and tables ultimately included in the report. Code that was ultimately not used in the final report should be excluded from this appendix.
