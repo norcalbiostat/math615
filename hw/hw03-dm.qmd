@@ -5,6 +5,9 @@ execute:
   echo: true
   warning: false
   message: false
+format:
+  html: default
+  pdf: default
 ---
 
 # Purpose
@@ -90,8 +93,10 @@ Here is an example using R Markdown/Quarto. Everything you see below this line c
 library(dplyr)
 
 # Read in the data 
-raw <- read.delim("https://norcalbiostat.netlify.com/data/depress_081217.txt", 
-                  sep="\t",  header=TRUE)
+raw <- read.delim("https://norcalbiostat.netlify.app/data/Depress.txt", 
+                  sep="\t",  header=TRUE) %>%
+  # convert all variable names to lowercase
+  janitor::clean_names()
 
 # Select only the variables that I am interested in
 mydata  <- raw %>% select(age, marital, cesd, health)

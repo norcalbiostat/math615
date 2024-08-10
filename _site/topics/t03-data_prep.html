@@ -2,11 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.319">
+<meta name="generator" content="quarto-1.4.555">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="8/30-9/10">
 
 <title>Data Analysis for Graduate Research - Preparing Data for Analysis</title>
 <style>
@@ -47,7 +46,13 @@ ul.task-list li input[type="checkbox"] {
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -56,25 +61,23 @@ ul.task-list li input[type="checkbox"] {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
 
-<meta name="twitter:title" content="Data Analysis for Graduate Research - Preparing Data for Analysis">
-<meta name="twitter:description" content="8/30-9/10">
-<meta name="twitter:creator" content="@norcalbiostat">
-<meta name="twitter:card" content="summary">
 </head>
 
 <body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Data Analysis for Graduate Research</span>
     </a>
@@ -86,60 +89,66 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../topics.html" rel="" target="">
- <span class="menu-text">Topics</span></a>
+    <a class="nav-link" href="../topics.html"> 
+<span class="menu-text">Topics</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../slides.html" rel="" target="">
- <span class="menu-text">Slides</span></a>
+    <a class="nav-link" href="../slides.html"> 
+<span class="menu-text">Slides</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../hw.html" rel="" target="">
- <span class="menu-text">Assignments</span></a>
+    <a class="nav-link" href="../hw.html"> 
+<span class="menu-text">Assignments</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../collab_notes.html" rel="" target="">
- <span class="menu-text">Collab Notes</span></a>
+    <a class="nav-link" href="https://drive.google.com/drive/folders/1f9oKqswqB0wo1I957xFW6yjhIt2FRhwr"> 
+<span class="menu-text">Google Drive</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../project.html" rel="" target="">
- <span class="menu-text">Project</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-research-project" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Research Project</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-research-project">    
+        <li>
+    <a class="dropdown-item" href="../project.html">
+ <span class="dropdown-text">Overview and Information</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../author_guide.html">
+ <span class="dropdown-text">Guide for Authors</span></a>
+  </li>  
+    </ul>
+  </li>
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-other-materials" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
- <span class="menu-text">Other Materials</span>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-reference-texts" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Reference Texts</span>
     </a>
-    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-other-materials">    
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-reference-texts">    
         <li>
-    <a class="dropdown-item" href="../syllabus.html" rel="" target="">
- <span class="dropdown-text">Syllabus</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="https://norcalbiostat.github.io/AppliedStatistics_notes/" rel="" target="">
+    <a class="dropdown-item" href="https://norcalbiostat.github.io/AppliedStatistics_notes/">
  <span class="dropdown-text">Applied Stats Notebook</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="https://openintro-ims.netlify.app/" rel="" target="">
+    <a class="dropdown-item" href="https://openintro-ims.netlify.app/">
  <span class="dropdown-text">Intro to Modern Stats</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="https://drive.google.com/drive/folders/1HdjMCqhIeQ_4L0zbme2XPH296_t5fabr" rel="" target=""><i class="bi bi-google" role="img">
-</i> 
- <span class="dropdown-text">Google Drive</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="../help.html" rel="" target="">
- <span class="menu-text">Help!</span></a>
+    <a class="nav-link" href="../syllabus.html"> 
+<span class="menu-text">Syllabus</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../help.html"> 
+<span class="menu-text">How do I…?</span></a>
   </li>  
 </ul>
-            <div class="quarto-navbar-tools">
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
-          </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -168,7 +177,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#where-youll-end-up" id="toc-where-youll-end-up" class="nav-link" data-scroll-target="#where-youll-end-up">Where you’ll end up</a></li>
   </ul></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/norcalbiostat/math615_test/edit/main/topics/t03-data_prep.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/norcalbiostat/math615_test/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/norcalbiostat/MATH615/edit/main/topics/t03-data_prep.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/norcalbiostat/MATH615/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -179,11 +188,6 @@ ul.task-list li input[type="checkbox"] {
 <p class="subtitle lead">Where an inordinate amount of time is spent</p>
 </div>
 
-<div>
-  <div class="description">
-    8/30-9/10
-  </div>
-</div>
 
 
 <div class="quarto-title-meta">
@@ -194,7 +198,9 @@ ul.task-list li input[type="checkbox"] {
   </div>
   
 
+
 </header>
+
 
 <section id="learning-path" class="level2">
 <h2 class="anchored" data-anchor-id="learning-path">Learning Path</h2>
@@ -209,50 +215,29 @@ ul.task-list li input[type="checkbox"] {
 <li>Recognizing that this stage will take time and that you are learning something challenging.</li>
 <li>Willing to ask for help and collaboration</li>
 </ul>
-<div class="callout callout-style-default callout-important no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Monday 9/4 is Labor Day. No Class.
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Enjoy the three day weekend, and consider learning something new about this holiday. (Optional reading)</p>
-<ul>
-<li><a href="https://www.dol.gov/general/laborday/history">US Department of Labor: “History of Labor Day”</a></li>
-<li><a href="https://www.abhmuseum.org/watch-americas-racist-history-of-labor/">America’s Black Holocaust Museum: “America’s Racist History of Labor”</a></li>
-<li><a href="https://www.smithsonianmag.com/history/striking-union-workers-turned-first-labor-day-networking-event-180964705/">Smithsonian: “Striking Union Workers Turned the First Labor Day Into a Networking Event”</a></li>
-<li><a href="https://uaw.org/celbrating-labor-day-celebrating-labor-unions/">UAW: “Celebrating Labor day by Celebrating Labor Unions”</a></li>
-</ul>
-<p>Got more? Share in our Discord channel.</p>
-</div>
-</div>
 <hr>
 </section>
 <section id="objectives" class="level3">
 <h3 class="anchored" data-anchor-id="objectives">Objectives</h3>
 <div class="cell">
 <div class="cell-output-display">
-
-<div id="qobvunfatd" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#qobvunfatd table {
+<div id="vlxdueyhjt" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#vlxdueyhjt table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#qobvunfatd thead, #qobvunfatd tbody, #qobvunfatd tfoot, #qobvunfatd tr, #qobvunfatd td, #qobvunfatd th {
+#vlxdueyhjt thead, #vlxdueyhjt tbody, #vlxdueyhjt tfoot, #vlxdueyhjt tr, #vlxdueyhjt td, #vlxdueyhjt th {
   border-style: none;
 }
 
-#qobvunfatd p {
+#vlxdueyhjt p {
   margin: 0;
   padding: 0;
 }
 
-#qobvunfatd .gt_table {
+#vlxdueyhjt .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -278,12 +263,12 @@ Monday 9/4 is Labor Day. No Class.
   border-left-color: #D3D3D3;
 }
 
-#qobvunfatd .gt_caption {
+#vlxdueyhjt .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#qobvunfatd .gt_title {
+#vlxdueyhjt .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -295,7 +280,7 @@ Monday 9/4 is Labor Day. No Class.
   border-bottom-width: 0;
 }
 
-#qobvunfatd .gt_subtitle {
+#vlxdueyhjt .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -307,7 +292,7 @@ Monday 9/4 is Labor Day. No Class.
   border-top-width: 0;
 }
 
-#qobvunfatd .gt_heading {
+#vlxdueyhjt .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -319,13 +304,13 @@ Monday 9/4 is Labor Day. No Class.
   border-right-color: #D3D3D3;
 }
 
-#qobvunfatd .gt_bottom_border {
+#vlxdueyhjt .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#qobvunfatd .gt_col_headings {
+#vlxdueyhjt .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -340,7 +325,7 @@ Monday 9/4 is Labor Day. No Class.
   border-right-color: #D3D3D3;
 }
 
-#qobvunfatd .gt_col_heading {
+#vlxdueyhjt .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -360,7 +345,7 @@ Monday 9/4 is Labor Day. No Class.
   overflow-x: hidden;
 }
 
-#qobvunfatd .gt_column_spanner_outer {
+#vlxdueyhjt .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -372,15 +357,15 @@ Monday 9/4 is Labor Day. No Class.
   padding-right: 4px;
 }
 
-#qobvunfatd .gt_column_spanner_outer:first-child {
+#vlxdueyhjt .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#qobvunfatd .gt_column_spanner_outer:last-child {
+#vlxdueyhjt .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#qobvunfatd .gt_column_spanner {
+#vlxdueyhjt .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -392,11 +377,11 @@ Monday 9/4 is Labor Day. No Class.
   width: 100%;
 }
 
-#qobvunfatd .gt_spanner_row {
+#vlxdueyhjt .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#qobvunfatd .gt_group_heading {
+#vlxdueyhjt .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -422,7 +407,7 @@ Monday 9/4 is Labor Day. No Class.
   text-align: left;
 }
 
-#qobvunfatd .gt_empty_group_heading {
+#vlxdueyhjt .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -437,15 +422,15 @@ Monday 9/4 is Labor Day. No Class.
   vertical-align: middle;
 }
 
-#qobvunfatd .gt_from_md > :first-child {
+#vlxdueyhjt .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#qobvunfatd .gt_from_md > :last-child {
+#vlxdueyhjt .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#qobvunfatd .gt_row {
+#vlxdueyhjt .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -464,7 +449,7 @@ Monday 9/4 is Labor Day. No Class.
   overflow-x: hidden;
 }
 
-#qobvunfatd .gt_stub {
+#vlxdueyhjt .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -477,7 +462,7 @@ Monday 9/4 is Labor Day. No Class.
   padding-right: 5px;
 }
 
-#qobvunfatd .gt_stub_row_group {
+#vlxdueyhjt .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -491,15 +476,15 @@ Monday 9/4 is Labor Day. No Class.
   vertical-align: top;
 }
 
-#qobvunfatd .gt_row_group_first td {
+#vlxdueyhjt .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#qobvunfatd .gt_row_group_first th {
+#vlxdueyhjt .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#qobvunfatd .gt_summary_row {
+#vlxdueyhjt .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -509,16 +494,16 @@ Monday 9/4 is Labor Day. No Class.
   padding-right: 5px;
 }
 
-#qobvunfatd .gt_first_summary_row {
+#vlxdueyhjt .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#qobvunfatd .gt_first_summary_row.thick {
+#vlxdueyhjt .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#qobvunfatd .gt_last_summary_row {
+#vlxdueyhjt .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -528,7 +513,7 @@ Monday 9/4 is Labor Day. No Class.
   border-bottom-color: #D3D3D3;
 }
 
-#qobvunfatd .gt_grand_summary_row {
+#vlxdueyhjt .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -538,7 +523,7 @@ Monday 9/4 is Labor Day. No Class.
   padding-right: 5px;
 }
 
-#qobvunfatd .gt_first_grand_summary_row {
+#vlxdueyhjt .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -548,7 +533,7 @@ Monday 9/4 is Labor Day. No Class.
   border-top-color: #D3D3D3;
 }
 
-#qobvunfatd .gt_last_grand_summary_row_top {
+#vlxdueyhjt .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -558,11 +543,11 @@ Monday 9/4 is Labor Day. No Class.
   border-bottom-color: #D3D3D3;
 }
 
-#qobvunfatd .gt_striped {
+#vlxdueyhjt .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#qobvunfatd .gt_table_body {
+#vlxdueyhjt .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -571,7 +556,7 @@ Monday 9/4 is Labor Day. No Class.
   border-bottom-color: #D3D3D3;
 }
 
-#qobvunfatd .gt_footnotes {
+#vlxdueyhjt .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -585,7 +570,7 @@ Monday 9/4 is Labor Day. No Class.
   border-right-color: #D3D3D3;
 }
 
-#qobvunfatd .gt_footnote {
+#vlxdueyhjt .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -594,7 +579,7 @@ Monday 9/4 is Labor Day. No Class.
   padding-right: 5px;
 }
 
-#qobvunfatd .gt_sourcenotes {
+#vlxdueyhjt .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -608,7 +593,7 @@ Monday 9/4 is Labor Day. No Class.
   border-right-color: #D3D3D3;
 }
 
-#qobvunfatd .gt_sourcenote {
+#vlxdueyhjt .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -616,88 +601,104 @@ Monday 9/4 is Labor Day. No Class.
   padding-right: 5px;
 }
 
-#qobvunfatd .gt_left {
+#vlxdueyhjt .gt_left {
   text-align: left;
 }
 
-#qobvunfatd .gt_center {
+#vlxdueyhjt .gt_center {
   text-align: center;
 }
 
-#qobvunfatd .gt_right {
+#vlxdueyhjt .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#qobvunfatd .gt_font_normal {
+#vlxdueyhjt .gt_font_normal {
   font-weight: normal;
 }
 
-#qobvunfatd .gt_font_bold {
+#vlxdueyhjt .gt_font_bold {
   font-weight: bold;
 }
 
-#qobvunfatd .gt_font_italic {
+#vlxdueyhjt .gt_font_italic {
   font-style: italic;
 }
 
-#qobvunfatd .gt_super {
+#vlxdueyhjt .gt_super {
   font-size: 65%;
 }
 
-#qobvunfatd .gt_footnote_marks {
+#vlxdueyhjt .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#qobvunfatd .gt_asterisk {
+#vlxdueyhjt .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#qobvunfatd .gt_indent_1 {
+#vlxdueyhjt .gt_indent_1 {
   text-indent: 5px;
 }
 
-#qobvunfatd .gt_indent_2 {
+#vlxdueyhjt .gt_indent_2 {
   text-indent: 10px;
 }
 
-#qobvunfatd .gt_indent_3 {
+#vlxdueyhjt .gt_indent_3 {
   text-indent: 15px;
 }
 
-#qobvunfatd .gt_indent_4 {
+#vlxdueyhjt .gt_indent_4 {
   text-indent: 20px;
 }
 
-#qobvunfatd .gt_indent_5 {
+#vlxdueyhjt .gt_indent_5 {
   text-indent: 25px;
 }
+
+#vlxdueyhjt .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#vlxdueyhjt div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-  <thead>
-    
-    <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Items">Items</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr><td headers="Items" class="gt_row gt_left"><div class="gt_from_md"><p>Know several questions to ask yourself when preparing data for analysis</p>
-</div></td></tr>
-    <tr><td headers="Items" class="gt_row gt_left gt_striped"><div class="gt_from_md"><p>Understand options for literate programming</p>
-</div></td></tr>
-    <tr><td headers="Items" class="gt_row gt_left"><div class="gt_from_md"><p>Import your chosen data into your SPC</p>
-</div></td></tr>
-    <tr><td headers="Items" class="gt_row gt_left gt_striped"><div class="gt_from_md"><p>Create a reproducible workflow</p>
-</div></td></tr>
-    <tr><td headers="Items" class="gt_row gt_left"><div class="gt_from_md"><p>Create a reproducible script file that imports the raw data, performs data management tasks, exports an analysis ready data set</p>
-</div></td></tr>
-  </tbody>
-  
-  
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header gt_col_headings">
+<th id="Items" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Items</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="Items"><p>Know several questions to ask yourself when preparing data for analysis</p></td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left gt_striped" headers="Items"><p>Understand options for literate programming</p></td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Items"><p>Import your chosen data into your SPC</p></td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left gt_striped" headers="Items"><p>Create a reproducible workflow</p></td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Items"><p>Create a reproducible script file that imports the raw data, performs data management tasks, exports an analysis ready data set</p></td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
@@ -721,7 +722,7 @@ Monday 9/4 is Labor Day. No Class.
 </section>
 <section id="learning-materials" class="level2">
 <h2 class="anchored" data-anchor-id="learning-materials">Learning Materials</h2>
-<p> <strong>Slides (Will open in full screen. Right click to open in a new tab)</strong></p>
+<p>{{&lt; fa person-chalkboard &gt;}} <strong>Slides (Will open in full screen. Right click to open in a new tab)</strong></p>
 <ul>
 <li><a href="../slides/lec03a-workflow.html">lec03a-workflow</a><br>
 </li>
@@ -731,24 +732,23 @@ Monday 9/4 is Labor Day. No Class.
 <p><span class="emoji" data-emoji="books">📚</span> <strong>Reading</strong></p>
 <div class="cell">
 <div class="cell-output-display">
-
-<div id="dybmambief" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#dybmambief table {
+<div id="drbwvqujxn" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#drbwvqujxn table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#dybmambief thead, #dybmambief tbody, #dybmambief tfoot, #dybmambief tr, #dybmambief td, #dybmambief th {
+#drbwvqujxn thead, #drbwvqujxn tbody, #drbwvqujxn tfoot, #drbwvqujxn tr, #drbwvqujxn td, #drbwvqujxn th {
   border-style: none;
 }
 
-#dybmambief p {
+#drbwvqujxn p {
   margin: 0;
   padding: 0;
 }
 
-#dybmambief .gt_table {
+#drbwvqujxn .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -774,12 +774,12 @@ Monday 9/4 is Labor Day. No Class.
   border-left-color: #D3D3D3;
 }
 
-#dybmambief .gt_caption {
+#drbwvqujxn .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#dybmambief .gt_title {
+#drbwvqujxn .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -791,7 +791,7 @@ Monday 9/4 is Labor Day. No Class.
   border-bottom-width: 0;
 }
 
-#dybmambief .gt_subtitle {
+#drbwvqujxn .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -803,7 +803,7 @@ Monday 9/4 is Labor Day. No Class.
   border-top-width: 0;
 }
 
-#dybmambief .gt_heading {
+#drbwvqujxn .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -815,13 +815,13 @@ Monday 9/4 is Labor Day. No Class.
   border-right-color: #D3D3D3;
 }
 
-#dybmambief .gt_bottom_border {
+#drbwvqujxn .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#dybmambief .gt_col_headings {
+#drbwvqujxn .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -836,7 +836,7 @@ Monday 9/4 is Labor Day. No Class.
   border-right-color: #D3D3D3;
 }
 
-#dybmambief .gt_col_heading {
+#drbwvqujxn .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -856,7 +856,7 @@ Monday 9/4 is Labor Day. No Class.
   overflow-x: hidden;
 }
 
-#dybmambief .gt_column_spanner_outer {
+#drbwvqujxn .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -868,15 +868,15 @@ Monday 9/4 is Labor Day. No Class.
   padding-right: 4px;
 }
 
-#dybmambief .gt_column_spanner_outer:first-child {
+#drbwvqujxn .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#dybmambief .gt_column_spanner_outer:last-child {
+#drbwvqujxn .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#dybmambief .gt_column_spanner {
+#drbwvqujxn .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -888,11 +888,11 @@ Monday 9/4 is Labor Day. No Class.
   width: 100%;
 }
 
-#dybmambief .gt_spanner_row {
+#drbwvqujxn .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#dybmambief .gt_group_heading {
+#drbwvqujxn .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -918,7 +918,7 @@ Monday 9/4 is Labor Day. No Class.
   text-align: left;
 }
 
-#dybmambief .gt_empty_group_heading {
+#drbwvqujxn .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -933,15 +933,15 @@ Monday 9/4 is Labor Day. No Class.
   vertical-align: middle;
 }
 
-#dybmambief .gt_from_md > :first-child {
+#drbwvqujxn .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#dybmambief .gt_from_md > :last-child {
+#drbwvqujxn .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#dybmambief .gt_row {
+#drbwvqujxn .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -960,7 +960,7 @@ Monday 9/4 is Labor Day. No Class.
   overflow-x: hidden;
 }
 
-#dybmambief .gt_stub {
+#drbwvqujxn .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -973,7 +973,7 @@ Monday 9/4 is Labor Day. No Class.
   padding-right: 5px;
 }
 
-#dybmambief .gt_stub_row_group {
+#drbwvqujxn .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -987,15 +987,15 @@ Monday 9/4 is Labor Day. No Class.
   vertical-align: top;
 }
 
-#dybmambief .gt_row_group_first td {
+#drbwvqujxn .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#dybmambief .gt_row_group_first th {
+#drbwvqujxn .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#dybmambief .gt_summary_row {
+#drbwvqujxn .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1005,16 +1005,16 @@ Monday 9/4 is Labor Day. No Class.
   padding-right: 5px;
 }
 
-#dybmambief .gt_first_summary_row {
+#drbwvqujxn .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#dybmambief .gt_first_summary_row.thick {
+#drbwvqujxn .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#dybmambief .gt_last_summary_row {
+#drbwvqujxn .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1024,7 +1024,7 @@ Monday 9/4 is Labor Day. No Class.
   border-bottom-color: #D3D3D3;
 }
 
-#dybmambief .gt_grand_summary_row {
+#drbwvqujxn .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1034,7 +1034,7 @@ Monday 9/4 is Labor Day. No Class.
   padding-right: 5px;
 }
 
-#dybmambief .gt_first_grand_summary_row {
+#drbwvqujxn .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1044,7 +1044,7 @@ Monday 9/4 is Labor Day. No Class.
   border-top-color: #D3D3D3;
 }
 
-#dybmambief .gt_last_grand_summary_row_top {
+#drbwvqujxn .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1054,11 +1054,11 @@ Monday 9/4 is Labor Day. No Class.
   border-bottom-color: #D3D3D3;
 }
 
-#dybmambief .gt_striped {
+#drbwvqujxn .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#dybmambief .gt_table_body {
+#drbwvqujxn .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1067,7 +1067,7 @@ Monday 9/4 is Labor Day. No Class.
   border-bottom-color: #D3D3D3;
 }
 
-#dybmambief .gt_footnotes {
+#drbwvqujxn .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1081,7 +1081,7 @@ Monday 9/4 is Labor Day. No Class.
   border-right-color: #D3D3D3;
 }
 
-#dybmambief .gt_footnote {
+#drbwvqujxn .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1090,7 +1090,7 @@ Monday 9/4 is Labor Day. No Class.
   padding-right: 5px;
 }
 
-#dybmambief .gt_sourcenotes {
+#drbwvqujxn .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1104,7 +1104,7 @@ Monday 9/4 is Labor Day. No Class.
   border-right-color: #D3D3D3;
 }
 
-#dybmambief .gt_sourcenote {
+#drbwvqujxn .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1112,101 +1112,121 @@ Monday 9/4 is Labor Day. No Class.
   padding-right: 5px;
 }
 
-#dybmambief .gt_left {
+#drbwvqujxn .gt_left {
   text-align: left;
 }
 
-#dybmambief .gt_center {
+#drbwvqujxn .gt_center {
   text-align: center;
 }
 
-#dybmambief .gt_right {
+#drbwvqujxn .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#dybmambief .gt_font_normal {
+#drbwvqujxn .gt_font_normal {
   font-weight: normal;
 }
 
-#dybmambief .gt_font_bold {
+#drbwvqujxn .gt_font_bold {
   font-weight: bold;
 }
 
-#dybmambief .gt_font_italic {
+#drbwvqujxn .gt_font_italic {
   font-style: italic;
 }
 
-#dybmambief .gt_super {
+#drbwvqujxn .gt_super {
   font-size: 65%;
 }
 
-#dybmambief .gt_footnote_marks {
+#drbwvqujxn .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#dybmambief .gt_asterisk {
+#drbwvqujxn .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#dybmambief .gt_indent_1 {
+#drbwvqujxn .gt_indent_1 {
   text-indent: 5px;
 }
 
-#dybmambief .gt_indent_2 {
+#drbwvqujxn .gt_indent_2 {
   text-indent: 10px;
 }
 
-#dybmambief .gt_indent_3 {
+#drbwvqujxn .gt_indent_3 {
   text-indent: 15px;
 }
 
-#dybmambief .gt_indent_4 {
+#drbwvqujxn .gt_indent_4 {
   text-indent: 20px;
 }
 
-#dybmambief .gt_indent_5 {
+#drbwvqujxn .gt_indent_5 {
   text-indent: 25px;
 }
+
+#drbwvqujxn .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#drbwvqujxn div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-  <thead>
-    
-    <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Items">Items</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body"></tbody>
-  
-  
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header gt_col_headings">
+<th id="Items" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Items</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="Items"><p>PMA6 Ch 3</p></td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left gt_striped" headers="Items"><p><a href="https://norcalbiostat.github.io/AppliedStatistics_notes/">ASCN Ch 1, Appendix</a></p></td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Items"><p><a href="https://slides.djnavarro.net/">Project Structure by Danielle Navarro</a></p></td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
 <p><span class="emoji" data-emoji="pencil">📝</span> <strong>Collaborative notes</strong></p>
 <div class="cell">
 <div class="cell-output-display">
-
-<div id="cfxudirunv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#cfxudirunv table {
+<div id="nqabtcsxps" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#nqabtcsxps table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#cfxudirunv thead, #cfxudirunv tbody, #cfxudirunv tfoot, #cfxudirunv tr, #cfxudirunv td, #cfxudirunv th {
+#nqabtcsxps thead, #nqabtcsxps tbody, #nqabtcsxps tfoot, #nqabtcsxps tr, #nqabtcsxps td, #nqabtcsxps th {
   border-style: none;
 }
 
-#cfxudirunv p {
+#nqabtcsxps p {
   margin: 0;
   padding: 0;
 }
 
-#cfxudirunv .gt_table {
+#nqabtcsxps .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1232,12 +1252,12 @@ Monday 9/4 is Labor Day. No Class.
   border-left-color: #D3D3D3;
 }
 
-#cfxudirunv .gt_caption {
+#nqabtcsxps .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#cfxudirunv .gt_title {
+#nqabtcsxps .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1249,7 +1269,7 @@ Monday 9/4 is Labor Day. No Class.
   border-bottom-width: 0;
 }
 
-#cfxudirunv .gt_subtitle {
+#nqabtcsxps .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1261,7 +1281,7 @@ Monday 9/4 is Labor Day. No Class.
   border-top-width: 0;
 }
 
-#cfxudirunv .gt_heading {
+#nqabtcsxps .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1273,13 +1293,13 @@ Monday 9/4 is Labor Day. No Class.
   border-right-color: #D3D3D3;
 }
 
-#cfxudirunv .gt_bottom_border {
+#nqabtcsxps .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#cfxudirunv .gt_col_headings {
+#nqabtcsxps .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1294,7 +1314,7 @@ Monday 9/4 is Labor Day. No Class.
   border-right-color: #D3D3D3;
 }
 
-#cfxudirunv .gt_col_heading {
+#nqabtcsxps .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1314,7 +1334,7 @@ Monday 9/4 is Labor Day. No Class.
   overflow-x: hidden;
 }
 
-#cfxudirunv .gt_column_spanner_outer {
+#nqabtcsxps .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1326,15 +1346,15 @@ Monday 9/4 is Labor Day. No Class.
   padding-right: 4px;
 }
 
-#cfxudirunv .gt_column_spanner_outer:first-child {
+#nqabtcsxps .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#cfxudirunv .gt_column_spanner_outer:last-child {
+#nqabtcsxps .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#cfxudirunv .gt_column_spanner {
+#nqabtcsxps .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1346,11 +1366,11 @@ Monday 9/4 is Labor Day. No Class.
   width: 100%;
 }
 
-#cfxudirunv .gt_spanner_row {
+#nqabtcsxps .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#cfxudirunv .gt_group_heading {
+#nqabtcsxps .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1376,7 +1396,7 @@ Monday 9/4 is Labor Day. No Class.
   text-align: left;
 }
 
-#cfxudirunv .gt_empty_group_heading {
+#nqabtcsxps .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1391,15 +1411,15 @@ Monday 9/4 is Labor Day. No Class.
   vertical-align: middle;
 }
 
-#cfxudirunv .gt_from_md > :first-child {
+#nqabtcsxps .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#cfxudirunv .gt_from_md > :last-child {
+#nqabtcsxps .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#cfxudirunv .gt_row {
+#nqabtcsxps .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1418,7 +1438,7 @@ Monday 9/4 is Labor Day. No Class.
   overflow-x: hidden;
 }
 
-#cfxudirunv .gt_stub {
+#nqabtcsxps .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1431,7 +1451,7 @@ Monday 9/4 is Labor Day. No Class.
   padding-right: 5px;
 }
 
-#cfxudirunv .gt_stub_row_group {
+#nqabtcsxps .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1445,15 +1465,15 @@ Monday 9/4 is Labor Day. No Class.
   vertical-align: top;
 }
 
-#cfxudirunv .gt_row_group_first td {
+#nqabtcsxps .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#cfxudirunv .gt_row_group_first th {
+#nqabtcsxps .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#cfxudirunv .gt_summary_row {
+#nqabtcsxps .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1463,16 +1483,16 @@ Monday 9/4 is Labor Day. No Class.
   padding-right: 5px;
 }
 
-#cfxudirunv .gt_first_summary_row {
+#nqabtcsxps .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#cfxudirunv .gt_first_summary_row.thick {
+#nqabtcsxps .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#cfxudirunv .gt_last_summary_row {
+#nqabtcsxps .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1482,7 +1502,7 @@ Monday 9/4 is Labor Day. No Class.
   border-bottom-color: #D3D3D3;
 }
 
-#cfxudirunv .gt_grand_summary_row {
+#nqabtcsxps .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1492,7 +1512,7 @@ Monday 9/4 is Labor Day. No Class.
   padding-right: 5px;
 }
 
-#cfxudirunv .gt_first_grand_summary_row {
+#nqabtcsxps .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1502,7 +1522,7 @@ Monday 9/4 is Labor Day. No Class.
   border-top-color: #D3D3D3;
 }
 
-#cfxudirunv .gt_last_grand_summary_row_top {
+#nqabtcsxps .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1512,11 +1532,11 @@ Monday 9/4 is Labor Day. No Class.
   border-bottom-color: #D3D3D3;
 }
 
-#cfxudirunv .gt_striped {
+#nqabtcsxps .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#cfxudirunv .gt_table_body {
+#nqabtcsxps .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1525,7 +1545,7 @@ Monday 9/4 is Labor Day. No Class.
   border-bottom-color: #D3D3D3;
 }
 
-#cfxudirunv .gt_footnotes {
+#nqabtcsxps .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1539,7 +1559,7 @@ Monday 9/4 is Labor Day. No Class.
   border-right-color: #D3D3D3;
 }
 
-#cfxudirunv .gt_footnote {
+#nqabtcsxps .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1548,7 +1568,7 @@ Monday 9/4 is Labor Day. No Class.
   padding-right: 5px;
 }
 
-#cfxudirunv .gt_sourcenotes {
+#nqabtcsxps .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1562,7 +1582,7 @@ Monday 9/4 is Labor Day. No Class.
   border-right-color: #D3D3D3;
 }
 
-#cfxudirunv .gt_sourcenote {
+#nqabtcsxps .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1570,77 +1590,86 @@ Monday 9/4 is Labor Day. No Class.
   padding-right: 5px;
 }
 
-#cfxudirunv .gt_left {
+#nqabtcsxps .gt_left {
   text-align: left;
 }
 
-#cfxudirunv .gt_center {
+#nqabtcsxps .gt_center {
   text-align: center;
 }
 
-#cfxudirunv .gt_right {
+#nqabtcsxps .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#cfxudirunv .gt_font_normal {
+#nqabtcsxps .gt_font_normal {
   font-weight: normal;
 }
 
-#cfxudirunv .gt_font_bold {
+#nqabtcsxps .gt_font_bold {
   font-weight: bold;
 }
 
-#cfxudirunv .gt_font_italic {
+#nqabtcsxps .gt_font_italic {
   font-style: italic;
 }
 
-#cfxudirunv .gt_super {
+#nqabtcsxps .gt_super {
   font-size: 65%;
 }
 
-#cfxudirunv .gt_footnote_marks {
+#nqabtcsxps .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#cfxudirunv .gt_asterisk {
+#nqabtcsxps .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#cfxudirunv .gt_indent_1 {
+#nqabtcsxps .gt_indent_1 {
   text-indent: 5px;
 }
 
-#cfxudirunv .gt_indent_2 {
+#nqabtcsxps .gt_indent_2 {
   text-indent: 10px;
 }
 
-#cfxudirunv .gt_indent_3 {
+#nqabtcsxps .gt_indent_3 {
   text-indent: 15px;
 }
 
-#cfxudirunv .gt_indent_4 {
+#nqabtcsxps .gt_indent_4 {
   text-indent: 20px;
 }
 
-#cfxudirunv .gt_indent_5 {
+#nqabtcsxps .gt_indent_5 {
   text-indent: 25px;
 }
+
+#nqabtcsxps .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#nqabtcsxps div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-  <thead>
-    
-    <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Items">Items</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body"></tbody>
-  
-  
+
+<table class="gt_table caption-top" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_col_headings">
+<th id="Items" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Items</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
@@ -1649,24 +1678,23 @@ Monday 9/4 is Labor Day. No Class.
 <h2 class="anchored" data-anchor-id="assignments">Assignments</h2>
 <div class="cell">
 <div class="cell-output-display">
-
-<div id="jgyizlbmes" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#jgyizlbmes table {
+<div id="qdqgjubwnd" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#qdqgjubwnd table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#jgyizlbmes thead, #jgyizlbmes tbody, #jgyizlbmes tfoot, #jgyizlbmes tr, #jgyizlbmes td, #jgyizlbmes th {
+#qdqgjubwnd thead, #qdqgjubwnd tbody, #qdqgjubwnd tfoot, #qdqgjubwnd tr, #qdqgjubwnd td, #qdqgjubwnd th {
   border-style: none;
 }
 
-#jgyizlbmes p {
+#qdqgjubwnd p {
   margin: 0;
   padding: 0;
 }
 
-#jgyizlbmes .gt_table {
+#qdqgjubwnd .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1692,12 +1720,12 @@ Monday 9/4 is Labor Day. No Class.
   border-left-color: #D3D3D3;
 }
 
-#jgyizlbmes .gt_caption {
+#qdqgjubwnd .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#jgyizlbmes .gt_title {
+#qdqgjubwnd .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1709,7 +1737,7 @@ Monday 9/4 is Labor Day. No Class.
   border-bottom-width: 0;
 }
 
-#jgyizlbmes .gt_subtitle {
+#qdqgjubwnd .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1721,7 +1749,7 @@ Monday 9/4 is Labor Day. No Class.
   border-top-width: 0;
 }
 
-#jgyizlbmes .gt_heading {
+#qdqgjubwnd .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1733,13 +1761,13 @@ Monday 9/4 is Labor Day. No Class.
   border-right-color: #D3D3D3;
 }
 
-#jgyizlbmes .gt_bottom_border {
+#qdqgjubwnd .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#jgyizlbmes .gt_col_headings {
+#qdqgjubwnd .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1754,7 +1782,7 @@ Monday 9/4 is Labor Day. No Class.
   border-right-color: #D3D3D3;
 }
 
-#jgyizlbmes .gt_col_heading {
+#qdqgjubwnd .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1774,7 +1802,7 @@ Monday 9/4 is Labor Day. No Class.
   overflow-x: hidden;
 }
 
-#jgyizlbmes .gt_column_spanner_outer {
+#qdqgjubwnd .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1786,15 +1814,15 @@ Monday 9/4 is Labor Day. No Class.
   padding-right: 4px;
 }
 
-#jgyizlbmes .gt_column_spanner_outer:first-child {
+#qdqgjubwnd .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#jgyizlbmes .gt_column_spanner_outer:last-child {
+#qdqgjubwnd .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#jgyizlbmes .gt_column_spanner {
+#qdqgjubwnd .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1806,11 +1834,11 @@ Monday 9/4 is Labor Day. No Class.
   width: 100%;
 }
 
-#jgyizlbmes .gt_spanner_row {
+#qdqgjubwnd .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#jgyizlbmes .gt_group_heading {
+#qdqgjubwnd .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1836,7 +1864,7 @@ Monday 9/4 is Labor Day. No Class.
   text-align: left;
 }
 
-#jgyizlbmes .gt_empty_group_heading {
+#qdqgjubwnd .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1851,15 +1879,15 @@ Monday 9/4 is Labor Day. No Class.
   vertical-align: middle;
 }
 
-#jgyizlbmes .gt_from_md > :first-child {
+#qdqgjubwnd .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#jgyizlbmes .gt_from_md > :last-child {
+#qdqgjubwnd .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#jgyizlbmes .gt_row {
+#qdqgjubwnd .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1878,7 +1906,7 @@ Monday 9/4 is Labor Day. No Class.
   overflow-x: hidden;
 }
 
-#jgyizlbmes .gt_stub {
+#qdqgjubwnd .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1891,7 +1919,7 @@ Monday 9/4 is Labor Day. No Class.
   padding-right: 5px;
 }
 
-#jgyizlbmes .gt_stub_row_group {
+#qdqgjubwnd .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1905,15 +1933,15 @@ Monday 9/4 is Labor Day. No Class.
   vertical-align: top;
 }
 
-#jgyizlbmes .gt_row_group_first td {
+#qdqgjubwnd .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#jgyizlbmes .gt_row_group_first th {
+#qdqgjubwnd .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#jgyizlbmes .gt_summary_row {
+#qdqgjubwnd .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1923,16 +1951,16 @@ Monday 9/4 is Labor Day. No Class.
   padding-right: 5px;
 }
 
-#jgyizlbmes .gt_first_summary_row {
+#qdqgjubwnd .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#jgyizlbmes .gt_first_summary_row.thick {
+#qdqgjubwnd .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#jgyizlbmes .gt_last_summary_row {
+#qdqgjubwnd .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1942,7 +1970,7 @@ Monday 9/4 is Labor Day. No Class.
   border-bottom-color: #D3D3D3;
 }
 
-#jgyizlbmes .gt_grand_summary_row {
+#qdqgjubwnd .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1952,7 +1980,7 @@ Monday 9/4 is Labor Day. No Class.
   padding-right: 5px;
 }
 
-#jgyizlbmes .gt_first_grand_summary_row {
+#qdqgjubwnd .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1962,7 +1990,7 @@ Monday 9/4 is Labor Day. No Class.
   border-top-color: #D3D3D3;
 }
 
-#jgyizlbmes .gt_last_grand_summary_row_top {
+#qdqgjubwnd .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1972,11 +2000,11 @@ Monday 9/4 is Labor Day. No Class.
   border-bottom-color: #D3D3D3;
 }
 
-#jgyizlbmes .gt_striped {
+#qdqgjubwnd .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#jgyizlbmes .gt_table_body {
+#qdqgjubwnd .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1985,7 +2013,7 @@ Monday 9/4 is Labor Day. No Class.
   border-bottom-color: #D3D3D3;
 }
 
-#jgyizlbmes .gt_footnotes {
+#qdqgjubwnd .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1999,7 +2027,7 @@ Monday 9/4 is Labor Day. No Class.
   border-right-color: #D3D3D3;
 }
 
-#jgyizlbmes .gt_footnote {
+#qdqgjubwnd .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2008,7 +2036,7 @@ Monday 9/4 is Labor Day. No Class.
   padding-right: 5px;
 }
 
-#jgyizlbmes .gt_sourcenotes {
+#qdqgjubwnd .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2022,7 +2050,7 @@ Monday 9/4 is Labor Day. No Class.
   border-right-color: #D3D3D3;
 }
 
-#jgyizlbmes .gt_sourcenote {
+#qdqgjubwnd .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2030,80 +2058,92 @@ Monday 9/4 is Labor Day. No Class.
   padding-right: 5px;
 }
 
-#jgyizlbmes .gt_left {
+#qdqgjubwnd .gt_left {
   text-align: left;
 }
 
-#jgyizlbmes .gt_center {
+#qdqgjubwnd .gt_center {
   text-align: center;
 }
 
-#jgyizlbmes .gt_right {
+#qdqgjubwnd .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#jgyizlbmes .gt_font_normal {
+#qdqgjubwnd .gt_font_normal {
   font-weight: normal;
 }
 
-#jgyizlbmes .gt_font_bold {
+#qdqgjubwnd .gt_font_bold {
   font-weight: bold;
 }
 
-#jgyizlbmes .gt_font_italic {
+#qdqgjubwnd .gt_font_italic {
   font-style: italic;
 }
 
-#jgyizlbmes .gt_super {
+#qdqgjubwnd .gt_super {
   font-size: 65%;
 }
 
-#jgyizlbmes .gt_footnote_marks {
+#qdqgjubwnd .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#jgyizlbmes .gt_asterisk {
+#qdqgjubwnd .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#jgyizlbmes .gt_indent_1 {
+#qdqgjubwnd .gt_indent_1 {
   text-indent: 5px;
 }
 
-#jgyizlbmes .gt_indent_2 {
+#qdqgjubwnd .gt_indent_2 {
   text-indent: 10px;
 }
 
-#jgyizlbmes .gt_indent_3 {
+#qdqgjubwnd .gt_indent_3 {
   text-indent: 15px;
 }
 
-#jgyizlbmes .gt_indent_4 {
+#qdqgjubwnd .gt_indent_4 {
   text-indent: 20px;
 }
 
-#jgyizlbmes .gt_indent_5 {
+#qdqgjubwnd .gt_indent_5 {
   text-indent: 25px;
 }
+
+#qdqgjubwnd .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#qdqgjubwnd div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-  <thead>
-    
-    <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Items">Items</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr><td headers="Items" class="gt_row gt_left"><div class="gt_from_md"><p><a href="../hw/hw03-dm.html">HW03 Data Management</a></p>
-</div></td></tr>
-  </tbody>
-  
-  
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header gt_col_headings">
+<th id="Items" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Items</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="Items"><p><a href="../hw/hw03-dm.html">HW03 Data Management</a></p></td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
@@ -2113,24 +2153,23 @@ Monday 9/4 is Labor Day. No Class.
 <p>This quiz will contain questions that reference topics in the PMA6. Don’t rely only on the slides for your answers.</p>
 <div class="cell">
 <div class="cell-output-display">
-
-<div id="mzgxyxdikd" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#mzgxyxdikd table {
+<div id="ruuavhnrwx" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ruuavhnrwx table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#mzgxyxdikd thead, #mzgxyxdikd tbody, #mzgxyxdikd tfoot, #mzgxyxdikd tr, #mzgxyxdikd td, #mzgxyxdikd th {
+#ruuavhnrwx thead, #ruuavhnrwx tbody, #ruuavhnrwx tfoot, #ruuavhnrwx tr, #ruuavhnrwx td, #ruuavhnrwx th {
   border-style: none;
 }
 
-#mzgxyxdikd p {
+#ruuavhnrwx p {
   margin: 0;
   padding: 0;
 }
 
-#mzgxyxdikd .gt_table {
+#ruuavhnrwx .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2156,12 +2195,12 @@ Monday 9/4 is Labor Day. No Class.
   border-left-color: #D3D3D3;
 }
 
-#mzgxyxdikd .gt_caption {
+#ruuavhnrwx .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#mzgxyxdikd .gt_title {
+#ruuavhnrwx .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2173,7 +2212,7 @@ Monday 9/4 is Labor Day. No Class.
   border-bottom-width: 0;
 }
 
-#mzgxyxdikd .gt_subtitle {
+#ruuavhnrwx .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2185,7 +2224,7 @@ Monday 9/4 is Labor Day. No Class.
   border-top-width: 0;
 }
 
-#mzgxyxdikd .gt_heading {
+#ruuavhnrwx .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2197,13 +2236,13 @@ Monday 9/4 is Labor Day. No Class.
   border-right-color: #D3D3D3;
 }
 
-#mzgxyxdikd .gt_bottom_border {
+#ruuavhnrwx .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#mzgxyxdikd .gt_col_headings {
+#ruuavhnrwx .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2218,7 +2257,7 @@ Monday 9/4 is Labor Day. No Class.
   border-right-color: #D3D3D3;
 }
 
-#mzgxyxdikd .gt_col_heading {
+#ruuavhnrwx .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2238,7 +2277,7 @@ Monday 9/4 is Labor Day. No Class.
   overflow-x: hidden;
 }
 
-#mzgxyxdikd .gt_column_spanner_outer {
+#ruuavhnrwx .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2250,15 +2289,15 @@ Monday 9/4 is Labor Day. No Class.
   padding-right: 4px;
 }
 
-#mzgxyxdikd .gt_column_spanner_outer:first-child {
+#ruuavhnrwx .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#mzgxyxdikd .gt_column_spanner_outer:last-child {
+#ruuavhnrwx .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#mzgxyxdikd .gt_column_spanner {
+#ruuavhnrwx .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2270,11 +2309,11 @@ Monday 9/4 is Labor Day. No Class.
   width: 100%;
 }
 
-#mzgxyxdikd .gt_spanner_row {
+#ruuavhnrwx .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#mzgxyxdikd .gt_group_heading {
+#ruuavhnrwx .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2300,7 +2339,7 @@ Monday 9/4 is Labor Day. No Class.
   text-align: left;
 }
 
-#mzgxyxdikd .gt_empty_group_heading {
+#ruuavhnrwx .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2315,15 +2354,15 @@ Monday 9/4 is Labor Day. No Class.
   vertical-align: middle;
 }
 
-#mzgxyxdikd .gt_from_md > :first-child {
+#ruuavhnrwx .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#mzgxyxdikd .gt_from_md > :last-child {
+#ruuavhnrwx .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#mzgxyxdikd .gt_row {
+#ruuavhnrwx .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2342,7 +2381,7 @@ Monday 9/4 is Labor Day. No Class.
   overflow-x: hidden;
 }
 
-#mzgxyxdikd .gt_stub {
+#ruuavhnrwx .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2355,7 +2394,7 @@ Monday 9/4 is Labor Day. No Class.
   padding-right: 5px;
 }
 
-#mzgxyxdikd .gt_stub_row_group {
+#ruuavhnrwx .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2369,15 +2408,15 @@ Monday 9/4 is Labor Day. No Class.
   vertical-align: top;
 }
 
-#mzgxyxdikd .gt_row_group_first td {
+#ruuavhnrwx .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#mzgxyxdikd .gt_row_group_first th {
+#ruuavhnrwx .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#mzgxyxdikd .gt_summary_row {
+#ruuavhnrwx .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2387,16 +2426,16 @@ Monday 9/4 is Labor Day. No Class.
   padding-right: 5px;
 }
 
-#mzgxyxdikd .gt_first_summary_row {
+#ruuavhnrwx .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#mzgxyxdikd .gt_first_summary_row.thick {
+#ruuavhnrwx .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#mzgxyxdikd .gt_last_summary_row {
+#ruuavhnrwx .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2406,7 +2445,7 @@ Monday 9/4 is Labor Day. No Class.
   border-bottom-color: #D3D3D3;
 }
 
-#mzgxyxdikd .gt_grand_summary_row {
+#ruuavhnrwx .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2416,7 +2455,7 @@ Monday 9/4 is Labor Day. No Class.
   padding-right: 5px;
 }
 
-#mzgxyxdikd .gt_first_grand_summary_row {
+#ruuavhnrwx .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2426,7 +2465,7 @@ Monday 9/4 is Labor Day. No Class.
   border-top-color: #D3D3D3;
 }
 
-#mzgxyxdikd .gt_last_grand_summary_row_top {
+#ruuavhnrwx .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2436,11 +2475,11 @@ Monday 9/4 is Labor Day. No Class.
   border-bottom-color: #D3D3D3;
 }
 
-#mzgxyxdikd .gt_striped {
+#ruuavhnrwx .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#mzgxyxdikd .gt_table_body {
+#ruuavhnrwx .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2449,7 +2488,7 @@ Monday 9/4 is Labor Day. No Class.
   border-bottom-color: #D3D3D3;
 }
 
-#mzgxyxdikd .gt_footnotes {
+#ruuavhnrwx .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2463,7 +2502,7 @@ Monday 9/4 is Labor Day. No Class.
   border-right-color: #D3D3D3;
 }
 
-#mzgxyxdikd .gt_footnote {
+#ruuavhnrwx .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2472,7 +2511,7 @@ Monday 9/4 is Labor Day. No Class.
   padding-right: 5px;
 }
 
-#mzgxyxdikd .gt_sourcenotes {
+#ruuavhnrwx .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2486,7 +2525,7 @@ Monday 9/4 is Labor Day. No Class.
   border-right-color: #D3D3D3;
 }
 
-#mzgxyxdikd .gt_sourcenote {
+#ruuavhnrwx .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2494,80 +2533,92 @@ Monday 9/4 is Labor Day. No Class.
   padding-right: 5px;
 }
 
-#mzgxyxdikd .gt_left {
+#ruuavhnrwx .gt_left {
   text-align: left;
 }
 
-#mzgxyxdikd .gt_center {
+#ruuavhnrwx .gt_center {
   text-align: center;
 }
 
-#mzgxyxdikd .gt_right {
+#ruuavhnrwx .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#mzgxyxdikd .gt_font_normal {
+#ruuavhnrwx .gt_font_normal {
   font-weight: normal;
 }
 
-#mzgxyxdikd .gt_font_bold {
+#ruuavhnrwx .gt_font_bold {
   font-weight: bold;
 }
 
-#mzgxyxdikd .gt_font_italic {
+#ruuavhnrwx .gt_font_italic {
   font-style: italic;
 }
 
-#mzgxyxdikd .gt_super {
+#ruuavhnrwx .gt_super {
   font-size: 65%;
 }
 
-#mzgxyxdikd .gt_footnote_marks {
+#ruuavhnrwx .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#mzgxyxdikd .gt_asterisk {
+#ruuavhnrwx .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#mzgxyxdikd .gt_indent_1 {
+#ruuavhnrwx .gt_indent_1 {
   text-indent: 5px;
 }
 
-#mzgxyxdikd .gt_indent_2 {
+#ruuavhnrwx .gt_indent_2 {
   text-indent: 10px;
 }
 
-#mzgxyxdikd .gt_indent_3 {
+#ruuavhnrwx .gt_indent_3 {
   text-indent: 15px;
 }
 
-#mzgxyxdikd .gt_indent_4 {
+#ruuavhnrwx .gt_indent_4 {
   text-indent: 20px;
 }
 
-#mzgxyxdikd .gt_indent_5 {
+#ruuavhnrwx .gt_indent_5 {
   text-indent: 25px;
 }
+
+#ruuavhnrwx .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#ruuavhnrwx div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-  <thead>
-    
-    <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Items">Items</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr><td headers="Items" class="gt_row gt_left"><div class="gt_from_md"><p><a href="https://forms.gle/2hPjWMkGpiXuZg1S6">Quiz 02</a></p>
-</div></td></tr>
-  </tbody>
-  
-  
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header gt_col_headings">
+<th id="Items" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Items</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="Items"><p><a href="">Quiz 02</a></p></td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
@@ -2638,6 +2689,33 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
     }
   }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
   const toggleColorMode = (alternate) => {
     // Switch the stylesheets
     const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
@@ -2704,13 +2782,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return localAlternateSentinel;
     }
   }
-  let localAlternateSentinel = 'default';
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
   // Dark / light mode switch
   window.quartoToggleColorScheme = () => {
     // Read the current dark / light value 
     let toAlternate = !hasAlternateSentinel();
     toggleColorMode(toAlternate);
     setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
   };
   // Ensure there is a toggle, if there isn't float one in the top right
   if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
@@ -2789,10 +2869,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/norcalbiostat\.github\.io\/MATH615");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -2802,8 +2899,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -2815,7 +2921,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -2859,6 +3088,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -2884,6 +3114,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -2946,15 +3202,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-    <div class="nav-footer-left">This site is built with 💚 and <a href="https://quarto.org/">Quarto</a> by <a href="www.norcalbiostat.com">Robin Donatello</a>.</div>   
+    <div class="nav-footer-left">
+<p>This site is built with 💚 and <a href="https://quarto.org/">Quarto</a> by <a href="www.norcalbiostat.com">Robin Donatello</a>.</p>
+</div>   
     <div class="nav-footer-center">
       &nbsp;
-    </div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/norcalbiostat/MATH615/edit/main/topics/t03-data_prep.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/norcalbiostat/MATH615/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
   </div>
 </footer>
+
 
 
 

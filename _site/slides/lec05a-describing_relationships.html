@@ -8,10 +8,10 @@
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.3.319">
+  <meta name="generator" content="quarto-1.4.555">
 
   <meta name="author" content="Robin Donatello">
-  <meta name="dcterms.date" content="2023-09-18">
+  <meta name="dcterms.date" content="2024-09-23">
   <title>Data Analysis for Graduate Research - Describing Relationships between variables</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -32,7 +32,7 @@
     }
     /* CSS for syntax highlighting */
     pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span { line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
     .sourceCode { overflow: visible; }
     code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -96,7 +96,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css" id="theme">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -224,7 +224,8 @@
   }
 
   .callout.callout-titled .callout-body > .callout-content > :last-child {
-    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    margin-bottom: 0;
   }
 
   .callout.callout-titled .callout-icon::before {
@@ -387,10 +388,6 @@
       margin-right: 0; 
     }
   </style>
-<meta name="twitter:title" content="Data Analysis for Graduate Research - Describing Relationships between variables">
-<meta name="twitter:description" content="5, 6">
-<meta name="twitter:creator" content="@norcalbiostat">
-<meta name="twitter:card" content="summary">
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -407,7 +404,7 @@ Robin Donatello
 </div>
 </div>
 
-  <p class="date">2023-09-18</p>
+  <p class="date">2024-09-23</p>
 </section>
 <section>
 <section id="bivariate-association-between-2-variables" class="title-slide slide level1 center">
@@ -416,7 +413,7 @@ Robin Donatello
 </section>
 <section id="naming-conventions" class="slide level2">
 <h2>Naming conventions</h2>
-<table>
+<table class="caption-top">
 <thead>
 <tr class="header">
 <th style="text-align: center;">Response</th>
@@ -462,9 +459,9 @@ Robin Donatello
 <section id="section" class="title-slide slide level1 center" data-background-image="images/penguins.png" data-background-size="60%">
 <h1></h1>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse); <span class="fu">library</span>(ggpubr)</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(palmerpenguins);  <span class="fu">library</span>(sjPlot)</span>
-<span id="cb1-3"><a href="#cb1-3"></a>pen <span class="ot">&lt;-</span> penguins</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">library</span>(tidyverse); <span class="fu">library</span>(ggpubr)</span>
+<span id="cb1-2"><a></a><span class="fu">library</span>(palmerpenguins);  <span class="fu">library</span>(sjPlot)</span>
+<span id="cb1-3"><a></a>pen <span class="ot">&lt;-</span> penguins</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="c-c" class="slide level2 smaller">
@@ -477,9 +474,9 @@ Robin Donatello
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">table</span>(pen<span class="sc">$</span>species, pen<span class="sc">$</span>island)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">table</span>(pen<span class="sc">$</span>species, pen<span class="sc">$</span>island)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>           
@@ -491,10 +488,10 @@ Robin Donatello
 </div>
 </div><div class="column" style="width:50%;">
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">table</span>(pen<span class="sc">$</span>species, pen<span class="sc">$</span>island) <span class="sc">|&gt;</span> </span>
-<span id="cb4-2"><a href="#cb4-2"></a>  <span class="fu">prop.table</span>(<span class="at">margin=</span><span class="dv">2</span>) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">table</span>(pen<span class="sc">$</span>species, pen<span class="sc">$</span>island) <span class="sc">|&gt;</span> </span>
+<span id="cb4-2"><a></a>  <span class="fu">prop.table</span>(<span class="at">margin=</span><span class="dv">2</span>) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>           
@@ -513,13 +510,17 @@ Robin Donatello
 </div>
 <div id="tabset-1-2">
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">plot_xtab</span>(pen<span class="sc">$</span>island, <span class="at">grp=</span>pen<span class="sc">$</span>species, </span>
-<span id="cb6-2"><a href="#cb6-2"></a>          <span class="at">show.total =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">plot_xtab</span>(pen<span class="sc">$</span>island, <span class="at">grp=</span>pen<span class="sc">$</span>species, </span>
+<span id="cb6-2"><a></a>          <span class="at">show.total =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img data-src="lec05a-describing_relationships_files/figure-html/unnamed-chunk-4-1.png" width="672"></p>
+<div>
+<figure>
+<p><img data-src="lec05a-describing_relationships_files/figure-revealjs/unnamed-chunk-4-1.png" width="960"></p>
+</figure>
+</div>
 </div>
 </div>
 </div>
@@ -552,10 +553,10 @@ Robin Donatello
 <div class="column" style="width:50%;">
 <p><strong>Row Percents</strong></p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">table</span>(pen<span class="sc">$</span>species, pen<span class="sc">$</span>island) <span class="sc">|&gt;</span> </span>
-<span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">prop.table</span>(<span class="at">margin=</span><span class="dv">1</span>) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">table</span>(pen<span class="sc">$</span>species, pen<span class="sc">$</span>island) <span class="sc">|&gt;</span> </span>
+<span id="cb7-2"><a></a>  <span class="fu">prop.table</span>(<span class="at">margin=</span><span class="dv">1</span>) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>           
@@ -569,10 +570,10 @@ Robin Donatello
 </div><div class="column" style="width:50%;">
 <p><strong>Column Percents</strong></p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">table</span>(pen<span class="sc">$</span>species, pen<span class="sc">$</span>island) <span class="sc">|&gt;</span> </span>
-<span id="cb9-2"><a href="#cb9-2"></a>  <span class="fu">prop.table</span>(<span class="at">margin=</span><span class="dv">2</span>) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="fu">table</span>(pen<span class="sc">$</span>species, pen<span class="sc">$</span>island) <span class="sc">|&gt;</span> </span>
+<span id="cb9-2"><a></a>  <span class="fu">prop.table</span>(<span class="at">margin=</span><span class="dv">2</span>) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>           
@@ -591,26 +592,34 @@ Robin Donatello
 <div class="column" style="width:50%;">
 <p>Distribution of islands for each species</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">plot_xtab</span>(pen<span class="sc">$</span>species, <span class="at">grp=</span>pen<span class="sc">$</span>island, </span>
-<span id="cb11-2"><a href="#cb11-2"></a>          <span class="at">margin =</span> <span class="st">"row"</span>, <span class="at">show.total =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="fu">plot_xtab</span>(pen<span class="sc">$</span>species, <span class="at">grp=</span>pen<span class="sc">$</span>island, </span>
+<span id="cb11-2"><a></a>          <span class="at">margin =</span> <span class="st">"row"</span>, <span class="at">show.total =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img data-src="lec05a-describing_relationships_files/figure-html/unnamed-chunk-7-1.png" width="672"></p>
+<div>
+<figure>
+<p><img data-src="lec05a-describing_relationships_files/figure-revealjs/unnamed-chunk-7-1.png" width="960"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>29% <strong>of <em>Adelie</em> penguins</strong> are on Biscoe Island.</p>
 </div><div class="column" style="width:50%;">
 <p>Distribution of species on each island.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">plot_xtab</span>(pen<span class="sc">$</span>island, <span class="at">grp=</span>pen<span class="sc">$</span>species, </span>
-<span id="cb12-2"><a href="#cb12-2"></a>          <span class="at">margin =</span> <span class="st">"row"</span>, <span class="at">show.total =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="fu">plot_xtab</span>(pen<span class="sc">$</span>island, <span class="at">grp=</span>pen<span class="sc">$</span>species, </span>
+<span id="cb12-2"><a></a>          <span class="at">margin =</span> <span class="st">"row"</span>, <span class="at">show.total =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img data-src="lec05a-describing_relationships_files/figure-html/unnamed-chunk-8-1.png" width="672"></p>
+<div>
+<figure>
+<p><img data-src="lec05a-describing_relationships_files/figure-revealjs/unnamed-chunk-8-1.png" width="960"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>74% <strong>of penguins on Biscoe island</strong> are <em>Gentoo</em>.</p>
@@ -629,23 +638,23 @@ Robin Donatello
 <div id="tabset-3-1">
 <p>Mean, median, sd, IQR of the quantitative variable for each level of the categorical level.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>pen <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(species) <span class="sc">%&gt;%</span> </span>
-<span id="cb13-2"><a href="#cb13-2"></a>  <span class="fu">summarize</span>(<span class="at">mean =</span> <span class="fu">mean</span>(bill_depth_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
-<span id="cb13-3"><a href="#cb13-3"></a>            <span class="at">median =</span> <span class="fu">median</span>(bill_depth_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
-<span id="cb13-4"><a href="#cb13-4"></a>            <span class="at">sd =</span> <span class="fu">sd</span>(bill_depth_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
-<span id="cb13-5"><a href="#cb13-5"></a>            <span class="at">IQR =</span> <span class="fu">IQR</span>(bill_depth_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>pen <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(species) <span class="sc">%&gt;%</span> </span>
+<span id="cb13-2"><a></a>  <span class="fu">summarize</span>(<span class="at">mean =</span> <span class="fu">mean</span>(bill_depth_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb13-3"><a></a>            <span class="at">median =</span> <span class="fu">median</span>(bill_depth_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb13-4"><a></a>            <span class="at">sd =</span> <span class="fu">sd</span>(bill_depth_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb13-5"><a></a>            <span class="at">IQR =</span> <span class="fu">IQR</span>(bill_depth_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>pen <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(species) <span class="sc">%&gt;%</span> </span>
-<span id="cb14-2"><a href="#cb14-2"></a>  <span class="fu">summarize</span>(<span class="at">mean   =</span> <span class="fu">mean</span>(bill_depth_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
-<span id="cb14-3"><a href="#cb14-3"></a>            <span class="at">median =</span> <span class="fu">median</span>(bill_depth_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
-<span id="cb14-4"><a href="#cb14-4"></a>            <span class="at">sd     =</span> <span class="fu">sd</span>(bill_depth_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
-<span id="cb14-5"><a href="#cb14-5"></a>            <span class="at">IQR    =</span> <span class="fu">IQR</span>(bill_depth_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a>pen <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(species) <span class="sc">%&gt;%</span> </span>
+<span id="cb14-2"><a></a>  <span class="fu">summarize</span>(<span class="at">mean   =</span> <span class="fu">mean</span>(bill_depth_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb14-3"><a></a>            <span class="at">median =</span> <span class="fu">median</span>(bill_depth_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb14-4"><a></a>            <span class="at">sd     =</span> <span class="fu">sd</span>(bill_depth_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb14-5"><a></a>            <span class="at">IQR    =</span> <span class="fu">IQR</span>(bill_depth_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 5
@@ -663,27 +672,35 @@ Robin Donatello
 <div class="column" style="width:50%;">
 <p><strong>Overlaid density plots</strong></p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">gghistogram</span>(pen, </span>
-<span id="cb16-2"><a href="#cb16-2"></a>    <span class="at">x =</span> <span class="st">"bill_depth_mm"</span>, <span class="at">fill =</span> <span class="st">"species"</span>, </span>
-<span id="cb16-3"><a href="#cb16-3"></a>    <span class="at">add_density =</span> <span class="cn">TRUE</span>, <span class="at">add=</span><span class="st">"mean"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="fu">gghistogram</span>(pen, </span>
+<span id="cb16-2"><a></a>    <span class="at">x =</span> <span class="st">"bill_depth_mm"</span>, <span class="at">fill =</span> <span class="st">"species"</span>, </span>
+<span id="cb16-3"><a></a>    <span class="at">add_density =</span> <span class="cn">TRUE</span>, <span class="at">add=</span><span class="st">"mean"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img data-src="lec05a-describing_relationships_files/figure-html/unnamed-chunk-11-1.png" width="672"></p>
+<div>
+<figure>
+<p><img data-src="lec05a-describing_relationships_files/figure-revealjs/unnamed-chunk-11-1.png" width="960"></p>
+</figure>
+</div>
 </div>
 </div>
 </div><div class="column" style="width:50%;">
 <p><strong>Side by side boxplots</strong></p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">ggviolin</span>(pen, </span>
-<span id="cb17-2"><a href="#cb17-2"></a>  <span class="at">x=</span><span class="st">"species"</span>, <span class="at">y =</span> <span class="st">"bill_depth_mm"</span>, </span>
-<span id="cb17-3"><a href="#cb17-3"></a>  <span class="at">color =</span> <span class="st">"species"</span>, <span class="at">add =</span> <span class="fu">c</span>(<span class="st">"mean"</span>, <span class="st">"boxplot"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a><span class="fu">ggviolin</span>(pen, </span>
+<span id="cb17-2"><a></a>  <span class="at">x=</span><span class="st">"species"</span>, <span class="at">y =</span> <span class="st">"bill_depth_mm"</span>, </span>
+<span id="cb17-3"><a></a>  <span class="at">color =</span> <span class="st">"species"</span>, <span class="at">add =</span> <span class="fu">c</span>(<span class="st">"mean"</span>, <span class="st">"boxplot"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img data-src="lec05a-describing_relationships_files/figure-html/unnamed-chunk-12-1.png" width="672"></p>
+<div>
+<figure>
+<p><img data-src="lec05a-describing_relationships_files/figure-revealjs/unnamed-chunk-12-1.png" width="960"></p>
+</figure>
+</div>
 </div>
 </div>
 </div>
@@ -701,10 +718,10 @@ Robin Donatello
 <div class="tab-content">
 <div id="tabset-4-1">
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">cor</span>(pen<span class="sc">$</span>flipper_length_mm, pen<span class="sc">$</span>body_mass_g, </span>
-<span id="cb18-2"><a href="#cb18-2"></a>    <span class="at">use=</span><span class="st">"pairwise.complete.obs"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a><span class="fu">cor</span>(pen<span class="sc">$</span>flipper_length_mm, pen<span class="sc">$</span>body_mass_g, </span>
+<span id="cb18-2"><a></a>    <span class="at">use=</span><span class="st">"pairwise.complete.obs"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.8712018</code></pre>
@@ -716,25 +733,33 @@ Robin Donatello
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="fu">ggscatter</span>(pen, </span>
-<span id="cb20-2"><a href="#cb20-2"></a>  <span class="at">x=</span><span class="st">"flipper_length_mm"</span>, <span class="at">y =</span> <span class="st">"body_mass_g"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a><span class="fu">ggscatter</span>(pen, </span>
+<span id="cb20-2"><a></a>  <span class="at">x=</span><span class="st">"flipper_length_mm"</span>, <span class="at">y =</span> <span class="st">"body_mass_g"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img data-src="lec05a-describing_relationships_files/figure-html/unnamed-chunk-14-1.png" width="672"></p>
+<div>
+<figure>
+<p><img data-src="lec05a-describing_relationships_files/figure-revealjs/unnamed-chunk-14-1.png" width="960"></p>
+</figure>
+</div>
 </div>
 </div>
 </div><div class="column" style="width:50%;">
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">ggscatter</span>(pen, </span>
-<span id="cb21-2"><a href="#cb21-2"></a>  <span class="at">x=</span><span class="st">"flipper_length_mm"</span>, <span class="at">y =</span> <span class="st">"body_mass_g"</span>, </span>
-<span id="cb21-3"><a href="#cb21-3"></a>  <span class="at">add =</span> <span class="st">"loess"</span>, <span class="at">conf.int =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a><span class="fu">ggscatter</span>(pen, </span>
+<span id="cb21-2"><a></a>  <span class="at">x=</span><span class="st">"flipper_length_mm"</span>, <span class="at">y =</span> <span class="st">"body_mass_g"</span>, </span>
+<span id="cb21-3"><a></a>  <span class="at">add =</span> <span class="st">"loess"</span>, <span class="at">conf.int =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img data-src="lec05a-describing_relationships_files/figure-html/unnamed-chunk-15-1.png" width="672"></p>
+<div>
+<figure>
+<p><img data-src="lec05a-describing_relationships_files/figure-revealjs/unnamed-chunk-15-1.png" width="960"></p>
+</figure>
+</div>
 </div>
 </div>
 </div><p><small> The relationship between flipper length and body mass in penguins is relatively linear, but there may be possible clustering on a third variable. There appears to be two groups below and above a flipper length of about 205mm. </small></p>
@@ -743,8 +768,10 @@ Robin Donatello
 </div>
 </div>
 
+<div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 <p><a href="https://math615.netlify.app/slides">🔗 https://math615.netlify.app</a></p>
+</div>
 </div>
 </section></section>
     </div>
@@ -774,7 +801,6 @@ Robin Donatello
       Reveal.initialize({
 'controlsAuto': true,
 'previewLinksAuto': false,
-'smaller': false,
 'pdfSeparateFragments': false,
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
@@ -960,6 +986,44 @@ Robin Donatello
         ]
       });
     </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {
@@ -1036,10 +1100,27 @@ Robin Donatello
         // clear code selection
         e.clearSelection();
       });
-      function tippyHover(el, contentFn) {
+        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+        var mailtoRegex = new RegExp(/^mailto:/);
+          var filterRegex = new RegExp("https:\/\/norcalbiostat\.github\.io\/MATH615");
+        var isInternal = (href) => {
+            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+        }
+        // Inspect non-navigation links and adorn them if external
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+        for (var i=0; i<links.length; i++) {
+          const link = links[i];
+          if (!isInternal(link.href)) {
+            // undo the damage that might have been done by quarto-nav.js in the case of
+            // links that we want to consider external
+            if (link.dataset.originalHref !== undefined) {
+              link.href = link.dataset.originalHref;
+            }
+          }
+        }
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
         const config = {
           allowHTML: true,
-          content: contentFn,
           maxWidth: 500,
           delay: 100,
           arrow: false,
@@ -1049,8 +1130,17 @@ Robin Donatello
           interactive: true,
           interactiveBorder: 10,
           theme: 'light-border',
-          placement: 'bottom-start'
+          placement: 'bottom-start',
         };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
           config['offset'] = [0,0];
           config['maxWidth'] = 700;
         window.tippy(el, config); 
@@ -1064,7 +1154,11 @@ Robin Donatello
           try { href = new URL(href).hash; } catch {}
           const id = href.replace(/^#\/?/, "");
           const note = window.document.getElementById(id);
-          return note.innerHTML;
+          if (note) {
+            return note.innerHTML;
+          } else {
+            return "";
+          }
         });
       }
       const findCites = (el) => {

@@ -79,7 +79,7 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-date','listing-description','listing-title',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
+      valueNames: ['listing-date','listing-title',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
       
       searchColumns: ["listing-date","listing-title","listing-author"],
     };
@@ -164,10 +164,21 @@ window.Quarto = {
     <a class="nav-link" href="https://drive.google.com/drive/folders/1f9oKqswqB0wo1I957xFW6yjhIt2FRhwr"> 
 <span class="menu-text">Google Drive</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./project.html"> 
-<span class="menu-text">Project</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-research-project" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Research Project</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-research-project">    
+        <li>
+    <a class="dropdown-item" href="./project.html">
+ <span class="dropdown-text">Overview and Information</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./author_guide.html">
+ <span class="dropdown-text">Guide for Authors</span></a>
+  </li>  
+    </ul>
+  </li>
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item dropdown ">
@@ -248,206 +259,96 @@ window.Quarto = {
 
 
 <div class="quarto-listing quarto-listing-container-table" id="listing-listing">
-<div class="listing-actions-group">
-   <div class="input-group input-group-sm quarto-listing-sort">
-     <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
-     <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
-       <option value="" disabled="" selected="" hidden="">Order By</option>
-       <option value="index" data-direction="asc">Default</option>
-         <option value="listing-date-sort" data-direction="asc">
-          Date - Oldest
-        </option>
-         <option value="listing-date-sort" data-direction="desc">
-          Date - Newest
-        </option>
-         <option value="listing-title-sort" data-direction="asc">
-          Topic
-        </option>
-     </select>
-  </div>
-    <div class="input-group input-group-sm quarto-listing-filter">
-      <span class="input-group-text"><i class="bi bi-search"></i></span>
-      <input type="text" class="search form-control" placeholder="Filter">
-    </div>
-</div>
 <table class="quarto-listing-table table">
 <thead>
 <tr>
 <th>
-<a class="sort" data-sort="listing-date-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Date</a>
+Date
 </th>
 <th>
-Week Duration
-</th>
-<th>
-<a class="sort" data-sort="listing-title-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Topic</a>
+Topic
 </th>
 </tr>
 </thead>
 <tbody class="list">
-<tr data-index="0" data-listing-date-sort="1692601200000" data-listing-file-modified-sort="1695072467322" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="636" data-listing-title-sort="Data Architecture" data-listing-filename-sort="lec01-data_arch.qmd">
+<tr data-index="0" data-listing-date-sort="1696057200000" data-listing-file-modified-sort="1723266516823" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="458" data-listing-title-sort="Statistical Inference with Randomization" data-listing-filename-sort="lec06a-statistical_inference_with_randomization.qmd">
 <td>
-<span class="listing-date">Aug 21, 2023</span>
-</td>
-<td>
-<span class="listing-description">1</span>
-</td>
-<td>
-<a href="./slides/lec01-data_arch.html" class="title listing-title">Data Architecture</a>
-</td>
-</tr>
-<tr data-index="1" data-listing-date-sort="1693206000000" data-listing-file-modified-sort="1694803973431" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="247" data-listing-title-sort="Formulating research questions" data-listing-filename-sort="lec02-asking_q.qmd">
-<td>
-<span class="listing-date">Aug 28, 2023</span>
-</td>
-<td>
-<span class="listing-description">2</span>
-</td>
-<td>
-<a href="./slides/lec02-asking_q.html" class="title listing-title">Formulating research questions</a>
-</td>
-</tr>
-<tr data-index="2" data-listing-date-sort="1693378800000" data-listing-file-modified-sort="1694803973431" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="568" data-listing-title-sort="Workflows for Reproducibility" data-listing-filename-sort="lec03a-workflow.qmd">
-<td>
-<span class="listing-date">Aug 30, 2023</span>
-</td>
-<td>
-<span class="listing-description">3</span>
-</td>
-<td>
-<a href="./slides/lec03a-workflow.html" class="title listing-title">Workflows for Reproducibility</a>
-</td>
-</tr>
-<tr data-index="3" data-listing-date-sort="1693378800000" data-listing-file-modified-sort="1694803973431" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1003" data-listing-title-sort="Preparing your data for analysis" data-listing-filename-sort="lec03b-data_prep.qmd">
-<td>
-<span class="listing-date">Aug 30, 2023</span>
-</td>
-<td>
-<span class="listing-description">2, 3</span>
-</td>
-<td>
-<a href="./slides/lec03b-data_prep.html" class="title listing-title">Preparing your data for analysis</a>
-</td>
-</tr>
-<tr data-index="4" data-listing-date-sort="1694502000000" data-listing-file-modified-sort="1694803973431" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="491" data-listing-title-sort="Describing Distributions of Data" data-listing-filename-sort="lec04-describing_distributions.qmd">
-<td>
-<span class="listing-date">Sep 12, 2023</span>
-</td>
-<td>
-<span class="listing-description">4</span>
-</td>
-<td>
-<a href="./slides/lec04-describing_distributions.html" class="title listing-title">Describing Distributions of Data</a>
-</td>
-</tr>
-<tr data-index="5" data-listing-date-sort="1695020400000" data-listing-file-modified-sort="1694803973433" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="829" data-listing-title-sort="Describing Relationships between variables" data-listing-filename-sort="lec05a-describing_relationships.qmd">
-<td>
-<span class="listing-date">Sep 18, 2023</span>
-</td>
-<td>
-<span class="listing-description">5, 6</span>
-</td>
-<td>
-<a href="./slides/lec05a-describing_relationships.html" class="title listing-title">Describing Relationships between variables</a>
-</td>
-</tr>
-<tr data-index="6" data-listing-date-sort="1695193200000" data-listing-file-modified-sort="1695072472544" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="375" data-listing-title-sort="Best practices in Data Visualization" data-listing-filename-sort="lec05b-data_viz_bestpractice.qmd">
-<td>
-<span class="listing-date">Sep 20, 2023</span>
-</td>
-<td>
-<span class="listing-description">6</span>
-</td>
-<td>
-<a href="./slides/lec05b-data_viz_bestpractice.html" class="title listing-title">Best practices in Data Visualization</a>
-</td>
-</tr>
-<tr data-index="7" data-listing-date-sort="1696230000000" data-listing-file-modified-sort="1697065929507" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="458" data-listing-title-sort="Statistical Inference with Randomization" data-listing-filename-sort="lec06a-statistical_inference_with_randomization.qmd">
-<td>
-<span class="listing-date">Oct 2, 2023</span>
-</td>
-<td>
-<span class="listing-description">7</span>
+<span class="listing-date">Sep 30, 2023</span>
 </td>
 <td>
 <a href="./slides/lec06a-statistical_inference_with_randomization.html" class="title listing-title">Statistical Inference with Randomization</a>
 </td>
 </tr>
-<tr data-index="8" data-listing-date-sort="1696402800000" data-listing-file-modified-sort="1697065929507" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1166" data-listing-title-sort="Statistical Inference using Models" data-listing-filename-sort="lec06b-statistical_inference_with_models.qmd">
-<td>
-<span class="listing-date">Oct 4, 2023</span>
-</td>
-<td>
-<span class="listing-description">7,8</span>
-</td>
-<td>
-<a href="./slides/lec06b-statistical_inference_with_models.html" class="title listing-title">Statistical Inference using Models</a>
-</td>
-</tr>
-<tr data-index="9" data-listing-date-sort="1697007600000" data-listing-file-modified-sort="1697065929508" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="431" data-listing-title-sort="Choosing Appropriate Analysis" data-listing-filename-sort="lec07a-choosing_analysis.qmd">
-<td>
-<span class="listing-date">Oct 11, 2023</span>
-</td>
-<td>
-<span class="listing-description">8</span>
-</td>
-<td>
-<a href="./slides/lec07a-choosing_analysis.html" class="title listing-title">Choosing Appropriate Analysis</a>
-</td>
-</tr>
-<tr data-index="10" data-listing-date-sort="1697007600000" data-listing-file-modified-sort="1698262868270" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="35" data-listing-word-count-sort="6901" data-listing-title-sort="Modeling Bivariate Relationships" data-listing-filename-sort="lec07b-bivariate_modeling.qmd">
-<td>
-<span class="listing-date">Oct 11, 2023</span>
-</td>
-<td>
-<span class="listing-description">8-10</span>
-</td>
-<td>
-<a href="./slides/lec07b-bivariate_modeling.html" class="title listing-title">Modeling Bivariate Relationships</a>
-</td>
-</tr>
-<tr data-index="11" data-listing-date-sort="1698044400000" data-listing-file-modified-sort="1698814814710" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="681" data-listing-title-sort="Simple Linear Regression" data-listing-filename-sort="lec07c-regression.qmd">
-<td>
-<span class="listing-date">Oct 23, 2023</span>
-</td>
-<td>
-<span class="listing-description">10</span>
-</td>
-<td>
-<a href="./slides/lec07c-regression.html" class="title listing-title">Simple Linear Regression</a>
-</td>
-</tr>
-<tr data-index="12" data-listing-date-sort="1698649200000" data-listing-file-modified-sort="1701618348535" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="12" data-listing-word-count-sort="2233" data-listing-title-sort="Moderation and Stratification" data-listing-filename-sort="lec08-moderation.qmd">
-<td>
-<span class="listing-date">Oct 30, 2023</span>
-</td>
-<td>
-<span class="listing-description">11</span>
-</td>
-<td>
-<a href="./slides/lec08-moderation.html" class="title listing-title">Moderation and Stratification</a>
-</td>
-</tr>
-<tr data-index="13" data-listing-date-sort="1699257600000" data-listing-file-modified-sort="1701618348538" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1257" data-listing-title-sort="Multiple Regression &amp; Confonding" data-listing-filename-sort="lec09-mlr_confounding.qmd">
-<td>
-<span class="listing-date">Nov 6, 2023</span>
-</td>
-<td>
-<span class="listing-description">12</span>
-</td>
-<td>
-<a href="./slides/lec09-mlr_confounding.html" class="title listing-title">Multiple Regression &amp; Confonding</a>
-</td>
-</tr>
-<tr data-index="14" data-listing-date-sort="1724655600000" data-listing-file-modified-sort="1723046372581" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1401" data-listing-title-sort="Welcome to MATH 615" data-listing-filename-sort="lec00-welcome.qmd">
+<tr data-index="1" data-listing-date-sort="1724655600000" data-listing-file-modified-sort="1723266077175" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="638" data-listing-title-sort="Data Architecture" data-listing-filename-sort="lec01-data_arch.qmd">
 <td>
 <span class="listing-date">Aug 26, 2024</span>
 </td>
 <td>
-<span class="listing-description">1</span>
+<a href="./slides/lec01-data_arch.html" class="title listing-title">Data Architecture</a>
+</td>
+</tr>
+<tr data-index="2" data-listing-date-sort="1724655600000" data-listing-file-modified-sort="1723266077156" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1401" data-listing-title-sort="Welcome to MATH 615" data-listing-filename-sort="lec00-welcome.qmd">
+<td>
+<span class="listing-date">Aug 26, 2024</span>
 </td>
 <td>
 <a href="./slides/lec00-welcome.html" class="title listing-title">Welcome to MATH 615</a>
+</td>
+</tr>
+<tr data-index="3" data-listing-date-sort="1725433200000" data-listing-file-modified-sort="1723266077193" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="251" data-listing-title-sort="Formulating research questions" data-listing-filename-sort="lec02-asking_q.qmd">
+<td>
+<span class="listing-date">Sep 4, 2024</span>
+</td>
+<td>
+<a href="./slides/lec02-asking_q.html" class="title listing-title">Formulating research questions</a>
+</td>
+</tr>
+<tr data-index="4" data-listing-date-sort="1725865200000" data-listing-file-modified-sort="1723264821151" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1003" data-listing-title-sort="Preparing your data for analysis" data-listing-filename-sort="lec03b-data_prep.qmd">
+<td>
+<span class="listing-date">Sep 9, 2024</span>
+</td>
+<td>
+<a href="./slides/lec03b-data_prep.html" class="title listing-title">Preparing your data for analysis</a>
+</td>
+</tr>
+<tr data-index="5" data-listing-date-sort="1725865200000" data-listing-file-modified-sort="1723264811377" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="568" data-listing-title-sort="Workflows for Reproducibility" data-listing-filename-sort="lec03a-workflow.qmd">
+<td>
+<span class="listing-date">Sep 9, 2024</span>
+</td>
+<td>
+<a href="./slides/lec03a-workflow.html" class="title listing-title">Workflows for Reproducibility</a>
+</td>
+</tr>
+<tr data-index="6" data-listing-date-sort="1726470000000" data-listing-file-modified-sort="1723266077200" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="557" data-listing-title-sort="Describing Distributions of Data" data-listing-filename-sort="lec04-describing_distributions.qmd">
+<td>
+<span class="listing-date">Sep 16, 2024</span>
+</td>
+<td>
+<a href="./slides/lec04-describing_distributions.html" class="title listing-title">Describing Distributions of Data</a>
+</td>
+</tr>
+<tr data-index="7" data-listing-date-sort="1727074800000" data-listing-file-modified-sort="1723266077212" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="829" data-listing-title-sort="Describing Relationships between variables" data-listing-filename-sort="lec05a-describing_relationships.qmd">
+<td>
+<span class="listing-date">Sep 23, 2024</span>
+</td>
+<td>
+<a href="./slides/lec05a-describing_relationships.html" class="title listing-title">Describing Relationships between variables</a>
+</td>
+</tr>
+<tr data-index="8" data-listing-date-sort="1727679600000" data-listing-file-modified-sort="1723266114604" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="375" data-listing-title-sort="Best practices in Data Visualization" data-listing-filename-sort="lec05b-data_viz_bestpractice.qmd">
+<td>
+<span class="listing-date">Sep 30, 2024</span>
+</td>
+<td>
+<a href="./slides/lec05b-data_viz_bestpractice.html" class="title listing-title">Best practices in Data Visualization</a>
+</td>
+</tr>
+<tr data-index="9" data-listing-date-sort="1728284400000" data-listing-file-modified-sort="1723266534577" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1166" data-listing-title-sort="Statistical Inference using Models" data-listing-filename-sort="lec06b-statistical_inference_with_models.qmd">
+<td>
+<span class="listing-date">Oct 7, 2024</span>
+</td>
+<td>
+<a href="./slides/lec06b-statistical_inference_with_models.html" class="title listing-title">Statistical Inference using Models</a>
 </td>
 </tr>
 </tbody>
