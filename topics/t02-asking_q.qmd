@@ -6,7 +6,12 @@ subtitle: "Asking questions is easy. Asking _answerable_ questions is more diffi
 ```{r}
 library(pander)
 source("common_code.R")
-this_topic <- topic_mats %>% filter(grepl("t02", topic))
+this_topic <- topic_mats %>% 
+  filter(Order %/% 1 == 2, 
+         !grepl("PROJECT", Topic))
+
+header <- this_topic[1,]
+content <- this_topic[-1,]
 ```
 ## Learning Path
 
@@ -21,7 +26,7 @@ Ready to start asking research questions to explore for the rest of the term.
 ### Objectives
 
 ```{r}
-create_tabled_list(this_topic$topic_obj)
+create_tabled_list(header$topic_obj)
 ```
 
 
@@ -30,26 +35,26 @@ create_tabled_list(this_topic$topic_obj)
 {{< fa person-chalkboard >}}  **Slides (Will open in full screen. Right click to open in a new tab)**
 
 ```{r}
-create_tabled_list(this_topic$slides)
+create_tabled_list(content$Slides)
 ```
 
 :books:  **Reading** 
 
 ```{r}
-create_tabled_list(this_topic$reading)
+create_tabled_list(content$Reading)
 ```
 
 
-:pencil: **Collaborative notes**
+## :pencil: Active Learning
 
 ```{r}
-create_tabled_list(this_topic$collab)
+create_tabled_list(content$Activities)
 ```
 
-## Assignments
+## Assessment
 
 ```{r}
-create_tabled_list(this_topic$assignment)
+create_tabled_list(content$Assess)
 ```
 
 

@@ -149,21 +149,28 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./topics.html" aria-current="page"> 
-<span class="menu-text">Topics</span></a>
+    <a class="nav-link" href="./modules.html"> 
+<span class="menu-text">Overview</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./slides.html"> 
-<span class="menu-text">Slides</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-all-materials" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">All Materials</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-all-materials">    
+        <li>
+    <a class="dropdown-item" href="./topics.html">
+ <span class="dropdown-text">Topics</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./hw.html"> 
-<span class="menu-text">Assignments</span></a>
+        <li>
+    <a class="dropdown-item" href="./slides.html">
+ <span class="dropdown-text">Slides</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="https://drive.google.com/drive/folders/1f9oKqswqB0wo1I957xFW6yjhIt2FRhwr"> 
-<span class="menu-text">Google Drive</span></a>
+        <li>
+    <a class="dropdown-item" href="./hw.html">
+ <span class="dropdown-text">Assignments</span></a>
   </li>  
+    </ul>
+  </li>
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-research-project" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Research Project</span>
@@ -181,6 +188,11 @@ window.Quarto = {
   </li>
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://drive.google.com/drive/folders/1f9oKqswqB0wo1I957xFW6yjhIt2FRhwr"> <i class="bi bi-google" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-reference-texts" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Reference Texts</span>
@@ -202,7 +214,7 @@ window.Quarto = {
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./help.html"> 
-<span class="menu-text">How do I…?</span></a>
+<span class="menu-text">Help</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -259,16 +271,16 @@ Description
 </tr>
 </thead>
 <tbody class="list">
-<tr data-index="0" data-listing-file-modified-sort="1723077780173" data-listing-reading-time-sort="1" data-listing-word-count-sort="43" data-listing-title-sort="Welcome to Fall 23" data-listing-filename-sort="t00-welcome.qmd" onclick="href = this.querySelector('a').getAttribute('href');
+<tr data-index="0" data-listing-file-modified-sort="1723436943175" data-listing-reading-time-sort="1" data-listing-word-count-sort="67" data-listing-title-sort="Welcome to Fall 24" data-listing-filename-sort="t00-welcome.qmd" onclick="href = this.querySelector('a').getAttribute('href');
  if (href) { window.location=href ; return false; }">
 <td>
-<a href="./topics/t00-welcome.html" class="title listing-title">Welcome to Fall 23</a>
+<a href="./topics/t00-welcome.html" class="title listing-title">Welcome to Fall 24</a>
 </td>
 <td>
 <span class="listing-subtitle">Introduction to class and your learning materials</span>
 </td>
 </tr>
-<tr data-index="1" data-listing-file-modified-sort="1723085972257" data-listing-reading-time-sort="1" data-listing-word-count-sort="54" data-listing-title-sort="Data Architecture" data-listing-filename-sort="t01-data_arch.qmd" onclick="href = this.querySelector('a').getAttribute('href');
+<tr data-index="1" data-listing-file-modified-sort="1723436943189" data-listing-reading-time-sort="1" data-listing-word-count-sort="78" data-listing-title-sort="Data Architecture" data-listing-filename-sort="t01-data_arch.qmd" onclick="href = this.querySelector('a').getAttribute('href');
  if (href) { window.location=href ; return false; }">
 <td>
 <a href="./topics/t01-data_arch.html" class="title listing-title">Data Architecture</a>
@@ -277,7 +289,7 @@ Description
 <span class="listing-subtitle">Data entry, spreadsheets, metadata, codebooks</span>
 </td>
 </tr>
-<tr data-index="2" data-listing-file-modified-sort="1723085972272" data-listing-reading-time-sort="1" data-listing-word-count-sort="72" data-listing-title-sort="Formulating research questions" data-listing-filename-sort="t02-asking_q.qmd" onclick="href = this.querySelector('a').getAttribute('href');
+<tr data-index="2" data-listing-file-modified-sort="1723438380583" data-listing-reading-time-sort="1" data-listing-word-count-sort="93" data-listing-title-sort="Formulating research questions" data-listing-filename-sort="t02-asking_q.qmd" onclick="href = this.querySelector('a').getAttribute('href');
  if (href) { window.location=href ; return false; }">
 <td>
 <a href="./topics/t02-asking_q.html" class="title listing-title">Formulating research questions</a>
@@ -286,76 +298,13 @@ Description
 <span class="listing-subtitle">Asking questions is easy. Asking <em>answerable</em> questions is more difficult.</span>
 </td>
 </tr>
-<tr data-index="3" data-listing-file-modified-sort="1723085972282" data-listing-reading-time-sort="2" data-listing-word-count-sort="341" data-listing-title-sort="Preparing Data for Analysis" data-listing-filename-sort="t03-data_prep.qmd" onclick="href = this.querySelector('a').getAttribute('href');
+<tr data-index="3" data-listing-file-modified-sort="1723439645398" data-listing-reading-time-sort="2" data-listing-word-count-sort="357" data-listing-title-sort="Preparing Data for Analysis" data-listing-filename-sort="t03-data_prep.qmd" onclick="href = this.querySelector('a').getAttribute('href');
  if (href) { window.location=href ; return false; }">
 <td>
 <a href="./topics/t03-data_prep.html" class="title listing-title">Preparing Data for Analysis</a>
 </td>
 <td>
 <span class="listing-subtitle">Where an inordinate amount of time is spent</span>
-</td>
-</tr>
-<tr data-index="4" data-listing-file-modified-sort="1723085972290" data-listing-reading-time-sort="1" data-listing-word-count-sort="53" data-listing-title-sort="Describing distributions of data" data-listing-filename-sort="t04-describing_distributions.qmd" onclick="href = this.querySelector('a').getAttribute('href');
- if (href) { window.location=href ; return false; }">
-<td>
-<a href="./topics/t04-describing_distributions.html" class="title listing-title">Describing distributions of data</a>
-</td>
-<td>
-<span class="listing-subtitle">Visualizing your data is the first line of defense against bad data</span>
-</td>
-</tr>
-<tr data-index="5" data-listing-file-modified-sort="1723086011611" data-listing-reading-time-sort="1" data-listing-word-count-sort="64" data-listing-title-sort="Describing Relationships" data-listing-filename-sort="t05-describing_relationships.qmd" onclick="href = this.querySelector('a').getAttribute('href');
- if (href) { window.location=href ; return false; }">
-<td>
-<a href="./topics/t05-describing_relationships.html" class="title listing-title">Describing Relationships</a>
-</td>
-<td>
-<span class="listing-subtitle">First step in investigating a question about an association</span>
-</td>
-</tr>
-<tr data-index="6" data-listing-file-modified-sort="1723086011624" data-listing-reading-time-sort="2" data-listing-word-count-sort="212" data-listing-title-sort="Foundations for Statistical Inference" data-listing-filename-sort="t06-foundations_for_inference.qmd" onclick="href = this.querySelector('a').getAttribute('href');
- if (href) { window.location=href ; return false; }">
-<td>
-<a href="./topics/t06-foundations_for_inference.html" class="title listing-title">Foundations for Statistical Inference</a>
-</td>
-<td>
-<span class="listing-subtitle">Study Design, Inference using randomization and the Normal Model</span>
-</td>
-</tr>
-<tr data-index="7" data-listing-file-modified-sort="1723086048382" data-listing-reading-time-sort="1" data-listing-word-count-sort="123" data-listing-title-sort="Modeling Bivariate Relationships" data-listing-filename-sort="t07-bivariate_modeling.qmd" onclick="href = this.querySelector('a').getAttribute('href');
- if (href) { window.location=href ; return false; }">
-<td>
-<a href="./topics/t07-bivariate_modeling.html" class="title listing-title">Modeling Bivariate Relationships</a>
-</td>
-<td>
-<span class="listing-subtitle">Identify and conduct the most appropriate analysis for a given research topic. </span>
-</td>
-</tr>
-<tr data-index="8" data-listing-file-modified-sort="1723086057314" data-listing-reading-time-sort="1" data-listing-word-count-sort="75" data-listing-title-sort="Multiple Regression and Confounding" data-listing-filename-sort="t08-multiple_regression.qmd" onclick="href = this.querySelector('a').getAttribute('href');
- if (href) { window.location=href ; return false; }">
-<td>
-<a href="./topics/t08-multiple_regression.html" class="title listing-title">Multiple Regression and Confounding</a>
-</td>
-<td>
-<span class="listing-subtitle">Because life isn’t bivariate</span>
-</td>
-</tr>
-<tr data-index="9" data-listing-file-modified-sort="1723086066589" data-listing-reading-time-sort="1" data-listing-word-count-sort="40" data-listing-title-sort="Generalized Linear Models" data-listing-filename-sort="t09-generalized_linear_models.qmd" onclick="href = this.querySelector('a').getAttribute('href');
- if (href) { window.location=href ; return false; }">
-<td>
-<a href="./topics/t09-generalized_linear_models.html" class="title listing-title">Generalized Linear Models</a>
-</td>
-<td>
-<span class="listing-subtitle">Transforming the response variable</span>
-</td>
-</tr>
-<tr data-index="10" data-listing-file-modified-sort="1723086084518" data-listing-reading-time-sort="1" data-listing-word-count-sort="106" data-listing-title-sort="Model Building" data-listing-filename-sort="t10-model_building.qmd" onclick="href = this.querySelector('a').getAttribute('href');
- if (href) { window.location=href ; return false; }">
-<td>
-<a href="./topics/t10-model_building.html" class="title listing-title">Model Building</a>
-</td>
-<td>
-<span class="listing-subtitle">Part science, part art</span>
 </td>
 </tr>
 </tbody>

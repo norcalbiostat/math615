@@ -1,6 +1,6 @@
 ---
 title: "Preparing your data for analysis"
-date: "2024-09-09"
+date: "2024-09-11"
 author: "Robin Donatello"
 footer: "[🔗 https://math615.netlify.app](https://math615.netlify.app) / Preparing your data for analysis"
 from: markdown+emoji
@@ -120,7 +120,7 @@ Questions to ask yourself (and the data) while reviewing the codebook to choose 
 3. Do you need to recode numerical variables to categorical?
     - Sometimes categorical data will be recorded as 1, 2, 3 etc when those numbers represent named categories. 
 4. Do you need to create secondary variables such as an average across measures to create a score. 
-5. Are the variable names user friendly? Mixtures of CAPS and lower case, names with spaces or special characters should all be changed. 
+5. Are the variable names user friendly? Mixtures of CAPS and lower case, names with spaces or special characters should all be changed. Use the `janitor::clean_names()` function to resolve this. 
 
 ## How do I know what needs to be done?
 
@@ -187,7 +187,7 @@ Make sure you have the `palmerpenguins` package installed. You can install it us
 
 Not only did it write the code, it wrote _literate_ code. It has code comments (lines 1, 4, 7, prefixed with a `#`), and a full text explanation. 
 
-This is GREAT for learning how to write code!
+This is GREAT for **learning** how to write code!
 
 :::{.callout-important}
 ### Plagerism warning
@@ -201,4 +201,6 @@ Read the Syllabus on what is expected of you if you use this tool to aid in your
 
 -   Do not underestimate the importance of this step
 -   It will take you far, far longer than you anticipate to 'clean' your data
+-   Effort spent here is a direct correlation with payoff. 
 -   Writing code (in any language) will be challenging, but will pay off in the long run
+-   Don't reinvent the wheel. If you want to do something, chances are someone else has done it before. Perhaps even yourself! 

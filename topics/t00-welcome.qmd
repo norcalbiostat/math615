@@ -1,13 +1,19 @@
 ---
-title: "Welcome to Fall 23"
+title: "Welcome to Fall 24"
 subtitle: "Introduction to class and your learning materials"
-description: "8/21"
+description: "8/26"
 ---
 
 ```{r}
 library(pander)
 source("common_code.R")
-this_topic <- topic_mats %>% filter(grepl("t00", topic))
+this_topic <- topic_mats %>% 
+  filter(Order %/% 1 == 0, 
+         !grepl("PROJECT", Topic))
+  #filter(grepl("t00", topic))
+
+header <- this_topic[1,]
+content <- this_topic[-1,]
 ```
 
 ## Learning Path
@@ -22,7 +28,7 @@ Ready to learn
 ### Objectives
 
 ```{r}
-create_tabled_list(this_topic$topic_obj)
+create_tabled_list(header$topic_obj)
 ```
 
 ## Learning Materials
@@ -30,26 +36,22 @@ create_tabled_list(this_topic$topic_obj)
 {{< fa person-chalkboard >}}  **Slides (Will open in full screen. Right click to open in a new tab)**
 
 ```{r}
-create_tabled_list(this_topic$slides)
+create_tabled_list(content$Slides)
 ```
 
 :books:  **Reading** 
 
 ```{r}
-create_tabled_list(this_topic$reading)
+create_tabled_list(content$Reading)
 ```
 
 
-:pencil: **Collaborative notes**
+## :pencil: Active Learning
 
 ```{r}
-create_tabled_list(this_topic$collab)
+create_tabled_list(content$Activities)
 ```
 
-## Assignments
+## Assessment
 
-```{r}
-create_tabled_list(this_topic$assignment)
-```
-
-
+None

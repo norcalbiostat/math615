@@ -6,7 +6,13 @@ subtitle: "Data entry, spreadsheets, metadata, codebooks"
 ```{r}
 library(pander)
 source("common_code.R")
-this_topic <- topic_mats %>% filter(grepl("t01", topic))
+this_topic <- topic_mats %>% 
+  filter(Order %/% 1 == 1, 
+         !grepl("PROJECT", Topic))
+  #filter(grepl("t00", topic))
+
+header <- this_topic[1,]
+content <- this_topic[-1,]
 ```
 
 ## Learning Path
@@ -21,40 +27,35 @@ Ready to learn how to interact with data.
 ### Objectives
 
 ```{r}
-create_tabled_list(this_topic$topic_obj)
+create_tabled_list(header$topic_obj)
 ```
+
 
 
 ## Learning Materials
 
-{{< fa person-chalkboard >}} **Slides (Will open in full screen. Right click to open in a new tab)**
+{{< fa person-chalkboard >}}  **Slides (Will open in full screen. Right click to open in a new tab)**
 
 ```{r}
-create_tabled_list(this_topic$slides)
+create_tabled_list(content$Slides)
 ```
 
 :books:  **Reading** 
 
 ```{r}
-create_tabled_list(this_topic$reading)
+create_tabled_list(content$Reading)
 ```
 
 
-:pencil: **Collaborative notes**
+## :pencil: Active Learning
 
 ```{r}
-create_tabled_list(this_topic$collab)
-```
-
-## Assignments
-
-```{r}
-create_tabled_list(this_topic$collab)
+create_tabled_list(content$Activities)
 ```
 
 ## Assessment
 
 ```{r}
-create_tabled_list(this_topic$quiz)
+create_tabled_list(content$Assess)
 ```
 

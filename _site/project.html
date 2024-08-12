@@ -118,21 +118,28 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./topics.html"> 
-<span class="menu-text">Topics</span></a>
+    <a class="nav-link" href="./modules.html"> 
+<span class="menu-text">Overview</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./slides.html"> 
-<span class="menu-text">Slides</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-all-materials" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">All Materials</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-all-materials">    
+        <li>
+    <a class="dropdown-item" href="./topics.html">
+ <span class="dropdown-text">Topics</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./hw.html"> 
-<span class="menu-text">Assignments</span></a>
+        <li>
+    <a class="dropdown-item" href="./slides.html">
+ <span class="dropdown-text">Slides</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="https://drive.google.com/drive/folders/1f9oKqswqB0wo1I957xFW6yjhIt2FRhwr"> 
-<span class="menu-text">Google Drive</span></a>
+        <li>
+    <a class="dropdown-item" href="./hw.html">
+ <span class="dropdown-text">Assignments</span></a>
   </li>  
+    </ul>
+  </li>
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-research-project" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Research Project</span>
@@ -150,6 +157,11 @@ window.Quarto = {
   </li>
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://drive.google.com/drive/folders/1f9oKqswqB0wo1I957xFW6yjhIt2FRhwr"> <i class="bi bi-google" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-reference-texts" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Reference Texts</span>
@@ -171,7 +183,7 @@ window.Quarto = {
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./help.html"> 
-<span class="menu-text">How do I…?</span></a>
+<span class="menu-text">Help</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -292,6 +304,11 @@ window.Quarto = {
 <li><a href="https://drive.google.com/drive/u/0/folders/1jULudBjRbHdW-uLIvmMbxRBEJJkq9crY">Dr.D’s curated data sets</a></li>
 <li>Other?</li>
 </ul>
+<p>Sources not allowed:</p>
+<ul>
+<li><span class="emoji" data-emoji="x">❌</span> Kaggle</li>
+<li><span class="emoji" data-emoji="x">❌</span> UCI (or any other) Machine learning repository</li>
+</ul>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -308,16 +325,23 @@ Criteria for choosing a data set
 <li>File size is less than 1 Gig</li>
 <li>A codebook or data dictionary that fully explains what each variable means is available.</li>
 <li>There are at least 200 rows (observations), but ideally between 500-1000.</li>
-<li>There are 20 or more variables
+<li>There are 10 or more unique and interesting variables
 <ul>
 <li>At least 4 quantitative variables</li>
-<li>At least 4 categorical variable</li>
+<li>Variables are not functions of each other (e.g.&nbsp;weight in lbs and weight in kg)</li>
 </ul></li>
 </ul>
 </div>
 </div>
-<p>Download <a href="https://math615.netlify.app/hw/_templates/project_stage1_template.qmd">this quarto template</a> and save it in your <code>projects</code> folder. Answer the following questions in the template, render to PDF and upload it, and a copy of the data to Canvas by the due date.<br>
-1. What is the data set you are interested in analyzing? 2. How many observations (rows) and variables (columns) does it contain? 3. What is the URL where you got the data from? 4. Why are you interested in this topic? 5. What do you think you want to “ask” of the data? 6. Include a screenshot of proof that there is 4 quantitative and 4 categorical variables.</p>
+<p>Your data set must be approved before you are allowed to work with it. Use this <a href="https://forms.gle/TmhHaJ6PX5X9qx1C7">submission link</a> to upload the data (a sample or a codebook will also be sufficient) and tell me a little about it. Questions you should be prepared to answer:</p>
+<ol type="1">
+<li>What is the data set you are interested in analyzing?</li>
+<li>How many observations (rows) and variables (columns) does it contain?</li>
+<li>Where did you get it from?</li>
+<li>Why are you interested in this topic?</li>
+<li>What do you think you want to research with this data?</li>
+</ol>
+<p>The sooner your data is approved the sooner you can work with it!</p>
 </section>
 <section id="stage-2-introduce-your-research-question-and-variables-of-interest" class="level3">
 <h3 class="anchored" data-anchor-id="stage-2-introduce-your-research-question-and-variables-of-interest">Stage 2: Introduce your research question and variables of interest</h3>

@@ -21,15 +21,18 @@ website:
   navbar: 
     pinned: true
     background: "#654378"
-    left: 
-      - text: "Topics"
-        file: topics.qmd
-      - text: "Slides"
-        file: slides.qmd
-      - text: "Assignments"
-        file: hw.qmd
-      - text: "Google Drive"
-        href: https://drive.google.com/drive/folders/1f9oKqswqB0wo1I957xFW6yjhIt2FRhwr
+    left:
+      - text: "Overview"
+        file: modules.qmd
+      - text: "All Materials"
+        menu:
+        - text: "Topics"
+          file: topics.qmd
+        - text: "Slides"
+          file: slides.qmd
+        - text: "Assignments"
+          file: hw.qmd
+
       - text: "Research Project"
         menu:
         - text: "Overview and Information"
@@ -38,6 +41,8 @@ website:
           file: author_guide.qmd
         
     right: 
+      - icon: google
+        href: https://drive.google.com/drive/folders/1f9oKqswqB0wo1I957xFW6yjhIt2FRhwr
       - text: "Reference Texts"
         menu: 
           - text: "Applied Stats Notebook"
@@ -46,7 +51,7 @@ website:
             href: "https://openintro-ims.netlify.app/"
           - icon: google
       - syllabus.qmd
-      - text: "How do I...?"
+      - text: "Help"
         href: help.qmd
 
 from: markdown+emoji
