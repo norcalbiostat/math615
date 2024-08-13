@@ -21,7 +21,7 @@ knitr:
       width: 200
 ---
 
-# Bivariate: Association between 2 variables
+# Bivariate Association between 2 variables
 
 ## Naming conventions
 
@@ -47,7 +47,7 @@ Model notation: $y \sim x$
 
 ```{r}
 #| code-fold: false
-library(tidyverse); library(ggpubr)
+library(tidyverse); library(ggpubr); library(gtsummary)
 library(palmerpenguins);  library(sjPlot)
 pen <- penguins
 ```
@@ -77,6 +77,7 @@ table(pen$species, pen$island) |>
 
 -   All of the 52 penguins on Torgersen island are the *Adelie* species.
 -   74% of penguins on Biscoe island are *Gentoo*.
+
 
 ### Plots
 
@@ -125,6 +126,28 @@ table(pen$species, pen$island) |>
 :::
 :::
 
+
+### gtsummary
+
+::: columns
+::: {.column width="50%"}
+Distribution of Islands within each species
+```{r}
+pen %>% select(island, species) %>%
+  tbl_summary(by = "species")
+```
+:::
+
+::: {.column width="50%"}
+Distribution of Species on each Island
+```{r}
+pen %>% select(island, species) %>%
+  tbl_summary(by = "island")
+```
+:::
+:::
+
+
 ### Plots
 
 ::: columns
@@ -161,13 +184,14 @@ Quantitative Response vs Categorical Explanatory
 ::: panel-tabset
 ### Grouped summary statistics
 
-Mean, median, sd, IQR of the quantitative variable for each level of the categorical level.
+n, nean, median, sd, IQR of the quantitative variable for each level of the categorical level.
 
 ```{r}
 #| echo: true
 #| eval: false
 pen %>% group_by(species) %>% 
-  summarize(mean = mean(bill_depth_mm, na.rm = TRUE), 
+  summarize(n=n(), 
+            mean = mean(bill_depth_mm, na.rm = TRUE), 
             median = median(bill_depth_mm, na.rm = TRUE), 
             sd = sd(bill_depth_mm, na.rm = TRUE), 
             IQR = IQR(bill_depth_mm, na.rm = TRUE))
@@ -210,13 +234,30 @@ ggviolin(pen,
 :::
 
 The distribution of bill depth are fairly normal for each species, with some higher end values causing a slight right skew for Adelie and Gentoo.
+
+### Plot2
+More code but nice alternative to violins. 
+```{r}
+library(ggdist) # for the "half-violin" plot (stat_slab)
+ggplot(pen, aes(x=bill_depth_mm, y=species, fill=species)) + 
+      stat_slab(alpha=.5, justification = 0) + 
+      geom_boxplot(width = .2,  outlier.shape = NA) + 
+      geom_jitter(alpha = 0.5, height = 0.05) +
+      stat_summary(fun="mean", geom="point", col="red", size=4, pch=17) + 
+      theme_bw() + 
+      labs(x="Bill depth (mm)", y = "Species") + 
+      theme(legend.position = "none")
+```
+
+
+
 :::
 
 ## Q \~ Q {.smaller}
 Quantitative Response vs Quantitative Explanatory 
 
 ::: panel-tabset
-### Summary statistic
+### Summary statistic 
 
 ```{r}
 #| echo: true
@@ -224,7 +265,13 @@ cor(pen$flipper_length_mm, pen$body_mass_g,
     use="pairwise.complete.obs")
 ```
 
-The penguin flipper length (mm) has a strong positive correlation with body mass (g), r=0.87
+The correlation coefficient $r$ is a measure of the strength and direction of a linear relationship between two variables. 
+
+-   $|r| > 0.6$ Strong relationship
+-   $0.4 \leq |r| < 0.6$ Moderate relationship
+-   $|r| < 0.4$ Weak to no relationship
+
+Note: These values are guidelines and subject to variability within different disciplines [ref](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6107969/)
 
 ### Plots
 
@@ -248,4 +295,11 @@ ggscatter(pen,
 
 <small> The relationship between flipper length and body mass in penguins is relatively linear, but there may be possible clustering on a third variable. There appears to be two groups below and above a flipper length of about 205mm. </small>
 :::
+
+### Description
+
+Must include the `direction` (positive or negative), the `strength` quantified using $r$, and the form (linear vs non-linear)
+
+> The penguin flipper length (mm) has a strong, positive, and reasonably linear correlation with body mass (g), r=0.87.
+
 :::

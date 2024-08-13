@@ -6,7 +6,12 @@ subtitle: "First step in investigating a question about an association" # sub ti
 ```{r}
 library(pander)
 source("common_code.R")
-this_topic <- topic_mats %>% filter(grepl("t05", topic))
+this_topic <- topic_mats %>% 
+  filter(Order %/% 1 == 5, 
+         !grepl("PROJECT", Topic))
+
+header <- this_topic[1,]
+content <- this_topic[-1,]
 ```
 
 ## Learning Path
@@ -17,13 +22,13 @@ this_topic <- topic_mats %>% filter(grepl("t05", topic))
 * Starting to describe our project data
 
 ### Where we're at
-* Ready to visualize associations between multiple variables. 
+* Ready to visualize and describe associations between multiple variables. 
 
 
 ### Objectives
 
 ```{r}
-create_tabled_list(this_topic$topic_obj)
+create_tabled_list(header$topic_obj)
 ```
 
 
@@ -32,24 +37,25 @@ create_tabled_list(this_topic$topic_obj)
 {{< fa person-chalkboard >}}  **Slides (Will open in full screen. Right click to open in a new tab)**
 
 ```{r}
-create_tabled_list(this_topic$slides)
+create_tabled_list(content$Slides)
 ```
 
 :books:  **Reading** 
 
 ```{r}
-create_tabled_list(this_topic$reading)
+create_tabled_list(content$Reading)
 ```
 
-## Assignments
+
+## :pencil: Active Learning
 
 ```{r}
-create_tabled_list(this_topic$assignment)
+create_tabled_list(content$Activities)
 ```
 
 ## Assessment
 
 ```{r}
-create_tabled_list(this_topic$quiz)
+create_tabled_list(content$Assess)
 ```
 
