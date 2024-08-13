@@ -662,7 +662,7 @@
     "href": "topics.html",
     "title": "Topics",
     "section": "",
-    "text": "This is the place to start to find all content related to a module.\n\n\n\n\n\n\n\n\n\nTopic\n\n\nDescription\n\n\n\n\n\n\nWelcome to Fall 24\n\n\nIntroduction to class and your learning materials\n\n\n\n\nData Architecture\n\n\nData entry, spreadsheets, metadata, codebooks\n\n\n\n\nFormulating research questions\n\n\nAsking questions is easy. Asking answerable questions is more difficult.\n\n\n\n\nPreparing Data for Analysis\n\n\nWhere an inordinate amount of time is spent\n\n\n\n\n\nNo matching items"
+    "text": "This is the place to start to find all content related to a module.\n\n\n\n\n\n\n\n\n\nTopic\n\n\nDescription\n\n\n\n\n\n\nWelcome to Fall 24\n\n\nIntroduction to class and your learning materials\n\n\n\n\nData Architecture\n\n\nData entry, spreadsheets, metadata, codebooks\n\n\n\n\nFormulating research questions\n\n\nAsking questions is easy. Asking answerable questions is more difficult.\n\n\n\n\nPreparing Data for Analysis\n\n\nWhere an inordinate amount of time is spent\n\n\n\n\nDescribing distributions of data\n\n\nVisualizing your data is the first line of defense against bad data\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "hw/hw02-rq_formulation.html",
@@ -1208,7 +1208,7 @@
     "href": "slides/lec04-describing_distributions.html#choosing-appropriate-visualization",
     "title": "Describing Distributions of Data",
     "section": "Choosing Appropriate Visualization",
-    "text": "Choosing Appropriate Visualization\n75% of your choice is determined by the data type\nhttps://r-graph-gallery.com/"
+    "text": "Choosing Appropriate Visualization\n75% of your choice is determined by the data type"
   },
   {
     "objectID": "slides/lec04-describing_distributions.html#meet-the-palmer-penguins",
@@ -1229,7 +1229,7 @@
     "href": "slides/lec04-describing_distributions.html#single-numeric",
     "title": "Describing Distributions of Data",
     "section": "Single Numeric",
-    "text": "Single Numeric\n\nCenterSpreadPlotsDescription\n\n\n\n\nShow the code\nsummary(pen$bill_depth_mm)\n\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's \n  13.10   15.60   17.30   17.15   18.70   21.50       2 \n\n\nShow the code\nsd(pen$bill_depth_mm, na.rm=TRUE)\n\n\n[1] 1.974793\n\n\n\n\nThe average bill depth is 17.15mm, with a standard deviation of 1.9mm.\n\n\n\n\nShow the code\nsummary(pen$bill_depth_mm)\n\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's \n  13.10   15.60   17.30   17.15   18.70   21.50       2 \n\n\nShow the code\nIQR(pen$bill_depth_mm, na.rm=TRUE)\n\n\n[1] 3.1\n\n\n\n\nBill depth ranges from 13.1 to 21.5mm, and has an IQR of 3.1mm.\n\n\n\n\n\n\nShow the code\nggpubr::gghistogram(pen$bill_depth_mm, add_density = TRUE)\n\n\n\n\n\n\n\n\n\n\n\n\nShow the code\nggpubr::ggviolin(pen$bill_depth_mm, add = c(\"jitter\", \"boxplot\")) + coord_flip()\n\n\n\n\n\n\n\n\n\n\n\nThe distribution of bill depth appears to be bimodal with peaks around 15 and 18mm.\n\n\n\nMust include a description of center, shape and spread.\nInclude numbers\nAlways in context of the problem\n\n\nThe average penguin bill depth is 17.15mm, with a standard deviation of 1.9mm. Ranging from 13.1 to 21.5mm, there is a bimodal pattern with peaks around 15 and 18mm but otherwise no skew is noted."
+    "text": "Single Numeric\n\nCenterSpreadBase R PlotsggpubRDescription\n\n\n\n\nShow the code\nsummary(pen$bill_depth_mm)\n\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's \n  13.10   15.60   17.30   17.15   18.70   21.50       2 \n\n\nShow the code\nsd(pen$bill_depth_mm, na.rm=TRUE)\n\n\n[1] 1.974793\n\n\n\n\nThe average bill depth is 17.15mm, with a standard deviation of 1.9mm.\n\n\n\n\nShow the code\nsummary(pen$bill_depth_mm)\n\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's \n  13.10   15.60   17.30   17.15   18.70   21.50       2 \n\n\nShow the code\nIQR(pen$bill_depth_mm, na.rm=TRUE)\n\n\n[1] 3.1\n\n\n\n\nBill depth ranges from 13.1 to 21.5mm, and has an IQR of 3.1mm.\n\n\n\n\n\n\nShow the code\nhist(pen$bill_depth_mm)\n\n\n\n\n\n\n\n\n\n\n\n\nShow the code\nboxplot(pen$bill_depth_mm)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nShow the code\nggpubr::gghistogram(pen$bill_depth_mm, add_density = TRUE)\n\n\n\n\n\n\n\n\n\n\n\n\nShow the code\nggpubr::ggviolin(pen$bill_depth_mm, add = c(\"jitter\", \"boxplot\")) + coord_flip()\n\n\n\n\n\n\n\n\n\n\n\nThe distribution of bill depth appears to be bimodal with peaks around 15 and 18mm.\n\n\n\nMust include a description of center, shape and spread.\nInclude numbers\nAlways in context of the problem\n\n\nThe average penguin bill depth is 17.15mm, with a standard deviation of 1.9mm. Ranging from 13.1 to 21.5mm, there is a bimodal pattern with peaks around 15 and 18mm but otherwise no skew is noted and no outliers are present."
   },
   {
     "objectID": "slides/lec04-describing_distributions.html#how-to-create-graphs",
@@ -1468,5 +1468,61 @@
     "title": "Formulating research questions",
     "section": "Assessment",
     "text": "Assessment\n\n\n\n\n\n\n\n\nItems"
+  },
+  {
+    "objectID": "slides/lec04-describing_distributions.html#additional-materials",
+    "href": "slides/lec04-describing_distributions.html#additional-materials",
+    "title": "Describing Distributions of Data",
+    "section": "Additional Materials",
+    "text": "Additional Materials\n\nPMA6 Chapter 4\nApplied Stats course Notes Chapter 2\nsjPlot vignette: https://strengejacke.github.io/sjPlot/index.html\nggpubr vignette: https://rpkgs.datanovia.com/ggpubr/\nggplot vignette: https://ggplot2.tidyverse.org/index.html\nR graphics cookbook: https://r-graphics.org/"
+  },
+  {
+    "objectID": "slides/lec04-describing_distributions.html#inspiration",
+    "href": "slides/lec04-describing_distributions.html#inspiration",
+    "title": "Describing Distributions of Data",
+    "section": "Inspiration",
+    "text": "Inspiration\n\nhttps://r-graph-gallery.com/\n\n\n\n\n🔗 https://math615.netlify.app / Describing Distributions of Data"
+  },
+  {
+    "objectID": "topics/t04-describing_distributions.html",
+    "href": "topics/t04-describing_distributions.html",
+    "title": "Describing distributions of data",
+    "section": "",
+    "text": "Importing & starting to wrangle our data\n\n\n\nReady to visualize and learn characteristics of our data.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\nCreate appropriate summary statistics\n\n\nCreate appropriate data visualizations\n\n\nDescribe the distributions of data in complete sentences"
+  },
+  {
+    "objectID": "topics/t04-describing_distributions.html#learning-path",
+    "href": "topics/t04-describing_distributions.html#learning-path",
+    "title": "Describing distributions of data",
+    "section": "",
+    "text": "Importing & starting to wrangle our data\n\n\n\nReady to visualize and learn characteristics of our data.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\nCreate appropriate summary statistics\n\n\nCreate appropriate data visualizations\n\n\nDescribe the distributions of data in complete sentences"
+  },
+  {
+    "objectID": "topics/t04-describing_distributions.html#preparation",
+    "href": "topics/t04-describing_distributions.html#preparation",
+    "title": "Describing distributions of data",
+    "section": "Preparation",
+    "text": "Preparation\nA basic statistics class is a pre-requisite for this class. Ideally this was within the last 4-5 years, but I recognize not all learning paths are ideal. If you are rusty on descriptive statistics such as mean, median, skewness, standard deviation and variance, how to read boxplots, histograms and the IQR rule then I highly recommend that you review IMS Chapter 5.\nThe quiz for this topic includes topics that are not directly lectured on but are considered critical knowledge and are included in either PMA6 Ch 4 or IMS Ch 5."
+  },
+  {
+    "objectID": "topics/t04-describing_distributions.html#learning-materials",
+    "href": "topics/t04-describing_distributions.html#learning-materials",
+    "title": "Describing distributions of data",
+    "section": "Learning Materials",
+    "text": "Learning Materials\n{{&lt; fa person-chalkboard &gt;}} Slides (Will open in full screen. Right click to open in a new tab)\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\nlec04-describing_distributions\n\n\n\n\n\n\n\n📚 Reading\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\nPMA6 Ch 4\n\n\nASCN Ch 2.3"
+  },
+  {
+    "objectID": "topics/t04-describing_distributions.html#active-learning",
+    "href": "topics/t04-describing_distributions.html#active-learning",
+    "title": "Describing distributions of data",
+    "section": "📝 Active Learning",
+    "text": "📝 Active Learning\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\nHW04 Describing Distributions"
+  },
+  {
+    "objectID": "topics/t04-describing_distributions.html#assessment",
+    "href": "topics/t04-describing_distributions.html#assessment",
+    "title": "Describing distributions of data",
+    "section": "Assessment",
+    "text": "Assessment\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\nQuiz 03"
   }
 ]

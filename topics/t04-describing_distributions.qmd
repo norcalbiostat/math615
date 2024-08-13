@@ -1,0 +1,66 @@
+---
+title: "Describing distributions of data" # title 
+subtitle: "Visualizing your data is the first line of defense against bad data" # sub title
+---
+
+```{r}
+library(pander)
+source("common_code.R")
+this_topic <- topic_mats %>% 
+  filter(Order %/% 1 == 4, 
+         !grepl("PROJECT", Topic))
+
+header <- this_topic[1,]
+content <- this_topic[-1,]
+```
+
+## Learning Path
+
+### Where we've been
+Importing & starting to wrangle our data
+
+### Where we're at
+Ready to visualize and learn characteristics of our data. 
+
+
+### Objectives
+
+```{r}
+create_tabled_list(header$topic_obj)
+```
+
+## Preparation 
+
+A basic statistics class is a pre-requisite for this class. Ideally this was within the last 4-5 years, but I recognize not all learning paths are ideal. 
+If you are rusty on descriptive statistics such as mean, median, skewness, standard deviation and variance, how to read boxplots, histograms and the IQR rule then I highly recommend that you review [IMS Chapter 5](https://openintro-ims.netlify.app/explore-numerical). 
+
+The quiz for this topic includes topics that are not directly lectured on but are considered critical knowledge and are included in either PMA6 Ch 4 or IMS Ch 5. 
+
+
+## Learning Materials
+
+{{< fa person-chalkboard >}}  **Slides (Will open in full screen. Right click to open in a new tab)**
+
+```{r}
+create_tabled_list(content$Slides)
+```
+
+:books:  **Reading** 
+
+```{r}
+create_tabled_list(content$Reading)
+```
+
+
+## :pencil: Active Learning
+
+```{r}
+create_tabled_list(content$Activities)
+```
+
+## Assessment
+
+```{r}
+create_tabled_list(content$Assess)
+```
+

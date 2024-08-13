@@ -56,7 +56,6 @@ Along with having the audience in mind, it is important to give thought to the p
 
 75% of your choice is determined by the data type
 
-[https://r-graph-gallery.com/](https://r-graph-gallery.com/)
 
 #  {background-image="images/penguins.png" background-size="50%"}
 ## Meet the Palmer Penguins
@@ -122,8 +121,26 @@ IQR(pen$bill_depth_mm, na.rm=TRUE)
 
 Bill depth ranges from 13.1 to 21.5mm, and has an IQR of 3.1mm.
 
+### Base R Plots
 
-### Plots
+:::: {.columns}
+
+::: {.column width="50%"}
+```{r}
+hist(pen$bill_depth_mm)
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+boxplot(pen$bill_depth_mm)
+```
+
+:::
+
+::::
+
+### ggpubR
 
 :::: {.columns}
 
@@ -146,13 +163,15 @@ ggpubr::ggviolin(pen$bill_depth_mm, add = c("jitter", "boxplot")) + coord_flip()
 
 The distribution of bill depth appears to be bimodal with peaks around 15 and 18mm. 
 
+
+
 ### Description
 
 * Must include a description of `center`, `shape` and `spread`. 
 * Include numbers
 * Always in context of the problem
 
-> The average penguin bill depth is 17.15mm, with a standard deviation of 1.9mm. Ranging from 13.1 to 21.5mm, there is a bimodal pattern with peaks around 15 and 18mm but otherwise no skew is noted. 
+> The average penguin bill depth is 17.15mm, with a standard deviation of 1.9mm. Ranging from 13.1 to 21.5mm, there is a bimodal pattern with peaks around 15 and 18mm but otherwise no skew is noted and no outliers are present. 
 
 
 :::
@@ -165,12 +184,15 @@ The distribution of bill depth appears to be bimodal with peaks around 15 and 18
 * Keep graphs simple until you get more comfortable. 
 
 
-## References
+## Additional Materials
 
-* PMA6 Chapter 4 for appropriate plot choices
-* Applied Stats course Notes Chapter 2.3 for examples and code
-* R specific help on the [Math 130](https://norcalbiostat.github.io/MATH130/faq.html) class page
+* PMA6 Chapter 4 
+* Applied Stats course Notes Chapter 2
 * `sjPlot` vignette: https://strengejacke.github.io/sjPlot/index.html
 * `ggpubr` vignette: https://rpkgs.datanovia.com/ggpubr/
 * `ggplot` vignette: https://ggplot2.tidyverse.org/index.html
 * R graphics cookbook: https://r-graphics.org/ 
+
+## Inspiration
+
+* [https://r-graph-gallery.com/](https://r-graph-gallery.com/)
