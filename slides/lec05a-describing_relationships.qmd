@@ -1,7 +1,9 @@
 ---
 title: "Describing Relationships between variables"
 date: "2024-09-23"
+description: "lec05a"
 author: "Robin Donatello"
+footer: "[🔗 https://math615.netlify.app](https://math615.netlify.app) / Describing Relationships"
 from: markdown+emoji
 format: 
   revealjs:
@@ -199,7 +201,8 @@ pen %>% group_by(species) %>%
 
 ```{r}
 pen %>% group_by(species) %>% 
-  summarize(mean   = mean(bill_depth_mm, na.rm = TRUE), 
+  summarize(n=n(), 
+            mean   = mean(bill_depth_mm, na.rm = TRUE), 
             median = median(bill_depth_mm, na.rm = TRUE), 
             sd     = sd(bill_depth_mm, na.rm = TRUE), 
             IQR    = IQR(bill_depth_mm, na.rm = TRUE))

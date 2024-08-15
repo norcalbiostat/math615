@@ -42,6 +42,8 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -79,7 +81,7 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-date','listing-title',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
+      valueNames: ['listing-date','listing-description','listing-title',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
       
       searchColumns: ["listing-date","listing-title","listing-author"],
     };
@@ -259,7 +261,7 @@ window.Quarto = {
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-{{&lt; fa person-chalkboard &gt;}} Slides will open in full screen. Right click to open in a new tab
+<i class="fa-solid fa-person-chalkboard" aria-label="person-chalkboard"></i> Slides will open in full screen. Right click to open in a new tab
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -278,97 +280,133 @@ window.Quarto = {
 Date
 </th>
 <th>
+Lec #
+</th>
+<th>
 Topic
 </th>
 </tr>
 </thead>
 <tbody class="list">
-<tr data-index="0" data-listing-date-sort="1696057200000" data-listing-file-modified-sort="1723266516823" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="458" data-listing-title-sort="Statistical Inference with Randomization" data-listing-filename-sort="lec06a-statistical_inference_with_randomization.qmd">
+<tr data-index="0" data-listing-date-sort="1728284400000" data-listing-file-modified-sort="1723702995253" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1435" data-listing-title-sort="Statistical Inference using Models" data-listing-filename-sort="lec06b-statistical_inference_with_models.qmd">
 <td>
-<span class="listing-date">Sep 30, 2023</span>
+<span class="listing-date">Oct 7, 2024</span>
 </td>
 <td>
-<a href="./slides/lec06a-statistical_inference_with_randomization.html" class="title listing-title">Statistical Inference with Randomization</a>
+<span class="listing-description">With a partner, go play with the Central Limit Theorem interactive explorer for about 15 minutes. Take notes and be prepared to share out what you learned/your take away…</span>
+</td>
+<td>
+<a href="./slides/lec06b-statistical_inference_with_models.html" class="title listing-title">Statistical Inference using Models</a>
 </td>
 </tr>
-<tr data-index="1" data-listing-date-sort="1724655600000" data-listing-file-modified-sort="1723418437052" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="946" data-listing-title-sort="Welcome to MATH 615" data-listing-filename-sort="lec00a-welcome.qmd">
+<tr data-index="1" data-listing-date-sort="1724655600000" data-listing-file-modified-sort="1723686442720" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="946" data-listing-title-sort="Welcome to MATH 615" data-listing-filename-sort="lec00a-welcome.qmd">
 <td>
 <span class="listing-date">Aug 26, 2024</span>
+</td>
+<td>
+<span class="listing-description">lec00a</span>
 </td>
 <td>
 <a href="./slides/lec00a-welcome.html" class="title listing-title">Welcome to MATH 615</a>
 </td>
 </tr>
-<tr data-index="2" data-listing-date-sort="1724655600000" data-listing-file-modified-sort="1723266077175" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="638" data-listing-title-sort="Data Architecture" data-listing-filename-sort="lec01-data_arch.qmd">
+<tr data-index="2" data-listing-date-sort="1724655600000" data-listing-file-modified-sort="1723686442731" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="548" data-listing-title-sort="MATH 615 Course Tools" data-listing-filename-sort="lec00b-course-tools.qmd">
 <td>
 <span class="listing-date">Aug 26, 2024</span>
 </td>
 <td>
-<a href="./slides/lec01-data_arch.html" class="title listing-title">Data Architecture</a>
-</td>
-</tr>
-<tr data-index="3" data-listing-date-sort="1724655600000" data-listing-file-modified-sort="1723419174814" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="548" data-listing-title-sort="MATH 615 Course Tools" data-listing-filename-sort="lec00b-course-tools.qmd">
-<td>
-<span class="listing-date">Aug 26, 2024</span>
+<span class="listing-description">lec00b</span>
 </td>
 <td>
 <a href="./slides/lec00b-course-tools.html" class="title listing-title">MATH 615 Course Tools</a>
 </td>
 </tr>
-<tr data-index="4" data-listing-date-sort="1725433200000" data-listing-file-modified-sort="1723266077193" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="251" data-listing-title-sort="Formulating research questions" data-listing-filename-sort="lec02-asking_q.qmd">
+<tr data-index="3" data-listing-date-sort="1724655600000" data-listing-file-modified-sort="1723686472319" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="638" data-listing-title-sort="Data Architecture" data-listing-filename-sort="lec01-data_arch.qmd">
+<td>
+<span class="listing-date">Aug 26, 2024</span>
+</td>
+<td>
+<span class="listing-description">lec01</span>
+</td>
+<td>
+<a href="./slides/lec01-data_arch.html" class="title listing-title">Data Architecture</a>
+</td>
+</tr>
+<tr data-index="4" data-listing-date-sort="1725433200000" data-listing-file-modified-sort="1723686811612" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="251" data-listing-title-sort="Formulating research questions" data-listing-filename-sort="lec02-asking_q.qmd">
 <td>
 <span class="listing-date">Sep 4, 2024</span>
+</td>
+<td>
+<span class="listing-description">lec02</span>
 </td>
 <td>
 <a href="./slides/lec02-asking_q.html" class="title listing-title">Formulating research questions</a>
 </td>
 </tr>
-<tr data-index="5" data-listing-date-sort="1725865200000" data-listing-file-modified-sort="1723439930710" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="619" data-listing-title-sort="Workflows for Reproducibility" data-listing-filename-sort="lec03a-workflow.qmd">
+<tr data-index="5" data-listing-date-sort="1725865200000" data-listing-file-modified-sort="1723686811629" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="619" data-listing-title-sort="Workflows for Reproducibility" data-listing-filename-sort="lec03a-workflow.qmd">
 <td>
 <span class="listing-date">Sep 9, 2024</span>
+</td>
+<td>
+<span class="listing-description">lec03a</span>
 </td>
 <td>
 <a href="./slides/lec03a-workflow.html" class="title listing-title">Workflows for Reproducibility</a>
 </td>
 </tr>
-<tr data-index="6" data-listing-date-sort="1726038000000" data-listing-file-modified-sort="1723440171351" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1046" data-listing-title-sort="Preparing your data for analysis" data-listing-filename-sort="lec03b-data_prep.qmd">
+<tr data-index="6" data-listing-date-sort="1726038000000" data-listing-file-modified-sort="1723686811648" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1046" data-listing-title-sort="Preparing your data for analysis" data-listing-filename-sort="lec03b-data_prep.qmd">
 <td>
 <span class="listing-date">Sep 11, 2024</span>
+</td>
+<td>
+<span class="listing-description">lec03b</span>
 </td>
 <td>
 <a href="./slides/lec03b-data_prep.html" class="title listing-title">Preparing your data for analysis</a>
 </td>
 </tr>
-<tr data-index="7" data-listing-date-sort="1726470000000" data-listing-file-modified-sort="1723526751936" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="626" data-listing-title-sort="Describing Distributions of Data" data-listing-filename-sort="lec04-describing_distributions.qmd">
+<tr data-index="7" data-listing-date-sort="1726470000000" data-listing-file-modified-sort="1723686811665" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="626" data-listing-title-sort="Describing Distributions of Data" data-listing-filename-sort="lec04-describing_distributions.qmd">
 <td>
 <span class="listing-date">Sep 16, 2024</span>
+</td>
+<td>
+<span class="listing-description">lec04</span>
 </td>
 <td>
 <a href="./slides/lec04-describing_distributions.html" class="title listing-title">Describing Distributions of Data</a>
 </td>
 </tr>
-<tr data-index="8" data-listing-date-sort="1727074800000" data-listing-file-modified-sort="1723528471444" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1052" data-listing-title-sort="Describing Relationships between variables" data-listing-filename-sort="lec05a-describing_relationships.qmd">
+<tr data-index="8" data-listing-date-sort="1727074800000" data-listing-file-modified-sort="1723686811683" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1065" data-listing-title-sort="Describing Relationships between variables" data-listing-filename-sort="lec05a-describing_relationships.qmd">
 <td>
 <span class="listing-date">Sep 23, 2024</span>
+</td>
+<td>
+<span class="listing-description">lec05a</span>
 </td>
 <td>
 <a href="./slides/lec05a-describing_relationships.html" class="title listing-title">Describing Relationships between variables</a>
 </td>
 </tr>
-<tr data-index="9" data-listing-date-sort="1727679600000" data-listing-file-modified-sort="1723266114604" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="375" data-listing-title-sort="Best practices in Data Visualization" data-listing-filename-sort="lec05b-data_viz_bestpractice.qmd">
+<tr data-index="9" data-listing-date-sort="1727679600000" data-listing-file-modified-sort="1723686811700" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="400" data-listing-title-sort="Best practices in Data Visualization" data-listing-filename-sort="lec05b-data_viz_bestpractice.qmd">
 <td>
 <span class="listing-date">Sep 30, 2024</span>
+</td>
+<td>
+<span class="listing-description">lec05b</span>
 </td>
 <td>
 <a href="./slides/lec05b-data_viz_bestpractice.html" class="title listing-title">Best practices in Data Visualization</a>
 </td>
 </tr>
-<tr data-index="10" data-listing-date-sort="1728284400000" data-listing-file-modified-sort="1723266534577" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1166" data-listing-title-sort="Statistical Inference using Models" data-listing-filename-sort="lec06b-statistical_inference_with_models.qmd">
+<tr data-index="10" data-listing-date-sort="1727852400000" data-listing-file-modified-sort="1723698296006" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1162" data-listing-title-sort="Statistical Inference with Randomization" data-listing-filename-sort="lec06a-statistical_inference_with_randomization.qmd">
 <td>
-<span class="listing-date">Oct 7, 2024</span>
+<span class="listing-date">Oct 2, 2024</span>
 </td>
 <td>
-<a href="./slides/lec06b-statistical_inference_with_models.html" class="title listing-title">Statistical Inference using Models</a>
+<span class="listing-description">lec06</span>
+</td>
+<td>
+<a href="./slides/lec06a-statistical_inference_with_randomization.html" class="title listing-title">Statistical Inference with Randomization</a>
 </td>
 </tr>
 </tbody>

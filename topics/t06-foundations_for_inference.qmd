@@ -1,0 +1,83 @@
+---
+title: "Foundations for Statistical Inference" # title 
+subtitle: "Study Design, Inference using randomization and the Normal Model" # sub title
+---
+
+
+```{r}
+source("common_code.R")
+this_topic <- topic_mats %>% 
+  filter(Order %/% 1 == 6, 
+         !grepl("PROJECT", Topic))
+
+header <- this_topic[1,]
+content <- this_topic[-1,]
+```
+
+## Learning Path
+
+### Where we've been
+* Learning how to explore and visualize our data. 
+* Visually consider patterns, identify potential relationships
+
+### Where we're at
+* Think about how data come to be. That is, if the data are to be used to make broad and complete conclusions, then it is important to understand who or what the data represent. 
+    * Knowing how the observational units were selected will allow for generalizations back to the population from which the data were selected. 
+    * By understanding the structure of the study, causal relationships can be separated from those relationships which are only associated. 
+* Revisiting null value hypothesis testing (NVHT) from a randomization perspective
+* Revisiting the Normal distribution model, and getting a feel for how probability (and thus p-values) are calculated. 
+
+
+
+### Objectives
+
+```{r}
+create_tabled_list(header$topic_obj)
+```
+
+Outline & connected parts for the next 2 weeks
+
+* `M` Study design
+    * Jigsaw learning directly in collab notes in class
+    * Finish Part 1 of HW06 before Monday
+* `W` Statistical inference using randomization
+    * Case study (lec06a) activity 
+* `M` Statistical inference using mathematical models (lec06b)
+    * Sampling Distributions, LLN, CLT (in class activity)
+    * The Normal model (Calculating probabilities)
+* `W` Finish lec06b
+    * Interval estimates
+    * Hypothesis testing
+    
+## Learning Materials
+
+{{< fa person-chalkboard >}}  **Slides (Will open in full screen. Right click to open in a new tab)**
+
+```{r}
+create_tabled_list(content$Slides)
+```
+
+:books:  **Reading** 
+
+```{r}
+create_tabled_list(content$Reading)
+```
+
+
+## :pencil: Active Learning
+
+We will be using the [Jigsaw](https://en.wikipedia.org/wiki/Jigsaw_(teaching_technique)) technique, which is a method of [learning by teaching](https://en.wikipedia.org/wiki/Learning_by_teaching). You have been assigned (possibly with a partner) to read and summarize one section in the textbook. 
+
+```{r}
+create_tabled_list(content$Activities)
+```
+
+## Assessment
+
+```{r}
+create_tabled_list(content$Assess)
+```
+
+
+
+

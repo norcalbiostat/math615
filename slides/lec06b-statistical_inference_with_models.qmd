@@ -1,32 +1,78 @@
 ---
 title: "Statistical Inference using Models"
 date: "2024-10-07"
+author: "Robin Donatello"
+footer: "[🔗 https://math615.netlify.app](https://math615.netlify.app) / Stat Inference via Models"
+from: markdown+emoji
+format: 
+  revealjs:
+    theme: sky
+    transition: fade
+    slide-number: true
+    incremental: false 
+    chalkboard: true
+    title-slide-attributes:
+      data-background-image: images/paranormal.png
+      data-background-size: 25% 
+      data-background-position: bottom 50px right 50px
+execute:
+  freeze: auto
+  echo: true
+knitr:
+  opts_chunk: 
+    R.options:
+      width: 200
 ---
 
 
-## Refresher on the Normal Distribution 
 
-![](images/paranormal.png)
+## Warm up exercise
 
-## Describes Variability {.smaller}
+With a partner, go play with the Central Limit Theorem interactive explorer for about 15 minutes. Take notes and be prepared to share out what you learned/your take away message.  
 
-:::{layout-ncol=2}
-The normal distribution is used to describe the variability associated with sample statistics which are taken from either repeated samples or repeated experiments. The normal distribution is quite powerful in that it describes the variability of many different statistics such as the sample mean and sample proportions. 
+[https://mathisawesome.shinyapps.io/central-limit-theorem/](https://mathisawesome.shinyapps.io/central-limit-theorem/)
 
-<a href="https://twitter.com/RiddleMeCam/status/1557402268395139077?ref_src=twsrc%5Etfw">![](images/clt_twitter.png)</a>
+## Sampling Distributions
 
+Since _point estimates_ are numbers calculated on a sample, they are also _sample statistics_. Recall that sample statistics are used to estimate parameters, the true value of the quantity of interest from the population.
+
+As we just saw through simulation, point estimates are subject to _random variation_ because they are calculated on different random samples from the population. The distribution of repeatedly calculated point estimates based on the same fixed size $n$ from a population is called a _sampling distribution_. 
+
+
+## Mathematical theory guarantees {.smaller}
+
+* If repeated samples are taken, a point estimate will follow something that **resembles a normal distribution** when certain conditions are met. 
+    - _Note: we typically only take one sample, but the mathematical model lets us know what to expect if we had taken repeated samples_
+
+:::{.callout-important}
+#### Observations in the sample are independent.
+Guaranteed when we take a random sample from a population, or randomly divide individuals into treatment and control groups.
+:::
+    
+:::{.callout-important}
+#### The sample is large enough.
+What qualifies as “large enough” differs from one context to the next. If the population is already normally distributed and the formula to calculate the sample statistic simple, then fewer samples are needed. The "magic" number 30 gets thrown around a lot. 
 :::
 
-## Sampling Distribution Theory {.incremental}
+## The Normal Distribution {.smaller}
 
-Turn to a neighbor and discuss your answers to the following questions. We will share out to the class after each one. 
+:::: {.columns}
 
-* 👥 What is a Sampling Distribution? 
-* 👥 What does the Central Limit Theorem state? 
-* 👥 What assumptions are needed for the normal approximation (model) to provide valid inference?
+::: {.column width="50%"}
+The normal distribution is used to describe the variability associated with sample statistics which are taken from either repeated samples or repeated experiments. The normal distribution is quite powerful in that it describes the variability of many different statistics such as the sample mean and sample proportions. 
 
+Distributions of many variables are nearly normal, but none are exactly normal. While not perfect for any single problem, the Normal Distribution is very useful for a variety of problems.
+:::
+
+::: {.column width="50%"}
+<a href="https://twitter.com/RiddleMeCam/status/1557402268395139077?ref_src=twsrc%5Etfw">![](images/clt_twitter.png)</a>
+:::
+
+::::
 
 # The Normal Distribution
+
+> come back and expand here
 
 Board work following [IMS 13.2](https://openintro-ims.netlify.app/foundations-mathematical.html#normalDist)
 
@@ -41,34 +87,9 @@ Follows [IMS 13.3](https://openintro-ims.netlify.app/foundations-mathematical.ht
 
 ## 68-95-99.7 rule
 
-![](https://openintro-ims.netlify.app/13-foundations-mathematical_files/figure-html/er6895997-1.png)
+![](https://openintro-ims.netlify.app/foundations-mathematical_files/figure-html/fig-er6895997-1.png)
 
-## 
-:::{.callout-tip icon=false}
-### Example
-SAT scores closely follow $N\sim(1500, 90,000)$. 
-
-About what percent of test takers score 900 to 2100? 
-What percent score between 1500 and 2100?
-:::
-
-![](https://openintro-ims.netlify.app/13-foundations-mathematical_files/figure-html/er6895997-1.png)
-
-## 
-:::{.callout-tip icon=false}
-### Example
-SAT scores closely follow $N\sim(1500, 90,000)$. So $\sigma = 300$.
-
-About what percent of test takers score 900 to 2100? 
-What percent score between 1500 and 2100?
-:::
-
-* 900 has a z-score of -2, 1500 has a z-score of 0, 2100 has a z-score of 2
-
-```{r}
-#| code-fold: false
-pnorm(2100, mean=1500, sd = 300) - pnorm(900, mean=1500, sd = 300)
-```
+> to here
 
 
 ## Standard Error
@@ -89,6 +110,7 @@ Variability of the sample statistic (e.g. $\bar{x}$ or $\hat{p}$)
 :::{.callout-important}
 ### Definition: Margin of Error (MOE)
 The margin of error describes how far away observations are from their mean.
+> check this
 
 Often approximated as $2 * SE$
 :::
@@ -96,6 +118,13 @@ Often approximated as $2 * SE$
 * 95% of the observations are within one margin of error of the mean.
 * If the spread of the observations goes from some lower bound to some upper bound, a rough approximation of the $SE$ is to divide the range by 4. 
     - If you notice the sample proportions go from 0.1 to 0.4, the SE can be approximated to be 0.075.
+
+## Summary
+
+* Point estimates from a sample may be used to estimate population parameters. 
+* Point estimates are not exact: they vary from one sample to another. 
+* The standard error is the uncertainty of the sample statistic, and it gets smaller as you use more data to calculate the point estimate. 
+* As your standard error decreases, so does your margin of error
 
 # Case study: Stents
 
@@ -108,7 +137,7 @@ stent30 <- openintro::stent30
 ## Observed data {.smaller}
 
 Consider an experiment that examined whether implanting a stent in the brain of a patient at risk for a stroke helps reduce the risk of a stroke. The results from the first 30 days of this study are summarized in the following table.
-
+ 
 ::: columns
 ::: {.column width="50%"}
 ```{r}
@@ -158,7 +187,7 @@ We are 95% confident that implanting a stent in a stroke patient's brain increas
 
 :warning: it's incorrect to say that we can be 95% confident that the true value is inside the mean.
 
-![Figure 13.11: Twenty-five samples of size n=300 were collected from a population with p=0.30. For each sample, a confidence interval was created to try to capture the true proportion p. However, 1 of these 25 intervals did not capture p=0.30.](https://openintro-ims.netlify.app/13-foundations-mathematical_files/figure-html/95PercentConfidenceInterval-1.png)
+![Figure 13.11: Twenty-five samples of size n=300 were collected from a population with p=0.30. For each sample, a confidence interval was created to try to capture the true proportion p. However, 1 of these 25 intervals did not capture p=0.30.](https://openintro-ims.netlify.app/foundations-mathematical_files/figure-html/fig-95PercentConfidenceInterval-1.png)
 
 ## 
 
@@ -182,7 +211,7 @@ $H_{A}$: Stents reduce the risk of a stroke
 ## Hypothesis test
 
 ::: {.callout-note icon="false"}
-## Revision 1: 
+### Revision 1: 
 Making it a statement about two groups 
 :::
 
@@ -194,7 +223,7 @@ $H_{A}$: Patients who have a stent have lower risk of a stroke as patients who d
 ## Hypothesis test
 
 ::: {.callout-note icon="false"}
-## Revision 2: 
+### Revision 2: 
 Make it a statement using summary statistics and removing the directionality of the hypothesis
 :::
 
@@ -207,7 +236,7 @@ $H_{A}$: The proportion of patients with a stent who have a stroke is different 
 ## Hypothesis test
 
 ::: {.callout-note icon="false"}
-## Revision 3: 
+### Revision 3: 
 Writing it in symbols
 :::
 
@@ -222,7 +251,7 @@ $H_{A}: p_{trmt} \neq p_{ctrl}$
 ## Hypothesis test
 
 ::: {.callout-note icon="false"}
-## Revision 3.5: 
+### Revision 3.5: 
 
 Rewriting as a difference in parameters
 :::
@@ -234,6 +263,14 @@ Let $p_{1}$ be the proportion of patients with a stent who have a stroke, and $p
 $H_{0}: p_{trmt} - p_{ctrl} = 0$
 
 $H_{A}: p_{trmt} - p_{ctrl} \neq 0$
+
+## Using the Normal model
+
+* Now we have a statistic (difference in proportions $p_{trmt} - p_{ctrl}$) and a null value of 0 to compare it to. 
+
+* The conditions necessary to ensure the point estimate is nearly normal have been verified for you. 
+
+* The estimate’s standard error is $SE = 0.028$ has been calculated for you as well.  
 
 ## Calculating a test statistic 
 

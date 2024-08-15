@@ -10,11 +10,10 @@ execute:
 
 ## Purpose
 
-To understand the conceptual and mathematical foundations for statistical inference. 
+To understand the conceptual and mathematical foundations for conducting statistical inference. 
 
 
 ## Submission instructions
-
 
 * Download this [[QMD]](_templates/hw06-foundations_for_inference_template.qmd) file and use it to write your answers in. 
   - Right click and 'save as', put this in your `scripts` folder.
@@ -23,7 +22,7 @@ To understand the conceptual and mathematical foundations for statistical infere
 ----
 
 
-# Study Design (IMS Ch 2.5)
+# PART 1 - Study Design 
 
 :::{.callout-tip icon=true}
 ### CHOOSE 4 to answer. Delete the other questions from your submission
@@ -41,7 +40,7 @@ Identify which value represents the sample mean and which value represents the c
 
 
 
-### 6 Stealers, scope of inference. 
+### 2 Stealers, scope of inference. 
 
 In a study of the relationship between socio-economic class and unethical behavior, 129 University of California undergraduates at Berkeley were asked to identify themselves as having low or high social class by comparing themselves to others with the most (least) money, most (least) education, and most (least) respected jobs. They were also presented with a jar of individually wrapped candies and informed that the candies were for children in a nearby laboratory, but that they could take some if they wanted. After completing some unrelated tasks, participants reported the number of candies they had taken. It was found that those who were identified as upper-class took more candy than others. (Piff et al. 2012)
 
@@ -53,7 +52,7 @@ In a study of the relationship between socio-economic class and unethical behavi
 
 
 
-### 9 Course satisfaction across sections.
+### 3 Course satisfaction across sections.
 A large college class has 160 students. All 160 students attend the lectures together, but the students are divided into 4 groups, each of 40 students, for lab sections administered by different teaching assistants. The professor wants to conduct a survey about how satisfied the students are with the course, and he believes that the lab section a student is in might affect the student’s overall satisfaction with the course.
 
 **a. What type of study is this?**
@@ -63,7 +62,7 @@ A large college class has 160 students. All 160 students attend the lectures tog
 
 
 
-### 11 Internet use and life expectancy.
+### 4 Internet use and life expectancy.
 The scatterplot in the textbook was created as part of a study evaluating the relationship between estimated life expectancy at birth (as of 2014) and percentage of internet users (as of 2009) in 208 countries for which such data were available.
 
 **a. Describe the relationship between life expectancy and percentage of internet users.**
@@ -76,7 +75,7 @@ The scatterplot in the textbook was created as part of a study evaluating the re
 **c. State a possible confounding variable that might explain this relationship and describe its potential effect.**
 
 
-### 15 Haters are gonna hate, study confirms. 
+### 5 Haters are gonna hate, study confirms. 
 A study published in the Journal of Personality and Social Psychology asked a group of 200 randomly sampled participants recruited online using Amazon’s Mechanical Turk to evaluate how they felt about various subjects, such as camping, health care, architecture, taxidermy, crossword puzzles, and Japan in order to measure their attitude towards mostly independent stimuli. Then, they presented the participants with information about a new product: a microwave oven. This microwave oven does not exist, but the participants didn’t know this, and were given three positive and three negative fake reviews. People who reacted positively to the subjects on the dispositional attitude measurement also tended to react positively to the microwave oven, and those who reacted negatively tended to react negatively to it. Researchers concluded that “some people tend to like things, whereas others tend to dislike things, and a more thorough understanding of this tendency will lead to a more thorough understanding of the psychology of attitudes.” (Hepler and Albarracı́n 2013)
 
 **a. What are the cases?**
@@ -93,7 +92,7 @@ A study published in the Journal of Personality and Social Psychology asked a gr
 **e. Can the results of the study be generalized to the population at large?**
 
 
-### 18 Reading the paper 
+### 6 Reading the paper 
 Below are excerpts from two articles published in the NY Times:
 
 
@@ -105,7 +104,7 @@ Below are excerpts from two articles published in the NY Times:
 
 
 
-### 27. Flawed Reasoning 
+### 7. Flawed Reasoning 
 Identify the flaw(s) in reasoning in the following scenarios. Explain what the individuals in the study should have done differently if they wanted to make such strong conclusions.
 
 **a. Students at an elementary school are given a questionnaire that they are asked to return after their parents have completed it. One of the questions asked is, “Do you find that your work schedule makes it difficult for you to spend time with your kids after school?” Of the parents who replied, 85% said “no”. Based on these results, the school officials conclude that a great majority of the parents have no difficulty spending time with their kids after school.**
@@ -120,7 +119,7 @@ Identify the flaw(s) in reasoning in the following scenarios. Explain what the i
 
 
 
-# Sampling Distribution Theory (IMS Ch 13.1)
+# PART 2 - Sampling Distribution Theory (IMS Ch 13.1)
 
 Describe what a sampling distribution is, what the central limit theorem states, and what are the technical conditions that must be met to use the normal model for inference. 
 
@@ -141,8 +140,9 @@ Describe what a sampling distribution is, what the central limit theorem states,
 
 
 
-# The Normal Model (IMS 13.2)
+# PART 3 - The Normal Model (IMS 13.2)
 
+This section uses $\LaTeX$ math type. You can copy/paste the symbols from within this document, but do not copy/paste symbols from the internet or PDF webpages or you may likely have trouble when rendering. 
 
 ::: info
 **R commands for working with the Normal Model**
@@ -163,7 +163,7 @@ If $X \sim N(\mu, \sigma^{2})$, and $P$ means "the probability of"
 
 
 
-3. **What is a Z score? (in a sentence)**
+3. **Bonita computed a z-score after receiving the results of her exam in order to compare her results with the rest of the class. Her z-score was 2.1. Interpret her Z score in a sentence.**
 
 
 
@@ -171,37 +171,31 @@ If $X \sim N(\mu, \sigma^{2})$, and $P$ means "the probability of"
 
 
 
-5. **What does the area under the Normal distribution correspond to?**
+5. **Let $X$ be the head length of a brushtail possum, where $X \sim N(92.6, 3.6^{2})$ Use R to calculate the probability that a possum will have a head length lower than 85mm. That is, find $P(X < 85)$**.
 
 
 
-
-6. **Let $X$ be the head length of a brushtail possum, where $X \sim N(92.6, 3.6^{2})$ Use R to calculate the probability that a possum will have a head length lower than 85mm. That is, find $P(X < 85)$**.
-
-
-
-7. **Would you consider it to be unusual if you found a possum with a head smaller than 85mm? Explain your answer.**
+6. **Would you consider it to be unusual if you found a possum with a head smaller than 85mm? Explain your answer.**
 
 
 
-8. **Suppose test scores are distributed normally with mean of 115 and standard deviation of 15.**
+7. **A study found that the mean amount of time cars spent in drive-through of a certain fast-food restaurant was 154.6 seconds. Assume drive-through times are normally distributed with a standard deviation of 27 seconds**
 
-    a. **Let $X$ be the value of the test scores. Write the distributional notation for X.** 
+    a. **Define a random variable X in this context, and write it's distributional notation. Refer to problems 4 & 5 as examples.**
+
+    b. **What is the probability that someone spends more than 230 seconds in the drive through? Write this out as a probablity statement/equation before using R to solve**
+    
+    c. **How long do 75% of the cars typically have to wait in the drive through? (That is, what is the 75th percentile?)**
+
+    d. **Estimate the average wait time for 40 cars in this drive-through.**
+    
+    e. **What is the margin of error on this estimate?**
+    
+    f. **Assuming that the wait time is normally distributed, what values bound the middle 95% of wait times for this average of 40 cars? Give a lower and an upper value. Show your work.**
+    
     
 
-    b. **What values bound the middle 75% of test scores? Give a lower and an upper value.**
 
-    c. **What percent of students have test scores less than 83? Show your code and answer**
-
-
-9. **A study found that the mean amount of time cars spent in drive-through of a certain fast-food restaurant was 154.6 seconds. Assume drive-through times are normally distributed with a standard deviation of 27 seconds**
-
-    a. **What is the probability that someone spends more than 230 seconds in the drive through?**
-    
-    b. **How long do 75% of the cars typically have to wait in the drive through? (That is, what is the 75th percentile?)**
-
-
-10. **Bonita computed a z-score after receiving the results of her exam in order to compare her results with the rest of the class. Her z-score was 2.1. Interpret her Z score in a sentence.**
 
 
 
