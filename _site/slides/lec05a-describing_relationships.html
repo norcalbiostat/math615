@@ -11,7 +11,7 @@
   <meta name="generator" content="quarto-1.3.319">
 
   <meta name="author" content="Robin Donatello">
-  <meta name="dcterms.date" content="2023-09-18">
+  <meta name="dcterms.date" content="2024-09-23">
   <title>Data Analysis for Graduate Research - Describing Relationships between variables</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -387,10 +387,6 @@
       margin-right: 0; 
     }
   </style>
-<meta name="twitter:title" content="Data Analysis for Graduate Research - Describing Relationships between variables">
-<meta name="twitter:description" content="5, 6">
-<meta name="twitter:creator" content="@norcalbiostat">
-<meta name="twitter:card" content="summary">
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -407,11 +403,11 @@ Robin Donatello
 </div>
 </div>
 
-  <p class="date">2023-09-18</p>
+  <p class="date">2024-09-23</p>
 </section>
 <section>
 <section id="bivariate-association-between-2-variables" class="title-slide slide level1 center">
-<h1>Bivariate: Association between 2 variables</h1>
+<h1>Bivariate Association between 2 variables</h1>
 
 </section>
 <section id="naming-conventions" class="slide level2">
@@ -462,7 +458,7 @@ Robin Donatello
 <section id="section" class="title-slide slide level1 center" data-background-image="images/penguins.png" data-background-size="60%">
 <h1></h1>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse); <span class="fu">library</span>(ggpubr)</span>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse); <span class="fu">library</span>(ggpubr); <span class="fu">library</span>(gtsummary)</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(palmerpenguins);  <span class="fu">library</span>(sjPlot)</span>
 <span id="cb1-3"><a href="#cb1-3"></a>pen <span class="ot">&lt;-</span> penguins</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -519,7 +515,7 @@ Robin Donatello
 <span id="cb6-2"><a href="#cb6-2"></a>          <span class="at">show.total =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img data-src="lec05a-describing_relationships_files/figure-html/unnamed-chunk-4-1.png" width="672"></p>
+<p><img data-src="lec05a-describing_relationships_files/figure-revealjs/unnamed-chunk-4-1.png" width="960"></p>
 </div>
 </div>
 </div>
@@ -545,7 +541,7 @@ Robin Donatello
 <section id="watch-your-margins-1" class="slide level2 smaller">
 <h2>Watch your margins</h2>
 <div class="panel-tabset">
-<ul id="tabset-2" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-2-1">Tables</a></li><li><a href="#tabset-2-2">Plots</a></li></ul>
+<ul id="tabset-2" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-2-1">Tables</a></li><li><a href="#tabset-2-2">gtsummary</a></li><li><a href="#tabset-2-3">Plots</a></li></ul>
 <div class="tab-content">
 <div id="tabset-2-1">
 <div class="columns">
@@ -589,15 +585,994 @@ Robin Donatello
 <div id="tabset-2-2">
 <div class="columns">
 <div class="column" style="width:50%;">
+<p>Distribution of Islands within each species</p>
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>pen <span class="sc">%&gt;%</span> <span class="fu">select</span>(island, species) <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a>  <span class="fu">tbl_summary</span>(<span class="at">by =</span> <span class="st">"species"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+
+<div id="rhnknhjgct" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#rhnknhjgct table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#rhnknhjgct thead, #rhnknhjgct tbody, #rhnknhjgct tfoot, #rhnknhjgct tr, #rhnknhjgct td, #rhnknhjgct th {
+  border-style: none;
+}
+
+#rhnknhjgct p {
+  margin: 0;
+  padding: 0;
+}
+
+#rhnknhjgct .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#rhnknhjgct .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#rhnknhjgct .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#rhnknhjgct .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#rhnknhjgct .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#rhnknhjgct .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#rhnknhjgct .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#rhnknhjgct .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#rhnknhjgct .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#rhnknhjgct .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#rhnknhjgct .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#rhnknhjgct .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#rhnknhjgct .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#rhnknhjgct .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#rhnknhjgct .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#rhnknhjgct .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#rhnknhjgct .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#rhnknhjgct .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#rhnknhjgct .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#rhnknhjgct .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#rhnknhjgct .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#rhnknhjgct .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#rhnknhjgct .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#rhnknhjgct .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#rhnknhjgct .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#rhnknhjgct .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#rhnknhjgct .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#rhnknhjgct .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#rhnknhjgct .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#rhnknhjgct .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#rhnknhjgct .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#rhnknhjgct .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#rhnknhjgct .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#rhnknhjgct .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#rhnknhjgct .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#rhnknhjgct .gt_left {
+  text-align: left;
+}
+
+#rhnknhjgct .gt_center {
+  text-align: center;
+}
+
+#rhnknhjgct .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#rhnknhjgct .gt_font_normal {
+  font-weight: normal;
+}
+
+#rhnknhjgct .gt_font_bold {
+  font-weight: bold;
+}
+
+#rhnknhjgct .gt_font_italic {
+  font-style: italic;
+}
+
+#rhnknhjgct .gt_super {
+  font-size: 65%;
+}
+
+#rhnknhjgct .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#rhnknhjgct .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#rhnknhjgct .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#rhnknhjgct .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#rhnknhjgct .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#rhnknhjgct .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#rhnknhjgct .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="<strong>Characteristic</strong>"><strong>Characteristic</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="<strong>Adelie</strong>, N = 152<span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;><sup>1</sup></span>"><strong>Adelie</strong>, N = 152<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="<strong>Chinstrap</strong>, N = 68<span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;><sup>1</sup></span>"><strong>Chinstrap</strong>, N = 68<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="<strong>Gentoo</strong>, N = 124<span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;><sup>1</sup></span>"><strong>Gentoo</strong>, N = 124<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="label" class="gt_row gt_left">island</td>
+<td headers="stat_1" class="gt_row gt_center"><br></td>
+<td headers="stat_2" class="gt_row gt_center"><br></td>
+<td headers="stat_3" class="gt_row gt_center"><br></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Biscoe</td>
+<td headers="stat_1" class="gt_row gt_center">44 (29%)</td>
+<td headers="stat_2" class="gt_row gt_center">0 (0%)</td>
+<td headers="stat_3" class="gt_row gt_center">124 (100%)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Dream</td>
+<td headers="stat_1" class="gt_row gt_center">56 (37%)</td>
+<td headers="stat_2" class="gt_row gt_center">68 (100%)</td>
+<td headers="stat_3" class="gt_row gt_center">0 (0%)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Torgersen</td>
+<td headers="stat_1" class="gt_row gt_center">52 (34%)</td>
+<td headers="stat_2" class="gt_row gt_center">0 (0%)</td>
+<td headers="stat_3" class="gt_row gt_center">0 (0%)</td></tr>
+  </tbody>
+  
+  <tfoot class="gt_footnotes">
+    <tr>
+      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> n (%)</td>
+    </tr>
+  </tfoot>
+</table>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<p>Distribution of Species on each Island</p>
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>pen <span class="sc">%&gt;%</span> <span class="fu">select</span>(island, species) <span class="sc">%&gt;%</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a>  <span class="fu">tbl_summary</span>(<span class="at">by =</span> <span class="st">"island"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+
+<div id="cljuaujyzy" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#cljuaujyzy table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#cljuaujyzy thead, #cljuaujyzy tbody, #cljuaujyzy tfoot, #cljuaujyzy tr, #cljuaujyzy td, #cljuaujyzy th {
+  border-style: none;
+}
+
+#cljuaujyzy p {
+  margin: 0;
+  padding: 0;
+}
+
+#cljuaujyzy .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#cljuaujyzy .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#cljuaujyzy .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#cljuaujyzy .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#cljuaujyzy .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#cljuaujyzy .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#cljuaujyzy .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#cljuaujyzy .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#cljuaujyzy .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#cljuaujyzy .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#cljuaujyzy .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#cljuaujyzy .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#cljuaujyzy .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#cljuaujyzy .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#cljuaujyzy .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#cljuaujyzy .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#cljuaujyzy .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#cljuaujyzy .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#cljuaujyzy .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#cljuaujyzy .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#cljuaujyzy .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#cljuaujyzy .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#cljuaujyzy .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#cljuaujyzy .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#cljuaujyzy .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#cljuaujyzy .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#cljuaujyzy .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#cljuaujyzy .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#cljuaujyzy .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#cljuaujyzy .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#cljuaujyzy .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#cljuaujyzy .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#cljuaujyzy .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#cljuaujyzy .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#cljuaujyzy .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#cljuaujyzy .gt_left {
+  text-align: left;
+}
+
+#cljuaujyzy .gt_center {
+  text-align: center;
+}
+
+#cljuaujyzy .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#cljuaujyzy .gt_font_normal {
+  font-weight: normal;
+}
+
+#cljuaujyzy .gt_font_bold {
+  font-weight: bold;
+}
+
+#cljuaujyzy .gt_font_italic {
+  font-style: italic;
+}
+
+#cljuaujyzy .gt_super {
+  font-size: 65%;
+}
+
+#cljuaujyzy .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#cljuaujyzy .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#cljuaujyzy .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#cljuaujyzy .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#cljuaujyzy .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#cljuaujyzy .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#cljuaujyzy .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="<strong>Characteristic</strong>"><strong>Characteristic</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="<strong>Biscoe</strong>, N = 168<span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;><sup>1</sup></span>"><strong>Biscoe</strong>, N = 168<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="<strong>Dream</strong>, N = 124<span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;><sup>1</sup></span>"><strong>Dream</strong>, N = 124<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="<strong>Torgersen</strong>, N = 52<span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;><sup>1</sup></span>"><strong>Torgersen</strong>, N = 52<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="label" class="gt_row gt_left">species</td>
+<td headers="stat_1" class="gt_row gt_center"><br></td>
+<td headers="stat_2" class="gt_row gt_center"><br></td>
+<td headers="stat_3" class="gt_row gt_center"><br></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Adelie</td>
+<td headers="stat_1" class="gt_row gt_center">44 (26%)</td>
+<td headers="stat_2" class="gt_row gt_center">56 (45%)</td>
+<td headers="stat_3" class="gt_row gt_center">52 (100%)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Chinstrap</td>
+<td headers="stat_1" class="gt_row gt_center">0 (0%)</td>
+<td headers="stat_2" class="gt_row gt_center">68 (55%)</td>
+<td headers="stat_3" class="gt_row gt_center">0 (0%)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Gentoo</td>
+<td headers="stat_1" class="gt_row gt_center">124 (74%)</td>
+<td headers="stat_2" class="gt_row gt_center">0 (0%)</td>
+<td headers="stat_3" class="gt_row gt_center">0 (0%)</td></tr>
+  </tbody>
+  
+  <tfoot class="gt_footnotes">
+    <tr>
+      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> n (%)</td>
+    </tr>
+  </tfoot>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-2-3">
+<div class="columns">
+<div class="column" style="width:50%;">
 <p>Distribution of islands for each species</p>
 <div class="cell">
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">plot_xtab</span>(pen<span class="sc">$</span>species, <span class="at">grp=</span>pen<span class="sc">$</span>island, </span>
-<span id="cb11-2"><a href="#cb11-2"></a>          <span class="at">margin =</span> <span class="st">"row"</span>, <span class="at">show.total =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">plot_xtab</span>(pen<span class="sc">$</span>species, <span class="at">grp=</span>pen<span class="sc">$</span>island, </span>
+<span id="cb13-2"><a href="#cb13-2"></a>          <span class="at">margin =</span> <span class="st">"row"</span>, <span class="at">show.total =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img data-src="lec05a-describing_relationships_files/figure-html/unnamed-chunk-7-1.png" width="672"></p>
+<p><img data-src="lec05a-describing_relationships_files/figure-revealjs/unnamed-chunk-9-1.png" width="960"></p>
 </div>
 </div>
 <p>29% <strong>of <em>Adelie</em> penguins</strong> are on Biscoe Island.</p>
@@ -606,11 +1581,11 @@ Robin Donatello
 <div class="cell">
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">plot_xtab</span>(pen<span class="sc">$</span>island, <span class="at">grp=</span>pen<span class="sc">$</span>species, </span>
-<span id="cb12-2"><a href="#cb12-2"></a>          <span class="at">margin =</span> <span class="st">"row"</span>, <span class="at">show.total =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">plot_xtab</span>(pen<span class="sc">$</span>island, <span class="at">grp=</span>pen<span class="sc">$</span>species, </span>
+<span id="cb14-2"><a href="#cb14-2"></a>          <span class="at">margin =</span> <span class="st">"row"</span>, <span class="at">show.total =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img data-src="lec05a-describing_relationships_files/figure-html/unnamed-chunk-8-1.png" width="672"></p>
+<p><img data-src="lec05a-describing_relationships_files/figure-revealjs/unnamed-chunk-10-1.png" width="960"></p>
 </div>
 </div>
 <p>74% <strong>of penguins on Biscoe island</strong> are <em>Gentoo</em>.</p>
@@ -624,36 +1599,38 @@ Robin Donatello
 <h2>Q ~ C</h2>
 <p>Quantitative Response vs Categorical Explanatory</p>
 <div class="panel-tabset">
-<ul id="tabset-3" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-3-1">Grouped summary statistics</a></li><li><a href="#tabset-3-2">Plots</a></li></ul>
+<ul id="tabset-3" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-3-1">Grouped summary statistics</a></li><li><a href="#tabset-3-2">Plots</a></li><li><a href="#tabset-3-3">Plot2</a></li></ul>
 <div class="tab-content">
 <div id="tabset-3-1">
-<p>Mean, median, sd, IQR of the quantitative variable for each level of the categorical level.</p>
+<p>n, nean, median, sd, IQR of the quantitative variable for each level of the categorical level.</p>
 <div class="cell">
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>pen <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(species) <span class="sc">%&gt;%</span> </span>
-<span id="cb13-2"><a href="#cb13-2"></a>  <span class="fu">summarize</span>(<span class="at">mean =</span> <span class="fu">mean</span>(bill_depth_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
-<span id="cb13-3"><a href="#cb13-3"></a>            <span class="at">median =</span> <span class="fu">median</span>(bill_depth_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
-<span id="cb13-4"><a href="#cb13-4"></a>            <span class="at">sd =</span> <span class="fu">sd</span>(bill_depth_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
-<span id="cb13-5"><a href="#cb13-5"></a>            <span class="at">IQR =</span> <span class="fu">IQR</span>(bill_depth_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>pen <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(species) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-2"><a href="#cb15-2"></a>  <span class="fu">summarize</span>(<span class="at">n=</span><span class="fu">n</span>(), </span>
+<span id="cb15-3"><a href="#cb15-3"></a>            <span class="at">mean =</span> <span class="fu">mean</span>(bill_depth_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb15-4"><a href="#cb15-4"></a>            <span class="at">median =</span> <span class="fu">median</span>(bill_depth_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb15-5"><a href="#cb15-5"></a>            <span class="at">sd =</span> <span class="fu">sd</span>(bill_depth_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb15-6"><a href="#cb15-6"></a>            <span class="at">IQR =</span> <span class="fu">IQR</span>(bill_depth_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell">
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>pen <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(species) <span class="sc">%&gt;%</span> </span>
-<span id="cb14-2"><a href="#cb14-2"></a>  <span class="fu">summarize</span>(<span class="at">mean   =</span> <span class="fu">mean</span>(bill_depth_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
-<span id="cb14-3"><a href="#cb14-3"></a>            <span class="at">median =</span> <span class="fu">median</span>(bill_depth_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
-<span id="cb14-4"><a href="#cb14-4"></a>            <span class="at">sd     =</span> <span class="fu">sd</span>(bill_depth_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
-<span id="cb14-5"><a href="#cb14-5"></a>            <span class="at">IQR    =</span> <span class="fu">IQR</span>(bill_depth_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>pen <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(species) <span class="sc">%&gt;%</span> </span>
+<span id="cb16-2"><a href="#cb16-2"></a>  <span class="fu">summarize</span>(<span class="at">n=</span><span class="fu">n</span>(), </span>
+<span id="cb16-3"><a href="#cb16-3"></a>            <span class="at">mean   =</span> <span class="fu">mean</span>(bill_depth_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb16-4"><a href="#cb16-4"></a>            <span class="at">median =</span> <span class="fu">median</span>(bill_depth_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb16-5"><a href="#cb16-5"></a>            <span class="at">sd     =</span> <span class="fu">sd</span>(bill_depth_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb16-6"><a href="#cb16-6"></a>            <span class="at">IQR    =</span> <span class="fu">IQR</span>(bill_depth_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 3 × 5
-  species    mean median    sd   IQR
-  &lt;fct&gt;     &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-1 Adelie     18.3   18.4 1.22   1.5 
-2 Chinstrap  18.4   18.4 1.14   1.90
-3 Gentoo     15.0   15   0.981  1.5 </code></pre>
+<pre><code># A tibble: 3 × 6
+  species       n  mean median    sd   IQR
+  &lt;fct&gt;     &lt;int&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1 Adelie      152  18.3   18.4 1.22   1.5 
+2 Chinstrap    68  18.4   18.4 1.14   1.90
+3 Gentoo      124  15.0   15   0.981  1.5 </code></pre>
 </div>
 </div>
 <p>Gentoo penguins have lower average bill depth compared to Adelie or Chinstrap (15.0mm vs 18.3 and 18.4mm respectively). Chinstrap however have a larger IQR at 1.9 compared to 1.5 for the others.</p>
@@ -665,12 +1642,12 @@ Robin Donatello
 <div class="cell">
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">gghistogram</span>(pen, </span>
-<span id="cb16-2"><a href="#cb16-2"></a>    <span class="at">x =</span> <span class="st">"bill_depth_mm"</span>, <span class="at">fill =</span> <span class="st">"species"</span>, </span>
-<span id="cb16-3"><a href="#cb16-3"></a>    <span class="at">add_density =</span> <span class="cn">TRUE</span>, <span class="at">add=</span><span class="st">"mean"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">gghistogram</span>(pen, </span>
+<span id="cb18-2"><a href="#cb18-2"></a>    <span class="at">x =</span> <span class="st">"bill_depth_mm"</span>, <span class="at">fill =</span> <span class="st">"species"</span>, </span>
+<span id="cb18-3"><a href="#cb18-3"></a>    <span class="at">add_density =</span> <span class="cn">TRUE</span>, <span class="at">add=</span><span class="st">"mean"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img data-src="lec05a-describing_relationships_files/figure-html/unnamed-chunk-11-1.png" width="672"></p>
+<p><img data-src="lec05a-describing_relationships_files/figure-revealjs/unnamed-chunk-13-1.png" width="960"></p>
 </div>
 </div>
 </div><div class="column" style="width:50%;">
@@ -678,17 +1655,37 @@ Robin Donatello
 <div class="cell">
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">ggviolin</span>(pen, </span>
-<span id="cb17-2"><a href="#cb17-2"></a>  <span class="at">x=</span><span class="st">"species"</span>, <span class="at">y =</span> <span class="st">"bill_depth_mm"</span>, </span>
-<span id="cb17-3"><a href="#cb17-3"></a>  <span class="at">color =</span> <span class="st">"species"</span>, <span class="at">add =</span> <span class="fu">c</span>(<span class="st">"mean"</span>, <span class="st">"boxplot"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">ggviolin</span>(pen, </span>
+<span id="cb19-2"><a href="#cb19-2"></a>  <span class="at">x=</span><span class="st">"species"</span>, <span class="at">y =</span> <span class="st">"bill_depth_mm"</span>, </span>
+<span id="cb19-3"><a href="#cb19-3"></a>  <span class="at">color =</span> <span class="st">"species"</span>, <span class="at">add =</span> <span class="fu">c</span>(<span class="st">"mean"</span>, <span class="st">"boxplot"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img data-src="lec05a-describing_relationships_files/figure-html/unnamed-chunk-12-1.png" width="672"></p>
+<p><img data-src="lec05a-describing_relationships_files/figure-revealjs/unnamed-chunk-14-1.png" width="960"></p>
 </div>
 </div>
 </div>
 </div>
 <p>The distribution of bill depth are fairly normal for each species, with some higher end values causing a slight right skew for Adelie and Gentoo.</p>
+</div>
+<div id="tabset-3-3">
+<p>More code but nice alternative to violins.</p>
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="fu">library</span>(ggdist) <span class="co"># for the "half-violin" plot (stat_slab)</span></span>
+<span id="cb20-2"><a href="#cb20-2"></a><span class="fu">ggplot</span>(pen, <span class="fu">aes</span>(<span class="at">x=</span>bill_depth_mm, <span class="at">y=</span>species, <span class="at">fill=</span>species)) <span class="sc">+</span> </span>
+<span id="cb20-3"><a href="#cb20-3"></a>      <span class="fu">stat_slab</span>(<span class="at">alpha=</span>.<span class="dv">5</span>, <span class="at">justification =</span> <span class="dv">0</span>) <span class="sc">+</span> </span>
+<span id="cb20-4"><a href="#cb20-4"></a>      <span class="fu">geom_boxplot</span>(<span class="at">width =</span> .<span class="dv">2</span>,  <span class="at">outlier.shape =</span> <span class="cn">NA</span>) <span class="sc">+</span> </span>
+<span id="cb20-5"><a href="#cb20-5"></a>      <span class="fu">geom_jitter</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">height =</span> <span class="fl">0.05</span>) <span class="sc">+</span></span>
+<span id="cb20-6"><a href="#cb20-6"></a>      <span class="fu">stat_summary</span>(<span class="at">fun=</span><span class="st">"mean"</span>, <span class="at">geom=</span><span class="st">"point"</span>, <span class="at">col=</span><span class="st">"red"</span>, <span class="at">size=</span><span class="dv">4</span>, <span class="at">pch=</span><span class="dv">17</span>) <span class="sc">+</span> </span>
+<span id="cb20-7"><a href="#cb20-7"></a>      <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb20-8"><a href="#cb20-8"></a>      <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Bill depth (mm)"</span>, <span class="at">y =</span> <span class="st">"Species"</span>) <span class="sc">+</span> </span>
+<span id="cb20-9"><a href="#cb20-9"></a>      <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img data-src="lec05a-describing_relationships_files/figure-revealjs/unnamed-chunk-15-1.png" width="960"></p>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -697,20 +1694,26 @@ Robin Donatello
 <h2>Q ~ Q</h2>
 <p>Quantitative Response vs Quantitative Explanatory</p>
 <div class="panel-tabset">
-<ul id="tabset-4" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-4-1">Summary statistic</a></li><li><a href="#tabset-4-2">Plots</a></li></ul>
+<ul id="tabset-4" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-4-1">Summary statistic</a></li><li><a href="#tabset-4-2">Plots</a></li><li><a href="#tabset-4-3">Description</a></li></ul>
 <div class="tab-content">
 <div id="tabset-4-1">
 <div class="cell">
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">cor</span>(pen<span class="sc">$</span>flipper_length_mm, pen<span class="sc">$</span>body_mass_g, </span>
-<span id="cb18-2"><a href="#cb18-2"></a>    <span class="at">use=</span><span class="st">"pairwise.complete.obs"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">cor</span>(pen<span class="sc">$</span>flipper_length_mm, pen<span class="sc">$</span>body_mass_g, </span>
+<span id="cb21-2"><a href="#cb21-2"></a>    <span class="at">use=</span><span class="st">"pairwise.complete.obs"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.8712018</code></pre>
 </div>
 </div>
-<p>The penguin flipper length (mm) has a strong positive correlation with body mass (g), r=0.87</p>
+<p>The correlation coefficient <span class="math inline">\(r\)</span> is a measure of the strength and direction of a linear relationship between two variables.</p>
+<ul>
+<li><span class="math inline">\(|r| &gt; 0.6\)</span> Strong relationship</li>
+<li><span class="math inline">\(0.4 \leq |r| &lt; 0.6\)</span> Moderate relationship</li>
+<li><span class="math inline">\(|r| &lt; 0.4\)</span> Weak to no relationship</li>
+</ul>
+<p>Note: These values are guidelines and subject to variability within different disciplines <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6107969/">ref</a></p>
 </div>
 <div id="tabset-4-2">
 <div class="columns">
@@ -718,33 +1721,39 @@ Robin Donatello
 <div class="cell">
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="fu">ggscatter</span>(pen, </span>
-<span id="cb20-2"><a href="#cb20-2"></a>  <span class="at">x=</span><span class="st">"flipper_length_mm"</span>, <span class="at">y =</span> <span class="st">"body_mass_g"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="fu">ggscatter</span>(pen, </span>
+<span id="cb23-2"><a href="#cb23-2"></a>  <span class="at">x=</span><span class="st">"flipper_length_mm"</span>, <span class="at">y =</span> <span class="st">"body_mass_g"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img data-src="lec05a-describing_relationships_files/figure-html/unnamed-chunk-14-1.png" width="672"></p>
+<p><img data-src="lec05a-describing_relationships_files/figure-revealjs/unnamed-chunk-17-1.png" width="960"></p>
 </div>
 </div>
 </div><div class="column" style="width:50%;">
 <div class="cell">
 <details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">ggscatter</span>(pen, </span>
-<span id="cb21-2"><a href="#cb21-2"></a>  <span class="at">x=</span><span class="st">"flipper_length_mm"</span>, <span class="at">y =</span> <span class="st">"body_mass_g"</span>, </span>
-<span id="cb21-3"><a href="#cb21-3"></a>  <span class="at">add =</span> <span class="st">"loess"</span>, <span class="at">conf.int =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="fu">ggscatter</span>(pen, </span>
+<span id="cb24-2"><a href="#cb24-2"></a>  <span class="at">x=</span><span class="st">"flipper_length_mm"</span>, <span class="at">y =</span> <span class="st">"body_mass_g"</span>, </span>
+<span id="cb24-3"><a href="#cb24-3"></a>  <span class="at">add =</span> <span class="st">"loess"</span>, <span class="at">conf.int =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img data-src="lec05a-describing_relationships_files/figure-html/unnamed-chunk-15-1.png" width="672"></p>
+<p><img data-src="lec05a-describing_relationships_files/figure-revealjs/unnamed-chunk-18-1.png" width="960"></p>
 </div>
 </div>
 </div><p><small> The relationship between flipper length and body mass in penguins is relatively linear, but there may be possible clustering on a third variable. There appears to be two groups below and above a flipper length of about 205mm. </small></p>
 </div>
 </div>
+<div id="tabset-4-3">
+<p>Must include the <code>direction</code> (positive or negative), the <code>strength</code> quantified using <span class="math inline">\(r\)</span>, and the form (linear vs non-linear)</p>
+<blockquote>
+<p>The penguin flipper length (mm) has a strong, positive, and reasonably linear correlation with body mass (g), r=0.87.</p>
+</blockquote>
+</div>
 </div>
 </div>
 
 <div class="footer footer-default">
-<p><a href="https://math615.netlify.app/slides">🔗 https://math615.netlify.app</a></p>
+<p><a href="https://math615.netlify.app">🔗 https://math615.netlify.app</a> / Describing Relationships</p>
 </div>
 </section></section>
     </div>
@@ -960,6 +1969,44 @@ Robin Donatello
         ]
       });
     </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {

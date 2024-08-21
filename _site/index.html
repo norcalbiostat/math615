@@ -40,6 +40,8 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -61,10 +63,6 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<meta name="twitter:title" content="Data Analysis for Graduate Research">
-<meta name="twitter:description" content="MATH 615 • Fall 2023  California State University, Chico">
-<meta name="twitter:creator" content="@norcalbiostat">
-<meta name="twitter:card" content="summary">
 </head>
 
 <body class="nav-fixed">
@@ -85,36 +83,55 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./topics.html" rel="" target="">
- <span class="menu-text">Topics</span></a>
+    <a class="nav-link" href="./modules.html" rel="" target="">
+ <span class="menu-text">Overview</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./slides.html" rel="" target="">
- <span class="menu-text">Slides</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-all-materials" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">All Materials</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-all-materials">    
+        <li>
+    <a class="dropdown-item" href="./topics.html" rel="" target="">
+ <span class="dropdown-text">Topics</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./hw.html" rel="" target="">
- <span class="menu-text">Assignments</span></a>
+        <li>
+    <a class="dropdown-item" href="./slides.html" rel="" target="">
+ <span class="dropdown-text">Slides</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./collab_notes.html" rel="" target="">
- <span class="menu-text">Collab Notes</span></a>
+        <li>
+    <a class="dropdown-item" href="./hw.html" rel="" target="">
+ <span class="dropdown-text">Assignments</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./project.html" rel="" target="">
- <span class="menu-text">Project</span></a>
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-research-project" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Research Project</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-research-project">    
+        <li>
+    <a class="dropdown-item" href="./project.html" rel="" target="">
+ <span class="dropdown-text">Overview and Information</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./author_guide.html" rel="" target="">
+ <span class="dropdown-text">Guide for Authors</span></a>
+  </li>  
+    </ul>
+  </li>
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-other-materials" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
- <span class="menu-text">Other Materials</span>
-    </a>
-    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-other-materials">    
-        <li>
-    <a class="dropdown-item" href="./syllabus.html" rel="" target="">
- <span class="dropdown-text">Syllabus</span></a>
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://drive.google.com/drive/folders/1f9oKqswqB0wo1I957xFW6yjhIt2FRhwr" rel="" target=""><i class="bi bi-google" role="img">
+</i> 
+ <span class="menu-text"></span></a>
   </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-reference-texts" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Reference Texts</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-reference-texts">    
         <li>
     <a class="dropdown-item" href="https://norcalbiostat.github.io/AppliedStatistics_notes/" rel="" target="">
  <span class="dropdown-text">Applied Stats Notebook</span></a>
@@ -123,16 +140,15 @@ ul.task-list li input[type="checkbox"] {
     <a class="dropdown-item" href="https://openintro-ims.netlify.app/" rel="" target="">
  <span class="dropdown-text">Intro to Modern Stats</span></a>
   </li>  
-        <li>
-    <a class="dropdown-item" href="https://drive.google.com/drive/folders/1HdjMCqhIeQ_4L0zbme2XPH296_t5fabr" rel="" target=""><i class="bi bi-google" role="img">
-</i> 
- <span class="dropdown-text">Google Drive</span></a>
-  </li>  
     </ul>
   </li>
   <li class="nav-item">
+    <a class="nav-link" href="./syllabus.html" rel="" target="">
+ <span class="menu-text">Syllabus</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="./help.html" rel="" target="">
- <span class="menu-text">Help!</span></a>
+ <span class="menu-text">Help</span></a>
   </li>  
 </ul>
             <div class="quarto-navbar-tools">
@@ -153,7 +169,7 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Data Analysis for Graduate Research</h1>
-<p class="subtitle lead"></p><p>MATH 615 • Fall 2023 <br> California State University, Chico</p><p></p>
+<p class="subtitle lead"></p><p>MATH 615 • Fall 2024 <br> California State University, Chico</p><p></p>
 </div>
 
 
@@ -186,7 +202,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="student-drop-in-hours" class="level4">
 <h4 class="anchored" data-anchor-id="student-drop-in-hours">Student Drop in Hours</h4>
-<p>MW 2-3pm Holt 202; Tue 3-4pm and Fri 2-4pm on Zoom (link in Canvas)</p>
+<p>MTh 2-3pm Holt 202; Wednesday 1-3pm at <a href="https://www.csuchico.edu/datascience/community-coding.shtml">Community Coding</a></p>
 </section>
 </div>
 <section id="instructor" class="level3 g-col-4">
@@ -207,7 +223,7 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>You can toggle dark mode by clicking the button in the top right navigation bar.</p>
+<p>You can toggle dark mode by clicking the <i class="fa-solid fa-toggle-off" aria-label="toggle-off"></i> button in the top right navigation bar.</p>
 </div>
 </div>
 
@@ -569,7 +585,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-left">This site is built with 💚 and <a href="https://quarto.org/">Quarto</a> by <a href="www.norcalbiostat.com">Robin Donatello</a>.</div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/norcalbiostat/math615_test/edit/main/index.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/norcalbiostat/math615_test/issues/new" class="toc-action">Report an issue</a></p></div></div></div>
+    <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/norcalbiostat/MATH615/edit/main/index.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/norcalbiostat/MATH615/issues/new" class="toc-action">Report an issue</a></p></div></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

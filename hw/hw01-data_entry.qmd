@@ -1,6 +1,9 @@
 ---
 title: "HW 01: Data Entry"
 subtitle: "Recording data to maintain your sanity."
+format:
+  html: default
+  pdf: default
 ---
 
 # Assignment Overview
@@ -8,13 +11,15 @@ Although you will be working with previously collected data, it is important to 
 
 # Instructions
 
+Preparation: Read [Tidy data principles](https://tidyr.tidyverse.org/articles/tidy-data.html#tidying) by Wickham, Vaughan, and Girlich.
+
 There are three pieces to this assignment. 
 
 1. Entering raw data into a spreadsheet. 
 2. Creating a codebook
-3. Importing the data into your software program of choice (SPC)
+3. Importing the data into R
 
-Using the [PDF copies of medical records](https://norcalbiostat.netlify.com/data/medical-records.pdf) for 5 patients seeking treatment in a hospital emergency room you are going to do data entry and create a codebook.
+Using the [PDF copies of medical records](hw/medical-records.pdf) for 5 patients seeking treatment in a hospital emergency room you are going to do data entry and create a codebook.
 
 
 ## Submission Instructions
@@ -57,14 +62,15 @@ An example of what this should look like is below. (With the exception of the re
 ## 3. Data Import
 1. Export your file to your hard drive as a Comma Separated Value (`*.csv`). 
     - If it asks you, only save the` data` worksheet.
-2. Using your software program of choice, import this data into the program using point and click GUI methods.
+2. Import this data into R.
     - Code is fine if you already know how. Point and click is also fine for now.
-    - Read the collaborative notes for your SPC to learn others have done this.
+    - [Point and click instructions](https://support.posit.co/hc/en-us/articles/218611977-Importing-Data-with-the-RStudio-IDE)
+    - Code examples from  [R for data science]](https://r4ds.hadley.nz/data-import] and [Statology](https://www.statology.org/import-csv-into-r/)
 3. Note and record any problems that you noticed and/or had to fix at the bottom of your `codebook` worksheet. 
     - Does your data file look like your spreadsheet? 
     - Did you have to specify missing values in any specific way?
 4. Show that it worked by taking a screenshot of BOTH the code, and the view of the data. 
-    - Upload these screenshots to Canvas
+    - Paste these images into your `import` tab. 
     
 
 ### Examples of import code
@@ -72,7 +78,6 @@ An example of what this should look like is below. (With the exception of the re
 ![Example R code](images/hw1_r_code.png){fig-alt="Example of R import code"}
 
 
-![Example SPSS code](images/hw1_spss_code.png){width=400 fig-alt="Example of SPSS import code"}
 
 
     

@@ -11,7 +11,7 @@
   <meta name="generator" content="quarto-1.3.319">
 
   <meta name="author" content="Robin Donatello">
-  <meta name="dcterms.date" content="2023-08-30">
+  <meta name="dcterms.date" content="2024-09-11">
   <title>Data Analysis for Graduate Research - Preparing your data for analysis</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -387,10 +387,6 @@
       margin-right: 0; 
     }
   </style>
-<meta name="twitter:title" content="Data Analysis for Graduate Research - Preparing your data for analysis">
-<meta name="twitter:description" content="2, 3">
-<meta name="twitter:creator" content="@norcalbiostat">
-<meta name="twitter:card" content="summary">
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -407,7 +403,7 @@ Robin Donatello
 </div>
 </div>
 
-  <p class="date">2023-08-30</p>
+  <p class="date">2024-09-11</p>
 </section>
 <section class="slide level2">
 
@@ -608,7 +604,7 @@ $ Comments              &lt;chr&gt; "Not enough blood for isotopes.", NA, NA, "A
 <li>Sometimes categorical data will be recorded as 1, 2, 3 etc when those numbers represent named categories.</li>
 </ul></li>
 <li>Do you need to create secondary variables such as an average across measures to create a score.</li>
-<li>Are the variable names user friendly? Mixtures of CAPS and lower case, names with spaces or special characters should all be changed.</li>
+<li>Are the variable names user friendly? Mixtures of CAPS and lower case, names with spaces or special characters should all be changed. Use the <code>janitor::clean_names()</code> function to resolve this.</li>
 </ol>
 </section>
 <section id="how-do-i-know-what-needs-to-be-done" class="slide level2">
@@ -680,7 +676,7 @@ $ Comments              &lt;chr&gt; "Not enough blood for isotopes.", NA, NA, "A
 <section id="wow" class="slide level2">
 <h2>WOW!</h2>
 <p>Not only did it write the code, it wrote <em>literate</em> code. It has code comments (lines 1, 4, 7, prefixed with a <code>#</code>), and a full text explanation.</p>
-<p>This is GREAT for learning how to write code!</p>
+<p>This is GREAT for <strong>learning</strong> how to write code!</p>
 <div class="callout callout-important callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -701,7 +697,9 @@ $ Comments              &lt;chr&gt; "Not enough blood for isotopes.", NA, NA, "A
 <ul>
 <li>Do not underestimate the importance of this step</li>
 <li>It will take you far, far longer than you anticipate to ‘clean’ your data</li>
+<li>Effort spent here is a direct correlation with payoff.</li>
 <li>Writing code (in any language) will be challenging, but will pay off in the long run</li>
+<li>Don’t reinvent the wheel. If you want to do something, chances are someone else has done it before. Perhaps even yourself!</li>
 </ul>
 
 <div class="footer footer-default">
@@ -921,6 +919,44 @@ $ Comments              &lt;chr&gt; "Not enough blood for isotopes.", NA, NA, "A
         ]
       });
     </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {

@@ -61,9 +61,6 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<meta name="twitter:title" content="Data Analysis for Graduate Research - Readings">
-<meta name="twitter:creator" content="@norcalbiostat">
-<meta name="twitter:card" content="summary">
 </head>
 
 <body class="nav-fixed">
@@ -84,36 +81,55 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./topics.html" rel="" target="">
- <span class="menu-text">Topics</span></a>
+    <a class="nav-link" href="./modules.html" rel="" target="">
+ <span class="menu-text">Overview</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./slides.html" rel="" target="">
- <span class="menu-text">Slides</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-all-materials" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">All Materials</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-all-materials">    
+        <li>
+    <a class="dropdown-item" href="./topics.html" rel="" target="">
+ <span class="dropdown-text">Topics</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./hw.html" rel="" target="">
- <span class="menu-text">Assignments</span></a>
+        <li>
+    <a class="dropdown-item" href="./slides.html" rel="" target="">
+ <span class="dropdown-text">Slides</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./collab_notes.html" rel="" target="">
- <span class="menu-text">Collab Notes</span></a>
+        <li>
+    <a class="dropdown-item" href="./hw.html" rel="" target="">
+ <span class="dropdown-text">Assignments</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./project.html" rel="" target="">
- <span class="menu-text">Project</span></a>
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-research-project" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Research Project</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-research-project">    
+        <li>
+    <a class="dropdown-item" href="./project.html" rel="" target="">
+ <span class="dropdown-text">Overview and Information</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./author_guide.html" rel="" target="">
+ <span class="dropdown-text">Guide for Authors</span></a>
+  </li>  
+    </ul>
+  </li>
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-other-materials" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
- <span class="menu-text">Other Materials</span>
-    </a>
-    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-other-materials">    
-        <li>
-    <a class="dropdown-item" href="./syllabus.html" rel="" target="">
- <span class="dropdown-text">Syllabus</span></a>
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://drive.google.com/drive/folders/1f9oKqswqB0wo1I957xFW6yjhIt2FRhwr" rel="" target=""><i class="bi bi-google" role="img">
+</i> 
+ <span class="menu-text"></span></a>
   </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-reference-texts" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Reference Texts</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-reference-texts">    
         <li>
     <a class="dropdown-item" href="https://norcalbiostat.github.io/AppliedStatistics_notes/" rel="" target="">
  <span class="dropdown-text">Applied Stats Notebook</span></a>
@@ -122,16 +138,15 @@ ul.task-list li input[type="checkbox"] {
     <a class="dropdown-item" href="https://openintro-ims.netlify.app/" rel="" target="">
  <span class="dropdown-text">Intro to Modern Stats</span></a>
   </li>  
-        <li>
-    <a class="dropdown-item" href="https://drive.google.com/drive/folders/1HdjMCqhIeQ_4L0zbme2XPH296_t5fabr" rel="" target=""><i class="bi bi-google" role="img">
-</i> 
- <span class="dropdown-text">Google Drive</span></a>
-  </li>  
     </ul>
   </li>
   <li class="nav-item">
+    <a class="nav-link" href="./syllabus.html" rel="" target="">
+ <span class="menu-text">Syllabus</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="./help.html" rel="" target="">
- <span class="menu-text">Help!</span></a>
+ <span class="menu-text">Help</span></a>
   </li>  
 </ul>
             <div class="quarto-navbar-tools">
@@ -530,7 +545,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-left">This site is built with 💚 and <a href="https://quarto.org/">Quarto</a> by <a href="www.norcalbiostat.com">Robin Donatello</a>.</div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/norcalbiostat/math615_test/edit/main/reading.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/norcalbiostat/math615_test/issues/new" class="toc-action">Report an issue</a></p></div></div></div>
+    <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/norcalbiostat/MATH615/edit/main/reading.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/norcalbiostat/MATH615/issues/new" class="toc-action">Report an issue</a></p></div></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

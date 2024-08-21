@@ -1,0 +1,53 @@
+---
+title: "Model Building" # title 
+subtitle: "Part science, part art" # sub title
+---
+
+```{r}
+source(here::here("topics/common_code.R"))
+this_topic <- topic_mats %>% filter(grepl("t11", topic))
+```
+
+## Learning Path
+
+### Where we've been  
+Learning how to fit multivariable models for a variety of outcome types. 
+
+### Where we're at
+Learning how to build a "good" model, and how to choose between models. 
+
+### Objectives
+
+```{r}
+create_tabled_list(this_topic$topic_obj)
+```
+
+
+## Learning Materials
+Directly from [ASCN](https://norcalbiostat.github.io/AppliedStatistics_notes/) Chapter 10
+
+
+### Model Building
+
+* More on outliers and influential points: PMA6 Ch 7.8 and 8.8
+* Multicollinearity (highly correlated X values): PMA6 8.9 
+* How to choose variables for your model sensibly: PMA6 Chapter 9
+
+### Measures of Model Fit
+
+* [Linear Regression](https://norcalbiostat.github.io/AppliedStatistics_notes/model-fit-criteria.html) for low RMSE, large $R^{2}$, small AIC and BIC.  
+* Logistic Regression: [Goodness of fit](https://norcalbiostat.github.io/AppliedStatistics_notes/logreg.html), and [Accuracy](https://norcalbiostat.github.io/AppliedStatistics_notes/predicted-class-outcome.html)
+
+
+:books:  **Reading** 
+
+```{r}
+create_tabled_list(this_topic$reading)
+```
+
+## Assignments
+
+
+```{r}
+create_tabled_list(this_topic$assignment)
+```

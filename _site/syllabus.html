@@ -63,10 +63,6 @@ ul.task-list li input[type="checkbox"] {
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<meta name="twitter:title" content="Data Analysis for Graduate Research - Syllabus">
-<meta name="twitter:description" content="">
-<meta name="twitter:creator" content="@norcalbiostat">
-<meta name="twitter:card" content="summary">
 </head>
 
 <body class="nav-fixed">
@@ -87,36 +83,55 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./topics.html" rel="" target="">
- <span class="menu-text">Topics</span></a>
+    <a class="nav-link" href="./modules.html" rel="" target="">
+ <span class="menu-text">Overview</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./slides.html" rel="" target="">
- <span class="menu-text">Slides</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-all-materials" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">All Materials</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-all-materials">    
+        <li>
+    <a class="dropdown-item" href="./topics.html" rel="" target="">
+ <span class="dropdown-text">Topics</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./hw.html" rel="" target="">
- <span class="menu-text">Assignments</span></a>
+        <li>
+    <a class="dropdown-item" href="./slides.html" rel="" target="">
+ <span class="dropdown-text">Slides</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./collab_notes.html" rel="" target="">
- <span class="menu-text">Collab Notes</span></a>
+        <li>
+    <a class="dropdown-item" href="./hw.html" rel="" target="">
+ <span class="dropdown-text">Assignments</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./project.html" rel="" target="">
- <span class="menu-text">Project</span></a>
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-research-project" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Research Project</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-research-project">    
+        <li>
+    <a class="dropdown-item" href="./project.html" rel="" target="">
+ <span class="dropdown-text">Overview and Information</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./author_guide.html" rel="" target="">
+ <span class="dropdown-text">Guide for Authors</span></a>
+  </li>  
+    </ul>
+  </li>
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-other-materials" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
- <span class="menu-text">Other Materials</span>
-    </a>
-    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-other-materials">    
-        <li>
-    <a class="dropdown-item" href="./syllabus.html" rel="" target="">
- <span class="dropdown-text">Syllabus</span></a>
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://drive.google.com/drive/folders/1f9oKqswqB0wo1I957xFW6yjhIt2FRhwr" rel="" target=""><i class="bi bi-google" role="img">
+</i> 
+ <span class="menu-text"></span></a>
   </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-reference-texts" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Reference Texts</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-reference-texts">    
         <li>
     <a class="dropdown-item" href="https://norcalbiostat.github.io/AppliedStatistics_notes/" rel="" target="">
  <span class="dropdown-text">Applied Stats Notebook</span></a>
@@ -125,16 +140,15 @@ ul.task-list li input[type="checkbox"] {
     <a class="dropdown-item" href="https://openintro-ims.netlify.app/" rel="" target="">
  <span class="dropdown-text">Intro to Modern Stats</span></a>
   </li>  
-        <li>
-    <a class="dropdown-item" href="https://drive.google.com/drive/folders/1HdjMCqhIeQ_4L0zbme2XPH296_t5fabr" rel="" target=""><i class="bi bi-google" role="img">
-</i> 
- <span class="dropdown-text">Google Drive</span></a>
-  </li>  
     </ul>
   </li>
   <li class="nav-item">
+    <a class="nav-link active" href="./syllabus.html" rel="" target="" aria-current="page">
+ <span class="menu-text">Syllabus</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="./help.html" rel="" target="">
- <span class="menu-text">Help!</span></a>
+ <span class="menu-text">Help</span></a>
   </li>  
 </ul>
             <div class="quarto-navbar-tools">
@@ -173,10 +187,17 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#class-policies-and-statements" id="toc-class-policies-and-statements" class="nav-link" data-scroll-target="#class-policies-and-statements">Class Policies and statements</a>
   <ul class="collapse">
   <li><a href="#everyone-is-welcome-here" id="toc-everyone-is-welcome-here" class="nav-link" data-scroll-target="#everyone-is-welcome-here">Everyone is welcome here</a></li>
-  <li><a href="#attendance" id="toc-attendance" class="nav-link" data-scroll-target="#attendance">Attendance</a></li>
+  <li><a href="#attendance" id="toc-attendance" class="nav-link" data-scroll-target="#attendance">Attendance</a>
+  <ul class="collapse">
+  <li><a href="#online-class" id="toc-online-class" class="nav-link" data-scroll-target="#online-class">Online class</a></li>
+  </ul></li>
   <li><a href="#late-work" id="toc-late-work" class="nav-link" data-scroll-target="#late-work">Late work</a></li>
-  <li><a href="#collaboration" id="toc-collaboration" class="nav-link" data-scroll-target="#collaboration">Collaboration</a></li>
   <li><a href="#use-of-ai" id="toc-use-of-ai" class="nav-link" data-scroll-target="#use-of-ai">Use of AI</a></li>
+  <li><a href="#collaboration" id="toc-collaboration" class="nav-link" data-scroll-target="#collaboration">Collaboration</a>
+  <ul class="collapse">
+  <li><a href="#not-allowed" id="toc-not-allowed" class="nav-link" data-scroll-target="#not-allowed">Not allowed</a></li>
+  <li><a href="#allowed" id="toc-allowed" class="nav-link" data-scroll-target="#allowed">Allowed</a></li>
+  </ul></li>
   </ul></li>
   <li><a href="#campus-resources" id="toc-campus-resources" class="nav-link" data-scroll-target="#campus-resources">Campus Resources</a>
   <ul class="collapse">
@@ -189,7 +210,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#academic-integrity" id="toc-academic-integrity" class="nav-link" data-scroll-target="#academic-integrity">Academic Integrity</a></li>
   </ul></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/norcalbiostat/math615_test/edit/main/syllabus.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/norcalbiostat/math615_test/issues/new" class="toc-action">Report an issue</a></p></div></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="syllabus.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/norcalbiostat/MATH615/edit/main/syllabus.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/norcalbiostat/MATH615/issues/new" class="toc-action">Report an issue</a></p></div></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="syllabus.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -238,14 +259,13 @@ ul.task-list li input[type="checkbox"] {
 <p>Homework 0 provides a checklist for you to make sure you have everything.</p>
 <ul>
 <li><strong>Class website</strong>: https://norcalbiostat.github.io/MATH615/</li>
-<li><strong>Textbook (Required)</strong>: <em>Practical Multivariate Analysis (PMA6), 6th ed</em> by Afifi, May, Donatello, Clark. <a href="https://www.routledge.com/Practical-Multivariate-Analysis/Afifi-May-Donatello-Clark/p/book/9781032088471">[Link]</a></li>
+<li><strong>Textbook (Required)</strong>: <em>Practical Multivariate Analysis (PMA6), 6th ed</em> by Afifi, May, Donatello, Clark. <a href="https://www.routledge.com/Practical-Multivariate-Analysis/Afifi-May-Donatello-Clark/p/book/9781032088471">[Link]</a> There are several available in the library and I have two I can check out for the semester.</li>
 <li><strong>Textbook (Required)</strong>: Introduction to Modern Statistics (IMS). Free e-book/pdf at <a href="https://openintro-ims.netlify.app" class="uri">https://openintro-ims.netlify.app</a></li>
 <li><strong>Laptop &amp; Internet</strong>: Expect to bring your laptop to class every day. Contact me if this poses a problem or concern for you. Refer to ITSS for help with internet.</li>
-<li><strong>Data Analysis software</strong>: R recommended but not required. Common statistical programs include SAS, STATA, Python and SPSS.</li>
-<li><strong>Canvas</strong>: Used for recording grades via grading rubric and maintaining the class schedule/calendar</li>
-<li><strong>Google Drive</strong>: You will be added through your campus email (<span class="citation" data-cites="mail.csuchico.edu">@mail.csuchico.edu</span>).</li>
-<li><strong>Discord</strong>: A free discussion platform with a lot of collaborative functionality. The defacto method of communication for the class. Download either the phone app or the desktop app (I use both). This is mandatory. Do not rely on remembering to log in via the web browser. You will miss important notifications.</li>
-<li><strong>Hack MD</strong>: https://hackmd.io/. Interactive collaborative notes. No account needed to view, but account needed for editing (which you will be doing). I recommend you sign up with your campus email (<span class="citation" data-cites="csuchico.edu">@csuchico.edu</span>)</li>
+<li><strong>Data Analysis software</strong>: R and R Studio</li>
+<li><strong>Canvas</strong>: Assignmnent submission, gradebook, class schedule/calendar</li>
+<li><strong>Google Drive</strong>: Quizzes and collaborative work.</li>
+<li><strong>Discord</strong>: A free discussion platform with a lot of collaborative functionality. The defacto method of communication for the class.</li>
 </ul>
 <hr>
 </section>
@@ -275,7 +295,6 @@ ul.task-list li input[type="checkbox"] {
 <li>Linear regression analysis (Simple and Multiple, Categorical predictors, variable selection)</li>
 <li>Logistic regression analysis</li>
 <li>Model building techniques and comparing model fit</li>
-<li>Special analysis topics - how to identify when linear regression models won’t work.</li>
 </ul>
 <hr>
 </section>
@@ -288,7 +307,7 @@ ul.task-list li input[type="checkbox"] {
 <li>The <a href="https://openintro-ims.netlify.app/">Intro to Modern Statistics</a> book can help with this (this is a free required textbook)</li>
 <li>I also like the <a href="https://leanpub.com/os">OpenIntro Statistics</a> book (also available as a free pdf) chapters 1-4.</li>
 </ul>
-<p>Items that you need to know reasonably well are</p>
+<p>Items that you need to know very well are</p>
 <ul>
 <li>types of data (categorical, quantitative, numerical, qualitative)</li>
 <li>appropriate plot types depending on types of data (histogram vs bar chart)</li>
@@ -321,10 +340,10 @@ ul.task-list li input[type="checkbox"] {
 <li><strong>Individual</strong>: First try to answer as many questions without looking at your notes. Then use your notes to answer the rest.</li>
 <li><strong>Group</strong>: After the individual quiz closes I will choose 1-4 questions that scored the lowest. We will do a class-wide discussion of those topics, then you will work in groups to redo the selected questions for half credit.</li>
 </ul></li>
-<li><p><strong>Assignments</strong> This is your testing ground, your first round of practice. Can you take what you learned and apply it to a data set. Lots of feedback, graded on completeness and effort.</p></li>
+<li><p><strong>Assignments</strong> This is your testing ground, your first round of practice. Can you take what you learned and apply it to a data set. Graded on completeness and effort.</p></li>
 <li><p><strong>Peer reviews</strong> Helping others enhances your own understanding.</p></li>
 <li><p><strong>Project</strong> Can you weave together data and story to do research? This is your second round of practice. Your work should be more polished than in your homework, and I will be grading them in more detail and using a rubric.</p></li>
-<li><p><strong>Final Exam</strong> Can you analyze a new data set to answer a research question and write a professional report on your results?</p></li>
+<li><p><strong>Comprehensive Final Exam</strong> Can you identify and apply correct statistical theory to new situations?</p></li>
 </ul>
 </section>
 <section id="okay-but-what-about-the-points" class="level2">
@@ -336,12 +355,12 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 <p>Your final grade will be displayed as a running total in Canvas. The grades are weighted by category as follows:</p>
 <ul>
-<li>Assignments: 30%</li>
-<li>Quizzes: 20%</li>
-<li>Participation: 10%<br>
+<li>Assignments: 25%</li>
+<li>Quizzes: 25%</li>
+<li>Peer Reviews: 5%<br>
 </li>
-<li>Take home Final exam: 10%</li>
-<li>Project related assignments: 30%</li>
+<li>Comprehensive Exam: 15%</li>
+<li>Project: 30%</li>
 </ul>
 <p>I use a standard grade cutoff of 100-90%: A, 89-80%: B, 79-70%: C.</p>
 <hr>
@@ -368,34 +387,22 @@ ul.task-list li input[type="checkbox"] {
 <ul>
 <li>If you are not feeling well or are experiencing Covid symptoms <strong>DO NOT COME TO CLASS</strong>. DM me in Discord we’ll make a backup plan.</li>
 </ul>
+<section id="online-class" class="level3">
+<h3 class="anchored" data-anchor-id="online-class">Online class</h3>
+<p>This is a graduate class and you all are adults with lives outside this class. Things happen. Each class session will be live streamed, with the recording posted to Canvas within a few days. Common reasons to join the class virtually: - you’re sick - you’re out of town</p>
+<p>Don’t expect as good of quality of presentation, and this is not a long term solution/resource. Don’t abuse this resource.</p>
+</section>
 </section>
 <section id="late-work" class="level2">
 <h2 class="anchored" data-anchor-id="late-work">Late work</h2>
-<p>I don’t penalize for late work, but I prioritize on time submissions. If you submit an assignment after i’m done grading everyone elses, and we’re moving on to the next topic then your assignment may have to wait a week before I can get back to it. That is likely to negatively impact your ability to move forward and to get feedback in time.</p>
+<p>I don’t penalize for late work, but I prioritize on time submissions. If you submit an assignment after I’m done grading everyone elses, and we’re moving on to the next topic then your assignment may have to wait a week before I can get back to it. That is likely to negatively impact your ability to move forward and to get feedback in time.</p>
 <p>There are exceptions for when your work is peer reviewed. There is no grace period for peer reviews. You must be responsible and timely for your colleagues.</p>
-</section>
-<section id="collaboration" class="level2">
-<h2 class="anchored" data-anchor-id="collaboration">Collaboration</h2>
-<p>Collaboration on assignments is encouraged. People learn better when they have someone else to talk through concepts with.</p>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Warning
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Collaboration on exams is not allowed.</p>
-</div>
-</div>
 </section>
 <section id="use-of-ai" class="level2">
 <h2 class="anchored" data-anchor-id="use-of-ai">Use of AI</h2>
 <p>As an instructor I recognize there are a variety of AI programs available to assist in creating text and writing code. However, I want to stress that, AI programs are not a replacement for human creativity, originality, and critical thinking. Writing (text and code) is a skill that you must nurture over time in order to develop your own individual voice, style, and view.</p>
 <p>The use of chat GPT is allowed/encouraged <strong>to help you learn how to code</strong> but all code used must be fully explained in text. We will cover what this means and how to do this when we start data management around week 3. <a href="https://www.zdnet.com/article/how-to-use-chatgpt-to-write-code/">How ChatGPT can help you write code</a></p>
-<p>You are responsible for fact checking the accuracy of statements composed by AI language models.</p>
+<p>You are responsible for fact checking the accuracy of statements composed by AI language models. <a href="https://link.springer.com/article/10.1007/s10676-024-09775-5">These models are known to produce bullshit responses</a>. And yes, this is a technical term.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -410,6 +417,31 @@ Be up front!
 <p>This also goes for when you have it write code for you. You need to indicate when and where you used it.</p>
 </div>
 </div>
+</section>
+<section id="collaboration" class="level2">
+<h2 class="anchored" data-anchor-id="collaboration">Collaboration</h2>
+<p>Collaboration on assignments is encouraged. People learn better when they have someone else to talk through concepts with. However your submitted work must represent <strong>your personal effort</strong> on all parts.</p>
+<section id="not-allowed" class="level3 callout-danger">
+<h3 class="anchored" data-anchor-id="not-allowed">Not allowed</h3>
+<ul>
+<li>Working with or getting help from others on exams and individual quizzes</li>
+<li>Copying code from another student’s homework and presenting it as your own work.</li>
+<li>Copy/paste from AI tools or internet sources without customization, citation or explanation</li>
+<li>Getting your sibling/friend/colleague to write code for you</li>
+<li>Submitting any assignment that is not your own personal effort.</li>
+</ul>
+</section>
+<section id="allowed" class="level3 callout-danger">
+<h3 class="anchored" data-anchor-id="allowed">Allowed</h3>
+<ul>
+<li>Helping each other solve homework problems (concepts or code)</li>
+<li>Use AI to help explain a concept</li>
+<li>Use AI to generate starter code that you modify for your own example.</li>
+<li>Use AI to write code that you cite/disclose and you explain in <em>your words</em> what it is doing in details.</li>
+<li>Copy/paste code from my course notes (this is actually encouraged!)</li>
+</ul>
+</section>
+<p>If at any time I suspect that the work you are submitting is not reflective of your personal knowledge I may ask you to verbally explain a piece of code to me. If your explanation is insufficient may result in a 0 on that assignment.</p>
 <p>Any use outside of this permission constitutes a violation of Chico State’s Integrity Policy and may result in you being reported to the Office of Students Rights and Responsibilities.</p>
 <hr>
 </section>

@@ -1,13 +1,17 @@
 ---
 title: "Preparing Data for Analysis" # title 
 subtitle: "Where an inordinate amount of time is spent" # sub title
-description: "8/30-9/10" #date range
 ---
 
 ```{r}
 library(pander)
 source("common_code.R")
-this_topic <- topic_mats %>% filter(grepl("t03", topic))
+this_topic <- topic_mats %>% 
+  filter(Order %/% 1 == 3, 
+         !grepl("PROJECT", Topic))
+
+header <- this_topic[1,]
+content <- this_topic[-1,]
 ```
 
 ## Learning Path
@@ -21,31 +25,17 @@ Learning how to read our data and ask questions that are potentially answerable 
 * Willing to ask for help and collaboration
 
 
-:::{.callout-important icon=false}
-## Monday 9/4 is Labor Day. No Class. 
-Enjoy the three day weekend, and consider learning something new about this holiday. (Optional reading)
-
-* [US Department of Labor: "History of Labor Day"](https://www.dol.gov/general/laborday/history)
-* [America's Black Holocaust Museum: "America's Racist History of Labor"](https://www.abhmuseum.org/watch-americas-racist-history-of-labor/)
-* [Smithsonian: "Striking Union Workers Turned the First Labor Day Into a Networking Event "](https://www.smithsonianmag.com/history/striking-union-workers-turned-first-labor-day-networking-event-180964705/)
-* [UAW: "Celebrating Labor day by Celebrating Labor Unions"](https://uaw.org/celbrating-labor-day-celebrating-labor-unions/)
-
-Got more? Share in our Discord channel.
-:::
-
-
 ---
 
 ### Objectives
 
 ```{r}
-create_tabled_list(this_topic$topic_obj)
+create_tabled_list(header$topic_obj)
 ```
 
 ## Preparation 
 
-In Homework 00 you downloaded and installed R and R Studio, and used it to import a data file in Homework 01. 
-There are a few more steps to take that will allow you to be best setup for using R to analyze data.  
+In Homework 00 you downloaded and installed R and R Studio, and used it to import a data file in Homework 01. There are a few more steps to take that will allow you to be best setup for using R to analyze data.  
 
 Follow the instructions in the Appendix of the [Applied Stats Course Notes](https://norcalbiostat.github.io/AppliedStatistics_notes/setup_intro.html) to do the following: 
 
@@ -62,36 +52,32 @@ If you have difficulty with any of this, visit Community Coding, my office hours
 
 {{< fa person-chalkboard >}}  **Slides (Will open in full screen. Right click to open in a new tab)**
 
-* [lec03a-workflow](../slides/lec03a-workflow.html)  
-* [lec03b-data_prep](../slides/lec03b-data_prep.html)
-
+```{r}
+create_tabled_list(content$Slides)
+```
 
 We will also be using the Data Management chapter of the [Applied Stats notebook](https://norcalbiostat.github.io/AppliedStatistics_notes/data-management.html) for this topic.
 
 :books:  **Reading** 
 
 ```{r}
-create_tabled_list(this_topic$reading)
+create_tabled_list(content$Reading)
 ```
 
 
-:pencil: **Collaborative notes**
+
+## :pencil: Active Learning
 
 ```{r}
-create_tabled_list(this_topic$collab)
-```
-
-## Assignments
-
-```{r}
-create_tabled_list(this_topic$assignment)
+create_tabled_list(content$Activities)
 ```
 
 ## Assessment
+
 This quiz will contain questions that reference topics in the PMA6. Don't rely only on the slides for your answers. 
 
 ```{r}
-create_tabled_list(this_topic$quiz)
+create_tabled_list(content$Assess)
 ```
 
 ## Other references

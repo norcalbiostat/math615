@@ -1,0 +1,73 @@
+---
+title: "Class Overview"
+execute: 
+  echo: false
+format: 
+  html: 
+    toc: false
+---
+
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, include=FALSE}
+library(tidyverse)
+library(kableExtra)
+options(knitr.table.format = "html", knitr.kable.NA = '') 
+knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE) 
+
+# Import data
+mod <- googlesheets4::read_sheet("150ij7os1zduch0FfbiDYQMpc-ENstskzBPOAlHJy4Do", 
+                                 sheet="module_overview", 
+                                 col_types = c("nnDccccccc"))  %>% 
+  mutate(Date = format(Date,"%m/%d"), 
+         across(-Order, ~str_replace_all(., "\\[([^\\]]+)\\]\\(([^)]+)\\)", '<a href="\\2\">\\1</a>')), 
+         Reading = gsub("\\n", "<br>", Reading))
+```
+
+#### ⚠️ Details are subject to change. See Canvas for due dates. 
+
+_Last Updated: `r format(Sys.time(), "%a %b %d %X")`_ 
+
+```{r}
+# content rows
+content  <- mod %>% filter(is.na(tnum))
+
+# topic info
+headers  <- mod %>% filter(!is.na(tnum))
+
+# create topic number index
+tn <- headers %>% 
+        select(tnum, Topic) %>%
+        mutate(start=0, end=0)
+
+for(t in 0:max(tn$tnum)){
+  tn$start[t+1] <- min(which(content$Order %/% 1 ==t))
+  tn$end[t+1]   <- max(which(content$Order %/% 1==t))
+}
+
+out <- content %>% 
+  select(Topic, Reading, Slides, Activities, Assess) 
+
+# highlight rows
+ex1.col <-  "background-color: #445179; color: #fff;"
+ex2.col <-  "background-color: #445179; color: #fff;"
+```
+
+
+```{r}
+out %>% kbl(align = "lccccc", escape=FALSE) %>%
+  kable_styling(bootstrap_options = c("hover", "striped", "responsive", "bordered")) %>% 
+  pack_rows(tn$Topic[1], tn$start[1],   tn$end[1], label_row_css =ex1.col) %>% 
+  pack_rows(tn$Topic[2], tn$start[2],   tn$end[2], label_row_css =ex1.col) %>%
+  pack_rows(tn$Topic[3], tn$start[3],   tn$end[3], label_row_css =ex1.col) %>%
+  pack_rows(tn$Topic[4], tn$start[4],   tn$end[4], label_row_css =ex1.col) %>%
+  pack_rows(tn$Topic[5], tn$start[5],   tn$end[5], label_row_css =ex1.col) %>%
+  pack_rows(tn$Topic[6], tn$start[6],   tn$end[6], label_row_css =ex2.col) %>%
+  pack_rows(tn$Topic[7], tn$start[7],   tn$end[7], label_row_css =ex2.col) %>%
+  pack_rows(tn$Topic[8], tn$start[8],   tn$end[8], label_row_css =ex2.col) %>%
+  pack_rows(tn$Topic[9], tn$start[9],   tn$end[9], label_row_css =ex2.col) %>%
+  column_spec(1, width = "25%") %>%
+  column_spec(2, width = "15%") %>%
+  column_spec(3, width = "20%") %>% 
+  column_spec(4, width = "15%") %>%
+  column_spec(5, width = "10%") 
+```

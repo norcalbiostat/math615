@@ -1,15 +1,37 @@
 ---
 title: "Statistical Inference with Randomization"
-date: "2023-10-02"
-description: "7"
+date: "2024-10-02"
+description: "lec06"
+author: "Robin Donatello"
+footer: "[🔗 https://math615.netlify.app](https://math615.netlify.app) / Stat Inference via Randomization"
+from: markdown+emoji
+format: 
+  revealjs:
+    theme: sky
+    transition: fade
+    slide-number: true
+    incremental: false 
+    chalkboard: true
+execute:
+  freeze: auto
+  echo: true
+knitr:
+  opts_chunk: 
+    R.options:
+      width: 200
 ---
 
+```{r, echo=FALSE}
+library(dplyr);library(ggplot2)
+```
 
 # Statistical Inference
 
 (A.K.A Hypothesis Testing)
 
 ![https://xkcd.com/1478/](https://imgs.xkcd.com/comics/p_values.png)
+
+_Follow along printed note available for this section_
 
 ## Statistical Inference
 
@@ -20,52 +42,139 @@ description: "7"
 -   We formalize the process through the introduction of the hypothesis testing framework, which allows us to formally evaluate claims about the population.
 :::
 
-## Variability in data 
+## Variability in data
 
 ::: incremental
-* Sometimes the dataset at hand represents the entire research question.
-* More often than not, the data have been collected to answer a research question about a larger group of which the data are a (hopefully) representative subset.
-* One dataset will not be identical to a second dataset even if they are both collected from the same population using the same methods.
+-   Sometimes the dataset at hand represents the entire research question.
+-   More often than not, the data have been collected to answer a research question about a larger group of which the data are a (hopefully) representative subset.
+-   One dataset will not be identical to a second dataset even if they are both collected from the same population using the same methods.
 :::
 
-## Motivating Example: Police Shootings since 2015
+## Motivating Example: Case study in sex discrimination
 
-The Washington Post has been keeping a database on [use of fatal force by police](https://www.washingtonpost.com/graphics/investigations/police-shootings-database/) since 2015. This database tracks all incidents where someone was shot by police, and records various characteristics such as the seniority level of the officer, date, location, gender, age and ethnicity of the victim along with information on if the person was armed, fleeing or acting erratic. 
+We consider a study investigating sex discrimination in the 1970s, which is set in the context of personnel decisions within a bank. The research question we hope to answer is, “Are individuals who identify as female discriminated against in promotion decisions made by their managers who identify as male?” ([Rosen and Jerdee 1974](https://openintro-ims.netlify.app/references#ref-Rosen:1974) *Note: The study allowed only for a binary classification of sex. The identities being considered are not gender identities.*
 
-(board work)
+## Methods
 
-## Randomization 
+48 male-identifying bank supervisors were asked to assume the role of the personnel director and were given personnel files to judge whether the person should be promoted. The files were identical except half indicated that the candidate identified as male, the other half the candidate identified as female. The files were randomly assigned to the participants, 13 individuals were promoted and the results were recorded.
 
-To decide whether variability in data is due to 
+## Setup
+
+:question: Is this an observational study or an experiment? Why?
+
+:question:How does the type of study impact what can be inferred from the results?
+
+:question: What is the hypothesis being tested? (in words with no statistical jargon).
+
+## Observed Results
+
+The results from the study are displayed in the following contingency table. Use it to fill in the blanks below.
+
+```{r}
+library(openintro) # to get the sex_discrimination data
+table(sex_discrimination$sex, sex_discrimination$decision) |> addmargins()
+```
+
+In this study, a **(bigger/smaller)** proportion of female identifying applications were promoted than males (\_\_\_\_\_\_\_\_\_\_\_\_\_\_ versus \_\_\_\_\_\_\_\_\_\_\_\_\_\_).
+
+Calculate the difference (male - female) between these proportions.
+
+## Point Estimate
+
+This observed difference is what we call a *point estimate* of the true difference in promotional rates between males and females. This difference suggest there might be discrimination against women in promotion decisions, is unclear whether there is **convincing evidence** that the observed difference represents discrimination or is just due to random chance when there is no discrimination occurring.
+
+## Competing Hypothesis {.smaller}
+
+Chance can be thought of as the claim due to natural variability; discrimination can be thought of as the claim the researchers set out to demonstrate. We label these two competing claims in the following way:
+
+
+$H_{0}$: **Null Hypothesis:**
+
+<br><br><br>
+
+$H_{A}$: **Alternative Hypothesis:**
+
+<br><br><br>
+
+Often times, the null hypothesis takes a stance of no difference or no effect. This hypothesis assumes that any differences seen are due to the variability inherent in the population and could have occurred by random chance.
+
+## Data or it didn't happen
+
+We will choose between the two competing claims by assessing if the data conflict so much with $H_{0}$ that the null hypothesis cannot be deemed reasonable. If data and the null claim seem to be at odds with one another, and the data seem to support $H_{A}$, then we will reject the notion of independence and conclude that the data provide evidence of discrimination.
+
+## Inference via Randomization
+
+To decide whether variability in data is due to
 
 - (1) the causal mechanism (the randomized explanatory variable in the experiment)
-- (2) natural variability inherent to the data 
 
-we set up a sham randomized experiment as a comparison. 
+- (2) natural variability inherent to the data
 
-## "Sham" randomized experiment
+we set up a sham randomized experiment as a comparison.
 
-* We assume that each observational unit (person) would have gotten the exact same response value (shot by police) regardless of the treatment level (race). 
-* By reassigning the treatments many many times, we can compare the actual experiment to the sham experiment. 
+## "Sham" randomized experiment {.smaller}
+
+-   We assume that each observational unit (person) would have gotten the exact same response value (chance of being promoted) regardless of the treatment level (sex).
+-   By reassigning the treatments many many times, we can compare the actual experiment to the sham experiment.
+
+**Decision**
+
+If the actual experiment has **more extreme results** than any of the sham experiments, we are led to believe that it is the explanatory variable which is causing the result and not just variability inherent to the data.
+
+
+## Variability of the statistic
+
+Suppose the bankers' decisions were independent of the sex of the candidate. Then, if we conducted the experiment again with a different random assignment of promotion to the files, differences in promotion rates would be based only on random fluctuation in promotion decisions. Let's **simulate** this as a class so we can get lots of replications for this experiment. 
+
+## You're in power now
+
+:::{.callout-note}
+### Simulation Study
+
+It's your turn to assume the role of the bank personnel director and make a promotional decisions. Your group has been handed a stack of 48 confidential applications. Keep them face down for now.
+:::
+
+## To promote, or not to promote. {.smaller}
+
+1. Identify someone to record your results. This person logs into our shared Google drive, opens the `Randomization Experiment` spreadsheet, and fills out the first two columns. 
+2. While they are still face down, choose 13 of your applicant pool to be promoted. Put these files in one pile, those not promoted in another pile. Fill out the `\# of promotions` column in the spreadsheet. 
+3. Flip your candidates over to reveal their sex. Record the number of males and females, and the \# of each that have been promoted in each group.
+4. Calculate your `point estimate` for the male-female difference in promotional rate and write it in your notes.
+5. Shuffle thoroughly your application pool (face down) and repeat this experiment for simulation round 2. 
+
+## Class Results
+
+:::: {.columns}
+
+::: {.column width="50%"}
+```{r, cache=TRUE}
+sim.data <- googlesheets4::read_sheet("https://docs.google.com/spreadsheets/d/1KViV3beCDKMfeNgJFLTJauybKBQ4qrDRqS4gCFgi8ec") %>% 
+  select(mfdiff = `(Male - female) difference`) 
+
+ggplot(sim.data, aes(x = mfdiff)) + 
+  geom_dotplot() + theme_bw() + 
+  geom_vline(xintercept = .292, color = "blue") +
+  scale_x_continuous(limits = c(-.5, .5)) + 
+  xlab("point estimate")
+```
+:::
+
+::: {.column width="50%"}
+Describe the distribution of this graph. What does it seem to be centered around?
+
+:::
+
+::::
+
+In what percent of simulations did we observe a difference of at least 29.2\% (0.292)? 
 
 ## Decision
 
-If the actual experiment has **more extreme results** than any of the sham experiments, we are led to believe that it is the explanatory variable which is causing the result and not just variability inherent to the data. 
-
-## Case Study: Sex discrimination
-
-Turning to something equally important, but less potentially distressful, let's do an experiment on sex discrimination in promotional decisions
-
-(in class)
-
-## Case Study: Sex discrimination - collab notes
-
-Open the collaborative notes and work with your neighbor to answer the following questions under the "Inference using Randomization" section.  
-
-[https://hackmd.io/@norcalbiostat/06b-stat_inference](https://hackmd.io/@norcalbiostat/06b-stat_inference)
+In our analysis, we determined that there was only a $\approx$ ______ chance of obtaining a sample where $\geq$ 29.2\% more male candidates than female candidates get promoted under the null hypothesis, so we conclude that the data provide _____________ evidence of sex discrimination against female candidates by the male supervisors. **In this case, we ________ the null hypothesis in favor of the alternative.**
 
 
-## Statistical inference is the practice of making decisions and conclusions from data in the context of uncertainty. 
+## Closing
 
-Errors do occur, just like rare events, and the dataset at hand might lead us to the wrong conclusion. While a given dataset may not always lead us to a correct conclusion, statistical inference gives us tools to control and evaluate how often these errors occur. 
+Statistical inference is the practice of making decisions and conclusions from data in the context of uncertainty.
 
+Errors do occur, just like rare events, and the dataset at hand might lead us to the wrong conclusion. While a given dataset may not always lead us to a correct conclusion, statistical inference gives us tools to control and evaluate how often these errors occur.

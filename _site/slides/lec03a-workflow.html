@@ -11,7 +11,7 @@
   <meta name="generator" content="quarto-1.3.319">
 
   <meta name="author" content="Robin Donatello">
-  <meta name="dcterms.date" content="2023-08-30">
+  <meta name="dcterms.date" content="2024-09-09">
   <title>Data Analysis for Graduate Research - Workflows for Reproducibility</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -322,10 +322,6 @@
       margin-right: 0; 
     }
   </style>
-<meta name="twitter:title" content="Data Analysis for Graduate Research - Workflows for Reproducibility">
-<meta name="twitter:description" content="3">
-<meta name="twitter:creator" content="@norcalbiostat">
-<meta name="twitter:card" content="summary">
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -342,7 +338,7 @@ Robin Donatello
 </div>
 </div>
 
-  <p class="date">2023-08-30</p>
+  <p class="date">2024-09-09</p>
 </section>
 <section>
 <section id="workflows" class="title-slide slide level1 center">
@@ -413,6 +409,16 @@ Robin Donatello
 <h2>Data Analysis Pipeline</h2>
 
 <img data-src="https://d33wubrfki0l68.cloudfront.net/571b056757d68e6df81a3e3853f54d3c76ad6efc/32d37/diagrams/data-science.png" alt="A line diagram of figure 1.1 from the book R for Data science" width="682" class="r-stretch quarto-figure-center"><p class="caption">In this model of the data science process, you start with data import and tidying. Next, you understand your data with an iterative cycle of transforming, visualizing, and modeling. You finish the process by communicating your results to other humans. Ref R for Data Science 2nd ed</p><p>Regardless of the programming language you choose to use, using scripts will make this process reproducible and more powerful with less pain points.</p>
+</section>
+<section id="quarto-as-an-end-to-end-solution" class="slide level2">
+<h2>Quarto as an end-to-end solution</h2>
+<ul>
+<li>https://quarto.org/</li>
+<li>Supports R, Python, Observable and Julia</li>
+<li>“Next Generation” R Markdown files</li>
+<li>Publish reproducible, production quality articles, presentations, dashboards, websites, blogs, and books in HTML, PDF, MS Word, ePub, and more.</li>
+<li>Write using Pandoc markdown, including equations, citations, crossrefs, figure panels, callouts, advanced layout, and more.</li>
+</ul>
 
 <div class="footer footer-default">
 <p><a href="https://math615.netlify.app">🔗 https://math615.netlify.app</a> / Workflows</p>
@@ -631,6 +637,44 @@ Robin Donatello
         ]
       });
     </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {

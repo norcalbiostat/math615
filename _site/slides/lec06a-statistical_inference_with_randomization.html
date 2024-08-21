@@ -11,7 +11,7 @@
   <meta name="generator" content="quarto-1.3.319">
 
   <meta name="author" content="Robin Donatello">
-  <meta name="dcterms.date" content="2023-10-02">
+  <meta name="dcterms.date" content="2024-10-02">
   <title>Data Analysis for Graduate Research - Statistical Inference with Randomization</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -30,6 +30,71 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css" id="theme">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -322,10 +387,6 @@
       margin-right: 0; 
     }
   </style>
-<meta name="twitter:title" content="Data Analysis for Graduate Research - Statistical Inference with Randomization">
-<meta name="twitter:description" content="7">
-<meta name="twitter:creator" content="@norcalbiostat">
-<meta name="twitter:card" content="summary">
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -342,14 +403,15 @@ Robin Donatello
 </div>
 </div>
 
-  <p class="date">2023-10-02</p>
+  <p class="date">2024-10-02</p>
 </section>
 <section>
 <section id="statistical-inference" class="title-slide slide level1 center">
 <h1>Statistical Inference</h1>
 <p>(A.K.A Hypothesis Testing)</p>
 
-<img data-src="https://imgs.xkcd.com/comics/p_values.png" class="r-stretch quarto-figure-center"><p class="caption">https://xkcd.com/1478/</p></section>
+<img data-src="https://imgs.xkcd.com/comics/p_values.png" class="r-stretch quarto-figure-center"><p class="caption">https://xkcd.com/1478/</p><p><em>Follow along printed note available for this section</em></p>
+</section>
 <section id="statistical-inference-1" class="slide level2">
 <h2>Statistical Inference</h2>
 <div>
@@ -371,13 +433,59 @@ Robin Donatello
 </ul>
 </div>
 </section>
-<section id="motivating-example-police-shootings-since-2015" class="slide level2">
-<h2>Motivating Example: Police Shootings since 2015</h2>
-<p>The Washington Post has been keeping a database on <a href="https://www.washingtonpost.com/graphics/investigations/police-shootings-database/">use of fatal force by police</a> since 2015. This database tracks all incidents where someone was shot by police, and records various characteristics such as the seniority level of the officer, date, location, gender, age and ethnicity of the victim along with information on if the person was armed, fleeing or acting erratic.</p>
-<p>(board work)</p>
+<section id="motivating-example-case-study-in-sex-discrimination" class="slide level2">
+<h2>Motivating Example: Case study in sex discrimination</h2>
+<p>We consider a study investigating sex discrimination in the 1970s, which is set in the context of personnel decisions within a bank. The research question we hope to answer is, “Are individuals who identify as female discriminated against in promotion decisions made by their managers who identify as male?” (<a href="https://openintro-ims.netlify.app/references#ref-Rosen:1974">Rosen and Jerdee 1974</a> <em>Note: The study allowed only for a binary classification of sex. The identities being considered are not gender identities.</em></p>
 </section>
-<section id="randomization" class="slide level2">
-<h2>Randomization</h2>
+<section id="methods" class="slide level2">
+<h2>Methods</h2>
+<p>48 male-identifying bank supervisors were asked to assume the role of the personnel director and were given personnel files to judge whether the person should be promoted. The files were identical except half indicated that the candidate identified as male, the other half the candidate identified as female. The files were randomly assigned to the participants, 13 individuals were promoted and the results were recorded.</p>
+</section>
+<section id="setup" class="slide level2">
+<h2>Setup</h2>
+<p><span class="emoji" data-emoji="question">❓</span> Is this an observational study or an experiment? Why?</p>
+<p><span class="emoji" data-emoji="question">❓</span>How does the type of study impact what can be inferred from the results?</p>
+<p><span class="emoji" data-emoji="question">❓</span> What is the hypothesis being tested? (in words with no statistical jargon).</p>
+</section>
+<section id="observed-results" class="slide level2">
+<h2>Observed Results</h2>
+<p>The results from the study are displayed in the following contingency table. Use it to fill in the blanks below.</p>
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(openintro) <span class="co"># to get the sex_discrimination data</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">table</span>(sex_discrimination<span class="sc">$</span>sex, sex_discrimination<span class="sc">$</span>decision) <span class="sc">|&gt;</span> <span class="fu">addmargins</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>        
+         promoted not promoted Sum
+  male         21            3  24
+  female       14           10  24
+  Sum          35           13  48</code></pre>
+</div>
+</div>
+<p>In this study, a <strong>(bigger/smaller)</strong> proportion of female identifying applications were promoted than males (______________ versus ______________).</p>
+<p>Calculate the difference (male - female) between these proportions.</p>
+</section>
+<section id="point-estimate" class="slide level2">
+<h2>Point Estimate</h2>
+<p>This observed difference is what we call a <em>point estimate</em> of the true difference in promotional rates between males and females. This difference suggest there might be discrimination against women in promotion decisions, is unclear whether there is <strong>convincing evidence</strong> that the observed difference represents discrimination or is just due to random chance when there is no discrimination occurring.</p>
+</section>
+<section id="competing-hypothesis" class="slide level2 smaller">
+<h2>Competing Hypothesis</h2>
+<p>Chance can be thought of as the claim due to natural variability; discrimination can be thought of as the claim the researchers set out to demonstrate. We label these two competing claims in the following way:</p>
+<p><span class="math inline">\(H_{0}\)</span>: <strong>Null Hypothesis:</strong></p>
+<p><br><br><br></p>
+<p><span class="math inline">\(H_{A}\)</span>: <strong>Alternative Hypothesis:</strong></p>
+<p><br><br><br></p>
+<p>Often times, the null hypothesis takes a stance of no difference or no effect. This hypothesis assumes that any differences seen are due to the variability inherent in the population and could have occurred by random chance.</p>
+</section>
+<section id="data-or-it-didnt-happen" class="slide level2">
+<h2>Data or it didn’t happen</h2>
+<p>We will choose between the two competing claims by assessing if the data conflict so much with <span class="math inline">\(H_{0}\)</span> that the null hypothesis cannot be deemed reasonable. If data and the null claim seem to be at odds with one another, and the data seem to support <span class="math inline">\(H_{A}\)</span>, then we will reject the notion of independence and conclude that the data provide evidence of discrimination.</p>
+</section>
+<section id="inference-via-randomization" class="slide level2">
+<h2>Inference via Randomization</h2>
 <p>To decide whether variability in data is due to</p>
 <ul>
 <li><ol type="1">
@@ -389,33 +497,82 @@ Robin Donatello
 </ul>
 <p>we set up a sham randomized experiment as a comparison.</p>
 </section>
-<section id="sham-randomized-experiment" class="slide level2">
+<section id="sham-randomized-experiment" class="slide level2 smaller">
 <h2>“Sham” randomized experiment</h2>
 <ul>
-<li>We assume that each observational unit (person) would have gotten the exact same response value (shot by police) regardless of the treatment level (race).</li>
+<li>We assume that each observational unit (person) would have gotten the exact same response value (chance of being promoted) regardless of the treatment level (sex).</li>
 <li>By reassigning the treatments many many times, we can compare the actual experiment to the sham experiment.</li>
 </ul>
+<p><strong>Decision</strong></p>
+<p>If the actual experiment has <strong>more extreme results</strong> than any of the sham experiments, we are led to believe that it is the explanatory variable which is causing the result and not just variability inherent to the data.</p>
+</section>
+<section id="variability-of-the-statistic" class="slide level2">
+<h2>Variability of the statistic</h2>
+<p>Suppose the bankers’ decisions were independent of the sex of the candidate. Then, if we conducted the experiment again with a different random assignment of promotion to the files, differences in promotion rates would be based only on random fluctuation in promotion decisions. Let’s <strong>simulate</strong> this as a class so we can get lots of replications for this experiment.</p>
+</section>
+<section id="youre-in-power-now" class="slide level2">
+<h2>You’re in power now</h2>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Simulation Study</strong></p>
+</div>
+<div class="callout-content">
+<p>It’s your turn to assume the role of the bank personnel director and make a promotional decisions. Your group has been handed a stack of 48 confidential applications. Keep them face down for now.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="to-promote-or-not-to-promote." class="slide level2 smaller">
+<h2>To promote, or not to promote.</h2>
+<ol type="1">
+<li>Identify someone to record your results. This person logs into our shared Google drive, opens the <code>Randomization Experiment</code> spreadsheet, and fills out the first two columns.</li>
+<li>While they are still face down, choose 13 of your applicant pool to be promoted. Put these files in one pile, those not promoted in another pile. Fill out the <code>\# of promotions</code> column in the spreadsheet.</li>
+<li>Flip your candidates over to reveal their sex. Record the number of males and females, and the # of each that have been promoted in each group.</li>
+<li>Calculate your <code>point estimate</code> for the male-female difference in promotional rate and write it in your notes.</li>
+<li>Shuffle thoroughly your application pool (face down) and repeat this experiment for simulation round 2.</li>
+</ol>
+</section>
+<section id="class-results" class="slide level2">
+<h2>Class Results</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell" data-hash="lec06a-statistical_inference_with_randomization_cache/revealjs/unnamed-chunk-3_42581f5619e8ebcff7e10464375d1bba">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>sim.data <span class="ot">&lt;-</span> googlesheets4<span class="sc">::</span><span class="fu">read_sheet</span>(<span class="st">"https://docs.google.com/spreadsheets/d/1KViV3beCDKMfeNgJFLTJauybKBQ4qrDRqS4gCFgi8ec"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-2"><a href="#cb3-2"></a>  <span class="fu">select</span>(<span class="at">mfdiff =</span> <span class="st">`</span><span class="at">(Male - female) difference</span><span class="st">`</span>) </span>
+<span id="cb3-3"><a href="#cb3-3"></a></span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="fu">ggplot</span>(sim.data, <span class="fu">aes</span>(<span class="at">x =</span> mfdiff)) <span class="sc">+</span> </span>
+<span id="cb3-5"><a href="#cb3-5"></a>  <span class="fu">geom_dotplot</span>() <span class="sc">+</span> <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb3-6"><a href="#cb3-6"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> .<span class="dv">292</span>, <span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span>.<span class="dv">5</span>, .<span class="dv">5</span>)) <span class="sc">+</span> </span>
+<span id="cb3-8"><a href="#cb3-8"></a>  <span class="fu">xlab</span>(<span class="st">"point estimate"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img data-src="lec06a-statistical_inference_with_randomization_files/figure-revealjs/unnamed-chunk-3-1.png" width="960"></p>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<p>Describe the distribution of this graph. What does it seem to be centered around?</p>
+</div>
+</div>
+<p>In what percent of simulations did we observe a difference of at least 29.2% (0.292)?</p>
 </section>
 <section id="decision" class="slide level2">
 <h2>Decision</h2>
-<p>If the actual experiment has <strong>more extreme results</strong> than any of the sham experiments, we are led to believe that it is the explanatory variable which is causing the result and not just variability inherent to the data.</p>
+<p>In our analysis, we determined that there was only a <span class="math inline">\(\approx\)</span> ______ chance of obtaining a sample where <span class="math inline">\(\geq\)</span> 29.2% more male candidates than female candidates get promoted under the null hypothesis, so we conclude that the data provide _____________ evidence of sex discrimination against female candidates by the male supervisors. <strong>In this case, we ________ the null hypothesis in favor of the alternative.</strong></p>
 </section>
-<section id="case-study-sex-discrimination" class="slide level2">
-<h2>Case Study: Sex discrimination</h2>
-<p>Turning to something equally important, but less potentially distressful, let’s do an experiment on sex discrimination in promotional decisions</p>
-<p>(in class)</p>
-</section>
-<section id="case-study-sex-discrimination---collab-notes" class="slide level2">
-<h2>Case Study: Sex discrimination - collab notes</h2>
-<p>Open the collaborative notes and work with your neighbor to answer the following questions under the “Inference using Randomization” section.</p>
-<p><a href="https://hackmd.io/@norcalbiostat/06b-stat_inference">https://hackmd.io/<span class="citation" data-cites="norcalbiostat/06b-stat_inference">@norcalbiostat/06b-stat_inference</span></a></p>
-</section>
-<section id="statistical-inference-is-the-practice-of-making-decisions-and-conclusions-from-data-in-the-context-of-uncertainty." class="slide level2">
-<h2>Statistical inference is the practice of making decisions and conclusions from data in the context of uncertainty.</h2>
+<section id="closing" class="slide level2">
+<h2>Closing</h2>
+<p>Statistical inference is the practice of making decisions and conclusions from data in the context of uncertainty.</p>
 <p>Errors do occur, just like rare events, and the dataset at hand might lead us to the wrong conclusion. While a given dataset may not always lead us to a correct conclusion, statistical inference gives us tools to control and evaluate how often these errors occur.</p>
 
 <div class="footer footer-default">
-<p><a href="https://math615.netlify.app/slides">🔗 https://math615.netlify.app</a></p>
+<p><a href="https://math615.netlify.app">🔗 https://math615.netlify.app</a> / Stat Inference via Randomization</p>
 </div>
 </section></section>
     </div>
@@ -631,6 +788,44 @@ Robin Donatello
         ]
       });
     </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {
