@@ -19,7 +19,8 @@ mod <- googlesheets4::read_sheet("150ij7os1zduch0FfbiDYQMpc-ENstskzBPOAlHJy4Do",
                                  sheet="module_overview", 
                                  col_types = c("nnDccccccc"))  %>% 
   mutate(Date = format(Date,"%m/%d"), 
-         across(-Order, ~str_replace_all(., "\\[([^\\]]+)\\]\\(([^)]+)\\)", '<a href="\\2\">\\1</a>')))
+         across(-Order, ~str_replace_all(., "\\[([^\\]]+)\\]\\(([^)]+)\\)", '<a href="\\2\">\\1</a>')), 
+         Reading = gsub("\\n", "<br>", Reading))
 ```
 
 #### ⚠️ Details are subject to change. See Canvas for due dates. 
