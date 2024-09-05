@@ -5,7 +5,7 @@ subtitle: "Where an inordinate amount of time is spent" # sub title
 
 ```{r}
 library(pander)
-source("common_code.R")
+source(here::here("topics/common_code.R"))
 this_topic <- topic_mats %>% 
   filter(Order %/% 1 == 3, 
          !grepl("PROJECT", Topic))

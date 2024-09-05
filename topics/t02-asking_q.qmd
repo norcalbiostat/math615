@@ -5,7 +5,7 @@ subtitle: "Asking questions is easy. Asking _answerable_ questions is more diffi
 
 ```{r}
 library(pander)
-source("common_code.R")
+source(here::here("topics/common_code.R"))
 this_topic <- topic_mats %>% 
   filter(Order %/% 1 == 2, 
          !grepl("PROJECT", Topic))

@@ -5,7 +5,7 @@ subtitle: "Study Design, Inference using randomization and the Normal Model" # s
 
 
 ```{r}
-source("common_code.R")
+source(here::here("topics/common_code.R"))
 this_topic <- topic_mats %>% 
   filter(Order %/% 1 == 6, 
          !grepl("PROJECT", Topic))

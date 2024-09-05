@@ -5,7 +5,7 @@ subtitle: "Data entry, spreadsheets, metadata, codebooks"
 
 ```{r}
 library(pander)
-source("common_code.R")
+source(here::here("topics/common_code.R"))
 this_topic <- topic_mats %>% 
   filter(Order %/% 1 == 1, 
          !grepl("PROJECT", Topic))

@@ -54,7 +54,8 @@ ex2.col <-  "background-color: #445179; color: #fff;"
 
 
 ```{r}
-out %>% kbl(align = "lccccc", escape=FALSE) %>%
+out %>% 
+  kbl(align = "lccccc", format = "html", escape=FALSE) %>%
   kable_styling(bootstrap_options = c("hover", "striped", "responsive", "bordered")) %>% 
   pack_rows(tn$Topic[1], tn$start[1],   tn$end[1], label_row_css =ex1.col) %>% 
   pack_rows(tn$Topic[2], tn$start[2],   tn$end[2], label_row_css =ex1.col) %>%
