@@ -200,7 +200,7 @@
     "href": "hw/hw03-dm.html#setup",
     "title": "HW 03: Data Management",
     "section": "Setup",
-    "text": "Setup\n\n# Load libraries\nlibrary(dplyr)\n\n# Read in the data \nraw &lt;- read.delim(\"https://norcalbiostat.netlify.app/data/Depress.txt\", \n                  sep=\"\\t\",  header=TRUE) %&gt;%\n  # convert all variable names to lowercase\n  janitor::clean_names()\n\n# Select only the variables that I am interested in\nmydata  &lt;- raw %&gt;% select(age, marital, cesd, health)\n\n\nGeneral Health\nThe variable health records a persons perceived general health as being either Excellent, Good, Fair or Poor. This is considered an ordinal categorical variable.\n\ntable(mydata$health)\n\n\n  1   2   3   4 \n130 115  35  14 \n\nclass(mydata$health)\n\n[1] \"integer\"\n\n\nThe variable health currently is an integer with numeric values 1-4, but the codebook states that this is a categorical variable where 1=Excellent, 2=Good, 3=Fair, 4=Poor. So I need to convert this numeric variable to a factor variable. There are no values outside the 1-4 range, such as a -9 that codes for missing data so I do not need to make any further adjustments (You want to code out missing before you convert variables to factors)\n\nmydata$health_cat &lt;- factor(mydata$health, labels=c(\"Excellent\", \"Good\", \"Fair\", \"Poor\"))\n\nI will confirm that the recode worked by making a two-way table\n\ntable(mydata$health, mydata$health_cat, useNA=\"always\")\n\n      \n       Excellent Good Fair Poor &lt;NA&gt;\n  1          130    0    0    0    0\n  2            0  115    0    0    0\n  3            0    0   35    0    0\n  4            0    0    0   14    0\n  &lt;NA&gt;         0    0    0    0    0\n\n\nThis shows that all 1’s are now ‘excellent’, 4’s are now ‘poor’ and so forth.\n\n\nCESD\nThe numeric variable CESD represents the depression index scale, which is a sum of 20 component variables. A high score indicates a person who is depressed, with 16 being the typical cutoff for creating a binary indicator of depression.\n\nsummary(mydata$cesd)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n  0.000   3.000   7.000   8.884  12.000  47.000 \n\nhist(mydata$cesd)\n\n\n\n\n\n\n\n\nThere are no values outside of the expected range, and no missing values.\n\n\nIndicator of Depression\nCreate the binary indicator of depression using CESD\n\nmydata$depressed &lt;- ifelse(mydata$cesd &gt; 16, \"depressed\", \"not depressed\")\ntable(mydata$depressed, useNA=\"always\")\n\n\n    depressed not depressed          &lt;NA&gt; \n           45           249             0 \n\n\nNo missing values were accidentally generated,"
+    "text": "Setup\n\n# Load libraries\nlibrary(dplyr)\n\n# Read in the data \nraw &lt;- read.delim(\"https://norcalbiostat.netlify.app/data/Depress.txt\", \n                  sep=\"\\t\",  header=TRUE) %&gt;%\n  # convert all variable names to lowercase\n  janitor::clean_names()\n\n# Select only the variables that I am interested in\nmydata  &lt;- raw %&gt;% select(age, marital, cesd, health)\n\n\nGeneral Health\nThe variable health records a persons perceived general health as being either Excellent, Good, Fair or Poor. This is considered an ordinal categorical variable.\n\ntable(mydata$health)\n\n\n  1   2   3   4 \n130 115  35  14 \n\nclass(mydata$health)\n\n[1] \"integer\"\n\n\nThe variable health currently is an integer with numeric values 1-4, but the codebook states that this is a categorical variable where 1=Excellent, 2=Good, 3=Fair, 4=Poor. So I need to convert this numeric variable to a factor variable. There are no values outside the 1-4 range, such as a -9 that codes for missing data so I do not need to make any further adjustments (You want to code out missing before you convert variables to factors)\n\nmydata$health_cat &lt;- factor(mydata$health, labels=c(\"Excellent\", \"Good\", \"Fair\", \"Poor\"))\n\nI will confirm that the recode worked by making a two-way table\n\ntable(mydata$health, mydata$health_cat, useNA=\"always\")\n\n      \n       Excellent Good Fair Poor &lt;NA&gt;\n  1          130    0    0    0    0\n  2            0  115    0    0    0\n  3            0    0   35    0    0\n  4            0    0    0   14    0\n  &lt;NA&gt;         0    0    0    0    0\n\n\nThis shows that all 1’s are now ‘excellent’, 4’s are now ‘poor’ and so forth.\n\n\nCESD\nThe numeric variable CESD represents the depression index scale, which is a sum of 20 component variables. A high score indicates a person who is depressed, with 16 being the typical cutoff for creating a binary indicator of depression.\n\nsummary(mydata$cesd)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n  0.000   3.000   7.000   8.884  12.000  47.000 \n\nhist(mydata$cesd)\n\n\n\n\nThere are no values outside of the expected range, and no missing values.\n\n\nIndicator of Depression\nCreate the binary indicator of depression using CESD\n\nmydata$depressed &lt;- ifelse(mydata$cesd &gt; 16, \"depressed\", \"not depressed\")\ntable(mydata$depressed, useNA=\"always\")\n\n\n    depressed not depressed          &lt;NA&gt; \n           45           249             0 \n\n\nNo missing values were accidentally generated,"
   },
   {
     "objectID": "hw/hw03-dm.html#export-cleaned-data-set",
@@ -305,7 +305,7 @@
     "href": "hw.html",
     "title": "Assignments",
     "section": "",
-    "text": "Assignment\n\n\nLearning Objective\n\n\n\n\n\n\nHW 01: Data Entry\n\n\nRecording data to maintain your sanity.\n\n\n\n\nHW 02: Formulating a research hypothesis\n\n\nBrainstorming research questions to investigate\n\n\n\n\nHW 03: Data Management\n\n\nWrangling your data into analyzable form\n\n\n\n\nHW 04: Describing Distributions\n\n\nLet the data be beautiful\n\n\n\n\nHW 05: Describing Relationships\n\n\nExploring Associations between two variables\n\n\n\n\nHW 06: Foundations for Inference\n\n\n \n\n\n\n\nHW 07: Bivariate Modeling\n\n\n \n\n\n\n\n\nNo matching items"
+    "text": "Assignment\n\n\nLearning Objective\n\n\n\n\n\n\nHW 01: Data Entry\n\n\nRecording data to maintain your sanity.\n\n\n\n\nHW 02: Formulating a research hypothesis\n\n\nBrainstorming research questions to investigate\n\n\n\n\nHW 03: Data Management\n\n\nWrangling your data into analyzable form\n\n\n\n\nHW 04: Describing Distributions\n\n\nLet the data be beautiful\n\n\n\n\nHW 05: Describing Relationships\n\n\nExploring Associations between two variables\n\n\n\n\nHW 06: Foundations for Inference\n\n\nundefined\n\n\n\n\nHW 07: Bivariate Modeling\n\n\nundefined\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "index.html",
@@ -326,7 +326,7 @@
     "href": "modules.html",
     "title": "Class Overview",
     "section": "",
-    "text": "⚠️ Details are subject to change. See Canvas for due dates.\nLast Updated: Thu Sep 05 11:37:16 AM\n\n\n\n\n\n\n\n\n\n\n\n\n\nTopic\nReading\nSlides\nActivities\nAssess\n\n\n\n\n\\Welcome!\n\n\nIntroduction to the class\nTopic Overview\nSyllabus\nHelp page\nlec00a\nHW 0 Checklist \"Quiz\" In canvas\n\n\n\nHow to use the class tools\n\nlec00b\n\n\n\n\nPROJECT Stage 1: Choosing your Research Data\nProject Stage 1\n\nData set proposal\n\n\n\nData Architecture\n\n\nThe uses and structure of data\nTopic Overview\nTidy data principles\nPMA6 Ch 2\nlec01\nCollab notes HW01 Data Entry\nQuiz 01\n\n\nFormulating Research Questions\n\n\nAsking Answerable Questions\nTopic Overview\nHow to Write an Effective Research Question\nPoster prep Stage 2\nlec02\nCollab Notes HW02 RQ Formulation\n\n\n\nPROJECT Stage 2: Introduce your research question and variables of interest\n\n\nProject Stage 2\n\n\n\nPreparing data for analysis\n\n\nReproducible workflows\nTopic Overview\nPMA6 Ch 3\nASCN Ch 1, Appendix\nProject Structure by Danielle Navarro\nlec03a\nHello, Quarto HW03 Data Management\nQuiz 02\n\n\nData cleaning\n\nlec03b\n\n\n\n\nDescribing distributions of data\n\n\nDescribing a single categorical variable\nPMA6 Ch 4\nASCN Ch 2.3\nlec04\nHW04 Describing Distributions\nQuiz 03\n\n\nDescribing a single numeric variable\n\n\n\n\n\n\nDescribing relationships between two variables\n\n\nDescribing relationships between two variables\nIMS 1.2.4 Explantory and Response Variables\nPMA6 Ch 4\nASCN Ch 2.4\nlec05a\nHW05 Describing Relationships\nQuiz 04\n\n\nBest practices in Data Visualization\nPMA6 Ch 4.6\nlec05b\n\n\n\n\nPROJECT Stage 3: Exploratory Data Analysis\n\n\nProject Stage 3\n\n\n\nFoundations for Inference\n\n\nStudy Design\nIMS - Chapter 2\n\nCollab notes 6 HW06 Foundations for Inference\n[Quiz 05]()\n\n\nStatistical Inference with randomization\nIMS Chapter 11-11.1\nlec06a\nIn class printed activity.\n\n\n\nStatistical Inference with mathmatical models\nIMS - Chapter 13.1-13.3\nlec06b\nCLT Explorer\n[Quiz 06]()\n\n\nModeling Bivariate relationships\n\n\nChoosing appropriate analysis\n\n\n\n\n\n\nTwo Sample T-Test\n\n\n\n\n\n\nANOVA\n\n\n\n\n\n\nChi-Squared\n\n\n\n\n\n\nRegression Modeling\n\n\nCorrelation\n\n\n\n\n\n\nSimple Linear Regression\n\n\n\n\n\n\nCausation\n\n\n\n\n\n\nConfounding\n\n\n\n\n\n\nMultiple Linear Regression\n\n\n\n\n\n\nModel Building"
+    "text": "⚠️ Details are subject to change. See Canvas for due dates.\nLast Updated: Wed Sep 11 7:42:36 PM\n\n\n\n\n\n\n\n\n\n\n\n\n\nTopic\nReading\nSlides\nActivities\nAssess\n\n\n\n\n\\Welcome!\n\n\nIntroduction to the class\nTopic Overview\nSyllabus\nHelp page\nlec00a\nHW 0 Checklist \"Quiz\" In canvas\n\n\n\nHow to use the class tools\n\nlec00b\n\n\n\n\nPROJECT Stage 1: Choosing your Research Data\nProject Stage 1\n\nData set proposal\n\n\n\nData Architecture\n\n\nThe uses and structure of data\nTopic Overview\nPMA6 Ch 2\nTidy data principles\nlec01\nCollab notes HW01 Data Entry\nQuiz 01\n\n\nFormulating Research Questions\n\n\nAsking Answerable Questions\nTopic Overview\nHow to Write an Effective Research Question\nPoster prep Stage 2\nlec02\nCollab Notes HW02 RQ Formulation\n\n\n\nPROJECT Stage 2: Introduce your research question and variables of interest\n\n\nProject Stage 2\n\n\n\nPreparing data for analysis\n\n\nReproducible workflows\nTopic Overview\nPMA6 Ch 3\nASCN Ch 1, Appendix\nProject Structure by Danielle Navarro\nlec03a\nHello, Quarto HW03 Data Management\nQuiz 02\n\n\nData cleaning\n\nlec03b\n\n\n\n\nDescribing distributions of data\n\n\nDescribing a single categorical variable\nTopic Overview\nPMA6 Ch 4\nASCN Ch 2.3\nlec04\nHW04 Describing Distributions\nQuiz 03\n\n\nDescribing a single numeric variable\n\n\n\n\n\n\nDescribing relationships between two variables\n\n\nDescribing relationships between two variables\nTopic Overview\nPMA6 Ch 4\nIMS 1.2.4 Explantory and Response Variables\nASCN Ch 2.4\nlec05a\nHW05 Describing Relationships\nQuiz 04\n\n\nBest practices in Data Visualization\nPMA6 Ch 4.6\nlec05b\n\n\n\n\nPROJECT Stage 3: Exploratory Data Analysis\n\n\nProject Stage 3\n\n\n\nFoundations for Inference\n\n\nStudy Design\nIMS - Chapter 2\n\nCollab notes 6 HW06 Foundations for Inference\n[Quiz 05]()\n\n\nStatistical Inference with randomization\nIMS Chapter 11-11.1\nlec06a\nIn class printed activity.\n\n\n\nStatistical Inference with mathmatical models\nIMS - Chapter 13.1-13.3\nlec06b\nCLT Explorer\n[Quiz 06]()\n\n\nModeling Bivariate relationships\n\n\nChoosing appropriate analysis\n\n\n\n\n\n\nTwo Sample T-Test\n\n\n\n\n\n\nANOVA\n\n\n\n\n\n\nChi-Squared\n\n\n\n\n\n\nRegression Modeling\n\n\nCorrelation\n\n\n\n\n\n\nSimple Linear Regression\n\n\n\n\n\n\nCausation\n\n\n\n\n\n\nConfounding\n\n\n\n\n\n\nMultiple Linear Regression\n\n\n\n\n\n\nModel Building"
   },
   {
     "objectID": "project.html",
@@ -1432,84 +1432,84 @@
     "href": "topics/t01-data_arch.html",
     "title": "Data Architecture",
     "section": "",
-    "text": "Getting all of our learning tools together.\n\n\n\nReady to learn how to interact with data.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nData is recorded in different manners\n\n\n\n\nSpreadsheets are a common method of recording data\n\n\n\n\nCodebooks are an essential piece in learning about the data\n\n\n\n\nThere is a difference between human readable and computer readable data formats"
+    "text": "Getting all of our learning tools together.\n\n\n\nReady to learn how to interact with data.\n\n\n\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Data is recorded in different manners\n\n    Spreadsheets are a common method of recording data\n\n    Codebooks are an essential piece in learning about the data\n\n    There is a difference between human readable and computer readable data formats"
   },
   {
     "objectID": "topics/t01-data_arch.html#learning-path",
     "href": "topics/t01-data_arch.html#learning-path",
     "title": "Data Architecture",
     "section": "",
-    "text": "Getting all of our learning tools together.\n\n\n\nReady to learn how to interact with data.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nData is recorded in different manners\n\n\n\n\nSpreadsheets are a common method of recording data\n\n\n\n\nCodebooks are an essential piece in learning about the data\n\n\n\n\nThere is a difference between human readable and computer readable data formats"
+    "text": "Getting all of our learning tools together.\n\n\n\nReady to learn how to interact with data.\n\n\n\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Data is recorded in different manners\n\n    Spreadsheets are a common method of recording data\n\n    Codebooks are an essential piece in learning about the data\n\n    There is a difference between human readable and computer readable data formats"
   },
   {
     "objectID": "topics/t01-data_arch.html#learning-materials",
     "href": "topics/t01-data_arch.html#learning-materials",
     "title": "Data Architecture",
     "section": "Learning Materials",
-    "text": "Learning Materials\n Slides (Will open in full screen. Right click to open in a new tab)\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nlec01\n\n\n\n\n\n\n\n\n📚 Reading\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nTidy data principles\n\n\n\n\nPMA6 Ch 2"
+    "text": "Learning Materials\n Slides (Will open in full screen. Right click to open in a new tab)\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    lec01\n\n  \n  \n  \n\n\n\n\n📚 Reading\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Topic Overview\n\n    PMA6 Ch 2\n\n    Tidy data principles"
   },
   {
     "objectID": "topics/t01-data_arch.html#active-learning",
     "href": "topics/t01-data_arch.html#active-learning",
     "title": "Data Architecture",
     "section": "📝 Active Learning",
-    "text": "📝 Active Learning\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nCollab notes\n\n\n\n\nHW01 Data Entry"
+    "text": "📝 Active Learning\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Collab notes\n\n    HW01 Data Entry"
   },
   {
     "objectID": "topics/t01-data_arch.html#assessment",
     "href": "topics/t01-data_arch.html#assessment",
     "title": "Data Architecture",
     "section": "Assessment",
-    "text": "Assessment\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nQuiz 01"
+    "text": "Assessment\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Quiz 01"
   },
   {
     "objectID": "topics/t02-asking_q.html",
     "href": "topics/t02-asking_q.html",
     "title": "Formulating research questions",
     "section": "",
-    "text": "Learning how to interact with data\nReviewing the available data and thinking of a topic area of interest\n\n\n\n\nReady to start asking research questions to explore for the rest of the term.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nWrite down several research questions that are answerable with your data"
+    "text": "Learning how to interact with data\nReviewing the available data and thinking of a topic area of interest\n\n\n\n\nReady to start asking research questions to explore for the rest of the term.\n\n\n\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Write down several research questions that are answerable with your data"
   },
   {
     "objectID": "topics/t02-asking_q.html#learning-path",
     "href": "topics/t02-asking_q.html#learning-path",
     "title": "Formulating research questions",
     "section": "",
-    "text": "Learning how to interact with data\nReviewing the available data and thinking of a topic area of interest\n\n\n\n\nReady to start asking research questions to explore for the rest of the term.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nWrite down several research questions that are answerable with your data"
+    "text": "Learning how to interact with data\nReviewing the available data and thinking of a topic area of interest\n\n\n\n\nReady to start asking research questions to explore for the rest of the term.\n\n\n\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Write down several research questions that are answerable with your data"
   },
   {
     "objectID": "topics/t02-asking_q.html#learning-materials",
     "href": "topics/t02-asking_q.html#learning-materials",
     "title": "Formulating research questions",
     "section": "Learning Materials",
-    "text": "Learning Materials\n Slides (Will open in full screen. Right click to open in a new tab)\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nlec02\n\n\n\n\n\n\n\n\n📚 Reading\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nHow to Write an Effective Research Question\n\n\n\n\nPoster prep Stage 2"
+    "text": "Learning Materials\n Slides (Will open in full screen. Right click to open in a new tab)\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    lec02\n\n  \n  \n  \n\n\n\n\n📚 Reading\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Topic Overview\n\n    How to Write an Effective Research Question\n\n    Poster prep Stage 2"
   },
   {
     "objectID": "topics/t02-asking_q.html#active-learning",
     "href": "topics/t02-asking_q.html#active-learning",
     "title": "Formulating research questions",
     "section": "📝 Active Learning",
-    "text": "📝 Active Learning\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nCollab Notes\n\n\n\n\nHW02 RQ Formulation"
+    "text": "📝 Active Learning\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Collab Notes\n\n    HW02 RQ Formulation"
   },
   {
     "objectID": "topics/t02-asking_q.html#assessment",
     "href": "topics/t02-asking_q.html#assessment",
     "title": "Formulating research questions",
     "section": "Assessment",
-    "text": "Assessment\n\n\n\n\n\n\n\n\nItems"
+    "text": "Assessment\n\n\n\n\n\n\n  \n    \n      Items"
   },
   {
     "objectID": "topics/t03-data_prep.html",
     "href": "topics/t03-data_prep.html",
     "title": "Preparing Data for Analysis",
     "section": "",
-    "text": "Learning how to read our data and ask questions that are potentially answerable with this data.\n\n\n\n\nStarting to write code.\nRecognizing that this stage will take time and that you are learning something challenging.\nWilling to ask for help and collaboration\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nKnow several questions to ask yourself when preparing data for analysis\n\n\n\n\nUnderstand options for literate programming\n\n\n\n\nImport your chosen data into R\n\n\n\n\nCreate a reproducible script file that imports the raw data, performs data management tasks, exports an analysis ready data set"
+    "text": "Learning how to read our data and ask questions that are potentially answerable with this data.\n\n\n\n\nStarting to write code.\nRecognizing that this stage will take time and that you are learning something challenging.\nWilling to ask for help and collaboration\n\n\n\n\n\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Know several questions to ask yourself when preparing data for analysis\n\n    Understand options for literate programming\n\n    Import your chosen data into R\n\n    Create a reproducible script file that imports the raw data, performs data management tasks, exports an analysis ready data set"
   },
   {
     "objectID": "topics/t03-data_prep.html#learning-path",
     "href": "topics/t03-data_prep.html#learning-path",
     "title": "Preparing Data for Analysis",
     "section": "",
-    "text": "Learning how to read our data and ask questions that are potentially answerable with this data.\n\n\n\n\nStarting to write code.\nRecognizing that this stage will take time and that you are learning something challenging.\nWilling to ask for help and collaboration\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nKnow several questions to ask yourself when preparing data for analysis\n\n\n\n\nUnderstand options for literate programming\n\n\n\n\nImport your chosen data into R\n\n\n\n\nCreate a reproducible script file that imports the raw data, performs data management tasks, exports an analysis ready data set"
+    "text": "Learning how to read our data and ask questions that are potentially answerable with this data.\n\n\n\n\nStarting to write code.\nRecognizing that this stage will take time and that you are learning something challenging.\nWilling to ask for help and collaboration\n\n\n\n\n\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Know several questions to ask yourself when preparing data for analysis\n\n    Understand options for literate programming\n\n    Import your chosen data into R\n\n    Create a reproducible script file that imports the raw data, performs data management tasks, exports an analysis ready data set"
   },
   {
     "objectID": "topics/t03-data_prep.html#preparation",
@@ -1523,21 +1523,21 @@
     "href": "topics/t03-data_prep.html#learning-materials",
     "title": "Preparing Data for Analysis",
     "section": "Learning Materials",
-    "text": "Learning Materials\n Slides (Will open in full screen. Right click to open in a new tab)\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nlec03a\n\n\n\n\nlec03b\n\n\n\n\n\n\n\n\nWe will also be using the Data Management chapter of the Applied Stats notebook for this topic.\n📚 Reading\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nPMA6 Ch 3\n\n\n\n\nASCN Ch 1, Appendix\n\n\n\n\nProject Structure by Danielle Navarro"
+    "text": "Learning Materials\n Slides (Will open in full screen. Right click to open in a new tab)\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    lec03a\n\n    lec03b\n\n  \n  \n  \n\n\n\n\nWe will also be using the Data Management chapter of the Applied Stats notebook for this topic.\n📚 Reading\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Topic Overview\n\n    PMA6 Ch 3\n\n    ASCN Ch 1, Appendix\n\n    Project Structure by Danielle Navarro"
   },
   {
     "objectID": "topics/t03-data_prep.html#active-learning",
     "href": "topics/t03-data_prep.html#active-learning",
     "title": "Preparing Data for Analysis",
     "section": "📝 Active Learning",
-    "text": "📝 Active Learning\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nHello, Quarto\n\n\n\n\nHW03 Data Management"
+    "text": "📝 Active Learning\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Hello, Quarto\n\n    HW03 Data Management"
   },
   {
     "objectID": "topics/t03-data_prep.html#assessment",
     "href": "topics/t03-data_prep.html#assessment",
     "title": "Preparing Data for Analysis",
     "section": "Assessment",
-    "text": "Assessment\nThis quiz will contain questions that reference topics in the PMA6. Don’t rely only on the slides for your answers.\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nQuiz 02"
+    "text": "Assessment\nThis quiz will contain questions that reference topics in the PMA6. Don’t rely only on the slides for your answers.\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Quiz 02"
   },
   {
     "objectID": "topics/t03-data_prep.html#other-references",
@@ -1551,14 +1551,14 @@
     "href": "topics/t04-describing_distributions.html",
     "title": "Describing distributions of data",
     "section": "",
-    "text": "Importing & starting to wrangle our data\n\n\n\nReady to visualize and learn characteristics of our data.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nCalculate appropriate summary statistics\n\n\n\n\nCreate appropriate data visualizations\n\n\n\n\nDescribe the distributions of data in complete sentences with supporting numbers."
+    "text": "Importing & starting to wrangle our data\n\n\n\nReady to visualize and learn characteristics of our data.\n\n\n\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Calculate appropriate summary statistics\n\n    Create appropriate data visualizations\n\n    Describe the distributions of data in complete sentences with supporting numbers."
   },
   {
     "objectID": "topics/t04-describing_distributions.html#learning-path",
     "href": "topics/t04-describing_distributions.html#learning-path",
     "title": "Describing distributions of data",
     "section": "",
-    "text": "Importing & starting to wrangle our data\n\n\n\nReady to visualize and learn characteristics of our data.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nCalculate appropriate summary statistics\n\n\n\n\nCreate appropriate data visualizations\n\n\n\n\nDescribe the distributions of data in complete sentences with supporting numbers."
+    "text": "Importing & starting to wrangle our data\n\n\n\nReady to visualize and learn characteristics of our data.\n\n\n\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Calculate appropriate summary statistics\n\n    Create appropriate data visualizations\n\n    Describe the distributions of data in complete sentences with supporting numbers."
   },
   {
     "objectID": "topics/t04-describing_distributions.html#preparation",
@@ -1572,98 +1572,98 @@
     "href": "topics/t04-describing_distributions.html#learning-materials",
     "title": "Describing distributions of data",
     "section": "Learning Materials",
-    "text": "Learning Materials\n Slides (Will open in full screen. Right click to open in a new tab)\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nlec04\n\n\n\n\n\n\n\n\n📚 Reading\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nPMA6 Ch 4\n\n\n\n\nASCN Ch 2.3"
+    "text": "Learning Materials\n Slides (Will open in full screen. Right click to open in a new tab)\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    lec04\n\n  \n  \n  \n\n\n\n\n📚 Reading\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Topic Overview\n\n    PMA6 Ch 4\n\n    ASCN Ch 2.3"
   },
   {
     "objectID": "topics/t04-describing_distributions.html#active-learning",
     "href": "topics/t04-describing_distributions.html#active-learning",
     "title": "Describing distributions of data",
     "section": "📝 Active Learning",
-    "text": "📝 Active Learning\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nHW04 Describing Distributions"
+    "text": "📝 Active Learning\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    HW04 Describing Distributions"
   },
   {
     "objectID": "topics/t04-describing_distributions.html#assessment",
     "href": "topics/t04-describing_distributions.html#assessment",
     "title": "Describing distributions of data",
     "section": "Assessment",
-    "text": "Assessment\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nQuiz 03"
+    "text": "Assessment\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Quiz 03"
   },
   {
     "objectID": "topics/t05-describing_relationships.html",
     "href": "topics/t05-describing_relationships.html",
     "title": "Describing Relationships",
     "section": "",
-    "text": "Visualizing a single variable\nScreening for potential errors and additional data management\nStarting to describe our project data\n\n\n\n\n\nReady to visualize and describe associations between multiple variables.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nCalculate appropriate summary statistics for grouped variables\n\n\n\n\nCreate appropriate data visualizations for grouped variables\n\n\n\n\nDescribe the relationship between two measures in complete sentences with supporting numbers."
+    "text": "Visualizing a single variable\nScreening for potential errors and additional data management\nStarting to describe our project data\n\n\n\n\n\nReady to visualize and describe associations between multiple variables.\n\n\n\n\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Calculate appropriate summary statistics for grouped variables\n\n    Create appropriate data visualizations for grouped variables\n\n    Describe the relationship between two measures in complete sentences with supporting numbers."
   },
   {
     "objectID": "topics/t05-describing_relationships.html#learning-path",
     "href": "topics/t05-describing_relationships.html#learning-path",
     "title": "Describing Relationships",
     "section": "",
-    "text": "Visualizing a single variable\nScreening for potential errors and additional data management\nStarting to describe our project data\n\n\n\n\n\nReady to visualize and describe associations between multiple variables.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nCalculate appropriate summary statistics for grouped variables\n\n\n\n\nCreate appropriate data visualizations for grouped variables\n\n\n\n\nDescribe the relationship between two measures in complete sentences with supporting numbers."
+    "text": "Visualizing a single variable\nScreening for potential errors and additional data management\nStarting to describe our project data\n\n\n\n\n\nReady to visualize and describe associations between multiple variables.\n\n\n\n\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Calculate appropriate summary statistics for grouped variables\n\n    Create appropriate data visualizations for grouped variables\n\n    Describe the relationship between two measures in complete sentences with supporting numbers."
   },
   {
     "objectID": "topics/t05-describing_relationships.html#learning-materials",
     "href": "topics/t05-describing_relationships.html#learning-materials",
     "title": "Describing Relationships",
     "section": "Learning Materials",
-    "text": "Learning Materials\n Slides (Will open in full screen. Right click to open in a new tab)\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nlec05a\n\n\n\n\nlec05b\n\n\n\n\n\n\n\n\n📚 Reading\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nTopic Overview\n\n\n\n\nPMA6 Ch 4.6\n\n\n\n\nPMA6 Ch 4\n\n\n\n\nIMS 1.2.4 Explantory and Response Variables\n\n\n\n\nASCN Ch 2.4"
+    "text": "Learning Materials\n Slides (Will open in full screen. Right click to open in a new tab)\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    lec05a\n\n    lec05b\n\n  \n  \n  \n\n\n\n\n📚 Reading\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Topic Overview\n\n    PMA6 Ch 4.6\n\n    PMA6 Ch 4\n\n    IMS 1.2.4 Explantory and Response Variables\n\n    ASCN Ch 2.4"
   },
   {
     "objectID": "topics/t05-describing_relationships.html#active-learning",
     "href": "topics/t05-describing_relationships.html#active-learning",
     "title": "Describing Relationships",
     "section": "📝 Active Learning",
-    "text": "📝 Active Learning\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nHW05 Describing Relationships"
+    "text": "📝 Active Learning\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    HW05 Describing Relationships"
   },
   {
     "objectID": "topics/t05-describing_relationships.html#assessment",
     "href": "topics/t05-describing_relationships.html#assessment",
     "title": "Describing Relationships",
     "section": "Assessment",
-    "text": "Assessment\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nQuiz 04"
+    "text": "Assessment\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Quiz 04"
   },
   {
     "objectID": "topics/t06-foundations_for_inference.html",
     "href": "topics/t06-foundations_for_inference.html",
     "title": "Foundations for Statistical Inference",
     "section": "",
-    "text": "Learning how to explore and visualize our data.\nVisually consider patterns, identify potential relationships\n\n\n\n\n\nThink about how data come to be. That is, if the data are to be used to make broad and complete conclusions, then it is important to understand who or what the data represent.\n\nKnowing how the observational units were selected will allow for generalizations back to the population from which the data were selected.\nBy understanding the structure of the study, causal relationships can be separated from those relationships which are only associated.\n\nRevisiting null value hypothesis testing (NVHT) from a randomization perspective\nRevisiting the Normal distribution model, and getting a feel for how probability (and thus p-values) are calculated.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nIdentify and distinguish between a parameter and a statistic\n\n\n\n\nDescribe multiple sampling methods\n\n\n\n\nIdentify if a causal statement can be made given a data collection method\n\n\n\n\nExplain how to test a hypothsis using randomization\n\n\n\n\nAssess a research question using a hypothesis test\n\n\n\n\nUse the Normal distribution to calculate a probability\n\n\n\n\nDescribe the concept of sampling variability\n\n\n\n\nCalculate the mean and sd of the sampling distribution based on population parameters\n\n\n\n\nExplain the Central Limit Theorem\n\n\n\n\nConstruct and Interpret a confidence interval in context of the problem\n\n\n\n\nUse a confidence interval to make an inferential hypothesis statement\n\n\n\n\n\n\n\n\nOutline & connected parts for the next 2 weeks\n\nM Study design\n\nJigsaw learning directly in collab notes in class\nFinish Part 1 of HW06 before Monday\n\nW Statistical inference using randomization\n\nCase study (lec06a) activity\n\nM Statistical inference using mathematical models (lec06b)\n\nSampling Distributions, LLN, CLT (in class activity)\nThe Normal model (Calculating probabilities)\n\nW Finish lec06b\n\nInterval estimates\nHypothesis testing"
+    "text": "Learning how to explore and visualize our data.\nVisually consider patterns, identify potential relationships\n\n\n\n\n\nThink about how data come to be. That is, if the data are to be used to make broad and complete conclusions, then it is important to understand who or what the data represent.\n\nKnowing how the observational units were selected will allow for generalizations back to the population from which the data were selected.\nBy understanding the structure of the study, causal relationships can be separated from those relationships which are only associated.\n\nRevisiting null value hypothesis testing (NVHT) from a randomization perspective\nRevisiting the Normal distribution model, and getting a feel for how probability (and thus p-values) are calculated.\n\n\n\n\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Identify and distinguish between a parameter and a statistic\n\n    Describe multiple sampling methods\n\n    Identify if a causal statement can be made given a data collection method\n\n    Explain how to test a hypothsis using randomization\n\n    Assess a research question using a hypothesis test\n\n    Use the Normal distribution to calculate a probability\n\n    Describe the concept of sampling variability\n\n    Calculate the mean and sd of the sampling distribution based on population parameters\n\n    Explain the Central Limit Theorem\n\n    Construct and Interpret a confidence interval in context of the problem\n\n    Use a confidence interval to make an inferential hypothesis statement\n\n  \n  \n  \n\n\n\n\nOutline & connected parts for the next 2 weeks\n\nM Study design\n\nJigsaw learning directly in collab notes in class\nFinish Part 1 of HW06 before Monday\n\nW Statistical inference using randomization\n\nCase study (lec06a) activity\n\nM Statistical inference using mathematical models (lec06b)\n\nSampling Distributions, LLN, CLT (in class activity)\nThe Normal model (Calculating probabilities)\n\nW Finish lec06b\n\nInterval estimates\nHypothesis testing"
   },
   {
     "objectID": "topics/t06-foundations_for_inference.html#learning-path",
     "href": "topics/t06-foundations_for_inference.html#learning-path",
     "title": "Foundations for Statistical Inference",
     "section": "",
-    "text": "Learning how to explore and visualize our data.\nVisually consider patterns, identify potential relationships\n\n\n\n\n\nThink about how data come to be. That is, if the data are to be used to make broad and complete conclusions, then it is important to understand who or what the data represent.\n\nKnowing how the observational units were selected will allow for generalizations back to the population from which the data were selected.\nBy understanding the structure of the study, causal relationships can be separated from those relationships which are only associated.\n\nRevisiting null value hypothesis testing (NVHT) from a randomization perspective\nRevisiting the Normal distribution model, and getting a feel for how probability (and thus p-values) are calculated.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nIdentify and distinguish between a parameter and a statistic\n\n\n\n\nDescribe multiple sampling methods\n\n\n\n\nIdentify if a causal statement can be made given a data collection method\n\n\n\n\nExplain how to test a hypothsis using randomization\n\n\n\n\nAssess a research question using a hypothesis test\n\n\n\n\nUse the Normal distribution to calculate a probability\n\n\n\n\nDescribe the concept of sampling variability\n\n\n\n\nCalculate the mean and sd of the sampling distribution based on population parameters\n\n\n\n\nExplain the Central Limit Theorem\n\n\n\n\nConstruct and Interpret a confidence interval in context of the problem\n\n\n\n\nUse a confidence interval to make an inferential hypothesis statement\n\n\n\n\n\n\n\n\nOutline & connected parts for the next 2 weeks\n\nM Study design\n\nJigsaw learning directly in collab notes in class\nFinish Part 1 of HW06 before Monday\n\nW Statistical inference using randomization\n\nCase study (lec06a) activity\n\nM Statistical inference using mathematical models (lec06b)\n\nSampling Distributions, LLN, CLT (in class activity)\nThe Normal model (Calculating probabilities)\n\nW Finish lec06b\n\nInterval estimates\nHypothesis testing"
+    "text": "Learning how to explore and visualize our data.\nVisually consider patterns, identify potential relationships\n\n\n\n\n\nThink about how data come to be. That is, if the data are to be used to make broad and complete conclusions, then it is important to understand who or what the data represent.\n\nKnowing how the observational units were selected will allow for generalizations back to the population from which the data were selected.\nBy understanding the structure of the study, causal relationships can be separated from those relationships which are only associated.\n\nRevisiting null value hypothesis testing (NVHT) from a randomization perspective\nRevisiting the Normal distribution model, and getting a feel for how probability (and thus p-values) are calculated.\n\n\n\n\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Identify and distinguish between a parameter and a statistic\n\n    Describe multiple sampling methods\n\n    Identify if a causal statement can be made given a data collection method\n\n    Explain how to test a hypothsis using randomization\n\n    Assess a research question using a hypothesis test\n\n    Use the Normal distribution to calculate a probability\n\n    Describe the concept of sampling variability\n\n    Calculate the mean and sd of the sampling distribution based on population parameters\n\n    Explain the Central Limit Theorem\n\n    Construct and Interpret a confidence interval in context of the problem\n\n    Use a confidence interval to make an inferential hypothesis statement\n\n  \n  \n  \n\n\n\n\nOutline & connected parts for the next 2 weeks\n\nM Study design\n\nJigsaw learning directly in collab notes in class\nFinish Part 1 of HW06 before Monday\n\nW Statistical inference using randomization\n\nCase study (lec06a) activity\n\nM Statistical inference using mathematical models (lec06b)\n\nSampling Distributions, LLN, CLT (in class activity)\nThe Normal model (Calculating probabilities)\n\nW Finish lec06b\n\nInterval estimates\nHypothesis testing"
   },
   {
     "objectID": "topics/t06-foundations_for_inference.html#learning-materials",
     "href": "topics/t06-foundations_for_inference.html#learning-materials",
     "title": "Foundations for Statistical Inference",
     "section": "Learning Materials",
-    "text": "Learning Materials\n Slides (Will open in full screen. Right click to open in a new tab)\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nlec06a\n\n\n\n\nlec06b\n\n\n\n\n\n\n\n\n📚 Reading\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nIMS - Chapter 2\n\n\n\n\nIMS Chapter 11-11.1\n\n\n\n\nIMS - Chapter 13.1-13.3"
+    "text": "Learning Materials\n Slides (Will open in full screen. Right click to open in a new tab)\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    lec06a\n\n    lec06b\n\n  \n  \n  \n\n\n\n\n📚 Reading\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    IMS - Chapter 2\n\n    IMS Chapter 11-11.1\n\n    IMS - Chapter 13.1-13.3"
   },
   {
     "objectID": "topics/t06-foundations_for_inference.html#active-learning",
     "href": "topics/t06-foundations_for_inference.html#active-learning",
     "title": "Foundations for Statistical Inference",
     "section": "📝 Active Learning",
-    "text": "📝 Active Learning\nWe will be using the Jigsaw technique, which is a method of learning by teaching. You have been assigned (possibly with a partner) to read and summarize one section in the textbook.\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nCollab notes 6\n\n\n\n\nIn class printed activity.\n\n\n\n\nCLT Explorer\n\n\n\n\nHW06 Foundations for Inference"
+    "text": "📝 Active Learning\nWe will be using the Jigsaw technique, which is a method of learning by teaching. You have been assigned (possibly with a partner) to read and summarize one section in the textbook.\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Collab notes 6\n\n    In class printed activity.\n\n    CLT Explorer\n\n    HW06 Foundations for Inference"
   },
   {
     "objectID": "topics/t06-foundations_for_inference.html#assessment",
     "href": "topics/t06-foundations_for_inference.html#assessment",
     "title": "Foundations for Statistical Inference",
     "section": "Assessment",
-    "text": "Assessment\n\n\n\n\n\n\n\n\n\n\n\nItems\n\n\n\n\n\nQuiz 05\n\n\n\n\nQuiz 06"
+    "text": "Assessment\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Quiz 05\n\n    Quiz 06"
   },
   {
     "objectID": "topics.html",
     "href": "topics.html",
     "title": "Topics",
     "section": "",
-    "text": "This is the place to start to find all content related to a module.\n\n\n\n\n\n\n\n\n\nTopic\n\n\nDescription\n\n\n\n\n\n\nWelcome to Fall 24\n\n\nIntroduction to class and your learning materials\n\n\n\n\nData Architecture\n\n\nData entry, spreadsheets, metadata, codebooks\n\n\n\n\nFormulating research questions\n\n\nAsking questions is easy. Asking answerable questions is more difficult.\n\n\n\n\nPreparing Data for Analysis\n\n\nWhere an inordinate amount of time is spent\n\n\n\n\nDescribing distributions of data\n\n\nVisualizing your data is the first line of defense against bad data\n\n\n\n\nDescribing Relationships\n\n\nFirst step in investigating a question about an association\n\n\n\n\nFoundations for Statistical Inference\n\n\nStudy Design, Inference using randomization and the Normal Model\n\n\n\n\n\nNo matching items"
+    "text": "This is the place to start to find all content related to a module.\n\n\n\n\n\n\n\n\n\n\nTopic\n\n\nDescription\n\n\n\n\n\n\nWelcome to Fall 24\n\n\nIntroduction to class and your learning materials\n\n\n\n\nData Architecture\n\n\nData entry, spreadsheets, metadata, codebooks\n\n\n\n\nFormulating research questions\n\n\nAsking questions is easy. Asking answerable questions is more difficult.\n\n\n\n\nPreparing Data for Analysis\n\n\nWhere an inordinate amount of time is spent\n\n\n\n\nDescribing distributions of data\n\n\nVisualizing your data is the first line of defense against bad data\n\n\n\n\nDescribing Relationships\n\n\nFirst step in investigating a question about an association\n\n\n\n\nFoundations for Statistical Inference\n\n\nStudy Design, Inference using randomization and the Normal Model\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "hw/hw01-data_entry.html#where-to-do-the-work",
