@@ -105,43 +105,15 @@ sjPlot::plot_frq(pen$species) + xlab("Species")
 ### Center
 ```{r}
 summary(pen$bill_depth_mm)
-sd(pen$bill_depth_mm, na.rm=TRUE)
 ```
+
+
+The average bill depth is 17.15mm, with a median of 17.3mm 
 
 \
 
-The average bill depth is 17.15mm, with a standard deviation of 1.9mm. 
 
-### Spread
-
-```{r}
-summary(pen$bill_depth_mm)
-IQR(pen$bill_depth_mm, na.rm=TRUE)
-```
-\
-
-Bill depth ranges from 13.1 to 21.5mm, and has an IQR of 3.1mm.
-
-### Base R Plots
-
-:::: {.columns}
-
-::: {.column width="50%"}
-```{r}
-hist(pen$bill_depth_mm)
-```
-:::
-
-::: {.column width="50%"}
-```{r}
-boxplot(pen$bill_depth_mm)
-```
-
-:::
-
-::::
-
-### ggpubR
+### Shape
 
 :::: {.columns}
 
@@ -164,6 +136,17 @@ ggpubr::ggviolin(pen$bill_depth_mm, add = c("jitter", "boxplot")) + coord_flip()
 
 The distribution of bill depth appears to be bimodal with peaks around 15 and 18mm. 
 
+### Spread
+
+```{r}
+summary(pen$bill_depth_mm)
+sd(pen$bill_depth_mm, na.rm=TRUE)
+IQR(pen$bill_depth_mm, na.rm=TRUE)
+```
+
+\
+
+Bill depth ranges from 13.1 to 21.5mm, has an IQR of 3.1mm and a standard deviation of 1.9mm.
 
 
 ### Description
