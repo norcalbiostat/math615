@@ -8,7 +8,7 @@
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.4.555">
+  <meta name="generator" content="quarto-1.3.319">
 
   <meta name="author" content="Robin Donatello">
   <meta name="dcterms.date" content="2024-09-11">
@@ -32,7 +32,7 @@
     }
     /* CSS for syntax highlighting */
     pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
     .sourceCode { overflow: visible; }
     code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -96,7 +96,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css" id="theme">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -224,8 +224,7 @@
   }
 
   .callout.callout-titled .callout-body > .callout-content > :last-child {
-    padding-bottom: 0.5rem;
-    margin-bottom: 0;
+    margin-bottom: 0.5rem;
   }
 
   .callout.callout-titled .callout-icon::before {
@@ -408,13 +407,8 @@ Robin Donatello
 </section>
 <section class="slide level2">
 
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><a href="https://r4ds.hadley.nz/intro"><img data-src="https://d33wubrfki0l68.cloudfront.net/571b056757d68e6df81a3e3853f54d3c76ad6efc/32d37/diagrams/data-science.png" alt="A line diagram of figure 1.1 from the book R for Data science" width="682"></a></p>
-<figcaption>Data science process</figcaption>
-</figure>
-</div>
-</section>
+
+<img data-src="https://d33wubrfki0l68.cloudfront.net/571b056757d68e6df81a3e3853f54d3c76ad6efc/32d37/diagrams/data-science.png" alt="A line diagram of figure 1.1 from the book R for Data science" width="682" class="r-stretch quarto-figure-center"><p class="caption">Data science process</p></section>
 <section id="requirements" class="slide level2">
 <h2>Requirements</h2>
 <p>These notes assume the following…</p>
@@ -435,10 +429,10 @@ Robin Donatello
 <li>Copy the following code into a new code chunk.</li>
 </ol>
 <div class="cell">
-<details class="code-fold">
+<details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a></a><span class="do">## raw &lt;- read_csv(here::here("data", "data.csv"))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="do">## raw &lt;- read_csv(here::here("data", "data.csv"))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <ol start="5" type="1">
@@ -462,9 +456,9 @@ Robin Donatello
 <div class="tab-content">
 <div id="tabset-1-1">
 <div class="cell">
-<details class="code-fold">
+<details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">glimpse</span>(raw)    <span class="co"># from the tidyverse/dplyr dataset</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">glimpse</span>(raw)    <span class="co"># from the tidyverse/dplyr dataset</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 344
@@ -491,9 +485,9 @@ $ Comments              &lt;chr&gt; "Not enough blood for isotopes.", NA, NA, "A
 </div>
 <div id="tabset-1-2">
 <div class="cell">
-<details class="code-fold">
+<details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">str</span>(raw)    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">str</span>(raw)    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>tibble [344 × 17] (S3: tbl_df/tbl/data.frame)
@@ -545,23 +539,23 @@ $ Comments              &lt;chr&gt; "Not enough blood for isotopes.", NA, NA, "A
 <h2>Initial Data Screening - single variable</h2>
 <p>You can also look at the data type for a single variable at a time.</p>
 <div class="cell">
-<details class="code-fold">
+<details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">typeof</span>(raw<span class="sc">$</span>Island) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">typeof</span>(raw<span class="sc">$</span>Island) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "character"</code></pre>
 </div>
-<details class="code-fold">
+<details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="fu">class</span>(raw<span class="sc">$</span>Island) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">class</span>(raw<span class="sc">$</span>Island) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "character"</code></pre>
 </div>
-<details class="code-fold">
+<details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="fu">str</span>(raw<span class="sc">$</span>Island) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">str</span>(raw<span class="sc">$</span>Island) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code> chr [1:344] "Torgersen" "Torgersen" "Torgersen" "Torgersen" "Torgersen" "Torgersen" "Torgersen" "Torgersen" "Torgersen" "Torgersen" "Torgersen" "Torgersen" "Torgersen" "Torgersen" "Torgersen" ...</code></pre>
@@ -574,9 +568,9 @@ $ Comments              &lt;chr&gt; "Not enough blood for isotopes.", NA, NA, "A
 <p><br></p>
 <p>Use <code>table()</code> for categorical variables</p>
 <div class="cell">
-<details class="code-fold">
+<details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="fu">table</span>(raw<span class="sc">$</span>Island)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">table</span>(raw<span class="sc">$</span>Island)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -586,9 +580,9 @@ $ Comments              &lt;chr&gt; "Not enough blood for isotopes.", NA, NA, "A
 </div>
 <p>and <code>summary()</code> on numeric variables to see the range of values present.</p>
 <div class="cell">
-<details class="code-fold">
+<details>
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">summary</span>(raw<span class="sc">$</span><span class="st">`</span><span class="at">Body Mass (g)</span><span class="st">`</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">summary</span>(raw<span class="sc">$</span><span class="st">`</span><span class="at">Body Mass (g)</span><span class="st">`</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
@@ -661,20 +655,20 @@ $ Comments              &lt;chr&gt; "Not enough blood for isotopes.", NA, NA, "A
 <section id="chatgpt" class="slide level2 smaller" data-menu-title="Chat GPT's answer">
 <h2></h2>
 <p>Sure, here’s an example of how you can change the factor order of the <code>island</code> variable in the Palmer Penguins dataset to put “Dream” first using R:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="co"># Load necessary packages</span></span>
-<span id="cb16-2"><a></a><span class="fu">library</span>(palmerpenguins)</span>
-<span id="cb16-3"><a></a></span>
-<span id="cb16-4"><a></a><span class="co"># Load the dataset</span></span>
-<span id="cb16-5"><a></a><span class="fu">data</span>(<span class="st">"penguins"</span>)</span>
-<span id="cb16-6"><a></a></span>
-<span id="cb16-7"><a></a><span class="co"># Check the current levels of the 'island' factor</span></span>
-<span id="cb16-8"><a></a><span class="fu">levels</span>(penguins<span class="sc">$</span>island)</span>
-<span id="cb16-9"><a></a></span>
-<span id="cb16-10"><a></a><span class="co"># Reorder the levels of the 'island' factor to put "Dream" first</span></span>
-<span id="cb16-11"><a></a>penguins<span class="sc">$</span>island <span class="ot">&lt;-</span> <span class="fu">factor</span>(penguins<span class="sc">$</span>island, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Dream"</span>, <span class="st">"Torgersen"</span>, <span class="st">"Biscoe"</span>))</span>
-<span id="cb16-12"><a></a></span>
-<span id="cb16-13"><a></a><span class="co"># Check the new order of levels</span></span>
-<span id="cb16-14"><a></a><span class="fu">levels</span>(penguins<span class="sc">$</span>island)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="co"># Load necessary packages</span></span>
+<span id="cb16-2"><a href="#cb16-2"></a><span class="fu">library</span>(palmerpenguins)</span>
+<span id="cb16-3"><a href="#cb16-3"></a></span>
+<span id="cb16-4"><a href="#cb16-4"></a><span class="co"># Load the dataset</span></span>
+<span id="cb16-5"><a href="#cb16-5"></a><span class="fu">data</span>(<span class="st">"penguins"</span>)</span>
+<span id="cb16-6"><a href="#cb16-6"></a></span>
+<span id="cb16-7"><a href="#cb16-7"></a><span class="co"># Check the current levels of the 'island' factor</span></span>
+<span id="cb16-8"><a href="#cb16-8"></a><span class="fu">levels</span>(penguins<span class="sc">$</span>island)</span>
+<span id="cb16-9"><a href="#cb16-9"></a></span>
+<span id="cb16-10"><a href="#cb16-10"></a><span class="co"># Reorder the levels of the 'island' factor to put "Dream" first</span></span>
+<span id="cb16-11"><a href="#cb16-11"></a>penguins<span class="sc">$</span>island <span class="ot">&lt;-</span> <span class="fu">factor</span>(penguins<span class="sc">$</span>island, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Dream"</span>, <span class="st">"Torgersen"</span>, <span class="st">"Biscoe"</span>))</span>
+<span id="cb16-12"><a href="#cb16-12"></a></span>
+<span id="cb16-13"><a href="#cb16-13"></a><span class="co"># Check the new order of levels</span></span>
+<span id="cb16-14"><a href="#cb16-14"></a><span class="fu">levels</span>(penguins<span class="sc">$</span>island)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>In this code, we’re first loading the <code>palmerpenguins</code> package, which provides access to the dataset. Then we load the dataset itself using <code>data("penguins")</code>. We check the current levels of the <code>island</code> factor using <code>levels(penguins$island)</code>.</p>
 <p>Next, we use the <code>factor()</code> function to reorder the levels of the <code>island</code> variable. We specify the desired order of levels using the <code>levels</code> argument. In this case, we put “Dream” first, followed by the other islands. Finally, we check the new order of levels to make sure the change was successful.</p>
 <p>Make sure you have the <code>palmerpenguins</code> package installed. You can install it using <code>install.packages("palmerpenguins")</code> if you haven’t done so already.</p>
@@ -708,10 +702,8 @@ $ Comments              &lt;chr&gt; "Not enough blood for isotopes.", NA, NA, "A
 <li>Don’t reinvent the wheel. If you want to do something, chances are someone else has done it before. Perhaps even yourself!</li>
 </ul>
 
-<div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 <p><a href="https://math615.netlify.app">🔗 https://math615.netlify.app</a> / Preparing your data for analysis</p>
-</div>
 </div>
 </section>
     </div>
@@ -741,6 +733,7 @@ $ Comments              &lt;chr&gt; "Not enough blood for isotopes.", NA, NA, "A
       Reveal.initialize({
 'controlsAuto': true,
 'previewLinksAuto': false,
+'smaller': false,
 'pdfSeparateFragments': false,
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
@@ -927,80 +920,42 @@ $ Comments              &lt;chr&gt; "Not enough blood for isotopes.", NA, NA, "A
       });
     </script>
     
-
     <script>
-
       // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-
       // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-
       // slide changes (different for each slide format).
-
       (function () {
-
         // dispatch for htmlwidgets
-
         function fireSlideEnter() {
-
           const event = window.document.createEvent("Event");
-
           event.initEvent("slideenter", true, true);
-
           window.document.dispatchEvent(event);
-
         }
-
-    
 
         function fireSlideChanged(previousSlide, currentSlide) {
-
           fireSlideEnter();
 
-    
-
           // dispatch for shiny
-
           if (window.jQuery) {
-
             if (previousSlide) {
-
               window.jQuery(previousSlide).trigger("hidden");
-
             }
-
             if (currentSlide) {
-
               window.jQuery(currentSlide).trigger("shown");
-
             }
-
           }
-
         }
-
-    
 
         // hookup for slidy
-
         if (window.w3c_slidy) {
-
           window.w3c_slidy.add_observer(function (slide_num) {
-
             // slide_num starts at position 1
-
             fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-
           });
-
         }
 
-    
-
       })();
-
     </script>
-
-    
 
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -1078,27 +1033,10 @@ $ Comments              &lt;chr&gt; "Not enough blood for isotopes.", NA, NA, "A
         // clear code selection
         e.clearSelection();
       });
-        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-        var mailtoRegex = new RegExp(/^mailto:/);
-          var filterRegex = new RegExp("https:\/\/norcalbiostat\.github\.io\/MATH615");
-        var isInternal = (href) => {
-            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-        }
-        // Inspect non-navigation links and adorn them if external
-     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
-        for (var i=0; i<links.length; i++) {
-          const link = links[i];
-          if (!isInternal(link.href)) {
-            // undo the damage that might have been done by quarto-nav.js in the case of
-            // links that we want to consider external
-            if (link.dataset.originalHref !== undefined) {
-              link.href = link.dataset.originalHref;
-            }
-          }
-        }
-      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      function tippyHover(el, contentFn) {
         const config = {
           allowHTML: true,
+          content: contentFn,
           maxWidth: 500,
           delay: 100,
           arrow: false,
@@ -1108,17 +1046,8 @@ $ Comments              &lt;chr&gt; "Not enough blood for isotopes.", NA, NA, "A
           interactive: true,
           interactiveBorder: 10,
           theme: 'light-border',
-          placement: 'bottom-start',
+          placement: 'bottom-start'
         };
-        if (contentFn) {
-          config.content = contentFn;
-        }
-        if (onTriggerFn) {
-          config.onTrigger = onTriggerFn;
-        }
-        if (onUntriggerFn) {
-          config.onUntrigger = onUntriggerFn;
-        }
           config['offset'] = [0,0];
           config['maxWidth'] = 700;
         window.tippy(el, config); 
@@ -1132,11 +1061,7 @@ $ Comments              &lt;chr&gt; "Not enough blood for isotopes.", NA, NA, "A
           try { href = new URL(href).hash; } catch {}
           const id = href.replace(/^#\/?/, "");
           const note = window.document.getElementById(id);
-          if (note) {
-            return note.innerHTML;
-          } else {
-            return "";
-          }
+          return note.innerHTML;
         });
       }
       const findCites = (el) => {

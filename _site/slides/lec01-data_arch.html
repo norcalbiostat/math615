@@ -8,7 +8,7 @@
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.4.555">
+  <meta name="generator" content="quarto-1.3.319">
 
   <meta name="author" content="Robin Donatello">
   <meta name="dcterms.date" content="2024-08-26">
@@ -31,7 +31,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css" id="theme">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -159,8 +159,7 @@
   }
 
   .callout.callout-titled .callout-body > .callout-content > :last-child {
-    padding-bottom: 0.5rem;
-    margin-bottom: 0;
+    margin-bottom: 0.5rem;
   }
 
   .callout.callout-titled .callout-icon::before {
@@ -427,7 +426,7 @@ Robin Donatello
 <h2>Data for humans</h2>
 <p>If they were to keep track of the data like this:</p>
 
-<img data-src="https://datacarpentry.org/spreadsheets-socialsci/fig/multiple-info.png" class="quarto-figure quarto-figure-center r-stretch" alt="Example of multiple pieces of data in a single row" width="400"><p><span class="emoji" data-emoji="question">❓</span> What are some of the problems with this? (Work with your neighbor and answer this in Google Docs)</p>
+<img data-src="https://datacarpentry.org/spreadsheets-socialsci/fig/multiple-info.png" alt="Example of multiple pieces of data in a single row" width="400" class="r-stretch quarto-figure-center"><p><span class="emoji" data-emoji="question">❓</span> What are some of the problems with this? (Work with your neighbor and answer this in Google Docs)</p>
 <p><span class="emoji" data-emoji="question">❓</span> What is actually being measured?</p>
 </section>
 <section id="what-would-this-data-look-like-in-a-tidy-data-format" class="slide level2">
@@ -436,7 +435,7 @@ Robin Donatello
 <div class="column" style="width:50%;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="https://datacarpentry.org/spreadsheets-socialsci/fig/single-info.png" class="quarto-figure quarto-figure-center" alt="The previous example in tidy data format"></p>
+<p><img data-src="https://datacarpentry.org/spreadsheets-socialsci/fig/single-info.png" alt="The previous example in tidy data format"></p>
 </figure>
 </div>
 </div><div class="column" style="width:50%;">
@@ -467,9 +466,9 @@ Robin Donatello
 </section>
 <section id="codebooks-contain-the-following-information" class="slide level2 small">
 <h2>Codebooks contain the following information</h2>
-<div class="quarto-layout-panel" data-layout-ncol="2">
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <ul>
 <li>variable name (for the computer)</li>
 <li>variable label (for the human)</li>
@@ -481,7 +480,7 @@ Robin Donatello
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="images/example_codebook.png" class="quarto-figure quarto-figure-center" alt="Screenshot of a codebook entry" width="500"></p>
+<p><img data-src="images/example_codebook.png" alt="Screenshot of a codebook entry" width="500"></p>
 </figure>
 </div>
 </div>
@@ -504,10 +503,8 @@ Robin Donatello
 </div>
 </div>
 
-<div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 <p><a href="https://math615.netlify.app">🔗 https://math615.netlify.app</a> / Data Architecture</p>
-</div>
 </div>
 </section>
     </div>
@@ -537,6 +534,7 @@ Robin Donatello
       Reveal.initialize({
 'controlsAuto': true,
 'previewLinksAuto': false,
+'smaller': false,
 'pdfSeparateFragments': false,
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
@@ -723,80 +721,42 @@ Robin Donatello
       });
     </script>
     
-
     <script>
-
       // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-
       // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-
       // slide changes (different for each slide format).
-
       (function () {
-
         // dispatch for htmlwidgets
-
         function fireSlideEnter() {
-
           const event = window.document.createEvent("Event");
-
           event.initEvent("slideenter", true, true);
-
           window.document.dispatchEvent(event);
-
         }
-
-    
 
         function fireSlideChanged(previousSlide, currentSlide) {
-
           fireSlideEnter();
 
-    
-
           // dispatch for shiny
-
           if (window.jQuery) {
-
             if (previousSlide) {
-
               window.jQuery(previousSlide).trigger("hidden");
-
             }
-
             if (currentSlide) {
-
               window.jQuery(currentSlide).trigger("shown");
-
             }
-
           }
-
         }
-
-    
 
         // hookup for slidy
-
         if (window.w3c_slidy) {
-
           window.w3c_slidy.add_observer(function (slide_num) {
-
             // slide_num starts at position 1
-
             fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-
           });
-
         }
 
-    
-
       })();
-
     </script>
-
-    
 
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -874,27 +834,10 @@ Robin Donatello
         // clear code selection
         e.clearSelection();
       });
-        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-        var mailtoRegex = new RegExp(/^mailto:/);
-          var filterRegex = new RegExp("https:\/\/norcalbiostat\.github\.io\/MATH615");
-        var isInternal = (href) => {
-            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-        }
-        // Inspect non-navigation links and adorn them if external
-     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
-        for (var i=0; i<links.length; i++) {
-          const link = links[i];
-          if (!isInternal(link.href)) {
-            // undo the damage that might have been done by quarto-nav.js in the case of
-            // links that we want to consider external
-            if (link.dataset.originalHref !== undefined) {
-              link.href = link.dataset.originalHref;
-            }
-          }
-        }
-      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      function tippyHover(el, contentFn) {
         const config = {
           allowHTML: true,
+          content: contentFn,
           maxWidth: 500,
           delay: 100,
           arrow: false,
@@ -904,17 +847,8 @@ Robin Donatello
           interactive: true,
           interactiveBorder: 10,
           theme: 'light-border',
-          placement: 'bottom-start',
+          placement: 'bottom-start'
         };
-        if (contentFn) {
-          config.content = contentFn;
-        }
-        if (onTriggerFn) {
-          config.onTrigger = onTriggerFn;
-        }
-        if (onUntriggerFn) {
-          config.onUntrigger = onUntriggerFn;
-        }
           config['offset'] = [0,0];
           config['maxWidth'] = 700;
         window.tippy(el, config); 
@@ -928,11 +862,7 @@ Robin Donatello
           try { href = new URL(href).hash; } catch {}
           const id = href.replace(/^#\/?/, "");
           const note = window.document.getElementById(id);
-          if (note) {
-            return note.innerHTML;
-          } else {
-            return "";
-          }
+          return note.innerHTML;
         });
       }
       const findCites = (el) => {
