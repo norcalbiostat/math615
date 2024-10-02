@@ -151,11 +151,11 @@ It's your turn to assume the role of the bank personnel director and make a prom
 sim.data <- googlesheets4::read_sheet("https://docs.google.com/spreadsheets/d/1KViV3beCDKMfeNgJFLTJauybKBQ4qrDRqS4gCFgi8ec") %>% 
   select(mfdiff = `(Male - female) difference`) 
 
-ggplot(sim.data, aes(x = mfdiff)) + 
-  geom_dotplot() + theme_bw() + 
-  geom_vline(xintercept = .292, color = "blue") +
-  scale_x_continuous(limits = c(-.5, .5)) + 
-  xlab("point estimate")
+ggplot(sim.data, aes(x = mfdiff)) +
+  geom_histogram(binwidth = .01) +
+  theme_bw() +
+  geom_vline(xintercept = .292, color = "blue", lwd=2) +
+  xlab("point estimate") + ylab("Count")
 ```
 :::
 
