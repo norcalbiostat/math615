@@ -189,7 +189,7 @@ Calculate the Z-score for both Nel and Sian. Who did better?
 ::: {.column width="50%"}
 ::: incremental
 -   $X_{ACT} \sim \mathcal{N}(21, 25)$
--   $x_{Sian} = 21$
+-   $x_{Sian} = 24$
 -   $Z_{Sian} = \frac{24- 21}{5} = 0.6$
 :::
 :::
@@ -203,7 +203,7 @@ While we know Nel did better, Sian didn't do too bad! What was their _*percentil
 
 ::: {.column width="50%"}
 ```{r}
-openintro::normTail(m = 21, s = 5, L = 26)
+openintro::normTail(m = 21, s = 5, L = 24)
 ```
 :::
 
@@ -226,10 +226,9 @@ A complementary function, `qnorm` calculates the _cutoff_ value `a` that is need
 
 * $P(X < a) = q$ is found using `qnorm(q, mean, sd)`
 ```{r}
-#| echo: true
 qnorm(.90, 21, 5) 
 ```
-You would need to score a 27.5 to be in the top 90th percentile of ACT test takers. 
+You would need to score a 27.5 to be in the top 10th percentile of ACT test takers. 
 
 
 # Quantifying variability of a statistic

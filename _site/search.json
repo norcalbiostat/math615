@@ -1187,21 +1187,21 @@
     "href": "slides/lec06b-statistical_inference_with_models.html#comparing-scores",
     "title": "Statistical Inference using Models",
     "section": "Comparing Scores",
-    "text": "Comparing Scores\nCalculate the Z-score for both Nel and Sian. Who did better?\n\n\n\n\n\\(X_{SAT} \\sim \\mathcal{N}(1500, 300^{2})\\)\n\\(x_{Nel} = 1800\\)\n\\(Z_{Nel} = \\frac{1800- 1500}{300} = 1\\)\n\n\n\n\n\n\\(X_{ACT} \\sim \\mathcal{N}(21, 25)\\)\n\\(x_{Sian} = 21\\)\n\\(Z_{Sian} = \\frac{24- 21}{5} = 0.6\\)"
+    "text": "Comparing Scores\nCalculate the Z-score for both Nel and Sian. Who did better?\n\n\n\n\n\\(X_{SAT} \\sim \\mathcal{N}(1500, 300^{2})\\)\n\\(x_{Nel} = 1800\\)\n\\(Z_{Nel} = \\frac{1800- 1500}{300} = 1\\)\n\n\n\n\n\n\\(X_{ACT} \\sim \\mathcal{N}(21, 25)\\)\n\\(x_{Sian} = 24\\)\n\\(Z_{Sian} = \\frac{24- 21}{5} = 0.6\\)"
   },
   {
     "objectID": "slides/lec06b-statistical_inference_with_models.html#comparing-scores-1",
     "href": "slides/lec06b-statistical_inference_with_models.html#comparing-scores-1",
     "title": "Statistical Inference using Models",
     "section": "Comparing Scores",
-    "text": "Comparing Scores\nWhile we know Nel did better, Sian didn’t do too bad! What was their percentile (The percent of observations below a specified value)?\n\n\n\n\nShow the code\nopenintro::normTail(m = 21, s = 5, L = 26)\n\n\n\n\n\n\nWe can find this value using pnorm(z, mean, sd).\n\n\nShow the code\npnorm(.6, mean = 0, sd = 1)\n\n\n[1] 0.7257469"
+    "text": "Comparing Scores\nWhile we know Nel did better, Sian didn’t do too bad! What was their percentile (The percent of observations below a specified value)?\n\n\n\n\nShow the code\nopenintro::normTail(m = 21, s = 5, L = 24)\n\n\n\n\n\n\nWe can find this value using pnorm(z, mean, sd).\n\n\nShow the code\npnorm(.6, mean = 0, sd = 1)\n\n\n[1] 0.7257469"
   },
   {
     "objectID": "slides/lec06b-statistical_inference_with_models.html#finding-percentiles",
     "href": "slides/lec06b-statistical_inference_with_models.html#finding-percentiles",
     "title": "Statistical Inference using Models",
     "section": "Finding percentiles",
-    "text": "Finding percentiles\nIf \\(X \\sim \\mathcal{N}(\\mu, \\sigma^{2})\\), then pnorm calculates the probability that a value is below a certain number a.\n\n\\(P(X &lt; a)\\) is found using pnorm(a, mean, sd)\n\nA complementary function, qnorm calculates the cutoff value a that is needed such that a certain percent of observations (q) are below that value.\n\n\\(P(X &lt; a) = q\\) is found using qnorm(q, mean, sd)\n\n\n\nShow the code\nqnorm(.90, 21, 5) \n\n\n[1] 27.40776\n\n\nYou would need to score a 27.5 to be in the top 90th percentile of ACT test takers."
+    "text": "Finding percentiles\nIf \\(X \\sim \\mathcal{N}(\\mu, \\sigma^{2})\\), then pnorm calculates the probability that a value is below a certain number a.\n\n\\(P(X &lt; a)\\) is found using pnorm(a, mean, sd)\n\nA complementary function, qnorm calculates the cutoff value a that is needed such that a certain percent of observations (q) are below that value.\n\n\\(P(X &lt; a) = q\\) is found using qnorm(q, mean, sd)\n\n\n\nShow the code\nqnorm(.90, 21, 5) \n\n\n[1] 27.40776\n\n\nYou would need to score a 27.5 to be in the top 10th percentile of ACT test takers."
   },
   {
     "objectID": "slides/lec06b-statistical_inference_with_models.html#many-estimates-are-normally-distributed",
