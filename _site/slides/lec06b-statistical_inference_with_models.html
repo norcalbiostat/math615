@@ -8,7 +8,7 @@
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.3.319">
+  <meta name="generator" content="quarto-1.4.555">
 
   <meta name="author" content="Robin Donatello">
   <meta name="dcterms.date" content="2024-10-07">
@@ -32,7 +32,7 @@
     }
     /* CSS for syntax highlighting */
     pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span { line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
     .sourceCode { overflow: visible; }
     code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -96,7 +96,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css" id="theme">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -224,7 +224,8 @@
   }
 
   .callout.callout-titled .callout-body > .callout-content > :last-child {
-    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    margin-bottom: 0;
   }
 
   .callout.callout-titled .callout-icon::before {
@@ -407,8 +408,8 @@ Robin Donatello
 </section>
 <section id="warm-up-exercise" class="slide level2">
 <h2>Warm up exercise</h2>
-<p>With a partner, go play with the Central Limit Theorem interactive explorer for about 15 minutes. Take notes and be prepared to share out what you learned/your take away message.</p>
-<p><a href="https://mathisawesome.shinyapps.io/central-limit-theorem/">https://mathisawesome.shinyapps.io/central-limit-theorem/</a></p>
+<p>With a partner, go work through the Central Limit Theorem interactive explorer for about 15 minutes. Follow the instructions on the app and take notes and be prepared to share out what you learned/your take away message.</p>
+<p><a href="https://mathisawesome.shinyapps.io/central-limit-theorem/" class="uri">https://mathisawesome.shinyapps.io/central-limit-theorem/</a></p>
 </section>
 <section id="sampling-distributions" class="slide level2">
 <h2>Sampling Distributions</h2>
@@ -461,33 +462,210 @@ Robin Donatello
 </div>
 </div>
 </section>
+<section>
 <section id="the-normal-distribution-1" class="title-slide slide level1 center">
 <h1>The Normal Distribution</h1>
-<blockquote>
-<p>come back and expand here</p>
-</blockquote>
-<p>Board work following <a href="https://openintro-ims.netlify.app/foundations-mathematical.html#normalDist">IMS 13.2</a></p>
-<ul>
-<li>Distributional Notation</li>
-<li>Standardizing with Z-scores</li>
-<li>Normal Probabilies (qnorm, pnorm)</li>
-</ul>
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Pre-requisite knowledge</strong></p>
+</div>
+<div class="callout-content">
+<p>It is expected that you have a basic understanding of the Normal distribution. If you need a detailed refresher, refer to <a href="https://openintro-ims.netlify.app/foundations-mathematical.html#normalDist">IMS 13.2</a>.</p>
+<p>What follows is a quick recap of critical details.</p>
+</div>
+</div>
+</div>
 </section>
-
+<section id="distributional-notation" class="slide level2">
+<h2>Distributional Notation</h2>
+<p><span class="math display">\[ X \sim \mathcal{N}(\mu, \sigma^2)\]</span> This means some random variable <span class="math inline">\(X\)</span> is distributed(<span class="math inline">\(\sim\)</span>), as a Normal (<span class="math inline">\(\mathcal{N}\)</span>) distribution centered on mean <span class="math inline">\(\mu\)</span> with variance <span class="math inline">\(\sigma^{2}\)</span>.</p>
+<div class="callout callout-warning callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Notational differences</strong></p>
+</div>
+<div class="callout-content">
+<p>Note that the IMS textbook uses the uncommon notation <span class="math inline">\(\mathcal{N}(\mu, \sigma)\)</span>, where the second parameter is <span class="math inline">\(\sigma\)</span>, the standard deviation.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="the-normal-distribution-2" class="slide level2">
+<h2>The Normal Distribution</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li>Symmetric, “bell shaped”</li>
+<li>Centered on <span class="math inline">\(\mu\)</span> and spread controlled by <span class="math inline">\(\sigma^2\)</span></li>
+<li>Tails extend to <span class="math inline">\(\infty\)</span></li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="lec06b-statistical_inference_with_models_files/figure-revealjs/unnamed-chunk-1-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><ul>
+<li>Area under the curve will always add to 1.</li>
+<li>Used to calculate the probability of an event occurring</li>
+</ul>
+</div>
+</section>
+<section id="comparing-values-under-two-different-distributions" class="slide level2">
+<h2>Comparing values under two different distributions</h2>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Two different college-ready exams</strong></p>
+</div>
+<div class="callout-content">
+<p>SAT scores follow a nearly normal distribution with a mean of 1500 points and a standard deviation of 300 points.</p>
+<p>ACT scores also follow a nearly normal distribution with mean of 21 points and a standard deviation of 5 points.</p>
+<p>Suppose Nel scored 1800 points on their SAT and Sian scored 24 points on their ACT.</p>
+</div>
+</div>
+</div>
+<p>Who performed better?</p>
+</section>
+<section id="standardizing-distributions" class="slide level2">
+<h2>Standardizing Distributions</h2>
+<p>If you overlay the two distributions, where the means line up and where each tick mark represents one standard deviation away from the mean, we can see who did better <em>relative to the exam average</em>.</p>
+<div class="columns">
+<div class="column" style="width:70%;">
+<p><img data-src="https://openintro-ims.netlify.app/foundations-mathematical_files/figure-html/fig-satActNormals-1.png"></p>
+</div><div class="column" style="width:30%;">
+<p><span class="math display">\[X_{SAT} \sim \mathcal{N}(1500, 300^{2})\]</span><br>
+</p>
+<p><span class="math display">\[X_{ACT} \sim \mathcal{N}(21, 25)\]</span></p>
+</div>
+</div>
+</section>
+<section id="z-score" class="slide level2">
+<h2>Z-score</h2>
+<p>The Z score of an observation is the number of standard deviations it falls above or below the mean. We compute the Z score for an observation that follows a distribution with mean and standard deviation using</p>
+<p><span class="math display">\[ Z = \frac{x- \mu}{\sigma} \]</span> If an observation <span class="math inline">\(x\)</span> comes from a <span class="math inline">\(\mathcal{N}(\mu, \sigma)\)</span> distribution, then <span class="math inline">\(Z \sim \mathcal{N}(0, 1)\)</span>. We <em>center</em> the distribution by subtracting the mean, and <em>scale</em> by dividing by the sd.</p>
+</section>
+<section id="comparing-scores" class="slide level2">
+<h2>Comparing Scores</h2>
+<p>Calculate the Z-score for both Nel and Sian. Who did better?</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div>
+<ul>
+<li class="fragment"><span class="math inline">\(X_{SAT} \sim \mathcal{N}(1500, 300^{2})\)</span></li>
+<li class="fragment"><span class="math inline">\(x_{Nel} = 1800\)</span></li>
+<li class="fragment"><span class="math inline">\(Z_{Nel} = \frac{1800- 1500}{300} = 1\)</span></li>
+</ul>
+</div>
+</div><div class="column" style="width:50%;">
+<div>
+<ul>
+<li class="fragment"><span class="math inline">\(X_{ACT} \sim \mathcal{N}(21, 25)\)</span></li>
+<li class="fragment"><span class="math inline">\(x_{Sian} = 21\)</span></li>
+<li class="fragment"><span class="math inline">\(Z_{Sian} = \frac{24- 21}{5} = 0.6\)</span></li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="comparing-scores-1" class="slide level2">
+<h2>Comparing Scores</h2>
+<p>While we know Nel did better, Sian didn’t do too bad! What was their <em><em>percentile</em></em> (The percent of observations below a specified value)?</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>openintro<span class="sc">::</span><span class="fu">normTail</span>(<span class="at">m =</span> <span class="dv">21</span>, <span class="at">s =</span> <span class="dv">5</span>, <span class="at">L =</span> <span class="dv">26</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="lec06b-statistical_inference_with_models_files/figure-revealjs/unnamed-chunk-2-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<p>We can find this value using <code>pnorm(z, mean, sd)</code>.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">pnorm</span>(.<span class="dv">6</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.7257469</code></pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="finding-percentiles" class="slide level2 smaller">
+<h2>Finding percentiles</h2>
+<p>If <span class="math inline">\(X \sim \mathcal{N}(\mu, \sigma^{2})\)</span>, then <code>pnorm</code> calculates the probability that a value is below a certain number <code>a</code>.</p>
+<ul>
+<li><span class="math inline">\(P(X &lt; a)\)</span> is found using <code>pnorm(a, mean, sd)</code></li>
+</ul>
+<p>A complementary function, <code>qnorm</code> calculates the <em>cutoff</em> value <code>a</code> that is needed such that a certain percent of observations (<code>q</code>) are below that value.</p>
+<ul>
+<li><span class="math inline">\(P(X &lt; a) = q\)</span> is found using <code>qnorm(q, mean, sd)</code></li>
+</ul>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">qnorm</span>(.<span class="dv">90</span>, <span class="dv">21</span>, <span class="dv">5</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 27.40776</code></pre>
+</div>
+</div>
+<p>You would need to score a 27.5 to be in the top 90th percentile of ACT test takers.</p>
+</section></section>
 <section>
 <section id="quantifying-variability-of-a-statistic" class="title-slide slide level1 center">
 <h1>Quantifying variability of a statistic</h1>
 <p>Follows <a href="https://openintro-ims.netlify.app/foundations-mathematical.html#quantifying-the-variability-of-a-statistic">IMS 13.3</a></p>
 </section>
-<section id="rule" class="slide level2">
-<h2>68-95-99.7 rule</h2>
-
-<img data-src="https://openintro-ims.netlify.app/foundations-mathematical_files/figure-html/fig-er6895997-1.png" class="r-stretch"><blockquote>
-<p>to here</p>
-</blockquote>
+<section id="many-estimates-are-normally-distributed" class="slide level2">
+<h2>Many estimates are normally distributed</h2>
+<ul>
+<li>the sample proportion <span class="math inline">\(\hat{p}\)</span></li>
+<li>the sample mean <span class="math inline">\(\bar{x}\)</span></li>
+<li>differences in two sample proportions <span class="math inline">\(\hat{p}_{1} - \hat{p}_{2}\)</span></li>
+<li>differences in two sample means <span class="math inline">\(\bar{x}_{1} - \bar{x}_{2}\)</span></li>
+<li>the sample slope from a linear model <span class="math inline">\(\hat{\beta}\)</span></li>
+</ul>
 </section>
-<section id="standard-error" class="slide level2">
-<h2>Standard Error</h2>
+<section id="rule-of-thumb" class="slide level2">
+<h2>68-95-99.7 rule of thumb</h2>
+<p>Because intuition is important.</p>
+
+<img data-src="https://openintro-ims.netlify.app/foundations-mathematical_files/figure-html/fig-er6895997-1.png" class="r-stretch"><div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">pnorm</span>(<span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">1</span>) <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.9544997</code></pre>
+</div>
+</div>
+</section>
+<section id="sd-vs-se" class="slide level2">
+<h2>SD vs SE</h2>
 <div class="callout callout-important callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -526,7 +704,7 @@ Robin Donatello
 <p><strong>Definition: Margin of Error (MOE)</strong></p>
 </div>
 <div class="callout-content">
-<p>The margin of error describes how far away observations are from their mean. &gt; check this</p>
+<p>The margin of error describes how far away observations are from their mean.</p>
 <p>Often approximated as <span class="math inline">\(2 * SE\)</span></p>
 </div>
 </div>
@@ -553,9 +731,9 @@ Robin Donatello
 <h1>Case study: Stents</h1>
 <p>This example and data comes from <a href="https://openintro-ims.netlify.app/foundations-mathematical.html#casestent">IMS 13.6</a></p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>stent30 <span class="ot">&lt;-</span> openintro<span class="sc">::</span>stent30</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>stent30 <span class="ot">&lt;-</span> openintro<span class="sc">::</span>stent30</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -565,9 +743,9 @@ Robin Donatello
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">table</span>(stent30<span class="sc">$</span>group, stent30<span class="sc">$</span>outcome) <span class="sc">|&gt;</span> <span class="fu">addmargins</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="fu">table</span>(stent30<span class="sc">$</span>group, stent30<span class="sc">$</span>outcome) <span class="sc">|&gt;</span> <span class="fu">addmargins</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>           
@@ -579,9 +757,9 @@ Robin Donatello
 </div>
 </div><div class="column" style="width:50%;">
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">table</span>(stent30<span class="sc">$</span>group, stent30<span class="sc">$</span>outcome) <span class="sc">|&gt;</span>  <span class="fu">prop.table</span>(<span class="at">margin=</span><span class="dv">1</span>) <span class="sc">|&gt;</span><span class="fu">round</span>(<span class="at">digits=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="fu">table</span>(stent30<span class="sc">$</span>group, stent30<span class="sc">$</span>outcome) <span class="sc">|&gt;</span>  <span class="fu">prop.table</span>(<span class="at">margin=</span><span class="dv">1</span>) <span class="sc">|&gt;</span><span class="fu">round</span>(<span class="at">digits=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>           
@@ -676,7 +854,6 @@ Robin Donatello
 </div>
 </div>
 </div>
-<p>&nbsp;</p>
 <p><span class="math inline">\(H_{0}\)</span>: The proportion of patients with a stent who have a stroke is the same as the proportion of patients without a stent who have a stroke.</p>
 <p><span class="math inline">\(H_{A}\)</span>: The proportion of patients with a stent who have a stroke is different than the proportion of patients without a stent who have a stroke.</p>
 </section>
@@ -724,14 +901,23 @@ Robin Donatello
 <li><p>The estimate’s standard error is <span class="math inline">\(SE = 0.028\)</span> has been calculated for you as well.</p></li>
 </ul>
 </section>
-<section id="calculating-a-test-statistic" class="slide level2">
-<h2>Calculating a test statistic</h2>
+<section id="calculating-a-test-statistic-p-value" class="slide level2 smaller">
+<h2>Calculating a test statistic &amp; p-value</h2>
 <p><span class="math display">\[ Z = \frac{\mbox{point estimate - null value}}{SE}\]</span></p>
 <div class="fragment">
 <p><span class="math display">\[ Z = \frac{(p_{trmt} - p_{ctrl}) - 0}{SE_{p_{trmt} - p_{ctrl}}} = \frac{.090}{.028} = 3.21 \]</span></p>
 </div>
 <div class="fragment">
 <p><span class="math display">\[ P(Z &gt; 3.2) = .00068 \qquad \mbox{ (the p-value)}\]</span></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="dv">1</span><span class="sc">-</span><span class="fu">pnorm</span>(<span class="fl">3.2</span>, <span class="dv">0</span>, <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.0006871379</code></pre>
+</div>
+</div>
 </div>
 <div class="fragment">
 <p>If the true difference in proportions was 0, then the probability of observing a difference of 0.09 due to random chance is 0.00068.</p>
@@ -748,8 +934,10 @@ Robin Donatello
 </blockquote>
 <p>Since the interval does not contain the null hypothesized value of 0 (is completely above 0), it means the data provide convincing evidence that the stent used in the study changed the risk of stroke within 30 days</p>
 
+<div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 <p><a href="https://math615.netlify.app">🔗 https://math615.netlify.app</a> / Stat Inference via Models</p>
+</div>
 </div>
 </section></section>
     </div>
@@ -779,7 +967,6 @@ Robin Donatello
       Reveal.initialize({
 'controlsAuto': true,
 'previewLinksAuto': false,
-'smaller': false,
 'pdfSeparateFragments': false,
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
@@ -1079,10 +1266,27 @@ Robin Donatello
         // clear code selection
         e.clearSelection();
       });
-      function tippyHover(el, contentFn) {
+        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+        var mailtoRegex = new RegExp(/^mailto:/);
+          var filterRegex = new RegExp("https:\/\/norcalbiostat\.github\.io\/MATH615");
+        var isInternal = (href) => {
+            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+        }
+        // Inspect non-navigation links and adorn them if external
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+        for (var i=0; i<links.length; i++) {
+          const link = links[i];
+          if (!isInternal(link.href)) {
+            // undo the damage that might have been done by quarto-nav.js in the case of
+            // links that we want to consider external
+            if (link.dataset.originalHref !== undefined) {
+              link.href = link.dataset.originalHref;
+            }
+          }
+        }
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
         const config = {
           allowHTML: true,
-          content: contentFn,
           maxWidth: 500,
           delay: 100,
           arrow: false,
@@ -1092,8 +1296,17 @@ Robin Donatello
           interactive: true,
           interactiveBorder: 10,
           theme: 'light-border',
-          placement: 'bottom-start'
+          placement: 'bottom-start',
         };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
           config['offset'] = [0,0];
           config['maxWidth'] = 700;
         window.tippy(el, config); 
@@ -1107,7 +1320,11 @@ Robin Donatello
           try { href = new URL(href).hash; } catch {}
           const id = href.replace(/^#\/?/, "");
           const note = window.document.getElementById(id);
-          return note.innerHTML;
+          if (note) {
+            return note.innerHTML;
+          } else {
+            return "";
+          }
         });
       }
       const findCites = (el) => {

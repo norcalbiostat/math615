@@ -25,42 +25,40 @@ knitr:
       width: 200
 ---
 
-
-
 ## Warm up exercise
 
-With a partner, go play with the Central Limit Theorem interactive explorer for about 15 minutes. Take notes and be prepared to share out what you learned/your take away message.  
+With a partner, go work through the Central Limit Theorem interactive explorer for about 15 minutes. Follow the instructions on the app and take notes and be prepared to share out what you learned/your take away message.
 
-[https://mathisawesome.shinyapps.io/central-limit-theorem/](https://mathisawesome.shinyapps.io/central-limit-theorem/)
+<https://mathisawesome.shinyapps.io/central-limit-theorem/>
 
 ## Sampling Distributions
 
-Since _point estimates_ are numbers calculated on a sample, they are also _sample statistics_. Recall that sample statistics are used to estimate parameters, the true value of the quantity of interest from the population.
+Since *point estimates* are numbers calculated on a sample, they are also *sample statistics*. Recall that sample statistics are used to estimate parameters, the true value of the quantity of interest from the population.
 
-As we just saw through simulation, point estimates are subject to _random variation_ because they are calculated on different random samples from the population. The distribution of repeatedly calculated point estimates based on the same fixed size $n$ from a population is called a _sampling distribution_. 
-
+As we just saw through simulation, point estimates are subject to *random variation* because they are calculated on different random samples from the population. The distribution of repeatedly calculated point estimates based on the same fixed size $n$ from a population is called a *sampling distribution*.
 
 ## Mathematical theory guarantees {.smaller}
 
-* If repeated samples are taken, a point estimate will follow something that **resembles a normal distribution** when certain conditions are met. 
-    - _Note: we typically only take one sample, but the mathematical model lets us know what to expect if we had taken repeated samples_
+-   If repeated samples are taken, a point estimate will follow something that **resembles a normal distribution** when certain conditions are met.
+    -   *Note: we typically only take one sample, but the mathematical model lets us know what to expect if we had taken repeated samples*
 
-:::{.callout-important}
+::: callout-important
 #### Observations in the sample are independent.
+
 Guaranteed when we take a random sample from a population, or randomly divide individuals into treatment and control groups.
 :::
-    
-:::{.callout-important}
+
+::: callout-important
 #### The sample is large enough.
-What qualifies as “large enough” differs from one context to the next. If the population is already normally distributed and the formula to calculate the sample statistic simple, then fewer samples are needed. The "magic" number 30 gets thrown around a lot. 
+
+What qualifies as “large enough” differs from one context to the next. If the population is already normally distributed and the formula to calculate the sample statistic simple, then fewer samples are needed. The "magic" number 30 gets thrown around a lot.
 :::
 
 ## The Normal Distribution {.smaller}
 
-:::: {.columns}
-
+::: columns
 ::: {.column width="50%"}
-The normal distribution is used to describe the variability associated with sample statistics which are taken from either repeated samples or repeated experiments. The normal distribution is quite powerful in that it describes the variability of many different statistics such as the sample mean and sample proportions. 
+The normal distribution is used to describe the variability associated with sample statistics which are taken from either repeated samples or repeated experiments. The normal distribution is quite powerful in that it describes the variability of many different statistics such as the sample mean and sample proportions.
 
 Distributions of many variables are nearly normal, but none are exactly normal. While not perfect for any single problem, the Normal Distribution is very useful for a variety of problems.
 :::
@@ -68,77 +66,243 @@ Distributions of many variables are nearly normal, but none are exactly normal. 
 ::: {.column width="50%"}
 <a href="https://twitter.com/RiddleMeCam/status/1557402268395139077?ref_src=twsrc%5Etfw">![](images/clt_twitter.png)</a>
 :::
-
-::::
+:::
 
 # The Normal Distribution
 
-> come back and expand here
+::: callout-important
+#### Pre-requisite knowledge
 
-Board work following [IMS 13.2](https://openintro-ims.netlify.app/foundations-mathematical.html#normalDist)
+It is expected that you have a basic understanding of the Normal distribution. If you need a detailed refresher, refer to [IMS 13.2](https://openintro-ims.netlify.app/foundations-mathematical.html#normalDist).
 
-* Distributional Notation
-* Standardizing with Z-scores
-* Normal Probabilies (qnorm, pnorm)
+What follows is a quick recap of critical details.
+:::
+
+## Distributional Notation
+
+$$ X \sim \mathcal{N}(\mu, \sigma^2)$$ This means some random variable $X$ is distributed($\sim$), as a Normal ($\mathcal{N}$) distribution centered on mean $\mu$ with variance $\sigma^{2}$.
+
+::: callout-warning
+### Notational differences
+
+Note that the IMS textbook uses the uncommon notation $\mathcal{N}(\mu, \sigma)$, where the second parameter is $\sigma$, the standard deviation.
+:::
+
+## The Normal Distribution
+
+::: columns
+::: {.column width="50%"}
+-   Symmetric, "bell shaped"
+-   Centered on $\mu$ and spread controlled by $\sigma^2$
+-   Tails extend to $\infty$
+:::
+
+::: {.column width="50%"}
+```{r, echo=FALSE, fig.height = 8}
+library(ggplot2)
+
+x <- seq(-10, 10, length.out = 1000)
+y1 <- dnorm(x, mean = 0, sd = 1)
+y2 <- dnorm(x, mean = 3, sd = 1.5)
+y3 <- dnorm(x, mean = -1, sd = 5)
+
+data <- data.frame(
+  x = rep(x, 3),
+  y = c(y1, y2, y3),
+  group = factor(rep(c("Dist 1", "Dist 2", "Dist 3"), each = length(x)))
+)
+
+annotate_data <- data.frame(
+  x = c(3, 5.5, -6),  
+  y = c(0.4, 0.2, 0.09),  
+ label = c("N(mu == 0, sigma == 1)", 
+            "N(mu == 3, sigma == 1.5)", 
+            "N(mu == -1, sigma == 5)")
+)
+
+ggplot(data, aes(x = x, y = y)) +
+  geom_line(size = 1, aes(color = group)) +  
+  geom_text(data = annotate_data, aes(x = x, y = y, label = label), 
+            parse = TRUE, size = 5) +  
+  geom_vline(xintercept = c(0, 3, -1), col = c("red", "darkgreen", "blue"), 
+             lty = "dashed") + 
+  labs(x = "", y = "") +
+  theme_minimal() +
+  theme(legend.position = "none") 
+
+```
+:::
+
+-   Area under the curve will always add to 1.
+-   Used to calculate the probability of an event occurring
+:::
+
+## Comparing values under two different distributions
+
+::: callout-tip
+### Two different college-ready exams
+
+SAT scores follow a nearly normal distribution with a mean of 1500 points and a standard deviation of 300 points.
+
+ACT scores also follow a nearly normal distribution with mean of 21 points and a standard deviation of 5 points.
+
+Suppose Nel scored 1800 points on their SAT and Sian scored 24 points on their ACT.
+:::
+
+Who performed better?
+
+## Standardizing Distributions
+
+If you overlay the two distributions, where the means line up and where each tick mark represents one standard deviation away from the mean, we can see who did better *relative to the exam average*.
+
+::: columns
+::: {.column width="70%"}
+![](https://openintro-ims.netlify.app/foundations-mathematical_files/figure-html/fig-satActNormals-1.png)
+:::
+
+::: {.column width="30%"}
+$$X_{SAT} \sim \mathcal{N}(1500, 300^{2})$$\
+
+$$X_{ACT} \sim \mathcal{N}(21, 25)$$
+:::
+:::
+
+## Z-score
+
+The Z score of an observation is the number of standard deviations it falls above or below the mean. We compute the Z score for an observation that follows a distribution with mean and standard deviation using
+
+$$ Z = \frac{x- \mu}{\sigma} $$ If an observation $x$ comes from a $\mathcal{N}(\mu, \sigma)$ distribution, then $Z \sim \mathcal{N}(0, 1)$. We *center* the distribution by subtracting the mean, and *scale* by dividing by the sd.
+
+## Comparing Scores
+
+Calculate the Z-score for both Nel and Sian. Who did better?
+
+::: columns
+::: {.column width="50%"}
+::: incremental
+-   $X_{SAT} \sim \mathcal{N}(1500, 300^{2})$
+-   $x_{Nel} = 1800$ 
+-   $Z_{Nel} = \frac{1800- 1500}{300} = 1$
+:::
+:::
+
+::: {.column width="50%"}
+::: incremental
+-   $X_{ACT} \sim \mathcal{N}(21, 25)$
+-   $x_{Sian} = 21$
+-   $Z_{Sian} = \frac{24- 21}{5} = 0.6$
+:::
+:::
+:::
+
+## Comparing Scores
+
+While we know Nel did better, Sian didn't do too bad! What was their _*percentile*_ (The percent of observations below a specified value)? 
+
+:::: {.columns}
+
+::: {.column width="50%"}
+```{r}
+openintro::normTail(m = 21, s = 5, L = 26)
+```
+:::
+
+::: {.column width="50%"}
+We can find this value using `pnorm(z, mean, sd)`. 
+```{r, echo = TRUE}
+pnorm(.6, mean = 0, sd = 1)
+```
+:::
+
+::::
+
+## Finding percentiles {.smaller} 
+
+If $X \sim \mathcal{N}(\mu, \sigma^{2})$, then `pnorm` calculates the probability that a value is below a certain number `a`. 
+
+* $P(X < a)$ is found using `pnorm(a, mean, sd)`
+
+A complementary function, `qnorm` calculates the _cutoff_ value `a` that is needed such that a certain percent of observations (`q`) are below that value. 
+
+* $P(X < a) = q$ is found using `qnorm(q, mean, sd)`
+```{r}
+#| echo: true
+qnorm(.90, 21, 5) 
+```
+You would need to score a 27.5 to be in the top 90th percentile of ACT test takers. 
+
 
 # Quantifying variability of a statistic
 
 Follows [IMS 13.3](https://openintro-ims.netlify.app/foundations-mathematical.html#quantifying-the-variability-of-a-statistic)
 
+## Many estimates are normally distributed
 
-## 68-95-99.7 rule
+* the sample proportion $\hat{p}$
+* the sample mean $\bar{x}$
+* differences in two sample proportions $\hat{p}_{1} - \hat{p}_{2}$
+* differences in two sample means $\bar{x}_{1} - \bar{x}_{2}$
+* the sample slope from a linear model $\hat{\beta}$
+
+## 68-95-99.7 rule of thumb
+
+Because intuition is important.
 
 ![](https://openintro-ims.netlify.app/foundations-mathematical_files/figure-html/fig-er6895997-1.png)
 
-> to here
+```{r}
+pnorm(2, 0, 1) - pnorm(-2, 0, 1)
+```
 
 
-## Standard Error
+## SD vs SE
 
-:::{.callout-important}
+::: callout-important
 ### Definition: Standard Deviation (SD)
+
 Variability of the data values ($x$)
 :::
 
-:::{.callout-important}
+::: callout-important
 ### Definition: Standard Error (SE)
+
 Variability of the sample statistic (e.g. $\bar{x}$ or $\hat{p}$)
 :::
 
 
 ## Margin of Error {.smaller}
 
-:::{.callout-important}
+::: callout-important
 ### Definition: Margin of Error (MOE)
-The margin of error describes how far away observations are from their mean.
-> check this
+
+The margin of error describes how far away observations are from their mean. 
 
 Often approximated as $2 * SE$
 :::
 
-* 95% of the observations are within one margin of error of the mean.
-* If the spread of the observations goes from some lower bound to some upper bound, a rough approximation of the $SE$ is to divide the range by 4. 
-    - If you notice the sample proportions go from 0.1 to 0.4, the SE can be approximated to be 0.075.
+-   95% of the observations are within one margin of error of the mean.
+-   If the spread of the observations goes from some lower bound to some upper bound, a rough approximation of the $SE$ is to divide the range by 4.
+    -   If you notice the sample proportions go from 0.1 to 0.4, the SE can be approximated to be 0.075.
 
 ## Summary
 
-* Point estimates from a sample may be used to estimate population parameters. 
-* Point estimates are not exact: they vary from one sample to another. 
-* The standard error is the uncertainty of the sample statistic, and it gets smaller as you use more data to calculate the point estimate. 
-* As your standard error decreases, so does your margin of error
+-   Point estimates from a sample may be used to estimate population parameters.
+-   Point estimates are not exact: they vary from one sample to another.
+-   The standard error is the uncertainty of the sample statistic, and it gets smaller as you use more data to calculate the point estimate.
+-   As your standard error decreases, so does your margin of error
 
 # Case study: Stents
 
 This example and data comes from [IMS 13.6](https://openintro-ims.netlify.app/foundations-mathematical.html#casestent)
+
 ```{r}
 stent30 <- openintro::stent30
 ```
 
-
 ## Observed data {.smaller}
 
 Consider an experiment that examined whether implanting a stent in the brain of a patient at risk for a stroke helps reduce the risk of a stroke. The results from the first 30 days of this study are summarized in the following table.
- 
+
 ::: columns
 ::: {.column width="50%"}
 ```{r}
@@ -165,7 +329,7 @@ A *point estimate* is our best guess for the value of the parameter, so it makes
 
 ## Constructing a 95% confidence interval (CI)
 
-When the sampling distribution of a point estimate can _reasonably be modeled as having a normal distribution_, the point estimate we observe will be within 1.96 standard errors of the true value of interest about 95% of the time. Thus, a 95% confidence interval for such a point estimate can be constructed:
+When the sampling distribution of a point estimate can *reasonably be modeled as having a normal distribution*, the point estimate we observe will be within 1.96 standard errors of the true value of interest about 95% of the time. Thus, a 95% confidence interval for such a point estimate can be constructed:
 
 $$\mbox{point estimate} \pm 1.96 × SE$$
 
@@ -178,7 +342,7 @@ The conditions necessary to ensure the point estimate $p_{trmt}−p_{ctrl}$ is n
 -   Construct a 95% confidence interval for the change in 30-day stroke rates from usage of the stent.
 -   Interpret this interval in context of the problem.
 
-. . . 
+. . .
 
 $$0.090 \pm 1.96×0.028 = (0.035,0.145)$$
 
@@ -199,8 +363,9 @@ We are 95% confident that implanting a stent in a stroke patient's brain increas
 ## Hypothesis test
 
 ::: {.callout-note icon="false"}
-## First draft 
-Let's setup a hypothesis to test if stents work to reduce the risk of a stroke.  
+## First draft
+
+Let's setup a hypothesis to test if stents work to reduce the risk of a stroke.
 :::
 
 \
@@ -212,10 +377,10 @@ $H_{A}$: Stents reduce the risk of a stroke
 ## Hypothesis test
 
 ::: {.callout-note icon="false"}
-### Revision 1: 
-Making it a statement about two groups 
-:::
+### Revision 1:
 
+Making it a statement about two groups
+:::
 
 $H_{0}$: Patients who have a stent have the same risk of a stroke as patients who don't have a stent
 
@@ -224,24 +389,25 @@ $H_{A}$: Patients who have a stent have lower risk of a stroke as patients who d
 ## Hypothesis test
 
 ::: {.callout-note icon="false"}
-### Revision 2: 
+### Revision 2:
+
 Make it a statement using summary statistics and removing the directionality of the hypothesis
 :::
 
-\ 
 
-$H_{0}$: The proportion of patients with a stent who have a stroke is the same as the proportion of patients without a stent who have a stroke. 
+$H_{0}$: The proportion of patients with a stent who have a stroke is the same as the proportion of patients without a stent who have a stroke.
 
-$H_{A}$: The proportion of patients with a stent who have a stroke is different than the proportion of patients without a stent who have a stroke. 
+$H_{A}$: The proportion of patients with a stent who have a stroke is different than the proportion of patients without a stent who have a stroke.
 
 ## Hypothesis test
 
 ::: {.callout-note icon="false"}
-### Revision 3: 
+### Revision 3:
+
 Writing it in symbols
 :::
 
-Let $p_{trmt}$ be the proportion of patients with a stent who have a stroke, and $p_{ctrl}$ be the proportion of patients without a stent who have a stroke 
+Let $p_{trmt}$ be the proportion of patients with a stent who have a stroke, and $p_{ctrl}$ be the proportion of patients without a stent who have a stroke
 
 \
 
@@ -252,12 +418,12 @@ $H_{A}: p_{trmt} \neq p_{ctrl}$
 ## Hypothesis test
 
 ::: {.callout-note icon="false"}
-### Revision 3.5: 
+### Revision 3.5:
 
 Rewriting as a difference in parameters
 :::
 
-Let $p_{1}$ be the proportion of patients with a stent who have a stroke, and $p_{ctrl}$ be the proportion of patients without a stent who have a stroke 
+Let $p_{1}$ be the proportion of patients with a stent who have a stroke, and $p_{ctrl}$ be the proportion of patients without a stent who have a stroke
 
 \
 
@@ -267,32 +433,34 @@ $H_{A}: p_{trmt} - p_{ctrl} \neq 0$
 
 ## Using the Normal model
 
-* Now we have a statistic (difference in proportions $p_{trmt} - p_{ctrl}$) and a null value of 0 to compare it to. 
+-   Now we have a statistic (difference in proportions $p_{trmt} - p_{ctrl}$) and a null value of 0 to compare it to.
 
-* The conditions necessary to ensure the point estimate is nearly normal have been verified for you. 
+-   The conditions necessary to ensure the point estimate is nearly normal have been verified for you.
 
-* The estimate’s standard error is $SE = 0.028$ has been calculated for you as well.  
+-   The estimate’s standard error is $SE = 0.028$ has been calculated for you as well.
 
-## Calculating a test statistic 
+## Calculating a test statistic & p-value {.smaller}
 
 $$ Z = \frac{\mbox{point estimate - null value}}{SE}$$
 
-. . . 
+. . .
 
 $$ Z = \frac{(p_{trmt} - p_{ctrl}) - 0}{SE_{p_{trmt} - p_{ctrl}}} = \frac{.090}{.028} = 3.21 $$
 
-. . . 
+. . .
 
-$$ P(Z > 3.2) = .00068 \qquad \mbox{ (the p-value)}$$ 
+$$ P(Z > 3.2) = .00068 \qquad \mbox{ (the p-value)}$$
+```{r}
+1-pnorm(3.2, 0, 1)
+```
 
-. . . 
+. . .
 
-If the true difference in proportions was 0, then the probability of observing a difference of 0.09 due to random chance is 0.00068. 
+If the true difference in proportions was 0, then the probability of observing a difference of 0.09 due to random chance is 0.00068.
 
 ## 
 
 ![https://xkcd.com/1478/](https://imgs.xkcd.com/comics/p_values.png)
-
 
 ## Using Confidence Intervals to test a hypothesis
 

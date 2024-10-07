@@ -144,11 +144,14 @@ It's your turn to assume the role of the bank personnel director and make a prom
 
 ## Class Results
 
+```{r, echo=FALSE, code.show=FALSE}
+URL <- "https://docs.google.com/spreadsheets/d/1KViV3beCDKMfeNgJFLTJauybKBQ4qrDRqS4gCFgi8ec"
+```
 :::: {.columns}
 
 ::: {.column width="50%"}
-```{r, cache=TRUE}
-sim.data <- googlesheets4::read_sheet("https://docs.google.com/spreadsheets/d/1KViV3beCDKMfeNgJFLTJauybKBQ4qrDRqS4gCFgi8ec") %>% 
+```{r}
+sim.data <- googlesheets4::read_sheet(URL) %>% 
   select(mfdiff = `(Male - female) difference`) 
 
 ggplot(sim.data, aes(x = mfdiff)) +
@@ -168,9 +171,13 @@ Describe the distribution of this graph. What does it seem to be centered around
 
 In what percent of simulations did we observe a difference of at least 29.2\% (0.292)? 
 
+```{r}
+sum(sim.data$mfdiff >= .29) / NROW(sim.data)
+```
+
 ## Decision
 
-In our analysis, we determined that there was only a $\approx$ ______ chance of obtaining a sample where $\geq$ 29.2\% more male candidates than female candidates get promoted under the null hypothesis, so we conclude that the data provide _____________ evidence of sex discrimination against female candidates by the male supervisors. **In this case, we ________ the null hypothesis in favor of the alternative.**
+In our analysis, we determined that there was only a $\approx$ .037 chance of obtaining a sample where $\geq$ 29.2\% more male candidates than female candidates get promoted under the null hypothesis, so we conclude that the data provide _some_ evidence of sex discrimination against female candidates by the male supervisors. **In this case, we _can reject_ the null hypothesis in favor of the alternative.**
 
 
 ## Closing

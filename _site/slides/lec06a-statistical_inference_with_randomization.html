@@ -544,7 +544,7 @@ Robin Donatello
 <div class="cell">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>sim.data <span class="ot">&lt;-</span> googlesheets4<span class="sc">::</span><span class="fu">read_sheet</span>(<span class="st">"https://docs.google.com/spreadsheets/d/1KViV3beCDKMfeNgJFLTJauybKBQ4qrDRqS4gCFgi8ec"</span>) <span class="sc">%&gt;%</span> </span>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>sim.data <span class="ot">&lt;-</span> googlesheets4<span class="sc">::</span><span class="fu">read_sheet</span>(URL) <span class="sc">%&gt;%</span> </span>
 <span id="cb3-2"><a></a>  <span class="fu">select</span>(<span class="at">mfdiff =</span> <span class="st">`</span><span class="at">(Male - female) difference</span><span class="st">`</span>) </span>
 <span id="cb3-3"><a></a></span>
 <span id="cb3-4"><a></a><span class="fu">ggplot</span>(sim.data, <span class="fu">aes</span>(<span class="at">x =</span> mfdiff)) <span class="sc">+</span></span>
@@ -556,7 +556,7 @@ Robin Donatello
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="lec06a-statistical_inference_with_randomization_files/figure-revealjs/unnamed-chunk-3-1.png" width="960"></p>
+<p><img data-src="lec06a-statistical_inference_with_randomization_files/figure-revealjs/unnamed-chunk-4-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -566,10 +566,19 @@ Robin Donatello
 </div>
 </div>
 <p>In what percent of simulations did we observe a difference of at least 29.2% (0.292)?</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">sum</span>(sim.data<span class="sc">$</span>mfdiff <span class="sc">&gt;=</span> .<span class="dv">29</span>) <span class="sc">/</span> <span class="fu">NROW</span>(sim.data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.03703704</code></pre>
+</div>
+</div>
 </section>
 <section id="decision" class="slide level2">
 <h2>Decision</h2>
-<p>In our analysis, we determined that there was only a <span class="math inline">\(\approx\)</span> ______ chance of obtaining a sample where <span class="math inline">\(\geq\)</span> 29.2% more male candidates than female candidates get promoted under the null hypothesis, so we conclude that the data provide _____________ evidence of sex discrimination against female candidates by the male supervisors. <strong>In this case, we ________ the null hypothesis in favor of the alternative.</strong></p>
+<p>In our analysis, we determined that there was only a <span class="math inline">\(\approx\)</span> .037 chance of obtaining a sample where <span class="math inline">\(\geq\)</span> 29.2% more male candidates than female candidates get promoted under the null hypothesis, so we conclude that the data provide <em>some</em> evidence of sex discrimination against female candidates by the male supervisors. <strong>In this case, we <em>can reject</em> the null hypothesis in favor of the alternative.</strong></p>
 </section>
 <section id="closing" class="slide level2">
 <h2>Closing</h2>
