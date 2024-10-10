@@ -75,15 +75,15 @@ All tables and figures should be "publication ready" with informative titles, la
 Articles must include a "Table 1" that describes the study population in a tabular format. Additional tables and figures may be included as necessary to present and summarize results. These count towards the page limit. 
 
 
-## Decimal Numerals
+### Decimal Numerals
 To enhance readability and clarity of the text as well as tables and figures, decimal numerals should - with the obvious exception of P-values - be rounded to the unit whenever possible (i.e. in all cases in which the rounding procedure does not change the meaning). 
 
 
-## Acknowledgments
+### Acknowledgments
 Collate acknowledgements in a separate section at the end of the article before the references and do not, therefore, include them on the title page, as a footnote to the title or otherwise. List here those individuals who provided help during the research (e.g., providing language help, writing assistance or proof reading the article, etc.). 
 
 
-## References
+### References
 Any style of reference is acceptable as long as formatting is consistent. See [the Citations section of the Quarto authoring guide](https://quarto.org/docs/authoring/citations.html) for information on how to cite references in Quarto. 
 
 ## Supplemental Materials
@@ -92,4 +92,14 @@ Given the small page limits, it is acceptable to include *additional* tables and
 
 While you should direct the reader to the Supplemental Materials to access the additional tables, figures, or information, the paper itself should be able to be largely understood as though a reader did not have access to the supplement.
 
+## Blind review and submission process
+
+You will submit a draft manuscript for blind peer review prior to submission. To help the reviewers identify specific places in your manuscript to discuss, please add the following code to the top of your YAML header (PDF submissions only) to add the line numbers to your compiled document. This is for the review period only, and not to be used in the final version. 
+
+```
+format: 
+  pdf:
+    include-in-header: 
+      text: '\usepackage{lineno}\linenumbers'
+```
 
