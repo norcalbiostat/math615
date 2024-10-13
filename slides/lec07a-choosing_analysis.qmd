@@ -1,0 +1,86 @@
+---
+title: "Choosing Appropriate Analysis"
+date: "2024-10-14"
+author: "Robin Donatello"
+footer: "[🔗 https://math615.netlify.app](https://math615.netlify.app) / Stat Inference via Models"
+from: markdown+emoji
+format: 
+  revealjs:
+    theme: sky
+    transition: fade
+    slide-number: true
+    incremental: false 
+    chalkboard: true
+execute:
+  freeze: auto
+  echo: true
+knitr:
+  opts_chunk: 
+    R.options:
+      width: 200
+---
+
+## A unifying model framework {.smaller}
+
+A good way to think about all statistical models is that the observed data comes from some true model with some random error.
+
+> DATA = MODEL + RESIDUAL
+
+-   The `MODEL` is a mathematical formula (like $y = f(x)$).
+-   The formulation of the `MODEL` will change depending on the number of, and data types of explanatory variables.
+-   One goal of inferential analysis is to explain the variation in our data, using information contained in other measures (the model). To minimize the unexplained, or `residual` error.
+
+## Which model to use?
+
+Moving from:
+
+> "What descriptive measures should be used to examine the data"
+
+to
+
+> "What statistical analyses should be performed?
+
+\
+
+
+
+## Choosing Appropriate Analysis {.smaller}
+
+This table shows which statistical analyses procedures are appropriate depending on the combination of explanatory (rows) and response (columns) variable. 
+
+
+| Exp \\ Resp      | Binary              | **Categorical**                     | **Quantitative**                |
+|---------------|-------------------|-------------------|-------------------|
+| **Binary**       | Chi-squared         | Chi-squared                         | T-Test, Linear Regression       |
+| **Categorical**  | Chi-squared         | Chi-squared                         | ANOVA, Linear Regression        |
+| **Quantitative** | Logistic Regression | *Multinomial or Ordinal Regression* | Correlation & Linear Regression |
+
+
+See Table 6.2 in PMA6 for a more detailed table. 
+
+## Why selection can be difficult
+
+::: incremental
+-   Classroom instruction tends to present methods in logical order from a learning perspective. Building from simple to more complex. Exposure to complex models limited.
+-   Real life data often contain a mixture of data types, missing data and complex patterns. This can make the choice of analysis somewhat arbitrary at times.
+-   Two trained statisticians presented with the same data will often approach the analysis from different perspectives, and may different analyses depending on what assumptions they are willing to make.
+:::
+
+## Not always clear {.smaller}
+
+-   The primary assumption of most standard statistical procedures is that the records are independent of each other.
+-   Often program evaluation relies on paired measurements before and after a certain exposure or treatment (pre-post).
+    -   In this case, the approach is to calculate a pairwise difference for each individual and compare the average difference to 0 (any change vs no change).
+-   For the purposes of this class, we will only concern ourselves with independent groups.
+
+Repeated measures is a topic typically taught in MATH 456 (but also covered in Chapter 18 of PMA6)
+
+## Everything is a linear model
+
+* Most of the common statistical tests (including the ones we cover) are special cases of linear regression
+
+* https://lindeloev.github.io/tests-as-linear/
+
+## Additional References
+
+PMA6 does not go over T-test, ANOVA or $\chi^{2}$ tests. To see more examples (with R code) and more mathematical detail see [Chapter 5 in the Applied Stats Course Notes](https://norcalbiostat.github.io/AppliedStatistics_notes/bivariate-analysis.html)
