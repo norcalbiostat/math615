@@ -427,7 +427,7 @@ Robin Donatello
 </details>
 
 </div>
-<img data-src="lec07e-correlation_files/figure-revealjs/unnamed-chunk-2-1.png" width="576" class="r-stretch quarto-figure-center"><p>If <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> come from independent normal distributions, the pair <span class="math inline">\((X,Y)\)</span> comes from a <em>bivariate normal distribution</em>, and the data will tend to cluster around the means of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>.</p>
+<img data-src="lec07e-correlation_files/figure-html/unnamed-chunk-2-1.png" width="576" class="r-stretch quarto-figure-center"><p>If <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> come from independent normal distributions, the pair <span class="math inline">\((X,Y)\)</span> comes from a <em>bivariate normal distribution</em>, and the data will tend to cluster around the means of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>.</p>
 </section>
 <section id="ellipse-of-concentration" class="slide level2">
 <h2>Ellipse of concentration</h2>
@@ -441,7 +441,7 @@ Robin Donatello
 </details>
 
 </div>
-<img data-src="lec07e-correlation_files/figure-revealjs/unnamed-chunk-3-1.png" width="480" class="r-stretch quarto-figure-center"><p>See PMA6 Figure 7.5 for more examples.</p>
+<img data-src="lec07e-correlation_files/figure-html/unnamed-chunk-3-1.png" width="480" class="r-stretch quarto-figure-center"><p>See PMA6 Figure 7.5 for more examples.</p>
 </section>
 <section id="correlation" class="slide level2">
 <h2>Correlation</h2>
@@ -497,7 +497,7 @@ Robin Donatello
 <span id="cb3-2"><a href="#cb3-2"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">col =</span> <span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img data-src="lec07e-correlation_files/figure-revealjs/unnamed-chunk-4-1.png" width="960"></p>
+<p><img data-src="lec07e-correlation_files/figure-html/unnamed-chunk-4-1.png" width="672"></p>
 </div>
 <details>
 <summary>Show the code</summary>
@@ -774,44 +774,6 @@ sample estimates:
         ]
       });
     </script>
-    
-    <script>
-      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-      // slide changes (different for each slide format).
-      (function () {
-        // dispatch for htmlwidgets
-        function fireSlideEnter() {
-          const event = window.document.createEvent("Event");
-          event.initEvent("slideenter", true, true);
-          window.document.dispatchEvent(event);
-        }
-
-        function fireSlideChanged(previousSlide, currentSlide) {
-          fireSlideEnter();
-
-          // dispatch for shiny
-          if (window.jQuery) {
-            if (previousSlide) {
-              window.jQuery(previousSlide).trigger("hidden");
-            }
-            if (currentSlide) {
-              window.jQuery(currentSlide).trigger("shown");
-            }
-          }
-        }
-
-        // hookup for slidy
-        if (window.w3c_slidy) {
-          window.w3c_slidy.add_observer(function (slide_num) {
-            // slide_num starts at position 1
-            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-          });
-        }
-
-      })();
-    </script>
-
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {
