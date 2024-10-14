@@ -1,0 +1,426 @@
+---
+title: "Inference between multiple means"
+title-slide-attributes:
+    data-background-image: images/plot3norm.png
+    data-background-size: contain
+    data-background-opacity: "0.3"
+date: "2024-10-16"
+author: "Robin Donatello"
+footer: "[🔗 https://math615.netlify.app](https://math615.netlify.app) / Inference between multiple means"
+from: markdown+emoji
+format: 
+  revealjs:
+    theme: sky
+    transition: fade
+    slide-number: true
+    incremental: false 
+    chalkboard: true
+execute:
+  freeze: auto
+  echo: true
+  message: false
+  warning: false
+knitr:
+  opts_chunk: 
+    R.options:
+      width: 200
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+```{r, include=FALSE}
+library(knitr)
+library(tidyverse)
+library(scales)
+library(sjPlot)
+library(ggpubr)
+library(gtsummary)
+
+load("C:/Box/Data/AddHealth/addhealth_clean.Rdata")
+#load("C:/Users/renta/Box/Data/AddHealth/addhealth_clean.Rdata")
+
+# Function to plot multiple overlapping density functions
+plot_3norm <- function(mean1=0, mean2=0, mean3=0, sd1=1, sd2=1, sd3=1, n = 100) {
+  
+  # Generate random samples from normal distributions
+  sample1 <- rnorm(n, mean = mean1, sd = sd1)
+  sample2 <- rnorm(n, mean = mean2, sd = sd2)
+  sample3 <- rnorm(n, mean = mean3, sd = sd3)
+  
+  # Create data frames for ggplot
+  df1 <- data.frame(x = seq(min(sample1, sample2, sample3), 
+                            max(sample1, sample2, sample3), 
+                            length.out = 1000),
+                    y = dnorm(seq(min(sample1, sample2, sample3), 
+                                  max(sample1, sample2, sample3), 
+                                  length.out = 1000), 
+                              mean = mean1, sd = sd1))
+  df2 <- data.frame(x = seq(min(sample1, sample2, sample3), 
+                            max(sample1, sample2, sample3), 
+                            length.out = 1000),
+                    y = dnorm(seq(min(sample1, sample2, sample3),
+                                  max(sample1, sample2, sample3), 
+                                  length.out = 1000),
+                              mean = mean2, sd = sd2))
+  df3 <- data.frame(x = seq(min(sample1, sample2, sample3), max(sample1, sample2, sample3), 
+                            length.out = 1000),
+                    y = dnorm(seq(min(sample1, sample2, sample3), max(sample1, sample2, sample3), 
+                                  length.out = 1000), mean = mean3, sd = sd3))
+  
+  df <- data.frame(Group = rep(c("Sample 1", "Sample 2", "Sample 3"), each = 1000),
+                   x = c(df1$x, df2$x, df3$x), 
+                   y = c(df1$y, df2$y, df3$y))
+  
+  ggplot(df, aes(x=x, y=y, color = Group)) + 
+    geom_line(linewidth = 1) +
+    theme_minimal() + 
+    theme(legend.position = "top", 
+          axis.line=element_blank(),
+          axis.text.x=element_blank(),
+          axis.text.y=element_blank(),
+          axis.ticks=element_blank(),
+          axis.title.x=element_blank(),
+          axis.title.y=element_blank(),
+         # legend.position="none",
+          panel.background=element_blank(),
+          panel.border=element_blank(),
+          panel.grid.major=element_blank(),
+          panel.grid.minor=element_blank(),
+          plot.background=element_blank()
+          )
+}
+```
+
+# Quantitative Outcome \~ Categorical Covariate
+
+-   Does knowing what group an observation is in tell you about the
+    value of the response?
+-   Are the means of **two or more** groups are *statistically*
+    different from each other?
+
+## Analysis of Variance (ANOVA) Model
+
+$$
+y_{ij} = \mu_{j} + \epsilon_{ij} \qquad \qquad
+\epsilon_{ij} \overset{iid}{\sim} \mathcal{N}(0,\sigma^{2})
+$$
+
+-   Response data $y_{ij}$ from observation $i=1\ldots n$ belonging to
+    group $j=1,2, \ldots J$
+-   The random error terms $\epsilon_{ij}$ are independently and
+    identically distributed (iid) as normal with mean zero and common
+    variance.
+-   Look familiar? T-test is a special case of ANOVA.
+
+## Hypothesis specification
+
+The null hypothesis is that there is no difference in the mean of the
+quantitative variable across groups (categorical variable), while the
+alternative is that there is a difference.
+
+-   $H_0$: The mean outcome is the same across all groups.
+    $\mu_1 = \mu_2 = \cdots = \mu_j$
+-   $H_A$: At least one mean is different.
+
+## Multiple Comparison {background-image="https://imgs.xkcd.com/comics/significant.png" background-size="300px" background-position="85% 50%"}
+
+::: columns
+::: {.column width="60%"}
+**Why not multiple T-tests between all pairs of groups?**
+
+\
+
+Each time you conduct a test, you risk coming to the wrong conclusion.
+
+Repeated tests compound that chance of being wrong.
+
+\
+
+Img Ref: <https://xkcd.com/882>
+:::
+
+::: {.column width="40%"}
+:::
+:::
+
+## Proof
+
+-   Set a Type 1 error rate of $\alpha = .05$ (significant results due
+    to randomness)
+-   Conduct 10 analyses on the same data, but on different subsets.
+-   Chance of making an error on any one test: .05
+-   Chance of NOT making an error on any one test: .95
+-   Chance of NOT making an error on ALL 10 tests: $.95^{10} = .6$
+-   --> 40% chance of making a Type 1 error on *at least one* test.
+
+## Visual Comparison
+
+Compare groups I, II, and III. Can you visually determine if the
+differences in the group centers is due to chance or not? What about
+groups IV, V, and VI?
+
+![Side-by-side dot plot for the outcomes for six
+groups.](images/toyANOVA.png){fig-align="center"}
+
+## Analysis of Variance
+
+The total amount of variation in our quantitative outcome can be broken into two parts: 
+
+> Total Variation = Between Group Variation (model) + Within Group Variation (residual)
+
+* The portion of the variance in the outcome that is explained by the groups (model)
+* The portion that's leftover due to unexplained randomness (residual) 
+
+By looking at a ratio of these variance portions, we can determine if the variation observed is due to the groups, or random chance. 
+
+## Sum of Squares {.smaller}
+
+Variation is measured using the Sum of Squares (SS): The sum of the
+squares within a group (SSE), the sum of squares between groups (SSG),
+and the total sum of squares (SST).
+
+$$
+SST =  \sum_{i=1}^{I}\sum_{j=1}^{n_{i}}(y_{ij}-\bar{y}..)^{2} = (N-1)Var(Y)
+$$
+
+**SST (Total)**: Measures the variation of the $N$ data points around
+the overall mean.
+
+## Sum of Squares {.smaller}
+
+$$
+SSG = \sum_{i=1}^{I}n_{i}(\bar{y}_{i.}-\bar{y}..)^{2} = n_{1}(\bar{y}_{1.}-\bar{y}..)^{2} + n_{2}(\bar{y}_{2.}-\bar{y}..)^{2} + \ldots + n_{I}(\bar{y}_{I.}-\bar{y}..)^{2}
+$$
+
+**SSG (Between groups)**: Measures the variation of the $I$ group means
+around the overall mean.
+
+$$
+SSE = \sum_{i=1}^{I}\sum_{j=1}^{n_{i}}(y_{ij}-\bar{y}_{i.})^{2} = \sum_{i=1}^{I}(n_{i}-1)Var(Y_{i})
+$$
+
+**SSE (Within group)**: Measures the variation of each observation
+around its group mean.
+
+## Analysis of Variance Table
+
+The results are typically summarized in an ANOVA table.
+
+| Source    | SS      | df    | MS                      | F                 |
+|-----------|---------|-------|-------------------------|-------------------|
+| Groups    | SSG     | $I-1$ | MSG = $\frac{SSG}{I-1}$ | $\frac{MSG}{MSE}$ |
+| Error     | SSE     | $N-I$ | MSE = $\frac{MSE}{N-I}$ |                   |
+| **Total** | **SST** | $N-1$ |                         |                   |
+
+The value in the **F** column is the test statistic, and has a F
+distribution with degrees of freedom (df) dependent on the number of
+groups (I-1), and the number of observations (N-I).
+
+## The F-distribution
+
+The $p$-value is the **area to the right** of the F statistic density
+curve. This is always to the right because the F-distribution is
+truncated at 0 and skewed right. This is true regardless of the $df$.
+
+```{r}
+#| fig-align: center
+df1 <- c(3, 5, 8)
+df2 <- c(4, 6, 10)
+
+plot(NULL, xlim = c(0, 5), ylim = c(0, 1), xlab = expression(F), ylab="", main = "F Distribution", axes=FALSE)
+axis(2, labels = FALSE, tick = FALSE)
+axis(1); box()
+for (i in 1:3) {
+  curve(df(x, df1[i], df2[i]), from = 0, to = 5, col = i, add = TRUE, lty = i, lwd=2)
+}
+legend("topright", legend = paste("df1 =", df1, ", df2 =", df2), col = 1:3, lty = 1:3)
+```
+
+## Assumptions
+
+Generally we must check three conditions on the data before performing
+ANOVA:
+
+-   The observations are independent within and across groups
+-   The data within each group are nearly normal
+-   The variability across the groups is about equal.
+
+## Example: March of the Penguins
+
+```{r}
+pen <- palmerpenguins::penguins
+```
+
+### 1. Identify response and explanatory variables
+
+-   Species = categorical explanatory variable
+-   Flipper length = quantitative response variable
+
+## 2. Visualize and summarise {.smaller}
+
+::: columns
+::: {.column width="50%"}
+```{r}
+#| fig.height = 4
+library(ggdist) # for the "half-violin" plot (stat_slab)
+ggplot(pen, aes(x=flipper_length_mm, y=species, fill=species)) + 
+      stat_slab(alpha=.5, justification = 0) + 
+      geom_boxplot(width = .2,  outlier.shape = NA) + 
+      geom_jitter(alpha = 0.5, height = 0.05) +
+      stat_summary(fun="mean", geom="point", col="red", size=4, pch=17) + 
+      theme_bw() + 
+      labs(x="Flipper Length (mm)", y = "Species") + 
+      theme(legend.position = "none")
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+pen %>% group_by(species) %>% 
+  summarise(mean=mean(flipper_length_mm, na.rm=TRUE), 
+            sd = sd(flipper_length_mm, na.rm=TRUE), 
+            IQR = IQR(flipper_length_mm, na.rm=TRUE)) %>%
+  kable(digits = 1)
+```
+:::
+:::
+
+The distribution of flipper length varies across the species, with
+Gentoo having the largest flippers on average at 217.2mm compared to
+Adelie (190mm) and Chinstrap (195.8mm). The distributions are normally
+distributed with very similar spreads, Chinstrap has the most variable
+flipper length with a SD of 7.1 compared to 6.5 for the other two
+species.
+
+<small> [*A blog post about raincloud plots vs
+violins*](https://www.cedricscherer.com/2021/06/06/visualizing-distributions-with-raincloud-plots-and-how-to-create-them-with-ggplot2/)
+</small>
+
+## 3. Write the null and research hypothesis in words and symbols. {.smaller}
+
+-   Null Hypothesis: There is no association between flipper length and
+    species.
+-   Alternate Hypothesis: There is an association between flipper length
+    and species.
+
+Let $\mu_{A}, \mu_{C}$ and $\mu_{G}$ be the average flipper length for
+the *Adelie, Chinstrap* and *Gentoo* species of penguins respectively.
+
+\
+
+$H_{0}: \mu_{A} = \mu_{C} = \mu_{G}$ 
+
+$H_{A}:$ At least one $\mu_{j}$ is different.
+
+## 4. State and justify the analysis model. Check assumptions. {.smaller}
+
+We are comparing means from multiple groups, so an ANOVA is the
+appropriate procedure. We need to check for independence, approximate
+normality and approximately equal variances across groups.
+
+**Independence**: We are assuming that each penguin was sampled
+independently of each other, and that the species themselves are
+independent of each other.
+
+**Normality**: The distributions of flipper length within each group are
+fairly normal
+
+**Equal variances**: Both the standard deviation and IQR (as measures of
+variability) are very similar across all groups.
+
+## 5. Conduct the test and make a decision about the plausibility of the alternative hypothesis. 
+
+```{r}
+aov(flipper_length_mm ~ species, data=pen) |> summary()
+```
+
+The pvalue is very small, so there is evidence to support $H_{a}$: at
+least one mean is different.
+
+## 6. Write a conclusion in context of the problem. Include the point estimates, confidence interval for the difference and p-value.
+
+There is sufficient evidence to believe that the average flipper length
+is significantly different between the Adelie, Chinstrap and Gentoo
+species of penguins (p\<.0001).
+
+## Multiple / Post-Hoc comparisons: Which group is different? {.smaller}
+
+-   Only appropriate  if your ANOVA is significant.
+-   The overall ANOVA can be significant and NOT have any significant
+    differences when you look at the post hoc results. The reason is
+    that the two analyses ask two different questions.
+    -   The ANOVA is testing the overall pattern of the data and asking
+        if as a whole the explanatory variable has a relationship (or
+        lack thereof) with the response variable.
+    -   The post hoc is asking if one level of the explanatory variable
+        is significantly different than another for the response
+        variable. The post hoc is not as sensitive to differences as the
+        ANOVA.
+    -   **The family-wise error rate of** $\alpha$ is maintained
+-   Differences in group means can be non-significant at the post hoc
+    level, but significant at the ANOVA level.
+
+## Tukey HSD {.smaller}
+
+```{r}
+TukeyHSD(aov(flipper_length_mm ~ species, data=pen))
+```
+
+The results of the Tukey HSD post-hoc test indicate that the average
+flipper length in mm is significantly different between all pairs of
+penguin species at the 5% significance level. Chinstrap has an average
+flipper length 5.87mm(3.59-8.15) larger than Adelie, whereas Gentoo has
+an average flipper length 27.23mm(25.33-29.13) larger than Adelie.
+
+## Coefficient of Determination $R^{2} = \frac{SSG}{SST}$ {.smaller}
+
+```{r}
+#| echo: 2
+#| code-fold: false
+aov(flipper_length_mm ~ species, data=pen) |> summary()
+52473/(52473 + 14953)*100
+```
+
+The coefficient of determination is interpreted as the % of the
+variation seen in the outcome that is due to subject level variation
+within each of the treatment groups. The strength of this measure can be
+thought of in a similar manner as the correlation coefficient $\rho$,
+$<.3$ indicates a poor fit, $<.5$ indicates a medium fit, and $>.7$
+indicates a good fit.
+
+> 77.8% of the variation in flipper length can be explained by the
+> species of penguin
+
+## Non-parametric tests
+
+-   Many stat tests rely on assumptions that ensure the sample estimate
+    can be modeled with a normal distribution.
+-   What do you do if your assumptions aren't met?
+-   We can "relax" some of those assumptions and perform a more robust,
+    but less powerful test.
+    -   less power means you need more data to draw a conclusion with
+        the same amount of confidence.
+-   No detailed examples will be provided in these notes. You tend to
+    learn/use these on an "as-needed" basis.
+
+## Kruskal-Wallis
+
+-   The
+    [Kruskal-Wallis](https://en.wikipedia.org/wiki/Kruskal%E2%80%93Wallis_one-way_analysis_of_variance)
+    test is the most common **non-parametric** method for testing
+    whether or not groups of observations come from the same overall
+    distribution.
+-   By comparing the *medians* instead of the means, we can remove the
+    normality assumption on the residuals.
+-   Null hypothesis is now that the medians of all groups are equal vs
+    at least one population median is different.
+
+## K-W and all pairwise Wilcox Tests {.smaller}
+
+```{r}
+kruskal.test(flipper_length_mm ~ species, data = pen)
+pairwise.wilcox.test(pen$flipper_length_mm, pen$species)
+```
+
+In this case, the non-parametric tests come to the same conclusion as the parametric ones. If there is a discrepency, go with the non-parametric test since it has fewer assumptions. 
