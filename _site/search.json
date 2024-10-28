@@ -294,11 +294,25 @@
     "text": "Purpose\nWe’ve been visually exploring relationships between two variables by creating appropriate plots to assess how the distribution of a primary outcome (response/dependent) variable changes according to the level of a predictor (explanatory/independent/covariate) variable. We can learn a lot by conducting exploratory data analysis, and if description is the goal then this is where your work can stop.\nHowever, if you want to make conclusions or inference about a relationship, then formal statistical analysis techniques are needed. We start here by formally testing if relationships or associations between two measures exist, then later will see how additional third variables can potentially disrupt or enhance any association that you may find.\n\n\n\nSubmission instructions\n\nUse the QMD template answer the questions.\nThis is a big assignment, so it will be broken into two stages.\n\nFirst draft will be on analyses 1-2, to make sure you are making correct progress.\nUpload a PDF of your work to the assignment in Canvas\n\n\n\n\n\nInstructions\nIn this assignment you will practice FOUR(4) different types of bivariate analysis:\n\n(Q~B) Quantitative Outcome ~ Binary Categorical Explanatory == Two-sample t-tests for a difference in means\n(Q~C) Quantitative Outcome ~ Categorical Explanatory == ANOVA\n(B~C) Binary Outcome ~ Categorical (or Binary) Explanatory == \\(\\chi^{2}\\) test of Association.\n(Q~Q) Quantitative Outcome ~ Quantitative Explanatory == Correlation analysis\n\nFor each analysis you will do the following steps:\n\nState which variable (including the variable name from your codebook) will be your explanatory variable and which will be your response variable.\n\nRemember, you have some variables in your codebook that can act as both categorical and quantitative.\nDecide which of those variables makes sense to “explain” the other. Don’t just blindly pick a bunch of variables.\nThink about the relationship among your variables, keeping in mind your original research questions. You may use gender as your categorical explanatory variable if you are struggling to find an explanatory and response relationship that makes sense.\n\nCreate an appropriate bivariate plot to visualize the relationship you are exploring. Calculate appropriate summary statistics. Summarize the relationship between the explanatory and outcome variables in short paragraph form.\nWrite the relationship you want to examine in the form of a research question using symbols and words.\n\nDefine the parameters being tested. (\\(\\rho\\), \\(p_{1}\\), \\(\\mu_{1}\\), \\(\\rho_{1}\\) etc)\nTranslate the null and alternative hypotheses into \\(H_{0}\\) and \\(H_{A}\\) with symbols.\n\nState and justify the analysis model. Check assumptions.\n\nEven if these assumptions are potentially violated, for the purposes of this assignment, acknowledge this limitation and continue with the prescribed analysis. (If a non-parametric test is appropriate, state it here.)\n\nConduct the test and make a decision about the plausibility of the alternative hypothesis.\nWrite a conclusion in context of the problem that includes a point estimate, confidence interval, and p-value."
   },
   {
+    "objectID": "hw/hw08-slr.html",
+    "href": "hw/hw08-slr.html",
+    "title": "HW 08: Fitting Simple Regression models",
+    "section": "",
+    "text": "Practice fitting and interpreting the coefficients of a simple regression model."
+  },
+  {
+    "objectID": "hw/hw08-slr.html#example-body-mass-and-bill-length-of-penguins",
+    "href": "hw/hw08-slr.html#example-body-mass-and-bill-length-of-penguins",
+    "title": "HW 08: Fitting Simple Regression models",
+    "section": "Example: Body mass and bill length of penguins",
+    "text": "Example: Body mass and bill length of penguins\n\nlibrary(tidyverse)\nlibrary(gtsummary)\nlibrary(performance)\npen &lt;- palmerpenguins::penguins\n\n\n1. Identify response and explanatory variables\n\nThe quantitative explanatory variable is body mass (g) body_mass_g\nThe quantitative response variable is bill length (mm) bill_length_mm\n\n\n\n2. Visualize and summarise bivariate relationship\n\nggplot(pen, aes(x=body_mass_g, y=bill_length_mm)) + \n  geom_point() + geom_smooth(col = \"blue\")\n\n\n\ncor(pen$body_mass_g, pen$bill_length_mm, use = \"pairwise.complete.obs\")\n\n[1] 0.5951098\n\n\nThere is a strong, positive, mostly linear relationship between the body mass (g) of penguins and their bill length (mm) (r=.595).\n\n\n3. Write the relationship you want to examine\nLet \\(\\beta_1\\) be the true slope parameter that describes the change in bill length of the penguin as body mass increases.\n\n\\(H_{0}: \\beta_{1}=0\\) There is no linear relationship between body mass and bill length.\n\\(H_{A}: \\beta_{1} \\neq 0\\) Alternate Hypothesis: There is a linear relationship between body mass and bill length.\n\n\n\n4. Fit the regression model\nDecide if there is evidence to believe that there is a relationship\n\npen.body.bill &lt;- lm(bill_length_mm ~ body_mass_g, data=pen)\npen.body.bill |&gt; summary()\n\n\nCall:\nlm(formula = bill_length_mm ~ body_mass_g, data = pen)\n\nResiduals:\n     Min       1Q   Median       3Q      Max \n-10.1251  -3.0434  -0.8089   2.0711  16.1109 \n\nCoefficients:\n             Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) 2.690e+01  1.269e+00   21.19   &lt;2e-16 ***\nbody_mass_g 4.051e-03  2.967e-04   13.65   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 4.394 on 340 degrees of freedom\n  (2 observations deleted due to missingness)\nMultiple R-squared:  0.3542,    Adjusted R-squared:  0.3523 \nF-statistic: 186.4 on 1 and 340 DF,  p-value: &lt; 2.2e-16\n\n\nThe p-value for \\(b_{1}\\) is &lt;.0001, so there is sufficient evidence to believe that there is a linear relationship between body mass and bill length.\n\n\n5. Verify assumptions & assess model fit\nIn the scatterplot, Both the outcome and predictor are continuous variables that have a visible linear relationship, and we assume the observations are independent.\n\ncheck_model(pen.body.bill) |&gt; plot()\n\n\n\n\n\nThe distribution of the residuals is mostly normal, pretty heavy right tail. This is indicative of a nonlinear trend somewhere in the data.\nThe variance of Y is not constant. This is a warning that our linear model does not fit the data well and we should look into possible refinements and improvements.\nThe observed distribution of bill length is bimodal, and so the model is overestimating some values and underestimating others. There is clearly some other confounding variable that predicts bill length better than just body mass.\n\n\n\n6. Write a conclusion in context of the problem.\n\ncoef(pen.body.bill) \n\n (Intercept)  body_mass_g \n26.898872424  0.004051417 \n\nconfint(pen.body.bill)\n\n                   2.5 %       97.5 %\n(Intercept) 24.402502194 29.395242653\nbody_mass_g  0.003467795  0.004635038\n\nr2(pen.body.bill)\n\n# R2 for Linear Regression\n       R2: 0.354\n  adj. R2: 0.352\n\n\n\nFor a penguin who weighs 0 kg, the predicted bill length is 26.9 (24.4, 29.4)mm. This is an impossible situation.\n\nEach 1g increase in body mass of a penguin is associated with a significant increase of 0.004 (0.0035, 0.0046) mm of bill length (p&lt;.0001). In more reasonable numbers, an increase of 1kg of body mass in a penguin corresponds to a 4(3.5, 4.6) mm increase in bill length.\nBody mass explains 35.4% of the variation in bill length.\n\nHowever, model diagnostics indicate that a linear model may not be appropriate for this relationship. The assumption of constant variance is not upheld and there may be another variable that affects bill length."
+  },
+  {
     "objectID": "hw.html",
     "href": "hw.html",
     "title": "Assignments",
     "section": "",
-    "text": "Assignment\n\n\nLearning Objective\n\n\n\n\n\n\nHW 01: Data Entry\n\n\nRecording data to maintain your sanity.\n\n\n\n\nHW 02: Formulating a research hypothesis\n\n\nBrainstorming research questions to investigate\n\n\n\n\nHW 03: Data Management\n\n\nWrangling your data into analyzable form\n\n\n\n\nHW 04: Describing Distributions\n\n\nLet the data be beautiful\n\n\n\n\nHW 05: Describing Relationships\n\n\nExploring Associations between two variables\n\n\n\n\nHW 06: Foundations for Inference\n\n\nA quick recap\n\n\n\n\nHW 07: Bivariate Modeling\n\n\nThe starting point for most models\n\n\n\n\n\n\nNo matching items"
+    "text": "Assignment\n\n\nLearning Objective\n\n\n\n\n\n\nHW 01: Data Entry\n\n\nRecording data to maintain your sanity.\n\n\n\n\nHW 02: Formulating a research hypothesis\n\n\nBrainstorming research questions to investigate\n\n\n\n\nHW 03: Data Management\n\n\nWrangling your data into analyzable form\n\n\n\n\nHW 04: Describing Distributions\n\n\nLet the data be beautiful\n\n\n\n\nHW 05: Describing Relationships\n\n\nExploring Associations between two variables\n\n\n\n\nHW 06: Foundations for Inference\n\n\nA quick recap\n\n\n\n\nHW 07: Bivariate Modeling\n\n\nThe starting point for most models\n\n\n\n\nHW 08: Fitting Simple Regression models\n\n\nundefined\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "index.html",
@@ -319,7 +333,7 @@
     "href": "modules.html",
     "title": "Class Overview",
     "section": "",
-    "text": "⚠️ Details are subject to change. See Canvas for due dates.\nLast Updated: Sun Oct 13 7:27:59 PM\n\n\n\n\n\n\n\n\n\n\n\n\n\nTopic\nReading\nSlides\nActivities\nAssess\n\n\n\n\n\\Welcome!\n\n\nIntroduction to the class\nTopic Overview\nSyllabus\nHelp page\nlec00a\nHW 0 Checklist \"Quiz\" In canvas\n\n\n\nHow to use the class tools\n\nlec00b\n\n\n\n\nPROJECT Stage 1: Choosing your Research Data\nProject Stage 1\n\nData set proposal\n\n\n\nData Architecture\n\n\nThe uses and structure of data\nTopic Overview\nPMA6 Ch 2\nTidy data principles\nlec01\nCollab notes HW01 Data Entry\nQuiz 01\n\n\nFormulating Research Questions\n\n\nAsking Answerable Questions\nTopic Overview\nHow to Write an Effective Research Question\nPoster prep Stage 2\nlec02\nCollab Notes HW02 RQ Formulation\n\n\n\nPROJECT Stage 2: Introduce your research question and variables of interest\n\n\nProject Stage 2\n\n\n\nPreparing data for analysis\n\n\nReproducible workflows\nTopic Overview\nPMA6 Ch 3\nASCN Ch 1, Appendix\nProject Structure by Danielle Navarro\nlec03a\nHello, Quarto HW03 Data Management\nQuiz 02\n\n\nData cleaning\n\nlec03b\n\n\n\n\nDescribing distributions of data\n\n\nDescribing a single categorical variable\nTopic Overview\nPMA6 Ch 4\nASCN Ch 2.3\nlec04\nHW04 Describing Distributions\nQuiz 03\n\n\nDescribing a single numeric variable\n\n\n\n\n\n\nDescribing relationships between two variables\n\n\nDescribing relationships between two variables\nTopic Overview\nPMA6 Ch 4\nIMS 1.2.4 Explantory and Response Variables\nASCN Ch 2.4\nlec05a\nHW05 Describing Relationships\nQuiz 04\n\n\nBest practices in Data Visualization\nPMA6 Ch 4.6\n\n\n\n\n\nPROJECT Stage 3: Exploratory Data Analysis\n\n\nProject Stage 3\n\n\n\nFoundations for Inference\n\n\nStudy Design\nTopic Overview\nIMS - Chapter 2\n\nCollab notes 6 HW06 Foundations for Inference\nQuiz 05\n\n\nStatistical Inference with randomization\nIMS Chapter 11-11.1\nlec06a\nIn class printed activity.\n\n\n\nStatistical Inference with mathmatical models\nIMS - Chapter 13.1-13.3\nlec06b\nCLT Explorer\nQuiz 06\n\n\nModeling Bivariate relationships\n\n\nChoosing appropriate analysis\nPMA6 Chapter 6\nASCN Ch 5\nlec07a - Choosing\nHW07 Describing Relationships\n\n\n\nTwo Sample T-Test\nIMS - Chapter 20\nlec07b T-test\n\n\n\n\nANOVA\nIMS - Chapter 22\nlec07c - ANOVA\n\nQuiz 07\n\n\nChi-Squared\n\nlec07d - Chi2\n\n\n\n\nCorrelation\n\nlec07e Correlation\n\nQuiz 08\n\n\nRegression Modeling\n\n\nSimple Linear Regression\n\n\n\n\n\n\nCausation\n\n\n\n\n\n\nConfounding\n\n\n\n\n\n\nMultiple Linear Regression\n\n\n\n\n\n\nModel Building"
+    "text": "⚠️ Details are subject to change. See Canvas for due dates.\nLast Updated: Sun Oct 27 8:58:59 PM\n\n\n\n\n\n\n\n\n\n\n\n\n\nTopic\nReading\nSlides\nActivities\nAssess\n\n\n\n\n\\Welcome!\n\n\nIntroduction to the class\nTopic Overview\nSyllabus\nHelp page\nlec00a\nHW 0 Checklist \"Quiz\" In canvas\n\n\n\nHow to use the class tools\n\nlec00b\n\n\n\n\nPROJECT Stage 1: Choosing your Research Data\nProject Stage 1\n\nData set proposal\n\n\n\nData Architecture\n\n\nThe uses and structure of data\nTopic Overview\nPMA6 Ch 2\nTidy data principles\nlec01\nCollab notes HW01 Data Entry\nQuiz 01\n\n\nFormulating Research Questions\n\n\nAsking Answerable Questions\nTopic Overview\nHow to Write an Effective Research Question\nPoster prep Stage 2\nlec02\nCollab Notes HW02 RQ Formulation\n\n\n\nPROJECT Stage 2: Introduce your research question and variables of interest\n\n\nProject Stage 2\n\n\n\nPreparing data for analysis\n\n\nReproducible workflows\nTopic Overview\nPMA6 Ch 3\nASCN Ch 1, Appendix\nProject Structure by Danielle Navarro\nlec03a\nHello, Quarto HW03 Data Management\nQuiz 02\n\n\nData cleaning\n\nlec03b\n\n\n\n\nDescribing distributions of data\n\n\nDescribing a single categorical variable\nTopic Overview\nPMA6 Ch 4\nASCN Ch 2.3\nlec04\nHW04 Describing Distributions\nQuiz 03\n\n\nDescribing a single numeric variable\n\n\n\n\n\n\nDescribing relationships between two variables\n\n\nDescribing relationships between two variables\nTopic Overview\nPMA6 Ch 4\nIMS 1.2.4 Explantory and Response Variables\nASCN Ch 2.4\nlec05a\nHW05 Describing Relationships\nQuiz 04\n\n\nBest practices in Data Visualization\nPMA6 Ch 4.6\n\n\n\n\n\nPROJECT Stage 3: Exploratory Data Analysis\n\n\nProject Stage 3\n\n\n\nFoundations for Inference\n\n\nStudy Design\nTopic Overview\nIMS - Chapter 2\n\nCollab notes 6 HW06 Foundations for Inference\nQuiz 05\n\n\nStatistical Inference with randomization\nIMS Chapter 11-11.1\nlec06a\nIn class printed activity.\n\n\n\nStatistical Inference with mathmatical models\nIMS - Chapter 13.1-13.3\nlec06b\nCLT Explorer\nQuiz 06\n\n\nModeling Bivariate relationships\n\n\nChoosing appropriate analysis\nTopic Overview\nPMA6 Chapter 6\nASCN Ch 5\nlec07a - Choosing\nHW07 Describing Relationships\n\n\n\nTwo Sample T-Test\nIMS - Chapter 20\nlec07b T-test\n\n\n\n\nANOVA\nIMS - Chapter 22\nlec07c - ANOVA\n\nQuiz 07\n\n\nChi-Squared\n\nlec07d - Chi2\n\n\n\n\nCorrelation\n\nlec07e Correlation\n\nQuiz 08\n\n\nSimple Linear Regression\n\n\nEstimation, Interpretation, Assumptions and Inference\nTopic Overview\nPMA6 Ch 7\nIMS Ch 24\nlec08a\nHW08 Simple Linear Regression\nQuiz 09"
   },
   {
     "objectID": "project.html",
@@ -1904,11 +1918,263 @@
     "text": "6. Write a conclusion in context of the problem.\nThere was a statistically significant and strong correlation between the body mass (g) and bill length (mm) of penguins (r = 0.595, 95%CI .5220-.6595, p &lt; .0001). The significant positive correlation shows that as the body mass of a penguin increases so does the bill length. These results suggest that 35% (95% CI: 27.2-43.5) of the variance in bill length can be explained by the body mass of the penguin.\n\n\n🔗 https://math615.netlify.app / Correlation Analysis"
   },
   {
+    "objectID": "slides/lec08a-old.html#overview",
+    "href": "slides/lec08a-old.html#overview",
+    "title": "Simple Linear Regression",
+    "section": "Overview",
+    "text": "Overview\nThe general purpose of regression is to learn more about the relationship between several independent or predictor variables and a quantitative dependent variable.\nThe goal of Simple linear regression is to describe the relationship between a continuous dependent variable Y and a single independent continuous variable X using a straight line."
+  },
+  {
+    "objectID": "slides/lec08a-old.html#example-body-mass-and-bill-length-of-penguins",
+    "href": "slides/lec08a-old.html#example-body-mass-and-bill-length-of-penguins",
+    "title": "Simple Linear Regression",
+    "section": "Example: Body mass and bill length of penguins",
+    "text": "Example: Body mass and bill length of penguins\n1. Identify response and explanatory variables\n\nThe quantitative explanatory variable is body mass (g)\nThe quantitative response variable is bill length (mm)"
+  },
+  {
+    "objectID": "slides/lec08a-old.html#visualize-and-summarise-bivariate-relationship",
+    "href": "slides/lec08a-old.html#visualize-and-summarise-bivariate-relationship",
+    "title": "Simple Linear Regression",
+    "section": "2. Visualize and summarise bivariate relationship",
+    "text": "2. Visualize and summarise bivariate relationship\n\n\nShow the code\nggplot(pen, aes(x=body_mass_g, y=bill_length_mm)) + \n  geom_point() + geom_smooth(col = \"red\")\n\n\n\nThere is a strong, positive, mostly linear relationship between the body mass (g) of penguins and their bill length (mm) (r=.595)."
+  },
+  {
+    "objectID": "slides/lec08a-old.html#write-the-relationship-you-want-to-examine-in-the-form-of-a-research-question.",
+    "href": "slides/lec08a-old.html#write-the-relationship-you-want-to-examine-in-the-form-of-a-research-question.",
+    "title": "Simple Linear Regression",
+    "section": "3. Write the relationship you want to examine in the form of a research question.",
+    "text": "3. Write the relationship you want to examine in the form of a research question.\n\nNull Hypothesis: There is no linear relationship between body mass and bill length.\nAlternate Hypothesis: There is a linear relationship between body mass and bill length."
+  },
+  {
+    "objectID": "slides/lec08a-old.html#perform-an-appropriate-statistical-analysis-using-dr-ds-4-step-method.",
+    "href": "slides/lec08a-old.html#perform-an-appropriate-statistical-analysis-using-dr-ds-4-step-method.",
+    "title": "Simple Linear Regression",
+    "section": "4. Perform an appropriate statistical analysis using Dr D’s 4 step method.",
+    "text": "4. Perform an appropriate statistical analysis using Dr D’s 4 step method.\na. Define parameters Let \\(\\beta_1\\) be the true slope parameter that describes the change in bill length of the penguin as body mass increases.\nb. State the null and alternative hypothesis as symbols\n\\(H_{0}: \\beta_{1}=0 \\qquad \\qquad H_{A}: \\beta_{1} \\neq 0\\)"
+  },
+  {
+    "objectID": "slides/lec08a-old.html#c.-state-and-justify-the-analysis-model.",
+    "href": "slides/lec08a-old.html#c.-state-and-justify-the-analysis-model.",
+    "title": "Simple Linear Regression",
+    "section": "c. State and justify the analysis model.",
+    "text": "c. State and justify the analysis model.\nBoth the outcome and predictor are continuous variables that have a visible linear relationship, and observations are independent.\nThe rest of the model assumptions can be checked after the model is fit using the check_model(my_model_object_name) function from the performance package."
+  },
+  {
+    "objectID": "slides/lec08a-old.html#d.-conduct-the-analysis-and-write-a-conclusion.",
+    "href": "slides/lec08a-old.html#d.-conduct-the-analysis-and-write-a-conclusion.",
+    "title": "Simple Linear Regression",
+    "section": "d. Conduct the analysis and write a conclusion.",
+    "text": "d. Conduct the analysis and write a conclusion.\n\n\nShow the code\npen.body.bill &lt;- lm(bill_length_mm ~ body_mass_g, data=pen)\npen.body.bill |&gt; summary()\n\n\n\nCall:\nlm(formula = bill_length_mm ~ body_mass_g, data = pen)\n\nResiduals:\n     Min       1Q   Median       3Q      Max \n-10.1251  -3.0434  -0.8089   2.0711  16.1109 \n\nCoefficients:\n             Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) 2.690e+01  1.269e+00   21.19   &lt;2e-16 ***\nbody_mass_g 4.051e-03  2.967e-04   13.65   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 4.394 on 340 degrees of freedom\n  (2 observations deleted due to missingness)\nMultiple R-squared:  0.3542,    Adjusted R-squared:  0.3523 \nF-statistic: 186.4 on 1 and 340 DF,  p-value: &lt; 2.2e-16\n\n\nThe p-value for \\(b_{1}\\) is &lt;.0001, so there is sufficient evidence to believe that there is a linear relationship between body mass and bill length."
+  },
+  {
+    "objectID": "slides/lec08a-old.html#c-cont.-finish-checking-the-assumptions",
+    "href": "slides/lec08a-old.html#c-cont.-finish-checking-the-assumptions",
+    "title": "Simple Linear Regression",
+    "section": "c (cont). Finish checking the assumptions",
+    "text": "c (cont). Finish checking the assumptions\nThis section uses functions from the performance package.\n\n\nShow the code\nlibrary(performance)"
+  },
+  {
+    "objectID": "slides/lec08a-old.html#assumption-normality-of-residuals",
+    "href": "slides/lec08a-old.html#assumption-normality-of-residuals",
+    "title": "Simple Linear Regression",
+    "section": "Assumption: Normality of residuals",
+    "text": "Assumption: Normality of residuals\n\n\n\n\nShow the code\nplot(check_normality(pen.body.bill))\n\n\n\n\n\n\nThe distribution of the residuals is mostly normal, pretty heavy right tail. This is indicative of a nonlinear trend somewhere in the data."
+  },
+  {
+    "objectID": "slides/lec08a-old.html#assumption-normality-of-residuals-1",
+    "href": "slides/lec08a-old.html#assumption-normality-of-residuals-1",
+    "title": "Simple Linear Regression",
+    "section": "Assumption: Normality of residuals",
+    "text": "Assumption: Normality of residuals\n\n\n\n\nShow the code\nplot(check_normality(pen.body.bill), type = \"qq\")\n\n\n\n\n\n\nThis is also known as a ‘normal probability plot’ or a ‘qqplot’. It is used to compare the theoretical quantiles of the data if it were to come from a normal distribution to the observed quantiles. PMA6 Figure 5.4 has more examples and an explanation."
+  },
+  {
+    "objectID": "slides/lec08a-old.html#assumption-homogeneity-of-variance",
+    "href": "slides/lec08a-old.html#assumption-homogeneity-of-variance",
+    "title": "Simple Linear Regression",
+    "section": "Assumption: Homogeneity of variance",
+    "text": "Assumption: Homogeneity of variance\n\n\n\n\nShow the code\nplot(check_heteroskedasticity(pen.body.bill))\n\n\n\n\n\n\nHoly non-flat relationship Batman. The variance of Y is not constant. This is a warning that our linear model does not fit the data well and we should look into possible refinements and improvements."
+  },
+  {
+    "objectID": "slides/lec08a-old.html#model-check-posterior-predictions",
+    "href": "slides/lec08a-old.html#model-check-posterior-predictions",
+    "title": "Simple Linear Regression",
+    "section": "Model-check Posterior Predictions",
+    "text": "Model-check Posterior Predictions\n\n\n\n\nShow the code\nplot(check_posterior_predictions(pen.body.bill))\n\n\n\n\n\n\nThis check compares the distribution of predicted values to the distribution of observed values. In this example the observed distribution of bill length is bimodal, and so the model is overestimating some values and underestimating others. There is clearly some other confounding variable that predicts bill length better than just body mass."
+  },
+  {
+    "objectID": "slides/lec08a-old.html#write-a-conclusion-in-context-of-the-problem.",
+    "href": "slides/lec08a-old.html#write-a-conclusion-in-context-of-the-problem.",
+    "title": "Simple Linear Regression",
+    "section": "5. Write a conclusion in context of the problem.",
+    "text": "5. Write a conclusion in context of the problem.\n\n\n\n\nShow the code\npen.body.bill |&gt; coefficients() \n\n\n (Intercept)  body_mass_g \n26.898872424  0.004051417 \n\n\nShow the code\npen.body.bill |&gt; confint()\n\n\n                   2.5 %       97.5 %\n(Intercept) 24.402502194 29.395242653\nbody_mass_g  0.003467795  0.004635038\n\n\nShow the code\npen.body.bill |&gt; r2()\n\n\n# R2 for Linear Regression\n       R2: 0.354\n  adj. R2: 0.352\n\n\n\nEach 1g increase in body mass of a penguin is associated with a significant increase of 0.004 (0.0035, 0.0046) mm of bill length (p&lt;.0001).\nAn increase of 1kg of body mass in a penguin corresponds to a 4(3.5, 4.6) mm increase in bill length.\nBody mass explains 35.4% of the variation in bill length.\n\n\nHowever, model diagnostics indicate that a linear model may not be appropriate for this relationship. The assumption of constant variance is not upheld and there may be another variable that affects bill length.\n\n\n🔗 https://math615.netlify.app"
+  },
+  {
+    "objectID": "slides/lec08a-slr_estimation.html#purpose-of-regression-modeling",
+    "href": "slides/lec08a-slr_estimation.html#purpose-of-regression-modeling",
+    "title": "Introduction to Linear Regression Modeling",
+    "section": "Purpose of Regression Modeling",
+    "text": "Purpose of Regression Modeling\n\nLearn more about the relationship between several independent or predictor variables and a quantitative dependent (response) variable.\nRegression is widely used in research as it allows us to ask the general question “what is the best predictor of…”, and does “additional variable A” or “additional variable B confound the relationship between my explanatory and response variable?”\n\nBoth Regression and Correlation can be used to\n\nDescriptive: Draw inferences regarding the relationship\nPredictive: Predict the value of \\(Y\\) for given values of one or more \\(X\\)’s."
+  },
+  {
+    "objectID": "slides/lec08a-slr_estimation.html#examples-in-practice",
+    "href": "slides/lec08a-slr_estimation.html#examples-in-practice",
+    "title": "Introduction to Linear Regression Modeling",
+    "section": "Examples in practice",
+    "text": "Examples in practice\n\nEducational researchers might want to learn about the best predictors of success in high-school.\nSociologists may want to find out which of the multiple social indicators best predict whether or not a new immigrant group will adapt to their new country of residence.\nBiologists may want to find out which factors (i.e. temperature, barometric pressure, humidity, etc.) best predict caterpillar reproduction."
+  },
+  {
+    "objectID": "slides/lec08a-slr_estimation.html#example---lung-function",
+    "href": "slides/lec08a-slr_estimation.html#example---lung-function",
+    "title": "Introduction to Linear Regression Modeling",
+    "section": "Example - Lung function",
+    "text": "Example - Lung function\n\n\n\nLung function data were obtained from an epidemiological study of households living in four areas with different amounts and types of air pollution. The data set used in PMA6 is a subset of the total data. In this example we use only the data taken on the fathers, all of whom are nonsmokers.\n\n\n\nOne of the major early indicators of reduced respiratory function is FEV1 or forced expiratory volume in the first second (amount of air exhaled in 1 second). Since it is known that taller males tend to have higher FEV1, we wish to determine the relationship between height and FEV1. We can use regression analysis for both a descriptive and predictive purpose.\n\nDescriptive: Describing the relationship between FEV1 and height\nPredictive: Determine the expected or normal FEV1 for a given height"
+  },
+  {
+    "objectID": "slides/lec08a-slr_estimation.html#visualize-the-relationship",
+    "href": "slides/lec08a-slr_estimation.html#visualize-the-relationship",
+    "title": "Introduction to Linear Regression Modeling",
+    "section": "Visualize the relationship",
+    "text": "Visualize the relationship\n\n\n\n\nShow the code\nggplot(fev, aes(y=FFEV1, x=FHEIGHT)) + \n  geom_point() + geom_smooth(se=FALSE, col=\"blue\") + \n  geom_smooth(se=FALSE, method = \"lm\", col=\"red\") + \n      xlab(\"Height\") + ylab(\"FEV1\") + \n      ggtitle(\"Scatterplot and Regression line of FEV1 \\n Versus Height for Males.\") + theme_bw() \n\n\n\n\n\n\n\nThere does appear to be a tendency for taller men to have higher FEV1. Since this relationship is reasonably linear (the blue loess line is similar to the red linear line) we can write the model the population average FEV \\(\\mu_{y}\\) as a linear function of height \\(x\\):\n\\[\n  \\mu_{y} = \\beta_{0} + \\beta_{1}x\n\\]\nThe intercept parameter, \\(\\beta_{0}\\), represents where the line crosses the y-axis when \\(x=0\\). The slope parameter, \\(\\beta_{1}\\), represents the change in \\(\\mu_{y}\\) per 1 unit \\(x\\)."
+  },
+  {
+    "objectID": "slides/lec08a-slr_estimation.html#unifying-model-framework",
+    "href": "slides/lec08a-slr_estimation.html#unifying-model-framework",
+    "title": "Introduction to Linear Regression Modeling",
+    "section": "Unifying model framework",
+    "text": "Unifying model framework\nWe know that there is always random noise in real data (DATA = MODEL FIT + RESIDUAL) so we introduce a random error term, \\(\\epsilon_{i}\\) and assume the model:\n\\[\ny_{i} = \\beta_{0} + \\beta_{1} X + \\epsilon_{i} \\\\\n\\epsilon_{i} \\sim N(0, \\sigma^{2})\n\\]\nThis model states that the random variable \\(y\\) to be made up of a predictable part (a linear function of \\(x\\)) and an unpredictable part (the random error, \\(\\epsilon_{i}\\)). The error (residual) term includes the effects of all other factors, known or unknown."
+  },
+  {
+    "objectID": "slides/lec08a-slr_estimation.html#least-squares-estimation",
+    "href": "slides/lec08a-slr_estimation.html#least-squares-estimation",
+    "title": "Introduction to Linear Regression Modeling",
+    "section": "Least Squares Estimation",
+    "text": "Least Squares Estimation\n\nMost common method of fitting a straight line to two variables.\nAlso known as “Ordinary Least Squares (OLS)”\nCalculates sample statistics \\(b_{0}\\) and \\(b_{1}\\) to estimate the population parameter values \\(\\beta_{0}\\) and \\(\\beta_{1}\\)\nThe estimated mean function is \\(\\hat{y}_{i} = b_{0} + b_{1}x_{i}\\)\nThe fitted value, \\(\\hat{y}_{i}\\), is the estimated value for point \\(i\\), calculated by plugging in a value for \\(x_{i}\\) and calculating the result.\n\nThe residual is the difference between the observed and the fitted value: \\(\\epsilon_{i} = y_{i}-\\hat{y}_{i}\\)"
+  },
+  {
+    "objectID": "slides/lec08a-slr_estimation.html#least-squares-estimation-1",
+    "href": "slides/lec08a-slr_estimation.html#least-squares-estimation-1",
+    "title": "Introduction to Linear Regression Modeling",
+    "section": "Least Squares Estimation",
+    "text": "Least Squares Estimation\nThe estimates \\(b_{0}\\) and \\(b_{1}\\) are found such that they minimize the sum of the squared residuals (the unexplained residual error)\n\\[ \\sum_{i=1}^{n} \\epsilon_{i} \\]\nFor simple linear regression the regression coefficient estimates that minimize the sum of squared errors can be calculated as:\n\\[ \\hat{\\beta_{0}} = \\bar{y} - \\hat{\\beta_{1}}\\bar{x} \\quad \\mbox{  and  } \\quad  \\hat{\\beta_{1}} = r\\frac{s_{y}}{s_{x}} \\]\nwhere \\(r\\) is the correlation coefficient between \\(x\\) and \\(y\\)."
+  },
+  {
+    "objectID": "slides/lec08a-slr_estimation.html#revisiting-the-sum-of-squares",
+    "href": "slides/lec08a-slr_estimation.html#revisiting-the-sum-of-squares",
+    "title": "Introduction to Linear Regression Modeling",
+    "section": "Revisiting the Sum of Squares",
+    "text": "Revisiting the Sum of Squares\nGo to: https://paternogbc.shinyapps.io/SS_regression/. Then turn and talk to your group about the following features of the Sum of Squares Graphs\n\n\nTotal\n\nWhat are the dots?\nWhat does the horizontal line represent?\nWhat do the blue lines represent?\n\n\nRegression\n\nWhat does the horizontal line represent?\nWhat does the sloped line represent?\nWhat are the green lines?\n\nError\n\nWhat are the dots?\nWhat does the sloped line represent?\nWhat do the red lines represent?"
+  },
+  {
+    "objectID": "slides/lec08a-slr_estimation.html#sum-of-squares---regression",
+    "href": "slides/lec08a-slr_estimation.html#sum-of-squares---regression",
+    "title": "Introduction to Linear Regression Modeling",
+    "section": "Sum of Squares - Regression",
+    "text": "Sum of Squares - Regression\n\nSS Total- how far are the points away from \\(\\bar{y}\\)?\nSS Regression - how far away is the regression line from \\(\\bar{y}\\)?\nSS Error - how far are the points away from the estimated regression line?\n\nLooking at it this way, we are asking “If I know the value of \\(x\\), how much better will I be at predicting \\(y\\) than if I were just to use \\(\\bar{y}\\)?"
+  },
+  {
+    "objectID": "slides/lec08a-slr_estimation.html#least-squares-estimation---in-r",
+    "href": "slides/lec08a-slr_estimation.html#least-squares-estimation---in-r",
+    "title": "Introduction to Linear Regression Modeling",
+    "section": "Least Squares Estimation - in R",
+    "text": "Least Squares Estimation - in R\nA linear model using least squares estimation can be performed in R using the function lm(y ~ x)\n\nfev.model &lt;- lm(FFEV1 ~ FHEIGHT, data = fev)\nfev.model\n\n\nCall:\nlm(formula = FFEV1 ~ FHEIGHT, data = fev)\n\nCoefficients:\n(Intercept)      FHEIGHT  \n    -4.0867       0.1181  \n\n\nThe regression equation for the model to explain FEV1 using height as a predictor is:\n\\[ \\hat{y} = -4.087 + 0.118x \\]"
+  },
+  {
+    "objectID": "slides/lec08a-slr_estimation.html#using-this-model",
+    "href": "slides/lec08a-slr_estimation.html#using-this-model",
+    "title": "Introduction to Linear Regression Modeling",
+    "section": "Using this model",
+    "text": "Using this model\n\\[ \\hat{y} = -4.087 + 0.118x \\]\n\n\\(b_{0}\\): For a father that is 0 cm tall, the predicted FEV is -4.087 (an impossible result)\n\\(b_{1}\\): For every additional cm taller a father is, his predicted FEV increases by 0.118L.\n\\(\\hat{y}_{x=70}\\): A father who is 70cm tall has a predicted FEV1 of \\(-4.087 + 0.118(70) = 4.17L\\)"
+  },
+  {
+    "objectID": "slides/lec08a-slr_estimation.html#other-facts-about-ls-regression",
+    "href": "slides/lec08a-slr_estimation.html#other-facts-about-ls-regression",
+    "title": "Introduction to Linear Regression Modeling",
+    "section": "Other facts about LS regression",
+    "text": "Other facts about LS regression\n\nA change of one sd in \\(x\\) corresponds to a change of \\(r\\) sd in \\(y\\) since \\(b_{1}=r\\frac{s_{y}}{s_{x}}\\).\nIf the correlation is 0, the slope of the LS line is 0. A test of \\(\\beta_{1}=0\\) is equivalent to a test of \\(\\rho=0\\).\nThe LS line always passes through the point \\((\\bar{x}, \\bar{y})\\).\nThe distinction between explanatory and response variables is essential in regression. Reversing \\(x\\) and \\(y\\) results in a different regression line.\nThe Root Mean Squared Error (RMSE) is an estimate for \\(\\sigma\\)."
+  },
+  {
+    "objectID": "slides/lec08a-slr_estimation.html#mathematical-model",
+    "href": "slides/lec08a-slr_estimation.html#mathematical-model",
+    "title": "Introduction to Linear Regression Modeling",
+    "section": "Mathematical Model",
+    "text": "Mathematical Model\nThe mathematical model that we use for regression has these features that translate into assumptions.\n\n\n\\[\n\\begin{align}\n  Y|X & \\sim N(\\mu_{Y|X}, \\sigma^{2}) \\\\\n  \\mu_{Y|X} & = \\beta_{0} + \\beta_{1} X \\\\\n   \\sigma^{2} & = Var(Y|X)\n\\end{align}\n\\]\n\n\n\nFigure 6.2\n\n\n\n\n\nIndependence The observations are the result of a simple random sample and thus are independent from each other\nLinearity: The mean of \\(Y\\) values at any given \\(X\\) follows a straight line\nNormality: \\(Y\\) values are normally distributed at any given \\(X\\)\nHomoscedasticity The variance of \\(Y\\) values at any \\(X\\) is \\(\\sigma^2\\) (same for all X)\nThe last two assumptions are checked by examining the , and so can only be checked after the model has been fit."
+  },
+  {
+    "objectID": "slides/lec08a-slr_estimation.html#assumption---independence",
+    "href": "slides/lec08a-slr_estimation.html#assumption---independence",
+    "title": "Introduction to Linear Regression Modeling",
+    "section": "Assumption - Independence",
+    "text": "Assumption - Independence\n\nKnowledge of the method of data collection here is key!\nIf the sampling method is not random, observations may not be independent.\nNo real good way to “test” for independence. Need to know how the sample was obtained.\nNon simple random sample will not result in the same variance estimates\nCan use hierarchical/multi-level models for clustered samples"
+  },
+  {
+    "objectID": "slides/lec08a-slr_estimation.html#assumption---linearity",
+    "href": "slides/lec08a-slr_estimation.html#assumption---linearity",
+    "title": "Introduction to Linear Regression Modeling",
+    "section": "Assumption - Linearity",
+    "text": "Assumption - Linearity\n\n\n\n\n\n\n\n\n\nSlight departures OK\nCan use transformations of strongly skewed data to achieve it\nThe lowess trend line reasonably follows a linear pattern.\n\n\n\n\nggplot(fev, aes(y=FFEV1, x=FHEIGHT)) + \n  geom_point() + \n  geom_smooth(col=\"blue\", se=FALSE) + \n  geom_smooth(method = \"lm\", col=\"red\", se=FALSE)"
+  },
+  {
+    "objectID": "slides/lec08a-slr_estimation.html#assumption---normality",
+    "href": "slides/lec08a-slr_estimation.html#assumption---normality",
+    "title": "Introduction to Linear Regression Modeling",
+    "section": "Assumption - Normality",
+    "text": "Assumption - Normality\n\n\n\n\n\n\n\n\n\n\n\n\nSlight departures OK\nCan use transformations to achieve it\n\nThese plots are generated from the performance package.\n\nplot(check_normality(fev.model), type=\"density\")\nplot(check_normality(fev.model), type=\"qq\")\n\n\nThe residuals follow a normal distribution well.\nDon’t let the pattern of the residuals on the qqplot fool you, the y-axis is very zoomed in."
+  },
+  {
+    "objectID": "slides/lec08a-slr_estimation.html#assumption---homoscedasticity",
+    "href": "slides/lec08a-slr_estimation.html#assumption---homoscedasticity",
+    "title": "Introduction to Linear Regression Modeling",
+    "section": "Assumption - Homoscedasticity",
+    "text": "Assumption - Homoscedasticity\n\n\n\n\nShow the code\nplot(check_heteroskedasticity(fev.model))\n\n\n\n\n\n\n\nIf the variance (std. residual) changes with the value of \\(\\hat{y}\\), that is a sign of non-constant variance.\nViolations result in reduced validity of inference and typically larger standard errors for the coefficients.\nCould be caused by outliers or model mis-specificiation (e.g. non-normal data)\nFEV Example - even though there is a slight increase in the trend of fitted values against the residuals, this is within the tolerance range."
+  },
+  {
+    "objectID": "slides/lec08a-slr_estimation.html#out-of-range-predictions",
+    "href": "slides/lec08a-slr_estimation.html#out-of-range-predictions",
+    "title": "Introduction to Linear Regression Modeling",
+    "section": "Out of range predictions",
+    "text": "Out of range predictions\n\n\n\n\n\n\n\nFigure 6.2\n\n\n\n\n\n\n\n\n\nCaution!\n\n\nThe linear model is only valid within the range of the data used to fit the model\nTo take an extreme example, suppose a father was 2 feet tall. Then the equation would predict an impossible negative value of FEV1 (\\(-1.255\\)).\nA safe policy is to restrict the use of the equation to the range of the \\(X\\) observed in the sample."
+  },
+  {
+    "objectID": "slides/lec08a-slr_estimation.html#model-check",
+    "href": "slides/lec08a-slr_estimation.html#model-check",
+    "title": "Introduction to Linear Regression Modeling",
+    "section": "Model-check",
+    "text": "Model-check\n\n\n\n\nShow the code\nplot(check_posterior_predictions(fev.model))\n\n\n\n\n\n\nAnother way of assessing model fit is to check the distribution of the predictions created by this model. A good fitting model should predict values that are similar to the observed data used to fit the model."
+  },
+  {
+    "objectID": "slides/lec08a-slr_estimation.html#distribution-of-parameter-estimates",
+    "href": "slides/lec08a-slr_estimation.html#distribution-of-parameter-estimates",
+    "title": "Introduction to Linear Regression Modeling",
+    "section": "Distribution of parameter estimates",
+    "text": "Distribution of parameter estimates\n\nThe estimated coefficients are functions of both \\(x\\) and \\(y\\), and they are not themselves independent of each other (e.g. \\(Cov(b_{0}, b_{1}) \\neq 0)\\).\nThe joint vector \\(\\hat{\\beta}(y, x)= (b_{0}, b_{1})\\) has a multivariate normal distribution, with variance that depends on the predictor variables \\(x\\) only.\n\n\\[\n\\hat{\\beta}(y, x) \\sim \\mathcal{N}(\\beta, \\mathbf{x^{T}x}^{-1}\\sigma^{2})\n\\]\n\nThe normality of the vector \\(\\hat{\\beta}\\) is quite robust to the model assumptions.\nEven if the residuals are not normally distributed, the CLT ensures that the \\(\\hat{\\beta}\\) are close to normal\nWhen sample sizes are low in a category, or \\(Var(X)\\) is close to zero, \\(x^{T}x\\) can’t be inverted - leading to errors of “non positive definite”"
+  },
+  {
+    "objectID": "slides/lec08a-slr_estimation.html#calculating-confidence-intervals",
+    "href": "slides/lec08a-slr_estimation.html#calculating-confidence-intervals",
+    "title": "Introduction to Linear Regression Modeling",
+    "section": "Calculating Confidence Intervals",
+    "text": "Calculating Confidence Intervals\n\\[ b_{p} \\pm 1.96*SE(b_{p})\\]\n\npoint estimate \\(\\pm\\) critical value * standard error of estimate\n\nBut calculating the variance of \\(b_{p}\\) involves \\(\\mathbf{x^{T}x}^{-1}\\sigma^{2}\\), which is outside the scope of this class. So, we use R functions\n\nconfint(fev.model)\n\n                  2.5 %     97.5 %\n(Intercept) -6.36315502 -1.8102499\nFHEIGHT      0.08526328  0.1509472\n\n\nWe can be 95% confident that the true slope parameter between a fathers height and his FEV1 is contained in the interval (0.085, 0.151)."
+  },
+  {
+    "objectID": "slides/lec08a-slr_estimation.html#hypotheis-testing",
+    "href": "slides/lec08a-slr_estimation.html#hypotheis-testing",
+    "title": "Introduction to Linear Regression Modeling",
+    "section": "Hypotheis Testing",
+    "text": "Hypotheis Testing\nLet \\(\\beta_1\\) be the true slope parameter that describes the change in FEV1 as a function of height in cm.\n\n\\(H_{0}: \\beta_{1}=0\\) There is no linear relationship between FEV1 and Height\n\\(H_{A}: \\beta_{1} \\neq 0\\) Alternate Hypothesis: There is a linear relationship between FEV1 and Height\n\n\n\nShow the code\nbroom::tidy(fev.model) |&gt; kable(digits=3) #kable is in the knitr package\n\n\n\n\n\nterm\nestimate\nstd.error\nstatistic\np.value\n\n\n\n\n(Intercept)\n-4.087\n1.152\n-3.548\n0.001\n\n\nFHEIGHT\n0.118\n0.017\n7.106\n0.000\n\n\n\n\n\nThe p-value for \\(b_{1}\\) is &lt;.0001, so there is sufficient evidence to believe that there is a linear relationship between FEV1 and Height of fathers."
+  },
+  {
+    "objectID": "slides/lec08a-slr_estimation.html#write-a-conclusion",
+    "href": "slides/lec08a-slr_estimation.html#write-a-conclusion",
+    "title": "Introduction to Linear Regression Modeling",
+    "section": "Write a conclusion",
+    "text": "Write a conclusion\n\n\nBase R (ish)\n\nfev.model |&gt; coefficients() \n\n(Intercept)     FHEIGHT \n -4.0867025   0.1181052 \n\nfev.model |&gt; confint()\n\n                  2.5 %     97.5 %\n(Intercept) -6.36315502 -1.8102499\nFHEIGHT      0.08526328  0.1509472\n\nfev.model |&gt; r2() # from the performance package\n\n# R2 for Linear Regression\n       R2: 0.254\n  adj. R2: 0.249\n\n\n\ngtsummary package\n\ntbl_regression(fev.model) %&gt;% \n  add_glance_table(include = c(nobs, r.squared))\n\n\n\n\n\n  \n    \n      Characteristic\n      Beta\n      95% CI1\n      p-value\n    \n  \n  \n    FHEIGHT\n0.12\n0.09, 0.15\n&lt;0.001\n    No. Obs.\n150\n\n\n    R²\n0.254\n\n\n  \n  \n  \n    \n      1 CI = Confidence Interval\n    \n  \n\n\n\n\n\n\nConclusion\nEach 1cm increase in height of a father is associated with a significant increase of 0.118 (0.09, 0.15) L of FEV1 (p&lt;.0001). Height explains 25.4% of the variation in FEV1.\n\n\n🔗 https://math615.netlify.app / Linear Regression"
+  },
+  {
     "objectID": "slides.html",
     "href": "slides.html",
     "title": "All Slides",
     "section": "",
-    "text": "Slides will open in full screen. Right click to open in a new tab\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDate\n\n\nLec #\n\n\nTopic\n\n\n\n\n\n\nAug 26, 2024\n\n\nlec00a\n\n\nWelcome to MATH 615\n\n\n\n\nAug 26, 2024\n\n\nlec00b\n\n\nMATH 615 Course Tools\n\n\n\n\nAug 26, 2024\n\n\nlec01\n\n\nData Architecture\n\n\n\n\nSep 4, 2024\n\n\nlec02\n\n\nFormulating research questions\n\n\n\n\nSep 9, 2024\n\n\nlec03a\n\n\nWorkflows for Reproducibility\n\n\n\n\nSep 11, 2024\n\n\nlec03b\n\n\nPreparing your data for analysis\n\n\n\n\nSep 16, 2024\n\n\nlec04\n\n\nDescribing Distributions of Data\n\n\n\n\nSep 23, 2024\n\n\nlec05a\n\n\nDescribing Relationships between variables\n\n\n\n\nSep 30, 2024\n\n\nlec05b\n\n\nBest practices in Data Visualization\n\n\n\n\nOct 2, 2024\n\n\nlec06a\n\n\nStatistical Inference with Randomization\n\n\n\n\nOct 7, 2024\n\n\nlec06b\n\n\nStatistical Inference using Models\n\n\n\n\nOct 14, 2024\n\n\nlec07a\n\n\nChoosing Appropriate Analysis\n\n\n\n\nOct 14, 2024\n\n\nlec07b\n\n\nInference between two means\n\n\n\n\nOct 16, 2024\n\n\nlec07c\n\n\nInference between multiple means\n\n\n\n\nOct 21, 2024\n\n\nlec07d\n\n\nInference on proportions\n\n\n\n\nOct 23, 2024\n\n\nlec07e\n\n\nCorrelation Analysis\n\n\n\n\n\n\nNo matching items"
+    "text": "Slides will open in full screen. Right click to open in a new tab\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDate\n\n\nLec #\n\n\nTopic\n\n\n\n\n\n\nOct 23, 2023\n\n\n10\n\n\nSimple Linear Regression\n\n\n\n\nAug 26, 2024\n\n\nlec00a\n\n\nWelcome to MATH 615\n\n\n\n\nAug 26, 2024\n\n\nlec00b\n\n\nMATH 615 Course Tools\n\n\n\n\nAug 26, 2024\n\n\nlec01\n\n\nData Architecture\n\n\n\n\nSep 4, 2024\n\n\nlec02\n\n\nFormulating research questions\n\n\n\n\nSep 9, 2024\n\n\nlec03a\n\n\nWorkflows for Reproducibility\n\n\n\n\nSep 11, 2024\n\n\nlec03b\n\n\nPreparing your data for analysis\n\n\n\n\nSep 16, 2024\n\n\nlec04\n\n\nDescribing Distributions of Data\n\n\n\n\nSep 23, 2024\n\n\nlec05a\n\n\nDescribing Relationships between variables\n\n\n\n\nSep 30, 2024\n\n\nlec05b\n\n\nBest practices in Data Visualization\n\n\n\n\nOct 2, 2024\n\n\nlec06a\n\n\nStatistical Inference with Randomization\n\n\n\n\nOct 7, 2024\n\n\nlec06b\n\n\nStatistical Inference using Models\n\n\n\n\nOct 14, 2024\n\n\nlec07a\n\n\nChoosing Appropriate Analysis\n\n\n\n\nOct 14, 2024\n\n\nlec07b\n\n\nInference between two means\n\n\n\n\nOct 16, 2024\n\n\nlec07c\n\n\nInference between multiple means\n\n\n\n\nOct 21, 2024\n\n\nlec07d\n\n\nInference on proportions\n\n\n\n\nOct 23, 2024\n\n\nlec07e\n\n\nCorrelation Analysis\n\n\n\n\nOct 28, 2024\n\n\nlec08\n\n\nIntroduction to Linear Regression Modeling\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "syllabus.html",
@@ -2324,10 +2590,45 @@
     "text": "Assessment\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Quiz 07\n\n    Quiz 08"
   },
   {
+    "objectID": "topics/t08-intro_regression.html",
+    "href": "topics/t08-intro_regression.html",
+    "title": "Introduction to Linear Regression",
+    "section": "",
+    "text": "Learning how to statistically assess the relationship between two variables.\n\n\n\nLearning the fundamentals of linear regression, a foundational method of modeling for many types of analyses\n\n\n\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Use the least squares method to calculate an equation for a best fit line that describes the relationship between a continuous explanatory and continuous response variable\n\n    Calculate and interpret estimates for the intercept and slope of regression models\n\n    Use the regression equation to predict new values for Y given values of X\n\n    Calculate and interpret confidence and prediction intervals for the slope value\n\n    Visually assess assumptions of regression models"
+  },
+  {
+    "objectID": "topics/t08-intro_regression.html#learning-path",
+    "href": "topics/t08-intro_regression.html#learning-path",
+    "title": "Introduction to Linear Regression",
+    "section": "",
+    "text": "Learning how to statistically assess the relationship between two variables.\n\n\n\nLearning the fundamentals of linear regression, a foundational method of modeling for many types of analyses\n\n\n\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Use the least squares method to calculate an equation for a best fit line that describes the relationship between a continuous explanatory and continuous response variable\n\n    Calculate and interpret estimates for the intercept and slope of regression models\n\n    Use the regression equation to predict new values for Y given values of X\n\n    Calculate and interpret confidence and prediction intervals for the slope value\n\n    Visually assess assumptions of regression models"
+  },
+  {
+    "objectID": "topics/t08-intro_regression.html#learning-materials",
+    "href": "topics/t08-intro_regression.html#learning-materials",
+    "title": "Introduction to Linear Regression",
+    "section": "Learning Materials",
+    "text": "Learning Materials\nThis section uses the the Lung function dataset and the following packages:\n\nPlotting: ggplot2, ggdist, sjPlot,gridExtra\nPresenting results: broom, gtsummary\nAssumption checking: performance\n\nSee PMA6 Appendix for more details about the Lung data.\n\nNote: Regression is such a big deal, there are MANY functions in MANY packages that help you get out the relevant information out of the model, and display it in many different ways. I will show several in the slides.\n\n Slides (Will open in full screen. Right click to open in a new tab)\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    lec08a\n\n  \n  \n  \n\n\n\n\n📚 Reading\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Topic Overview\n\n    PMA6 Ch 7\n\n    IMS Ch 24"
+  },
+  {
+    "objectID": "topics/t08-intro_regression.html#assignments",
+    "href": "topics/t08-intro_regression.html#assignments",
+    "title": "Introduction to Linear Regression",
+    "section": "Assignments",
+    "text": "Assignments\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    HW08 Simple Linear Regression"
+  },
+  {
+    "objectID": "topics/t08-intro_regression.html#assessment",
+    "href": "topics/t08-intro_regression.html#assessment",
+    "title": "Introduction to Linear Regression",
+    "section": "Assessment",
+    "text": "Assessment\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Quiz 09"
+  },
+  {
     "objectID": "topics.html",
     "href": "topics.html",
     "title": "Topics",
     "section": "",
-    "text": "This is the place to start to find all content related to a module.\n\n\n\n\n\n\n\n\n\n\nTopic\n\n\nDescription\n\n\n\n\n\n\nWelcome to Fall 24\n\n\nIntroduction to class and your learning materials\n\n\n\n\nData Architecture\n\n\nData entry, spreadsheets, metadata, codebooks\n\n\n\n\nFormulating research questions\n\n\nAsking questions is easy. Asking answerable questions is more difficult.\n\n\n\n\nPreparing Data for Analysis\n\n\nWhere an inordinate amount of time is spent\n\n\n\n\nDescribing distributions of data\n\n\nVisualizing your data is the first line of defense against bad data\n\n\n\n\nDescribing Relationships\n\n\nFirst step in investigating a question about an association\n\n\n\n\nFoundations for Statistical Inference\n\n\nStudy Design, Inference using randomization and the Normal Model\n\n\n\n\nModeling Bivariate Relationships\n\n\nIdentify and conduct the most appropriate analysis for a given research topic. \n\n\n\n\n\n\nNo matching items"
+    "text": "This is the place to start to find all content related to a module.\n\n\n\n\n\n\n\n\n\n\nTopic\n\n\nDescription\n\n\n\n\n\n\nWelcome to Fall 24\n\n\nIntroduction to class and your learning materials\n\n\n\n\nData Architecture\n\n\nData entry, spreadsheets, metadata, codebooks\n\n\n\n\nFormulating research questions\n\n\nAsking questions is easy. Asking answerable questions is more difficult.\n\n\n\n\nPreparing Data for Analysis\n\n\nWhere an inordinate amount of time is spent\n\n\n\n\nDescribing distributions of data\n\n\nVisualizing your data is the first line of defense against bad data\n\n\n\n\nDescribing Relationships\n\n\nFirst step in investigating a question about an association\n\n\n\n\nFoundations for Statistical Inference\n\n\nStudy Design, Inference using randomization and the Normal Model\n\n\n\n\nModeling Bivariate Relationships\n\n\nIdentify and conduct the most appropriate analysis for a given research topic. \n\n\n\n\nIntroduction to Linear Regression\n\n\nEverything is a linear model\n\n\n\n\n\n\nNo matching items"
   }
 ]
