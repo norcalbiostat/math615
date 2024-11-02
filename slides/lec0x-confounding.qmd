@@ -1,0 +1,277 @@
+---
+title: "Multiple Linear Regression"
+date: "2024-11-04"
+description: "lec09"
+footer: "[🔗 https://math615.netlify.app](https://math615.netlify.app) / Multiple Linear Regression"
+from: markdown+emoji
+format: 
+  revealjs:
+    theme: sky
+    transition: fade
+    slide-number: true
+    incremental: false 
+    chalkboard: true
+execute:
+  #freeze: auto
+  echo: true
+  message: false
+  warning: false
+knitr:
+  opts_chunk: 
+    R.options:
+      width: 200
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+```{r}
+#| echo: false
+library(tidyverse)   # general use
+library(performance) # model diagnostics
+library(gtsummary)   # regression tables
+library(broom)       # tidy regression output
+
+fev <- read.delim('data/Lung_081217.txt')
+load("C:/Box/Data/AddHealth/addhealth_clean.Rdata")
+
+```
+
+## Motivation: Life is rarely bivariate. 
+
+* We know that the number of steps someone takes per day is not the only thing that is related to someone's BMI. 
+    - diet, age, sex, climate they live in, etc. 
+* So how can we understand whether or not physical activity is associated with BMI _after controlling for_ these other measures?
+* Consider two people of the same age, living in the same climate, with the same diet, but their level of physical activity is _different_. 
+    - Then we can estimate how much physical activity affects someone's BMI
+
+## Need to expand our model
+
+:::: {.columns}
+
+::: {.column width="50%"}
+```{r}
+#| layout-nrow: 2
+#| fig-width: 6
+#| fig-height: 3
+#| echo: false
+ggplot(fev, aes(y=FFEV1, x=FHEIGHT)) + geom_point() + 
+      xlab("Height") + ylab("FEV1") + 
+      ggtitle("Relationship between FEV1 and Height") + 
+      geom_smooth(method="lm", se=FALSE, col="blue") + 
+      geom_smooth(se=FALSE, col="red") + 
+  theme_bw()
+
+ggplot(fev, aes(y=FFEV1, x=FAGE)) + geom_point() + 
+      xlab("Age") + ylab("FEV1") + 
+      ggtitle("Relationship between FEV1 and Age") + 
+      geom_smooth(method="lm", se=FALSE, col="blue") + 
+      geom_smooth(se=FALSE, col="red") + 
+  theme_bw()
+
+```
+:::
+
+::: {.column width="50%"}
+There appears to be a tendency for taller men to have higher FEV1, but FEV1 also decreases with age.
+
+\
+
+We need to have a robust model that can incorporate information from multiple variables at the same time.
+
+
+:::
+
+::::
+
+
+
+## Framework
+
+-   Multiple linear regression (MLR) is our tool to expand our MODEL to better fit the DATA.
+-   Describes a *linear relationship* between a single continuous $Y$ variable, and several $X$ variables.
+-   Models $Y$ from $X_{1}, X_{2}, \ldots , X_{P}$.
+-   X's can be continuous or discrete (categorical)
+-   X's can be transformations of other X's, e.g., $log(x), x^{2}$.
+
+## Visualization
+
+Now it's no longer a 2D regression *line*, but a $p$ dimensional regression plane.
+
+![A regression plane in 3 dimensions: $FEV1 \sim Height + Age$](images/regression_plane.png){width="603"}
+
+
+## Mathematical Model
+
+The mathematical model for multiple linear regression equates the value of the continuous outcome $y_{i}$ to a **linear combination** of multiple predictors $x_{1} \ldots x_{p}$ each with their own slope coefficient $\beta_{1} \ldots \beta_{p}$. 
+
+$$ y_{i} = \beta_{0} + \beta_{1}x_{1i} + \ldots + \beta_{p}x_{pi} + \epsilon_{i}$$
+
+where $i$ indexes the observations $i = 1 \ldots n$, and $j$ indexes the number of parameters $j=1 \ldots p$.
+
+## Assumptions 
+
+The assumptions on the residuals $\epsilon_{i}$ still hold:   
+
+* They have mean zero  
+* They are homoscedastic, that is all have the same finite variance: $Var(\epsilon_{i})=\sigma^{2}<\infty$  
+* Distinct error terms are uncorrelated: (Independent) $\text{Cov}(\epsilon_{i},\epsilon_{j})=0,\forall i\neq j.$  
+
+
+## Parameter Estimation {.smaller}
+
+Find the values of $b_j$ that minimize the difference between the value of the dependent variable predicted by the model $\hat{y}_{i}$ and the true value of the dependent variable $y_{i}$.
+
+$$ \hat{y_{i}} - y_{i} \quad \mbox{ where } \quad \hat{y}_{i}  = \sum_{i=1}^{p}X_{ij}b_{j}$$
+
+AKA: Minimize the sum of the squared residuals: 
+
+$$ \sum_{i=1}^{n} (y_{i} - \sum_{i=1}^{p}X_{ij}b_{j})^{2}$$
+
+
+## Fitting the model {.smaller}
+
+Fitting a regression model in R with more than 1 predictor is done by adding each variable to the right hand side of the model notation connected with a `+`. 
+
+```{r}
+lm(FFEV1 ~ FAGE + FHEIGHT, data=fev)
+```
+
+* Each $\beta_{j}$ coefficient is considered a slope. The amount $Y$ will change for every 1 unit increase in $X_{j}$. 
+* In a multiple variable regression model, $b_{j}$ is the estimated change in $Y$ _after controlling for other predictors in the model_. 
+
+
+## Interpreting Coefficients  {.smaller}
+
+```{r}
+mlr.dad.model <- lm(FFEV1 ~ FAGE + FHEIGHT, data=fev)
+tidy(mlr.dad.model)
+confint(mlr.dad.model)
+```
+
+* Holding height constant, a father who is ten years older is expected to have a FEV value 0.27 (0.14, 0.39) liters less than another man (p<.0001).
+* Holding age constant, a father who is 1cm taller than another man is expected to have a FEV value of 0.11 (.08, 0.15) liter greater than the other man (p<.0001). 
+
+
+
+# Confounding 
+
+![All the ways covariates can affect response variables](images/confounder.png)
+
+## Confounding
+
+Other factors (characteristics/variables) could also be explaining part of the variability seen in $y$. 
+
+> If the relationship between $x_{1}$ and $y$ is bivariately significant, but then no longer significant once $x_{2}$ has been added to the model, then $x_{2}$ is said to explain, or **confound**, the relationship between $x_{1}$ and $y$.
+
+## Identifying a confounder
+
+1. Fit a regression model on $y \sim x_{1}$. 
+2. If $x_{1}$ is not significantly associated with $y$, STOP. Re-read the "IF" part of the definition of a confounder. 
+3. Fit a regression model on $y \sim x_{1} + x_{2}$. 
+4. Look at the p-value for $x_{1}$. One of two things will have happened. 
+    - If $x_{1}$ is still significant, then $x_{2}$ does NOT confound (or explain) the relationship between $y$ and $x_{1}$. 
+    - If $x_{1}$ is NO LONGER significantly associated with $y$, then $x_{2}$ IS a confounder. 
+    
+
+This means that the third variable is explaining the relationship between the explanatory variable and the response variable.
+        
+
+# Example: Does the early bird get the worm?
+
+
+## 1. Identify variables
+
+* Quantitative outcome: Income (variable `income`). 
+* Quantitative predictor: Time you wake up in the morning (variable `wakeup`)
+* Binary confounder: Gender (variable `female_c`). This variable is 1 if female, 0 if male. 
+ 
+
+## 2. State hypotheses
+
+* Null: There is no relationship between the time you wake up and your personal earnings 
+    - $y \sim \beta_{0} + \beta_{1}x_{1}, \qquad H_{0}: \beta_{1}=0$
+* Alternative: There is a relationship between the time you wake up and your personal earnings 
+    - $y \sim \beta_{0} + \beta_{1}x_{1}, \qquad H_{0}: \beta_{1} \neq 0$ 
+* Confounder:  There is still a relationship between the time you wake up and your personal earnings, after controlling for gender. 
+  - $y \sim \beta_{0} + \beta_{1}x_{1} + \beta_{2}x_{2}, \qquad H_{0}: \beta_{1} \neq 0$ 
+
+## 3. Visualize and Assess
+
+:::: {.columns}
+
+::: {.column width="60%"}
+```{r}
+addhealth %>% select(wakeup, income, female_c) %>% na.omit() %>%
+  ggplot(aes(x=wakeup, y = income, color = female_c)) + 
+  geom_point() + geom_smooth() + theme_bw()
+```
+:::
+
+::: {.column width="40%"}
+Flat, somewhat linear trend, looks slightly different for males vs females, before 11am. 
+:::
+
+::::
+
+
+## 4. Fit the simple model
+Is there a relationship between income and time a person wakes up? 
+```{r}
+lm.mod1 <- lm(income ~ wakeup, data=addhealth) 
+tidy(lm.mod1)
+```
+
+The estimate of the regression coefficient for `wakeup` is significant (b1=-488, p= 0.001). There is reason to believe that the time you wakeup is associated with your income. 
+
+
+## 5. Fit the multivariable model
+
+Determine if the third variable is a confounder.
+
+```{r}
+lm.mod2 <- lm(income ~ wakeup + female_c, data=addhealth) 
+tidy(lm.mod2)
+```
+
+The relationship between income and wake up time is still significant after controlling for gender. Gender is **not** a confounder. 
+
+## 6. Assess model fit
+
+```{r}
+check_model(lm.mod2)
+```
+
+## 6. Assess model fit
+
+This model doesn't fit the data incredibly well. 
+
+* The residuals are somewhat not normal
+* predicted income higher than the observed. 
+* There is indication of non-constant variance as well,
+* Quadratic trend to the standardized residuals when the fitted income is above 40k. 
+
+## 7. Interpret the coefficients {.smaller}
+
+:::: {.columns}
+
+::: {.column width="50%"}
+```{r}
+tbl_regression(lm.mod2, intercept = TRUE) %>% 
+   add_glance_table(include = c(adj.r.squared))
+```
+:::
+
+::: {.column width="50%"}
+* $b_{0}$: For a male (`gender=0`) who wakes up at midnight (`wakeup=0`), their predicted average income is \$48,669.4 (95% CI \$46,303.9, \$51,035)
+* $b_{1}$: Holding gender constant, for every hour later a person wakes up, their predicted average income drops by \$611 (95% CI \$319, \$904). 
+* $b_{2}$: Controlling for the time someone wakes up in the morning, the predicted average income for females is \$8,527 (95% CI \$6,980, \$10,074) lower than for males.
+:::
+
+::::
+
+
+## 8. Write a conclusion
+
+After adjusting for the potential confounding factor of gender, wake up time ($b_{1}$ = `-611, 95% CI: (-904, -318), p<.0001`) was significantly and negatively associated with income. Approximately `3.2%` of the variance of income can be accounted for by wake up time after controlling for gender. Based on these analyses, gender _is not_ a confounding factor because the association between wake up time and income _is still_ significant after accounting for gender.
+

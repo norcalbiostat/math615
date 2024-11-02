@@ -1,237 +1,447 @@
 ---
-title: "Multiple Regression & Confonding"
-date: "2023-11-06"
-description: "12"
+title: "Multiple Linear Regression"
+date: "2024-11-04"
+description: "lec09"
+footer: "[🔗 https://math615.netlify.app](https://math615.netlify.app) / Multiple Linear Regression"
+from: markdown+emoji
+format: 
+  revealjs:
+    theme: sky
+    transition: fade
+    slide-number: true
+    incremental: false 
+    chalkboard: true
+execute:
+  #freeze: auto
+  echo: true
+  message: false
+  warning: false
+  code-fold: true
+knitr:
+  opts_chunk: 
+    R.options:
+      width: 200
+editor: 
+  markdown: 
+    wrap: 72
 ---
 
-# Setup
-
 ```{r}
-#| code-fold: show
+#| echo: false
 library(tidyverse)   # general use
 library(performance) # model diagnostics
 library(gtsummary)   # regression tables
 library(broom)       # tidy regression output
 
-fev <- read.delim("https://norcalbiostat.netlify.com/data/Lung_081217.txt", sep="\t", header=TRUE)
+fev <- read.delim('data/Lung_081217.txt')
 load("C:/Box/Data/AddHealth/addhealth_clean.Rdata")
-#load("C:/Users/rdonatello/Box/Data/AddHealth/addhealth_clean.Rdata")
 
 ```
 
-## Motivation
+## Motivation: Life is rarely bivariate.
 
+-   We know that the number of steps someone takes per day is not the
+    only thing that is related to someone's BMI.
+    -   diet, age, sex, climate they live in, etc.
+-   So how can we understand whether or not physical activity is
+    associated with BMI *after controlling for* these other measures?
+-   Consider two people of the same age, living in the same climate,
+    with the same diet, but their level of physical activity is
+    *different*.
+    -   Then we can estimate how much physical activity affects
+        someone's BMI
+
+## Need to expand our model
+
+::: columns
+::: {.column width="50%"}
 ```{r}
-#| layout-ncol: 2
+#| layout-nrow: 2
+#| fig-width: 6
+#| fig-height: 3
+#| echo: false
 ggplot(fev, aes(y=FFEV1, x=FHEIGHT)) + geom_point() + 
       xlab("Height") + ylab("FEV1") + 
-      ggtitle("Relationship between FEV1 and Height of Fathers.") + 
+      ggtitle("Relationship between FEV1 and Height") + 
       geom_smooth(method="lm", se=FALSE, col="blue") + 
       geom_smooth(se=FALSE, col="red") + 
   theme_bw()
 
 ggplot(fev, aes(y=FFEV1, x=FAGE)) + geom_point() + 
       xlab("Age") + ylab("FEV1") + 
-      ggtitle("Relationship between FEV1 and Age of Fathers.") + 
+      ggtitle("Relationship between FEV1 and Age") + 
       geom_smooth(method="lm", se=FALSE, col="blue") + 
       geom_smooth(se=FALSE, col="red") + 
   theme_bw()
 
 ```
+:::
 
--   There appears to be a tendency for taller men to have higher FEV1, but FEV1 also decreases with age.
--   We need to have a robust model that can incorporate information from multiple variables at the same time.
+::: {.column width="50%"}
+There appears to be a tendency for taller men to have higher FEV1, but
+FEV1 also decreases with age.
 
-## MLR Framework
+\
 
--   Multiple linear regression is our tool to expand our MODEL to better fit the DATA.
--   Describes a *linear relationship* between a single continuous $Y$ variable, and several $X$ variables.
+We need to have a robust model that can incorporate information from
+multiple variables at the same time.
+:::
+:::
+
+## Framework
+
+-   Multiple linear regression (MLR) is our tool to expand our MODEL to
+    better fit the DATA.
+-   Describes a *linear relationship* between a single continuous $Y$
+    variable, and several $X$ variables.
 -   Models $Y$ from $X_{1}, X_{2}, \ldots , X_{P}$.
 -   X's can be continuous or discrete (categorical)
 -   X's can be transformations of other X's, e.g., $log(x), x^{2}$.
 
 ## Visualization
 
-Now it's no longer a 2D regression *line*, but a $p$ dimensional regression plane.
+Now it's no longer a 2D regression *line*, but a $p$ dimensional
+regression plane.
 
-![A regression plane in 3 dimensions: $FEV1 \sim Height + Age$](images/regression_plane.png){width="603"}
-
+![A regression plane in 3 dimensions:
+$FEV1 \sim Height + Age$](images/regression_plane.png){width="603"}
 
 ## Mathematical Model
 
-The mathematical model for multiple linear regression equates the value of the continuous outcome $y_{i}$ to a **linear combination** of multiple predictors $x_{1} \ldots x_{p}$ each with their own slope coefficient $\beta_{1} \ldots \beta_{p}$. 
+The mathematical model for multiple linear regression equates the value
+of the continuous outcome $y_{i}$ to a **linear combination** of
+multiple predictors $x_{1} \ldots x_{p}$ each with their own slope
+coefficient $\beta_{1} \ldots \beta_{p}$.
 
 $$ y_{i} = \beta_{0} + \beta_{1}x_{1i} + \ldots + \beta_{p}x_{pi} + \epsilon_{i}$$
 
-where $i$ indexes the observations $i = 1 \ldots n$, and $j$ indexes the number of parameters $j=1 \ldots p$.
+where $i$ indexes the observations $i = 1 \ldots n$, and $j$ indexes the
+number of parameters $j=1 \ldots p$.
 
-## Assumptions 
+## Assumptions
 
-The assumptions on the residuals $\epsilon_{i}$ still hold:   
+The assumptions on the residuals $\epsilon_{i}$ still hold:
 
-* They have mean zero  
-* They are homoscedastic, that is all have the same finite variance: $Var(\epsilon_{i})=\sigma^{2}<\infty$  
-* Distinct error terms are uncorrelated: (Independent) $\text{Cov}(\epsilon_{i},\epsilon_{j})=0,\forall i\neq j.$  
+-   They have mean zero\
+-   They are homoscedastic, that is all have the same finite variance:
+    $Var(\epsilon_{i})=\sigma^{2}<\infty$\
+-   Distinct error terms are uncorrelated: (Independent)
+    $\text{Cov}(\epsilon_{i},\epsilon_{j})=0,\forall i\neq j.$
 
+## Parameter Estimation {.smaller}
 
-## Parameter Estimation
+Find the values of $b_j$ that minimize the difference between the value
+of the dependent variable predicted by the model $\hat{y}_{i}$ and the
+true value of the dependent variable $y_{i}$.
 
-Find the values of $b_j$ that minimize the difference between the value of the dependent variable predicted by the model $\hat{y}_{i}$ and the true value of the dependent variable $y_{i}$.
+$$ \hat{y_{i}} - y_{i} \quad \mbox{ where } \quad \hat{y}_{i}  = \sum_{i=1}^{p}X_{ij}b_{j}$$
 
-$$ \hat{y_{i}} - y_{i}$$
-
-where the predicted values $\hat{y}_{i}$ are calculated as 
-
-$$\hat{y}_{i}  = \sum_{i=1}^{p}X_{ij}b_{j}$$
-
-Minimize: 
+AKA: Minimize the sum of the squared residuals:
 
 $$ \sum_{i=1}^{n} (y_{i} - \sum_{i=1}^{p}X_{ij}b_{j})^{2}$$
 
+## Fitting the model {.smaller}
 
-## Fitting the model
+Fitting a regression model in R with more than 1 predictor is done by
+adding each variable to the right hand side of the model notation
+connected with a `+`.
 
-Fitting a regression model in R with more than 1 predictor is done by adding each variable to the right hand side of the model notation connected with a `+`. 
-
-```{r}
-lm(FFEV1 ~ FAGE + FHEIGHT, data=fev)
-```
-
-* Each $\beta_{j}$ coefficient is considered a slope. The amount $Y$ will change for every 1 unit increase in $X_{j}$. 
-* In a multiple variable regression model, $b_{j}$ is the estimated change in $Y$ _after controlling for other predictors in the model_. 
-
-
-## Interpreting Coefficients
+::: panel-tabset
+## Fit the model
 
 ```{r}
 mlr.dad.model <- lm(FFEV1 ~ FAGE + FHEIGHT, data=fev)
-tidy(mlr.dad.model)
+```
+
+## Base R summary
+
+```{r}
+broom::tidy(mlr.dad.model)
 confint(mlr.dad.model)
 ```
 
-* Holding height constant, a father who is ten years older is expected to have a FEV value 0.27 (0.14, 0.39) liters less than another man (p<.0001).
-* Holding age constant, a father who is 1cm taller than another man is expected to have a FEV value of 0.11 (.08, 0.15) liter greater than the other man (p<.0001). 
+## tbl_regression summary
 
-
-
-# Confounding 
-
-![All the ways covariates can affect response variables](images/confounder.png)
-
-## Confounding
-
-Other factors (characteristics/variables) could also be explaining part of the variability seen in $y$. 
-
-> If the relationship between $x_{1}$ and $y$ is bivariately significant, but then no longer significant once $x_{2}$ has been added to the model, then $x_{2}$ is said to explain, or **confound**, the relationship between $x_{1}$ and $y$.
-
-## Identifying a confounder
-
-1. Fit a regression model on $y \sim x_{1}$. 
-2. If $x_{1}$ is not significantly associated with $y$, STOP. Re-read the "IF" part of the definition of a confounder. 
-3. Fit a regression model on $y \sim x_{1} + x_{2}$. 
-4. Look at the p-value for $x_{1}$. One of two things will have happened. 
-    - If $x_{1}$ is still significant, then $x_{2}$ does NOT confound (or explain) the relationship between $y$ and $x_{1}$. 
-    - If $x_{1}$ is NO LONGER significantly associated with $y$, then $x_{2}$ IS a confounder. 
-    
-
-This means that the third variable is explaining the relationship between the explanatory variable and the response variable.
-        
-
-# Example: Does the early bird get the worm?
-
-
-## 1. Identify variables
-
-* Quantitative outcome: Income (variable `income`). 
-* Quantitative predictor: Time you wake up in the morning (variable `wakeup`)
-* Binary confounder: Gender (variable `female_c`). This variable is 1 if female, 0 if male. 
- 
-
-## 2. State hypotheses
-
-* Null: There is no relationship between the time you wake up and your personal earnings 
-    - $y \sim \beta_{0} + \beta_{1}x_{1}, \qquad H_{0}: \beta_{1}=0$
-* Alternative: There is a relationship between the time you wake up and your personal earnings 
-    - $y \sim \beta_{0} + \beta_{1}x_{1}, \qquad H_{0}: \beta_{1} \neq 0$ 
-* Confounder:  There is still a relationship between the time you wake up and your personal earnings, after controlling for gender. 
-  - $y \sim \beta_{0} + \beta_{1}x_{1} + \beta_{2}x_{2}, \qquad H_{0}: \beta_{1} \neq 0$ 
-
-## 3. Visualize and Assess
-
-:::: {.columns}
-
-::: {.column width="60%"}
 ```{r}
-addhealth %>% select(wakeup, income, female_c) %>% na.omit() %>%
-  ggplot(aes(x=wakeup, y = income, color = female_c)) + 
-  geom_point() + geom_smooth() + theme_bw()
+lm(FFEV1 ~ FAGE + FHEIGHT, data=fev) |> 
+  tbl_regression(intercept=TRUE) |>
+  add_glance_table(include = c(adj.r.squared, nobs))
 ```
 :::
+
+The corresponding regression equation now is
+
+$$
+\hat{y}_{i} = -2.76 - 0.027(age) + 0.114(height)
+$$
+
+# Interpreting Coefficients
+
+## 
+
+::: callout-tip
+#### Intercept
+
+The intercept is interpreted as the predicted outcome when **all
+covariates are set to 0**.
+:::
+
+$$
+\hat{y}_{i} = -2.76 - 0.027(age) + 0.114(height)
+$$
+
+> A father who is 0 years old, and is 0 inches tall has an expected FEV
+> of -2.76L
+
+This number that does not make any sense whatsoever. This is often the
+case, and why regression output tables tend to not show the intercept.
+
+## Continuous Predictors {.smaller}
+
+::: callout-tip
+#### Slope
+
+$b_{j}$ is the estimated change in $Y$ for a 1 unit increase in $x_{j}$
+while holding the value of all other variables constant. Can also be
+phrased as "after controlling for other predictors.."
+:::
+
+$$
+\hat{y}_{i} = -2.76 - 0.027(age) + 0.114(height)
+$$
+
+-   $b_{1}:$ A father who is one year older is expected to have a FEV
+    value 0.027 (0.014, 0.039) liters less than another man of the same
+    height ($p<.0001$).
+-   $b_{2}:$ Holding age constant, a father is expected to have 0.11
+    (.08, 0.15)L greater FEV for every inch taller he is compared to
+    another father ($p<.0001$).
+
+# Binary Predictors
+
+## Reference level coding
+
+-   Binary predictors (categorical variables with only 2 levels) get
+    converted to a numeric binary indicator variable which only has the
+    values 0 and 1.
+-   Whichever level is assigned to be 0 is called the reference group or
+    level.
+
+::: callout-tip
+#### "Slope" as a difference in groups
+
+$b_{j}$ is the effect of being in group ($x_{j}=1$) compared to being in
+the reference ($x_{j}=0$) group.
+:::
+
+## Model with sex as a predictor
+
+Let's look at how biological sex may impact or change the relationship
+between FEV and either height or age. The regression model now is:
+
+$$ y_{i} = \beta_{0} + \beta_{1}x_{1i} + \beta_{2}x_{2i} +\beta_{3}x_{3i} + \epsilon_{i}$$
+
+where
+
+-   $x_{1}$: Age
+-   $x_{2}$: height
+-   $x_{3}$: 0 if Male, 1 if Female
+
+##  {.smaller}
+
+```{r}
+#| echo: false
+fev_long <- fev %>% 
+  select(FSEX, MSEX, FFEV1, MFEV1, FHEIGHT, MHEIGHT, 
+         FAGE, MAGE, MAREA = AREA, FAREA = AREA) %>%
+  mutate(family = 1:n()) %>% 
+  pivot_longer(-family) %>%
+  mutate(parent = substr(name, 1, 1), 
+         var = substring(name, 2)) %>%
+  select(-name) %>% 
+  pivot_wider(id_cols = c(family, parent), 
+              names_from = var, 
+              values_from = value) %>%
+  mutate(BIOL.SEX = factor(SEX, labels = c("Male", "Female")), 
+         AREA = factor(AREA, 
+                       labels=c("Burbank", "Lancaster", "Long Beach", "Glendora"))) %>%
+  select(-family, -SEX, -parent)
+```
+
+:x: Do not manually change the variable to numeric!
+
+::: columns
+::: {.column width="50%"}
+**Base R**
+
+```{r}
+#| code-fold: true
+lm(FEV1 ~ AGE + HEIGHT + BIOL.SEX , data=fev_long) |> 
+  summary()
+```
+:::
+
+::: {.column width="50%"}
+**tbl_regression**
+
+```{r}
+#| code-fold: true
+lm(FEV1 ~ AGE + HEIGHT + BIOL.SEX , data=fev_long) |> 
+  tbl_regression(intercept=TRUE) |> 
+  add_glance_table(include = c(adj.r.squared, nobs))
+```
+:::
+:::
+
+In this model `BIOL.SEX` is a categorical variable with levels `Male` and `Female`, where `Male` is the first ordered level. The estimate shown is for females compared to males.
+
+## Interpretations {.smaller}
+
+The fitted regression equation for the model with gender is
+
+$$ \hat{y} = -2.24 - 0.02*AGE + 0.11*HEIGHT - 0.64*I(BIOL.SEX==`Male`) $$
+
+-   $b_{0}:$ For a male who is 0 years old and 0 cm tall, their FEV is
+    -2.24L.
+-   $b_{1}:$ Holding sex and height constant, for every additional year
+    older an individual is, their FEV1 decreases by 0.02L.
+-   $b_{2}:$ Holding age and sex constant, for every additional cm
+    taller an individual is, their FEV1 increases by 0.16L.
+-   $b_{3}:$ Controlling for height and age, females have 0.64L lower
+    FEV compared to males.
+
+::: callout-tip
+# Still can use template language
+
+The interpretation of categorical variables still falls under the
+template language of "for every one unit increase in $X_{p}$, $Y$
+changes by $b_{p}$". So a 1 "unit" change is females ($X_{3}=1$)
+*compared to* males ($X_{3}=0$).
+:::
+
+# Categorical Predictors
+
+## Residental area {.smaller}
+
+:::: {.columns}
 
 ::: {.column width="40%"}
-Flat, somewhat linear trend, looks slightly different for males vs females, before 11am. 
+Let's consider the effect of city environment on FEV. For those unfamiliar with the region, these cities represent very different environmental profiles.
+
+```{r}
+#| echo: false
+fev_long %>% select(AREA) %>% tbl_summary()
+```
 :::
+
+::: {.column width="60%"}
+:::
+
+![](images/socal_fake_topo.png){.absolute top=0 right=0}
 
 ::::
 
 
-## 4. Fit the simple model
-Is there a relationship between income and time a person wakes up? 
-```{r}
-lm.mod1 <- lm(income ~ wakeup, data=addhealth) 
-tidy(lm.mod1)
-```
-
-The estimate of the regression coefficient for `wakeup` is significant (b1=-488, p= 0.001). There is reason to believe that the time you wakeup is associated with your income. 
 
 
-## 5. Fit the multivariable model
+## {.smaller}
+I do not do anything to the variable `AREA` itself aside from add it into the model.
 
-Determine if the third variable is a confounder.
-
-```{r}
-lm.mod2 <- lm(income ~ wakeup + female_c, data=addhealth) 
-tidy(lm.mod2)
-```
-
-The relationship between income and wake up time is still significant after controlling for gender. Gender is **not** a confounder. 
-
-## 6. Assess model fit
-
-```{r}
-check_model(lm.mod2)
-```
-
-## 6. Assess model fit
-
-This model doesn't fit the data incredibly well. 
-
-* The residuals are somewhat not normal
-* predicted income higher than the observed. 
-* There is indication of non-constant variance as well,
-* Quadratic trend to the standardized residuals when the fitted income is above 40k. 
-
-## 7. Interpret the coefficients {.smaller}
-
-:::: {.columns}
-
+::: columns
 ::: {.column width="50%"}
+**Base R**
+
 ```{r}
-tbl_regression(lm.mod2, intercept = TRUE) %>% 
-   add_glance_table(include = c(adj.r.squared))
+#| code-fold: true
+lm(FEV1 ~ AGE + HEIGHT + BIOL.SEX + AREA , data=fev_long) |>
+  summary()
 ```
 :::
 
 ::: {.column width="50%"}
-* $b_{0}$: For a male (`gender=0`) who wakes up at midnight (`wakeup=0`), their predicted average income is \$48,669.4 (95% CI \$46,303.9, \$51,035)
-* $b_{1}$: Holding gender constant, for every hour later a person wakes up, their predicted average income drops by \$611 (95% CI \$319, \$904). 
-* $b_{2}$: Controlling for the time someone wakes up in the morning, the predicted average income for females is \$8,527 (95% CI \$6,980, \$10,074) lower than for males.
+**tbl_regression**
+
+```{r}
+#| code-fold: true
+lm(FEV1 ~ AGE + HEIGHT + BIOL.SEX + AREA , data=fev_long) |> 
+  tbl_regression(intercept=TRUE) |> 
+  add_glance_table(include = c(adj.r.squared, nobs))
+```
+:::
 :::
 
-::::
 
+## What's going on?
 
-## 8. Write a conclusion
+R automatically take a categorical variable and turn it into a series of
+binary indicator variables where a 1 indicates if a person is from that
+area. Someone from Burbank has 0's for all of the three indicator
+variables, someone from Lancaster only has a 1 in the \R{AREALancaster}
+variable and 0 otherwise. And etc for each other area. This is called
+\voc{factor coding} (aka \`\`dummy coding", reference coding, or one-hot
+encoding)
 
-After adjusting for the potential confounding factor of gender, wake up time ($b_{1}$ = `-611, 95% CI: (-904, -318), p<.0001`) was significantly and negatively associated with income. Approximately `3.2%` of the variance of income can be accounted for by wake up time after controlling for gender. Based on these analyses, gender _is not_ a confounding factor because the association between wake up time and income _is still_ significant after accounting for gender.
+\singlespace
 
+\<\<echo=FALSE\>\>= a \<- model.matrix(FEV1 \~ AREA, data=fev_long)
+cbind(AREA = c("Burbank", "Glendora", "Lancaster", "Long Beach"),
+a\[c(1,185,49,150),-1\]) \@ \doublespace
+
+```{=tex}
+\subsubsection{Process for reference coding. (Not manually done)}
+\begin{itemize}
+  \item For a nominal $X$ with $K$ categories, define $K$ indicator variables.
+  \item Choose a reference (referent) category:
+  \item Leave it out
+  \item Use remaining $K-1$ in the regression.
+  \item Often, the largest category is chosen as the reference category.
+\end{itemize}
+```
+Area has 4 levels, so we would need 3 indicator variables. \R{R} always
+uses the first level of a factor variable as the reference level. Since
+we have not specified a different order, this means it will be
+alphabetical and Burbank is the chosen as the reference group. Since we
+already have 3 other variables in the model (age, height, sex), our $j$
+starts at 4.
+
+```{=tex}
+\begin{itemize}
+  \item Let $x_{4}=1$ when \R{AREA='Lancaster'}, and 0 otherwise,
+  \item let $x_{5}=1$ when \R{AREA='Long Beach'}, and 0 otherwise,
+  \item let $x_{6}=1$ when \R{AREA='Glendora'}, and 0 otherwise.
+\end{itemize}
+```
+The mathematical model would look like:
+
+```{=tex}
+\begin{equation}
+  Y =  \beta_{0} + \beta_{1}*x_{age} + \beta_{2}x_{ht} + \beta_{3}x_{sex} + \beta_{4}x_{4} + \beta_{5}x_{5} + \beta_{6}x_{6} \epsilon
+\end{equation}
+```
+The coefficients for the other levels of the categorical variable are
+interpreted as the effect of that variable on the outcome in
+\emph{compared to} the reference level.
+
+```{=tex}
+\begin{figure}[!h]
+\begin{center}
+    \includegraphics[scale=.6]{"figure/fev.mlr.png"}
+\end{center}
+\end{figure}
+```
+\vspace{-1cm}
+
+```{=tex}
+\begin{itemize}
+  \item $b_{0}$: For a female who lives in Burbank, is 0 years old and 0in tall has an expected FEV1 of -2.3L. 
+  \item $b_{4}$ Controlling for age, and gender, a person who lives in Lancaster has .06 (-.25, .37) higher lung function than a person living in Burbank.
+  \item $b_{5}$ Controlling for age, and gender, a person who lives in Long Beach has .21 (-.16, .60) higher lung function than a person who lives in Burbank.
+  \item $b_{6}$ Controlling for age, and gender, a person who lives in Glendora has .15 (-.15, .45) higher lung function than a person who lives in Burbank.
+\end{itemize}
+```
+None of these differences are significant, so we can conclude that after
+controlling for age, height, and gender, residential area does not have
+an effect on the persons lung function. This can also be noticed by the
+lack of increase in the $R^{2}$ value.
+
+\newpage
