@@ -1,0 +1,73 @@
+---
+title: "Introduction to Regression modeling" # title 
+subtitle: "Everything is a linear model" # sub title
+---
+
+```{r}
+source(here::here("topics/common_code.R"))
+this_topic <- topic_mats %>% 
+  filter(Order %/% 1 == 8, 
+         !grepl("PROJECT", Topic))
+
+header <- this_topic[1,]
+content <- this_topic[-1,]
+```
+
+## Learning Path
+
+### Where we've been  
+Learning how to statistically assess the relationship between two variables. 
+
+
+### Where we're at
+Learning the fundamentals of linear regression, a foundational method of modeling for many types of analyses. We'll start with simple linear regression, a model that describes the relationship between two quantitative variables as a straight line.
+
+Then we'll expand that model to include multiple predictors of varying types. 
+
+And then we'll make it even more generalizable by transforming the response variable $y$ and modeling a log transformed outcome, and a binary outcome using the same regression modeling framework. 
+
+
+### Objectives
+
+```{r}
+create_tabled_list(header$topic_obj)
+```
+
+
+## Learning Materials
+
+This section uses the the [Lung function](https://www.norcalbiostat.com/data/#Lung_Function) dataset and the following packages:
+
+* Plotting: [ggplot2](https://ggplot2.tidyverse.org), [ggdist](https://mjskay.github.io/ggdist/index.html), [sjPlot](https://strengejacke.github.io/sjPlot/),[gridExtra](https://cran.r-project.org/web/packages/gridExtra/index.html)
+* Presenting results: [broom](https://broom.tidymodels.org), [gtsummary](https://www.danieldsjoberg.com/gtsummary/)
+* Assumption checking: [performance](https://easystats.github.io/performance/)
+
+See PMA6 Appendix for more details about the Lung data. 
+
+> Note: Regression is such a big deal, there are MANY functions in MANY packages that help you get out the relevant information out of the model, and display it in many different ways. I will show several in the slides. 
+
+
+{{< fa person-chalkboard >}}  **Slides (Will open in full screen. Right click to open in a new tab)**
+
+```{r}
+create_tabled_list(content$Slides)
+```
+
+:books:  **Reading** 
+
+```{r}
+create_tabled_list(content$Reading)
+```
+
+
+## Assignments
+
+```{r}
+create_tabled_list(content$Activities)
+```
+
+## Assessment
+
+```{r}
+create_tabled_list(content$Assess)
+```
