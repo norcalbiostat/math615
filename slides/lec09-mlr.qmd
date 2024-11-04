@@ -302,7 +302,7 @@ In this model `BIOL.SEX` is a categorical variable with levels `Male` and `Femal
 
 The fitted regression equation for the model with gender is
 
-$$ \hat{y} = -2.24 - 0.02*AGE + 0.11*HEIGHT - 0.64*I(BIOL.SEX==`Male`) $$
+$$ \hat{y} = -2.24 - 0.02*AGE + 0.11*HEIGHT - 0.64*I(BIOL.SEX==`Female`) $$
 
 -   $b_{0}:$ For a male who is 0 years old and 0 cm tall, their FEV is
     -2.24L.
@@ -377,15 +377,17 @@ lm(FEV1 ~ AGE + HEIGHT + BIOL.SEX + AREA , data=fev_long) |>
 ## What's going on? {.smaller}
 
 * Binary indicators variables were automatically created where a 1 indicates if a person is from that area. 
-* Someone from Burbank has 0's for all of the three indicator variables
-* Someone from Lancaster only has a 1 in the `AREALancaster` variable and 0 otherwise. 
-* Etc for each other area. This is called _factor coding_ (aka "dummy coding", reference coding, or one-hot encoding)
 
 ```{r, echo=FALSE}
 a <- model.matrix(FEV1 ~ AREA, data=fev_long)
 cbind(AREA = c("Burbank", "Glendora", "Lancaster", "Long Beach"), 
       a[c(1,185,49,150),-1]) 
 ```
+
+* Someone from Burbank has 0's for all of the three indicator variables
+* Someone from Lancaster only has a 1 in the `AREALancaster` variable and 0 otherwise. 
+* Etc for each other area. This is called _factor coding_ (aka "dummy coding", reference coding, or one-hot encoding)
+
 
 
 ## Process for reference coding. 
@@ -410,9 +412,9 @@ $$
 
 where 
 
-* $x_{4}=1$ when \R{AREA='Lancaster'}, and 0 otherwise
-* $x_{5}=1$ when \R{AREA='Long Beach'}, and 0 otherwise
-* $x_{6}=1$ when \R{AREA='Glendora'}, and 0 otherwise
+* $x_{4}=1$ when `AREA='Lancaster'`, and 0 otherwise
+* $x_{5}=1$ when `AREA='Long Beach'`, and 0 otherwise
+* $x_{6}=1$ when `AREA='Glendora'`, and 0 otherwise
 
 The coefficients for the other levels of the categorical variable are interpreted as the effect of that variable on the outcome in _compared to_ the reference level.
 
@@ -431,14 +433,14 @@ lm(FEV1 ~ AGE + HEIGHT + BIOL.SEX + AREA , data=fev_long) |>
 
 ::: {.column width="70%"}
 * $b_{0}$: For a male who lives in Burbank, is 0 years old and 0in tall has an expected FEV1 of -2.3L. 
-* $b_{4}$ Controlling for age, and gender, a person who lives in Lancaster has .06 (-.25, .37) higher lung function than a person living in Burbank.
-* $b_{5}$ Controlling for age, and gender, a person who lives in Long Beach has .21 (-.16, .60) higher lung function than a person who lives in Burbank.
-* $b_{6}$ Controlling for age, and gender, a person who lives in Glendora has .15 (-.15, .45) higher lung function than a person who lives in Burbank.
+* $b_{4}$ Controlling for age, height and biological sex, a person who lives in Lancaster has .03 (-.14, .20) higher lung function than a person living in Burbank.
+* $b_{5}$ Controlling for age, height and biological sex, a person who lives in Long Beach has .06 (-.14, .27) higher lung function than a person who lives in Burbank.
+* $b_{6}$ Holding other variables constant, a person who lives in Glendora has .12 (-.04, .28) higher lung function than a person who lives in Burbank.
 :::
 
 ::::
 
-None of these differences are significant, so we can conclude that after controlling for age, height, and gender, residential area does not have an effect on the persons lung function. This can also be noticed by the lack of increase in the $R^{2}$ value compared to the simpler model
+None of these differences are significant, so we can conclude that after controlling for age, height and biological sex, residential area does not have an effect on the persons lung function. This can also be noticed by the lack of increase in the $R^{2}$ value compared to the simpler model
 
 
 
