@@ -1,0 +1,167 @@
+---
+title: "HW 09: Fitting Multiple Regression models"
+author: YOUR NAME HERE
+execute:
+  echo: true
+  warning: false
+  message: false
+format: 
+  html: 
+    toc: false
+---
+
+```{r}
+# put the code to load any necessary R libraries and read in your cleaned data here. Delete this text afterward.
+```
+
+# Part 1 - Model fitting & Interpretation
+
+## **Model 1** Multiple Linear Regression
+
+### 1. Define your variables and write the mathematical model.
+
+* Let $y$ be the quantitative outcome measure of ....
+* Let $x_{1}$ be the quantitative predictor variable of .... 
+* Let $x_{2}$ be a binary indicator of .... 
+
+$$y = \beta_{0} + \beta_{1}x_{1} + \beta_{2}x_{2}$$
+### 2. Visualize and describe the relationships. Make a statement whether or not you think a relationship exists. 
+
+```{r}
+#| fig-width: 4
+#| fig-height: 4
+
+
+```
+
+
+### 3. Fit the model and create a summary table. 
+
+
+
+### 4. Interpret ALL regression coefficients
+
+* $b_{0}$: 
+* $b_{1}$: 
+* $b_{2}$: 
+
+### 5. Assess model fit
+
+```{r}
+#| fig-height: 8
+
+```
+
+----
+
+## **Model 2** Multiple Linear Regression with a Categorical Predictor
+
+### 1. Define your variables and write the mathematical model.
+
+* Let $y$ be the quantitative outcome measure of ....
+* Let $x_{1}$ be the quantitative predictor variable of .... 
+* Let $x_{2}$ be a binary indicator of .... 
+
+Categorical Predictor: ...
+
+* Let $x_{3}=1$ when ..., and 0 otherwise,
+* let $x_{4}=1$ when ..., and 0 otherwise,
+
+> add as many x's here as you need for each category
+
+The reference group for `YOUR CAT VAR` is `LEVEL`. 
+
+The mathematical model would look like: 
+
+
+
+### 2. Visualize and describe the relationships. Make a statement whether or not you think a relationship exists. 
+
+
+### 3. Fit the model and create a summary table. 
+
+
+### 4. Interpret ALL regression coefficients
+
+
+### 5. Assess model fit
+
+
+----
+
+## **Model 3** Log Transformed Response 
+
+### 1. Define your variables and write the mathematical model.
+
+### 2. Visualize and describe the relationships. Make a statement whether or not you think a relationship exists. 
+
+
+### 3. Fit the model and create a summary table. 
+
+
+
+### 4. Interpret non-intercept regression coefficients
+
+
+
+### 5. Assess model fit
+
+----
+
+## **Model 4** Logistic Regression
+
+### 1. Define your variables and write the mathematical model.
+
+* Let $y$ be a binary indicator for .... 
+* Let $p$ be the probability that ....
+* Let $x_{1}$ be the quantitative predictor variable ....
+* Let $x_{2}$ be a binary indicator ....
+
+$$log\Big(\frac{p}{1-p}\Big) \sim \beta_{0} + \beta_{1}x_{1} + \beta_{1}x_{2}$$
+
+### 2. Visualize and describe the relationships. Make a statement whether or not you think a relationship exists. 
+
+
+### 3. Fit the model and create a summary table. 
+
+
+### 4. Interpret ALL regression coefficients
+
+* $b_{0}$: 
+* $b_{1}$: 
+* $b_{2}$: 
+
+### 5. Assess model fit
+
+
+
+## Part II Model Comparison
+
+
+> I left the code here for you. Once you update your model names (if needed) then remove the "eval = FALSE" code chunk option and this should run. 
+
+```{r}
+#| eval: false
+# set some nice themes
+theme_gtsummary_journal(journal = "jama")
+theme_gtsummary_compact()
+
+tbl1 <- model1 |> 
+  tbl_regression(intercept=TRUE) |> 
+  add_glance_table(include = c(adj.r.squared, sigma, AIC, BIC, nobs))
+
+tbl2 <- model2 |> 
+  tbl_regression(intercept=TRUE) |> 
+  add_glance_table(include = c(adj.r.squared, sigma, AIC, BIC, nobs))
+
+tbl_merge(
+  tbls = list(tbl1, tbl2),
+  tab_spanner = c("**Model 1**", "**Model 2**")) |>
+  modify_table_body(~.x |>
+          dplyr::arrange(row_type == "glance_statistic"))
+
+```
+
+
+
+
