@@ -8,11 +8,11 @@
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.3.319">
+  <meta name="generator" content="quarto-1.5.57">
 
   <meta name="author" content="Robin Donatello">
   <meta name="dcterms.date" content="2024-09-16">
-  <title>Data Analysis for Graduate Research - Describing Distributions of Data</title>
+  <title>Data Analysis for Graduate Research – Describing Distributions of Data</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -32,7 +32,7 @@
     }
     /* CSS for syntax highlighting */
     pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span { line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
     .sourceCode { overflow: visible; }
     code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -43,7 +43,7 @@
     }
     @media print {
     pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
     }
     pre.numberSource code
       { counter-reset: source-line 0; }
@@ -71,7 +71,7 @@
     code span.at { color: #657422; } /* Attribute */
     code span.bn { color: #ad0000; } /* BaseN */
     code span.bu { } /* BuiltIn */
-    code span.cf { color: #003b4f; } /* ControlFlow */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
     code span.ch { color: #20794d; } /* Char */
     code span.cn { color: #8f5902; } /* Constant */
     code span.co { color: #5e5e5e; } /* Comment */
@@ -85,7 +85,7 @@
     code span.fu { color: #4758ab; } /* Function */
     code span.im { color: #00769e; } /* Import */
     code span.in { color: #5e5e5e; } /* Information */
-    code span.kw { color: #003b4f; } /* Keyword */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
     code span.op { color: #5e5e5e; } /* Operator */
     code span.ot { color: #003b4f; } /* Other */
     code span.pp { color: #ad0000; } /* Preprocessor */
@@ -96,7 +96,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css" id="theme">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -224,7 +224,8 @@
   }
 
   .callout.callout-titled .callout-body > .callout-content > :last-child {
-    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    margin-bottom: 0;
   }
 
   .callout.callout-titled .callout-icon::before {
@@ -460,10 +461,10 @@ Robin Donatello
 <section id="meet-the-palmer-penguins" class="slide level2">
 <h2>Meet the Palmer Penguins</h2>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(palmerpenguins)</span>
-<span id="cb1-2"><a href="#cb1-2"></a>pen <span class="ot">&lt;-</span> penguins <span class="co"># because i don't want to type out penguins every time</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">library</span>(palmerpenguins)</span>
+<span id="cb1-2"><a></a>pen <span class="ot">&lt;-</span> penguins <span class="co"># because i don't want to type out penguins every time</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -475,9 +476,9 @@ Robin Donatello
 <div id="tabset-1-1">
 <p><strong>Frequencies (N)</strong></p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">table</span>(pen<span class="sc">$</span>species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">table</span>(pen<span class="sc">$</span>species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -487,9 +488,9 @@ Robin Donatello
 </div>
 <p><strong>Percents (%)</strong></p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">table</span>(pen<span class="sc">$</span>species) <span class="sc">|&gt;</span> <span class="fu">proportions</span>() <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="at">digits=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">table</span>(pen<span class="sc">$</span>species) <span class="sc">|&gt;</span> <span class="fu">proportions</span>() <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="at">digits=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -501,12 +502,16 @@ Robin Donatello
 </div>
 <div id="tabset-1-2">
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>sjPlot<span class="sc">::</span><span class="fu">plot_frq</span>(pen<span class="sc">$</span>species) <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">"Species"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>sjPlot<span class="sc">::</span><span class="fu">plot_frq</span>(pen<span class="sc">$</span>species) <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">"Species"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
+<div>
+<figure>
 <p><img data-src="lec04-describing_distributions_files/figure-revealjs/unnamed-chunk-4-1.png" width="960"></p>
+</figure>
+</div>
 </div>
 </div>
 </div>
@@ -529,9 +534,9 @@ Robin Donatello
 <div class="tab-content">
 <div id="tabset-2-1">
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">summary</span>(pen<span class="sc">$</span>bill_depth_mm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">summary</span>(pen<span class="sc">$</span>bill_depth_mm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
@@ -544,48 +549,55 @@ Robin Donatello
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>ggpubr<span class="sc">::</span><span class="fu">gghistogram</span>(pen<span class="sc">$</span>bill_depth_mm, <span class="at">add_density =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>ggpubr<span class="sc">::</span><span class="fu">gghistogram</span>(pen<span class="sc">$</span>bill_depth_mm, <span class="at">add_density =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
+<div>
+<figure>
 <p><img data-src="lec04-describing_distributions_files/figure-revealjs/unnamed-chunk-6-1.png" width="960"></p>
+</figure>
+</div>
 </div>
 </div>
 </div><div class="column" style="width:50%;">
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>ggpubr<span class="sc">::</span><span class="fu">ggviolin</span>(pen<span class="sc">$</span>bill_depth_mm, <span class="at">add =</span> <span class="fu">c</span>(<span class="st">"jitter"</span>, <span class="st">"boxplot"</span>)) <span class="sc">+</span> <span class="fu">coord_flip</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>ggpubr<span class="sc">::</span><span class="fu">ggviolin</span>(pen<span class="sc">$</span>bill_depth_mm, <span class="at">add =</span> <span class="fu">c</span>(<span class="st">"jitter"</span>, <span class="st">"boxplot"</span>)) <span class="sc">+</span> <span class="fu">coord_flip</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
+<div>
+<figure>
 <p><img data-src="lec04-describing_distributions_files/figure-revealjs/unnamed-chunk-7-1.png" width="960"></p>
+</figure>
 </div>
 </div>
 </div>
-</div>
+</div></div>
 <p><em>The distribution of bill depth appears to be bimodal with peaks around 15 and 18mm.</em></p>
 </div>
 <div id="tabset-2-3">
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">summary</span>(pen<span class="sc">$</span>bill_depth_mm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="fu">summary</span>(pen<span class="sc">$</span>bill_depth_mm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
   13.10   15.60   17.30   17.15   18.70   21.50       2 </code></pre>
 </div>
-<details>
+<details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">sd</span>(pen<span class="sc">$</span>bill_depth_mm, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="fu">sd</span>(pen<span class="sc">$</span>bill_depth_mm, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1.974793</code></pre>
 </div>
-<details>
+<details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">IQR</span>(pen<span class="sc">$</span>bill_depth_mm, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a><span class="fu">IQR</span>(pen<span class="sc">$</span>bill_depth_mm, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 3.1</code></pre>
@@ -637,32 +649,31 @@ Robin Donatello
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">library</span>(gtsummary)</span>
-<span id="cb17-2"><a href="#cb17-2"></a></span>
-<span id="cb17-3"><a href="#cb17-3"></a>pen <span class="sc">%&gt;%</span> <span class="fu">select</span>(island, bill_depth_mm) <span class="sc">%&gt;%</span></span>
-<span id="cb17-4"><a href="#cb17-4"></a>  <span class="fu">tbl_summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a><span class="fu">library</span>(gtsummary)</span>
+<span id="cb17-2"><a></a></span>
+<span id="cb17-3"><a></a>pen <span class="sc">%&gt;%</span> <span class="fu">select</span>(island, bill_depth_mm) <span class="sc">%&gt;%</span></span>
+<span id="cb17-4"><a></a>  <span class="fu">tbl_summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-
-<div id="tjomkijmva" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#tjomkijmva table {
+<div id="pybynbbual" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#pybynbbual table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#tjomkijmva thead, #tjomkijmva tbody, #tjomkijmva tfoot, #tjomkijmva tr, #tjomkijmva td, #tjomkijmva th {
+#pybynbbual thead, #pybynbbual tbody, #pybynbbual tfoot, #pybynbbual tr, #pybynbbual td, #pybynbbual th {
   border-style: none;
 }
 
-#tjomkijmva p {
+#pybynbbual p {
   margin: 0;
   padding: 0;
 }
 
-#tjomkijmva .gt_table {
+#pybynbbual .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -688,12 +699,12 @@ Robin Donatello
   border-left-color: #D3D3D3;
 }
 
-#tjomkijmva .gt_caption {
+#pybynbbual .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#tjomkijmva .gt_title {
+#pybynbbual .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -705,7 +716,7 @@ Robin Donatello
   border-bottom-width: 0;
 }
 
-#tjomkijmva .gt_subtitle {
+#pybynbbual .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -717,7 +728,7 @@ Robin Donatello
   border-top-width: 0;
 }
 
-#tjomkijmva .gt_heading {
+#pybynbbual .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -729,13 +740,13 @@ Robin Donatello
   border-right-color: #D3D3D3;
 }
 
-#tjomkijmva .gt_bottom_border {
+#pybynbbual .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#tjomkijmva .gt_col_headings {
+#pybynbbual .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -750,7 +761,7 @@ Robin Donatello
   border-right-color: #D3D3D3;
 }
 
-#tjomkijmva .gt_col_heading {
+#pybynbbual .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -770,7 +781,7 @@ Robin Donatello
   overflow-x: hidden;
 }
 
-#tjomkijmva .gt_column_spanner_outer {
+#pybynbbual .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -782,15 +793,15 @@ Robin Donatello
   padding-right: 4px;
 }
 
-#tjomkijmva .gt_column_spanner_outer:first-child {
+#pybynbbual .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#tjomkijmva .gt_column_spanner_outer:last-child {
+#pybynbbual .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#tjomkijmva .gt_column_spanner {
+#pybynbbual .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -802,11 +813,11 @@ Robin Donatello
   width: 100%;
 }
 
-#tjomkijmva .gt_spanner_row {
+#pybynbbual .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#tjomkijmva .gt_group_heading {
+#pybynbbual .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -832,7 +843,7 @@ Robin Donatello
   text-align: left;
 }
 
-#tjomkijmva .gt_empty_group_heading {
+#pybynbbual .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -847,15 +858,15 @@ Robin Donatello
   vertical-align: middle;
 }
 
-#tjomkijmva .gt_from_md > :first-child {
+#pybynbbual .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#tjomkijmva .gt_from_md > :last-child {
+#pybynbbual .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#tjomkijmva .gt_row {
+#pybynbbual .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -874,7 +885,7 @@ Robin Donatello
   overflow-x: hidden;
 }
 
-#tjomkijmva .gt_stub {
+#pybynbbual .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -887,7 +898,7 @@ Robin Donatello
   padding-right: 5px;
 }
 
-#tjomkijmva .gt_stub_row_group {
+#pybynbbual .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -901,15 +912,15 @@ Robin Donatello
   vertical-align: top;
 }
 
-#tjomkijmva .gt_row_group_first td {
+#pybynbbual .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#tjomkijmva .gt_row_group_first th {
+#pybynbbual .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#tjomkijmva .gt_summary_row {
+#pybynbbual .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -919,16 +930,16 @@ Robin Donatello
   padding-right: 5px;
 }
 
-#tjomkijmva .gt_first_summary_row {
+#pybynbbual .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#tjomkijmva .gt_first_summary_row.thick {
+#pybynbbual .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#tjomkijmva .gt_last_summary_row {
+#pybynbbual .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -938,7 +949,7 @@ Robin Donatello
   border-bottom-color: #D3D3D3;
 }
 
-#tjomkijmva .gt_grand_summary_row {
+#pybynbbual .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -948,7 +959,7 @@ Robin Donatello
   padding-right: 5px;
 }
 
-#tjomkijmva .gt_first_grand_summary_row {
+#pybynbbual .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -958,7 +969,7 @@ Robin Donatello
   border-top-color: #D3D3D3;
 }
 
-#tjomkijmva .gt_last_grand_summary_row_top {
+#pybynbbual .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -968,11 +979,11 @@ Robin Donatello
   border-bottom-color: #D3D3D3;
 }
 
-#tjomkijmva .gt_striped {
+#pybynbbual .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#tjomkijmva .gt_table_body {
+#pybynbbual .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -981,7 +992,7 @@ Robin Donatello
   border-bottom-color: #D3D3D3;
 }
 
-#tjomkijmva .gt_footnotes {
+#pybynbbual .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -995,7 +1006,7 @@ Robin Donatello
   border-right-color: #D3D3D3;
 }
 
-#tjomkijmva .gt_footnote {
+#pybynbbual .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1004,7 +1015,7 @@ Robin Donatello
   padding-right: 5px;
 }
 
-#tjomkijmva .gt_sourcenotes {
+#pybynbbual .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1018,7 +1029,7 @@ Robin Donatello
   border-right-color: #D3D3D3;
 }
 
-#tjomkijmva .gt_sourcenote {
+#pybynbbual .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1026,127 +1037,139 @@ Robin Donatello
   padding-right: 5px;
 }
 
-#tjomkijmva .gt_left {
+#pybynbbual .gt_left {
   text-align: left;
 }
 
-#tjomkijmva .gt_center {
+#pybynbbual .gt_center {
   text-align: center;
 }
 
-#tjomkijmva .gt_right {
+#pybynbbual .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#tjomkijmva .gt_font_normal {
+#pybynbbual .gt_font_normal {
   font-weight: normal;
 }
 
-#tjomkijmva .gt_font_bold {
+#pybynbbual .gt_font_bold {
   font-weight: bold;
 }
 
-#tjomkijmva .gt_font_italic {
+#pybynbbual .gt_font_italic {
   font-style: italic;
 }
 
-#tjomkijmva .gt_super {
+#pybynbbual .gt_super {
   font-size: 65%;
 }
 
-#tjomkijmva .gt_footnote_marks {
+#pybynbbual .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#tjomkijmva .gt_asterisk {
+#pybynbbual .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#tjomkijmva .gt_indent_1 {
+#pybynbbual .gt_indent_1 {
   text-indent: 5px;
 }
 
-#tjomkijmva .gt_indent_2 {
+#pybynbbual .gt_indent_2 {
   text-indent: 10px;
 }
 
-#tjomkijmva .gt_indent_3 {
+#pybynbbual .gt_indent_3 {
   text-indent: 15px;
 }
 
-#tjomkijmva .gt_indent_4 {
+#pybynbbual .gt_indent_4 {
   text-indent: 20px;
 }
 
-#tjomkijmva .gt_indent_5 {
+#pybynbbual .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-  <thead>
-    <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="<strong>Characteristic</strong>"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="<strong>N = 344</strong><span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;><sup>1</sup></span>"><strong>N = 344</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr><td headers="label" class="gt_row gt_left">island</td>
-<td headers="stat_0" class="gt_row gt_center"><br></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Biscoe</td>
-<td headers="stat_0" class="gt_row gt_center">168 (49%)</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Dream</td>
-<td headers="stat_0" class="gt_row gt_center">124 (36%)</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Torgersen</td>
-<td headers="stat_0" class="gt_row gt_center">52 (15%)</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">bill_depth_mm</td>
-<td headers="stat_0" class="gt_row gt_center">17.30 (15.60, 18.70)</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Unknown</td>
-<td headers="stat_0" class="gt_row gt_center">2</td></tr>
-  </tbody>
-  
-  <tfoot class="gt_footnotes">
-    <tr>
-      <td class="gt_footnote" colspan="2"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> n (%); Median (IQR)</td>
-    </tr>
-  </tfoot>
+
+<table class="gt_table caption-top" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_col_headings">
+<th id="<strong>Characteristic</strong>" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"><strong>Characteristic</strong></th>
+<th id="<strong>N = 344</strong><span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;><sup>1</sup></span>" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>N = 344</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">island</td>
+<td class="gt_row gt_center" headers="stat_0"></td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Biscoe</td>
+<td class="gt_row gt_center" headers="stat_0">168 (49%)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Dream</td>
+<td class="gt_row gt_center" headers="stat_0">124 (36%)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Torgersen</td>
+<td class="gt_row gt_center" headers="stat_0">52 (15%)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">bill_depth_mm</td>
+<td class="gt_row gt_center" headers="stat_0">17.30 (15.60, 18.70)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Unknown</td>
+<td class="gt_row gt_center" headers="stat_0">2</td>
+</tr>
+</tbody><tfoot class="gt_footnotes">
+<tr class="odd">
+<td colspan="2" class="gt_footnote"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> n (%); Median (IQR)</td>
+</tr>
+</tfoot>
+
 </table>
+
 </div>
 </div>
 </div>
 <p>Default</p>
 </div><div class="column" style="width:50%;">
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>pen <span class="sc">%&gt;%</span> <span class="fu">select</span>(island, bill_depth_mm) <span class="sc">%&gt;%</span></span>
-<span id="cb18-2"><a href="#cb18-2"></a>  <span class="fu">tbl_summary</span>(<span class="at">statistic =</span> <span class="fu">list</span>(</span>
-<span id="cb18-3"><a href="#cb18-3"></a>      <span class="fu">all_continuous</span>() <span class="sc">~</span> <span class="st">"{mean} ({sd})"</span>,</span>
-<span id="cb18-4"><a href="#cb18-4"></a>      <span class="fu">all_categorical</span>() <span class="sc">~</span> <span class="st">"{n} / {N} ({p}%)"</span></span>
-<span id="cb18-5"><a href="#cb18-5"></a>    ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a>pen <span class="sc">%&gt;%</span> <span class="fu">select</span>(island, bill_depth_mm) <span class="sc">%&gt;%</span></span>
+<span id="cb18-2"><a></a>  <span class="fu">tbl_summary</span>(<span class="at">statistic =</span> <span class="fu">list</span>(</span>
+<span id="cb18-3"><a></a>      <span class="fu">all_continuous</span>() <span class="sc">~</span> <span class="st">"{mean} ({sd})"</span>,</span>
+<span id="cb18-4"><a></a>      <span class="fu">all_categorical</span>() <span class="sc">~</span> <span class="st">"{n} / {N} ({p}%)"</span></span>
+<span id="cb18-5"><a></a>    ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-
-<div id="kskqwgoevz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#kskqwgoevz table {
+<div id="aqynkqdfcj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#aqynkqdfcj table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#kskqwgoevz thead, #kskqwgoevz tbody, #kskqwgoevz tfoot, #kskqwgoevz tr, #kskqwgoevz td, #kskqwgoevz th {
+#aqynkqdfcj thead, #aqynkqdfcj tbody, #aqynkqdfcj tfoot, #aqynkqdfcj tr, #aqynkqdfcj td, #aqynkqdfcj th {
   border-style: none;
 }
 
-#kskqwgoevz p {
+#aqynkqdfcj p {
   margin: 0;
   padding: 0;
 }
 
-#kskqwgoevz .gt_table {
+#aqynkqdfcj .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1172,12 +1195,12 @@ Robin Donatello
   border-left-color: #D3D3D3;
 }
 
-#kskqwgoevz .gt_caption {
+#aqynkqdfcj .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#kskqwgoevz .gt_title {
+#aqynkqdfcj .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1189,7 +1212,7 @@ Robin Donatello
   border-bottom-width: 0;
 }
 
-#kskqwgoevz .gt_subtitle {
+#aqynkqdfcj .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1201,7 +1224,7 @@ Robin Donatello
   border-top-width: 0;
 }
 
-#kskqwgoevz .gt_heading {
+#aqynkqdfcj .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1213,13 +1236,13 @@ Robin Donatello
   border-right-color: #D3D3D3;
 }
 
-#kskqwgoevz .gt_bottom_border {
+#aqynkqdfcj .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#kskqwgoevz .gt_col_headings {
+#aqynkqdfcj .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1234,7 +1257,7 @@ Robin Donatello
   border-right-color: #D3D3D3;
 }
 
-#kskqwgoevz .gt_col_heading {
+#aqynkqdfcj .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1254,7 +1277,7 @@ Robin Donatello
   overflow-x: hidden;
 }
 
-#kskqwgoevz .gt_column_spanner_outer {
+#aqynkqdfcj .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1266,15 +1289,15 @@ Robin Donatello
   padding-right: 4px;
 }
 
-#kskqwgoevz .gt_column_spanner_outer:first-child {
+#aqynkqdfcj .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#kskqwgoevz .gt_column_spanner_outer:last-child {
+#aqynkqdfcj .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#kskqwgoevz .gt_column_spanner {
+#aqynkqdfcj .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1286,11 +1309,11 @@ Robin Donatello
   width: 100%;
 }
 
-#kskqwgoevz .gt_spanner_row {
+#aqynkqdfcj .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#kskqwgoevz .gt_group_heading {
+#aqynkqdfcj .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1316,7 +1339,7 @@ Robin Donatello
   text-align: left;
 }
 
-#kskqwgoevz .gt_empty_group_heading {
+#aqynkqdfcj .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1331,15 +1354,15 @@ Robin Donatello
   vertical-align: middle;
 }
 
-#kskqwgoevz .gt_from_md > :first-child {
+#aqynkqdfcj .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#kskqwgoevz .gt_from_md > :last-child {
+#aqynkqdfcj .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#kskqwgoevz .gt_row {
+#aqynkqdfcj .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1358,7 +1381,7 @@ Robin Donatello
   overflow-x: hidden;
 }
 
-#kskqwgoevz .gt_stub {
+#aqynkqdfcj .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1371,7 +1394,7 @@ Robin Donatello
   padding-right: 5px;
 }
 
-#kskqwgoevz .gt_stub_row_group {
+#aqynkqdfcj .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1385,15 +1408,15 @@ Robin Donatello
   vertical-align: top;
 }
 
-#kskqwgoevz .gt_row_group_first td {
+#aqynkqdfcj .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#kskqwgoevz .gt_row_group_first th {
+#aqynkqdfcj .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#kskqwgoevz .gt_summary_row {
+#aqynkqdfcj .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1403,16 +1426,16 @@ Robin Donatello
   padding-right: 5px;
 }
 
-#kskqwgoevz .gt_first_summary_row {
+#aqynkqdfcj .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#kskqwgoevz .gt_first_summary_row.thick {
+#aqynkqdfcj .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#kskqwgoevz .gt_last_summary_row {
+#aqynkqdfcj .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1422,7 +1445,7 @@ Robin Donatello
   border-bottom-color: #D3D3D3;
 }
 
-#kskqwgoevz .gt_grand_summary_row {
+#aqynkqdfcj .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1432,7 +1455,7 @@ Robin Donatello
   padding-right: 5px;
 }
 
-#kskqwgoevz .gt_first_grand_summary_row {
+#aqynkqdfcj .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1442,7 +1465,7 @@ Robin Donatello
   border-top-color: #D3D3D3;
 }
 
-#kskqwgoevz .gt_last_grand_summary_row_top {
+#aqynkqdfcj .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1452,11 +1475,11 @@ Robin Donatello
   border-bottom-color: #D3D3D3;
 }
 
-#kskqwgoevz .gt_striped {
+#aqynkqdfcj .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#kskqwgoevz .gt_table_body {
+#aqynkqdfcj .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1465,7 +1488,7 @@ Robin Donatello
   border-bottom-color: #D3D3D3;
 }
 
-#kskqwgoevz .gt_footnotes {
+#aqynkqdfcj .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1479,7 +1502,7 @@ Robin Donatello
   border-right-color: #D3D3D3;
 }
 
-#kskqwgoevz .gt_footnote {
+#aqynkqdfcj .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1488,7 +1511,7 @@ Robin Donatello
   padding-right: 5px;
 }
 
-#kskqwgoevz .gt_sourcenotes {
+#aqynkqdfcj .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1502,7 +1525,7 @@ Robin Donatello
   border-right-color: #D3D3D3;
 }
 
-#kskqwgoevz .gt_sourcenote {
+#aqynkqdfcj .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1510,103 +1533,117 @@ Robin Donatello
   padding-right: 5px;
 }
 
-#kskqwgoevz .gt_left {
+#aqynkqdfcj .gt_left {
   text-align: left;
 }
 
-#kskqwgoevz .gt_center {
+#aqynkqdfcj .gt_center {
   text-align: center;
 }
 
-#kskqwgoevz .gt_right {
+#aqynkqdfcj .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#kskqwgoevz .gt_font_normal {
+#aqynkqdfcj .gt_font_normal {
   font-weight: normal;
 }
 
-#kskqwgoevz .gt_font_bold {
+#aqynkqdfcj .gt_font_bold {
   font-weight: bold;
 }
 
-#kskqwgoevz .gt_font_italic {
+#aqynkqdfcj .gt_font_italic {
   font-style: italic;
 }
 
-#kskqwgoevz .gt_super {
+#aqynkqdfcj .gt_super {
   font-size: 65%;
 }
 
-#kskqwgoevz .gt_footnote_marks {
+#aqynkqdfcj .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#kskqwgoevz .gt_asterisk {
+#aqynkqdfcj .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#kskqwgoevz .gt_indent_1 {
+#aqynkqdfcj .gt_indent_1 {
   text-indent: 5px;
 }
 
-#kskqwgoevz .gt_indent_2 {
+#aqynkqdfcj .gt_indent_2 {
   text-indent: 10px;
 }
 
-#kskqwgoevz .gt_indent_3 {
+#aqynkqdfcj .gt_indent_3 {
   text-indent: 15px;
 }
 
-#kskqwgoevz .gt_indent_4 {
+#aqynkqdfcj .gt_indent_4 {
   text-indent: 20px;
 }
 
-#kskqwgoevz .gt_indent_5 {
+#aqynkqdfcj .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-  <thead>
-    <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="<strong>Characteristic</strong>"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="<strong>N = 344</strong><span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;><sup>1</sup></span>"><strong>N = 344</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr><td headers="label" class="gt_row gt_left">island</td>
-<td headers="stat_0" class="gt_row gt_center"><br></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Biscoe</td>
-<td headers="stat_0" class="gt_row gt_center">168 / 344 (49%)</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Dream</td>
-<td headers="stat_0" class="gt_row gt_center">124 / 344 (36%)</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Torgersen</td>
-<td headers="stat_0" class="gt_row gt_center">52 / 344 (15%)</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">bill_depth_mm</td>
-<td headers="stat_0" class="gt_row gt_center">17.15 (1.97)</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Unknown</td>
-<td headers="stat_0" class="gt_row gt_center">2</td></tr>
-  </tbody>
-  
-  <tfoot class="gt_footnotes">
-    <tr>
-      <td class="gt_footnote" colspan="2"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> n / N (%); Mean (SD)</td>
-    </tr>
-  </tfoot>
+
+<table class="gt_table caption-top" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_col_headings">
+<th id="<strong>Characteristic</strong>" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"><strong>Characteristic</strong></th>
+<th id="<strong>N = 344</strong><span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;><sup>1</sup></span>" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>N = 344</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">island</td>
+<td class="gt_row gt_center" headers="stat_0"></td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Biscoe</td>
+<td class="gt_row gt_center" headers="stat_0">168 / 344 (49%)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Dream</td>
+<td class="gt_row gt_center" headers="stat_0">124 / 344 (36%)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Torgersen</td>
+<td class="gt_row gt_center" headers="stat_0">52 / 344 (15%)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">bill_depth_mm</td>
+<td class="gt_row gt_center" headers="stat_0">17.15 (1.97)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Unknown</td>
+<td class="gt_row gt_center" headers="stat_0">2</td>
+</tr>
+</tbody><tfoot class="gt_footnotes">
+<tr class="odd">
+<td colspan="2" class="gt_footnote"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> n / N (%); Mean (SD)</td>
+</tr>
+</tfoot>
+
 </table>
+
 </div>
 </div>
 </div>
 <p>Custom (preferred) summary statistics display</p>
-</div>
-</div>
+</div></div>
 
+<div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 <p><a href="https://math615.netlify.app">🔗 https://math615.netlify.app</a> / Describing Distributions of Data</p>
+</div>
 </div>
 </section></section>
     </div>
@@ -1636,7 +1673,6 @@ Robin Donatello
       Reveal.initialize({
 'controlsAuto': true,
 'previewLinksAuto': false,
-'smaller': false,
 'pdfSeparateFragments': false,
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
@@ -1823,42 +1859,80 @@ Robin Donatello
       });
     </script>
     
+
     <script>
+
       // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+
       // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+
       // slide changes (different for each slide format).
+
       (function () {
+
         // dispatch for htmlwidgets
+
         function fireSlideEnter() {
+
           const event = window.document.createEvent("Event");
+
           event.initEvent("slideenter", true, true);
+
           window.document.dispatchEvent(event);
+
         }
+
+    
 
         function fireSlideChanged(previousSlide, currentSlide) {
+
           fireSlideEnter();
 
+    
+
           // dispatch for shiny
+
           if (window.jQuery) {
+
             if (previousSlide) {
+
               window.jQuery(previousSlide).trigger("hidden");
+
             }
+
             if (currentSlide) {
+
               window.jQuery(currentSlide).trigger("shown");
+
             }
+
           }
+
         }
+
+    
 
         // hookup for slidy
+
         if (window.w3c_slidy) {
+
           window.w3c_slidy.add_observer(function (slide_num) {
+
             // slide_num starts at position 1
+
             fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+
           });
+
         }
 
+    
+
       })();
+
     </script>
+
+    
 
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -1892,18 +1966,7 @@ Robin Donatello
         }
         return false;
       }
-      const clipboard = new window.ClipboardJS('.code-copy-button', {
-        text: function(trigger) {
-          const codeEl = trigger.previousElementSibling.cloneNode(true);
-          for (const childEl of codeEl.children) {
-            if (isCodeAnnotation(childEl)) {
-              childEl.remove();
-            }
-          }
-          return codeEl.innerText;
-        }
-      });
-      clipboard.on('success', function(e) {
+      const onCopySuccess = function(e) {
         // button target
         const button = e.trigger;
         // don't keep focus
@@ -1935,11 +1998,50 @@ Robin Donatello
         }, 1000);
         // clear code selection
         e.clearSelection();
+      }
+      const getTextToCopy = function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+        text: getTextToCopy
       });
-      function tippyHover(el, contentFn) {
+      clipboard.on('success', onCopySuccess);
+      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+        // For code content inside modals, clipBoardJS needs to be initialized with a container option
+        // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+          text: getTextToCopy,
+          container: window.document.getElementById('quarto-embedded-source-code-modal')
+        });
+        clipboardModal.on('success', onCopySuccess);
+      }
+        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+        var mailtoRegex = new RegExp(/^mailto:/);
+          var filterRegex = new RegExp("https:\/\/norcalbiostat\.github\.io\/MATH615");
+        var isInternal = (href) => {
+            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+        }
+        // Inspect non-navigation links and adorn them if external
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+        for (var i=0; i<links.length; i++) {
+          const link = links[i];
+          if (!isInternal(link.href)) {
+            // undo the damage that might have been done by quarto-nav.js in the case of
+            // links that we want to consider external
+            if (link.dataset.originalHref !== undefined) {
+              link.href = link.dataset.originalHref;
+            }
+          }
+        }
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
         const config = {
           allowHTML: true,
-          content: contentFn,
           maxWidth: 500,
           delay: 100,
           arrow: false,
@@ -1949,8 +2051,17 @@ Robin Donatello
           interactive: true,
           interactiveBorder: 10,
           theme: 'light-border',
-          placement: 'bottom-start'
+          placement: 'bottom-start',
         };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
           config['offset'] = [0,0];
           config['maxWidth'] = 700;
         window.tippy(el, config); 
@@ -1964,7 +2075,11 @@ Robin Donatello
           try { href = new URL(href).hash; } catch {}
           const id = href.replace(/^#\/?/, "");
           const note = window.document.getElementById(id);
-          return note.innerHTML;
+          if (note) {
+            return note.innerHTML;
+          } else {
+            return "";
+          }
         });
       }
       const findCites = (el) => {
