@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.6.42">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -34,12 +34,12 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-1fa1d8026083a9bddc52b4aafc7f818e.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-8e00f2f28a1266a720913de837032221.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-537481bfe015df53df3b7df97744b3f1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-67d3852cf9cc28ec60cf29f0afff8e14.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -154,6 +154,10 @@ window.Quarto = {
         <li>
     <a class="dropdown-item" href="../author_guide.html">
  <span class="dropdown-text">Guide for Authors</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../journal.html">
+ <span class="dropdown-text">Journal of Math 615</span></a>
   </li>  
     </ul>
   </li>
@@ -701,7 +705,7 @@ window.Quarto = {
 <col style="width: 100%">
 </colgroup>
 <thead>
-<tr class="header gt_col_headings">
+<tr class="gt_col_headings header">
 <th id="Items" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Items</th>
 </tr>
 </thead>
@@ -1220,7 +1224,7 @@ window.Quarto = {
 <col style="width: 100%">
 </colgroup>
 <thead>
-<tr class="header gt_col_headings">
+<tr class="gt_col_headings header">
 <th id="Items" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Items</th>
 </tr>
 </thead>
@@ -1690,7 +1694,7 @@ window.Quarto = {
 <col style="width: 100%">
 </colgroup>
 <thead>
-<tr class="header gt_col_headings">
+<tr class="gt_col_headings header">
 <th id="Items" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Items</th>
 </tr>
 </thead>
@@ -2207,7 +2211,7 @@ window.Quarto = {
 <col style="width: 100%">
 </colgroup>
 <thead>
-<tr class="header gt_col_headings">
+<tr class="gt_col_headings header">
 <th id="Items" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Items</th>
 </tr>
 </thead>
@@ -2679,7 +2683,7 @@ window.Quarto = {
 <col style="width: 100%">
 </colgroup>
 <thead>
-<tr class="header gt_col_headings">
+<tr class="gt_col_headings header">
 <th id="Items" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Items</th>
 </tr>
 </thead>
@@ -2931,8 +2935,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -3043,7 +3045,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {

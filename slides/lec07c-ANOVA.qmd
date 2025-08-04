@@ -7,7 +7,6 @@ title-slide-attributes:
 date: "2024-10-16"
 description: "lec07c"
 author: "Robin Donatello"
-footer: "[🔗 https://math615.netlify.app](https://math615.netlify.app) / Inference between multiple means"
 from: markdown+emoji
 format: 
   revealjs:
@@ -38,8 +37,9 @@ library(sjPlot)
 library(ggpubr)
 library(gtsummary)
 
-load("C:/Box/Data/AddHealth/addhealth_clean.Rdata")
+# load("C:/Box/Data/AddHealth/addhealth_clean.Rdata")
 #load("C:/Users/rdonatello/Box/Data/AddHealth/addhealth_clean.Rdata")
+load("/Users/rdonatello/Library/CloudStorage/Box-Box/Data/AddHealth/addhealth_clean.Rdata")
 
 # Function to plot multiple overlapping density functions
 plot_3norm <- function(mean1=0, mean2=0, mean3=0, sd1=1, sd2=1, sd3=1, n = 100) {
@@ -376,12 +376,22 @@ an average flipper length 27.23mm(25.33-29.13) larger than Adelie.
 
 ## Coefficient of Determination $R^{2} = \frac{SSG}{SST}$ {.smaller}
 
+:::: {.columns}
+
+::: {.column width="50%"}
 ```{r}
-#| echo: 2
-#| code-fold: false
 aov(flipper_length_mm ~ species, data=pen) |> summary()
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+#| code-fold: false
 52473/(52473 + 14953)*100
 ```
+:::
+
+::::
 
 The coefficient of determination is interpreted as the % of the
 variation seen in the outcome that is due to subject level variation
