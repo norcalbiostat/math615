@@ -4,43 +4,28 @@ output:
   html_document:
     toc: true
     toc_float: true
-    # includes:
-    #   in_header:
-    #     - header.html
-    #     - header-tracker.html
 ---
 
-## Introduction
-The *Journal of MATH 615* is the official internal publication of the Data Analysis for Graduate Research course at California State University at Chico. Specific details as to project deadlines, rubrics, and more can be found for current students on the Canvas course page. The details below are meant to mimic those of real journal websites for submission to provide practice for future submissions.
+The *Journal of MATH 615* is the official internal publication of the Data Analysis for Graduate Research course at California State University at Chico. Specific details as to project deadlines, rubrics, and more can be found for current students on the Canvas course page. 
 
 
-## Manuscript Preparation
+# Article Preparation
 
-All new submissions must provide the following documents:
+Article must be written in English using the Quarto R and text processing system. The journal Style Guide must be followed for formatting manuscripts. Only PDF files can be submitted. It is the responsibility of the authors to provide a submission in the appropriate format, paying very close attention to the style instructions. Manuscripts not meeting these requirements will be returned to the authors immediately.
 
-* PDF manuscript in the journal style outlined below
-* Self-contained HTML version manuscript with code folding enabled. showing
+To ensure reproducibility and provide transparency, all results from the manuscript must be generated via a single, commented standalone replication script. This includes any necessary data preparation steps. Code that was ultimately not used in the final report should be excluded. To facilitate authoring manuscripts in the required style, we require authors to use the [custom jasa Quarto template extension](https://github.com/norcalbiostat/journal615-quarto-template/tree/main). You can see a video tutorial on how to install Quarto article templates [here](https://youtu.be/uJy45by8HFI). 
 
-To ensure reproducibility and provide transparency, all results from the manuscript must be generated via a single, commented standalone replication script. This includes any necessary data preparation steps. Code that was ultimately not used in the final report should be excluded. To facilitate authoring manuscripts in the required style, we recommend using the [jasa Quarto template extension](https://quarto.org/docs/extensions/listing-journals.html). You can see a video tutorial on how to install this template [here](https://youtu.be/uJy45by8HFI). 
-
-Manuscripts must be written in English using the Quarto R and text processing system. The journal Style Guide must be followed for formatting manuscripts. Only PDF and HTML files can be submitted. It is the responsibility of the authors to provide a submission in the appropriate format, paying very close attention to the style instructions. Manuscripts not meeting these requirements will be returned to the authors immediately.
-
-
-## Style Guide
+# Style Guide
 
 The [Quarto Authoring guide](https://quarto.org/docs/guide/) has many helpful pages for authors including how to write markdown, figure and table captions, side by side text or images, and how to globally hide code. 
 
 
-### Page Limits
+## Page Limits
 
-Articles have an expected page length of at least 3 pages and no more than 5 pages. These pages limits include the required figure(s) and table(s), but not references or acknowledgements. 
-
-
-### Font Size and Spacing
-Use a standard font size and any standard font. Articles should be single spaced.
+Articles are expected to be between 10 and 15 pages. These pages limits include the required figures and tables, but not references nor the Appendix.
 
 
-### Title and Author Information
+## Title and Author Information
 The article should have an informative title. Additionally, author information should include:
 
 * Author name
@@ -48,25 +33,13 @@ The article should have an informative title. Additionally, author information s
 * Author affiliation (e.g., BIOL MS Student, MSDSA Student, Center for Regenerative Agriculture, etc.)
 
 
-### Abstract and Keywords
+## Abstract and Keywords
 A short abstract should describe the problem, data, and results.
 
 Immediately after the abstract, provide a maximum of 5 keywords, avoiding general and plural terms and multiple concepts (avoid, for example, 'and', 'of'). These keywords will be used for indexing purposes.
 
 
-### Article Body Structure
-Articles should follow a similar structure to that outlined below:
-
-* Introduction, Background
-* Study Design and Data collection
-* Data Preparation and Statistical Analysis Methods
-* Results
-* Discussion, Conclusion
-
-Note, these exact names do not need to be used and can be customized to your given article, analysis, and context.
-
-
-### Tables and Figures
+## Tables and Figures
 
 A minimum of one table and one figure is required for all publications. 
 
@@ -75,31 +48,60 @@ All tables and figures should be "publication ready" with informative titles, la
 Articles must include a "Table 1" that describes the study population in a tabular format. Additional tables and figures may be included as necessary to present and summarize results. These count towards the page limit. 
 
 
-### Decimal Numerals
-To enhance readability and clarity of the text as well as tables and figures, decimal numerals should - with the obvious exception of P-values - be rounded to the unit whenever possible (i.e. in all cases in which the rounding procedure does not change the meaning). 
+## Decimal Numerals
+To enhance readability and clarity of the text as well as tables and figures, decimal numerals should - with the obvious exception of P-values - be rounded to the unit whenever possible (i.e. in all cases in which the rounding procedure does not change the meaning). Consider using the [`scales::label_pvalue`](https://scales.r-lib.org/reference/label_pvalue.html) function as applicable. 
 
 
-### Acknowledgments
-Collate acknowledgements in a separate section at the end of the article before the references and do not, therefore, include them on the title page, as a footnote to the title or otherwise. List here those individuals who provided help during the research (e.g., providing language help, writing assistance or proof reading the article, etc.). 
+# Article Body Structure
+
+Articles must contain the following sections
+
+## Introduction and Background
+This section sets the stage for your study by explaining the context, importance, and purpose of your work. It should give the reader enough background to understand why your research matters.
+
+* Briefly describe the problem or topic and why it is important.
+* Summarize relevant literature and clearly state your research question or hypothesis.
+
+## Study Design and Data collection
+Here you explain how the study was planned and how data were obtained. This ensures the reader can understand and evaluate the reliability of your results.
+
+* Describe the type of study (e.g., observational, experimental) and its key features.
+* Explain how data were collected, including sources, time frames, and any selection criteria.
+
+## Methods
+
+### Data Preparation
+This part details the steps taken to clean, organize, and prepare the data before analysis. 
+
+* Describe any data cleaning procedures (e.g., handling missing values, correcting errors). 
+* Explain how variables were defined, transformed, or categorized.
+
+### Statistical Analysis
+This section explains the techniques and tools used to answer your research question.
+
+* Identify the statistical methods and justify why they were appropriate.
+* Specify the software or packages used for analysis.
+
+## Results
+Present your findings clearly and objectively, without interpretation or speculation.
+
+* Report key results in text, tables, or figures, focusing on what is most relevant to the research question.
+* Separate sub-sections for descriptive statistics and analysis results
+* Include appropriate summary statistics and measures of uncertainty (e.g., confidence intervals, p-values).
 
 
-### References
-Any style of reference is acceptable as long as formatting is consistent. See [the Citations section of the Quarto authoring guide](https://quarto.org/docs/authoring/citations.html) for information on how to cite references in Quarto. 
 
-## Supplemental Materials
+## Discussion, Conclusion
+Interpret your results, explain their meaning, and place them in context with existing knowledge.
 
-Given the small page limits, it is acceptable to include *additional* tables and figures beyond the required minimum of one table and one figure in a Supplemental Materials section if needed. These figures and tables should be referenced in the text as **Figure S1**, **Table S1**, etc. 
+* Summarize the main findings and discuss their implications or applications.
+* Address limitations of the study and suggest directions for future research.
 
-While you should direct the reader to the Supplemental Materials to access the additional tables, figures, or information, the paper itself should be able to be largely understood as though a reader did not have access to the supplement.
+## References
+The journal template contains a Bibtex `.bib` file for you to use. Any style of reference is acceptable as long as formatting is consistent. See [the Quarto section of the BibTeX guide](https://bibtex.eu/quarto/) and the Citation guide from the [Quarto documentation](https://quarto.org/docs/authoring/citations.html) for information on how to cite articles and include a reference section in Quarto. 
 
-## Blind review and submission process
 
-You will submit a draft manuscript for blind peer review prior to submission. To help the reviewers identify specific places in your manuscript to discuss, please add the following code to the top of your YAML header (PDF submissions only) to add the line numbers to your compiled document. This is for the review period only, and not to be used in the final version. 
+## Appendix
 
-```
-format: 
-  pdf:
-    include-in-header: 
-      text: '\usepackage{lineno}\linenumbers'
-```
+All of the code used for this report should be included and executed here. Do not include extreneous code or output not directly relevant to the results reported in this research report.  
 
