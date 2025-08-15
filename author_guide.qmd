@@ -1,9 +1,5 @@
 ---
 title: "Journal of Math 615 Guide for Authors"
-output: 
-  html_document:
-    toc: true
-    toc_float: true
 ---
 
 The *Journal of MATH 615* is the official internal publication of the Data Analysis for Graduate Research course at California State University at Chico. Specific details as to project deadlines, rubrics, and more can be found for current students on the Canvas course page. 
@@ -13,7 +9,16 @@ The *Journal of MATH 615* is the official internal publication of the Data Analy
 
 Article must be written in English using the Quarto R and text processing system. The journal Style Guide must be followed for formatting manuscripts. Only PDF files can be submitted. It is the responsibility of the authors to provide a submission in the appropriate format, paying very close attention to the style instructions. Manuscripts not meeting these requirements will be returned to the authors immediately.
 
-To ensure reproducibility and provide transparency, all results from the manuscript must be generated via a single, commented standalone replication script. This includes any necessary data preparation steps. Code that was ultimately not used in the final report should be excluded. To facilitate authoring manuscripts in the required style, we require authors to use the [custom jasa Quarto template extension](https://github.com/norcalbiostat/journal615-quarto-template/tree/main). You can see a video tutorial on how to install Quarto article templates [here](https://youtu.be/uJy45by8HFI). 
+## Reproducibility 
+
+To ensure reproducibility and provide transparency, all results from the manuscript must be generated via a single, commented standalone replication script. This includes any necessary data preparation steps. Code that was ultimately not used in the final report should be excluded. 
+
+## Required template
+
+To facilitate authoring manuscripts in the required style, we require authors to use the [custom jasa Quarto template extension](https://github.com/norcalbiostat/journal615-quarto-template/tree/main). You can see a video tutorial on how to install Quarto article templates [here](https://youtu.be/uJy45by8HFI). 
+
+## Cover image
+Authors are encouraged to submit a .jpg or .png image that would be used as a cover image in the publication. 
 
 # Style Guide
 
@@ -51,10 +56,9 @@ Articles must include a "Table 1" that describes the study population in a tabul
 ## Decimal Numerals
 To enhance readability and clarity of the text as well as tables and figures, decimal numerals should - with the obvious exception of P-values - be rounded to the unit whenever possible (i.e. in all cases in which the rounding procedure does not change the meaning). Consider using the [`scales::label_pvalue`](https://scales.r-lib.org/reference/label_pvalue.html) function as applicable. 
 
-
 # Article Body Structure
 
-Articles must contain the following sections
+Articles must contain the following sections.
 
 ## Introduction and Background
 This section sets the stage for your study by explaining the context, importance, and purpose of your work. It should give the reader enough background to understand why your research matters.
@@ -69,24 +73,24 @@ Here you explain how the study was planned and how data were obtained. This ensu
 * Explain how data were collected, including sources, time frames, and any selection criteria.
 
 ## Methods
+Use separate sub-sections for data preparation and statistical analysis methods. 
 
-### Data Preparation
+#### Data Preparation
 This part details the steps taken to clean, organize, and prepare the data before analysis. 
 
 * Describe any data cleaning procedures (e.g., handling missing values, correcting errors). 
 * Explain how variables were defined, transformed, or categorized.
 
-### Statistical Analysis
+#### Statistical Analysis
 This section explains the techniques and tools used to answer your research question.
 
 * Identify the statistical methods and justify why they were appropriate.
 * Specify the software or packages used for analysis.
 
 ## Results
-Present your findings clearly and objectively, without interpretation or speculation.
+Present your findings clearly and objectively, without interpretation or speculation. Use separate sub-sections for descriptive statistics and results of statistical models.
 
 * Report key results in text, tables, or figures, focusing on what is most relevant to the research question.
-* Separate sub-sections for descriptive statistics and analysis results
 * Include appropriate summary statistics and measures of uncertainty (e.g., confidence intervals, p-values).
 
 
