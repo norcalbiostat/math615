@@ -112,20 +112,6 @@
     "text": "Appendix\nAll of the code used for this report should be included and executed here. Do not include extreneous code or output not directly relevant to the results reported in this research report."
   },
   {
-    "objectID": "collab_notes.html",
-    "href": "collab_notes.html",
-    "title": "Collaborative Notes",
-    "section": "",
-    "text": "What is HackMD\n\nData architecture\nFormulating Research Questions\nStudy Design\nStatistical Inference\nChoosing appropriate analysis"
-  },
-  {
-    "objectID": "collab_notes.html#notes",
-    "href": "collab_notes.html#notes",
-    "title": "Collaborative Notes",
-    "section": "",
-    "text": "What is HackMD\n\nData architecture\nFormulating Research Questions\nStudy Design\nStatistical Inference\nChoosing appropriate analysis"
-  },
-  {
     "objectID": "help.html",
     "href": "help.html",
     "title": "Get help with…",
@@ -252,193 +238,11 @@
     "text": "5. Refine your Research Questions\nBased on your literature review some of your draft questions may already be answered, or you noticed that your question is a still too vague. Now is the time to refine this question. Here are some example revisions.\n\nQuestions example:\na) Does the number of cigarettes smoked in the past month relate to nicotine dependence in college-aged adults in the United States?\nb) Is there a relationship between smoking frequency and suicide? Is this relationship the same in males and females?"
   },
   {
-    "objectID": "hw/hw03-dm.html",
-    "href": "hw/hw03-dm.html",
-    "title": "HW 03: Data Management",
-    "section": "",
-    "text": "By now you should know what variables you want to use, and you’ve looked over the codebook enough now that you have an idea of some potential problems that you will encounter. This assignment uses your chosen research data, and the variables that you chose in the last assignment when you created a personal research codebook. You will thoughtfully review the variables you are interested in, document which ones will need changed and how.\nAll raw data needs to stay raw, and all changes need to be documented. You will create a script/code file that will make all changes to the data in a programatically and reproducible way. You will create a single code file that imports your raw data, performs some data cleaning steps, and saves out an analysis ready data set that you will use throughout the semester.\nYou are not expected to have completed data management for every one of your variables under consideration by the submission date. I want to see a VERY good effort has been made (raw data read in, at least 2 quant and 2 cat variables dealt with, analysis data saved out.)\nCheck the rubric in Canvas for more grade specific details."
-  },
-  {
-    "objectID": "hw/hw03-dm.html#setup",
-    "href": "hw/hw03-dm.html#setup",
-    "title": "HW 03: Data Management",
-    "section": "Setup",
-    "text": "Setup\n\n# Load libraries\nlibrary(dplyr)\n\n# Read in the data \nraw &lt;- read.delim(\"https://norcalbiostat.netlify.app/data/Depress.txt\", \n                  sep=\"\\t\",  header=TRUE) %&gt;%\n  # convert all variable names to lowercase\n  janitor::clean_names()\n\n# Select only the variables that I am interested in\nmydata  &lt;- raw %&gt;% select(age, marital, cesd, health)\n\n\nGeneral Health\nThe variable health records a persons perceived general health as being either Excellent, Good, Fair or Poor. This is considered an ordinal categorical variable.\n\ntable(mydata$health)\n\n\n  1   2   3   4 \n130 115  35  14 \n\nclass(mydata$health)\n\n[1] \"integer\"\n\n\nThe variable health currently is an integer with numeric values 1-4, but the codebook states that this is a categorical variable where 1=Excellent, 2=Good, 3=Fair, 4=Poor. So I need to convert this numeric variable to a factor variable. There are no values outside the 1-4 range, such as a -9 that codes for missing data so I do not need to make any further adjustments (You want to code out missing before you convert variables to factors)\n\nmydata$health_cat &lt;- factor(mydata$health, labels=c(\"Excellent\", \"Good\", \"Fair\", \"Poor\"))\n\nI will confirm that the recode worked by making a two-way table\n\ntable(mydata$health, mydata$health_cat, useNA=\"always\")\n\n      \n       Excellent Good Fair Poor &lt;NA&gt;\n  1          130    0    0    0    0\n  2            0  115    0    0    0\n  3            0    0   35    0    0\n  4            0    0    0   14    0\n  &lt;NA&gt;         0    0    0    0    0\n\n\nThis shows that all 1’s are now ‘excellent’, 4’s are now ‘poor’ and so forth.\n\n\nCESD\nThe numeric variable CESD represents the depression index scale, which is a sum of 20 component variables. A high score indicates a person who is depressed, with 16 being the typical cutoff for creating a binary indicator of depression.\n\nsummary(mydata$cesd)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n  0.000   3.000   7.000   8.884  12.000  47.000 \n\nhist(mydata$cesd)\n\n\n\n\nThere are no values outside of the expected range, and no missing values.\n\n\nIndicator of Depression\nCreate the binary indicator of depression using CESD\n\nmydata$depressed &lt;- ifelse(mydata$cesd &gt; 16, \"depressed\", \"not depressed\")\ntable(mydata$depressed, useNA=\"always\")\n\n\n    depressed not depressed          &lt;NA&gt; \n           45           249             0 \n\n\nNo missing values were accidentally generated,"
-  },
-  {
-    "objectID": "hw/hw03-dm.html#export-cleaned-data-set",
-    "href": "hw/hw03-dm.html#export-cleaned-data-set",
-    "title": "HW 03: Data Management",
-    "section": "Export cleaned data set",
-    "text": "Export cleaned data set\nKeep only selected variables and save to an external file\n\nclean &lt;- mydata %&gt;% select(age, marital, cesd, depressed, health_cat)\nsave(clean, file=here::here(\"data/depression_clean.Rdata\"))"
-  },
-  {
-    "objectID": "hw/hw04-describing_distributions.html",
-    "href": "hw/hw04-describing_distributions.html",
-    "title": "HW 04: Describing Distributions",
-    "section": "",
-    "text": "There are a variety of conventional ways to visualize data - tables, histograms, bar graphs, etc. The purpose is always to examine the distribution of variables related to your research question. You will create a plot, follow up each graphic with a table of summary statistics (for quantitative variables) or frequency and proportion table (for categorical), and then a summary paragraph that brings it all together."
-  },
-  {
-    "objectID": "hw/hw04-describing_distributions.html#basic-categorical",
-    "href": "hw/hw04-describing_distributions.html#basic-categorical",
-    "title": "HW 04: Describing Distributions",
-    "section": "Basic categorical",
-    "text": "Basic categorical\nDraft style plot, direct computer output showing/copied. Poor grammar and/or sentence structure, no attempt at explaining what the variable means, extra unnecessary or incorrect information included. Typos.\n\ntable(mpg$class)\n\n\n   2seater    compact    midsize    minivan     pickup subcompact        suv \n         5         47         41         11         33         35         62 \n\n\n\nclass has more suvs than compacts. 2% are 2seaters. there are 5 2seaters 47 cmpact 41 midize 11 minivans 33 pickups 35% subcompacts, 62 suv and 234 total cars."
-  },
-  {
-    "objectID": "hw/hw04-describing_distributions.html#proficient-categorical",
-    "href": "hw/hw04-describing_distributions.html#proficient-categorical",
-    "title": "HW 04: Describing Distributions",
-    "section": "Proficient categorical",
-    "text": "Proficient categorical\nCleaned up plot, full English sentences, useful text formatting of variable names and levels. Explained what the variable was named and what it measured.\n\nThe class variable from the mpg data set is a catgorical variable that describes the type of vehicle being measured. Some levels of this categorical variable include compact, pickup and suv.\n\n\nplot_frq(mpg$class)\n\n\n\n\n\n\n\n\n\nSub compact cars are the most frequently reported type of car, making up over one-quarter (26.5%) of the cars in this data set with n=62 cars represented. The least represented car is a compact car with n=5 (2.1%) records."
-  },
-  {
-    "objectID": "hw/hw04-describing_distributions.html#basic-quantitative",
-    "href": "hw/hw04-describing_distributions.html#basic-quantitative",
-    "title": "HW 04: Describing Distributions",
-    "section": "Basic quantitative",
-    "text": "Basic quantitative\nA “for your eyes only” quality plot, minimal description of characteristics, no information about the variable provided.\n\nhist(mpg$cty)\n\n\n\nsummary(mpg$cty)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n   9.00   14.00   17.00   16.86   19.00   35.00 \n\n\n\ncty is normally distributed between 5 and 35 with mean 17."
-  },
-  {
-    "objectID": "hw/hw04-describing_distributions.html#proficient-quantitative",
-    "href": "hw/hw04-describing_distributions.html#proficient-quantitative",
-    "title": "HW 04: Describing Distributions",
-    "section": "Proficient quantitative",
-    "text": "Proficient quantitative\nOverlaid a density curve on the histogram, added a dashed line at the mean. Table of summary statistics present in a nicely formatted way, digits rounded appropriately. Plot cleaned up with appropriate axis and titles.\n\nThe cty variable records the miles per gallon (mpg) achieved during city driving. This is a quantititative numeric variable.\n\n\n# this function is from the ggpubr package\ngghistogram(data=mpg, x = \"cty\", add = \"mean\", fill = \"skyblue\", add_density = TRUE, \n            xlab = \"MPG\", title = \"City miles per gallon (MPG)\")\n\n\n\n\n\n\n\nsummary(mpg$cty)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n   9.00   14.00   17.00   16.86   19.00   35.00 \n\n\n\nThe MPG in the city ranges from 9 to 35, unimodal and is slightly skewed right with a mean of 16.9 close to the median of 17 and a standard deviation of 4.3mpg. The histogram indicates that there are at a few upper end potential outliers achieving a city MPG of approximately over 30 mpg."
-  },
-  {
-    "objectID": "hw/hw05-describing_relationships.html",
-    "href": "hw/hw05-describing_relationships.html",
-    "title": "HW 05: Describing Relationships",
-    "section": "",
-    "text": "To fully explore the relationship between two variables both summary statistics and visualizations are important."
-  },
-  {
-    "objectID": "hw/hw05-describing_relationships.html#before-you-start",
-    "href": "hw/hw05-describing_relationships.html#before-you-start",
-    "title": "HW 05: Describing Relationships",
-    "section": "Before you start,",
-    "text": "Before you start,\n\nDetermine what variables you want to graph based on your research topic.\n\nYou will need a mixture of categorical and quantitative variables for this assignment.\nYou should use variables that are relevant to your research topic.\nIf you have not yet identified both a quantitative (Q), a binary (B), and a categorical (C) variable that you are interested in, now is the time to go back to the codebook and figure this out.\n\nRecode variables as needed.\n\nIf your response variable is categorical with many levels, you may want to collapse it down to fewer than 5 levels.\n\n\nIf you do not already have a binary (B) variable in your clean data you can either a) go back and edit your dm file to include a binary varible, or b) dichotomize one of your categorical (C) varibles into two levels. (Make a new variable, don’t overwrite your categorical variable)."
-  },
-  {
-    "objectID": "hw/hw05-describing_relationships.html#for-each-bivariate-relationship-under-consideration-you-will-do-the-following",
-    "href": "hw/hw05-describing_relationships.html#for-each-bivariate-relationship-under-consideration-you-will-do-the-following",
-    "title": "HW 05: Describing Relationships",
-    "section": "For each bivariate relationship under consideration you will do the following:",
-    "text": "For each bivariate relationship under consideration you will do the following:\n\nName and explain the two variables under consideration.\nCreate the appropriate graphic for bivariate relationship under consideration. For these plots binary variables are treated as categorical variables with only 2 levels.\n\nC ~ C: Side by side barplot\nQ ~ C: Paneled histogram with density overlaid, or a grouped boxplot with overlaid violin plot.\nQ ~ Q: Scatterplot. Add both lowess and linear trend lines.\n\nCalculate appropriate grouped summary statistics\n\nFor continuous outcomes you’ll want to describe measures including the sample size, mean, median, range and variance for each level of the categorical variable.\nFor categorical outcomes you’ll want to calculate %’s of your outcome measurement across levels of your covariate.\n\ni.e. proportion of males who are smokers compared to proportion of females who are smokers\nor proportion of smokers who are male, compared to proportion of non-smokers who are male.\n\n\nExplain the relationship or trends you see in the data in a summary paragraph. Put this paragraph below the graphic.\n\nUse summary statistics in your text explanation.\nUse specific features of the graphic in your text explanation.\n\ni.e. are there outliers only in one group?\nDo the data seem clumped or clustered in one region of the scatterplot?\nIs there a linear or non-linear pattern?\nDoes one combination of categorical levels (C~C) seem to hold most the data?\nAre there any outlying data points? Don’t list off each one, just state if there is and where approximately it’s at."
-  },
-  {
-    "objectID": "hw/hw05-describing_relationships.html#example",
-    "href": "hw/hw05-describing_relationships.html#example",
-    "title": "HW 05: Describing Relationships",
-    "section": "Example",
-    "text": "Example\nIn these examples I use a combination of ggplot2 and sjPlot for plotting, dplyr for data management and to create summary statistics, knitr to create nice tables, gridExtra to put plots side by side. You do not need to report this information in your assignment. This is for your knowledge only. I also explain what I’m doing in code here for you to learn. you do not need to explain your own code.\n\nlibrary(ggplot2); library(dplyr); library(knitr); library(ggdist)\nlibrary(scales); library(gridExtra); library(sjPlot); library(gtsummary)\nknitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)\n\n\nC ~ C Association\nFor this example I am using the NC Births data set, data on 1000 births in 2004 from North Carolina. This example explores the association between the smoking status of the mother (habit) and whether or not the baby was born prematurely (premie). I specifically want to compare the percent of premie babies within the smoking and non-smoking groups.\n\n\n\n\n\n\n  \n    \n      Characteristic\n      nonsmoker, N = 8731\n      smoker, N = 1261\n    \n  \n  \n    premie\n\n\n        full term\n739 (85%)\n107 (85%)\n        premie\n133 (15%)\n19 (15%)\n        Unknown\n1\n0\n  \n  \n  \n    \n      1 n (%)\n    \n  \n\n\n\n\n\n\n\nContrary to what I was expecting, there is equal proportion of prematurely born babies to non-smokers (133/873, 15%) compared to babies born to smokers (19/126, 15%). There is no association between the smoking status of the mother and the likelihood of the baby being born prematurely.\n\n\nQ ~ C Association\nThis example explores the association between the depth of a penguins bill and the species of the penguin. The quantitative response variable is bill depth in mm (bill_depth_mm) and the categorical explanatory variable is species (species).\n\npen &lt;- palmerpenguins::penguins\npen %&gt;% group_by(species) %&gt;% \n  summarize(n=n(), \n            mean = mean(bill_depth_mm, na.rm = TRUE), \n            median = median(bill_depth_mm, na.rm = TRUE), \n            sd = sd(bill_depth_mm, na.rm = TRUE), \n            IQR = IQR(bill_depth_mm, na.rm = TRUE))\n\n# A tibble: 3 × 6\n  species       n  mean median    sd   IQR\n  &lt;fct&gt;     &lt;int&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 Adelie      152  18.3   18.4 1.22   1.5 \n2 Chinstrap    68  18.4   18.4 1.14   1.90\n3 Gentoo      124  15.0   15   0.981  1.5 \n\nggplot(pen, aes(x=bill_depth_mm, y=species, fill=species)) + \n      stat_slab(alpha=.5, justification = 0) + \n      geom_boxplot(width = .2,  outlier.shape = NA) + \n      geom_jitter(alpha = 0.5, height = 0.05) +\n      stat_summary(fun=\"mean\", geom=\"point\", col=\"red\", size=4, pch=17) + \n      theme_bw() + \n      labs(x=\"Bill depth (mm)\", y = \"Species\") + \n      theme(legend.position = \"none\")\n\n\n\n\n\n\n\n\nThe distribution of bill depth are fairly normal for each species, with some higher end values causing a slight right skew for Adelie and Gentoo. Gentoo penguins have lower average bill depth compared to Adelie or Chinstrap (15.0mm vs 18.3 and 18.4mm respectively). Chinstrap however have a larger IQR at 1.9 compared to 1.5 for the others.\n\n\nQ ~ Q Association\nThis example explores the association between the length of a penguins flipper and it’s body mass. The quantitative response variable is body mass(body_mass_g) and the quantitative explanatory variable is flipper length (flipper_length_mm).\n\ncor(pen$flipper_length_mm, pen$body_mass_g, \n    use=\"pairwise.complete.obs\") # calculate the correlation\n\n[1] 0.8712018\n\nggplot(pen, aes(x=flipper_length_mm, y=body_mass_g)) + geom_point() + \n  geom_smooth(se=FALSE, col=\"brown\") + geom_smooth(se=FALSE, method=\"lm\") +\n  theme_bw()\n\n\n\n\nThere is a positive association between flipper length and body mass of a penguin. The correlation coefficient is 0.87, and the form of the relationship is relatively linear."
-  },
-  {
-    "objectID": "hw/hw06-foundations_for_inference.html",
-    "href": "hw/hw06-foundations_for_inference.html",
-    "title": "HW 06: Foundations for Inference",
-    "section": "",
-    "text": "To understand the conceptual and mathematical foundations for conducting statistical inference.\n\n\n\n\nDownload this [QMD] file and use it to write your answers in.\n\nRight click and ‘save as’, put this in your scripts folder.\n\nRender to pdf and upload your final PDF to Canvas by the due date."
-  },
-  {
-    "objectID": "hw/hw06-foundations_for_inference.html#purpose",
-    "href": "hw/hw06-foundations_for_inference.html#purpose",
-    "title": "HW 06: Foundations for Inference",
-    "section": "",
-    "text": "To understand the conceptual and mathematical foundations for conducting statistical inference."
-  },
-  {
-    "objectID": "hw/hw06-foundations_for_inference.html#submission-instructions",
-    "href": "hw/hw06-foundations_for_inference.html#submission-instructions",
-    "title": "HW 06: Foundations for Inference",
-    "section": "",
-    "text": "Download this [QMD] file and use it to write your answers in.\n\nRight click and ‘save as’, put this in your scripts folder.\n\nRender to pdf and upload your final PDF to Canvas by the due date."
-  },
-  {
-    "objectID": "hw/hw07-bivariate_modeling.html",
-    "href": "hw/hw07-bivariate_modeling.html",
-    "title": "HW 07: Bivariate Modeling",
-    "section": "",
-    "text": "Purpose\nWe’ve been visually exploring relationships between two variables by creating appropriate plots to assess how the distribution of a primary outcome (response/dependent) variable changes according to the level of a predictor (explanatory/independent/covariate) variable. We can learn a lot by conducting exploratory data analysis, and if description is the goal then this is where your work can stop.\nHowever, if you want to make conclusions or inference about a relationship, then formal statistical analysis techniques are needed. We start here by formally testing if relationships or associations between two measures exist, then later will see how additional third variables can potentially disrupt or enhance any association that you may find.\n\n\n\nSubmission instructions\n\nUse the QMD template answer the questions.\nThis is a big assignment, so it will be broken into two stages.\n\nFirst draft will be on analyses 1-2, to make sure you are making correct progress.\nUpload a PDF of your work to the assignment in Canvas\n\n\n\n\n\nInstructions\nIn this assignment you will practice FOUR(4) different types of bivariate analysis:\n\n(Q~B) Quantitative Outcome ~ Binary Categorical Explanatory == Two-sample t-tests for a difference in means\n(Q~C) Quantitative Outcome ~ Categorical Explanatory == ANOVA\n(B~C) Binary Outcome ~ Categorical (or Binary) Explanatory == \\(\\chi^{2}\\) test of Association.\n(Q~Q) Quantitative Outcome ~ Quantitative Explanatory == Correlation analysis\n\nFor each analysis you will do the following steps:\n\nState which variable (including the variable name from your codebook) will be your explanatory variable and which will be your response variable.\n\nRemember, you have some variables in your codebook that can act as both categorical and quantitative.\nDecide which of those variables makes sense to “explain” the other. Don’t just blindly pick a bunch of variables.\nThink about the relationship among your variables, keeping in mind your original research questions. You may use gender as your categorical explanatory variable if you are struggling to find an explanatory and response relationship that makes sense.\n\nCreate an appropriate bivariate plot to visualize the relationship you are exploring. Calculate appropriate summary statistics. Summarize the relationship between the explanatory and outcome variables in short paragraph form.\nWrite the relationship you want to examine in the form of a research question using symbols and words.\n\nDefine the parameters being tested. (\\(\\rho\\), \\(p_{1}\\), \\(\\mu_{1}\\), \\(\\rho_{1}\\) etc)\nTranslate the null and alternative hypotheses into \\(H_{0}\\) and \\(H_{A}\\) with symbols.\n\nState and justify the analysis model. Check assumptions.\n\nEven if these assumptions are potentially violated, for the purposes of this assignment, acknowledge this limitation and continue with the prescribed analysis. (If a non-parametric test is appropriate, state it here.)\n\nConduct the test and make a decision about the plausibility of the alternative hypothesis.\nWrite a conclusion in context of the problem that includes a point estimate, confidence interval, and p-value."
-  },
-  {
-    "objectID": "hw/hw08-slr.html",
-    "href": "hw/hw08-slr.html",
-    "title": "HW 08: Fitting Simple Regression models",
-    "section": "",
-    "text": "Practice fitting and interpreting the coefficients of a simple regression model."
-  },
-  {
-    "objectID": "hw/hw08-slr.html#example-body-mass-and-bill-length-of-penguins",
-    "href": "hw/hw08-slr.html#example-body-mass-and-bill-length-of-penguins",
-    "title": "HW 08: Fitting Simple Regression models",
-    "section": "Example: Body mass and bill length of penguins",
-    "text": "Example: Body mass and bill length of penguins\n\nlibrary(tidyverse)\nlibrary(gtsummary)\nlibrary(performance)\npen &lt;- palmerpenguins::penguins\n\n\n1. Identify response and explanatory variables\n\nThe quantitative explanatory variable is body mass (g) body_mass_g\nThe quantitative response variable is bill length (mm) bill_length_mm\n\n\n\n2. Visualize and summarise bivariate relationship\n\nggplot(pen, aes(x=body_mass_g, y=bill_length_mm)) + \n  geom_point() + geom_smooth(col = \"blue\")\n\n\n\ncor(pen$body_mass_g, pen$bill_length_mm, use = \"pairwise.complete.obs\")\n\n[1] 0.5951098\n\n\nThere is a strong, positive, mostly linear relationship between the body mass (g) of penguins and their bill length (mm) (r=.595).\n\n\n3. Write the relationship you want to examine\nLet \\(\\beta_1\\) be the true slope parameter that describes the change in bill length of the penguin as body mass increases.\n\n\\(H_{0}: \\beta_{1}=0\\) There is no linear relationship between body mass and bill length.\n\\(H_{A}: \\beta_{1} \\neq 0\\) Alternate Hypothesis: There is a linear relationship between body mass and bill length.\n\n\n\n4. Fit the regression model\nDecide if there is evidence to believe that there is a relationship\n\npen.body.bill &lt;- lm(bill_length_mm ~ body_mass_g, data=pen)\npen.body.bill |&gt; summary()\n\n\nCall:\nlm(formula = bill_length_mm ~ body_mass_g, data = pen)\n\nResiduals:\n     Min       1Q   Median       3Q      Max \n-10.1251  -3.0434  -0.8089   2.0711  16.1109 \n\nCoefficients:\n             Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) 2.690e+01  1.269e+00   21.19   &lt;2e-16 ***\nbody_mass_g 4.051e-03  2.967e-04   13.65   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 4.394 on 340 degrees of freedom\n  (2 observations deleted due to missingness)\nMultiple R-squared:  0.3542,    Adjusted R-squared:  0.3523 \nF-statistic: 186.4 on 1 and 340 DF,  p-value: &lt; 2.2e-16\n\n\nThe p-value for \\(b_{1}\\) is &lt;.0001, so there is sufficient evidence to believe that there is a linear relationship between body mass and bill length.\n\n\n5. Verify assumptions & assess model fit\nIn the scatterplot, Both the outcome and predictor are continuous variables that have a visible linear relationship, and we assume the observations are independent.\n\ncheck_model(pen.body.bill) |&gt; plot()\n\n\n\n\n\nThe distribution of the residuals is mostly normal, pretty heavy right tail. This is indicative of a nonlinear trend somewhere in the data.\nThe variance of Y is not constant. This is a warning that our linear model does not fit the data well and we should look into possible refinements and improvements.\nThe observed distribution of bill length is bimodal, and so the model is overestimating some values and underestimating others. There is clearly some other confounding variable that predicts bill length better than just body mass.\n\n\n\n6. Write a conclusion in context of the problem.\n\ncoef(pen.body.bill) \n\n (Intercept)  body_mass_g \n26.898872424  0.004051417 \n\nconfint(pen.body.bill)\n\n                   2.5 %       97.5 %\n(Intercept) 24.402502194 29.395242653\nbody_mass_g  0.003467795  0.004635038\n\nr2(pen.body.bill)\n\n# R2 for Linear Regression\n       R2: 0.354\n  adj. R2: 0.352\n\n\n\nFor a penguin who weighs 0 kg, the predicted bill length is 26.9 (24.4, 29.4)mm. This is an impossible situation.\n\nEach 1g increase in body mass of a penguin is associated with a significant increase of 0.004 (0.0035, 0.0046) mm of bill length (p&lt;.0001). In more reasonable numbers, an increase of 1kg of body mass in a penguin corresponds to a 4(3.5, 4.6) mm increase in bill length.\nBody mass explains 35.4% of the variation in bill length.\n\nHowever, model diagnostics indicate that a linear model may not be appropriate for this relationship. The assumption of constant variance is not upheld and there may be another variable that affects bill length."
-  },
-  {
-    "objectID": "hw/hw09-multiple_regression.html",
-    "href": "hw/hw09-multiple_regression.html",
-    "title": "HW 09: Fitting Multiple Regression models",
-    "section": "",
-    "text": "Practice fitting and interpreting different types of multiple regression models."
-  },
-  {
-    "objectID": "hw/hw09-multiple_regression.html#part-1---model-fitting-interpretation",
-    "href": "hw/hw09-multiple_regression.html#part-1---model-fitting-interpretation",
-    "title": "HW 09: Fitting Multiple Regression models",
-    "section": "Part 1 - Model fitting & Interpretation",
-    "text": "Part 1 - Model fitting & Interpretation\n\nDefine your variables in an English sentence, and in terms of \\(x\\) variables.\n\n\nSpecify the levels of your binary and categorical variables, and note which one is the reference group.\nWrite the mathematical model.\n\n\nVisualize and describe the relationship between your response variable and at least 2 of your predictor variable using appropriate multivariable plots. See ASCN Ch 2 for examples.\n\n\nMake a statement whether or not you think a relationship exists.\n\n\nFit the multiple regression model and create a table of estimates, confidence intervals and p-values.\nInterpret ALL regression coefficients (including the intercept) in a sentence that includes a confidence interval and p-value.\n\n\nDon’t forget to back-transform your results where appropriate before you interpret.\n\n\nAssess model fit\n\nExamine the residuals for linear models\nCompare the distribution of predicted probabilities against the true class for Logistic regression.\n\nModel 1 Multiple Linear Regression: \\(Y \\sim X_{1} + X_{2}\\).\n\nUse at least one quantitative and one binary predictor.\n\nModel 2 Multiple Linear Regression with a categorical predictor: \\(Y \\sim X_{1} + X_{2} \\ldots X_{p}\\).\n\nUse the same quantitative and binary predictor from #1, but add a categorical predictor.\n\nModel 3 Regression on a log transformed outcome: \\(ln(Y) \\sim X_{1} + X_{2}\\).\n\n\\(X_{1}\\) and \\(X_{2}\\) can be of any data type.\nDo not interpret the intercept\n\nModel 4 Logistic Regression: \\(logit(Y) \\sim X_{1} + X_{2}\\).\n\nUse one quantitative variable, the other can be either binary or categorical.\n\nWhen you define your \\(x\\) and \\(y\\) variables, also define what \\(p\\) is."
-  },
-  {
-    "objectID": "hw/hw09-multiple_regression.html#part-ii-model-comparison",
-    "href": "hw/hw09-multiple_regression.html#part-ii-model-comparison",
-    "title": "HW 09: Fitting Multiple Regression models",
-    "section": "Part II Model Comparison",
-    "text": "Part II Model Comparison\n\nCreate a combined regression model table for Model 1 and 2\nCompare these two models using at least two measures of model fit: \\(R^{2}_{adj}\\), RMSE, AIC, or BIC. Which one would you say fits the data better, and why?"
-  },
-  {
-    "objectID": "hw/hw09-multiple_regression.html#model-1-multiple-linear-regression",
-    "href": "hw/hw09-multiple_regression.html#model-1-multiple-linear-regression",
-    "title": "HW 09: Fitting Multiple Regression models",
-    "section": "Model 1 Multiple Linear Regression",
-    "text": "Model 1 Multiple Linear Regression\n\n1. Define your variables and write the mathematical model.\n\nLet \\(y\\) be the quantitative outcome measures of body mass index (variable BMI)\nLet \\(x_{1}\\) be the quantitative predictor variable that measures the typical amount of time someone sleeps at night (sleep_duration)\nLet \\(x_{2}\\) be a binary indicator of ever having smoked a cigarette (eversmoke_c). \\(x_{2} = 1\\) when eversmoke_c = \"Smoked at least once\", and 0 when eversmoke_c = \"Never Smoked\"\n\n\\[y = \\beta_{0} + \\beta_{1}x_{1} + \\beta_{2}x_{2}\\] ### 2. Visualize and describe the relationships. Make a statement whether or not you think a relationship exists.\n\nplot1 &lt;- addhealth %&gt;%\n  select(sleep_duration, BMI, eversmoke_c) %&gt;% na.omit() %&gt;% \n  ggplot(aes(x=sleep_duration, y=BMI, color = eversmoke_c)) + \n  geom_smooth(se=FALSE) + geom_point() + \n  theme_bw()  + \n   theme(legend.position = \"bottom\")\n\nggMarginal(plot1, type = \"density\", \n           groupColour = TRUE,\n           groupFill = TRUE)\n\n\n\n\nThe relationship between sleep duration and BMI seems pretty flat, regardless of whether or not someone has ever smoked a cigarette.\n\n\n3. Fit the model and create a summary table.\n\nmodel1 &lt;- lm(BMI ~ sleep_duration + eversmoke_c, data=addhealth) \n\nmodel1 |&gt; \n  tbl_regression(intercept=TRUE) |&gt; \n  add_glance_table(include = c(adj.r.squared, nobs))\n\n\n\n\n\n  \n    \n      Characteristic\n      Beta\n      95% CI1\n      p-value\n    \n  \n  \n    (Intercept)\n30\n29, 31\n&lt;0.001\n    sleep_duration\n-0.06\n-0.18, 0.06\n0.3\n    eversmoke_c\n\n\n\n        Never Smoked\n—\n—\n\n        Smoked at least once\n-0.86\n-1.3, -0.43\n&lt;0.001\n    Adjusted R²\n0.003\n\n\n    No. Obs.\n4,959\n\n\n  \n  \n  \n    \n      1 CI = Confidence Interval\n    \n  \n\n\n\n\n\n\n4. Interpret ALL regression coefficients\n\n\\(b_{0}\\): For a non-smoker (eversmoke_c=0) who typically sleeps 0 hours (sleep_duration=0), their predicted average BMI is 30(95% CI 29, 31, p&lt;.001)\n\\(b_{1}\\): Holding smoking status constant, for every additional hour a person sleeps, their predicted average BMI drops by 0.06 (95% CI -0.06, 0.18). This is not a significant association (p = 0.3).\n\\(b_{2}\\): Controlling for how much sleep someone gets, the predicted average BMI for smoker is 0.86 (95% CI 0.43, 1.3) points lower than for a non-smoker This is a significant difference, p&lt;.001\n\n\n\n5. Assess model fit\n\ncheck_model(model1)\n\n\n\n\nThis model fits the data somewhat well. The residuals are not normal, with predicted BMI higher than the observed. The residuals are clustered into two nearly non-overlapping groups seen both in the homogeneity of variance and the linearity diagnostic plots. This is due to the binary smoking status variable, but it doesn’t look like one group has a different pattern than the other. The variance of the residuals looks reasonably constant, and the scatterplot indicated that a linear model wasn’t unreasonable."
-  },
-  {
-    "objectID": "hw/hw09-multiple_regression.html#model-2-multiple-linear-regression-with-a-categorical-predictor",
-    "href": "hw/hw09-multiple_regression.html#model-2-multiple-linear-regression-with-a-categorical-predictor",
-    "title": "HW 09: Fitting Multiple Regression models",
-    "section": "Model 2 Multiple Linear Regression with a Categorical Predictor",
-    "text": "Model 2 Multiple Linear Regression with a Categorical Predictor\n\n1. Define your variables and write the mathematical model.\n\nLet \\(y\\) be the quantitative outcome measures of body mass index (variable BMI)\nLet \\(x_{1}\\) be the quantitative predictor variable that measures the typical amount of time someone sleeps at night (sleep_duration)\nLet \\(x_{2}\\) be a binary indicator of ever having smoked a cigarette (eversmoke_c). \\(x_{2} = 1\\) when eversmoke_c = \"Smoked at least once\", and 0 when eversmoke_c = \"Never Smoked\"\n\nCategorical Predictor: General health (genhealth). 5 Levels: Excellent (reference), Very good, Good, Fair and Poor.\n\nLet \\(x_{3}=1\\) when genhealth='Very good', and 0 otherwise,\nlet \\(x_{4}=1\\) when genhealth='Good', and 0 otherwise,\nlet \\(x_{5}=1\\) when genhealth='Fair', and 0 otherwise,\nlet \\(x_{6}=1\\) when genhealth='Poor', and 0 otherwise.\n\nThe reference group for genhealth is Excellent.\nThe mathematical model would look like:\n\\[ Y \\sim \\beta_{0} + \\beta_{1}*x_{1} + \\beta_{2}x_{2} + \\beta_{3}x_{3} + \\beta_{4}x_{4} + \\beta_{5}x_{5} + \\beta_{6}x_{6} \\]\n\n\n2. Visualize and describe the relationships. Make a statement whether or not you think a relationship exists.\n\naddhealth %&gt;%\n  select(sleep_duration, BMI, eversmoke_c, genhealth) %&gt;% na.omit() %&gt;% \n  ggplot(aes(x=sleep_duration, y=BMI)) + \n  geom_smooth() + geom_point() + \n  theme_bw() +\n  facet_grid(genhealth~eversmoke_c)\n\n\n\n\nThe relationship between sleep duration and BMI seems pretty flat, regardless of whether or not someone has ever smoked a cigarette or their general health. Note that the sample size for the combination of those reporting poor health but never have smoked is very small compared to the other groups.\n\n\n3. Fit the model and create a summary table.\n\nmodel2 &lt;- lm(BMI ~ sleep_duration + eversmoke_c + genhealth, data=addhealth)\nmodel2 |&gt; \n  tbl_regression(intercept=TRUE) |&gt; \n  add_glance_table(include = c(adj.r.squared, nobs))\n\n\n\n\n\n  \n    \n      Characteristic\n      Beta\n      95% CI1\n      p-value\n    \n  \n  \n    (Intercept)\n27\n26, 28\n&lt;0.001\n    sleep_duration\n-0.02\n-0.13, 0.09\n0.7\n    eversmoke_c\n\n\n\n        Never Smoked\n—\n—\n\n        Smoked at least once\n-1.2\n-1.6, -0.75\n&lt;0.001\n    genhealth\n\n\n\n        Excellent\n—\n—\n\n        Very good\n1.7\n1.1, 2.2\n&lt;0.001\n        Good\n4.5\n3.9, 5.0\n&lt;0.001\n        Fair\n6.8\n6.0, 7.6\n&lt;0.001\n        Poor\n7.5\n5.5, 9.4\n&lt;0.001\n    Adjusted R²\n0.085\n\n\n    No. Obs.\n4,959\n\n\n  \n  \n  \n    \n      1 CI = Confidence Interval\n    \n  \n\n\n\n\n\n\n4. Interpret ALL regression coefficients\n\n\\(b_{0}\\): The predicted BMI for individuals who get no sleep, have never smoked and reports excellent health is 27 (95% CI 26, 28).\n\\(b_{1}\\): After controlling for smoking and health status, for every additional for every additional hour a person sleeps, their predicted average BMI drops by 0.02 (95% CI -0.09, 0.13). This is not a significant association (p = 0.7).\n\\(b_{2}\\): After controlling for sleep duration and health status, the predicted average BMI for smoker is 1.2 (95% CI 0.75, 1.6) points lower than for a non-smoker This is a significant difference, p&lt;.001\n\\(b_{3}\\): Those reporting very good health have 1.7 (1.1, 2.2, p&lt;.0001) higher BMI compared to those reporting excellent health.\n\\(b_{4}\\):Those reporting good health have 4.5 (3.9, 5.0, p&lt;.0001) higher BMI compared to those reporting excellent health.\n\\(b_{5}\\): Those reporting fair health have 6.8 (6.0, 7.6, p&lt;.0001) higher BMI compared to those reporting excellent health.\n\\(b_{6}\\): Those reporting poor health have 7.5 (5.5, 9.4, p&lt;.0001) higher BMI compared to those reporting excellent health.\n\n\n\n5. Assess model fit\n\ncheck_model(model2)\n\n\n\n\nThis model fits the data a little bit better. The predicted BMI is still higher than the observed, but the variance of the residuals is clearly increasing as the fitted values increase. We also see the same deviation from the reference line in the tails of the qqplot, indicating not strictly non-normal residuals, but lots of outliers on both high end low ends."
-  },
-  {
-    "objectID": "hw/hw09-multiple_regression.html#model-3-log-transformed-response",
-    "href": "hw/hw09-multiple_regression.html#model-3-log-transformed-response",
-    "title": "HW 09: Fitting Multiple Regression models",
-    "section": "Model 3 Log Transformed Response",
-    "text": "Model 3 Log Transformed Response\n\n1. Define your variables and write the mathematical model.\n\nLet \\(y\\) be the quantitative outcome measures of annual income (income). This variable is right skewed, and so has been log-transformed (logincome)\nLet \\(x_{1}\\) be the quantitative predictor variable that measures the time you wake up in the morning using a 24 hour clock(variable wakeup)\nLet \\(x_{2}\\) be a binary indicator of gender (female_c). \\(x_{2} = 1\\) when female_c = \"Male\", and 0 when female_c = \"Female\"\n\n\\[ln(y) = \\beta_{0} + \\beta_{1}x_{1} + \\beta_{2}x_{2}\\]\n\n\n2. Visualize and describe the relationships. Make a statement whether or not you think a relationship exists.\n\nplot3 &lt;- addhealth %&gt;%\n  select(wakeup, logincome, female_c) %&gt;% na.omit() %&gt;% \n  ggplot(aes(x=wakeup, y=logincome, color = female_c)) + \n  geom_smooth() + geom_point() + \n  theme_bw()  + \n   theme(legend.position = \"bottom\")\n\nggMarginal(plot3, type = \"density\", \n           groupColour = TRUE,\n           groupFill = TRUE)\n\n\n\n\nThere appears to be a negative and somewhat linear trend between the time someone wakes up and their income. The trend for males looks slightly different than for females. I also expect that there may be a significant impact of gender on income given how much higher the male trend line is compared to the female trend line.\n\n\n3. Fit the model and create a summary table.\n\nNote. tbl_regression doesn’t exponentiate the results of a log-linear model very well. So we’re going to manually create a reasonable looking summary table. You should be able to copy/paste this code and input your own model variables.\n\n\nmodel3 &lt;- glm(logincome~wakeup + female_c, data=addhealth)\n# check sign of coefficients\ncoef(model3) \n\n   (Intercept)         wakeup female_cFemale \n   10.73261157    -0.02707776    -0.19671504 \n\n# note that they are both negative so we subtract from 1 after exponentiation\n# then i multiply by 100 so I can interpret as a percent\npct.chg &lt;- (1-exp(coef(model3)))*100\n# extract confidence interval, do the same transformation\nci &lt;-  (1-exp(confint(model3)))*100\n# extract p-values and apply a formatting\npvals &lt;- broom::tidy(model3)$p.value\n# stick them all together into a table\nmod3.table &lt;- cbind(pct.chg, ci, pvals)\n# display table, drop first row.\nknitr::kable(mod3.table[-1,], digits = 3)\n\n\n\n\n\npct.chg\n2.5 %\n97.5 %\npvals\n\n\n\n\nwakeup\n2.671\n3.563\n1.772\n0\n\n\nfemale_cFemale\n17.858\n20.574\n15.048\n0\n\n\n\n\n\n\n\n4. Interpret non-intercept regression coefficients\n\nFor every hour later one wakes up in the morning, one can expect to earn 2.7% (1.8%, 3.6%) lower income than someone who wakes up one hour earlier. This is after controlling for gender.\nFemales have on average 17.9% (15%, 20.5%) percent lower income than males, after controlling for the wake up time.\n\n\n\n5. Assess model fit\n\ncheck_model(model3)\n\n\n\n\nThe predicted distribution matches the observed data nearly exactly, but the residuals are not normally distributed which is interesting. We see the clustering of the fitted values due to the binary indicator of gender, but otherwise the variance of the residuals is mostly constant. I would say that this model is “okay” but not the best."
-  },
-  {
-    "objectID": "hw/hw09-multiple_regression.html#model-4-logistic-regression",
-    "href": "hw/hw09-multiple_regression.html#model-4-logistic-regression",
-    "title": "HW 09: Fitting Multiple Regression models",
-    "section": "Model 4 Logistic Regression",
-    "text": "Model 4 Logistic Regression\n\n1. Define your variables and write the mathematical model.\n\nLet \\(y\\) be a binary indicator for if an individuals reported personal income is below the poverty threshold for the year this data was collected $10,210 (poverty).\nLet \\(p\\) be the probability that someone is considered to be in poverty\nLet \\(x_{1}\\) be the quantitative predictor variable that measures the typical amount of time someone sleeps at night (sleep_duration)\nLet \\(x_{2}\\) be a binary indicator of gender (female_c). \\(x_{2} = 1\\) when female_c = \"Male\", and 0 when female_c = \"Female\"\n\n\\[log\\Big(\\frac{p}{1-p}\\Big) \\sim \\beta_{0} + \\beta_{1}x_{1} + \\beta_{1}x_{2}\\]\n\n\n2. Visualize and describe the relationships. Make a statement whether or not you think a relationship exists.\n\ndata.for.model4 &lt;- addhealth %&gt;% \n  select(sleep_duration, poverty, female_c) %&gt;%\n  mutate(poverty_cat = factor(poverty, \n           labels = c(\"Under poverty line\", \"Over poverty line\"))) %&gt;%\n  na.omit()\n\nggpubr::ggdensity(data.for.model4, x = \"sleep_duration\", \n                  fill = \"poverty\", facet.by = \"female_c\")\n\n\n\n\nThe distribution of sleep duration seems to be shifted slightly higher for those living over the poverty line compared to those living under, and does not seem to differ depending on gender.\n\n\n3. Fit the model and create a summary table.\n\nmodel4 &lt;- glm(poverty~sleep_duration + female_c, \n              data=data.for.model4, family='binomial')\ntbl_regression(model4, exponentiate = TRUE, intercept = TRUE)\n\n\n\n\n\n  \n    \n      Characteristic\n      OR1\n      95% CI1\n      p-value\n    \n  \n  \n    (Intercept)\n0.15\n0.11, 0.20\n&lt;0.001\n    sleep_duration\n1.01\n0.97, 1.05\n0.7\n    female_c\n\n\n\n        Male\n—\n—\n\n        Female\n2.25\n1.94, 2.62\n&lt;0.001\n  \n  \n  \n    \n      1 OR = Odds Ratio, CI = Confidence Interval\n    \n  \n\n\n\n\n\n\n4. Interpret ALL regression coefficients\n\n\\(b_{0}\\): The predicted probability for a male who sleeps 0 hours on average to be earning below the poverty line is 0.15 (0.11, 0.20).\n\\(b_{1}\\): After controlling for gender, every additional hour someone sleeps is associated with 1.01 (0.97, 1.05) times the odds of living under the poverty level. This is a non-significant difference p=.07.\n\\(b_{2}\\): After controlling for sleep duration, females have 2.25 (1.94, 2.62) time the odds of reporting annual earned wages below the federal poverty level compared to males.\n\n\n\n5. Assess model fit\nRef ASCN 12.2.1 for explanation of this code.\n\n# Calculate predicted probabilities\np.hat &lt;- predict(model4, type='response')\n# combine these predictions onto the data used for the model\n## note these have to have the same dimension. If you have missing\n## data you will need to use model4$model as the data\nmodel.pred.data &lt;- cbind(data.for.model4, p.hat)\n\nggplot(model.pred.data, aes(x=poverty_cat, y=p.hat, fill=poverty_cat)) +\n      geom_violin(alpha=.4) + geom_jitter(alpha =.5, width=.2) + \n      scale_fill_viridis_d(guide=FALSE)\n\n\n\n\nThe model predicted probability of living in poverty is on the y-axis, and the true outcome category is on the x. There does not seem to be a clear separation of outcome category based on predicted probability.\nMore of the responses with low predicted probabilities tend to correspond to records that are reported to be under the poverty line. However, there seems to be a very similar amount of individuals in each outcome category with similar predicted probability of around 0.25.\n\nmodel_performance(model4, metrics = \"PCP\")\n\n# Indices of model performance\n\nPCP  \n-----\n0.682\n\n\nRegardless, this model does better in predicting whether or not someone reports income below the poverty line than a simple flip of a fair coin. The percent of correct predictions for this model is 68.2%."
-  },
-  {
-    "objectID": "hw/hw09-multiple_regression.html#part-ii-model-comparison-1",
-    "href": "hw/hw09-multiple_regression.html#part-ii-model-comparison-1",
-    "title": "HW 09: Fitting Multiple Regression models",
-    "section": "Part II Model Comparison",
-    "text": "Part II Model Comparison\n\n# set some nice themes\ntheme_gtsummary_journal(journal = \"jama\")\ntheme_gtsummary_compact()\n\ntbl1 &lt;- model1 |&gt; \n  tbl_regression(intercept=TRUE) |&gt; \n  add_glance_table(include = c(adj.r.squared, sigma, AIC, BIC, nobs))\n\ntbl2 &lt;- model2 |&gt; \n  tbl_regression(intercept=TRUE) |&gt; \n  add_glance_table(include = c(adj.r.squared, sigma, AIC, BIC, nobs))\n\ntbl_merge(\n  tbls = list(tbl1, tbl2),\n  tab_spanner = c(\"**Model 1**\", \"**Model 2**\")) |&gt;\n  modify_table_body(~.x |&gt;\n          dplyr::arrange(row_type == \"glance_statistic\"))\n\n\n\n\n\n  \n    \n      Characteristic\n      \n        Model 1\n      \n      \n        Model 2\n      \n    \n    \n      Beta (95% CI)1\n      p-value\n      Beta (95% CI)1\n      p-value\n    \n  \n  \n    (Intercept)\n30 (29 to 31)\n&lt;0.001\n27 (26 to 28)\n&lt;0.001\n    sleep_duration\n-0.06 (-0.18 to 0.06)\n0.32\n-0.02 (-0.13 to 0.09)\n0.75\n    eversmoke_c\n\n\n\n\n        Never Smoked\n—\n\n—\n\n        Smoked at least once\n-0.86 (-1.3 to -0.43)\n&lt;0.001\n-1.2 (-1.6 to -0.75)\n&lt;0.001\n    genhealth\n\n\n\n\n        Excellent\n\n\n—\n\n        Very good\n\n\n1.7 (1.1 to 2.2)\n&lt;0.001\n        Good\n\n\n4.5 (3.9 to 5.0)\n&lt;0.001\n        Fair\n\n\n6.8 (6.0 to 7.6)\n&lt;0.001\n        Poor\n\n\n7.5 (5.5 to 9.4)\n&lt;0.001\n    Adjusted R²\n0.003\n\n0.085\n\n    Sigma\n7.27\n\n6.96\n\n    AIC\n33,749\n\n33,326\n\n    BIC\n33,775\n\n33,378\n\n    No. Obs.\n4,959\n\n4,959\n\n  \n  \n  \n    \n      1 CI = Confidence Interval\n    \n  \n\n\n\n\nThe model with the categorical variable of general health added in (Model 2) is a better model to use than Model 1 for several reasons.\n\nThe adjusted \\(R^2\\) is a lot higher, 0.085 vs .003\nThe residual (unexplained) variance of model 2 is lower, (6.96 vs 7.27)\nBoth the AIC and BIC are lower."
-  },
-  {
     "objectID": "hw.html",
     "href": "hw.html",
     "title": "Assignments",
     "section": "",
-    "text": "Assignment\n\n\nLearning Objective\n\n\n\n\n\n\nHW 01: Data Entry\n\n\nRecording data to maintain your sanity.\n\n\n\n\nHW 02: Formulating a research hypothesis\n\n\nBrainstorming research questions to investigate\n\n\n\n\nHW 03: Data Management\n\n\nWrangling your data into analyzable form\n\n\n\n\nHW 04: Describing Distributions\n\n\nLet the data be beautiful\n\n\n\n\nHW 05: Describing Relationships\n\n\nExploring Associations between two variables\n\n\n\n\nHW 06: Foundations for Inference\n\n\nA quick recap\n\n\n\n\nHW 07: Bivariate Modeling\n\n\nThe starting point for most models\n\n\n\n\nHW 08: Fitting Simple Regression models\n\n\nundefined\n\n\n\n\nHW 09: Fitting Multiple Regression models\n\n\nundefined\n\n\n\n\n\n\nNo matching items"
+    "text": "Assignment\n\n\nLearning Objective\n\n\n\n\n\n\nHW 01: Data Entry\n\n\nRecording data to maintain your sanity.\n\n\n\n\nHW 02: Formulating a research hypothesis\n\n\nBrainstorming research questions to investigate\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "index.html",
@@ -487,7 +291,7 @@
     "href": "modules.html",
     "title": "Class Overview",
     "section": "",
-    "text": "⚠️ Details are subject to change. See Canvas for due dates.\nLast Updated: Sat Aug 09 21:40:37\n\n\n\n\n\n\n\n\n\n\n\n\n\nTopic\nReading\nSlides\nActivities\nAssess\n\n\n\n\nWelcome!\n\n\nIntroduction to the class\nTopic Overview\nSyllabus\nHelp page\nlec00a\nHW 0 Checklist (Canvas)\n\n\n\nHow to use the class tools\n\nlec00b\n\n\n\n\nPROJECT Stage 1: Choosing your Research Data\nProject Stage 1\n\nData set proposal\n\n\n\nData Architecture\n\n\nThe uses and structure of data\nTopic Overview\nPMA6 Ch 2\nTidy data principles\nlec01\nCollab notes HW01 Data Entry\nQuiz 01\n\n\nFormulating Research Questions\n\n\nAsking Answerable Questions\nTopic Overview\nHow to Write an Effective Research Question\nPoster prep Stage 2\nlec02\nCollab Notes HW02 RQ Formulation\n\n\n\nPROJECT Stage 2: Introduce your research question and variables of interest\n\n\nProject Stage 2\n\n\n\nPreparing data for analysis\n\n\nReproducible workflows\nTopic Overview\nPMA6 Ch 3\nASCN Ch 1, Appendix\nProject Structure by Danielle Navarro\nlec03a\nHello, Quarto HW03 Data Management\nQuiz 02\n\n\nData cleaning\n\nlec03b\n\n\n\n\nDescribing distributions of data\n\n\nDescribing a single categorical variable\nTopic Overview\nPMA6 Ch 4\nASCN Ch 2.3\nlec04\nHW04 Describing Distributions\nQuiz 03\n\n\nDescribing a single numeric variable\n\n\n\n\n\n\nDescribing relationships between two variables\n\n\nDescribing relationships between two variables\nTopic Overview\nPMA6 Ch 4\nIMS 1.2.4 Explantory and Response Variables\nASCN Ch 2.4\nlec05a\nHW05 Describing Relationships\nQuiz 04\n\n\nBest practices in Data Visualization\nPMA6 Ch 4.6\n\n\n\n\n\nPROJECT Stage 3: Exploratory Data Analysis\n\n\nProject Stage 3\n\n\n\nFoundations for Inference\n\n\nStudy Design\nTopic Overview\nIMS - Chapter 2\n\nCollab notes 6 HW06 Foundations for Inference\nQuiz 05\n\n\nStatistical Inference with randomization\nIMS Chapter 11-11.1\nlec06a\nIn class printed activity.\n\n\n\nStatistical Inference with mathmatical models\nIMS - Chapter 13.1-13.3\nlec06b\nCLT Explorer\nQuiz 06\n\n\nModeling Bivariate relationships\n\n\nChoosing appropriate analysis\nTopic Overview\nPMA6 Chapter 6\nASCN Ch 5\nlec07a - Choosing\nHW07 Describing Relationships\n\n\n\nTwo Sample T-Test\nIMS - Chapter 20\nlec07b T-test\n\n\n\n\nANOVA\nIMS - Chapter 22\nlec07c - ANOVA\n\nQuiz 07\n\n\nChi-Squared\n\nlec07d - Chi2\n\n\n\n\nCorrelation\n\nlec07e Correlation\n\nQuiz 08\n\n\nRegression Modeling\n\n\nSimple Linear Regression\nTopic Overview\nPMA6 Ch 7\nIMS Ch 24\nlec08\nHW08 Simple Linear Regression\nQuiz 09\n\n\nMultiple Linear Regression\nPMA6 Ch 8\nASCN Ch 9\nA blog about statistical musings\nHow to control confounding effects by statistical analysis\nlec09\nHW09 Multiple Regression\n\n\n\nGeneralized Linear Models\nPMA6 Ch 12\nASCN 11.1-11.3\n\n\nQuiz 10\n\n\nMeasures of Model Fit\nASCN 10.5\n\n\n\n\n\nVariable Selection\nASCN 10.2.1, ASCN 10.4 Intro, ASCN 10.3"
+    "text": "⚠️ Details are subject to change. See Canvas for due dates.\nLast Updated: Mon Aug 18 4:34:44 PM\n\n\n\n\n\n\n\n\n\n\n\n\n\nTopic\nReading\nSlides\nActivities\nAssess\n\n\n\n\nWelcome!\n\n\nIntroduction to the class\nTopic Overview\nSyllabus\nHelp page\nlec00a\nHW 0 Checklist (Canvas)\n\n\n\nHow to use the class tools\n\nlec00b\n\n\n\n\nResearch Project\n\n\nProject Phase 1\n\n\n\nData Architecture\n\n\nThe uses and structure of data\nTopic Overview\nPMA6 Ch 2\nTidy data principles\nlec01\nHW01 Data Entry\nQuiz 01\n\n\nFormulating Research Questions\n\n\nAsking Answerable Questions\nTopic Overview\nHow to Write an Effective Research Question\nPoster prep Phase 2\nlec02\nHW02 RQ Formulation\n\n\n\nResearch Project\n\n\nProject Phase 2\n\n\n\nPreparing data for analysis\n\n\nReproducible workflows\nTopic Overview\nPMA6 Ch 3\nASCN Ch 1, Appendix\nProject Structure by Danielle Navarro\nlec03a\nHello, Quarto HW03 Data Management\nQuiz 02\n\n\nData cleaning\n\nlec03b\n\n\n\n\nDescribing distributions of data\n\n\nDescribing a single categorical variable\nTopic Overview\nPMA6 Ch 4\nASCN Ch 2.3\nlec04\nHW04 Describing Distributions\nQuiz 03\n\n\nDescribing a single numeric variable\n\n\n\n\n\n\nDescribing relationships between two variables\n\n\nDescribing relationships between two variables\nTopic Overview\nPMA6 Ch 4\nIMS 1.2.4 Explantory and Response Variables\nASCN Ch 2.4\nlec05a\nHW05 Describing Relationships\nQuiz 04\n\n\nBest practices in Data Visualization\nPMA6 Ch 4.6\n\n\n\n\n\nResearch Project\n\n\nProject Phase 3 Report Draft\n\n\n\nFoundations for Inference\n\n\nStudy Design\nTopic Overview\nIMS - Chapter 2\n\nCollab notes 6 HW06 Foundations for Inference\nQuiz 05\n\n\nStatistical Inference with randomization\nIMS Chapter 11-11.1\nlec06a\nIn class printed activity.\n\n\n\nStatistical Inference with mathmatical models\nIMS - Chapter 13.1-13.3\nlec06b\nCLT Explorer\nQuiz 06\n\n\nModeling Bivariate relationships\n\n\nChoosing appropriate analysis\nTopic Overview\nPMA6 Chapter 6\nASCN Ch 5\nlec07a - Choosing\nHW07 Describing Relationships\n\n\n\nTwo Sample T-Test\nIMS - Chapter 20\nlec07b T-test\n\n\n\n\nANOVA\nIMS - Chapter 22\nlec07c - ANOVA\n\nQuiz 07\n\n\nChi-Squared\n\nlec07d - Chi2\n\n\n\n\nCorrelation\n\nlec07e Correlation\n\nQuiz 08\n\n\nRegression Modeling\n\n\nSimple Linear Regression\nTopic Overview\nPMA6 Ch 7\nIMS Ch 24\nlec08\nHW08 Simple Linear Regression\nQuiz 09\n\n\nResearch Project\n\n\nProject Phase 4\n\n\n\nMultiple Linear Regression\nPMA6 Ch 8\nASCN Ch 9\nA blog about statistical musings\nHow to control confounding effects by statistical analysis\nlec09\nHW09 Multiple Regression\n\n\n\nGeneralized Linear Models\nPMA6 Ch 12\nASCN 11.1-11.3\n\n\nQuiz 10\n\n\nResearch Project\n\n\nProject Phase 5\n\n\n\nMeasures of Model Fit\nASCN 10.5\n\n\n\n\n\nVariable Selection\nASCN 10.2.1, ASCN 10.4 Intro, ASCN 10.3\n\n\n\n\n\nResearch Project\n\n\nProject Phase 6"
   },
   {
     "objectID": "project.html",
@@ -572,13 +376,6 @@
     "title": "Research Project Overview",
     "section": "Research Report",
     "text": "Research Report\nSee Canvas for details and rubrics."
-  },
-  {
-    "objectID": "reading.html",
-    "href": "reading.html",
-    "title": "Readings",
-    "section": "",
-    "text": "link 1\nlink 2"
   },
   {
     "objectID": "readme.html",
@@ -749,11 +546,81 @@
     "text": "Closing Thoughts\n\nIt may seem like a lot in the first week or two\nYou will get used to it if you embrace it and view it as a learning opportunity\nIf you fight it because it’s not what you’re used to, or are upset because there are “too many places to look”, you are not in for a fun semester.\nI am open to constructive feedback about course material.\n\n\n\n🔗 https://math615.netlify.app"
   },
   {
+    "objectID": "slides/lec01-data_arch.html#shared-experiences",
+    "href": "slides/lec01-data_arch.html#shared-experiences",
+    "title": "Data Architecture",
+    "section": "Shared experiences",
+    "text": "Shared experiences\n\n\n\nAnswer each of the following questions\n\n\nAnswer directly in the Google Docs Data Architecture collaborative notes. Put your name next to your answer.\n\n\n\n❓ What is data?\n❓ In what manner/forms are data found?\n❓ How and where do you store data?\n❓ What do we use data for?"
+  },
+  {
+    "objectID": "slides/lec01-data_arch.html#shared-experiences-1",
+    "href": "slides/lec01-data_arch.html#shared-experiences-1",
+    "title": "Data Architecture",
+    "section": "Shared experiences",
+    "text": "Shared experiences\n❓ What kind of tasks do you do in spreadsheets?\n❓ Which tasks do you think spreadsheets are good for?\n❓ Spreadsheet frustrations (Pain points) What have you accidentally done in spreadsheet that made you frustrated or sad?"
+  },
+  {
+    "objectID": "slides/lec01-data_arch.html#formatting-data-in-spreadsheets",
+    "href": "slides/lec01-data_arch.html#formatting-data-in-spreadsheets",
+    "title": "Data Architecture",
+    "section": "Formatting data in spreadsheets",
+    "text": "Formatting data in spreadsheets\n\nHumans use spreadsheets differently than computers\nWhat do you want to do with the data is important to consider during setup\nYou can set things up in different ways in spreadsheets, but some of these choices can limit your ability to work with the data in other programs"
+  },
+  {
+    "objectID": "slides/lec01-data_arch.html#good-data-handling-practices",
+    "href": "slides/lec01-data_arch.html#good-data-handling-practices",
+    "title": "Data Architecture",
+    "section": "Good data handling practices",
+    "text": "Good data handling practices\n\n❌ Leave raw data alone\nMinimize the amount of tidying you do to the data outside of a script.\n\nIf you have to make an adjustment, write down exactly what you did in a notes file.\n\nExport the cleaned data to a text based format like CSV (comma separated values)\nLeave missing data cells blank: don’t put a ., or missing, or 0, or NULL"
+  },
+  {
+    "objectID": "slides/lec01-data_arch.html#tidy-data-principles",
+    "href": "slides/lec01-data_arch.html#tidy-data-principles",
+    "title": "Data Architecture",
+    "section": "Tidy Data principles",
+    "text": "Tidy Data principles\n\nPut all variables in columns - this is the thing that you’re measuring (weight, temp, address)\nOne observation per row\nDon’t combine multiple pieces of information in once cell.\npct_5_10_F : percent of females between 5 & 10 years old in that county\n\n\n\n\n\n\n\nTip\n\n\nCorresponding read: Tidy data principles by Hadley Wickham."
+  },
+  {
+    "objectID": "slides/lec01-data_arch.html#example---livestock-data",
+    "href": "slides/lec01-data_arch.html#example---livestock-data",
+    "title": "Data Architecture",
+    "section": "Example - livestock data",
+    "text": "Example - livestock data\nConsider a study of agricultural practices among farmers in two countries in eastern sub-Saharan Africa (Mozambique and Tanzania). Researchers conducted interviews with farmers in these countries to collect data on household statistics (e.g. number of household members, number of meals eaten per day, availability of water), farming practices (e.g. water usage), and assets (e.g. number of farm plots, number of livestock). They also recorded the dates and locations of each interview.\n\n\nThis example is from the Data Carpentry for Social Science lesson"
+  },
+  {
+    "objectID": "slides/lec01-data_arch.html#data-for-humans",
+    "href": "slides/lec01-data_arch.html#data-for-humans",
+    "title": "Data Architecture",
+    "section": "Data for humans",
+    "text": "Data for humans\nIf they were to keep track of the data like this:\n\n❓ What are some of the problems with this? (Work with your neighbor and answer this in Google Docs)\n❓ What is actually being measured?"
+  },
+  {
+    "objectID": "slides/lec01-data_arch.html#what-would-this-data-look-like-in-a-tidy-data-format",
+    "href": "slides/lec01-data_arch.html#what-would-this-data-look-like-in-a-tidy-data-format",
+    "title": "Data Architecture",
+    "section": "What would this data look like in a tidy data format?",
+    "text": "What would this data look like in a tidy data format?\n\n\n\n\n\n\n\n\n\nOne row per observation (farmer)\nOne topic per column (animal)\nCell value is a count of the unique combination between animal type and farmer."
+  },
+  {
+    "objectID": "slides/lec01-data_arch.html#metadata-1",
+    "href": "slides/lec01-data_arch.html#metadata-1",
+    "title": "Data Architecture",
+    "section": "Metadata",
+    "text": "Metadata\n\nRecording data about your data (“metadata”“) is essential.\nThink about yourself. You may know now, but the chances that you will still remember the exact wording of the question you asked about your informants’ water use (the data recorded in the column water use), for example, are slim.\nThink about others. Other people may want to examine or use your data - to understand your findings, to verify your findings, to review your submitted publication, to replicate your results, to design a similar study, or even to archive your data for access and re-use by others.\n\nShould not be contained in the data file itself.\nMade for humans, not computers.\nOften called codebooks or data dictionaries"
+  },
+  {
+    "objectID": "slides/lec01-data_arch.html#codebooks-contain-the-following-information",
+    "href": "slides/lec01-data_arch.html#codebooks-contain-the-following-information",
+    "title": "Data Architecture",
+    "section": "Codebooks contain the following information",
+    "text": "Codebooks contain the following information\n\n\n\n\nvariable name (for the computer)\nvariable label (for the human)\nthe prompt (e.g. survey text question)\nplausible values\ncategorical value labels"
+  },
+  {
     "objectID": "slides.html",
     "href": "slides.html",
     "title": "All Slides",
     "section": "",
-    "text": "Slides will open in full screen. Right click to open in a new tab\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDate\n\n\nLec #\n\n\nTopic\n\n\n\n\n\n\nAug 25, 2024\n\n\nlec00a\n\n\nWelcome to MATH 615\n\n\n\n\nAug 25, 2024\n\n\nlec00b\n\n\nMATH 615 Course Tools\n\n\n\n\n\n\nNo matching items"
+    "text": "Slides will open in full screen. Right click to open in a new tab\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDate\n\n\nLec #\n\n\nTopic\n\n\n\n\n\n\nAug 25, 2024\n\n\nlec00a\n\n\nWelcome to MATH 615\n\n\n\n\nAug 25, 2024\n\n\nlec00b\n\n\nMATH 615 Course Tools\n\n\n\n\nAug 25, 2025\n\n\nlec01\n\n\nData Architecture\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "syllabus.html",
@@ -870,35 +737,35 @@
   {
     "objectID": "topics/t00-welcome.html",
     "href": "topics/t00-welcome.html",
-    "title": "Welcome to Fall 24",
+    "title": "Welcome to Math 615",
     "section": "",
-    "text": "Summer Break!\n\n\n\nReady to learn\n\n\n\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Get connected to all the class materials & tools\n\n    Learn about the class research project"
+    "text": "Summer Break!\n\n\n\nReady to learn\n\n\n\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Get connected to all the class materials & tools\n    Learn about the class research project"
   },
   {
     "objectID": "topics/t00-welcome.html#learning-path",
     "href": "topics/t00-welcome.html#learning-path",
-    "title": "Welcome to Fall 24",
+    "title": "Welcome to Math 615",
     "section": "",
-    "text": "Summer Break!\n\n\n\nReady to learn\n\n\n\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Get connected to all the class materials & tools\n\n    Learn about the class research project"
+    "text": "Summer Break!\n\n\n\nReady to learn\n\n\n\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Get connected to all the class materials & tools\n    Learn about the class research project"
   },
   {
     "objectID": "topics/t00-welcome.html#learning-materials",
     "href": "topics/t00-welcome.html#learning-materials",
-    "title": "Welcome to Fall 24",
+    "title": "Welcome to Math 615",
     "section": "Learning Materials",
-    "text": "Learning Materials\n Slides (Will open in full screen. Right click to open in a new tab)\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    lec00a\n\n    lec00b\n\n  \n  \n  \n\n\n\n\n📚 Reading\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Topic Overview\n\n    Syllabus\n\n    Help page"
+    "text": "Learning Materials\n Slides (Will open in full screen. Right click to open in a new tab)\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    lec00a\n    lec00b\n  \n  \n  \n\n\n\n\n📚 Reading\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Topic Overview\n    Syllabus\n    Help page"
   },
   {
     "objectID": "topics/t00-welcome.html#active-learning",
     "href": "topics/t00-welcome.html#active-learning",
-    "title": "Welcome to Fall 24",
+    "title": "Welcome to Math 615",
     "section": "📝 Active Learning",
-    "text": "📝 Active Learning\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    HW 0 Checklist “Quiz” In canvas"
+    "text": "📝 Active Learning\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    HW 0 Checklist (Canvas)\n    Project Phase 1"
   },
   {
     "objectID": "topics/t00-welcome.html#assessment",
     "href": "topics/t00-welcome.html#assessment",
-    "title": "Welcome to Fall 24",
+    "title": "Welcome to Math 615",
     "section": "Assessment",
     "text": "Assessment\nNone"
   },
@@ -907,28 +774,28 @@
     "href": "topics/t01-data_arch.html",
     "title": "Data Architecture",
     "section": "",
-    "text": "Getting all of our learning tools together.\n\n\n\nReady to learn how to interact with data.\n\n\n\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Data is recorded in different manners\n\n    Spreadsheets are a common method of recording data\n\n    Codebooks are an essential piece in learning about the data\n\n    There is a difference between human readable and computer readable data formats"
+    "text": "Getting all of our learning tools together.\n\n\n\nReady to learn how to interact with data.\n\n\n\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Data is recorded in different manners\n    Spreadsheets are a common method of recording data\n    Codebooks are an essential piece in learning about the data\n    There is a difference between human readable and computer readable data formats"
   },
   {
     "objectID": "topics/t01-data_arch.html#learning-path",
     "href": "topics/t01-data_arch.html#learning-path",
     "title": "Data Architecture",
     "section": "",
-    "text": "Getting all of our learning tools together.\n\n\n\nReady to learn how to interact with data.\n\n\n\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Data is recorded in different manners\n\n    Spreadsheets are a common method of recording data\n\n    Codebooks are an essential piece in learning about the data\n\n    There is a difference between human readable and computer readable data formats"
+    "text": "Getting all of our learning tools together.\n\n\n\nReady to learn how to interact with data.\n\n\n\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Data is recorded in different manners\n    Spreadsheets are a common method of recording data\n    Codebooks are an essential piece in learning about the data\n    There is a difference between human readable and computer readable data formats"
   },
   {
     "objectID": "topics/t01-data_arch.html#learning-materials",
     "href": "topics/t01-data_arch.html#learning-materials",
     "title": "Data Architecture",
     "section": "Learning Materials",
-    "text": "Learning Materials\n Slides (Will open in full screen. Right click to open in a new tab)\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    lec01\n\n  \n  \n  \n\n\n\n\n📚 Reading\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Topic Overview\n\n    PMA6 Ch 2\n\n    Tidy data principles"
+    "text": "Learning Materials\n Slides (Will open in full screen. Right click to open in a new tab)\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    lec01\n  \n  \n  \n\n\n\n\n📚 Reading\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Topic Overview\n    PMA6 Ch 2\n    Tidy data principles"
   },
   {
     "objectID": "topics/t01-data_arch.html#active-learning",
     "href": "topics/t01-data_arch.html#active-learning",
     "title": "Data Architecture",
     "section": "📝 Active Learning",
-    "text": "📝 Active Learning\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Collab notes\n\n    HW01 Data Entry"
+    "text": "📝 Active Learning\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    HW01 Data Entry"
   },
   {
     "objectID": "topics/t01-data_arch.html#assessment",
@@ -938,276 +805,10 @@
     "text": "Assessment\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Quiz 01"
   },
   {
-    "objectID": "topics/t02-asking_q.html",
-    "href": "topics/t02-asking_q.html",
-    "title": "Formulating research questions",
-    "section": "",
-    "text": "Learning how to interact with data\nReviewing the available data and thinking of a topic area of interest\n\n\n\n\nReady to start asking research questions to explore for the rest of the term.\n\n\n\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Write down several research questions that are answerable with your data"
-  },
-  {
-    "objectID": "topics/t02-asking_q.html#learning-path",
-    "href": "topics/t02-asking_q.html#learning-path",
-    "title": "Formulating research questions",
-    "section": "",
-    "text": "Learning how to interact with data\nReviewing the available data and thinking of a topic area of interest\n\n\n\n\nReady to start asking research questions to explore for the rest of the term.\n\n\n\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Write down several research questions that are answerable with your data"
-  },
-  {
-    "objectID": "topics/t02-asking_q.html#learning-materials",
-    "href": "topics/t02-asking_q.html#learning-materials",
-    "title": "Formulating research questions",
-    "section": "Learning Materials",
-    "text": "Learning Materials\n Slides (Will open in full screen. Right click to open in a new tab)\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    lec02\n\n  \n  \n  \n\n\n\n\n📚 Reading\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Topic Overview\n\n    How to Write an Effective Research Question\n\n    Poster prep Stage 2"
-  },
-  {
-    "objectID": "topics/t02-asking_q.html#active-learning",
-    "href": "topics/t02-asking_q.html#active-learning",
-    "title": "Formulating research questions",
-    "section": "📝 Active Learning",
-    "text": "📝 Active Learning\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Collab Notes\n\n    HW02 RQ Formulation"
-  },
-  {
-    "objectID": "topics/t02-asking_q.html#assessment",
-    "href": "topics/t02-asking_q.html#assessment",
-    "title": "Formulating research questions",
-    "section": "Assessment",
-    "text": "Assessment\n\n\n\n\n\n\n  \n    \n      Items"
-  },
-  {
-    "objectID": "topics/t03-data_prep.html",
-    "href": "topics/t03-data_prep.html",
-    "title": "Preparing Data for Analysis",
-    "section": "",
-    "text": "Learning how to read our data and ask questions that are potentially answerable with this data.\n\n\n\n\nStarting to write code.\nRecognizing that this stage will take time and that you are learning something challenging.\nWilling to ask for help and collaboration\n\n\n\n\n\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Know several questions to ask yourself when preparing data for analysis\n\n    Understand options for literate programming\n\n    Import your chosen data into R\n\n    Create a reproducible script file that imports the raw data, performs data management tasks, exports an analysis ready data set"
-  },
-  {
-    "objectID": "topics/t03-data_prep.html#learning-path",
-    "href": "topics/t03-data_prep.html#learning-path",
-    "title": "Preparing Data for Analysis",
-    "section": "",
-    "text": "Learning how to read our data and ask questions that are potentially answerable with this data.\n\n\n\n\nStarting to write code.\nRecognizing that this stage will take time and that you are learning something challenging.\nWilling to ask for help and collaboration\n\n\n\n\n\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Know several questions to ask yourself when preparing data for analysis\n\n    Understand options for literate programming\n\n    Import your chosen data into R\n\n    Create a reproducible script file that imports the raw data, performs data management tasks, exports an analysis ready data set"
-  },
-  {
-    "objectID": "topics/t03-data_prep.html#preparation",
-    "href": "topics/t03-data_prep.html#preparation",
-    "title": "Preparing Data for Analysis",
-    "section": "Preparation",
-    "text": "Preparation\nIn Homework 00 you downloaded and installed R and R Studio, and used it to import a data file in Homework 01. There are a few more steps to take that will allow you to be best setup for using R to analyze data.\nFollow the instructions in the Appendix of the Applied Stats Course Notes to do the following:\n\nSet preferences for sanity (19.5)\nInstall the tidyverse and here packages (19.6)\nCreate a R project using the MATH615 folder that you created in step 1. (ASCN 19.7)\n\nShut down R studio fully, navigate to your class folder, and open your project file (the cube) before you continue.\n\nRead through and follow the “Hello Quarto” tutorial (19.8 intro)\nInstall the tinytex program so you can create PDFs from your Quarto document. This is required (19.8)\n\nIf you have difficulty with any of this, visit Community Coding, my office hours, or post in Discord."
-  },
-  {
-    "objectID": "topics/t03-data_prep.html#learning-materials",
-    "href": "topics/t03-data_prep.html#learning-materials",
-    "title": "Preparing Data for Analysis",
-    "section": "Learning Materials",
-    "text": "Learning Materials\n Slides (Will open in full screen. Right click to open in a new tab)\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    lec03a\n\n    lec03b\n\n  \n  \n  \n\n\n\n\nWe will also be using the Data Management chapter of the Applied Stats notebook for this topic.\n📚 Reading\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Topic Overview\n\n    PMA6 Ch 3\n\n    ASCN Ch 1, Appendix\n\n    Project Structure by Danielle Navarro"
-  },
-  {
-    "objectID": "topics/t03-data_prep.html#active-learning",
-    "href": "topics/t03-data_prep.html#active-learning",
-    "title": "Preparing Data for Analysis",
-    "section": "📝 Active Learning",
-    "text": "📝 Active Learning\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Hello, Quarto\n\n    HW03 Data Management"
-  },
-  {
-    "objectID": "topics/t03-data_prep.html#assessment",
-    "href": "topics/t03-data_prep.html#assessment",
-    "title": "Preparing Data for Analysis",
-    "section": "Assessment",
-    "text": "Assessment\nThis quiz will contain questions that reference topics in the PMA6. Don’t rely only on the slides for your answers.\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Quiz 02"
-  },
-  {
-    "objectID": "topics/t03-data_prep.html#other-references",
-    "href": "topics/t03-data_prep.html#other-references",
-    "title": "Preparing Data for Analysis",
-    "section": "Other references",
-    "text": "Other references\n\nANYTHING by Danielle Navarro or Jenny Bryan\nR projects\nWhy should I use the here package when I’m already using projects?\nHello, Quarto\n\n\nWhere you’ll start\n\n\n\n\nWhere you’ll end up"
-  },
-  {
-    "objectID": "topics/t04-describing_distributions.html",
-    "href": "topics/t04-describing_distributions.html",
-    "title": "Describing distributions of data",
-    "section": "",
-    "text": "Importing & starting to wrangle our data\n\n\n\nReady to visualize and learn characteristics of our data.\n\n\n\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Calculate appropriate summary statistics\n\n    Create appropriate data visualizations\n\n    Describe the distributions of data in complete sentences with supporting numbers."
-  },
-  {
-    "objectID": "topics/t04-describing_distributions.html#learning-path",
-    "href": "topics/t04-describing_distributions.html#learning-path",
-    "title": "Describing distributions of data",
-    "section": "",
-    "text": "Importing & starting to wrangle our data\n\n\n\nReady to visualize and learn characteristics of our data.\n\n\n\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Calculate appropriate summary statistics\n\n    Create appropriate data visualizations\n\n    Describe the distributions of data in complete sentences with supporting numbers."
-  },
-  {
-    "objectID": "topics/t04-describing_distributions.html#preparation",
-    "href": "topics/t04-describing_distributions.html#preparation",
-    "title": "Describing distributions of data",
-    "section": "Preparation",
-    "text": "Preparation\nA basic statistics class is a pre-requisite for this class. Ideally this was within the last 4-5 years, but I recognize not all learning paths are ideal. If you are rusty on descriptive statistics such as mean, median, skewness, standard deviation and variance, how to read boxplots, histograms and the IQR rule then I highly recommend that you review IMS Chapter 5.\nThe quiz for this topic includes topics that are not directly lectured on but are considered critical knowledge and are included in either PMA6 Ch 4 or IMS Ch 5."
-  },
-  {
-    "objectID": "topics/t04-describing_distributions.html#learning-materials",
-    "href": "topics/t04-describing_distributions.html#learning-materials",
-    "title": "Describing distributions of data",
-    "section": "Learning Materials",
-    "text": "Learning Materials\n Slides (Will open in full screen. Right click to open in a new tab)\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    lec04\n\n  \n  \n  \n\n\n\n\n📚 Reading\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Topic Overview\n\n    PMA6 Ch 4\n\n    ASCN Ch 2.3"
-  },
-  {
-    "objectID": "topics/t04-describing_distributions.html#active-learning",
-    "href": "topics/t04-describing_distributions.html#active-learning",
-    "title": "Describing distributions of data",
-    "section": "📝 Active Learning",
-    "text": "📝 Active Learning\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    HW04 Describing Distributions"
-  },
-  {
-    "objectID": "topics/t04-describing_distributions.html#assessment",
-    "href": "topics/t04-describing_distributions.html#assessment",
-    "title": "Describing distributions of data",
-    "section": "Assessment",
-    "text": "Assessment\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Quiz 03"
-  },
-  {
-    "objectID": "topics/t05-describing_relationships.html",
-    "href": "topics/t05-describing_relationships.html",
-    "title": "Describing Relationships",
-    "section": "",
-    "text": "Visualizing a single variable\nScreening for potential errors and additional data management\nStarting to describe our project data\n\n\n\n\n\nReady to visualize and describe associations between multiple variables.\n\n\n\n\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Calculate appropriate summary statistics for grouped variables\n\n    Create appropriate data visualizations for grouped variables\n\n    Describe the relationship between two measures in complete sentences with supporting numbers."
-  },
-  {
-    "objectID": "topics/t05-describing_relationships.html#learning-path",
-    "href": "topics/t05-describing_relationships.html#learning-path",
-    "title": "Describing Relationships",
-    "section": "",
-    "text": "Visualizing a single variable\nScreening for potential errors and additional data management\nStarting to describe our project data\n\n\n\n\n\nReady to visualize and describe associations between multiple variables.\n\n\n\n\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Calculate appropriate summary statistics for grouped variables\n\n    Create appropriate data visualizations for grouped variables\n\n    Describe the relationship between two measures in complete sentences with supporting numbers."
-  },
-  {
-    "objectID": "topics/t05-describing_relationships.html#learning-materials",
-    "href": "topics/t05-describing_relationships.html#learning-materials",
-    "title": "Describing Relationships",
-    "section": "Learning Materials",
-    "text": "Learning Materials\n Slides (Will open in full screen. Right click to open in a new tab)\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    lec05a\n\n  \n  \n  \n\n\n\n\n📚 Reading\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Topic Overview\n\n    PMA6 Ch 4.6\n\n    PMA6 Ch 4\n\n    IMS 1.2.4 Explantory and Response Variables\n\n    ASCN Ch 2.4"
-  },
-  {
-    "objectID": "topics/t05-describing_relationships.html#active-learning",
-    "href": "topics/t05-describing_relationships.html#active-learning",
-    "title": "Describing Relationships",
-    "section": "📝 Active Learning",
-    "text": "📝 Active Learning\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    HW05 Describing Relationships"
-  },
-  {
-    "objectID": "topics/t05-describing_relationships.html#assessment",
-    "href": "topics/t05-describing_relationships.html#assessment",
-    "title": "Describing Relationships",
-    "section": "Assessment",
-    "text": "Assessment\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Quiz 04"
-  },
-  {
-    "objectID": "topics/t06-foundations_for_inference.html",
-    "href": "topics/t06-foundations_for_inference.html",
-    "title": "Foundations for Statistical Inference",
-    "section": "",
-    "text": "Learning how to explore and visualize our data.\nVisually consider patterns, identify potential relationships\n\n\n\n\n\nThink about how data come to be. That is, if the data are to be used to make broad and complete conclusions, then it is important to understand who or what the data represent.\n\nKnowing how the observational units were selected will allow for generalizations back to the population from which the data were selected.\nBy understanding the structure of the study, causal relationships can be separated from those relationships which are only associated.\n\nRevisiting null value hypothesis testing (NVHT) from a randomization perspective\nRevisiting the Normal distribution model, and getting a feel for how probability (and thus p-values) are calculated.\n\n\n\n\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Identify and distinguish between a parameter and a statistic\n\n    Describe multiple sampling methods\n\n    Identify if a causal statement can be made given a data collection method\n\n    Explain how to test a hypothsis using randomization\n\n    Assess a research question using a hypothesis test\n\n    Use the Normal distribution to calculate a probability\n\n    Describe the concept of sampling variability\n\n    Calculate the mean and sd of the sampling distribution based on population parameters\n\n    Explain the Central Limit Theorem\n\n    Construct and Interpret a confidence interval in context of the problem\n\n    Use a confidence interval to make an inferential hypothesis statement\n\n  \n  \n  \n\n\n\n\nOutline & connected parts for the next 2 weeks\n\nM Study design\n\nJigsaw learning directly in collab notes in class\nFinish Part 1 of HW06 before Monday\n\nW Statistical inference using randomization\n\nCase study (lec06a) activity\n\nM Statistical inference using mathematical models (lec06b)\n\nSampling Distributions, LLN, CLT (in class activity)\nThe Normal model (Calculating probabilities)\n\nW Finish lec06b\n\nInterval estimates\nHypothesis testing"
-  },
-  {
-    "objectID": "topics/t06-foundations_for_inference.html#learning-path",
-    "href": "topics/t06-foundations_for_inference.html#learning-path",
-    "title": "Foundations for Statistical Inference",
-    "section": "",
-    "text": "Learning how to explore and visualize our data.\nVisually consider patterns, identify potential relationships\n\n\n\n\n\nThink about how data come to be. That is, if the data are to be used to make broad and complete conclusions, then it is important to understand who or what the data represent.\n\nKnowing how the observational units were selected will allow for generalizations back to the population from which the data were selected.\nBy understanding the structure of the study, causal relationships can be separated from those relationships which are only associated.\n\nRevisiting null value hypothesis testing (NVHT) from a randomization perspective\nRevisiting the Normal distribution model, and getting a feel for how probability (and thus p-values) are calculated.\n\n\n\n\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Identify and distinguish between a parameter and a statistic\n\n    Describe multiple sampling methods\n\n    Identify if a causal statement can be made given a data collection method\n\n    Explain how to test a hypothsis using randomization\n\n    Assess a research question using a hypothesis test\n\n    Use the Normal distribution to calculate a probability\n\n    Describe the concept of sampling variability\n\n    Calculate the mean and sd of the sampling distribution based on population parameters\n\n    Explain the Central Limit Theorem\n\n    Construct and Interpret a confidence interval in context of the problem\n\n    Use a confidence interval to make an inferential hypothesis statement\n\n  \n  \n  \n\n\n\n\nOutline & connected parts for the next 2 weeks\n\nM Study design\n\nJigsaw learning directly in collab notes in class\nFinish Part 1 of HW06 before Monday\n\nW Statistical inference using randomization\n\nCase study (lec06a) activity\n\nM Statistical inference using mathematical models (lec06b)\n\nSampling Distributions, LLN, CLT (in class activity)\nThe Normal model (Calculating probabilities)\n\nW Finish lec06b\n\nInterval estimates\nHypothesis testing"
-  },
-  {
-    "objectID": "topics/t06-foundations_for_inference.html#learning-materials",
-    "href": "topics/t06-foundations_for_inference.html#learning-materials",
-    "title": "Foundations for Statistical Inference",
-    "section": "Learning Materials",
-    "text": "Learning Materials\n Slides (Will open in full screen. Right click to open in a new tab)\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    lec06a\n\n    lec06b\n\n  \n  \n  \n\n\n\n\n📚 Reading\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Topic Overview\n\n    IMS Chapter 11-11.1\n\n    IMS - Chapter 13.1-13.3\n\n    IMS - Chapter 2"
-  },
-  {
-    "objectID": "topics/t06-foundations_for_inference.html#active-learning",
-    "href": "topics/t06-foundations_for_inference.html#active-learning",
-    "title": "Foundations for Statistical Inference",
-    "section": "📝 Active Learning",
-    "text": "📝 Active Learning\nWe will be using the Jigsaw technique, which is a method of learning by teaching. You have been assigned (possibly with a partner) to read and summarize one section in the textbook.\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Collab notes 6\n\n    In class printed activity.\n\n    CLT Explorer\n\n    HW06 Foundations for Inference"
-  },
-  {
-    "objectID": "topics/t06-foundations_for_inference.html#assessment",
-    "href": "topics/t06-foundations_for_inference.html#assessment",
-    "title": "Foundations for Statistical Inference",
-    "section": "Assessment",
-    "text": "Assessment\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Quiz 05\n\n    Quiz 06"
-  },
-  {
-    "objectID": "topics/t07-bivariate_modeling.html",
-    "href": "topics/t07-bivariate_modeling.html",
-    "title": "Modeling Bivariate Relationships",
-    "section": "",
-    "text": "Visually exploring relationships between two variables by creating appropriate plots to assess how the distribution of a primary outcome (response/dependent) variable changes according to the level of a predictor (explanatory/independent/covariate) variable.\nLearning how probability is used to make inferential statements about parameters\n\n\n\n\nReady to make some statistical statements about relationships between variables.\n\n\n\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Fully conduct the following statistical analyses: Two sample T-Test of means, ANOVA,  Chi-squared test of Association, Correlation"
-  },
-  {
-    "objectID": "topics/t07-bivariate_modeling.html#learning-path",
-    "href": "topics/t07-bivariate_modeling.html#learning-path",
-    "title": "Modeling Bivariate Relationships",
-    "section": "",
-    "text": "Visually exploring relationships between two variables by creating appropriate plots to assess how the distribution of a primary outcome (response/dependent) variable changes according to the level of a predictor (explanatory/independent/covariate) variable.\nLearning how probability is used to make inferential statements about parameters\n\n\n\n\nReady to make some statistical statements about relationships between variables.\n\n\n\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Fully conduct the following statistical analyses: Two sample T-Test of means, ANOVA,  Chi-squared test of Association, Correlation"
-  },
-  {
-    "objectID": "topics/t07-bivariate_modeling.html#learning-materials",
-    "href": "topics/t07-bivariate_modeling.html#learning-materials",
-    "title": "Modeling Bivariate Relationships",
-    "section": "Learning Materials",
-    "text": "Learning Materials\n Slides (Will open in full screen. Right click to open in a new tab)\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    lec07a - Choosing\n\n    lec07b T-test\n\n    lec07c - ANOVA\n\n    lec07d - Chi2\n\n    lec07e Correlation\n\n  \n  \n  \n\n\n\n\n📚 Reading\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Topic Overview\n\n    IMS - Chapter 20\n\n    IMS - Chapter 22\n\n    PMA6 Chapter 6\n\n    ASCN Ch 5\n\n  \n  \n  \n\n\n\n\n🎦 Video\nPre-recorded lectures are available in Canvas. Some recordings are from a prior semester but the slides are mostly the same."
-  },
-  {
-    "objectID": "topics/t07-bivariate_modeling.html#assignments",
-    "href": "topics/t07-bivariate_modeling.html#assignments",
-    "title": "Modeling Bivariate Relationships",
-    "section": "Assignments",
-    "text": "Assignments\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    HW07 Describing Relationships"
-  },
-  {
-    "objectID": "topics/t07-bivariate_modeling.html#assessment",
-    "href": "topics/t07-bivariate_modeling.html#assessment",
-    "title": "Modeling Bivariate Relationships",
-    "section": "Assessment",
-    "text": "Assessment\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Quiz 07\n\n    Quiz 08"
-  },
-  {
-    "objectID": "topics/t08-regression_modeling.html",
-    "href": "topics/t08-regression_modeling.html",
-    "title": "Introduction to Regression modeling",
-    "section": "",
-    "text": "Learning how to statistically assess the relationship between two variables.\n\n\n\nLearning the fundamentals of linear regression, a foundational method of modeling for many types of analyses. We’ll start with simple linear regression, a model that describes the relationship between two quantitative variables as a straight line.\nThen we’ll expand that model to include multiple predictors of varying types.\nAnd then we’ll make it even more generalizable by transforming the response variable \\(y\\) and modeling a log transformed outcome, and a binary outcome using the same regression modeling framework.\n\n\n\n\n\n\n\n\n\n  \n    \n    \n      Items\n    \n  \n  \n    Use the least squares method to calculate an equation for a best fit line that describes the relationship between a continuous explanatory and continuous response variable\n\n    Calculate and interpret estimates for the intercept and slope of regression models\n\n    Use the regression equation to predict new values for Y given values of X\n\n    Calculate and interpret confidence and prediction intervals for the slope value\n\n    Visually assess assumptions of regression models\n\n    Fit a linear regression model with multiple predictors and interpret the coefficients\n\n    Interpret the regression coefficient for binary, and categorical predictors\n\n    Fit a model with a log transformed, or binary outcome and interpret the results\n\n    Choose the best fitting model among several candidates using metrics like R2, AIC, BIC and Accuracy"
-  },
-  {
-    "objectID": "topics/t08-regression_modeling.html#learning-path",
-    "href": "topics/t08-regression_modeling.html#learning-path",
-    "title": "Introduction to Regression modeling",
-    "section": "",
-    "text": "Learning how to statistically assess the relationship between two variables.\n\n\n\nLearning the fundamentals of linear regression, a foundational method of modeling for many types of analyses. We’ll start with simple linear regression, a model that describes the relationship between two quantitative variables as a straight line.\nThen we’ll expand that model to include multiple predictors of varying types.\nAnd then we’ll make it even more generalizable by transforming the response variable \\(y\\) and modeling a log transformed outcome, and a binary outcome using the same regression modeling framework.\n\n\n\n\n\n\n\n\n\n  \n    \n    \n      Items\n    \n  \n  \n    Use the least squares method to calculate an equation for a best fit line that describes the relationship between a continuous explanatory and continuous response variable\n\n    Calculate and interpret estimates for the intercept and slope of regression models\n\n    Use the regression equation to predict new values for Y given values of X\n\n    Calculate and interpret confidence and prediction intervals for the slope value\n\n    Visually assess assumptions of regression models\n\n    Fit a linear regression model with multiple predictors and interpret the coefficients\n\n    Interpret the regression coefficient for binary, and categorical predictors\n\n    Fit a model with a log transformed, or binary outcome and interpret the results\n\n    Choose the best fitting model among several candidates using metrics like R2, AIC, BIC and Accuracy"
-  },
-  {
-    "objectID": "topics/t08-regression_modeling.html#learning-materials",
-    "href": "topics/t08-regression_modeling.html#learning-materials",
-    "title": "Introduction to Regression modeling",
-    "section": "Learning Materials",
-    "text": "Learning Materials\nThis section uses the the Lung function dataset and the following packages:\n\nPlotting: ggplot2, ggdist, sjPlot,gridExtra\nPresenting results: broom, gtsummary\nAssumption checking: performance\n\nSee PMA6 Appendix for more details about the Lung data.\n\nNote: Regression is such a big deal, there are MANY functions in MANY packages that help you get out the relevant information out of the model, and display it in many different ways. I will show several in the slides.\n\n Slides (Will open in full screen. Right click to open in a new tab)\n\n\n\n\n\n\n  \n    \n    \n      Items\n    \n  \n  \n    lec08\n\n    lec09\n\n  \n  \n  \n\n\n\n\n📚 Reading\n\n\n\n\n\n\n  \n    \n    \n      Items\n    \n  \n  \n    Topic Overview\n\n    PMA6 Ch 8\n\n    PMA6 Ch 12\n\n    ASCN 10.5\n\n    ASCN 10.2.1, ASCN 10.4 Intro, ASCN 10.3\n\n    PMA6 Ch 7\n\n    ASCN Ch 9\n\n    ASCN 11.1-11.3\n\n    IMS Ch 24\n\n    A blog about statistical musings\n\n    How to control confounding effects by statistical analysis"
-  },
-  {
-    "objectID": "topics/t08-regression_modeling.html#assignments",
-    "href": "topics/t08-regression_modeling.html#assignments",
-    "title": "Introduction to Regression modeling",
-    "section": "Assignments",
-    "text": "Assignments\n\n\n\n\n\n\n  \n    \n    \n      Items\n    \n  \n  \n    HW08 Simple Linear Regression\n\n    HW09 Multiple Regression"
-  },
-  {
-    "objectID": "topics/t08-regression_modeling.html#assessment",
-    "href": "topics/t08-regression_modeling.html#assessment",
-    "title": "Introduction to Regression modeling",
-    "section": "Assessment",
-    "text": "Assessment\n\n\n\n\n\n\n  \n    \n    \n      Items\n    \n  \n  \n    Quiz 09: SLR\n\n    Quiz 10: MLR and GLM"
-  },
-  {
     "objectID": "topics.html",
     "href": "topics.html",
     "title": "Topics",
     "section": "",
-    "text": "This is the place to start to find all content related to a module.\n\n\n\n\n\n\n\n\n\n\nTopic\n\n\nDescription\n\n\n\n\n\n\nWelcome to Fall 24\n\n\nIntroduction to class and your learning materials\n\n\n\n\nData Architecture\n\n\nData entry, spreadsheets, metadata, codebooks\n\n\n\n\nFormulating research questions\n\n\nAsking questions is easy. Asking answerable questions is more difficult.\n\n\n\n\nPreparing Data for Analysis\n\n\nWhere an inordinate amount of time is spent\n\n\n\n\nDescribing distributions of data\n\n\nVisualizing your data is the first line of defense against bad data\n\n\n\n\nDescribing Relationships\n\n\nFirst step in investigating a question about an association\n\n\n\n\nFoundations for Statistical Inference\n\n\nStudy Design, Inference using randomization and the Normal Model\n\n\n\n\nModeling Bivariate Relationships\n\n\nIdentify and conduct the most appropriate analysis for a given research topic. \n\n\n\n\nIntroduction to Regression modeling\n\n\nEverything is a linear model\n\n\n\n\n\n\nNo matching items"
+    "text": "This is the place to start to find all content related to a module.\n\n\n\n\n\n\n\n\n\n\nTopic\n\n\nDescription\n\n\n\n\n\n\nWelcome to Math 615\n\n\nIntroduction to class and your learning materials\n\n\n\n\nData Architecture\n\n\nData entry, spreadsheets, metadata, codebooks\n\n\n\n\n\n\nNo matching items"
   }
 ]

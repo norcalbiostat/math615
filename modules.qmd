@@ -18,9 +18,8 @@ options(knitr.table.format = "html", knitr.kable.NA = '')
 # Import data
 mod <- googlesheets4::read_sheet("19EBk4rX0bS2a0eYZPxdpEGs18lnwu02hxukFfB3-TNc", 
                                  sheet="module_overview", 
-                                 col_types = c("nnDccccccc"))  %>% 
-  mutate(Date = format(Date,"%m/%d"), 
-         across(-Order, ~str_replace_all(., "\\[([^\\]]+)\\]\\(([^)]+)\\)", '<a href="\\2\">\\1</a>')), 
+                                 col_types = c("nnccccccc"))  %>% 
+  mutate(across(-Order, ~str_replace_all(., "\\[([^\\]]+)\\]\\(([^)]+)\\)", '<a href="\\2\">\\1</a>')), 
          Reading = gsub("\\n", "<br>", Reading))
 ```
 
