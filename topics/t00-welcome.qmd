@@ -1,7 +1,10 @@
 ---
-title: "Welcome to Fall 24"
+title: "Welcome to Math 615"
 subtitle: "Introduction to class and your learning materials"
-description: "8/26"
+description: "8/25/25"
+format:
+  html:
+    css: style.css
 ---
 
 ```{r}
@@ -10,11 +13,11 @@ source("common_code.R")
 this_topic <- topic_mats %>% 
   filter(Order %/% 1 == 0, 
          !grepl("PROJECT", Topic))
-  #filter(grepl("t00", topic))
 
 header <- this_topic[1,]
 content <- this_topic[-1,]
 ```
+
 
 ## Learning Path
 

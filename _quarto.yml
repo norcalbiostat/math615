@@ -4,6 +4,7 @@ project:
   preview:
     port: 4200
     browser: true
+    watch-inputs: false
     
 website:
   page-navigation: true
@@ -20,7 +21,7 @@ website:
 
   navbar: 
     pinned: true
-    background: "#654378"
+    background: "#6c4479"
     left:
       - text: "Overview"
         file: modules.qmd
@@ -39,10 +40,12 @@ website:
           file: project.qmd
         - text: "Guide for Authors"
           file: author_guide.qmd
+        - text: "Journal of Math 615"
+          file: journal.qmd
         
     right: 
       - icon: google
-        href: https://drive.google.com/drive/folders/1f9oKqswqB0wo1I957xFW6yjhIt2FRhwr
+        href: https://drive.google.com/drive/folders/1G5R-9HK0z3D6cbHsIF_vlWOb5BZDNsVj
       - text: "Reference Texts"
         menu: 
           - text: "Applied Stats Notebook"
@@ -67,8 +70,8 @@ format:
     code-overflow: scroll
 
 execute:
-  freeze: true # never re-render during project render 
-  #freeze: auto # re-render only when source changes
+  #freeze: true # never re-render during project render 
+  freeze: auto # re-render only when source changes
   echo: false
   warning: false
   message: false
