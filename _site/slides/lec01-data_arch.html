@@ -340,20 +340,15 @@ Robin Donatello
 
   <p class="date">2025-08-25</p>
 </section>
-<section>
 <section id="prior-knowledge" class="title-slide slide level1 center">
 <h1>Prior Knowledge</h1>
-
-</section>
-<section id="shared-experiences" class="slide level2">
-<h2>Shared experiences</h2>
 <div class="callout callout-note no-icon callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
-<p><strong>Answer each of the following questions</strong></p>
+<p><strong>Shared experiences</strong></p>
 </div>
 <div class="callout-content">
-<p>Answer directly in the Google Docs Data Architecture collaborative notes. Put your name next to your answer.</p>
+<p>Discuss with the classmates at your table the following questions, be prepared to share out to the class.</p>
 </div>
 </div>
 </div>
@@ -361,7 +356,8 @@ Robin Donatello
 <span class="emoji" data-emoji="question">❓</span> In what manner/forms are data found?<br>
 <span class="emoji" data-emoji="question">❓</span> How and where do you store data?<br>
 <span class="emoji" data-emoji="question">❓</span> What do we use data for?</p>
-</section></section>
+</section>
+
 <section>
 <section id="working-with-data-in-spreadsheets" class="title-slide slide level1 center">
 <h1>Working with data in Spreadsheets</h1>
@@ -720,44 +716,6 @@ Robin Donatello
         ]
       });
     </script>
-    
-    <script>
-      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-      // slide changes (different for each slide format).
-      (function () {
-        // dispatch for htmlwidgets
-        function fireSlideEnter() {
-          const event = window.document.createEvent("Event");
-          event.initEvent("slideenter", true, true);
-          window.document.dispatchEvent(event);
-        }
-
-        function fireSlideChanged(previousSlide, currentSlide) {
-          fireSlideEnter();
-
-          // dispatch for shiny
-          if (window.jQuery) {
-            if (previousSlide) {
-              window.jQuery(previousSlide).trigger("hidden");
-            }
-            if (currentSlide) {
-              window.jQuery(currentSlide).trigger("shown");
-            }
-          }
-        }
-
-        // hookup for slidy
-        if (window.w3c_slidy) {
-          window.w3c_slidy.add_observer(function (slide_num) {
-            // slide_num starts at position 1
-            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-          });
-        }
-
-      })();
-    </script>
-
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {
