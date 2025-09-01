@@ -57,9 +57,9 @@ notnow.col <-  "background-color: #445179; color: #fff;"
 out %>% 
   kbl(align = "lccccc", format = "html", escape=FALSE) %>%
   kable_styling(bootstrap_options = c("hover", "striped", "responsive", "bordered")) %>% 
-  pack_rows(tn$Topic[1], tn$start[1],   tn$end[1], label_row_css =now.col) %>% 
+  pack_rows(tn$Topic[1], tn$start[1],   tn$end[1], label_row_css =notnow.col) %>% 
   pack_rows(tn$Topic[2], tn$start[2],   tn$end[2], label_row_css =notnow.col) %>%
-  pack_rows(tn$Topic[3], tn$start[3],   tn$end[3], label_row_css =notnow.col) %>%
+  pack_rows(tn$Topic[3], tn$start[3],   tn$end[3], label_row_css =now.col) %>%
   pack_rows(tn$Topic[4], tn$start[4],   tn$end[4], label_row_css =notnow.col) %>%
   pack_rows(tn$Topic[5], tn$start[5],   tn$end[5], label_row_css =notnow.col) %>%
   pack_rows(tn$Topic[6], tn$start[6],   tn$end[6], label_row_css =notnow.col) %>%
