@@ -1,9 +1,8 @@
 ---
 title: "Preparing your data for analysis"
-date: "2024-09-11"
+date: "2025-09-10"
 description: "lec03b"
 author: "Robin Donatello"
-footer: "[🔗 https://math615.netlify.app](https://math615.netlify.app) / Preparing your data for analysis"
 from: markdown+emoji
 format: 
   revealjs:
@@ -11,7 +10,7 @@ format:
     transition: fade
     slide-number: true
     incremental: false 
-    chalkboard: true
+    code-fold: show
 execute:
   freeze: auto
   echo: true
@@ -38,19 +37,13 @@ See [ASCN Ch 19.1-19.8](https://norcalbiostat.github.io/AppliedStatistics_notes/
 ## Import {.smaller}
 
 1. Open your MATH 615 R Project
-2. Create a new Quarto file named `dm_dataset.qmd` where `dataset` is YOUR dataset name. E.g. `dm_addhealth.qmd`.
-3.  Save this file in your `Math615/scripts` folder.
-4.  Copy the following code into a new code chunk.
-
-```{r, eval=1}
-library(tidyverse)
-raw <- read_csv(here::here("data", "data.csv"))
-```
-
-5.  Replace the `data.csv` with YOUR data set name exactly as it shows in your files window (bottom right).
+2. Go to [Homework 03](https://math615.netlify.app/hw/hw03-dm) and complete step 1 ONLY.
+3. Confirm your data is in your `data` folder. 
+5. Modify the import code on line 13 to correctly import _your_ data set. If you are using one of my data sets, there should be a file in the folder that gives you the correct import code.  
 6.  Run this code chunk only (not render)
 
-```{r, echo=FALSE}
+```{r}
+library(tidyverse)
 raw <- palmerpenguins::penguins_raw # for demo only
 ```
 
@@ -61,6 +54,14 @@ Okay, did it work?
 * Look in the top right Environment pane. Do you see a dataset named `raw`? Does it have an expected number of rows and columns?
 * Click on the table icon to open the data set in a spreadsheet like view. Are the variable names correct? Does the data look correct? 
 
+## Restrict to analysis variables
+
+* Reduce cogitative load by making a "working" data set that only contains variables that you immediately care about. 
+
+```{r}
+mydata <- raw %>% select(Species, Island, `Body Mass (g)`)
+```
+
 
 ## Initial Data Screening {.smaller}
 
@@ -70,14 +71,13 @@ Use functions like `str()` or `glimpse()` to see what data type R thinks your va
 ## `glimpse`
 
 ```{r}
-glimpse(raw)    # from the tidyverse/dplyr dataset
+glimpse(mydata)    # from the tidyverse/dplyr dataset
 ```
-
 
 ## `str`
 
 ```{r}
-str(raw)    
+str(mydata)    
 ```
 :::
 
@@ -87,29 +87,44 @@ Both views show you the variable names, data types, and what the data in the fir
 
 You can also look at the data type for a single variable at a time. 
 
+::: {.panel-tabset}
+## `typeof`
 ```{r}
-typeof(raw$Island) 
-class(raw$Island) 
-str(raw$Island) 
+typeof(mydata$Island) 
 ```
 
-## Check plausibility of data values
+## `class`
+```{r}
+class(mydata$Island) 
+```
+
+## `str`
+```{r}
+str(mydata$Island) 
+```
+::::
+
+## Check plausibility of data values {.smaller}
 
 Confirm these values follow the expected values according to the codebook. 
 
-<br>
+::: {.panel-tabset}
 
-Use `table()` for categorical variables  
-
-```{r}
-table(raw$Island)
-```
-
-and `summary()` on numeric variables to see the range of values present.
+## Categorical 
+Use `table()` for categorical variables to see the frequency of unique levels of that variable. Note any levels with less than 10 observations or variables with more than 10 levels. 
 
 ```{r}
-summary(raw$`Body Mass (g)`)
+table(mydata$Island)
 ```
+
+## Numeric
+You can use `summary()` on numeric variables to see the range of values present. Note the amount of missing values, the spread of the data, and any out of range values (e.g. 99 or 7 on a binary yes/no that should only be 0/1). 
+
+```{r}
+summary(mydata$`Body Mass (g)`)
+```
+
+::::
 
 ## Data Prep questions {.smaller}
 
@@ -182,9 +197,8 @@ In this code, we're first loading the `palmerpenguins` package, which provides a
 
 Next, we use the `factor()` function to reorder the levels of the `island` variable. We specify the desired order of levels using the `levels` argument. In this case, we put "Dream" first, followed by the other islands. Finally, we check the new order of levels to make sure the change was successful.
 
-Make sure you have the `palmerpenguins` package installed. You can install it using `install.packages("palmerpenguins")` if you haven't done so already.
 
-## WOW!
+## Use it as a learning tool
 
 Not only did it write the code, it wrote _literate_ code. It has code comments (lines 1, 4, 7, prefixed with a `#`), and a full text explanation. 
 
@@ -198,10 +212,27 @@ Read the Syllabus on what is expected of you if you use this tool to aid in your
 
 :warning: Trust but verify! AI is not always correct! Also, this does not replace the necessity of you learning. 
 
-## Closing thoughts
+## Save an analysis-ready data set {.smaller}
+
+* The very last thing you should do in your data management script is save an analysis ready or "clean" data file. 
+* Advised to save it as a `.Rdata` file to maintain your factor orderings
+* You may want to do one more round of using `select()` to drop variables that you don't want anymore
+* Do this at the bottom of your homework dm script file now. 
+* Every time you render this `dm` file, it will overwrite the cleaned data with the same name - thus ensuring that your analysis data set is always programmatically connected to your raw data set, and all choices documented. 
+
+
+## Collaborating with others
+
+* It's critically important that both of you are using the same slice/filter section of data
+    * And if one person made a new variable, the other person should have that code also. 
+* If you and your partner know git -- use it. 
+* Other methods are to store all files (and R project) in a shared Box/Dropbox/Google Drive type folder. 
+
+## Closing thoughts {.smaller}
 
 -   Do not underestimate the importance of this step
 -   It will take you far, far longer than you anticipate to 'clean' your data
 -   Effort spent here is a direct correlation with payoff. 
 -   Writing code (in any language) will be challenging, but will pay off in the long run
 -   Don't reinvent the wheel. If you want to do something, chances are someone else has done it before. Perhaps even yourself! 
+-   Programming in R is **not** like programming in Python or any flavor of C. Things that are efficient or necessary in those languages (e.g. loops) make your R code unreadable and clunky. 

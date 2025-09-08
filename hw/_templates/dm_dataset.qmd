@@ -1,7 +1,13 @@
 ---
 title: "Data Management for the ____________ Data Set"
 author: "PUT YOUR NAME HERE"
-format: html
+format:
+  html: default
+  pdf: default
+execute:
+  echo: true
+  warning: false
+  message: false
 ---
 
 # Import
@@ -11,8 +17,12 @@ library(tidyverse)
 
 # Read in the data 
 raw <- read.delim(here::here("data/Depress.txt")) # change this line to read in YOUR data set
+```
 
-# Select only the variables that I am interested in
+# Restrict to analysis variables
+
+Select only the variables that I am interested in
+```{r}
 mydata  <- raw %>% select()
 ```
 

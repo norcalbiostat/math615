@@ -42,9 +42,10 @@ Reference [lec03b-data_prep](../slides/lec03b-data_prep.html) and [ASCN Chapter 
 
 -   You will submit your code file to Canvas. This must run on my computer.
     -   What comes out is what I grade.
-    -   Render your script file to PDF before you submit to ensure that it works and looks the way you expect it to.
+    -   Render your script file to PDF before you submit to ensure that it works and looks the way you expect it to. Fix any code that wraps off the page.
+    -   You will upload your data set to a Box link contained in Canvas. 
 
-> Exceptions: If you are working on a personal data set then you must submit a PDF to Canvas demonstrating reproducibility. If there are questions I may ask you to demonstrate your code to me in person.
+If there are questions I may ask you to demonstrate your code to me in person.
 
 :::{.callout-important}
 #### Ensure Reproducibility
@@ -52,7 +53,7 @@ Reference [lec03b-data_prep](../slides/lec03b-data_prep.html) and [ASCN Chapter 
 To ensure reproducibility between research partners, AND my self, you must do the following: 
 
 * Be using an R Project for this class
-* Your data should be in your `data` folder, and your scripts in your `scripts` folder
+* Your data must be in your `data` folder, and your scripts must be your `scripts` folder
 * Use the `here::here()` method of accessing your data
 
 :::
@@ -62,14 +63,14 @@ To ensure reproducibility between research partners, AND my self, you must do th
 # Example
 
 ::: {.callout-tip icon="true"}
-Here is an example using R Markdown/Quarto. Everything you see below this line comes is written in the `.qmd` script itself. This is an example of literate programming where you write what you are going to do, do it in code, and then write what you have learned after each step.
+Here is an example using Quarto. Everything you see below this line comes is written in the `.qmd` script itself. This is an example of literate programming where you write what you are going to do, do it in code, and then write what you have learned after each step.
 :::
 
 ## Setup
 
 ```{r}
 # Load libraries
-library(dplyr)
+library(tidyverse)
 
 # Read in the data 
 raw <- read.delim(here::here("data/Depress.txt"), sep="\t",  header=TRUE) %>%
