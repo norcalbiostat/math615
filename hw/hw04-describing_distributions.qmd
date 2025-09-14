@@ -23,7 +23,7 @@ Completely describe 2 categorical and 2 quantitative variables using all of the 
 
 * An explanation of what the variable is, and how it is measured. 
 * A table of summary statistics,
-* An appropriate plot with titles and axes labels, 
+* An appropriate plot with titles and axes labels (include both a histogram and boxplot for numeric data)
 * A short paragraph description in full complete English sentences. 
     
     
@@ -51,7 +51,7 @@ To guide your description of this distribution try to include the following info
 
 * Use the template provided: [[QMD]](_templates/hw04_describing_distributions_template.qmd)
   - Right click and 'save as', put this in your `scripts` folder
-* Upload your draft PDF to Canvas by the due date
+* Upload your draft PDF to Canvas by the due date. 
 
 
 
@@ -60,13 +60,14 @@ To guide your description of this distribution try to include the following info
 \newpage 
 
 # Example
-This example uses the `mpg` data set from the `ggplot2` package.
+
 ```{r}
 # Load libraries
-library(sjPlot); library(ggplot2);library(ggpubr)
+library(tidyverse)
+library(sjPlot)
+library(ggpubr)
 
-# Import data
-# load(here("data", "data.Rdata")) # your import line will look something like this
+load(here::here("data/depression_clean.Rdata")) # your import line will look something like this
 ```
 
 > text written like this are example student submission text
@@ -75,21 +76,21 @@ library(sjPlot); library(ggplot2);library(ggpubr)
 Draft style plot, direct computer output showing/copied. Poor grammar and/or sentence structure, no attempt at explaining what the variable means, extra unnecessary or incorrect information included. Typos. 
 
 ```{r}
-table(mpg$class)
+table(clean$depressed)
 ```
 
-> class has more suvs than compacts. 2% are 2seaters. there are 5 2seaters 47 cmpact 41 midize 11 minivans 33 pickups 35% subcompacts, 62 suv and 234 total cars. 
+> There are 249 not depressed and 45 depressed. 
 
 ## Proficient categorical
 Cleaned up plot, full English sentences, useful text formatting of variable names and levels. Explained what the variable was named and what it measured. 
 
-> The `class` variable from the `mpg` data set is a catgorical variable that describes the type of vehicle being measured. Some levels of this categorical variable include _compact_, _pickup_ and _suv_. 
+> The `depressed` variable is an indicator variable created from the CESD scale to identify potential clinical depression. This variable has two levels: `depressed` or `not depressed`. 
 
 ```{r, fig.height=4, fig.align='center'}
-plot_frq(mpg$class)
+plot_frq(clean$depressed)
 ```
 
-> Sub compact cars are the most frequently reported type of car, making up over one-quarter (26.5%) of the cars in this data set with n=62 cars represented. The least represented car is a compact car with n=5 (2.1%) records. 
+> The majority of respondents in this data set are not considered depressed; 84.7% (n=249) individuals did not meet the threshold on the CESD scale to indicate potential clinical depression.  
 
 \newpage
 
@@ -97,25 +98,25 @@ plot_frq(mpg$class)
 A "for your eyes only" quality plot, minimal description of characteristics, no information about the variable provided. 
 
 ```{r}
-hist(mpg$cty)
-summary(mpg$cty)
+hist(clean$age)
+summary(clean$age)
+sd(clean$age)
 ```
 
-> cty is normally distributed between 5 and 35 with mean 17.
+> age is skewed right with a mean of 44 and median of 42 and a sd of 18.
 
 ## Proficient quantitative
 Overlaid a density curve on the histogram, added a dashed line at the mean. Table of summary statistics present in a nicely formatted way, digits rounded appropriately. Plot cleaned up with appropriate axis and titles.  
 
-> The `cty` variable records the miles per gallon (mpg) achieved during city driving. This is a quantititative numeric variable. 
 
-```{r, fig.height=3, fig.width=4, fig.align='center'}
-# this function is from the ggpubr package
-gghistogram(data=mpg, x = "cty", add = "mean", fill = "skyblue", add_density = TRUE, 
-            xlab = "MPG", title = "City miles per gallon (MPG)")
+```{r}
+#| layout-ncol: 2
 
-summary(mpg$cty)
+ggviolin(clean$age, add = c("jitter", "boxplot")) + 
+  coord_flip() + labs(x="", y="Age")
+gghistogram(clean$age, add_density = TRUE) + xlab("Age")
 ```
 
-> The MPG in the city ranges from 9 to 35, unimodal and is slightly skewed right with a mean of 16.9 close to the median of 17 and a standard deviation of 4.3mpg. The histogram indicates that there are at a few upper end potential outliers achieving a city MPG of approximately over 30 mpg. 
+>  The ages of respondents range from 18 to 89 years old, is bimodal with peaks around 25 and 55ish. The mean age is 44.4 with the median very close at 42.5 - confirming the lack of skew. The standard deviation is 18, and 50% of the reported ages lie between 28 and 59.  
 
     
