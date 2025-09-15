@@ -963,7 +963,7 @@
     "href": "slides.html",
     "title": "All Slides",
     "section": "",
-    "text": "Slides will open in full screen. Right click to open in a new tab\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDate\n\n\nLec #\n\n\nTopic\n\n\n\n\n\n\nAug 25, 2024\n\n\nlec00a\n\n\nWelcome to MATH 615\n\n\n\n\nAug 25, 2025\n\n\nlec00b\n\n\nMATH 615 Course Tools\n\n\n\n\nAug 27, 2025\n\n\nlec01\n\n\nData Architecture\n\n\n\n\nSep 3, 2025\n\n\nlec02\n\n\nFormulating research questions\n\n\n\n\nSep 8, 2025\n\n\nlec03a\n\n\nWorkflows for Reproducibility\n\n\n\n\nSep 10, 2025\n\n\nlec03b\n\n\nPreparing your data for analysis\n\n\n\n\nSep 15, 2025\n\n\nlec04\n\n\nDescribing Distributions of Data\n\n\n\n\n\n\nNo matching items"
+    "text": "Slides will open in full screen. Right click to open in a new tab\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDate\n\n\nLec #\n\n\nTopic\n\n\n\n\n\n\nAug 25, 2024\n\n\nlec00a\n\n\nWelcome to MATH 615\n\n\n\n\nAug 25, 2025\n\n\nlec00b\n\n\nMATH 615 Course Tools\n\n\n\n\nAug 27, 2025\n\n\nlec01\n\n\nData Architecture\n\n\n\n\nSep 3, 2025\n\n\nlec02\n\n\nFormulating research questions\n\n\n\n\nSep 8, 2025\n\n\nlec03a\n\n\nWorkflows for Reproducibility\n\n\n\n\nSep 10, 2025\n\n\nlec03b\n\n\nPreparing your data for analysis\n\n\n\n\nSep 15, 2025\n\n\nlec04\n\n\nDescribing Distributions of Data\n\n\n\n\nSep 17, 2024\n\n\nlec05a\n\n\nDescribing Relationships between variables\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "syllabus.html",
@@ -1250,6 +1250,90 @@
     "href": "topics.html",
     "title": "Topics",
     "section": "",
-    "text": "This is the place to start to find all content related to a module.\n\n\n\n\n\n\n\n\n\n\nTopic\n\n\nDescription\n\n\n\n\n\n\nWelcome to Math 615\n\n\nIntroduction to class and your learning materials\n\n\n\n\nData Architecture\n\n\nData entry, spreadsheets, metadata, codebooks\n\n\n\n\nFormulating research questions\n\n\nAsking questions is easy. Asking answerable questions is more difficult.\n\n\n\n\nPreparing Data for Analysis\n\n\nWhere an inordinate amount of time is spent\n\n\n\n\nDescribing distributions of data\n\n\nVisualizing your data is the first line of defense against bad data\n\n\n\n\n\n\nNo matching items"
+    "text": "This is the place to start to find all content related to a module.\n\n\n\n\n\n\n\n\n\n\nTopic\n\n\nDescription\n\n\n\n\n\n\nWelcome to Math 615\n\n\nIntroduction to class and your learning materials\n\n\n\n\nData Architecture\n\n\nData entry, spreadsheets, metadata, codebooks\n\n\n\n\nFormulating research questions\n\n\nAsking questions is easy. Asking answerable questions is more difficult.\n\n\n\n\nPreparing Data for Analysis\n\n\nWhere an inordinate amount of time is spent\n\n\n\n\nDescribing distributions of data\n\n\nVisualizing your data is the first line of defense against bad data\n\n\n\n\nDescribing Relationships\n\n\nFirst step in investigating a question about an association\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "slides/lec05a-describing_relationships.html#naming-conventions",
+    "href": "slides/lec05a-describing_relationships.html#naming-conventions",
+    "title": "Describing Relationships between variables",
+    "section": "Naming conventions",
+    "text": "Naming conventions\n\n\n\nResponse\nExplanatory\n\n\n\n\ny\nx\n\n\noutcome\npredictor\n\n\ndependent variable\nindependent variable\n\n\n\ncovariate\n\n\n\nfeature\n\n\n\n\n\nModel notation: \\(y \\sim x\\)"
+  },
+  {
+    "objectID": "slides/lec05a-describing_relationships.html#types-of-combinations",
+    "href": "slides/lec05a-describing_relationships.html#types-of-combinations",
+    "title": "Describing Relationships between variables",
+    "section": "Types of combinations",
+    "text": "Types of combinations\n\nCategorical response and categorical explanatory variable. (C ~ C)\nQuantitative response and categorical explanatory variable. (Q ~ C)\nQuantitative response and quantitative explanatory variable. (Q ~ Q)\n\nThe \\(Q\\) and \\(C\\) notation is internal to this class. Not universal."
+  },
+  {
+    "objectID": "slides/lec05a-describing_relationships.html#q-c",
+    "href": "slides/lec05a-describing_relationships.html#q-c",
+    "title": "Describing Relationships between variables",
+    "section": "Q ~ C",
+    "text": "Q ~ C\nQuantitative Response vs Categorical Explanatory\n\nGrouped summary statisticsgtsummaryPlotsPlot2Description\n\n\nn, nean, median, sd, IQR of the quantitative variable for each level of the categorical level.\n\n\nShow the code\npen %&gt;% group_by(species) %&gt;% \n  summarize(n=n(), \n            mean   = mean(bill_depth_mm, na.rm = TRUE), \n            median = median(bill_depth_mm, na.rm = TRUE), \n            sd     = sd(bill_depth_mm, na.rm = TRUE), \n            IQR    = IQR(bill_depth_mm, na.rm = TRUE))\n\n\n# A tibble: 3 × 6\n  species       n  mean median    sd   IQR\n  &lt;fct&gt;     &lt;int&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 Adelie      152  18.3   18.4 1.22   1.5 \n2 Chinstrap    68  18.4   18.4 1.14   1.90\n3 Gentoo      124  15.0   15   0.981  1.5 \n\n\nGentoo penguins have lower average bill depth compared to Adelie or Chinstrap (15.0mm vs 18.3 and 18.4mm respectively). Chinstrap however have a larger IQR at 1.9 compared to 1.5 for the others.\n\n\n\n\nSimilarly nice tables, but defaults to median and IQR.\n\n\nShow the code\npen %&gt;% select(bill_depth_mm, species) %&gt;%\n  tbl_summary(by = \"species\")\n\n\n\n\n\n\n  \n    \n      Characteristic\n      Adelie\nN = 1521\n      Chinstrap\nN = 681\n      Gentoo\nN = 1241\n    \n  \n  \n    bill_depth_mm\n18.40 (17.50, 19.00)\n18.45 (17.50, 19.40)\n15.00 (14.20, 15.70)\n        Unknown\n1\n0\n1\n  \n  \n  \n    \n      1 Median (Q1, Q3)\n    \n  \n\n\n\n\n\nHave to manually specify you want mean & sd.\n\n\nShow the code\npen %&gt;% select(bill_depth_mm, species) %&gt;%\n  tbl_summary(by = \"species\", \n              statistic = list(all_continuous() ~ \"{mean} ({sd})\"))\n\n\n\n\n\n\n  \n    \n      Characteristic\n      Adelie\nN = 1521\n      Chinstrap\nN = 681\n      Gentoo\nN = 1241\n    \n  \n  \n    bill_depth_mm\n18.35 (1.22)\n18.42 (1.14)\n14.98 (0.98)\n        Unknown\n1\n0\n1\n  \n  \n  \n    \n      1 Mean (SD)\n    \n  \n\n\n\n\n\n\n\n\n\n\nOverlaid density plots\n\n\nShow the code\ngghistogram(pen, \n    x = \"bill_depth_mm\", fill = \"species\", \n    add_density = TRUE, add=\"mean\")\n\n\n\n\n\n\nSide by side boxplots\n\n\nShow the code\nggviolin(pen, \n  x=\"species\", y = \"bill_depth_mm\", \n  color = \"species\", add = c(\"mean\", \"boxplot\"))\n\n\n\n\n\n\n\n The distribution of bill depth are fairly normal for each species, with some higher end values causing a slight right skew for Adelie and Gentoo.\n\n\nMore code but nice alternative to violins.\n\n\nShow the code\nlibrary(ggdist) # for the \"half-violin\" plot (stat_slab)\nggplot(pen, aes(x=bill_depth_mm, y=species, fill=species)) + \n      stat_slab(alpha=.5, justification = 0) + \n      geom_boxplot(width = .2,  outlier.shape = NA) + \n      geom_jitter(alpha = 0.5, height = 0.05) +\n      stat_summary(fun=\"mean\", geom=\"point\", col=\"red\", size=4, pch=17) + \n      theme_bw() + \n      labs(x=\"Bill depth (mm)\", y = \"Species\") + \n      theme(legend.position = \"none\")\n\n\n\n\n\n\n\nDiscuss shape, spread and center using comparative language.\n\n\nThe distribution of bill depth are fairly normal for each species, with some higher end values causing a slight right skew for Adelie and Gentoo. Gentoo penguins have lower average bill depth compared to Adelie or Chinstrap (15.0mm vs 18.3 and 18.4mm respectively). Chinstrap however have a larger IQR at 1.9 compared to 1.5 for the others."
+  },
+  {
+    "objectID": "slides/lec05a-describing_relationships.html#q-q",
+    "href": "slides/lec05a-describing_relationships.html#q-q",
+    "title": "Describing Relationships between variables",
+    "section": "Q ~ Q",
+    "text": "Q ~ Q\nQuantitative Response vs Quantitative Explanatory\n\nSummary statisticPlotsDescription\n\n\n\n\nShow the code\ncor(pen$flipper_length_mm, pen$body_mass_g, \n    use=\"pairwise.complete.obs\")\n\n\n[1] 0.8712018\n\n\nThe correlation coefficient \\(r\\) is a measure of the strength and direction of a linear relationship between two variables.\n\n\\(|r| &gt; 0.6\\) Strong relationship\n\\(0.4 \\leq |r| &lt; 0.6\\) Moderate relationship\n\\(|r| &lt; 0.4\\) Weak to no relationship\n\nNote: These values are guidelines and subject to variability within different disciplines ref\n\n\n\n\n\n\nShow the code\nggscatter(pen, \n  x=\"flipper_length_mm\", y = \"body_mass_g\")\n\n\n\n\n\n\n\n\nShow the code\nggscatter(pen, \n  x=\"flipper_length_mm\", y = \"body_mass_g\", \n  add = \"loess\", conf.int = TRUE)\n\n\n\n\n\n The relationship between flipper length and body mass in penguins is relatively linear, but there may be possible clustering on a third variable. There appears to be two groups below and above a flipper length of about 205mm. \n\n\n\nMust include the direction (positive or negative), the strength quantified using \\(r\\), and the form (linear vs non-linear)\nThe penguin flipper length (mm) has a strong, positive, and reasonably linear correlation with body mass (g), r=0.87."
+  },
+  {
+    "objectID": "slides/lec05a-describing_relationships.html#c-c",
+    "href": "slides/lec05a-describing_relationships.html#c-c",
+    "title": "Describing Relationships between variables",
+    "section": "C ~ C",
+    "text": "C ~ C\nCategorical Response vs Categorical Explanatory\n\nTwo way tables (cross-tabs)Plots\n\n\n\n\n\n\nShow the code\ntable(pen$species, pen$island)\n\n\n           \n            Biscoe Dream Torgersen\n  Adelie        44    56        52\n  Chinstrap      0    68         0\n  Gentoo       124     0         0\n\n\n\n\n\nShow the code\ntable(pen$species, pen$island) |&gt; \n  prop.table(margin=2) |&gt; round(2)\n\n\n           \n            Biscoe Dream Torgersen\n  Adelie      0.26  0.45      1.00\n  Chinstrap   0.00  0.55      0.00\n  Gentoo      0.74  0.00      0.00\n\n\n\n\n\nAll of the 52 penguins on Torgersen island are the Adelie species.\n74% of penguins on Biscoe island are Gentoo.\n\n\n\n\n\nShow the code\nplot_xtab(pen$island, grp=pen$species, show.total = FALSE)\n\n\n\n\n\n\nDo these percents match the table?"
+  },
+  {
+    "objectID": "slides/lec05a-describing_relationships.html#watch-your-margins",
+    "href": "slides/lec05a-describing_relationships.html#watch-your-margins",
+    "title": "Describing Relationships between variables",
+    "section": "Watch your margins",
+    "text": "Watch your margins\n\n\n\n\n\n\nAlways double check your work\n\n\nOne of the most common places for a mistake when creating a plot or a table between two categorical variables is by not paying close attention to the choice of denominator. And then also confirming the interpretation matches the table, which matches the plot.\n\n\n\n\nWhat % of penguins on each island are Gentoo?\nWhat % of Gentoo penguins are on each Island?"
+  },
+  {
+    "objectID": "slides/lec05a-describing_relationships.html#watch-your-margins-1",
+    "href": "slides/lec05a-describing_relationships.html#watch-your-margins-1",
+    "title": "Describing Relationships between variables",
+    "section": "Watch your margins",
+    "text": "Watch your margins\n\nTablesgtsummaryPlots\n\n\n\n\nRow Percents\n\n\nShow the code\ntable(pen$species, pen$island) |&gt; \n  prop.table(margin=1) |&gt; round(2)\n\n\n           \n            Biscoe Dream Torgersen\n  Adelie      0.29  0.37      0.34\n  Chinstrap   0.00  1.00      0.00\n  Gentoo      1.00  0.00      0.00\n\n\n29% of Adelie penguins are on Biscoe Island.\n\nColumn Percents\n\n\nShow the code\ntable(pen$species, pen$island) |&gt; \n  prop.table(margin=2) |&gt; round(2)\n\n\n           \n            Biscoe Dream Torgersen\n  Adelie      0.26  0.45      1.00\n  Chinstrap   0.00  0.55      0.00\n  Gentoo      0.74  0.00      0.00\n\n\n74% of penguins on Biscoe island are Gentoo.\n\n\n\n\n\n\nDistribution of Islands within each species\n\n\nShow the code\npen %&gt;% select(island, species) %&gt;%\n  tbl_summary(by = \"species\")\n\n\n\n\n\n\n  \n    \n      Characteristic\n      Adelie\nN = 1521\n      Chinstrap\nN = 681\n      Gentoo\nN = 1241\n    \n  \n  \n    island\n\n\n\n        Biscoe\n44 (29%)\n0 (0%)\n124 (100%)\n        Dream\n56 (37%)\n68 (100%)\n0 (0%)\n        Torgersen\n52 (34%)\n0 (0%)\n0 (0%)\n  \n  \n  \n    \n      1 n (%)\n    \n  \n\n\n\n\n\nDistribution of Species on each Island\n\n\nShow the code\npen %&gt;% select(island, species) %&gt;%\n  tbl_summary(by = \"island\")\n\n\n\n\n\n\n  \n    \n      Characteristic\n      Biscoe\nN = 1681\n      Dream\nN = 1241\n      Torgersen\nN = 521\n    \n  \n  \n    species\n\n\n\n        Adelie\n44 (26%)\n56 (45%)\n52 (100%)\n        Chinstrap\n0 (0%)\n68 (55%)\n0 (0%)\n        Gentoo\n124 (74%)\n0 (0%)\n0 (0%)\n  \n  \n  \n    \n      1 n (%)\n    \n  \n\n\n\n\n\n\n\n\n\n\nDistribution of islands for each species\n\n\nShow the code\nplot_xtab(pen$species, grp=pen$island, \n          margin = \"row\", show.total = FALSE)\n\n\n\n\n\n29% of Adelie penguins are on Biscoe Island.\n\nDistribution of species on each island.\n\n\nShow the code\nplot_xtab(pen$island, grp=pen$species, \n          margin = \"row\", show.total = FALSE)\n\n\n\n\n\n74% of penguins on Biscoe island are Gentoo.\n\n\n\n\n\n\n\n🔗 https://math615.netlify.app"
+  },
+  {
+    "objectID": "topics/t05-describing_relationships.html",
+    "href": "topics/t05-describing_relationships.html",
+    "title": "Describing Relationships",
+    "section": "",
+    "text": "Visualizing a single variable\nScreening for potential errors and additional data management\nStarting to describe our project data\n\n\n\n\n\nReady to visualize and describe associations between multiple variables.\n\n\n\n\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Calculate appropriate summary statistics for grouped variables\n    Create appropriate data visualizations for grouped variables\n    Describe the relationship between two measures in complete sentences with supporting numbers."
+  },
+  {
+    "objectID": "topics/t05-describing_relationships.html#learning-path",
+    "href": "topics/t05-describing_relationships.html#learning-path",
+    "title": "Describing Relationships",
+    "section": "",
+    "text": "Visualizing a single variable\nScreening for potential errors and additional data management\nStarting to describe our project data\n\n\n\n\n\nReady to visualize and describe associations between multiple variables.\n\n\n\n\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Calculate appropriate summary statistics for grouped variables\n    Create appropriate data visualizations for grouped variables\n    Describe the relationship between two measures in complete sentences with supporting numbers."
+  },
+  {
+    "objectID": "topics/t05-describing_relationships.html#learning-materials",
+    "href": "topics/t05-describing_relationships.html#learning-materials",
+    "title": "Describing Relationships",
+    "section": "Learning Materials",
+    "text": "Learning Materials\n Slides (Will open in full screen. Right click to open in a new tab)\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    lec05a\n    lec05a\n  \n  \n  \n\n\n\n\n📚 Reading\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Topic Overview\n    PMA6 Ch 4.6\n    PMA6 Ch 4\n    IMS 1.2.4 Explantory and Response Variables\n    ASCN Ch 2.4"
+  },
+  {
+    "objectID": "topics/t05-describing_relationships.html#active-learning",
+    "href": "topics/t05-describing_relationships.html#active-learning",
+    "title": "Describing Relationships",
+    "section": "📝 Active Learning",
+    "text": "📝 Active Learning\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    HW05 Describing Relationships"
+  },
+  {
+    "objectID": "topics/t05-describing_relationships.html#assessment",
+    "href": "topics/t05-describing_relationships.html#assessment",
+    "title": "Describing Relationships",
+    "section": "Assessment",
+    "text": "Assessment\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Quiz 04\n    Project Phase 3\n    Report Draft"
   }
 ]

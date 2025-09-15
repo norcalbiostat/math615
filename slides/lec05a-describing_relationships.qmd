@@ -1,9 +1,8 @@
 ---
 title: "Describing Relationships between variables"
-date: "2024-09-23"
+date: "2024-09-17"
 description: "lec05a"
 author: "Robin Donatello"
-footer: "[🔗 https://math615.netlify.app](https://math615.netlify.app) / Describing Relationships"
 from: markdown+emoji
 format: 
   revealjs:
@@ -55,131 +54,6 @@ library(tidyverse); library(ggpubr); library(gtsummary)
 library(palmerpenguins);  library(sjPlot)
 pen <- penguins
 ```
-
-## C \~ C {.smaller}
-Categorical Response vs Categorical Explanatory
-
-::: panel-tabset
-### Two way tables (cross-tabs)
-
-::: columns
-::: {.column width="50%"}
-```{r}
-table(pen$species, pen$island)
-```
-:::
-
-::: {.column width="50%"}
-```{r}
-table(pen$species, pen$island) |> 
-  prop.table(margin=2) |> round(2)
-```
-:::
-:::
-
--   All of the 52 penguins on Torgersen island are the *Adelie* species.
--   74% of penguins on Biscoe island are *Gentoo*.
-
-
-### Plots
-
-```{r}
-#| fig-height: 3
-plot_xtab(pen$island, grp=pen$species, show.total = FALSE)
-```
-
-<p style="color: red">Do these percents match the table?</p>
-
-
-:::
-
-## Watch your margins 
-
-:::{.callout-warning}
-### Always double check your work 
-One of the most common places for a mistake when creating a plot or a table between two categorical variables is by not paying close attention to the choice of denominator. And then also confirming the interpretation matches the table, which matches the plot. 
-:::
-
-* What % of penguins on each island are _Gentoo_?
-* What % of _Gentoo_ penguins are on each Island?  
-
-## Watch your margins {.smaller}
-
-::: panel-tabset
-### Tables
-
-::: columns
-::: {.column width="50%"}
-**Row Percents**
-
-```{r}
-table(pen$species, pen$island) |> 
-  prop.table(margin=1) |> round(2)
-```
-
-29% **of *Adelie* penguins** are on Biscoe Island.
-:::
-
-::: {.column width="50%"}
-**Column Percents**
-
-```{r}
-table(pen$species, pen$island) |> 
-  prop.table(margin=2) |> round(2)
-```
-
-74% **of penguins on Biscoe island** are *Gentoo*.
-:::
-:::
-
-
-### gtsummary
-
-::: columns
-::: {.column width="50%"}
-Distribution of Islands within each species
-```{r}
-pen %>% select(island, species) %>%
-  tbl_summary(by = "species")
-```
-:::
-
-::: {.column width="50%"}
-Distribution of Species on each Island
-```{r}
-pen %>% select(island, species) %>%
-  tbl_summary(by = "island")
-```
-:::
-:::
-
-
-### Plots
-
-::: columns
-::: {.column width="50%"}
-Distribution of islands for each species
-
-```{r}
-plot_xtab(pen$species, grp=pen$island, 
-          margin = "row", show.total = FALSE)
-```
-
-29% **of *Adelie* penguins** are on Biscoe Island.
-:::
-
-::: {.column width="50%"}
-Distribution of species on each island.
-
-```{r}
-plot_xtab(pen$island, grp=pen$species, 
-          margin = "row", show.total = FALSE)
-```
-
-74% **of penguins on Biscoe island** are *Gentoo*.
-:::
-:::
-:::
 
 ## Q \~ C {.smaller}
 
@@ -327,4 +201,130 @@ Must include the `direction` (positive or negative), the `strength` quantified u
 
 _The penguin flipper length (mm) has a strong, positive, and reasonably linear correlation with body mass (g), r=0.87._
 
+:::
+
+
+## C \~ C {.smaller}
+Categorical Response vs Categorical Explanatory
+
+::: panel-tabset
+### Two way tables (cross-tabs)
+
+::: columns
+::: {.column width="50%"}
+```{r}
+table(pen$species, pen$island)
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+table(pen$species, pen$island) |> 
+  prop.table(margin=2) |> round(2)
+```
+:::
+:::
+
+-   All of the 52 penguins on Torgersen island are the *Adelie* species.
+-   74% of penguins on Biscoe island are *Gentoo*.
+
+
+### Plots
+
+```{r}
+#| fig-height: 3
+plot_xtab(pen$island, grp=pen$species, show.total = FALSE)
+```
+
+<p style="color: red">Do these percents match the table?</p>
+
+
+:::
+
+## Watch your margins 
+
+:::{.callout-warning}
+### Always double check your work 
+One of the most common places for a mistake when creating a plot or a table between two categorical variables is by not paying close attention to the choice of denominator. And then also confirming the interpretation matches the table, which matches the plot. 
+:::
+
+* What % of penguins on each island are _Gentoo_?
+* What % of _Gentoo_ penguins are on each Island?  
+
+## Watch your margins {.smaller}
+
+::: panel-tabset
+### Tables
+
+::: columns
+::: {.column width="50%"}
+**Row Percents**
+
+```{r}
+table(pen$species, pen$island) |> 
+  prop.table(margin=1) |> round(2)
+```
+
+29% **of *Adelie* penguins** are on Biscoe Island.
+:::
+
+::: {.column width="50%"}
+**Column Percents**
+
+```{r}
+table(pen$species, pen$island) |> 
+  prop.table(margin=2) |> round(2)
+```
+
+74% **of penguins on Biscoe island** are *Gentoo*.
+:::
+:::
+
+
+### gtsummary
+
+::: columns
+::: {.column width="50%"}
+Distribution of Islands within each species
+```{r}
+pen %>% select(island, species) %>%
+  tbl_summary(by = "species")
+```
+:::
+
+::: {.column width="50%"}
+Distribution of Species on each Island
+```{r}
+pen %>% select(island, species) %>%
+  tbl_summary(by = "island")
+```
+:::
+:::
+
+
+### Plots
+
+::: columns
+::: {.column width="50%"}
+Distribution of islands for each species
+
+```{r}
+plot_xtab(pen$species, grp=pen$island, 
+          margin = "row", show.total = FALSE)
+```
+
+29% **of *Adelie* penguins** are on Biscoe Island.
+:::
+
+::: {.column width="50%"}
+Distribution of species on each island.
+
+```{r}
+plot_xtab(pen$island, grp=pen$species, 
+          margin = "row", show.total = FALSE)
+```
+
+74% **of penguins on Biscoe island** are *Gentoo*.
+:::
+:::
 :::

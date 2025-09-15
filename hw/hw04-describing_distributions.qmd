@@ -19,14 +19,18 @@ There are a variety of conventional ways to visualize data - tables, histograms,
 # Instructions 
 
 
-Completely describe 2 categorical and 2 quantitative variables using all of the following: 
+**PART 1**: Completely describe 2 categorical and 2 quantitative variables using all of the following: 
 
 * An explanation of what the variable is, and how it is measured. 
 * A table of summary statistics,
 * An appropriate plot with titles and axes labels (include both a histogram and boxplot for numeric data)
 * A short paragraph description in full complete English sentences. 
     
-    
+**PART 2**: Create an all-inclusive summary table using the `tbl_summary()` function inside the `gtsummary` package. See slide 10 in the lec04 notes or the [`gtsummary` tutorial](https://www.danieldsjoberg.com/gtsummary/articles/tbl_summary.html). Include all 4 variables that were analyzed as part of this assignment. 
+
+
+
+
 To guide your description of this distribution try to include the following information:
 
 * What is the trend in the data? What exactly does the chart show? (Use the chart title to help you answer this question)
@@ -59,7 +63,7 @@ To guide your description of this distribution try to include the following info
 
 \newpage 
 
-# Example
+# Example - Part I
 
 ```{r}
 # Load libraries
@@ -119,4 +123,9 @@ gghistogram(clean$age, add_density = TRUE) + xlab("Age")
 
 >  The ages of respondents range from 18 to 89 years old, is bimodal with peaks around 25 and 55ish. The mean age is 44.4 with the median very close at 42.5 - confirming the lack of skew. The standard deviation is 18, and 50% of the reported ages lie between 28 and 59.  
 
-    
+# Example - Part II
+
+```{r}
+
+```
+
