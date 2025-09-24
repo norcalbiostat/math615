@@ -18,7 +18,7 @@ options(knitr.table.format = "html", knitr.kable.NA = '')
 # Import data
 mod <- googlesheets4::read_sheet("19EBk4rX0bS2a0eYZPxdpEGs18lnwu02hxukFfB3-TNc", 
                                  sheet="module_overview", 
-                                 col_types = c("nnccccccc"))  %>% 
+                                 col_types = c("nncccccccc"))  %>% 
   mutate(across(-Order, ~str_replace_all(., "\\[([^\\]]+)\\]\\(([^)]+)\\)", '<a href="\\2\">\\1</a>')), 
          Reading = gsub("\\n", "<br>", Reading))
 ```
@@ -45,7 +45,7 @@ for(t in 0:max(tn$tnum)){
 }
 
 out <- content %>% 
-  select(Topic, Reading, Slides, Activities, Assess) 
+  select(Topic, Reading, Video, Slides, Activities, Assess) 
 
 # highlight rows
 now.col <-  "background-color: #557ef6; color: #fff;"
@@ -55,7 +55,7 @@ notnow.col <-  "background-color: #445179; color: #fff;"
 
 ```{r}
 out %>% 
-  kbl(align = "lccccc", format = "html", escape=FALSE) %>%
+  kbl(align = "lcccccc", format = "html", escape=FALSE) %>%
   kable_styling(bootstrap_options = c("hover", "striped", "responsive", "bordered")) %>% 
   pack_rows(tn$Topic[1], tn$start[1],   tn$end[1], label_row_css =notnow.col) %>% 
   pack_rows(tn$Topic[2], tn$start[2],   tn$end[2], label_row_css =notnow.col) %>%
@@ -67,8 +67,9 @@ out %>%
   pack_rows(tn$Topic[8], tn$start[8],   tn$end[8], label_row_css =notnow.col) %>%
   pack_rows(tn$Topic[9], tn$start[9],   tn$end[9], label_row_css =notnow.col) %>%
   column_spec(1, width = "25%") %>%
-  column_spec(2, width = "15%") %>%
-  column_spec(3, width = "20%") %>% 
-  column_spec(4, width = "15%") %>%
-  column_spec(5, width = "10%") 
+  column_spec(2, width = "20%") %>%
+  column_spec(3, width = "0.4in") %>%
+  column_spec(4, width = "5%") %>% 
+  column_spec(5, width = "5%") %>%
+  column_spec(6, width_min = "1.3in") 
 ```

@@ -4,7 +4,7 @@ library(gt)
 
 topic_mats <- googlesheets4::read_sheet("19EBk4rX0bS2a0eYZPxdpEGs18lnwu02hxukFfB3-TNc", 
                                                sheet="module_overview", 
-                                               col_types = c("nnccccccc")) 
+                                               col_types = c("nncccccccc")) 
   # janitor::clean_names() %>% 
   # mutate(assignment = gsub("hw", "../hw/hw", hw), 
   #      slides = sprintf("[%s](%s)", lecture, paste0("../slides/", lecture, ".html")), 

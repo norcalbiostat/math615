@@ -294,11 +294,60 @@
     "text": "Proficient quantitative\nOverlaid a density curve on the histogram, added a dashed line at the mean. Table of summary statistics present in a nicely formatted way, digits rounded appropriately. Plot cleaned up with appropriate axis and titles.\n\nggviolin(clean$age, add = c(\"jitter\", \"boxplot\")) + \n  coord_flip() + labs(x=\"\", y=\"Age\")\ngghistogram(clean$age, add_density = TRUE) + xlab(\"Age\")\n\n\n\n\n\n\n\n\n\n\n\n\nThe ages of respondents range from 18 to 89 years old, is bimodal with peaks around 25 and 55ish. The mean age is 44.4 with the median very close at 42.5 - confirming the lack of skew. The standard deviation is 18, and 50% of the reported ages lie between 28 and 59."
   },
   {
+    "objectID": "hw/hw05-describing_relationships.html",
+    "href": "hw/hw05-describing_relationships.html",
+    "title": "HW 05: Describing Relationships",
+    "section": "",
+    "text": "To fully explore the relationship between two variables both summary statistics and visualizations are important."
+  },
+  {
+    "objectID": "hw/hw05-describing_relationships.html#before-you-start",
+    "href": "hw/hw05-describing_relationships.html#before-you-start",
+    "title": "HW 05: Describing Relationships",
+    "section": "Before you start,",
+    "text": "Before you start,\n\nDetermine what variables you want to graph based on your research topic.\n\nYou will need a mixture of categorical and quantitative variables for this assignment.\nYou should use variables that are relevant to your research topic.\nIf you have not yet identified both a quantitative (Q), a binary (B), and a categorical (C) variable that you are interested in, now is the time to go back to the codebook and figure this out.\n\nRecode variables as needed.\n\nIf your response variable is categorical with many levels, you may want to collapse it down to fewer than 5 levels.\n\n\nIf you do not already have a binary (B) variable in your clean data you can either a) go back and edit your dm file to include a binary varible, or b) dichotomize one of your categorical (C) varibles into two levels. (Make a new variable, don’t overwrite your categorical variable)."
+  },
+  {
+    "objectID": "hw/hw05-describing_relationships.html#for-each-bivariate-relationship-under-consideration-you-will-do-the-following",
+    "href": "hw/hw05-describing_relationships.html#for-each-bivariate-relationship-under-consideration-you-will-do-the-following",
+    "title": "HW 05: Describing Relationships",
+    "section": "For each bivariate relationship under consideration you will do the following:",
+    "text": "For each bivariate relationship under consideration you will do the following:\n\nName and explain the two variables under consideration.\nCreate the appropriate graphic for bivariate relationship under consideration. For these plots binary variables are treated as categorical variables with only 2 levels.\n\nC ~ C: Side by side barplot\nQ ~ C: Paneled histogram with density overlaid, or a grouped boxplot with overlaid violin plot.\nQ ~ Q: Scatterplot. Add both lowess and linear trend lines.\n\nCalculate appropriate grouped summary statistics\n\nFor continuous outcomes you’ll want to describe measures including the sample size, mean, median, range and variance for each level of the categorical variable.\nFor categorical outcomes you’ll want to calculate %’s of your outcome measurement across levels of your covariate. Create an appropriate table using tbl_summary\n\ni.e. proportion of males who are smokers compared to proportion of females who are smokers\nor proportion of smokers who are male, compared to proportion of non-smokers who are male.\n\n\nExplain the relationship or trends you see in the data in a summary paragraph. Put this paragraph below the graphic.\n\nUse summary statistics in your text explanation.\nUse specific features of the graphic in your text explanation.\n\ni.e. are there outliers only in one group?\nDo the data seem clumped or clustered in one region of the scatterplot?\nIs there a linear or non-linear pattern?\nDoes one combination of categorical levels (C~C) seem to hold most the data?\nAre there any outlying data points? Don’t list off each one, just state if there is and where approximately it’s at."
+  },
+  {
+    "objectID": "hw/hw05-describing_relationships.html#example",
+    "href": "hw/hw05-describing_relationships.html#example",
+    "title": "HW 05: Describing Relationships",
+    "section": "Example",
+    "text": "Example\n\nlibrary(tidyverse); library(ggdist)\nlibrary(sjPlot); library(gtsummary)\n\nnc &lt;- read.csv(\"https://norcalbiostat.netlify.app/data/NCbirths.csv\", header=TRUE)\npen &lt;- palmerpenguins::penguins\n\n\nC ~ C Association\nFor this example I am using the NC Births data set, data on 1000 births in 2004 from North Carolina. This example explores the association between the smoking status of the mother (habit) and whether or not the baby was born prematurely (premie). I specifically want to compare the percent of premie babies within the smoking and non-smoking groups.\n\nnc %&gt;% select(habit, premie) %&gt;%\n  tbl_summary(by = \"habit\")\n\n\n\n\n\n  \n    \n      Characteristic\n      nonsmoker\nN = 8731\n      smoker\nN = 1261\n    \n  \n  \n    premie\n\n\n        full term\n739 (85%)\n107 (85%)\n        premie\n133 (15%)\n19 (15%)\n        Unknown\n1\n0\n  \n  \n  \n    \n      1 n (%)\n    \n  \n\n\n\nplot_xtab(x=nc$habit, grp=nc$premie, show.total=FALSE, margin='row')\n\n\n\n\nContrary to what I was expecting, there is equal proportion of prematurely born babies to non-smokers (133/873, 15%) compared to babies born to smokers (19/126, 15%). There is no association between the smoking status of the mother and the likelihood of the baby being born prematurely.\n\n\nQ ~ C Association\nThis example explores the association between the depth of a penguins bill and the species of the penguin. The quantitative response variable is bill depth in mm (bill_depth_mm) and the categorical explanatory variable is species (species).\n\npen %&gt;% group_by(species) %&gt;% \n  summarize(n=n(), \n            mean = mean(bill_depth_mm, na.rm = TRUE), \n            median = median(bill_depth_mm, na.rm = TRUE), \n            sd = sd(bill_depth_mm, na.rm = TRUE), \n            IQR = IQR(bill_depth_mm, na.rm = TRUE)) %&gt;%\n  knitr::kable(digits=2) # for nice table format printing\n\n\n\n\nspecies\nn\nmean\nmedian\nsd\nIQR\n\n\n\n\nAdelie\n152\n18.35\n18.40\n1.22\n1.5\n\n\nChinstrap\n68\n18.42\n18.45\n1.14\n1.9\n\n\nGentoo\n124\n14.98\n15.00\n0.98\n1.5\n\n\n\n\n\n\nggplot(pen, aes(x=bill_depth_mm, y=species, fill=species)) + \n      stat_slab(alpha=.5, justification = 0) + \n      geom_boxplot(width = .2,  outlier.shape = NA) + \n      geom_jitter(alpha = 0.5, height = 0.05) +\n      stat_summary(fun=\"mean\", geom=\"point\", col=\"red\", size=4, pch=17) + \n      theme_bw() + \n      labs(x=\"Bill depth (mm)\", y = \"Species\") + \n      theme(legend.position = \"none\")\n\n\n\n\n\n\n\n\nThe distribution of bill depth are fairly normal for each species, with some higher end values causing a slight right skew for Adelie and Gentoo. Gentoo penguins have lower average bill depth compared to Adelie or Chinstrap (15.0mm vs 18.3 and 18.4mm respectively). Chinstrap however have a larger IQR at 1.9 compared to 1.5 for the others.\n\n\nQ ~ Q Association\nThis example explores the association between the length of a penguins flipper and it’s body mass. The quantitative response variable is body mass(body_mass_g) and the quantitative explanatory variable is flipper length (flipper_length_mm).\n\ncor(pen$flipper_length_mm, pen$body_mass_g, \n    use=\"pairwise.complete.obs\") # calculate the correlation\n\n[1] 0.8712018\n\nggplot(pen, aes(x=flipper_length_mm, y=body_mass_g)) + geom_point() + \n  geom_smooth(se=FALSE, col=\"brown\") + geom_smooth(se=FALSE, method=\"lm\") +\n  theme_bw()\n\n\n\n\nThere is a positive association between flipper length and body mass of a penguin. The correlation coefficient is 0.87, and the form of the relationship is relatively linear."
+  },
+  {
+    "objectID": "hw/hw06-foundations_for_inference.html",
+    "href": "hw/hw06-foundations_for_inference.html",
+    "title": "HW 06: Foundations for Inference",
+    "section": "",
+    "text": "To understand the conceptual and mathematical foundations for conducting statistical inference.\n\n\n\n\nDownload this [QMD] file and use it to write your answers in.\n\nRight click and ‘save as’, put this in your scripts folder.\n\nRender to pdf and upload your final PDF to Canvas by the due date."
+  },
+  {
+    "objectID": "hw/hw06-foundations_for_inference.html#purpose",
+    "href": "hw/hw06-foundations_for_inference.html#purpose",
+    "title": "HW 06: Foundations for Inference",
+    "section": "",
+    "text": "To understand the conceptual and mathematical foundations for conducting statistical inference."
+  },
+  {
+    "objectID": "hw/hw06-foundations_for_inference.html#submission-instructions",
+    "href": "hw/hw06-foundations_for_inference.html#submission-instructions",
+    "title": "HW 06: Foundations for Inference",
+    "section": "",
+    "text": "Download this [QMD] file and use it to write your answers in.\n\nRight click and ‘save as’, put this in your scripts folder.\n\nRender to pdf and upload your final PDF to Canvas by the due date."
+  },
+  {
     "objectID": "hw.html",
     "href": "hw.html",
     "title": "Assignments",
     "section": "",
-    "text": "Assignment\n\n\nLearning Objective\n\n\n\n\n\n\nHW 01: Data Entry\n\n\nRecording data to maintain your sanity.\n\n\n\n\nHW 02: Formulating a research hypothesis\n\n\nBrainstorming research questions to investigate\n\n\n\n\nHW 03: Data Management\n\n\nWrangling your data into analyzable form\n\n\n\n\nHW 04: Describing Distributions\n\n\nLet the data be beautiful\n\n\n\n\nHW 05: Describing Relationships\n\n\nExploring Associations between two variables\n\n\n\n\n\n\nNo matching items"
+    "text": "Assignment\n\n\nLearning Objective\n\n\n\n\n\n\nHW 01: Data Entry\n\n\nRecording data to maintain your sanity.\n\n\n\n\nHW 02: Formulating a research hypothesis\n\n\nBrainstorming research questions to investigate\n\n\n\n\nHW 03: Data Management\n\n\nWrangling your data into analyzable form\n\n\n\n\nHW 04: Describing Distributions\n\n\nLet the data be beautiful\n\n\n\n\nHW 05: Describing Relationships\n\n\nExploring Associations between two variables\n\n\n\n\nHW 06: Foundations for Inference\n\n\nA recap\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "index.html",
@@ -347,7 +396,7 @@
     "href": "modules.html",
     "title": "Class Overview",
     "section": "",
-    "text": "⚠️ Details are subject to change. See Canvas for due dates.\nLast Updated: Fri Sep 19 11:54:58 AM\n\n\n\n\n\n\n\n\n\n\n\n\n\nTopic\nReading\nSlides\nActivities\nAssess\n\n\n\n\nWelcome!\n\n\nIntroduction to the class\nTopic Overview\nSyllabus\nHelp page\nlec00a\nHW 0 Checklist (Canvas)\n\n\n\nHow to use the class tools\n\nlec00b\n\n\n\n\nResearch Project\n\n\n\nProject Phase 1\n\n\nData Architecture\n\n\nThe uses and structure of data\nTopic Overview\nPMA6 Ch 2\nTidy data principles\nlec01\nHW01 Data Entry\nQuiz 01\n\n\nFormulating Research Questions\n\n\nAsking Answerable Questions\nTopic Overview\nHow to Write an Effective Research Question\nlec02\nHW02 RQ Formulation\n\n\n\nResearch Project\n\n\n\nProject Phase 2\n\n\nPreparing data for analysis\n\n\nReproducible workflows\nTopic Overview\nPMA6 Ch 3\nUse R Projects\nProject Structure by Danielle Navarro\nlec03a\nHello, Quarto HW03 Data Management\nQuiz 02\n\n\nData cleaning\n\nlec03b\n\n\n\n\nDescribing distributions of data\n\n\nDescribing a single categorical variable\nTopic Overview\nPMA6 Ch 4\nASCN Ch 2.3\nlec04\nHW04 Describing Distributions\nQuiz 03\n\n\nDescribing a single numeric variable\n\n\n\n\n\n\nDescribing relationships between two variables\n\n\nDescribing relationships between two variables\nTopic Overview\nPMA6 Ch 4\nIMS 1.2.4 Explantory and Response Variables\nASCN Ch 2.4\nlec05a\nHW05 Describing Relationships\nQuiz 04\n\n\nBest practices in Data Visualization\nPMA6 Ch 4.6\nlec05b\n\n\n\n\nResearch Project\n\n\n\nProject Phase 3 Report Draft\n\n\nFoundations for Inference\n\n\nStudy Design\nTopic Overview\nIMS - Chapter 2\n\nCollab notes 6 HW06 Foundations for Inference\nQuiz 05\n\n\nStatistical Inference with randomization\nIMS Chapter 11-11.1\nlec06a\nIn class printed activity.\n\n\n\nStatistical Inference with mathmatical models\nIMS - Chapter 13.1-13.3\nlec06b\nCLT Explorer\nQuiz 06\n\n\nModeling Bivariate relationships\n\n\nChoosing appropriate analysis\nTopic Overview\nPMA6 Chapter 6\nASCN Ch 5\nlec07a - Choosing\nHW07 Describing Relationships\n\n\n\nTwo Sample T-Test\nIMS - Chapter 20\nlec07b T-test\n\n\n\n\nANOVA\nIMS - Chapter 22\nlec07c - ANOVA\n\nQuiz 07\n\n\nChi-Squared\n\nlec07d - Chi2\n\n\n\n\nCorrelation\n\nlec07e Correlation\n\nQuiz 08\n\n\nRegression Modeling\n\n\nSimple Linear Regression\nTopic Overview\nPMA6 Ch 7\nIMS Ch 24\nlec08\nHW08 Simple Linear Regression\nQuiz 09\n\n\nResearch Project\n\n\n\nProject Phase 4\n\n\nMultiple Linear Regression\nPMA6 Ch 8\nASCN Ch 9\nA blog about statistical musings\nHow to control confounding effects by statistical analysis\nlec09\nHW09 Multiple Regression\n\n\n\nGeneralized Linear Models\nPMA6 Ch 12\nASCN 11.1-11.3\n\n\nQuiz 10\n\n\nResearch Project\n\n\n\nProject Phase 5\n\n\nMeasures of Model Fit\nASCN 10.5\n\n\n\n\n\nVariable Selection\nASCN 10.2.1, ASCN 10.4 Intro, ASCN 10.3\n\n\n\n\n\nResearch Project\n\n\n\nProject Phase 6"
+    "text": "⚠️ Details are subject to change. See Canvas for due dates.\nLast Updated: Mon Sep 22 10:39:57 PM\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTopic\nReading\nVideo\nSlides\nActivities\nAssess\n\n\n\n\nWelcome!\n\n\nIntroduction to the class\nTopic Overview\nSyllabus\nHelp page\n\nlec00a\nHW 0 Checklist (Canvas)\n\n\n\nHow to use the class tools\n\n\nlec00b\n\n\n\n\nResearch Project\n\nposted\n\n\nProject Phase 1\n\n\nData Architecture\n\n\nThe uses and structure of data\nTopic Overview\nPMA6 Ch 2\nTidy data principles\n\nlec01\nHW01\nQuiz 01\n\n\nFormulating Research Questions\n\n\nAsking Answerable Questions\nTopic Overview\nHow to Write an Effective Research Question\n\nlec02\nHW02\n\n\n\nResearch Project\n\n\n\n\nProject Phase 2\n\n\nPreparing data for analysis\n\n\nReproducible workflows\nTopic Overview\nPMA6 Ch 3\nUse R Projects\nProject Structure by Danielle Navarro\n\nlec03a\nHello, Quarto HW03\nQuiz 02\n\n\nData cleaning\n\n\nlec03b\n\n\n\n\nDescribing distributions of data\n\n\nDescribing a single categorical variable\nTopic Overview\nPMA6 Ch 4\nASCN Ch 2.3\nposted\nlec04\nHW04\nQuiz 03\n\n\nDescribing a single numeric variable\n\n\n\n\n\n\n\nDescribing relationships between two variables\n\n\nDescribing relationships between two variables\nTopic Overview\nPMA6 Ch 4\nIMS 1.2.4 Explantory and Response Variables\nASCN Ch 2.4\nposted\nlec05a\nHW05\nQuiz 04\n\n\nBest practices in Data Visualization\nPMA6 Ch 4.6\nposted\nlec05b\n\n\n\n\nResearch Project\n\n\n\n\nProject Phase 3 Report Draft\n\n\nFoundations for Inference\n\n\nStudy Design\nTopic Overview\nIMS - Chapter 2\n\n\nStudy Design HW06\nQuiz 05\n\n\nStatistical Inference with randomization\nIMS Chapter 11-11.1\n\nlec06a\nBias in hiring\n\n\n\nStatistical Inference with mathmatical models\nIMS - Chapter 13.1-13.3\nin progress\nlec06b\nCLT Explorer\nQuiz 06\n\n\nModeling Bivariate relationships\n\n\nChoosing appropriate analysis\nTopic Overview\nPMA6 Chapter 6\nASCN Ch 5\n\nlec07a - Choosing\nHW07\n\n\n\nTwo Sample T-Test\nIMS - Chapter 20\n\nlec07b T-test\n\n\n\n\nANOVA\nIMS - Chapter 22\n\nlec07c - ANOVA\n\nQuiz 07\n\n\nChi-Squared\n\n\nlec07d - Chi2\n\n\n\n\nCorrelation\n\n\nlec07e - Correlation\n\nQuiz 08\n\n\nRegression Modeling\n\n\nSimple Linear Regression\nTopic Overview\nPMA6 Ch 7\nIMS Ch 24\n\nlec08\nHW08\nQuiz 09\n\n\nResearch Project\n\n\n\n\nProject Phase 4\n\n\nMultiple Linear Regression\nPMA6 Ch 8\nASCN Ch 9\nA blog about statistical musings\nHow to control confounding effects by statistical analysis\n\nlec09\nHW09\n\n\n\nGeneralized Linear Models\nPMA6 Ch 12\nASCN 11.1-11.3\n\n\n\nQuiz 10\n\n\nResearch Project\n\n\n\n\nProject Phase 5\n\n\nMeasures of Model Fit\nASCN 10.5\n\n\n\n\n\n\nVariable Selection\nASCN 10.2.1, ASCN 10.4 Intro, ASCN 10.3\n\n\n\n\n\n\nResearch Project\n\n\n\n\nProject Phase 6"
   },
   {
     "objectID": "project.html",
@@ -368,7 +417,7 @@
     "href": "project.html#phase-1-data-and-topic-propsal",
     "title": "Research Project Overview",
     "section": "Phase 1: Data and Topic Propsal",
-    "text": "Phase 1: Data and Topic Propsal\nIdentify a research partner, propose a research topic and corresponding data set.\nOpen source data repositories to peruse:\n\nDr.D’s curated data sets (start here)\nData.gov\nIPUMS\nTeaching of Statistics in Health Sciences\nCity of Minneapolis data (includes police use of force)\nPew Research Center is “a nonpartisan fact tank that informs the public about the issues, attitudes and trends shaping the world.”\nBureau of Labor Statistics\nThe All of Us Research Hub stores health data from participants from across the United States\nOther?\n\n❌ Sources not allowed: Machine learning repositories such as Kaggle or UCI. Data generated from experimental lab designs with few variables.\n\n\n\n\n\n\nCriteria for choosing a data set\n\n\n\n\nYou either know something about the topic or it is something you want to learn about\nFile type must be a .txt, .csv, .xlsx or .xls file\nFile size is less than 1 Gig\nA codebook or data dictionary that fully explains what each variable means is available.\nThere are at least 200 rows (observations), but ideally between 500-10,000.\nThere are 10 or more unique and interesting variables\n\nAt least 4 quantitative variables\nVariables are not functions of each other (e.g. weight in lbs and weight in kg)\n\n\n\n\nYour data set must be approved before you are allowed to work with it.\nThe sooner your data is approved the sooner you can work with it! If your proposed data set is turned down twice in a row get turned down, you will be required to use one of Dr. D’s curated data sets."
+    "text": "Phase 1: Data and Topic Propsal\nIdentify a research partner, propose a research topic and corresponding data set.\nOpen source data repositories to peruse:\n\nDr.D’s curated data sets (start here)\nTeaching of Statistics in the Health Sciences Resources Portal\nData.gov\nIPUMS\nTeaching of Statistics in Health Sciences\nCity of Minneapolis data (includes police use of force)\nPew Research Center is “a nonpartisan fact tank that informs the public about the issues, attitudes and trends shaping the world.”\nBureau of Labor Statistics\nThe All of Us Research Hub stores health data from participants from across the United States\nOther?\n\n❌ Sources not allowed: Machine learning repositories such as Kaggle or UCI. Data generated from experimental lab designs with few variables.\n\n\n\n\n\n\nCriteria for choosing a data set\n\n\n\n\nYou either know something about the topic or it is something you want to learn about\nFile type must be a .txt, .csv, .xlsx or .xls file\nFile size is less than 1 Gig\nA codebook or data dictionary that fully explains what each variable means is available.\nThere are at least 200 rows (observations), but ideally between 500-10,000.\nThere are 10 or more unique and interesting variables\n\nAt least 4 quantitative variables\nVariables are not functions of each other (e.g. weight in lbs and weight in kg)\n\n\n\n\nYour data set must be approved before you are allowed to work with it.\nThe sooner your data is approved the sooner you can work with it! If your proposed data set is turned down twice in a row get turned down, you will be required to use one of Dr. D’s curated data sets."
   },
   {
     "objectID": "project.html#phase-2-introduce-your-research-question-and-variables-of-interest",
@@ -424,7 +473,7 @@
     "href": "project.html#research-development-slides",
     "title": "Research Project Overview",
     "section": "Research Development Slides",
-    "text": "Research Development Slides\nThis work will be done through a series of revisions gaining feedback from the instructor at each phase.\nEach slide will be marked one of the following categories\n\nNot Assessable: No content presented.\nSR: Substantial revisions needed. This is C level work.\nMR: Minor revisions needed. This is B level work.\nE : Exceptional work. This is A level work.\n\n\nRubric / Assessment form\nEach team has their own ‘project assessment’ Google spreadsheet that shows you what achievement level you are at for each slide. It is locked to only view mode and only you and I have access to it. At the bottom of this file you will find a personalized grading rubric containing an estimate of your final score.\nI will update your status column for the slides that are being assessed at that Phase, and enter your score into the Research Development assignment in Canvas."
+    "text": "Research Development Slides\nThis work will be done through a series of revisions gaining feedback from the instructor at each phase.\nEach slide will be marked one of the following categories\n\nNot Available: No content presented.\nUN: Unsatisfactory level of work. Chances are you didn’t follow instructions.\nBE: Below Expectations. Major revisions needed.\nNR: Needs Revisions. You generally got it right, but some revisions are required. This is B level work.\nME : Meets Expectations. This may still come with revisions requested.\n\n\nRubric / Assessment form\nEach team has their own ‘project assessment’ Google spreadsheet that shows you what achievement level you are at for each slide. It is locked to only view mode and only you and I have access to it. At the bottom of this file you will find a personalized grading rubric containing an estimate of your final score.\nI will update your status column for the slides that are being assessed at that Phase, and enter your score into the Research Development assignment in Canvas."
   },
   {
     "objectID": "project.html#research-report-1",
@@ -959,11 +1008,466 @@
     "text": "Additional Materials\n\nPMA6 Chapter 4\nApplied Stats course Notes Chapter 2\nsjPlot vignette: https://strengejacke.github.io/sjPlot/index.html\nggpubr vignette: https://rpkgs.datanovia.com/ggpubr/\nggplot vignette: https://ggplot2.tidyverse.org/index.html\ngtsummary vignette: https://www.danieldsjoberg.com/gtsummary/index.html\nR graphics cookbook: https://r-graphics.org/\nhttps://r-graph-gallery.com/\n\n\n\n🔗 https://math615.netlify.app"
   },
   {
+    "objectID": "slides/lec05a-describing_relationships.html#naming-conventions",
+    "href": "slides/lec05a-describing_relationships.html#naming-conventions",
+    "title": "Describing Relationships between variables",
+    "section": "Naming conventions",
+    "text": "Naming conventions\n\n\n\nResponse\nExplanatory\n\n\n\n\ny\nx\n\n\noutcome\npredictor\n\n\ndependent variable\nindependent variable\n\n\n\ncovariate\n\n\n\nfeature\n\n\n\n\n\nModel notation: \\(y \\sim x\\)"
+  },
+  {
+    "objectID": "slides/lec05a-describing_relationships.html#types-of-combinations",
+    "href": "slides/lec05a-describing_relationships.html#types-of-combinations",
+    "title": "Describing Relationships between variables",
+    "section": "Types of combinations",
+    "text": "Types of combinations\n\nCategorical response and categorical explanatory variable. (C ~ C)\nQuantitative response and categorical explanatory variable. (Q ~ C)\nQuantitative response and quantitative explanatory variable. (Q ~ Q)\n\nThe \\(Q\\) and \\(C\\) notation is internal to this class. Not universal."
+  },
+  {
+    "objectID": "slides/lec05a-describing_relationships.html#q-c",
+    "href": "slides/lec05a-describing_relationships.html#q-c",
+    "title": "Describing Relationships between variables",
+    "section": "Q ~ C",
+    "text": "Q ~ C\nQuantitative Response vs Categorical Explanatory\n\nGrouped summary statisticsgtsummaryPlotsPlot2Description\n\n\nn, nean, median, sd, IQR of the quantitative variable for each level of the categorical level.\n\n\nShow the code\npen %&gt;% group_by(species) %&gt;% \n  summarize(n=n(), \n            mean   = mean(bill_depth_mm, na.rm = TRUE), \n            median = median(bill_depth_mm, na.rm = TRUE), \n            sd     = sd(bill_depth_mm, na.rm = TRUE), \n            IQR    = IQR(bill_depth_mm, na.rm = TRUE))\n\n\n# A tibble: 3 × 6\n  species       n  mean median    sd   IQR\n  &lt;fct&gt;     &lt;int&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 Adelie      152  18.3   18.4 1.22   1.5 \n2 Chinstrap    68  18.4   18.4 1.14   1.90\n3 Gentoo      124  15.0   15   0.981  1.5 \n\n\nGentoo penguins have lower average bill depth compared to Adelie or Chinstrap (15.0mm vs 18.3 and 18.4mm respectively). Chinstrap however have a larger IQR at 1.9 compared to 1.5 for the others.\n\n\n\n\nSimilarly nice tables, but defaults to median and IQR.\n\n\nShow the code\npen %&gt;% select(bill_depth_mm, species) %&gt;%\n  tbl_summary(by = \"species\")\n\n\n\n\n\n\n  \n    \n      Characteristic\n      Adelie\nN = 1521\n      Chinstrap\nN = 681\n      Gentoo\nN = 1241\n    \n  \n  \n    bill_depth_mm\n18.40 (17.50, 19.00)\n18.45 (17.50, 19.40)\n15.00 (14.20, 15.70)\n        Unknown\n1\n0\n1\n  \n  \n  \n    \n      1 Median (Q1, Q3)\n    \n  \n\n\n\n\n\nHave to manually specify you want mean & sd.\n\n\nShow the code\npen %&gt;% select(bill_depth_mm, species) %&gt;%\n  tbl_summary(by = \"species\", \n              statistic = list(all_continuous() ~ \"{mean} ({sd})\"))\n\n\n\n\n\n\n  \n    \n      Characteristic\n      Adelie\nN = 1521\n      Chinstrap\nN = 681\n      Gentoo\nN = 1241\n    \n  \n  \n    bill_depth_mm\n18.35 (1.22)\n18.42 (1.14)\n14.98 (0.98)\n        Unknown\n1\n0\n1\n  \n  \n  \n    \n      1 Mean (SD)\n    \n  \n\n\n\n\n\n\n\n\n\n\nOverlaid density plots\n\n\nShow the code\ngghistogram(pen, \n    x = \"bill_depth_mm\", fill = \"species\", \n    add_density = TRUE, add=\"mean\")\n\n\n\n\n\n\nSide by side boxplots\n\n\nShow the code\nggviolin(pen, \n  x=\"species\", y = \"bill_depth_mm\", \n  color = \"species\", add = c(\"mean\", \"boxplot\"))\n\n\n\n\n\n\n\n The distribution of bill depth are fairly normal for each species, with some higher end values causing a slight right skew for Adelie and Gentoo.\n\n\nMore code but nice alternative to violins.\n\n\nShow the code\nlibrary(ggdist) # for the \"half-violin\" plot (stat_slab)\nggplot(pen, aes(x=bill_depth_mm, y=species, fill=species)) + \n      stat_slab(alpha=.5, justification = 0) + \n      geom_boxplot(width = .2,  outlier.shape = NA) + \n      geom_jitter(alpha = 0.5, height = 0.05) +\n      stat_summary(fun=\"mean\", geom=\"point\", col=\"red\", size=4, pch=17) + \n      theme_bw() + \n      labs(x=\"Bill depth (mm)\", y = \"Species\") + \n      theme(legend.position = \"none\")\n\n\n\n\n\n\n\nDiscuss shape, spread and center using comparative language.\n\n\nThe distribution of bill depth are fairly normal for each species, with some higher end values causing a slight right skew for Adelie and Gentoo. Gentoo penguins have lower average bill depth compared to Adelie or Chinstrap (15.0mm vs 18.3 and 18.4mm respectively). Chinstrap however have a larger IQR at 1.9 compared to 1.5 for the others."
+  },
+  {
+    "objectID": "slides/lec05a-describing_relationships.html#q-q",
+    "href": "slides/lec05a-describing_relationships.html#q-q",
+    "title": "Describing Relationships between variables",
+    "section": "Q ~ Q",
+    "text": "Q ~ Q\nQuantitative Response vs Quantitative Explanatory\n\nSummary statisticPlotsDescription\n\n\n\n\nShow the code\ncor(pen$flipper_length_mm, pen$body_mass_g, \n    use=\"pairwise.complete.obs\")\n\n\n[1] 0.8712018\n\n\nThe correlation coefficient \\(r\\) is a measure of the strength and direction of a linear relationship between two variables.\n\n\\(|r| &gt; 0.6\\) Strong relationship\n\\(0.4 \\leq |r| &lt; 0.6\\) Moderate relationship\n\\(|r| &lt; 0.4\\) Weak to no relationship\n\nNote: These values are guidelines and subject to variability within different disciplines ref\n\n\n\n\n\n\nShow the code\nggscatter(pen, \n  x=\"flipper_length_mm\", y = \"body_mass_g\")\n\n\n\n\n\n\n\n\nShow the code\nggscatter(pen, \n  x=\"flipper_length_mm\", y = \"body_mass_g\", \n  add = \"loess\", conf.int = TRUE)\n\n\n\n\n\n The relationship between flipper length and body mass in penguins is relatively linear, but there may be possible clustering on a third variable. There appears to be two groups below and above a flipper length of about 205mm. \n\n\n\nMust include the direction (positive or negative), the strength quantified using \\(r\\), and the form (linear vs non-linear)\nThe penguin flipper length (mm) has a strong, positive, and reasonably linear correlation with body mass (g), r=0.87."
+  },
+  {
+    "objectID": "slides/lec05a-describing_relationships.html#c-c",
+    "href": "slides/lec05a-describing_relationships.html#c-c",
+    "title": "Describing Relationships between variables",
+    "section": "C ~ C",
+    "text": "C ~ C\nCategorical Response vs Categorical Explanatory\n\nTwo way tables (cross-tabs)Plots\n\n\n\n\n\n\nShow the code\ntable(pen$species, pen$island)\n\n\n           \n            Biscoe Dream Torgersen\n  Adelie        44    56        52\n  Chinstrap      0    68         0\n  Gentoo       124     0         0\n\n\n\n\n\nShow the code\ntable(pen$species, pen$island) |&gt; \n  prop.table(margin=2) |&gt; round(2)\n\n\n           \n            Biscoe Dream Torgersen\n  Adelie      0.26  0.45      1.00\n  Chinstrap   0.00  0.55      0.00\n  Gentoo      0.74  0.00      0.00\n\n\n\n\n\nAll of the 52 penguins on Torgersen island are the Adelie species.\n74% of penguins on Biscoe island are Gentoo.\n\n\n\n\n\nShow the code\nplot_xtab(pen$island, grp=pen$species, show.total = FALSE)\n\n\n\n\n\n\nDo these percents match the table?"
+  },
+  {
+    "objectID": "slides/lec05a-describing_relationships.html#watch-your-margins",
+    "href": "slides/lec05a-describing_relationships.html#watch-your-margins",
+    "title": "Describing Relationships between variables",
+    "section": "Watch your margins",
+    "text": "Watch your margins\n\n\n\n\n\n\nAlways double check your work\n\n\nOne of the most common places for a mistake when creating a plot or a table between two categorical variables is by not paying close attention to the choice of denominator. And then also confirming the interpretation matches the table, which matches the plot.\n\n\n\n\nWhat % of penguins on each island are Gentoo?\nWhat % of Gentoo penguins are on each Island?"
+  },
+  {
+    "objectID": "slides/lec05a-describing_relationships.html#watch-your-margins-1",
+    "href": "slides/lec05a-describing_relationships.html#watch-your-margins-1",
+    "title": "Describing Relationships between variables",
+    "section": "Watch your margins",
+    "text": "Watch your margins\n\nTablesgtsummaryPlots\n\n\n\n\nRow Percents\n\n\nShow the code\ntable(pen$species, pen$island) |&gt; \n  prop.table(margin=1) |&gt; round(2)\n\n\n           \n            Biscoe Dream Torgersen\n  Adelie      0.29  0.37      0.34\n  Chinstrap   0.00  1.00      0.00\n  Gentoo      1.00  0.00      0.00\n\n\n29% of Adelie penguins are on Biscoe Island.\n\nColumn Percents\n\n\nShow the code\ntable(pen$species, pen$island) |&gt; \n  prop.table(margin=2) |&gt; round(2)\n\n\n           \n            Biscoe Dream Torgersen\n  Adelie      0.26  0.45      1.00\n  Chinstrap   0.00  0.55      0.00\n  Gentoo      0.74  0.00      0.00\n\n\n74% of penguins on Biscoe island are Gentoo.\n\n\n\n\n\n\nDistribution of Islands within each species\n\n\nShow the code\npen %&gt;% select(island, species) %&gt;%\n  tbl_summary(by = \"species\")\n\n\n\n\n\n\n  \n    \n      Characteristic\n      Adelie\nN = 1521\n      Chinstrap\nN = 681\n      Gentoo\nN = 1241\n    \n  \n  \n    island\n\n\n\n        Biscoe\n44 (29%)\n0 (0%)\n124 (100%)\n        Dream\n56 (37%)\n68 (100%)\n0 (0%)\n        Torgersen\n52 (34%)\n0 (0%)\n0 (0%)\n  \n  \n  \n    \n      1 n (%)\n    \n  \n\n\n\n\n\nDistribution of Species on each Island\n\n\nShow the code\npen %&gt;% select(island, species) %&gt;%\n  tbl_summary(by = \"island\")\n\n\n\n\n\n\n  \n    \n      Characteristic\n      Biscoe\nN = 1681\n      Dream\nN = 1241\n      Torgersen\nN = 521\n    \n  \n  \n    species\n\n\n\n        Adelie\n44 (26%)\n56 (45%)\n52 (100%)\n        Chinstrap\n0 (0%)\n68 (55%)\n0 (0%)\n        Gentoo\n124 (74%)\n0 (0%)\n0 (0%)\n  \n  \n  \n    \n      1 n (%)\n    \n  \n\n\n\n\n\n\n\n\n\n\nDistribution of islands for each species\n\n\nShow the code\nplot_xtab(pen$species, grp=pen$island, \n          margin = \"row\", show.total = FALSE)\n\n\n\n\n\n29% of Adelie penguins are on Biscoe Island.\n\nDistribution of species on each island.\n\n\nShow the code\nplot_xtab(pen$island, grp=pen$species, \n          margin = \"row\", show.total = FALSE)\n\n\n\n\n\n74% of penguins on Biscoe island are Gentoo.\n\n\n\n\n\n\n\n🔗 https://math615.netlify.app"
+  },
+  {
+    "objectID": "slides/lec05b-data_viz_bestpractice.html#recap-level-of-care-depends-on-the-audience",
+    "href": "slides/lec05b-data_viz_bestpractice.html#recap-level-of-care-depends-on-the-audience",
+    "title": "Best practices in Data Visualization",
+    "section": "Recap: Level of care depends on the audience",
+    "text": "Recap: Level of care depends on the audience\nThere are three main audiences in mind when creating data visualizations:\n\nFor your eyes only (FYEO). These are quick and dirty plots, without annotation. Meant to be looked at once or twice.\nTo share with others internally. These mostly need to stand on their own. Axes labels, titles, colors as needed, possibly captions.\nProfessional - Contains all bells and whistles needed to make it publication quality."
+  },
+  {
+    "objectID": "slides/lec05b-data_viz_bestpractice.html#highly-recommended-references",
+    "href": "slides/lec05b-data_viz_bestpractice.html#highly-recommended-references",
+    "title": "Best practices in Data Visualization",
+    "section": "Highly recommended references",
+    "text": "Highly recommended references\n\n\n\n\nThe classic book on statistical graphics, charts, tables. Theory and practice in the design of data graphics, 250 illustrations of the best (and a few of the worst) statistical graphics, with detailed analysis of how to display data for precise, effective, quick analysis."
+  },
+  {
+    "objectID": "slides/lec05b-data_viz_bestpractice.html#highly-recommended-references-1",
+    "href": "slides/lec05b-data_viz_bestpractice.html#highly-recommended-references-1",
+    "title": "Best practices in Data Visualization",
+    "section": "Highly recommended references",
+    "text": "Highly recommended references\n\n\n\n\nIn The Truthful Art, Cairo explains the principles of good data visualization. He describes five qualities that should be your foundation when you work with data visualization: truthful, functional, beautiful, insightful, and enlightening. Cairo also gives some great examples of biased and dishonest visualization."
+  },
+  {
+    "objectID": "slides/lec05b-data_viz_bestpractice.html#five-qualities-of-great-visualizations-cairo",
+    "href": "slides/lec05b-data_viz_bestpractice.html#five-qualities-of-great-visualizations-cairo",
+    "title": "Best practices in Data Visualization",
+    "section": "Five qualities of great visualizations (Cairo)",
+    "text": "Five qualities of great visualizations (Cairo)\n\nTruthful. Be honest with scaling and relationships.\nFunctional. Does it accurately convey the correct information?\nBeautiful. Or at least aesthetically pleasing.\nInsightful. Does it reveal new information?\nEnlightening. Consequence of qualities 1-4\n\nReferences:\n\nUMSL Computer Science worksho on effective data viz\n\nCalling Bullshit: Spotting misleading axes"
+  },
+  {
+    "objectID": "slides/lec05b-data_viz_bestpractice.html#graphing-with-intent",
+    "href": "slides/lec05b-data_viz_bestpractice.html#graphing-with-intent",
+    "title": "Best practices in Data Visualization",
+    "section": "Graphing with intent",
+    "text": "Graphing with intent\nAlong with having the audience in mind, it is important to give thought to the purpose of the chart.\n\nThe effectiveness of any visualization can be measured according to how well it fulfills the tasks it was designed for. (A. Cairo, 2018)."
+  },
+  {
+    "objectID": "slides/lec05b-data_viz_bestpractice.html#manage-your-ink-to-information-ratio",
+    "href": "slides/lec05b-data_viz_bestpractice.html#manage-your-ink-to-information-ratio",
+    "title": "Best practices in Data Visualization",
+    "section": "Manage your ink to information ratio",
+    "text": "Manage your ink to information ratio\n\n“Data-ink is the non-erasable core of the graphic. (Tufte, 83)”\n\n\n\n\n\n\n\n\n\n\n\nDarkhorse Analytics demonstrates how “data looks better naked”"
+  },
+  {
+    "objectID": "slides/lec05b-data_viz_bestpractice.html#what-to-watch-out-for",
+    "href": "slides/lec05b-data_viz_bestpractice.html#what-to-watch-out-for",
+    "title": "Best practices in Data Visualization",
+    "section": "What to watch out for",
+    "text": "What to watch out for\n\nAvoid complexity\nChoose colors mindfully\nDo not add extra dimensions\nBe truthful with the scaling\nCheck publishing guidelines\nBe consistent with selected themes\nDo not over-interpret\nPlotting with missing data"
+  },
+  {
+    "objectID": "slides/lec05b-data_viz_bestpractice.html#inspirations",
+    "href": "slides/lec05b-data_viz_bestpractice.html#inspirations",
+    "title": "Best practices in Data Visualization",
+    "section": "Inspirations",
+    "text": "Inspirations\nNot sure what type of graph to create?\n\nPoke around on the R Graph Gallery or Python version. Appropriate for all languages as the goal is to identify the graph type\nfrom Data to Viz: a decision tree for graph options"
+  },
+  {
+    "objectID": "slides/lec05b-data_viz_bestpractice.html#graphs-as-storytelling",
+    "href": "slides/lec05b-data_viz_bestpractice.html#graphs-as-storytelling",
+    "title": "Best practices in Data Visualization",
+    "section": "Graphs as storytelling",
+    "text": "Graphs as storytelling\nDifferent features (labels, colors, axes) can tell different parts of the story.\nWe’re going to do a team activity called “slow reveal graphs”. Head to Canvas for further instruction.\n\n\n🔗 https://math615.netlify.app"
+  },
+  {
+    "objectID": "slides/lec06a-statistical_inference_with_randomization.html#statistical-inference-1",
+    "href": "slides/lec06a-statistical_inference_with_randomization.html#statistical-inference-1",
+    "title": "Statistical Inference with Randomization",
+    "section": "Statistical Inference",
+    "text": "Statistical Inference\n\n\nPrimarily concerned with understanding and quantifying the uncertainty of parameter estimates.\nEquations and details change depending on the setting, the foundations for inference are the same throughout all of statistics.\nWe start with a case studies designed to motivate the process of making decisions about research claims.\nWe formalize the process through the introduction of the hypothesis testing framework, which allows us to formally evaluate claims about the population."
+  },
+  {
+    "objectID": "slides/lec06a-statistical_inference_with_randomization.html#variability-in-data",
+    "href": "slides/lec06a-statistical_inference_with_randomization.html#variability-in-data",
+    "title": "Statistical Inference with Randomization",
+    "section": "Variability in data",
+    "text": "Variability in data\n\n\nSometimes the dataset at hand represents the entire research question.\nMore often than not, the data have been collected to answer a research question about a larger group of which the data are a (hopefully) representative subset.\nOne dataset will not be identical to a second dataset even if they are both collected from the same population using the same methods."
+  },
+  {
+    "objectID": "slides/lec06a-statistical_inference_with_randomization.html#motivating-example-case-study-in-sex-discrimination",
+    "href": "slides/lec06a-statistical_inference_with_randomization.html#motivating-example-case-study-in-sex-discrimination",
+    "title": "Statistical Inference with Randomization",
+    "section": "Motivating Example: Case study in sex discrimination",
+    "text": "Motivating Example: Case study in sex discrimination\nWe consider a study investigating sex discrimination in the 1970s, which is set in the context of personnel decisions within a bank. The research question we hope to answer is, “Are individuals who identify as female discriminated against in promotion decisions made by their managers who identify as male?” (Rosen and Jerdee 1974 Note: The study allowed only for a binary classification of sex. The identities being considered are not gender identities."
+  },
+  {
+    "objectID": "slides/lec06a-statistical_inference_with_randomization.html#methods",
+    "href": "slides/lec06a-statistical_inference_with_randomization.html#methods",
+    "title": "Statistical Inference with Randomization",
+    "section": "Methods",
+    "text": "Methods\n48 male-identifying bank supervisors were asked to assume the role of the personnel director and were given personnel files to judge whether the person should be promoted. The files were identical except half indicated that the candidate identified as male, the other half the candidate identified as female. The files were randomly assigned to the participants, 13 individuals were promoted and the results were recorded."
+  },
+  {
+    "objectID": "slides/lec06a-statistical_inference_with_randomization.html#setup",
+    "href": "slides/lec06a-statistical_inference_with_randomization.html#setup",
+    "title": "Statistical Inference with Randomization",
+    "section": "Setup",
+    "text": "Setup\n❓ Is this an observational study or an experiment? Why?\n❓How does the type of study impact what can be inferred from the results?\n❓ What is the hypothesis being tested? (in words with no statistical jargon)."
+  },
+  {
+    "objectID": "slides/lec06a-statistical_inference_with_randomization.html#observed-results",
+    "href": "slides/lec06a-statistical_inference_with_randomization.html#observed-results",
+    "title": "Statistical Inference with Randomization",
+    "section": "Observed Results",
+    "text": "Observed Results\nThe results from the study are displayed in the following contingency table. Use it to fill in the blanks below.\n\n\nShow the code\nlibrary(openintro) # to get the sex_discrimination data\ntable(sex_discrimination$sex, sex_discrimination$decision) |&gt; addmargins()\n\n\nIn this study, a (bigger/smaller) proportion of female identifying applications were promoted than males (______________ versus ______________).\nCalculate the difference (male - female) between these proportions."
+  },
+  {
+    "objectID": "slides/lec06a-statistical_inference_with_randomization.html#point-estimate",
+    "href": "slides/lec06a-statistical_inference_with_randomization.html#point-estimate",
+    "title": "Statistical Inference with Randomization",
+    "section": "Point Estimate",
+    "text": "Point Estimate\nThis observed difference is what we call a point estimate of the true difference in promotional rates between males and females. This difference suggest there might be discrimination against women in promotion decisions, is unclear whether there is convincing evidence that the observed difference represents discrimination or is just due to random chance when there is no discrimination occurring."
+  },
+  {
+    "objectID": "slides/lec06a-statistical_inference_with_randomization.html#competing-hypothesis",
+    "href": "slides/lec06a-statistical_inference_with_randomization.html#competing-hypothesis",
+    "title": "Statistical Inference with Randomization",
+    "section": "Competing Hypothesis",
+    "text": "Competing Hypothesis\nChance can be thought of as the claim due to natural variability; discrimination can be thought of as the claim the researchers set out to demonstrate. We label these two competing claims in the following way:\n\\(H_{0}\\): Null Hypothesis:\n\n\\(H_{A}\\): Alternative Hypothesis:\n\nOften times, the null hypothesis takes a stance of no difference or no effect. This hypothesis assumes that any differences seen are due to the variability inherent in the population and could have occurred by random chance."
+  },
+  {
+    "objectID": "slides/lec06a-statistical_inference_with_randomization.html#data-or-it-didnt-happen",
+    "href": "slides/lec06a-statistical_inference_with_randomization.html#data-or-it-didnt-happen",
+    "title": "Statistical Inference with Randomization",
+    "section": "Data or it didn’t happen",
+    "text": "Data or it didn’t happen\nWe will choose between the two competing claims by assessing if the data conflict so much with \\(H_{0}\\) that the null hypothesis cannot be deemed reasonable. If data and the null claim seem to be at odds with one another, and the data seem to support \\(H_{A}\\), then we will reject the notion of independence and conclude that the data provide evidence of discrimination."
+  },
+  {
+    "objectID": "slides/lec06a-statistical_inference_with_randomization.html#inference-via-randomization",
+    "href": "slides/lec06a-statistical_inference_with_randomization.html#inference-via-randomization",
+    "title": "Statistical Inference with Randomization",
+    "section": "Inference via Randomization",
+    "text": "Inference via Randomization\nTo decide whether variability in data is due to\n\n\nthe causal mechanism (the randomized explanatory variable in the experiment)\n\n\nnatural variability inherent to the data\n\n\nwe set up a sham randomized experiment as a comparison."
+  },
+  {
+    "objectID": "slides/lec06a-statistical_inference_with_randomization.html#sham-randomized-experiment",
+    "href": "slides/lec06a-statistical_inference_with_randomization.html#sham-randomized-experiment",
+    "title": "Statistical Inference with Randomization",
+    "section": "“Sham” randomized experiment",
+    "text": "“Sham” randomized experiment\n\nWe assume that each observational unit (person) would have gotten the exact same response value (chance of being promoted) regardless of the treatment level (sex).\nBy reassigning the treatments many many times, we can compare the actual experiment to the sham experiment.\n\nDecision\nIf the actual experiment has more extreme results than any of the sham experiments, we are led to believe that it is the explanatory variable which is causing the result and not just variability inherent to the data."
+  },
+  {
+    "objectID": "slides/lec06a-statistical_inference_with_randomization.html#variability-of-the-statistic",
+    "href": "slides/lec06a-statistical_inference_with_randomization.html#variability-of-the-statistic",
+    "title": "Statistical Inference with Randomization",
+    "section": "Variability of the statistic",
+    "text": "Variability of the statistic\nSuppose the bankers’ decisions were independent of the sex of the candidate. Then, if we conducted the experiment again with a different random assignment of promotion to the files, differences in promotion rates would be based only on random fluctuation in promotion decisions. Let’s simulate this as a class so we can get lots of replications for this experiment."
+  },
+  {
+    "objectID": "slides/lec06a-statistical_inference_with_randomization.html#youre-in-power-now",
+    "href": "slides/lec06a-statistical_inference_with_randomization.html#youre-in-power-now",
+    "title": "Statistical Inference with Randomization",
+    "section": "You’re in power now",
+    "text": "You’re in power now\n\n\n\n\n\n\nSimulation Study\n\n\nIt’s your turn to assume the role of the bank personnel director and make a promotional decisions. Your group has been handed a stack of 48 confidential applications. Keep them face down for now."
+  },
+  {
+    "objectID": "slides/lec06a-statistical_inference_with_randomization.html#to-promote-or-not-to-promote.",
+    "href": "slides/lec06a-statistical_inference_with_randomization.html#to-promote-or-not-to-promote.",
+    "title": "Statistical Inference with Randomization",
+    "section": "To promote, or not to promote.",
+    "text": "To promote, or not to promote.\n\nIdentify someone to record your results. This person logs into our shared Google drive, opens the Randomization Experiment spreadsheet, and fills out the first two columns.\nWhile they are still face down, choose 13 of your applicant pool to be promoted. Put these files in one pile, those not promoted in another pile. Fill out the \\# of promotions column in the spreadsheet.\nFlip your candidates over to reveal their sex. Record the number of males and females, and the # of each that have been promoted in each group.\nCalculate your point estimate for the male-female difference in promotional rate and write it in your notes.\nShuffle thoroughly your application pool (face down) and repeat this experiment for simulation round 2."
+  },
+  {
+    "objectID": "slides/lec06a-statistical_inference_with_randomization.html#class-results",
+    "href": "slides/lec06a-statistical_inference_with_randomization.html#class-results",
+    "title": "Statistical Inference with Randomization",
+    "section": "Class Results",
+    "text": "Class Results\n\n\n\n\nShow the code\nsim.data &lt;- googlesheets4::read_sheet(URL) %&gt;% \n  select(mfdiff = `(Male - female) difference`) \n\nggplot(sim.data, aes(x = mfdiff)) +\n  geom_histogram(binwidth = .01) +\n  theme_bw() +\n  geom_vline(xintercept = .292, color = \"blue\", lwd=2) +\n  xlab(\"point estimate\") + ylab(\"Count\")\n\n\n\nDescribe the distribution of this graph. What does it seem to be centered around?\n\n\nIn what percent of simulations did we observe a difference of at least 29.2% (0.292)?\n\n\nShow the code\nsum(sim.data$mfdiff &gt;= .29) / NROW(sim.data)"
+  },
+  {
+    "objectID": "slides/lec06a-statistical_inference_with_randomization.html#decision",
+    "href": "slides/lec06a-statistical_inference_with_randomization.html#decision",
+    "title": "Statistical Inference with Randomization",
+    "section": "Decision",
+    "text": "Decision\nIn our analysis, we determined that there was only a \\(\\approx\\) ____ chance of obtaining a sample where \\(\\geq\\) 29.2% more male candidates than female candidates get promoted under the null hypothesis, so we conclude that the data provide some evidence of sex discrimination against female candidates by the male supervisors. In this case, we can reject the null hypothesis in favor of the alternative."
+  },
+  {
+    "objectID": "slides/lec06a-statistical_inference_with_randomization.html#closing",
+    "href": "slides/lec06a-statistical_inference_with_randomization.html#closing",
+    "title": "Statistical Inference with Randomization",
+    "section": "Closing",
+    "text": "Closing\nStatistical inference is the practice of making decisions and conclusions from data in the context of uncertainty.\nErrors do occur, just like rare events, and the dataset at hand might lead us to the wrong conclusion. While a given dataset may not always lead us to a correct conclusion, statistical inference gives us tools to control and evaluate how often these errors occur.\n\n\n🔗 https://math615.netlify.app"
+  },
+  {
+    "objectID": "slides/lec06b-statistical_inference_with_models.html#warm-up-exercise",
+    "href": "slides/lec06b-statistical_inference_with_models.html#warm-up-exercise",
+    "title": "Statistical Inference using Models",
+    "section": "Warm up exercise",
+    "text": "Warm up exercise\nWork through the Central Limit Theorem interactive explorer for about 15 minutes. Follow the instructions on the app and take notes and be prepared to share out what you learned/your take away message.\nhttps://mathisawesome.shinyapps.io/central-limit-theorem/"
+  },
+  {
+    "objectID": "slides/lec06b-statistical_inference_with_models.html#sampling-distributions",
+    "href": "slides/lec06b-statistical_inference_with_models.html#sampling-distributions",
+    "title": "Statistical Inference using Models",
+    "section": "Sampling Distributions",
+    "text": "Sampling Distributions\nSince point estimates are numbers calculated on a sample, they are also sample statistics. Recall that sample statistics are used to estimate parameters, the true value of the quantity of interest from the population.\nAs we just saw through simulation, point estimates are subject to random variation because they are calculated on different random samples from the population. The distribution of repeatedly calculated point estimates based on the same fixed size \\(n\\) from a population is called a sampling distribution."
+  },
+  {
+    "objectID": "slides/lec06b-statistical_inference_with_models.html#mathematical-theory-guarantees",
+    "href": "slides/lec06b-statistical_inference_with_models.html#mathematical-theory-guarantees",
+    "title": "Statistical Inference using Models",
+    "section": "Mathematical theory guarantees",
+    "text": "Mathematical theory guarantees\n\nIf repeated samples are taken, a point estimate will follow something that resembles a normal distribution when certain conditions are met.\n\nNote: we typically only take one sample, but the mathematical model lets us know what to expect if we had taken repeated samples\n\n\n\n\n\n\n\n\nObservations in the sample are independent.\n\n\nGuaranteed when we take a random sample from a population, or randomly divide individuals into treatment and control groups.\n\n\n\n\n\n\n\n\n\nThe sample is large enough.\n\n\nWhat qualifies as “large enough” differs from one context to the next. If the population is already normally distributed and the formula to calculate the sample statistic simple, then fewer samples are needed. The “magic” number 30 gets thrown around a lot."
+  },
+  {
+    "objectID": "slides/lec06b-statistical_inference_with_models.html#the-normal-distribution",
+    "href": "slides/lec06b-statistical_inference_with_models.html#the-normal-distribution",
+    "title": "Statistical Inference using Models",
+    "section": "The Normal Distribution",
+    "text": "The Normal Distribution\n\n\nThe normal distribution is used to describe the variability associated with sample statistics which are taken from either repeated samples or repeated experiments. The normal distribution is quite powerful in that it describes the variability of many different statistics such as the sample mean and sample proportions.\nDistributions of many variables are nearly normal, but none are exactly normal. While not perfect for any single problem, the Normal Distribution is very useful for a variety of problems."
+  },
+  {
+    "objectID": "slides/lec06b-statistical_inference_with_models.html#distributional-notation",
+    "href": "slides/lec06b-statistical_inference_with_models.html#distributional-notation",
+    "title": "Statistical Inference using Models",
+    "section": "Distributional Notation",
+    "text": "Distributional Notation\n\\[ X \\sim \\mathcal{N}(\\mu, \\sigma^2)\\] This means some random variable \\(X\\) is distributed(\\(\\sim\\)), as a Normal (\\(\\mathcal{N}\\)) distribution centered on mean \\(\\mu\\) with variance \\(\\sigma^{2}\\).\n\n\n\n\n\n\nNotational differences\n\n\nNote that the IMS textbook uses the uncommon notation \\(\\mathcal{N}(\\mu, \\sigma)\\), where the second parameter is \\(\\sigma\\), the standard deviation."
+  },
+  {
+    "objectID": "slides/lec06b-statistical_inference_with_models.html#the-normal-distribution-2",
+    "href": "slides/lec06b-statistical_inference_with_models.html#the-normal-distribution-2",
+    "title": "Statistical Inference using Models",
+    "section": "The Normal Distribution",
+    "text": "The Normal Distribution\n\n\n\nSymmetric, “bell shaped”\nCentered on \\(\\mu\\) and spread controlled by \\(\\sigma^2\\)\nTails extend to \\(\\infty\\)\n\n\n\n\n\n\n\n\nArea under the curve will always add to 1.\nUsed to calculate the probability of an event occurring"
+  },
+  {
+    "objectID": "slides/lec06b-statistical_inference_with_models.html#comparing-values-under-two-different-distributions",
+    "href": "slides/lec06b-statistical_inference_with_models.html#comparing-values-under-two-different-distributions",
+    "title": "Statistical Inference using Models",
+    "section": "Comparing values under two different distributions",
+    "text": "Comparing values under two different distributions\n\n\n\n\n\n\nTwo different college-ready exams\n\n\nSAT scores follow a nearly normal distribution with a mean of 1500 points and a standard deviation of 300 points.\nACT scores also follow a nearly normal distribution with mean of 21 points and a standard deviation of 5 points.\nSuppose Nel scored 1800 points on their SAT and Sian scored 24 points on their ACT.\n\n\n\nWho performed better?"
+  },
+  {
+    "objectID": "slides/lec06b-statistical_inference_with_models.html#standardizing-distributions",
+    "href": "slides/lec06b-statistical_inference_with_models.html#standardizing-distributions",
+    "title": "Statistical Inference using Models",
+    "section": "Standardizing Distributions",
+    "text": "Standardizing Distributions\nIf you overlay the two distributions, where the means line up and where each tick mark represents one standard deviation away from the mean, we can see who did better relative to the exam average.\n\n\n\n\n\\[X_{SAT} \\sim \\mathcal{N}(1500, 300^{2})\\]\n\n\\[X_{ACT} \\sim \\mathcal{N}(21, 25)\\]"
+  },
+  {
+    "objectID": "slides/lec06b-statistical_inference_with_models.html#z-score",
+    "href": "slides/lec06b-statistical_inference_with_models.html#z-score",
+    "title": "Statistical Inference using Models",
+    "section": "Z-score",
+    "text": "Z-score\nThe Z score of an observation is the number of standard deviations it falls above or below the mean. We compute the Z score for an observation that follows a distribution with mean and standard deviation using\n\\[ Z = \\frac{x- \\mu}{\\sigma} \\] If an observation \\(x\\) comes from a \\(\\mathcal{N}(\\mu, \\sigma)\\) distribution, then \\(Z \\sim \\mathcal{N}(0, 1)\\). We center the distribution by subtracting the mean, and scale by dividing by the sd."
+  },
+  {
+    "objectID": "slides/lec06b-statistical_inference_with_models.html#comparing-scores",
+    "href": "slides/lec06b-statistical_inference_with_models.html#comparing-scores",
+    "title": "Statistical Inference using Models",
+    "section": "Comparing Scores",
+    "text": "Comparing Scores\nCalculate the Z-score for both Nel and Sian. Who did better?\n\n\n\n\n\\(X_{SAT} \\sim \\mathcal{N}(1500, 300^{2})\\)\n\\(x_{Nel} = 1800\\)\n\\(Z_{Nel} = \\frac{1800- 1500}{300} = 1\\)\n\n\n\n\n\n\\(X_{ACT} \\sim \\mathcal{N}(21, 25)\\)\n\\(x_{Sian} = 24\\)\n\\(Z_{Sian} = \\frac{24- 21}{5} = 0.6\\)"
+  },
+  {
+    "objectID": "slides/lec06b-statistical_inference_with_models.html#comparing-scores-1",
+    "href": "slides/lec06b-statistical_inference_with_models.html#comparing-scores-1",
+    "title": "Statistical Inference using Models",
+    "section": "Comparing Scores",
+    "text": "Comparing Scores\nWhile we know Nel did better, Sian didn’t do too bad! What was their percentile (The percent of observations below a specified value)?\n\n\n\n\nShow the code\nopenintro::normTail(m = 21, s = 5, L = 24)\n\n\n\n\n\n\nWe can find this value using pnorm(z, mean, sd).\n\n\nShow the code\npnorm(.6, mean = 0, sd = 1)\n\n\n[1] 0.7257469"
+  },
+  {
+    "objectID": "slides/lec06b-statistical_inference_with_models.html#finding-percentiles",
+    "href": "slides/lec06b-statistical_inference_with_models.html#finding-percentiles",
+    "title": "Statistical Inference using Models",
+    "section": "Finding percentiles",
+    "text": "Finding percentiles\nIf \\(X \\sim \\mathcal{N}(\\mu, \\sigma^{2})\\), then pnorm calculates the probability that a value is below a certain number a.\n\n\\(P(X &lt; a)\\) is found using pnorm(a, mean, sd)\n\nA complementary function, qnorm calculates the cutoff value a that is needed such that a certain percent of observations (q) are below that value.\n\n\\(P(X &lt; a) = q\\) is found using qnorm(q, mean, sd)\n\n\n\nShow the code\nqnorm(.90, 21, 5) \n\n\n[1] 27.40776\n\n\nYou would need to score a 27.5 to be in the top 10th percentile of ACT test takers."
+  },
+  {
+    "objectID": "slides/lec06b-statistical_inference_with_models.html#many-estimates-are-normally-distributed",
+    "href": "slides/lec06b-statistical_inference_with_models.html#many-estimates-are-normally-distributed",
+    "title": "Statistical Inference using Models",
+    "section": "Many estimates are normally distributed",
+    "text": "Many estimates are normally distributed\n\nthe sample proportion \\(\\hat{p}\\)\nthe sample mean \\(\\bar{x}\\)\ndifferences in two sample proportions \\(\\hat{p}_{1} - \\hat{p}_{2}\\)\ndifferences in two sample means \\(\\bar{x}_{1} - \\bar{x}_{2}\\)\nthe sample slope from a linear model \\(\\hat{\\beta}\\)"
+  },
+  {
+    "objectID": "slides/lec06b-statistical_inference_with_models.html#rule-of-thumb",
+    "href": "slides/lec06b-statistical_inference_with_models.html#rule-of-thumb",
+    "title": "Statistical Inference using Models",
+    "section": "68-95-99.7 rule of thumb",
+    "text": "68-95-99.7 rule of thumb\nBecause intuition is important.\n\n\n\nShow the code\npnorm(2, 0, 1) - pnorm(-2, 0, 1)\n\n\n[1] 0.9544997"
+  },
+  {
+    "objectID": "slides/lec06b-statistical_inference_with_models.html#sd-vs-se",
+    "href": "slides/lec06b-statistical_inference_with_models.html#sd-vs-se",
+    "title": "Statistical Inference using Models",
+    "section": "SD vs SE",
+    "text": "SD vs SE\n\n\n\n\n\n\nDefinition: Standard Deviation (SD)\n\n\nVariability of the data values (\\(x\\))\n\n\n\n\n\n\n\n\n\nDefinition: Standard Error (SE)\n\n\nVariability of the sample statistic (e.g. \\(\\bar{x}\\) or \\(\\hat{p}\\))"
+  },
+  {
+    "objectID": "slides/lec06b-statistical_inference_with_models.html#margin-of-error",
+    "href": "slides/lec06b-statistical_inference_with_models.html#margin-of-error",
+    "title": "Statistical Inference using Models",
+    "section": "Margin of Error",
+    "text": "Margin of Error\n\n\n\n\n\n\nDefinition: Margin of Error (MOE)\n\n\nThe margin of error describes how far away observations are from their mean.\nOften approximated as \\(2 * SE\\)\n\n\n\n\n95% of the observations are within one margin of error of the mean.\nIf the spread of the observations goes from some lower bound to some upper bound, a rough approximation of the \\(SE\\) is to divide the range by 4.\n\nIf you notice the sample proportions go from 0.1 to 0.4, the SE can be approximated to be 0.075."
+  },
+  {
+    "objectID": "slides/lec06b-statistical_inference_with_models.html#summary",
+    "href": "slides/lec06b-statistical_inference_with_models.html#summary",
+    "title": "Statistical Inference using Models",
+    "section": "Summary",
+    "text": "Summary\n\nPoint estimates from a sample may be used to estimate population parameters.\nPoint estimates are not exact: they vary from one sample to another.\nThe standard error is the uncertainty of the sample statistic, and it gets smaller as you use more data to calculate the point estimate.\nAs your standard error decreases, so does your margin of error"
+  },
+  {
+    "objectID": "slides/lec06b-statistical_inference_with_models.html#observed-data",
+    "href": "slides/lec06b-statistical_inference_with_models.html#observed-data",
+    "title": "Statistical Inference using Models",
+    "section": "Observed data",
+    "text": "Observed data\nConsider an experiment that examined whether implanting a stent in the brain of a patient at risk for a stroke helps reduce the risk of a stroke. The results from the first 30 days of this study are summarized in the following table.\n\n\n\n\nShow the code\ntable(stent30$group, stent30$outcome) |&gt; addmargins()\n\n\n           \n            no event stroke Sum\n  control        214     13 227\n  treatment      191     33 224\n  Sum            405     46 451\n\n\n\n\n\nShow the code\ntable(stent30$group, stent30$outcome) |&gt;  prop.table(margin=1) |&gt;round(digits=2)\n\n\n           \n            no event stroke\n  control       0.94   0.06\n  treatment     0.85   0.15\n\n\n\n\nThese results are surprising! The point estimate suggests that patients who received stents may have a higher risk of stroke: \\(p_{trmt}−p_{ctrl}=0.090\\)."
+  },
+  {
+    "objectID": "slides/lec06b-statistical_inference_with_models.html#point-estimate-vs-interval-estimate",
+    "href": "slides/lec06b-statistical_inference_with_models.html#point-estimate-vs-interval-estimate",
+    "title": "Statistical Inference using Models",
+    "section": "Point estimate vs Interval estimate",
+    "text": "Point estimate vs Interval estimate\nThe point estimate for the difference in proportions \\(p_{trmt}−p_{ctrl}=0.090\\) is a single point estimate, based on this single sample.\n\n\nA point estimate is our best guess for the value of the parameter, so it makes sense to build the confidence interval around that value."
+  },
+  {
+    "objectID": "slides/lec06b-statistical_inference_with_models.html#constructing-a-95-confidence-interval-ci",
+    "href": "slides/lec06b-statistical_inference_with_models.html#constructing-a-95-confidence-interval-ci",
+    "title": "Statistical Inference using Models",
+    "section": "Constructing a 95% confidence interval (CI)",
+    "text": "Constructing a 95% confidence interval (CI)\nWhen the sampling distribution of a point estimate can reasonably be modeled as having a normal distribution, the point estimate we observe will be within 1.96 standard errors of the true value of interest about 95% of the time. Thus, a 95% confidence interval for such a point estimate can be constructed:\n\\[\\mbox{point estimate} \\pm 1.96 × SE\\]\nWe can be 95% confident this interval captures the true value."
+  },
+  {
+    "objectID": "slides/lec06b-statistical_inference_with_models.html#construct-a-95-ci-for-the-stent-example",
+    "href": "slides/lec06b-statistical_inference_with_models.html#construct-a-95-ci-for-the-stent-example",
+    "title": "Statistical Inference using Models",
+    "section": "Construct a 95% CI for the stent example",
+    "text": "Construct a 95% CI for the stent example\nThe conditions necessary to ensure the point estimate \\(p_{trmt}−p_{ctrl}\\) is nearly normal have been verified for you, and the estimate’s standard error is \\(SE = 0.028\\).\n\nConstruct a 95% confidence interval for the change in 30-day stroke rates from usage of the stent.\nInterpret this interval in context of the problem.\n\n\n\\[0.090 \\pm 1.96×0.028 = (0.035,0.145)\\]\nWe are 95% confident that implanting a stent in a stroke patient’s brain increased the risk of stroke within 30 days by a rate of 0.035 to 0.145."
+  },
+  {
+    "objectID": "slides/lec06b-statistical_inference_with_models.html#important-note",
+    "href": "slides/lec06b-statistical_inference_with_models.html#important-note",
+    "title": "Statistical Inference using Models",
+    "section": "Important note",
+    "text": "Important note\n⚠️ it’s incorrect to say that we can be 95% confident that the true value is inside the mean.\n\nFigure 13.11: Twenty-five samples of size n=300 were collected from a population with p=0.30. For each sample, a confidence interval was created to try to capture the true proportion p. However, 1 of these 25 intervals did not capture p=0.30."
+  },
+  {
+    "objectID": "slides/lec06b-statistical_inference_with_models.html#section",
+    "href": "slides/lec06b-statistical_inference_with_models.html#section",
+    "title": "Statistical Inference using Models",
+    "section": "",
+    "text": "This is one of the most common errors: while it might be useful to think of it as a probability, the confidence level only quantifies how plausible it is that the parameter is in the interval.\nOur intervals say nothing about the confidence of capturing individual observations, a proportion of the observations, or about capturing point estimates.\nConfidence intervals provide an interval estimate for and attempt to capture population parameters."
+  },
+  {
+    "objectID": "slides/lec06b-statistical_inference_with_models.html#hypothesis-test",
+    "href": "slides/lec06b-statistical_inference_with_models.html#hypothesis-test",
+    "title": "Statistical Inference using Models",
+    "section": "Hypothesis test",
+    "text": "Hypothesis test\n\n\n\nFirst draft\n\n\nLet’s setup a hypothesis to test if stents work to reduce the risk of a stroke.\n\n\n\n\n\n\\(H_{0}\\): Stents don’t work\n\\(H_{A}\\): Stents reduce the risk of a stroke"
+  },
+  {
+    "objectID": "slides/lec06b-statistical_inference_with_models.html#hypothesis-test-1",
+    "href": "slides/lec06b-statistical_inference_with_models.html#hypothesis-test-1",
+    "title": "Statistical Inference using Models",
+    "section": "Hypothesis test",
+    "text": "Hypothesis test\n\n\n\nRevision 1:\n\n\nMaking it a statement about two groups\n\n\n\n\\(H_{0}\\): Patients who have a stent have the same risk of a stroke as patients who don’t have a stent\n\\(H_{A}\\): Patients who have a stent have lower risk of a stroke as patients who don’t have a stent"
+  },
+  {
+    "objectID": "slides/lec06b-statistical_inference_with_models.html#hypothesis-test-2",
+    "href": "slides/lec06b-statistical_inference_with_models.html#hypothesis-test-2",
+    "title": "Statistical Inference using Models",
+    "section": "Hypothesis test",
+    "text": "Hypothesis test\n\n\n\nRevision 2:\n\n\nMake it a statement using summary statistics and removing the directionality of the hypothesis\n\n\n\n\\(H_{0}\\): The proportion of patients with a stent who have a stroke is the same as the proportion of patients without a stent who have a stroke.\n\\(H_{A}\\): The proportion of patients with a stent who have a stroke is different than the proportion of patients without a stent who have a stroke."
+  },
+  {
+    "objectID": "slides/lec06b-statistical_inference_with_models.html#hypothesis-test-3",
+    "href": "slides/lec06b-statistical_inference_with_models.html#hypothesis-test-3",
+    "title": "Statistical Inference using Models",
+    "section": "Hypothesis test",
+    "text": "Hypothesis test\n\n\n\nRevision 3:\n\n\nWriting it in symbols\n\n\n\nLet \\(p_{trmt}\\) be the proportion of patients with a stent who have a stroke, and \\(p_{ctrl}\\) be the proportion of patients without a stent who have a stroke\n\n\n\\(H_{0}: p_{trmt} = p_{ctrl}\\)\n\\(H_{A}: p_{trmt} \\neq p_{ctrl}\\)"
+  },
+  {
+    "objectID": "slides/lec06b-statistical_inference_with_models.html#hypothesis-test-4",
+    "href": "slides/lec06b-statistical_inference_with_models.html#hypothesis-test-4",
+    "title": "Statistical Inference using Models",
+    "section": "Hypothesis test",
+    "text": "Hypothesis test\n\n\n\nRevision 3.5:\n\n\nRewriting as a difference in parameters\n\n\n\nLet \\(p_{1}\\) be the proportion of patients with a stent who have a stroke, and \\(p_{ctrl}\\) be the proportion of patients without a stent who have a stroke\n\n\n\\(H_{0}: p_{trmt} - p_{ctrl} = 0\\)\n\\(H_{A}: p_{trmt} - p_{ctrl} \\neq 0\\)"
+  },
+  {
+    "objectID": "slides/lec06b-statistical_inference_with_models.html#using-the-normal-model",
+    "href": "slides/lec06b-statistical_inference_with_models.html#using-the-normal-model",
+    "title": "Statistical Inference using Models",
+    "section": "Using the Normal model",
+    "text": "Using the Normal model\n\nNow we have a statistic (difference in proportions \\(p_{trmt} - p_{ctrl}\\)) and a null value of 0 to compare it to.\nThe conditions necessary to ensure the point estimate is nearly normal have been verified for you.\nThe estimate’s standard error is \\(SE = 0.028\\) has been calculated for you as well."
+  },
+  {
+    "objectID": "slides/lec06b-statistical_inference_with_models.html#calculating-a-test-statistic-p-value",
+    "href": "slides/lec06b-statistical_inference_with_models.html#calculating-a-test-statistic-p-value",
+    "title": "Statistical Inference using Models",
+    "section": "Calculating a test statistic & p-value",
+    "text": "Calculating a test statistic & p-value\n\\[ Z = \\frac{\\mbox{point estimate - null value}}{SE}\\]\n\n\\[ Z = \\frac{(p_{trmt} - p_{ctrl}) - 0}{SE_{p_{trmt} - p_{ctrl}}} = \\frac{.090}{.028} = 3.21 \\]\n\n\n\\[ P(Z &gt; 3.2) = .00068 \\qquad \\mbox{ (the p-value)}\\]\n\n\nShow the code\n1-pnorm(3.2, 0, 1)\n\n\n[1] 0.0006871379\n\n\n\n\nIf the true difference in proportions was 0, then the probability of observing a difference of 0.09 due to random chance is 0.00068."
+  },
+  {
+    "objectID": "slides/lec06b-statistical_inference_with_models.html#section-1",
+    "href": "slides/lec06b-statistical_inference_with_models.html#section-1",
+    "title": "Statistical Inference using Models",
+    "section": "",
+    "text": "https://xkcd.com/1478/"
+  },
+  {
+    "objectID": "slides/lec06b-statistical_inference_with_models.html#using-confidence-intervals-to-test-a-hypothesis",
+    "href": "slides/lec06b-statistical_inference_with_models.html#using-confidence-intervals-to-test-a-hypothesis",
+    "title": "Statistical Inference using Models",
+    "section": "Using Confidence Intervals to test a hypothesis",
+    "text": "Using Confidence Intervals to test a hypothesis\n\nWe are 95% confident that implanting a stent in a stroke patient’s brain increased the risk of stroke within 30 days by a rate of 0.035 to 0.145.\n\nSince the interval does not contain the null hypothesized value of 0 (is completely above 0), it means the data provide convincing evidence that the stent used in the study changed the risk of stroke within 30 days\n\n\n🔗 https://math615.netlify.app"
+  },
+  {
     "objectID": "slides.html",
     "href": "slides.html",
     "title": "All Slides",
     "section": "",
-    "text": "Slides will open in full screen. Right click to open in a new tab\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDate\n\n\nLec #\n\n\nTopic\n\n\n\n\n\n\nAug 25, 2024\n\n\nlec00a\n\n\nWelcome to MATH 615\n\n\n\n\nAug 25, 2025\n\n\nlec00b\n\n\nMATH 615 Course Tools\n\n\n\n\nAug 27, 2025\n\n\nlec01\n\n\nData Architecture\n\n\n\n\nSep 3, 2025\n\n\nlec02\n\n\nFormulating research questions\n\n\n\n\nSep 8, 2025\n\n\nlec03a\n\n\nWorkflows for Reproducibility\n\n\n\n\nSep 10, 2025\n\n\nlec03b\n\n\nPreparing your data for analysis\n\n\n\n\nSep 15, 2025\n\n\nlec04\n\n\nDescribing Distributions of Data\n\n\n\n\nSep 17, 2025\n\n\nlec05a\n\n\nDescribing Relationships between variables\n\n\n\n\nSep 24, 2025\n\n\nlec05b\n\n\nBest practices in Data Visualization\n\n\n\n\n\n\nNo matching items"
+    "text": "Slides will open in full screen. Right click to open in a new tab\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDate\n\n\nLec #\n\n\nTopic\n\n\n\n\n\n\nAug 25, 2024\n\n\nlec00a\n\n\nWelcome to MATH 615\n\n\n\n\nAug 25, 2025\n\n\nlec00b\n\n\nMATH 615 Course Tools\n\n\n\n\nAug 27, 2025\n\n\nlec01\n\n\nData Architecture\n\n\n\n\nSep 3, 2025\n\n\nlec02\n\n\nFormulating research questions\n\n\n\n\nSep 8, 2025\n\n\nlec03a\n\n\nWorkflows for Reproducibility\n\n\n\n\nSep 10, 2025\n\n\nlec03b\n\n\nPreparing your data for analysis\n\n\n\n\nSep 15, 2025\n\n\nlec04\n\n\nDescribing Distributions of Data\n\n\n\n\nSep 17, 2025\n\n\nlec05a\n\n\nDescribing Relationships between variables\n\n\n\n\nSep 24, 2025\n\n\nlec05b\n\n\nBest practices in Data Visualization\n\n\n\n\nOct 1, 2025\n\n\nlec06a\n\n\nStatistical Inference with Randomization\n\n\n\n\nOct 6, 2025\n\n\nlec06b\n\n\nStatistical Inference using Models\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "syllabus.html",
@@ -1246,62 +1750,6 @@
     "text": "Assessment\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Quiz 03"
   },
   {
-    "objectID": "topics.html",
-    "href": "topics.html",
-    "title": "Topics",
-    "section": "",
-    "text": "This is the place to start to find all content related to a module.\n\n\n\n\n\n\n\n\n\n\nTopic\n\n\nDescription\n\n\n\n\n\n\nWelcome to Math 615\n\n\nIntroduction to class and your learning materials\n\n\n\n\nData Architecture\n\n\nData entry, spreadsheets, metadata, codebooks\n\n\n\n\nFormulating research questions\n\n\nAsking questions is easy. Asking answerable questions is more difficult.\n\n\n\n\nPreparing Data for Analysis\n\n\nWhere an inordinate amount of time is spent\n\n\n\n\nDescribing distributions of data\n\n\nVisualizing your data is the first line of defense against bad data\n\n\n\n\nDescribing Relationships\n\n\nFirst step in investigating a question about an association\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "slides/lec05a-describing_relationships.html#naming-conventions",
-    "href": "slides/lec05a-describing_relationships.html#naming-conventions",
-    "title": "Describing Relationships between variables",
-    "section": "Naming conventions",
-    "text": "Naming conventions\n\n\n\nResponse\nExplanatory\n\n\n\n\ny\nx\n\n\noutcome\npredictor\n\n\ndependent variable\nindependent variable\n\n\n\ncovariate\n\n\n\nfeature\n\n\n\n\n\nModel notation: \\(y \\sim x\\)"
-  },
-  {
-    "objectID": "slides/lec05a-describing_relationships.html#types-of-combinations",
-    "href": "slides/lec05a-describing_relationships.html#types-of-combinations",
-    "title": "Describing Relationships between variables",
-    "section": "Types of combinations",
-    "text": "Types of combinations\n\nCategorical response and categorical explanatory variable. (C ~ C)\nQuantitative response and categorical explanatory variable. (Q ~ C)\nQuantitative response and quantitative explanatory variable. (Q ~ Q)\n\nThe \\(Q\\) and \\(C\\) notation is internal to this class. Not universal."
-  },
-  {
-    "objectID": "slides/lec05a-describing_relationships.html#q-c",
-    "href": "slides/lec05a-describing_relationships.html#q-c",
-    "title": "Describing Relationships between variables",
-    "section": "Q ~ C",
-    "text": "Q ~ C\nQuantitative Response vs Categorical Explanatory\n\nGrouped summary statisticsgtsummaryPlotsPlot2Description\n\n\nn, nean, median, sd, IQR of the quantitative variable for each level of the categorical level.\n\n\nShow the code\npen %&gt;% group_by(species) %&gt;% \n  summarize(n=n(), \n            mean   = mean(bill_depth_mm, na.rm = TRUE), \n            median = median(bill_depth_mm, na.rm = TRUE), \n            sd     = sd(bill_depth_mm, na.rm = TRUE), \n            IQR    = IQR(bill_depth_mm, na.rm = TRUE))\n\n\n# A tibble: 3 × 6\n  species       n  mean median    sd   IQR\n  &lt;fct&gt;     &lt;int&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 Adelie      152  18.3   18.4 1.22   1.5 \n2 Chinstrap    68  18.4   18.4 1.14   1.90\n3 Gentoo      124  15.0   15   0.981  1.5 \n\n\nGentoo penguins have lower average bill depth compared to Adelie or Chinstrap (15.0mm vs 18.3 and 18.4mm respectively). Chinstrap however have a larger IQR at 1.9 compared to 1.5 for the others.\n\n\n\n\nSimilarly nice tables, but defaults to median and IQR.\n\n\nShow the code\npen %&gt;% select(bill_depth_mm, species) %&gt;%\n  tbl_summary(by = \"species\")\n\n\n\n\n\n\n  \n    \n      Characteristic\n      Adelie\nN = 1521\n      Chinstrap\nN = 681\n      Gentoo\nN = 1241\n    \n  \n  \n    bill_depth_mm\n18.40 (17.50, 19.00)\n18.45 (17.50, 19.40)\n15.00 (14.20, 15.70)\n        Unknown\n1\n0\n1\n  \n  \n  \n    \n      1 Median (Q1, Q3)\n    \n  \n\n\n\n\n\nHave to manually specify you want mean & sd.\n\n\nShow the code\npen %&gt;% select(bill_depth_mm, species) %&gt;%\n  tbl_summary(by = \"species\", \n              statistic = list(all_continuous() ~ \"{mean} ({sd})\"))\n\n\n\n\n\n\n  \n    \n      Characteristic\n      Adelie\nN = 1521\n      Chinstrap\nN = 681\n      Gentoo\nN = 1241\n    \n  \n  \n    bill_depth_mm\n18.35 (1.22)\n18.42 (1.14)\n14.98 (0.98)\n        Unknown\n1\n0\n1\n  \n  \n  \n    \n      1 Mean (SD)\n    \n  \n\n\n\n\n\n\n\n\n\n\nOverlaid density plots\n\n\nShow the code\ngghistogram(pen, \n    x = \"bill_depth_mm\", fill = \"species\", \n    add_density = TRUE, add=\"mean\")\n\n\n\n\n\n\nSide by side boxplots\n\n\nShow the code\nggviolin(pen, \n  x=\"species\", y = \"bill_depth_mm\", \n  color = \"species\", add = c(\"mean\", \"boxplot\"))\n\n\n\n\n\n\n\n The distribution of bill depth are fairly normal for each species, with some higher end values causing a slight right skew for Adelie and Gentoo.\n\n\nMore code but nice alternative to violins.\n\n\nShow the code\nlibrary(ggdist) # for the \"half-violin\" plot (stat_slab)\nggplot(pen, aes(x=bill_depth_mm, y=species, fill=species)) + \n      stat_slab(alpha=.5, justification = 0) + \n      geom_boxplot(width = .2,  outlier.shape = NA) + \n      geom_jitter(alpha = 0.5, height = 0.05) +\n      stat_summary(fun=\"mean\", geom=\"point\", col=\"red\", size=4, pch=17) + \n      theme_bw() + \n      labs(x=\"Bill depth (mm)\", y = \"Species\") + \n      theme(legend.position = \"none\")\n\n\n\n\n\n\n\nDiscuss shape, spread and center using comparative language.\n\n\nThe distribution of bill depth are fairly normal for each species, with some higher end values causing a slight right skew for Adelie and Gentoo. Gentoo penguins have lower average bill depth compared to Adelie or Chinstrap (15.0mm vs 18.3 and 18.4mm respectively). Chinstrap however have a larger IQR at 1.9 compared to 1.5 for the others."
-  },
-  {
-    "objectID": "slides/lec05a-describing_relationships.html#q-q",
-    "href": "slides/lec05a-describing_relationships.html#q-q",
-    "title": "Describing Relationships between variables",
-    "section": "Q ~ Q",
-    "text": "Q ~ Q\nQuantitative Response vs Quantitative Explanatory\n\nSummary statisticPlotsDescription\n\n\n\n\nShow the code\ncor(pen$flipper_length_mm, pen$body_mass_g, \n    use=\"pairwise.complete.obs\")\n\n\n[1] 0.8712018\n\n\nThe correlation coefficient \\(r\\) is a measure of the strength and direction of a linear relationship between two variables.\n\n\\(|r| &gt; 0.6\\) Strong relationship\n\\(0.4 \\leq |r| &lt; 0.6\\) Moderate relationship\n\\(|r| &lt; 0.4\\) Weak to no relationship\n\nNote: These values are guidelines and subject to variability within different disciplines ref\n\n\n\n\n\n\nShow the code\nggscatter(pen, \n  x=\"flipper_length_mm\", y = \"body_mass_g\")\n\n\n\n\n\n\n\n\nShow the code\nggscatter(pen, \n  x=\"flipper_length_mm\", y = \"body_mass_g\", \n  add = \"loess\", conf.int = TRUE)\n\n\n\n\n\n The relationship between flipper length and body mass in penguins is relatively linear, but there may be possible clustering on a third variable. There appears to be two groups below and above a flipper length of about 205mm. \n\n\n\nMust include the direction (positive or negative), the strength quantified using \\(r\\), and the form (linear vs non-linear)\nThe penguin flipper length (mm) has a strong, positive, and reasonably linear correlation with body mass (g), r=0.87."
-  },
-  {
-    "objectID": "slides/lec05a-describing_relationships.html#c-c",
-    "href": "slides/lec05a-describing_relationships.html#c-c",
-    "title": "Describing Relationships between variables",
-    "section": "C ~ C",
-    "text": "C ~ C\nCategorical Response vs Categorical Explanatory\n\nTwo way tables (cross-tabs)Plots\n\n\n\n\n\n\nShow the code\ntable(pen$species, pen$island)\n\n\n           \n            Biscoe Dream Torgersen\n  Adelie        44    56        52\n  Chinstrap      0    68         0\n  Gentoo       124     0         0\n\n\n\n\n\nShow the code\ntable(pen$species, pen$island) |&gt; \n  prop.table(margin=2) |&gt; round(2)\n\n\n           \n            Biscoe Dream Torgersen\n  Adelie      0.26  0.45      1.00\n  Chinstrap   0.00  0.55      0.00\n  Gentoo      0.74  0.00      0.00\n\n\n\n\n\nAll of the 52 penguins on Torgersen island are the Adelie species.\n74% of penguins on Biscoe island are Gentoo.\n\n\n\n\n\nShow the code\nplot_xtab(pen$island, grp=pen$species, show.total = FALSE)\n\n\n\n\n\n\nDo these percents match the table?"
-  },
-  {
-    "objectID": "slides/lec05a-describing_relationships.html#watch-your-margins",
-    "href": "slides/lec05a-describing_relationships.html#watch-your-margins",
-    "title": "Describing Relationships between variables",
-    "section": "Watch your margins",
-    "text": "Watch your margins\n\n\n\n\n\n\nAlways double check your work\n\n\nOne of the most common places for a mistake when creating a plot or a table between two categorical variables is by not paying close attention to the choice of denominator. And then also confirming the interpretation matches the table, which matches the plot.\n\n\n\n\nWhat % of penguins on each island are Gentoo?\nWhat % of Gentoo penguins are on each Island?"
-  },
-  {
-    "objectID": "slides/lec05a-describing_relationships.html#watch-your-margins-1",
-    "href": "slides/lec05a-describing_relationships.html#watch-your-margins-1",
-    "title": "Describing Relationships between variables",
-    "section": "Watch your margins",
-    "text": "Watch your margins\n\nTablesgtsummaryPlots\n\n\n\n\nRow Percents\n\n\nShow the code\ntable(pen$species, pen$island) |&gt; \n  prop.table(margin=1) |&gt; round(2)\n\n\n           \n            Biscoe Dream Torgersen\n  Adelie      0.29  0.37      0.34\n  Chinstrap   0.00  1.00      0.00\n  Gentoo      1.00  0.00      0.00\n\n\n29% of Adelie penguins are on Biscoe Island.\n\nColumn Percents\n\n\nShow the code\ntable(pen$species, pen$island) |&gt; \n  prop.table(margin=2) |&gt; round(2)\n\n\n           \n            Biscoe Dream Torgersen\n  Adelie      0.26  0.45      1.00\n  Chinstrap   0.00  0.55      0.00\n  Gentoo      0.74  0.00      0.00\n\n\n74% of penguins on Biscoe island are Gentoo.\n\n\n\n\n\n\nDistribution of Islands within each species\n\n\nShow the code\npen %&gt;% select(island, species) %&gt;%\n  tbl_summary(by = \"species\")\n\n\n\n\n\n\n  \n    \n      Characteristic\n      Adelie\nN = 1521\n      Chinstrap\nN = 681\n      Gentoo\nN = 1241\n    \n  \n  \n    island\n\n\n\n        Biscoe\n44 (29%)\n0 (0%)\n124 (100%)\n        Dream\n56 (37%)\n68 (100%)\n0 (0%)\n        Torgersen\n52 (34%)\n0 (0%)\n0 (0%)\n  \n  \n  \n    \n      1 n (%)\n    \n  \n\n\n\n\n\nDistribution of Species on each Island\n\n\nShow the code\npen %&gt;% select(island, species) %&gt;%\n  tbl_summary(by = \"island\")\n\n\n\n\n\n\n  \n    \n      Characteristic\n      Biscoe\nN = 1681\n      Dream\nN = 1241\n      Torgersen\nN = 521\n    \n  \n  \n    species\n\n\n\n        Adelie\n44 (26%)\n56 (45%)\n52 (100%)\n        Chinstrap\n0 (0%)\n68 (55%)\n0 (0%)\n        Gentoo\n124 (74%)\n0 (0%)\n0 (0%)\n  \n  \n  \n    \n      1 n (%)\n    \n  \n\n\n\n\n\n\n\n\n\n\nDistribution of islands for each species\n\n\nShow the code\nplot_xtab(pen$species, grp=pen$island, \n          margin = \"row\", show.total = FALSE)\n\n\n\n\n\n29% of Adelie penguins are on Biscoe Island.\n\nDistribution of species on each island.\n\n\nShow the code\nplot_xtab(pen$island, grp=pen$species, \n          margin = \"row\", show.total = FALSE)\n\n\n\n\n\n74% of penguins on Biscoe island are Gentoo.\n\n\n\n\n\n\n\n🔗 https://math615.netlify.app"
-  },
-  {
     "objectID": "topics/t05-describing_relationships.html",
     "href": "topics/t05-describing_relationships.html",
     "title": "Describing Relationships",
@@ -1337,101 +1785,45 @@
     "text": "Assessment\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Quiz 04\n    Project Phase 3\n    Report Draft"
   },
   {
-    "objectID": "slides/lec05b-data_viz_bestpractice.html#recap-level-of-care-depends-on-the-audience",
-    "href": "slides/lec05b-data_viz_bestpractice.html#recap-level-of-care-depends-on-the-audience",
-    "title": "Best practices in Data Visualization",
-    "section": "Recap: Level of care depends on the audience",
-    "text": "Recap: Level of care depends on the audience\nThere are three main audiences in mind when creating data visualizations:\n\nFor your eyes only (FYEO). These are quick and dirty plots, without annotation. Meant to be looked at once or twice.\nTo share with others internally. These mostly need to stand on their own. Axes labels, titles, colors as needed, possibly captions.\nProfessional - Contains all bells and whistles needed to make it publication quality."
-  },
-  {
-    "objectID": "slides/lec05b-data_viz_bestpractice.html#highly-recommended-references",
-    "href": "slides/lec05b-data_viz_bestpractice.html#highly-recommended-references",
-    "title": "Best practices in Data Visualization",
-    "section": "Highly recommended references",
-    "text": "Highly recommended references\n\n\n\n\nThe classic book on statistical graphics, charts, tables. Theory and practice in the design of data graphics, 250 illustrations of the best (and a few of the worst) statistical graphics, with detailed analysis of how to display data for precise, effective, quick analysis."
-  },
-  {
-    "objectID": "slides/lec05b-data_viz_bestpractice.html#highly-recommended-references-1",
-    "href": "slides/lec05b-data_viz_bestpractice.html#highly-recommended-references-1",
-    "title": "Best practices in Data Visualization",
-    "section": "Highly recommended references",
-    "text": "Highly recommended references\n\n\n\n\nIn The Truthful Art, Cairo explains the principles of good data visualization. He describes five qualities that should be your foundation when you work with data visualization: truthful, functional, beautiful, insightful, and enlightening. Cairo also gives some great examples of biased and dishonest visualization."
-  },
-  {
-    "objectID": "slides/lec05b-data_viz_bestpractice.html#five-qualities-of-great-visualizations-cairo",
-    "href": "slides/lec05b-data_viz_bestpractice.html#five-qualities-of-great-visualizations-cairo",
-    "title": "Best practices in Data Visualization",
-    "section": "Five qualities of great visualizations (Cairo)",
-    "text": "Five qualities of great visualizations (Cairo)\n\nTruthful. Be honest with scaling and relationships.\nFunctional. Does it accurately convey the correct information?\nBeautiful. Or at least aesthetically pleasing.\nInsightful. Does it reveal new information?\nEnlightening. Consequence of qualities 1-4\n\nReferences:\n\nUMSL Computer Science worksho on effective data viz\n\nCalling Bullshit: Spotting misleading axes"
-  },
-  {
-    "objectID": "slides/lec05b-data_viz_bestpractice.html#whats-wrong-with-this-graph",
-    "href": "slides/lec05b-data_viz_bestpractice.html#whats-wrong-with-this-graph",
-    "title": "Best practices in Data Visualization",
-    "section": "What’s wrong with this graph?",
-    "text": "What’s wrong with this graph?"
-  },
-  {
-    "objectID": "slides/lec05b-data_viz_bestpractice.html#graphing-with-intent",
-    "href": "slides/lec05b-data_viz_bestpractice.html#graphing-with-intent",
-    "title": "Best practices in Data Visualization",
-    "section": "Graphing with intent",
-    "text": "Graphing with intent\nAlong with having the audience in mind, it is important to give thought to the purpose of the chart.\n\nThe effectiveness of any visualization can be measured according to how well it fulfills the tasks it was designed for. (A. Cairo, 2018)."
-  },
-  {
-    "objectID": "slides/lec05b-data_viz_bestpractice.html#manage-your-ink-to-information-ratio",
-    "href": "slides/lec05b-data_viz_bestpractice.html#manage-your-ink-to-information-ratio",
-    "title": "Best practices in Data Visualization",
-    "section": "Manage your ink to information ratio",
-    "text": "Manage your ink to information ratio\n\n“Data-ink is the non-erasable core of the graphic. (Tufte, 83)”\n\n\n\n\n\n\n\n\n\n\n\nDarkhorse Analytics demonstrates how “data looks better naked”"
-  },
-  {
-    "objectID": "slides/lec05b-data_viz_bestpractice.html#what-to-watch-out-for",
-    "href": "slides/lec05b-data_viz_bestpractice.html#what-to-watch-out-for",
-    "title": "Best practices in Data Visualization",
-    "section": "What to watch out for",
-    "text": "What to watch out for\n\nAvoid complexity\nChoose colors mindfully\nDo not add extra dimensions\nBe truthful with the scaling\nCheck publishing guidelines\nBe consistent with selected themes\nDo not over-interpret\nPlotting with missing data"
-  },
-  {
-    "objectID": "slides/lec05b-data_viz_bestpractice.html#inspirations",
-    "href": "slides/lec05b-data_viz_bestpractice.html#inspirations",
-    "title": "Best practices in Data Visualization",
-    "section": "Inspirations",
-    "text": "Inspirations\nNot sure what type of graph to create?\n\nPoke around on the R Graph Gallery or Python version. Appropriate for all languages as the goal is to identify the graph type\nfrom Data to Viz: a decision tree for graph options"
-  },
-  {
-    "objectID": "hw/hw05-describing_relationships.html",
-    "href": "hw/hw05-describing_relationships.html",
-    "title": "HW 05: Describing Relationships",
+    "objectID": "topics/t06-foundations_for_inference.html",
+    "href": "topics/t06-foundations_for_inference.html",
+    "title": "Foundations for Statistical Inference",
     "section": "",
-    "text": "To fully explore the relationship between two variables both summary statistics and visualizations are important."
+    "text": "Learning how to explore and visualize our data.\nVisually consider patterns, identify potential relationships\n\n\n\n\n\nThink about how data come to be. That is, if the data are to be used to make broad and complete conclusions, then it is important to understand who or what the data represent.\n\nKnowing how the observational units were selected will allow for generalizations back to the population from which the data were selected.\nBy understanding the structure of the study, causal relationships can be separated from those relationships which are only associated.\n\nRevisiting null value hypothesis testing (NVHT) from a randomization perspective\nRevisiting the Normal distribution model, and getting a feel for how probability (and thus p-values) are calculated.\n\n\n\n\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Identify and distinguish between a parameter and a statistic\n    Describe multiple sampling methods\n    Identify if a causal statement can be made given a data collection method\n    Explain how to test a hypothsis using randomization\n    Assess a research question using a hypothesis test\n    Use the Normal distribution to calculate a probability\n    Describe the concept of sampling variability\n    Calculate the mean and sd of the sampling distribution based on population parameters\n    Explain the Central Limit Theorem\n    Construct and Interpret a confidence interval in context of the problem\n    Use a confidence interval to make an inferential hypothesis statement"
   },
   {
-    "objectID": "hw/hw05-describing_relationships.html#before-you-start",
-    "href": "hw/hw05-describing_relationships.html#before-you-start",
-    "title": "HW 05: Describing Relationships",
-    "section": "Before you start,",
-    "text": "Before you start,\n\nDetermine what variables you want to graph based on your research topic.\n\nYou will need a mixture of categorical and quantitative variables for this assignment.\nYou should use variables that are relevant to your research topic.\nIf you have not yet identified both a quantitative (Q), a binary (B), and a categorical (C) variable that you are interested in, now is the time to go back to the codebook and figure this out.\n\nRecode variables as needed.\n\nIf your response variable is categorical with many levels, you may want to collapse it down to fewer than 5 levels.\n\n\nIf you do not already have a binary (B) variable in your clean data you can either a) go back and edit your dm file to include a binary varible, or b) dichotomize one of your categorical (C) varibles into two levels. (Make a new variable, don’t overwrite your categorical variable)."
+    "objectID": "topics/t06-foundations_for_inference.html#learning-path",
+    "href": "topics/t06-foundations_for_inference.html#learning-path",
+    "title": "Foundations for Statistical Inference",
+    "section": "",
+    "text": "Learning how to explore and visualize our data.\nVisually consider patterns, identify potential relationships\n\n\n\n\n\nThink about how data come to be. That is, if the data are to be used to make broad and complete conclusions, then it is important to understand who or what the data represent.\n\nKnowing how the observational units were selected will allow for generalizations back to the population from which the data were selected.\nBy understanding the structure of the study, causal relationships can be separated from those relationships which are only associated.\n\nRevisiting null value hypothesis testing (NVHT) from a randomization perspective\nRevisiting the Normal distribution model, and getting a feel for how probability (and thus p-values) are calculated.\n\n\n\n\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Identify and distinguish between a parameter and a statistic\n    Describe multiple sampling methods\n    Identify if a causal statement can be made given a data collection method\n    Explain how to test a hypothsis using randomization\n    Assess a research question using a hypothesis test\n    Use the Normal distribution to calculate a probability\n    Describe the concept of sampling variability\n    Calculate the mean and sd of the sampling distribution based on population parameters\n    Explain the Central Limit Theorem\n    Construct and Interpret a confidence interval in context of the problem\n    Use a confidence interval to make an inferential hypothesis statement"
   },
   {
-    "objectID": "hw/hw05-describing_relationships.html#for-each-bivariate-relationship-under-consideration-you-will-do-the-following",
-    "href": "hw/hw05-describing_relationships.html#for-each-bivariate-relationship-under-consideration-you-will-do-the-following",
-    "title": "HW 05: Describing Relationships",
-    "section": "For each bivariate relationship under consideration you will do the following:",
-    "text": "For each bivariate relationship under consideration you will do the following:\n\nName and explain the two variables under consideration.\nCreate the appropriate graphic for bivariate relationship under consideration. For these plots binary variables are treated as categorical variables with only 2 levels.\n\nC ~ C: Side by side barplot\nQ ~ C: Paneled histogram with density overlaid, or a grouped boxplot with overlaid violin plot.\nQ ~ Q: Scatterplot. Add both lowess and linear trend lines.\n\nCalculate appropriate grouped summary statistics\n\nFor continuous outcomes you’ll want to describe measures including the sample size, mean, median, range and variance for each level of the categorical variable.\nFor categorical outcomes you’ll want to calculate %’s of your outcome measurement across levels of your covariate. Create an appropriate table using tbl_summary\n\ni.e. proportion of males who are smokers compared to proportion of females who are smokers\nor proportion of smokers who are male, compared to proportion of non-smokers who are male.\n\n\nExplain the relationship or trends you see in the data in a summary paragraph. Put this paragraph below the graphic.\n\nUse summary statistics in your text explanation.\nUse specific features of the graphic in your text explanation.\n\ni.e. are there outliers only in one group?\nDo the data seem clumped or clustered in one region of the scatterplot?\nIs there a linear or non-linear pattern?\nDoes one combination of categorical levels (C~C) seem to hold most the data?\nAre there any outlying data points? Don’t list off each one, just state if there is and where approximately it’s at."
+    "objectID": "topics/t06-foundations_for_inference.html#learning-materials",
+    "href": "topics/t06-foundations_for_inference.html#learning-materials",
+    "title": "Foundations for Statistical Inference",
+    "section": "Learning Materials",
+    "text": "Learning Materials\n Slides (Will open in full screen. Right click to open in a new tab)\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    lec06a\n    lec06b\n  \n  \n  \n\n\n\n\n📚 Reading\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Topic Overview\n    IMS Chapter 11-11.1\n    IMS - Chapter 13.1-13.3\n    IMS - Chapter 2"
   },
   {
-    "objectID": "hw/hw05-describing_relationships.html#example",
-    "href": "hw/hw05-describing_relationships.html#example",
-    "title": "HW 05: Describing Relationships",
-    "section": "Example",
-    "text": "Example\n\nlibrary(tidyverse); library(ggdist)\nlibrary(sjPlot); library(gtsummary)\n\nnc &lt;- read.csv(\"https://norcalbiostat.netlify.app/data/NCbirths.csv\", header=TRUE)\npen &lt;- palmerpenguins::penguins\n\n\nC ~ C Association\nFor this example I am using the NC Births data set, data on 1000 births in 2004 from North Carolina. This example explores the association between the smoking status of the mother (habit) and whether or not the baby was born prematurely (premie). I specifically want to compare the percent of premie babies within the smoking and non-smoking groups.\n\nnc %&gt;% select(habit, premie) %&gt;%\n  tbl_summary(by = \"habit\")\n\n\n\n\n\n  \n    \n      Characteristic\n      nonsmoker\nN = 8731\n      smoker\nN = 1261\n    \n  \n  \n    premie\n\n\n        full term\n739 (85%)\n107 (85%)\n        premie\n133 (15%)\n19 (15%)\n        Unknown\n1\n0\n  \n  \n  \n    \n      1 n (%)\n    \n  \n\n\n\nplot_xtab(x=nc$habit, grp=nc$premie, show.total=FALSE, margin='row')\n\n\n\n\nContrary to what I was expecting, there is equal proportion of prematurely born babies to non-smokers (133/873, 15%) compared to babies born to smokers (19/126, 15%). There is no association between the smoking status of the mother and the likelihood of the baby being born prematurely.\n\n\nQ ~ C Association\nThis example explores the association between the depth of a penguins bill and the species of the penguin. The quantitative response variable is bill depth in mm (bill_depth_mm) and the categorical explanatory variable is species (species).\n\npen %&gt;% group_by(species) %&gt;% \n  summarize(n=n(), \n            mean = mean(bill_depth_mm, na.rm = TRUE), \n            median = median(bill_depth_mm, na.rm = TRUE), \n            sd = sd(bill_depth_mm, na.rm = TRUE), \n            IQR = IQR(bill_depth_mm, na.rm = TRUE)) %&gt;%\n  knitr::kable(digits=2) # for nice table format printing\n\n\n\n\nspecies\nn\nmean\nmedian\nsd\nIQR\n\n\n\n\nAdelie\n152\n18.35\n18.40\n1.22\n1.5\n\n\nChinstrap\n68\n18.42\n18.45\n1.14\n1.9\n\n\nGentoo\n124\n14.98\n15.00\n0.98\n1.5\n\n\n\n\n\n\nggplot(pen, aes(x=bill_depth_mm, y=species, fill=species)) + \n      stat_slab(alpha=.5, justification = 0) + \n      geom_boxplot(width = .2,  outlier.shape = NA) + \n      geom_jitter(alpha = 0.5, height = 0.05) +\n      stat_summary(fun=\"mean\", geom=\"point\", col=\"red\", size=4, pch=17) + \n      theme_bw() + \n      labs(x=\"Bill depth (mm)\", y = \"Species\") + \n      theme(legend.position = \"none\")\n\n\n\n\n\n\n\n\nThe distribution of bill depth are fairly normal for each species, with some higher end values causing a slight right skew for Adelie and Gentoo. Gentoo penguins have lower average bill depth compared to Adelie or Chinstrap (15.0mm vs 18.3 and 18.4mm respectively). Chinstrap however have a larger IQR at 1.9 compared to 1.5 for the others.\n\n\nQ ~ Q Association\nThis example explores the association between the length of a penguins flipper and it’s body mass. The quantitative response variable is body mass(body_mass_g) and the quantitative explanatory variable is flipper length (flipper_length_mm).\n\ncor(pen$flipper_length_mm, pen$body_mass_g, \n    use=\"pairwise.complete.obs\") # calculate the correlation\n\n[1] 0.8712018\n\nggplot(pen, aes(x=flipper_length_mm, y=body_mass_g)) + geom_point() + \n  geom_smooth(se=FALSE, col=\"brown\") + geom_smooth(se=FALSE, method=\"lm\") +\n  theme_bw()\n\n\n\n\nThere is a positive association between flipper length and body mass of a penguin. The correlation coefficient is 0.87, and the form of the relationship is relatively linear."
+    "objectID": "topics/t06-foundations_for_inference.html#active-learning",
+    "href": "topics/t06-foundations_for_inference.html#active-learning",
+    "title": "Foundations for Statistical Inference",
+    "section": "📝 Active Learning",
+    "text": "📝 Active Learning\nWe will be using the Jigsaw technique, which is a method of learning by teaching. You have been assigned to read and summarize one section in the textbook.\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Study Design - Jigsaw Lecture\n    Bias in hiring study - in class\n    CLT Explorer\n    HW06 Foundations for Inference"
   },
   {
-    "objectID": "slides/lec05b-data_viz_bestpractice.html#graphs-as-storytelling",
-    "href": "slides/lec05b-data_viz_bestpractice.html#graphs-as-storytelling",
-    "title": "Best practices in Data Visualization",
-    "section": "Graphs as storytelling",
-    "text": "Graphs as storytelling\nDifferent features (labels, colors, axes) can tell different parts of the story.\nWe’re going to do a team activity called “slow reveal graphs”. Head to Canvas for further instruction.\n\n\n🔗 https://math615.netlify.app"
+    "objectID": "topics/t06-foundations_for_inference.html#assessment",
+    "href": "topics/t06-foundations_for_inference.html#assessment",
+    "title": "Foundations for Statistical Inference",
+    "section": "Assessment",
+    "text": "Assessment\n\n\n\n\n\n\n  \n    \n      Items\n    \n  \n  \n    Quiz 05\n    Quiz 06"
+  },
+  {
+    "objectID": "topics.html",
+    "href": "topics.html",
+    "title": "Topics",
+    "section": "",
+    "text": "This is the place to start to find all content related to a module.\n\n\n\n\n\n\n\n\n\n\nTopic\n\n\nDescription\n\n\n\n\n\n\nWelcome to Math 615\n\n\nIntroduction to class and your learning materials\n\n\n\n\nData Architecture\n\n\nData entry, spreadsheets, metadata, codebooks\n\n\n\n\nFormulating research questions\n\n\nAsking questions is easy. Asking answerable questions is more difficult.\n\n\n\n\nPreparing Data for Analysis\n\n\nWhere an inordinate amount of time is spent\n\n\n\n\nDescribing distributions of data\n\n\nVisualizing your data is the first line of defense against bad data\n\n\n\n\nDescribing Relationships\n\n\nFirst step in investigating a question about an association\n\n\n\n\nFoundations for Statistical Inference\n\n\nStudy Design, Inference using randomization and the Normal Model\n\n\n\n\n\n\nNo matching items"
   }
 ]

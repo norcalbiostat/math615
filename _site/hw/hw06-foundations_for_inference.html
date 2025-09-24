@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data Analysis for Graduate Research - All Slides</title>
+<title>Data Analysis for Graduate Research - HW 06: Foundations for Inference</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,27 +23,23 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
-<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -63,35 +59,6 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Submit"
   }
 }</script>
-<script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-date','listing-description','listing-title',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -105,7 +72,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Data Analysis for Graduate Research</span>
     </a>
   </div>
@@ -116,7 +83,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./modules.html" rel="" target="">
+    <a class="nav-link" href="../modules.html" rel="" target="">
  <span class="menu-text">Overview</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -125,15 +92,15 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-all-materials">    
         <li>
-    <a class="dropdown-item" href="./topics.html" rel="" target="">
+    <a class="dropdown-item" href="../topics.html" rel="" target="">
  <span class="dropdown-text">Topics</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./slides.html" rel="" target="">
+    <a class="dropdown-item" href="../slides.html" rel="" target="">
  <span class="dropdown-text">Slides</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./hw.html" rel="" target="">
+    <a class="dropdown-item" href="../hw.html" rel="" target="">
  <span class="dropdown-text">Assignments</span></a>
   </li>  
     </ul>
@@ -144,15 +111,15 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-research-project">    
         <li>
-    <a class="dropdown-item" href="./project.html" rel="" target="">
+    <a class="dropdown-item" href="../project.html" rel="" target="">
  <span class="dropdown-text">Overview and Information</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./author_guide.html" rel="" target="">
+    <a class="dropdown-item" href="../author_guide.html" rel="" target="">
  <span class="dropdown-text">Guide for Authors</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./journal.html" rel="" target="">
+    <a class="dropdown-item" href="../journal.html" rel="" target="">
  <span class="dropdown-text">Journal of Math 615</span></a>
   </li>  
     </ul>
@@ -180,11 +147,11 @@ ul.task-list li input[type="checkbox"] {
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="./syllabus.html" rel="" target="">
+    <a class="nav-link" href="../syllabus.html" rel="" target="">
  <span class="menu-text">Syllabus</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./help.html" rel="" target="">
+    <a class="nav-link" href="../help.html" rel="" target="">
  <span class="menu-text">Help</span></a>
   </li>  
 </ul>
@@ -200,14 +167,37 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a>
+  <ul class="collapse">
+  <li><a href="#purpose" id="toc-purpose" class="nav-link" data-scroll-target="#purpose">Purpose</a></li>
+  <li><a href="#submission-instructions" id="toc-submission-instructions" class="nav-link" data-scroll-target="#submission-instructions">Submission instructions</a></li>
+  </ul></li>
+  <li><a href="#part-1---study-design" id="toc-part-1---study-design" class="nav-link" data-scroll-target="#part-1---study-design">PART 1 - Study Design</a>
+  <ul class="collapse">
+  <li><a href="#parameters-and-statistics." id="toc-parameters-and-statistics." class="nav-link" data-scroll-target="#parameters-and-statistics.">1 Parameters and statistics.</a></li>
+  <li><a href="#stealers-scope-of-inference." id="toc-stealers-scope-of-inference." class="nav-link" data-scroll-target="#stealers-scope-of-inference.">2 Stealers, scope of inference.</a></li>
+  <li><a href="#course-satisfaction-across-sections." id="toc-course-satisfaction-across-sections." class="nav-link" data-scroll-target="#course-satisfaction-across-sections.">3 Course satisfaction across sections.</a></li>
+  <li><a href="#internet-use-and-life-expectancy." id="toc-internet-use-and-life-expectancy." class="nav-link" data-scroll-target="#internet-use-and-life-expectancy.">4 Internet use and life expectancy.</a></li>
+  <li><a href="#haters-are-gonna-hate-study-confirms." id="toc-haters-are-gonna-hate-study-confirms." class="nav-link" data-scroll-target="#haters-are-gonna-hate-study-confirms.">5 Haters are gonna hate, study confirms.</a></li>
+  <li><a href="#reading-the-paper" id="toc-reading-the-paper" class="nav-link" data-scroll-target="#reading-the-paper">6 Reading the paper</a></li>
+  <li><a href="#flawed-reasoning" id="toc-flawed-reasoning" class="nav-link" data-scroll-target="#flawed-reasoning">7. Flawed Reasoning</a></li>
+  </ul></li>
+  <li><a href="#part-2---sampling-distribution-theory-ims-ch-13.1" id="toc-part-2---sampling-distribution-theory-ims-ch-13.1" class="nav-link" data-scroll-target="#part-2---sampling-distribution-theory-ims-ch-13.1">PART 2 - Sampling Distribution Theory (IMS Ch 13.1)</a></li>
+  <li><a href="#part-3---the-normal-model-ims-13.2" id="toc-part-3---the-normal-model-ims-13.2" class="nav-link" data-scroll-target="#part-3---the-normal-model-ims-13.2">PART 3 - The Normal Model (IMS 13.2)</a></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/norcalbiostat/MATH615/edit/main/hw/hw06-foundations_for_inference.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/norcalbiostat/MATH615/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">All Slides</h1>
+<h1 class="title">HW 06: Foundations for Inference</h1>
+<p class="subtitle lead">A recap</p>
 </div>
 
 
@@ -222,168 +212,131 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<section id="overview" class="level1">
+<h1>Overview</h1>
+<section id="purpose" class="level2">
+<h2 class="anchored" data-anchor-id="purpose">Purpose</h2>
+<p>To understand the conceptual and mathematical foundations for conducting statistical inference.</p>
+</section>
+<section id="submission-instructions" class="level2">
+<h2 class="anchored" data-anchor-id="submission-instructions">Submission instructions</h2>
+<ul>
+<li>Download this <a href="_templates/hw06-foundations_for_inference_template.qmd">[QMD]</a> file and use it to write your answers in.
+<ul>
+<li>Right click and ‘save as’, put this in your <code>scripts</code> folder.</li>
+</ul></li>
+<li>Render to pdf and upload your final PDF to Canvas by the due date.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="part-1---study-design" class="level1">
+<h1>PART 1 - Study Design</h1>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<i class="fa-solid fa-person-chalkboard" aria-label="person-chalkboard"></i> Slides will open in full screen. Right click to open in a new tab
+CHOOSE 4 to answer. Delete the other questions from your submission
 </div>
 </div>
 <div class="callout-body-container callout-body">
 
 </div>
 </div>
-
-
-
-
-<div class="quarto-listing quarto-listing-container-table" id="listing-listing">
-
-<table class="quarto-listing-table table">
-<thead>
-<tr>
-<th>
-Date
-</th>
-<th>
-Lec #
-</th>
-<th>
-Topic
-</th>
-</tr>
-</thead>
-<tbody class="list">
-<tr data-index="0" data-listing-date-sort="1724569200000" data-listing-file-modified-sort="1755923858614" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-title-sort="Welcome to MATH 615" data-listing-filename-sort="lec00a-welcome.qmd">
-<td>
-<span class="listing-date">Aug 25, 2024</span>
-</td>
-<td>
-<span class="listing-description">lec00a</span>
-</td>
-<td>
-<a href="./slides/lec00a-welcome.html" class="title listing-title">Welcome to MATH 615</a>
-</td>
-</tr>
-<tr data-index="1" data-listing-date-sort="1756105200000" data-listing-file-modified-sort="1755923858615" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-title-sort="MATH 615 Course Tools" data-listing-filename-sort="lec00b-course-tools.qmd">
-<td>
-<span class="listing-date">Aug 25, 2025</span>
-</td>
-<td>
-<span class="listing-description">lec00b</span>
-</td>
-<td>
-<a href="./slides/lec00b-course-tools.html" class="title listing-title">MATH 615 Course Tools</a>
-</td>
-</tr>
-<tr data-index="2" data-listing-date-sort="1756278000000" data-listing-file-modified-sort="1756770164902" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-title-sort="Data Architecture" data-listing-filename-sort="lec01-data_arch.qmd">
-<td>
-<span class="listing-date">Aug 27, 2025</span>
-</td>
-<td>
-<span class="listing-description">lec01</span>
-</td>
-<td>
-<a href="./slides/lec01-data_arch.html" class="title listing-title">Data Architecture</a>
-</td>
-</tr>
-<tr data-index="3" data-listing-date-sort="1756882800000" data-listing-file-modified-sort="1756770164589" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-title-sort="Formulating research questions" data-listing-filename-sort="lec02-asking_q.qmd">
-<td>
-<span class="listing-date">Sep 3, 2025</span>
-</td>
-<td>
-<span class="listing-description">lec02</span>
-</td>
-<td>
-<a href="./slides/lec02-asking_q.html" class="title listing-title">Formulating research questions</a>
-</td>
-</tr>
-<tr data-index="4" data-listing-date-sort="1757314800000" data-listing-file-modified-sort="1757883179592" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-title-sort="Workflows for Reproducibility" data-listing-filename-sort="lec03a-workflow.qmd">
-<td>
-<span class="listing-date">Sep 8, 2025</span>
-</td>
-<td>
-<span class="listing-description">lec03a</span>
-</td>
-<td>
-<a href="./slides/lec03a-workflow.html" class="title listing-title">Workflows for Reproducibility</a>
-</td>
-</tr>
-<tr data-index="5" data-listing-date-sort="1757487600000" data-listing-file-modified-sort="1757883179593" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-title-sort="Preparing your data for analysis" data-listing-filename-sort="lec03b-data_prep.qmd">
-<td>
-<span class="listing-date">Sep 10, 2025</span>
-</td>
-<td>
-<span class="listing-description">lec03b</span>
-</td>
-<td>
-<a href="./slides/lec03b-data_prep.html" class="title listing-title">Preparing your data for analysis</a>
-</td>
-</tr>
-<tr data-index="6" data-listing-date-sort="1757919600000" data-listing-file-modified-sort="1757883930731" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-title-sort="Describing Distributions of Data" data-listing-filename-sort="lec04-describing_distributions.qmd">
-<td>
-<span class="listing-date">Sep 15, 2025</span>
-</td>
-<td>
-<span class="listing-description">lec04</span>
-</td>
-<td>
-<a href="./slides/lec04-describing_distributions.html" class="title listing-title">Describing Distributions of Data</a>
-</td>
-</tr>
-<tr data-index="7" data-listing-date-sort="1758092400000" data-listing-file-modified-sort="1757906738906" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-title-sort="Describing Relationships between variables" data-listing-filename-sort="lec05a-describing_relationships.qmd">
-<td>
-<span class="listing-date">Sep 17, 2025</span>
-</td>
-<td>
-<span class="listing-description">lec05a</span>
-</td>
-<td>
-<a href="./slides/lec05a-describing_relationships.html" class="title listing-title">Describing Relationships between variables</a>
-</td>
-</tr>
-<tr data-index="8" data-listing-date-sort="1758697200000" data-listing-file-modified-sort="1758312053608" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-title-sort="Best practices in Data Visualization" data-listing-filename-sort="lec05b-data_viz_bestpractice.qmd">
-<td>
-<span class="listing-date">Sep 24, 2025</span>
-</td>
-<td>
-<span class="listing-description">lec05b</span>
-</td>
-<td>
-<a href="./slides/lec05b-data_viz_bestpractice.html" class="title listing-title">Best practices in Data Visualization</a>
-</td>
-</tr>
-<tr data-index="9" data-listing-date-sort="1759302000000" data-listing-file-modified-sort="1758604172751" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-title-sort="Statistical Inference with Randomization" data-listing-filename-sort="lec06a-statistical_inference_with_randomization.qmd">
-<td>
-<span class="listing-date">Oct 1, 2025</span>
-</td>
-<td>
-<span class="listing-description">lec06a</span>
-</td>
-<td>
-<a href="./slides/lec06a-statistical_inference_with_randomization.html" class="title listing-title">Statistical Inference with Randomization</a>
-</td>
-</tr>
-<tr data-index="10" data-listing-date-sort="1759734000000" data-listing-file-modified-sort="1758604562409" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11" data-listing-title-sort="Statistical Inference using Models" data-listing-filename-sort="lec06b-statistical_inference_with_models.qmd">
-<td>
-<span class="listing-date">Oct 6, 2025</span>
-</td>
-<td>
-<span class="listing-description">lec06b</span>
-</td>
-<td>
-<a href="./slides/lec06b-statistical_inference_with_models.html" class="title listing-title">Statistical Inference using Models</a>
-</td>
-</tr>
-</tbody>
-
-</table>
-<div class="listing-no-matching d-none">
-No matching items
+<section id="parameters-and-statistics." class="level3">
+<h3 class="anchored" data-anchor-id="parameters-and-statistics.">1 Parameters and statistics.</h3>
+<p>Identify which value represents the sample mean and which value represents the claimed population mean.</p>
+<p><strong>a. American households spent an average of about $52 in 2007 on Halloween merchandise such as costumes, decorations, and candy. To see if this number had changed, researchers conducted a new survey in 2008 before industry numbers were reported. The survey included 1,500 households and found that average Halloween spending was $58 per household.</strong></p>
+<p><strong>b. The average GPA of students in 2001 at a private university was 3.37. A survey on a sample of 203 students from this university yielded an average GPA of 3.59 a decade later.</strong></p>
+</section>
+<section id="stealers-scope-of-inference." class="level3">
+<h3 class="anchored" data-anchor-id="stealers-scope-of-inference.">2 Stealers, scope of inference.</h3>
+<p>In a study of the relationship between socio-economic class and unethical behavior, 129 University of California undergraduates at Berkeley were asked to identify themselves as having low or high social class by comparing themselves to others with the most (least) money, most (least) education, and most (least) respected jobs. They were also presented with a jar of individually wrapped candies and informed that the candies were for children in a nearby laboratory, but that they could take some if they wanted. After completing some unrelated tasks, participants reported the number of candies they had taken. It was found that those who were identified as upper-class took more candy than others. (Piff et al.&nbsp;2012)</p>
+<p><strong>a. Identify the population of interest and the sample in this study.</strong></p>
+<p><strong>b. Comment on whether the results of the study can be generalized to the population, and if the findings of the study can be used to establish causal relationships.</strong></p>
+</section>
+<section id="course-satisfaction-across-sections." class="level3">
+<h3 class="anchored" data-anchor-id="course-satisfaction-across-sections.">3 Course satisfaction across sections.</h3>
+<p>A large college class has 160 students. All 160 students attend the lectures together, but the students are divided into 4 groups, each of 40 students, for lab sections administered by different teaching assistants. The professor wants to conduct a survey about how satisfied the students are with the course, and he believes that the lab section a student is in might affect the student’s overall satisfaction with the course.</p>
+<p><strong>a. What type of study is this?</strong></p>
+<p><strong>b. Suggest a sampling strategy for carrying out this study.</strong></p>
+</section>
+<section id="internet-use-and-life-expectancy." class="level3">
+<h3 class="anchored" data-anchor-id="internet-use-and-life-expectancy.">4 Internet use and life expectancy.</h3>
+<p>The scatterplot in the textbook was created as part of a study evaluating the relationship between estimated life expectancy at birth (as of 2014) and percentage of internet users (as of 2009) in 208 countries for which such data were available.</p>
+<p><strong>a. Describe the relationship between life expectancy and percentage of internet users.</strong></p>
+<p><strong>b. What type of study is this?</strong></p>
+<p><strong>c.&nbsp;State a possible confounding variable that might explain this relationship and describe its potential effect.</strong></p>
+</section>
+<section id="haters-are-gonna-hate-study-confirms." class="level3">
+<h3 class="anchored" data-anchor-id="haters-are-gonna-hate-study-confirms.">5 Haters are gonna hate, study confirms.</h3>
+<p>A study published in the Journal of Personality and Social Psychology asked a group of 200 randomly sampled participants recruited online using Amazon’s Mechanical Turk to evaluate how they felt about various subjects, such as camping, health care, architecture, taxidermy, crossword puzzles, and Japan in order to measure their attitude towards mostly independent stimuli. Then, they presented the participants with information about a new product: a microwave oven. This microwave oven does not exist, but the participants didn’t know this, and were given three positive and three negative fake reviews. People who reacted positively to the subjects on the dispositional attitude measurement also tended to react positively to the microwave oven, and those who reacted negatively tended to react negatively to it. Researchers concluded that “some people tend to like things, whereas others tend to dislike things, and a more thorough understanding of this tendency will lead to a more thorough understanding of the psychology of attitudes.” (Hepler and Albarracı́n 2013)</p>
+<p><strong>a. What are the cases?</strong></p>
+<p><strong>b. What is (are) the response variable(s) and explanatory variable(s) in this study?</strong></p>
+<p><strong>c.&nbsp;Does the study employ random sampling? Explain. How could they have obtained participants?</strong></p>
+<p><strong>d.&nbsp;Can we establish a causal link between the explanatory and response variables?</strong></p>
+<p><strong>e. Can the results of the study be generalized to the population at large?</strong></p>
+</section>
+<section id="reading-the-paper" class="level3">
+<h3 class="anchored" data-anchor-id="reading-the-paper">6 Reading the paper</h3>
+<p>Below are excerpts from two articles published in the NY Times:</p>
+<p><strong>a. An excerpt from an article titled Risks: Smokers Found More Prone to Dementia is below. Based on this study, can we conclude that smoking causes dementia later in life? Explain your reasoning. (Rabin 2010)</strong></p>
+<p><strong>b. An excerpt from an article titled The School Bully Is Sleepy is below. A friend of yours who read the article says, “The study shows that sleep disorders lead to bullying in school children.” Is this statement justified? If not, how best can you describe the conclusion that can be drawn from this study? (Parker-Pope 2011)</strong></p>
+</section>
+<section id="flawed-reasoning" class="level3">
+<h3 class="anchored" data-anchor-id="flawed-reasoning">7. Flawed Reasoning</h3>
+<p>Identify the flaw(s) in reasoning in the following scenarios. Explain what the individuals in the study should have done differently if they wanted to make such strong conclusions.</p>
+<p><strong>a. Students at an elementary school are given a questionnaire that they are asked to return after their parents have completed it. One of the questions asked is, “Do you find that your work schedule makes it difficult for you to spend time with your kids after school?” Of the parents who replied, 85% said “no”. Based on these results, the school officials conclude that a great majority of the parents have no difficulty spending time with their kids after school.</strong></p>
+<p><strong>b. A survey is conducted on a simple random sample of 1,000 women who recently gave birth, asking them about whether they smoked during pregnancy. A follow-up survey asking if the children have respiratory problems is conducted 3 years later. However, only 567 of these women are reached at the same address. The researcher reports that these 567 women are representative of all mothers.</strong></p>
+<p><strong>c.&nbsp;An orthopedist administers a questionnaire to 30 of his patients who do not have any joint problems and finds that 20 of them regularly go running. He concludes that running decreases the risk of joint problems.</strong></p>
+</section>
+</section>
+<section id="part-2---sampling-distribution-theory-ims-ch-13.1" class="level1">
+<h1>PART 2 - Sampling Distribution Theory (IMS Ch 13.1)</h1>
+<p>Describe what a sampling distribution is, what the central limit theorem states, and what are the technical conditions that must be met to use the normal model for inference.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-</div></main> <!-- /main -->
+<div class="callout-title-container flex-fill">
+Your own work
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You can use AI to aid your understanding, but your writing must be your own. Any sign of plagiarism or cheating among students will result in a 0 grade for the entire assignment</p>
+</div>
+</div>
+<p><strong>1. Sampling Distribution</strong></p>
+<p><strong>2. Central Limit Theorem</strong></p>
+<p><strong>3. Conditions for a normal approximation to provide valid inference</strong></p>
+</section>
+<section id="part-3---the-normal-model-ims-13.2" class="level1">
+<h1>PART 3 - The Normal Model (IMS 13.2)</h1>
+<p>This section uses <span class="math inline">\(\LaTeX\)</span> math type. You can copy/paste the symbols from within this document, but do not copy/paste symbols from the internet or PDF webpages or you may likely have trouble when rendering.</p>
+<ol type="1">
+<li><p><strong>What are the two parameters that govern the shape and location of a Normal distribution? Write the symbol, and what it means in words</strong></p></li>
+<li><p><strong>Bonita computed a z-score after receiving the results of her exam in order to compare her results with the rest of the class. Her z-score was 2.1. Interpret her Z score in a sentence.</strong></p></li>
+<li><p><strong>Example: Head lengths of brushtail possums follow a nearly normal distribution with mean 92.6 mm and standard deviation 3.6 mm. Compute the Z scores for possums with head lengths of 95.4 mm and 85.8 mm.</strong></p></li>
+<li><p><strong>Let <span class="math inline">\(X\)</span> be the head length of a brushtail possum, where <span class="math inline">\(X \sim N(92.6, 3.6^{2})\)</span> Use R to calculate the probability that a possum will have a head length lower than 85mm. That is, find <span class="math inline">\(P(X &lt; 85)\)</span></strong>.</p></li>
+<li><p><strong>Would you consider it to be unusual if you found a possum with a head smaller than 85mm? Explain your answer.</strong></p></li>
+<li><p><strong>A study found that the mean amount of time cars spent in drive-through of a certain fast-food restaurant was 154.6 seconds. Assume drive-through times are normally distributed with a standard deviation of 27 seconds</strong></p>
+<ol type="a">
+<li><p><strong>Define a random variable X in this context, and write it’s distributional notation. Refer to problems 4 &amp; 5 as examples.</strong></p></li>
+<li><p><strong>What is the probability that someone spends more than 230 seconds in the drive through? Write this out as a probablity statement/equation before using R to solve</strong></p></li>
+<li><p><strong>How long do 75% of the cars typically have to wait in the drive through? (That is, what is the 75th percentile?)</strong></p></li>
+<li><p><strong>Estimate the average wait time for 40 cars in this drive-through.</strong></p></li>
+<li><p><strong>What is the margin of error on this estimate?</strong></p></li>
+<li><p><strong>Assuming that the wait time is normally distributed, what values bound the middle 95% of wait times for this average of 40 cars? Give a lower and an upper value. Show your work.</strong></p></li>
+</ol></li>
+</ol>
+
+
+</section>
+
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -738,7 +691,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-left">This site is built with 💚 and <a href="https://quarto.org/">Quarto</a> by <a href="www.norcalbiostat.com">Robin Donatello</a>.</div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/norcalbiostat/MATH615/edit/main/slides.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/norcalbiostat/MATH615/issues/new" class="toc-action">Report an issue</a></p></div></div></div>
+    </div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
