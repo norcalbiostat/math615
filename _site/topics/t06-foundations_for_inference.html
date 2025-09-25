@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.319">
+<meta name="generator" content="quarto-1.6.42">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data Analysis for Graduate Research - Foundations for Statistical Inference</title>
+<title>Foundations for Statistical Inference – Data Analysis for Graduate Research</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -34,12 +34,12 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-1fa1d8026083a9bddc52b4aafc7f818e.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-8e00f2f28a1266a720913de837032221.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-c60145260a0ddab2a92bc450e8714d32.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-e7ec2c97e7a3335d030f3d752bad3423.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -48,7 +48,13 @@ ul.task-list li input[type="checkbox"] {
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -57,8 +63,10 @@ ul.task-list li input[type="checkbox"] {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
@@ -69,57 +77,57 @@ ul.task-list li input[type="checkbox"] {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Data Analysis for Graduate Research</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../modules.html" rel="" target="">
- <span class="menu-text">Overview</span></a>
+    <a class="nav-link" href="../modules.html"> 
+<span class="menu-text">Overview</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-all-materials" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-all-materials" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">All Materials</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-all-materials">    
         <li>
-    <a class="dropdown-item" href="../topics.html" rel="" target="">
+    <a class="dropdown-item" href="../topics.html">
  <span class="dropdown-text">Topics</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../slides.html" rel="" target="">
+    <a class="dropdown-item" href="../slides.html">
  <span class="dropdown-text">Slides</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../hw.html" rel="" target="">
+    <a class="dropdown-item" href="../hw.html">
  <span class="dropdown-text">Assignments</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-research-project" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-research-project" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Research Project</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-research-project">    
         <li>
-    <a class="dropdown-item" href="../project.html" rel="" target="">
+    <a class="dropdown-item" href="../project.html">
  <span class="dropdown-text">Overview and Information</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../author_guide.html" rel="" target="">
+    <a class="dropdown-item" href="../author_guide.html">
  <span class="dropdown-text">Guide for Authors</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../journal.html" rel="" target="">
+    <a class="dropdown-item" href="../journal.html">
  <span class="dropdown-text">Journal of Math 615</span></a>
   </li>  
     </ul>
@@ -127,38 +135,38 @@ ul.task-list li input[type="checkbox"] {
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://drive.google.com/drive/folders/1G5R-9HK0z3D6cbHsIF_vlWOb5BZDNsVj" rel="" target=""><i class="bi bi-google" role="img">
+    <a class="nav-link" href="https://drive.google.com/drive/folders/1G5R-9HK0z3D6cbHsIF_vlWOb5BZDNsVj"> <i class="bi bi-google" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-reference-texts" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-reference-texts" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Reference Texts</span>
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-reference-texts">    
         <li>
-    <a class="dropdown-item" href="https://norcalbiostat.github.io/AppliedStatistics_notes/" rel="" target="">
+    <a class="dropdown-item" href="https://norcalbiostat.github.io/AppliedStatistics_notes/">
  <span class="dropdown-text">Applied Stats Notebook</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="https://openintro-ims.netlify.app/" rel="" target="">
+    <a class="dropdown-item" href="https://openintro-ims.netlify.app/">
  <span class="dropdown-text">Intro to Modern Stats</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="../syllabus.html" rel="" target="">
- <span class="menu-text">Syllabus</span></a>
+    <a class="nav-link" href="../syllabus.html"> 
+<span class="menu-text">Syllabus</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../help.html" rel="" target="">
- <span class="menu-text">Help</span></a>
+    <a class="nav-link" href="../help.html"> 
+<span class="menu-text">Help</span></a>
   </li>  
 </ul>
+          </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
-          </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -181,7 +189,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#active-learning" id="toc-active-learning" class="nav-link" data-scroll-target="#active-learning"><span class="emoji" data-emoji="pencil">📝</span> Active Learning</a></li>
   <li><a href="#assessment" id="toc-assessment" class="nav-link" data-scroll-target="#assessment">Assessment</a></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/norcalbiostat/MATH615/edit/main/topics/t06-foundations_for_inference.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/norcalbiostat/MATH615/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/norcalbiostat/MATH615/edit/main/topics/t06-foundations_for_inference.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/norcalbiostat/MATH615/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -202,7 +210,9 @@ ul.task-list li input[type="checkbox"] {
   </div>
   
 
+
 </header>
+
 
 <section id="learning-path" class="level2">
 <h2 class="anchored" data-anchor-id="learning-path">Learning Path</h2>
@@ -229,24 +239,23 @@ ul.task-list li input[type="checkbox"] {
 <h3 class="anchored" data-anchor-id="objectives">Objectives</h3>
 <div class="cell">
 <div class="cell-output-display">
-
-<div id="sktgpqcvsr" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#sktgpqcvsr table {
+<div id="emnmptaixd" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#emnmptaixd table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#sktgpqcvsr thead, #sktgpqcvsr tbody, #sktgpqcvsr tfoot, #sktgpqcvsr tr, #sktgpqcvsr td, #sktgpqcvsr th {
+#emnmptaixd thead, #emnmptaixd tbody, #emnmptaixd tfoot, #emnmptaixd tr, #emnmptaixd td, #emnmptaixd th {
   border-style: none;
 }
 
-#sktgpqcvsr p {
+#emnmptaixd p {
   margin: 0;
   padding: 0;
 }
 
-#sktgpqcvsr .gt_table {
+#emnmptaixd .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -272,12 +281,12 @@ ul.task-list li input[type="checkbox"] {
   border-left-color: #D3D3D3;
 }
 
-#sktgpqcvsr .gt_caption {
+#emnmptaixd .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#sktgpqcvsr .gt_title {
+#emnmptaixd .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -289,7 +298,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-width: 0;
 }
 
-#sktgpqcvsr .gt_subtitle {
+#emnmptaixd .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -301,7 +310,7 @@ ul.task-list li input[type="checkbox"] {
   border-top-width: 0;
 }
 
-#sktgpqcvsr .gt_heading {
+#emnmptaixd .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -313,13 +322,13 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#sktgpqcvsr .gt_bottom_border {
+#emnmptaixd .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#sktgpqcvsr .gt_col_headings {
+#emnmptaixd .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -334,7 +343,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#sktgpqcvsr .gt_col_heading {
+#emnmptaixd .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -354,7 +363,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#sktgpqcvsr .gt_column_spanner_outer {
+#emnmptaixd .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -366,15 +375,15 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 4px;
 }
 
-#sktgpqcvsr .gt_column_spanner_outer:first-child {
+#emnmptaixd .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#sktgpqcvsr .gt_column_spanner_outer:last-child {
+#emnmptaixd .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#sktgpqcvsr .gt_column_spanner {
+#emnmptaixd .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -386,11 +395,11 @@ ul.task-list li input[type="checkbox"] {
   width: 100%;
 }
 
-#sktgpqcvsr .gt_spanner_row {
+#emnmptaixd .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#sktgpqcvsr .gt_group_heading {
+#emnmptaixd .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -416,7 +425,7 @@ ul.task-list li input[type="checkbox"] {
   text-align: left;
 }
 
-#sktgpqcvsr .gt_empty_group_heading {
+#emnmptaixd .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -431,15 +440,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 
-#sktgpqcvsr .gt_from_md > :first-child {
+#emnmptaixd .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#sktgpqcvsr .gt_from_md > :last-child {
+#emnmptaixd .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#sktgpqcvsr .gt_row {
+#emnmptaixd .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -458,7 +467,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#sktgpqcvsr .gt_stub {
+#emnmptaixd .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -471,7 +480,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#sktgpqcvsr .gt_stub_row_group {
+#emnmptaixd .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -485,15 +494,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: top;
 }
 
-#sktgpqcvsr .gt_row_group_first td {
+#emnmptaixd .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#sktgpqcvsr .gt_row_group_first th {
+#emnmptaixd .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#sktgpqcvsr .gt_summary_row {
+#emnmptaixd .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -503,16 +512,16 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#sktgpqcvsr .gt_first_summary_row {
+#emnmptaixd .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#sktgpqcvsr .gt_first_summary_row.thick {
+#emnmptaixd .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#sktgpqcvsr .gt_last_summary_row {
+#emnmptaixd .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -522,7 +531,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#sktgpqcvsr .gt_grand_summary_row {
+#emnmptaixd .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -532,7 +541,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#sktgpqcvsr .gt_first_grand_summary_row {
+#emnmptaixd .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -542,7 +551,7 @@ ul.task-list li input[type="checkbox"] {
   border-top-color: #D3D3D3;
 }
 
-#sktgpqcvsr .gt_last_grand_summary_row_top {
+#emnmptaixd .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -552,11 +561,11 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#sktgpqcvsr .gt_striped {
+#emnmptaixd .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#sktgpqcvsr .gt_table_body {
+#emnmptaixd .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -565,7 +574,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#sktgpqcvsr .gt_footnotes {
+#emnmptaixd .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -579,7 +588,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#sktgpqcvsr .gt_footnote {
+#emnmptaixd .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -588,7 +597,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#sktgpqcvsr .gt_sourcenotes {
+#emnmptaixd .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -602,7 +611,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#sktgpqcvsr .gt_sourcenote {
+#emnmptaixd .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -610,97 +619,119 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#sktgpqcvsr .gt_left {
+#emnmptaixd .gt_left {
   text-align: left;
 }
 
-#sktgpqcvsr .gt_center {
+#emnmptaixd .gt_center {
   text-align: center;
 }
 
-#sktgpqcvsr .gt_right {
+#emnmptaixd .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#sktgpqcvsr .gt_font_normal {
+#emnmptaixd .gt_font_normal {
   font-weight: normal;
 }
 
-#sktgpqcvsr .gt_font_bold {
+#emnmptaixd .gt_font_bold {
   font-weight: bold;
 }
 
-#sktgpqcvsr .gt_font_italic {
+#emnmptaixd .gt_font_italic {
   font-style: italic;
 }
 
-#sktgpqcvsr .gt_super {
+#emnmptaixd .gt_super {
   font-size: 65%;
 }
 
-#sktgpqcvsr .gt_footnote_marks {
+#emnmptaixd .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#sktgpqcvsr .gt_asterisk {
+#emnmptaixd .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#sktgpqcvsr .gt_indent_1 {
+#emnmptaixd .gt_indent_1 {
   text-indent: 5px;
 }
 
-#sktgpqcvsr .gt_indent_2 {
+#emnmptaixd .gt_indent_2 {
   text-indent: 10px;
 }
 
-#sktgpqcvsr .gt_indent_3 {
+#emnmptaixd .gt_indent_3 {
   text-indent: 15px;
 }
 
-#sktgpqcvsr .gt_indent_4 {
+#emnmptaixd .gt_indent_4 {
   text-indent: 20px;
 }
 
-#sktgpqcvsr .gt_indent_5 {
+#emnmptaixd .gt_indent_5 {
   text-indent: 25px;
 }
 
-#sktgpqcvsr .katex-display {
+#emnmptaixd .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#sktgpqcvsr div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#emnmptaixd div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-  <thead>
-    <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Items">Items</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr><td headers="Items" class="gt_row gt_left"><span data-qmd-base64="SWRlbnRpZnkgYW5kIGRpc3Rpbmd1aXNoIGJldHdlZW4gYSBwYXJhbWV0ZXIgYW5kIGEgc3RhdGlzdGljICA="><span class="gt_from_md">Identify and distinguish between a parameter and a statistic</span></span></td></tr>
-    <tr><td headers="Items" class="gt_row gt_left gt_striped"><span data-qmd-base64="RGVzY3JpYmUgbXVsdGlwbGUgc2FtcGxpbmcgbWV0aG9kcw=="><span class="gt_from_md">Describe multiple sampling methods</span></span></td></tr>
-    <tr><td headers="Items" class="gt_row gt_left"><span data-qmd-base64="SWRlbnRpZnkgaWYgYSBjYXVzYWwgc3RhdGVtZW50IGNhbiBiZSBtYWRlIGdpdmVuIGEgZGF0YSBjb2xsZWN0aW9uIG1ldGhvZA=="><span class="gt_from_md">Identify if a causal statement can be made given a data collection method</span></span></td></tr>
-    <tr><td headers="Items" class="gt_row gt_left gt_striped"><span data-qmd-base64="RXhwbGFpbiBob3cgdG8gdGVzdCBhIGh5cG90aHNpcyB1c2luZyByYW5kb21pemF0aW9u"><span class="gt_from_md">Explain how to test a hypothsis using randomization</span></span></td></tr>
-    <tr><td headers="Items" class="gt_row gt_left"><span data-qmd-base64="QXNzZXNzIGEgcmVzZWFyY2ggcXVlc3Rpb24gdXNpbmcgYSBoeXBvdGhlc2lzIHRlc3Q="><span class="gt_from_md">Assess a research question using a hypothesis test</span></span></td></tr>
-    <tr><td headers="Items" class="gt_row gt_left gt_striped"><span data-qmd-base64="VXNlIHRoZSBOb3JtYWwgZGlzdHJpYnV0aW9uIHRvIGNhbGN1bGF0ZSBhIHByb2JhYmlsaXR5"><span class="gt_from_md">Use the Normal distribution to calculate a probability</span></span></td></tr>
-    <tr><td headers="Items" class="gt_row gt_left"><span data-qmd-base64="RGVzY3JpYmUgdGhlIGNvbmNlcHQgb2Ygc2FtcGxpbmcgdmFyaWFiaWxpdHk="><span class="gt_from_md">Describe the concept of sampling variability</span></span></td></tr>
-    <tr><td headers="Items" class="gt_row gt_left gt_striped"><span data-qmd-base64="Q2FsY3VsYXRlIHRoZSBtZWFuIGFuZCBzZCBvZiB0aGUgc2FtcGxpbmcgZGlzdHJpYnV0aW9uIGJhc2VkIG9uIHBvcHVsYXRpb24gcGFyYW1ldGVycw=="><span class="gt_from_md">Calculate the mean and sd of the sampling distribution based on population parameters</span></span></td></tr>
-    <tr><td headers="Items" class="gt_row gt_left"><span data-qmd-base64="RXhwbGFpbiB0aGUgQ2VudHJhbCBMaW1pdCBUaGVvcmVt"><span class="gt_from_md">Explain the Central Limit Theorem</span></span></td></tr>
-    <tr><td headers="Items" class="gt_row gt_left gt_striped"><span data-qmd-base64="Q29uc3RydWN0IGFuZCBJbnRlcnByZXQgYSBjb25maWRlbmNlIGludGVydmFsIGluIGNvbnRleHQgb2YgdGhlIHByb2JsZW0="><span class="gt_from_md">Construct and Interpret a confidence interval in context of the problem</span></span></td></tr>
-    <tr><td headers="Items" class="gt_row gt_left"><span data-qmd-base64="VXNlIGEgY29uZmlkZW5jZSBpbnRlcnZhbCB0byBtYWtlIGFuIGluZmVyZW50aWFsIGh5cG90aGVzaXMgc3RhdGVtZW50"><span class="gt_from_md">Use a confidence interval to make an inferential hypothesis statement</span></span></td></tr>
-  </tbody>
-  
-  
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_col_headings header">
+<th id="Items" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Items</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="Items">Identify and distinguish between a parameter and a statistic</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left gt_striped" headers="Items">Describe multiple sampling methods</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Items">Identify if a causal statement can be made given a data collection method</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left gt_striped" headers="Items">Explain how to test a hypothsis using randomization</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Items">Assess a research question using a hypothesis test</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left gt_striped" headers="Items">Use the Normal distribution to calculate a probability</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Items">Describe the concept of sampling variability</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left gt_striped" headers="Items">Calculate the mean and sd of the sampling distribution based on population parameters</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Items">Explain the Central Limit Theorem</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left gt_striped" headers="Items">Construct and Interpret a confidence interval in context of the problem</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Items">Use a confidence interval to make an inferential hypothesis statement</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
@@ -711,24 +742,23 @@ ul.task-list li input[type="checkbox"] {
 <p><i class="fa-solid fa-person-chalkboard" aria-label="person-chalkboard"></i> <strong>Slides (Will open in full screen. Right click to open in a new tab)</strong></p>
 <div class="cell">
 <div class="cell-output-display">
-
-<div id="lcpjqvlhfk" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#lcpjqvlhfk table {
+<div id="ojfixjaims" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ojfixjaims table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#lcpjqvlhfk thead, #lcpjqvlhfk tbody, #lcpjqvlhfk tfoot, #lcpjqvlhfk tr, #lcpjqvlhfk td, #lcpjqvlhfk th {
+#ojfixjaims thead, #ojfixjaims tbody, #ojfixjaims tfoot, #ojfixjaims tr, #ojfixjaims td, #ojfixjaims th {
   border-style: none;
 }
 
-#lcpjqvlhfk p {
+#ojfixjaims p {
   margin: 0;
   padding: 0;
 }
 
-#lcpjqvlhfk .gt_table {
+#ojfixjaims .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -754,12 +784,12 @@ ul.task-list li input[type="checkbox"] {
   border-left-color: #D3D3D3;
 }
 
-#lcpjqvlhfk .gt_caption {
+#ojfixjaims .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#lcpjqvlhfk .gt_title {
+#ojfixjaims .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -771,7 +801,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-width: 0;
 }
 
-#lcpjqvlhfk .gt_subtitle {
+#ojfixjaims .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -783,7 +813,7 @@ ul.task-list li input[type="checkbox"] {
   border-top-width: 0;
 }
 
-#lcpjqvlhfk .gt_heading {
+#ojfixjaims .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -795,13 +825,13 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#lcpjqvlhfk .gt_bottom_border {
+#ojfixjaims .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#lcpjqvlhfk .gt_col_headings {
+#ojfixjaims .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -816,7 +846,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#lcpjqvlhfk .gt_col_heading {
+#ojfixjaims .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -836,7 +866,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#lcpjqvlhfk .gt_column_spanner_outer {
+#ojfixjaims .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -848,15 +878,15 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 4px;
 }
 
-#lcpjqvlhfk .gt_column_spanner_outer:first-child {
+#ojfixjaims .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#lcpjqvlhfk .gt_column_spanner_outer:last-child {
+#ojfixjaims .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#lcpjqvlhfk .gt_column_spanner {
+#ojfixjaims .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -868,11 +898,11 @@ ul.task-list li input[type="checkbox"] {
   width: 100%;
 }
 
-#lcpjqvlhfk .gt_spanner_row {
+#ojfixjaims .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#lcpjqvlhfk .gt_group_heading {
+#ojfixjaims .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -898,7 +928,7 @@ ul.task-list li input[type="checkbox"] {
   text-align: left;
 }
 
-#lcpjqvlhfk .gt_empty_group_heading {
+#ojfixjaims .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -913,15 +943,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 
-#lcpjqvlhfk .gt_from_md > :first-child {
+#ojfixjaims .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#lcpjqvlhfk .gt_from_md > :last-child {
+#ojfixjaims .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#lcpjqvlhfk .gt_row {
+#ojfixjaims .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -940,7 +970,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#lcpjqvlhfk .gt_stub {
+#ojfixjaims .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -953,7 +983,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#lcpjqvlhfk .gt_stub_row_group {
+#ojfixjaims .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -967,15 +997,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: top;
 }
 
-#lcpjqvlhfk .gt_row_group_first td {
+#ojfixjaims .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#lcpjqvlhfk .gt_row_group_first th {
+#ojfixjaims .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#lcpjqvlhfk .gt_summary_row {
+#ojfixjaims .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -985,16 +1015,16 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#lcpjqvlhfk .gt_first_summary_row {
+#ojfixjaims .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#lcpjqvlhfk .gt_first_summary_row.thick {
+#ojfixjaims .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#lcpjqvlhfk .gt_last_summary_row {
+#ojfixjaims .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1004,7 +1034,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#lcpjqvlhfk .gt_grand_summary_row {
+#ojfixjaims .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1014,7 +1044,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#lcpjqvlhfk .gt_first_grand_summary_row {
+#ojfixjaims .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1024,7 +1054,7 @@ ul.task-list li input[type="checkbox"] {
   border-top-color: #D3D3D3;
 }
 
-#lcpjqvlhfk .gt_last_grand_summary_row_top {
+#ojfixjaims .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1034,11 +1064,11 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#lcpjqvlhfk .gt_striped {
+#ojfixjaims .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#lcpjqvlhfk .gt_table_body {
+#ojfixjaims .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1047,7 +1077,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#lcpjqvlhfk .gt_footnotes {
+#ojfixjaims .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1061,7 +1091,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#lcpjqvlhfk .gt_footnote {
+#ojfixjaims .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1070,7 +1100,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#lcpjqvlhfk .gt_sourcenotes {
+#ojfixjaims .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1084,7 +1114,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#lcpjqvlhfk .gt_sourcenote {
+#ojfixjaims .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1092,112 +1122,115 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#lcpjqvlhfk .gt_left {
+#ojfixjaims .gt_left {
   text-align: left;
 }
 
-#lcpjqvlhfk .gt_center {
+#ojfixjaims .gt_center {
   text-align: center;
 }
 
-#lcpjqvlhfk .gt_right {
+#ojfixjaims .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#lcpjqvlhfk .gt_font_normal {
+#ojfixjaims .gt_font_normal {
   font-weight: normal;
 }
 
-#lcpjqvlhfk .gt_font_bold {
+#ojfixjaims .gt_font_bold {
   font-weight: bold;
 }
 
-#lcpjqvlhfk .gt_font_italic {
+#ojfixjaims .gt_font_italic {
   font-style: italic;
 }
 
-#lcpjqvlhfk .gt_super {
+#ojfixjaims .gt_super {
   font-size: 65%;
 }
 
-#lcpjqvlhfk .gt_footnote_marks {
+#ojfixjaims .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#lcpjqvlhfk .gt_asterisk {
+#ojfixjaims .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#lcpjqvlhfk .gt_indent_1 {
+#ojfixjaims .gt_indent_1 {
   text-indent: 5px;
 }
 
-#lcpjqvlhfk .gt_indent_2 {
+#ojfixjaims .gt_indent_2 {
   text-indent: 10px;
 }
 
-#lcpjqvlhfk .gt_indent_3 {
+#ojfixjaims .gt_indent_3 {
   text-indent: 15px;
 }
 
-#lcpjqvlhfk .gt_indent_4 {
+#ojfixjaims .gt_indent_4 {
   text-indent: 20px;
 }
 
-#lcpjqvlhfk .gt_indent_5 {
+#ojfixjaims .gt_indent_5 {
   text-indent: 25px;
 }
 
-#lcpjqvlhfk .katex-display {
+#ojfixjaims .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#lcpjqvlhfk div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#ojfixjaims div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-  <thead>
-    <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Items">Items</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr><td headers="Items" class="gt_row gt_left"><span data-qmd-base64="W2xlYzA2YV0oaHR0cHM6Ly9tYXRoNjE1Lm5ldGxpZnkuYXBwL3NsaWRlcy9sZWMwNmEtc3RhdGlzdGljYWxfaW5mZXJlbmNlX3dpdGhfcmFuZG9taXphdGlvbi5odG1sKQ=="><span class="gt_from_md"><a href="https://math615.netlify.app/slides/lec06a-statistical_inference_with_randomization.html">lec06a</a></span></span></td></tr>
-    <tr><td headers="Items" class="gt_row gt_left gt_striped"><span data-qmd-base64="W2xlYzA2Yl0oaHR0cHM6Ly9tYXRoNjE1Lm5ldGxpZnkuYXBwL3NsaWRlcy9sZWMwNmItc3RhdGlzdGljYWxfaW5mZXJlbmNlX3dpdGhfbW9kZWxzLmh0bWwp"><span class="gt_from_md"><a href="https://math615.netlify.app/slides/lec06b-statistical_inference_with_models.html">lec06b</a></span></span></td></tr>
-  </tbody>
-  
-  
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_col_headings header">
+<th id="Items" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Items</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="Items"><a href="https://math615.netlify.app/slides/lec06a-statistical_inference_with_randomization.html">lec06a</a></td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left gt_striped" headers="Items"><a href="https://math615.netlify.app/slides/lec06b-statistical_inference_with_models.html">lec06b</a></td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
 <p><span class="emoji" data-emoji="books">📚</span> <strong>Reading</strong></p>
 <div class="cell">
 <div class="cell-output-display">
-
-<div id="hjphjbeouz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#hjphjbeouz table {
+<div id="aulsipvprt" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#aulsipvprt table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#hjphjbeouz thead, #hjphjbeouz tbody, #hjphjbeouz tfoot, #hjphjbeouz tr, #hjphjbeouz td, #hjphjbeouz th {
+#aulsipvprt thead, #aulsipvprt tbody, #aulsipvprt tfoot, #aulsipvprt tr, #aulsipvprt td, #aulsipvprt th {
   border-style: none;
 }
 
-#hjphjbeouz p {
+#aulsipvprt p {
   margin: 0;
   padding: 0;
 }
 
-#hjphjbeouz .gt_table {
+#aulsipvprt .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1223,12 +1256,12 @@ ul.task-list li input[type="checkbox"] {
   border-left-color: #D3D3D3;
 }
 
-#hjphjbeouz .gt_caption {
+#aulsipvprt .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#hjphjbeouz .gt_title {
+#aulsipvprt .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1240,7 +1273,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-width: 0;
 }
 
-#hjphjbeouz .gt_subtitle {
+#aulsipvprt .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1252,7 +1285,7 @@ ul.task-list li input[type="checkbox"] {
   border-top-width: 0;
 }
 
-#hjphjbeouz .gt_heading {
+#aulsipvprt .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1264,13 +1297,13 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#hjphjbeouz .gt_bottom_border {
+#aulsipvprt .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#hjphjbeouz .gt_col_headings {
+#aulsipvprt .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1285,7 +1318,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#hjphjbeouz .gt_col_heading {
+#aulsipvprt .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1305,7 +1338,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#hjphjbeouz .gt_column_spanner_outer {
+#aulsipvprt .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1317,15 +1350,15 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 4px;
 }
 
-#hjphjbeouz .gt_column_spanner_outer:first-child {
+#aulsipvprt .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#hjphjbeouz .gt_column_spanner_outer:last-child {
+#aulsipvprt .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#hjphjbeouz .gt_column_spanner {
+#aulsipvprt .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1337,11 +1370,11 @@ ul.task-list li input[type="checkbox"] {
   width: 100%;
 }
 
-#hjphjbeouz .gt_spanner_row {
+#aulsipvprt .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#hjphjbeouz .gt_group_heading {
+#aulsipvprt .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1367,7 +1400,7 @@ ul.task-list li input[type="checkbox"] {
   text-align: left;
 }
 
-#hjphjbeouz .gt_empty_group_heading {
+#aulsipvprt .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1382,15 +1415,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 
-#hjphjbeouz .gt_from_md > :first-child {
+#aulsipvprt .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#hjphjbeouz .gt_from_md > :last-child {
+#aulsipvprt .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#hjphjbeouz .gt_row {
+#aulsipvprt .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1409,7 +1442,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#hjphjbeouz .gt_stub {
+#aulsipvprt .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1422,7 +1455,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#hjphjbeouz .gt_stub_row_group {
+#aulsipvprt .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1436,15 +1469,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: top;
 }
 
-#hjphjbeouz .gt_row_group_first td {
+#aulsipvprt .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#hjphjbeouz .gt_row_group_first th {
+#aulsipvprt .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#hjphjbeouz .gt_summary_row {
+#aulsipvprt .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1454,16 +1487,16 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#hjphjbeouz .gt_first_summary_row {
+#aulsipvprt .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#hjphjbeouz .gt_first_summary_row.thick {
+#aulsipvprt .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#hjphjbeouz .gt_last_summary_row {
+#aulsipvprt .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1473,7 +1506,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#hjphjbeouz .gt_grand_summary_row {
+#aulsipvprt .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1483,7 +1516,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#hjphjbeouz .gt_first_grand_summary_row {
+#aulsipvprt .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1493,7 +1526,7 @@ ul.task-list li input[type="checkbox"] {
   border-top-color: #D3D3D3;
 }
 
-#hjphjbeouz .gt_last_grand_summary_row_top {
+#aulsipvprt .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1503,11 +1536,11 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#hjphjbeouz .gt_striped {
+#aulsipvprt .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#hjphjbeouz .gt_table_body {
+#aulsipvprt .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1516,7 +1549,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#hjphjbeouz .gt_footnotes {
+#aulsipvprt .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1530,7 +1563,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#hjphjbeouz .gt_footnote {
+#aulsipvprt .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1539,7 +1572,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#hjphjbeouz .gt_sourcenotes {
+#aulsipvprt .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1553,7 +1586,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#hjphjbeouz .gt_sourcenote {
+#aulsipvprt .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1561,90 +1594,98 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#hjphjbeouz .gt_left {
+#aulsipvprt .gt_left {
   text-align: left;
 }
 
-#hjphjbeouz .gt_center {
+#aulsipvprt .gt_center {
   text-align: center;
 }
 
-#hjphjbeouz .gt_right {
+#aulsipvprt .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#hjphjbeouz .gt_font_normal {
+#aulsipvprt .gt_font_normal {
   font-weight: normal;
 }
 
-#hjphjbeouz .gt_font_bold {
+#aulsipvprt .gt_font_bold {
   font-weight: bold;
 }
 
-#hjphjbeouz .gt_font_italic {
+#aulsipvprt .gt_font_italic {
   font-style: italic;
 }
 
-#hjphjbeouz .gt_super {
+#aulsipvprt .gt_super {
   font-size: 65%;
 }
 
-#hjphjbeouz .gt_footnote_marks {
+#aulsipvprt .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#hjphjbeouz .gt_asterisk {
+#aulsipvprt .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#hjphjbeouz .gt_indent_1 {
+#aulsipvprt .gt_indent_1 {
   text-indent: 5px;
 }
 
-#hjphjbeouz .gt_indent_2 {
+#aulsipvprt .gt_indent_2 {
   text-indent: 10px;
 }
 
-#hjphjbeouz .gt_indent_3 {
+#aulsipvprt .gt_indent_3 {
   text-indent: 15px;
 }
 
-#hjphjbeouz .gt_indent_4 {
+#aulsipvprt .gt_indent_4 {
   text-indent: 20px;
 }
 
-#hjphjbeouz .gt_indent_5 {
+#aulsipvprt .gt_indent_5 {
   text-indent: 25px;
 }
 
-#hjphjbeouz .katex-display {
+#aulsipvprt .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#hjphjbeouz div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#aulsipvprt div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-  <thead>
-    <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Items">Items</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr><td headers="Items" class="gt_row gt_left"><span data-qmd-base64="W1RvcGljIE92ZXJ2aWV3XShodHRwczovL21hdGg2MTUubmV0bGlmeS5hcHAvdG9waWNzL3QwNi1mb3VuZGF0aW9uc19mb3JfaW5mZXJlbmNlKSAg"><span class="gt_from_md"><a href="https://math615.netlify.app/topics/t06-foundations_for_inference">Topic Overview</a></span></span></td></tr>
-    <tr><td headers="Items" class="gt_row gt_left gt_striped"><span data-qmd-base64="W0lNUyBDaGFwdGVyIDExLTExLjFdKGh0dHBzOi8vb3BlbmludHJvLWltcy5uZXRsaWZ5LmFwcC9mb3VuZGF0aW9ucy1yYW5kb21pemF0aW9uLmh0bWwp"><span class="gt_from_md"><a href="https://openintro-ims.netlify.app/foundations-randomization.html">IMS Chapter 11-11.1</a></span></span></td></tr>
-    <tr><td headers="Items" class="gt_row gt_left"><span data-qmd-base64="W0lNUyAtIENoYXB0ZXIgMTMuMS0xMy4zXShodHRwczovL29wZW5pbnRyby1pbXMubmV0bGlmeS5hcHAvZm91bmRhdGlvbnMtbWF0aGVtYXRpY2FsLmh0bWwp"><span class="gt_from_md"><a href="https://openintro-ims.netlify.app/foundations-mathematical.html">IMS - Chapter 13.1-13.3</a></span></span></td></tr>
-    <tr><td headers="Items" class="gt_row gt_left gt_striped"><span data-qmd-base64="W0lNUyAtIENoYXB0ZXIgMl0oaHR0cHM6Ly9vcGVuaW50cm8taW1zLm5ldGxpZnkuYXBwL2RhdGEtZGVzaWduLmh0bWwp"><span class="gt_from_md"><a href="https://openintro-ims.netlify.app/data-design.html">IMS - Chapter 2</a></span></span></td></tr>
-  </tbody>
-  
-  
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_col_headings header">
+<th id="Items" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Items</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="Items"><a href="https://math615.netlify.app/topics/t06-foundations_for_inference">Topic Overview</a></td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left gt_striped" headers="Items"><a href="https://openintro-ims.netlify.app/foundations-randomization.html">IMS Chapter 11-11.1</a></td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Items"><a href="https://openintro-ims.netlify.app/foundations-mathematical.html">IMS - Chapter 13.1-13.3</a></td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left gt_striped" headers="Items"><a href="https://openintro-ims.netlify.app/data-design.html">IMS - Chapter 2</a></td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
@@ -1654,24 +1695,23 @@ ul.task-list li input[type="checkbox"] {
 <p>We will be using the <a href="https://en.wikipedia.org/wiki/Jigsaw_(teaching_technique)">Jigsaw</a> technique, which is a method of <a href="https://en.wikipedia.org/wiki/Learning_by_teaching">learning by teaching</a>. You have been assigned to read and summarize one section in the textbook.</p>
 <div class="cell">
 <div class="cell-output-display">
-
-<div id="vpmvyyijcy" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#vpmvyyijcy table {
+<div id="wwgmvouvty" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#wwgmvouvty table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#vpmvyyijcy thead, #vpmvyyijcy tbody, #vpmvyyijcy tfoot, #vpmvyyijcy tr, #vpmvyyijcy td, #vpmvyyijcy th {
+#wwgmvouvty thead, #wwgmvouvty tbody, #wwgmvouvty tfoot, #wwgmvouvty tr, #wwgmvouvty td, #wwgmvouvty th {
   border-style: none;
 }
 
-#vpmvyyijcy p {
+#wwgmvouvty p {
   margin: 0;
   padding: 0;
 }
 
-#vpmvyyijcy .gt_table {
+#wwgmvouvty .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1697,12 +1737,12 @@ ul.task-list li input[type="checkbox"] {
   border-left-color: #D3D3D3;
 }
 
-#vpmvyyijcy .gt_caption {
+#wwgmvouvty .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#vpmvyyijcy .gt_title {
+#wwgmvouvty .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1714,7 +1754,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-width: 0;
 }
 
-#vpmvyyijcy .gt_subtitle {
+#wwgmvouvty .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1726,7 +1766,7 @@ ul.task-list li input[type="checkbox"] {
   border-top-width: 0;
 }
 
-#vpmvyyijcy .gt_heading {
+#wwgmvouvty .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1738,13 +1778,13 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#vpmvyyijcy .gt_bottom_border {
+#wwgmvouvty .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#vpmvyyijcy .gt_col_headings {
+#wwgmvouvty .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1759,7 +1799,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#vpmvyyijcy .gt_col_heading {
+#wwgmvouvty .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1779,7 +1819,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#vpmvyyijcy .gt_column_spanner_outer {
+#wwgmvouvty .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1791,15 +1831,15 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 4px;
 }
 
-#vpmvyyijcy .gt_column_spanner_outer:first-child {
+#wwgmvouvty .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#vpmvyyijcy .gt_column_spanner_outer:last-child {
+#wwgmvouvty .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#vpmvyyijcy .gt_column_spanner {
+#wwgmvouvty .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1811,11 +1851,11 @@ ul.task-list li input[type="checkbox"] {
   width: 100%;
 }
 
-#vpmvyyijcy .gt_spanner_row {
+#wwgmvouvty .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#vpmvyyijcy .gt_group_heading {
+#wwgmvouvty .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1841,7 +1881,7 @@ ul.task-list li input[type="checkbox"] {
   text-align: left;
 }
 
-#vpmvyyijcy .gt_empty_group_heading {
+#wwgmvouvty .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1856,15 +1896,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 
-#vpmvyyijcy .gt_from_md > :first-child {
+#wwgmvouvty .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#vpmvyyijcy .gt_from_md > :last-child {
+#wwgmvouvty .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#vpmvyyijcy .gt_row {
+#wwgmvouvty .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1883,7 +1923,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#vpmvyyijcy .gt_stub {
+#wwgmvouvty .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1896,7 +1936,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#vpmvyyijcy .gt_stub_row_group {
+#wwgmvouvty .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1910,15 +1950,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: top;
 }
 
-#vpmvyyijcy .gt_row_group_first td {
+#wwgmvouvty .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#vpmvyyijcy .gt_row_group_first th {
+#wwgmvouvty .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#vpmvyyijcy .gt_summary_row {
+#wwgmvouvty .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1928,16 +1968,16 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#vpmvyyijcy .gt_first_summary_row {
+#wwgmvouvty .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#vpmvyyijcy .gt_first_summary_row.thick {
+#wwgmvouvty .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#vpmvyyijcy .gt_last_summary_row {
+#wwgmvouvty .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1947,7 +1987,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#vpmvyyijcy .gt_grand_summary_row {
+#wwgmvouvty .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1957,7 +1997,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#vpmvyyijcy .gt_first_grand_summary_row {
+#wwgmvouvty .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1967,7 +2007,7 @@ ul.task-list li input[type="checkbox"] {
   border-top-color: #D3D3D3;
 }
 
-#vpmvyyijcy .gt_last_grand_summary_row_top {
+#wwgmvouvty .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1977,11 +2017,11 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#vpmvyyijcy .gt_striped {
+#wwgmvouvty .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#vpmvyyijcy .gt_table_body {
+#wwgmvouvty .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1990,7 +2030,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#vpmvyyijcy .gt_footnotes {
+#wwgmvouvty .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2004,7 +2044,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#vpmvyyijcy .gt_footnote {
+#wwgmvouvty .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2013,7 +2053,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#vpmvyyijcy .gt_sourcenotes {
+#wwgmvouvty .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2027,7 +2067,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#vpmvyyijcy .gt_sourcenote {
+#wwgmvouvty .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2035,90 +2075,98 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#vpmvyyijcy .gt_left {
+#wwgmvouvty .gt_left {
   text-align: left;
 }
 
-#vpmvyyijcy .gt_center {
+#wwgmvouvty .gt_center {
   text-align: center;
 }
 
-#vpmvyyijcy .gt_right {
+#wwgmvouvty .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#vpmvyyijcy .gt_font_normal {
+#wwgmvouvty .gt_font_normal {
   font-weight: normal;
 }
 
-#vpmvyyijcy .gt_font_bold {
+#wwgmvouvty .gt_font_bold {
   font-weight: bold;
 }
 
-#vpmvyyijcy .gt_font_italic {
+#wwgmvouvty .gt_font_italic {
   font-style: italic;
 }
 
-#vpmvyyijcy .gt_super {
+#wwgmvouvty .gt_super {
   font-size: 65%;
 }
 
-#vpmvyyijcy .gt_footnote_marks {
+#wwgmvouvty .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#vpmvyyijcy .gt_asterisk {
+#wwgmvouvty .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#vpmvyyijcy .gt_indent_1 {
+#wwgmvouvty .gt_indent_1 {
   text-indent: 5px;
 }
 
-#vpmvyyijcy .gt_indent_2 {
+#wwgmvouvty .gt_indent_2 {
   text-indent: 10px;
 }
 
-#vpmvyyijcy .gt_indent_3 {
+#wwgmvouvty .gt_indent_3 {
   text-indent: 15px;
 }
 
-#vpmvyyijcy .gt_indent_4 {
+#wwgmvouvty .gt_indent_4 {
   text-indent: 20px;
 }
 
-#vpmvyyijcy .gt_indent_5 {
+#wwgmvouvty .gt_indent_5 {
   text-indent: 25px;
 }
 
-#vpmvyyijcy .katex-display {
+#wwgmvouvty .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#vpmvyyijcy div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#wwgmvouvty div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-  <thead>
-    <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Items">Items</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr><td headers="Items" class="gt_row gt_left"><span data-qmd-base64="W1N0dWR5IERlc2lnbiAtIEppZ3NhdyBMZWN0dXJlXShodHRwczovL2RvY3MuZ29vZ2xlLmNvbS9kb2N1bWVudC9kLzFYTWRYTzFVWDVhSXBFOV9PZWt5UUpncXVyX0pickZNbHhTdnN2c1ZSenZRKQ=="><span class="gt_from_md"><a href="https://docs.google.com/document/d/1XMdXO1UX5aIpE9_OekyQJgqur_JbrFMlxSvsvsVRzvQ">Study Design - Jigsaw Lecture</a></span></span></td></tr>
-    <tr><td headers="Items" class="gt_row gt_left gt_striped"><span data-qmd-base64="QmlhcyBpbiBoaXJpbmcgc3R1ZHkgLSBpbiBjbGFzcw=="><span class="gt_from_md">Bias in hiring study - in class</span></span></td></tr>
-    <tr><td headers="Items" class="gt_row gt_left"><span data-qmd-base64="W0NMVCBFeHBsb3Jlcl0oaHR0cHM6Ly9tYXRoaXNhd2Vzb21lLnNoaW55YXBwcy5pby9jZW50cmFsLWxpbWl0LXRoZW9yZW0vKQ=="><span class="gt_from_md"><a href="https://mathisawesome.shinyapps.io/central-limit-theorem/">CLT Explorer</a></span></span></td></tr>
-    <tr><td headers="Items" class="gt_row gt_left gt_striped"><span data-qmd-base64="W0hXMDYgRm91bmRhdGlvbnMgZm9yIEluZmVyZW5jZV0oaHR0cHM6Ly9tYXRoNjE1Lm5ldGxpZnkuYXBwL2h3L2h3MDYtZm91bmRhdGlvbnNfZm9yX2luZmVyZW5jZS5odG1sKQ=="><span class="gt_from_md"><a href="https://math615.netlify.app/hw/hw06-foundations_for_inference.html">HW06 Foundations for Inference</a></span></span></td></tr>
-  </tbody>
-  
-  
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_col_headings header">
+<th id="Items" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Items</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="Items"><a href="https://docs.google.com/document/d/1XMdXO1UX5aIpE9_OekyQJgqur_JbrFMlxSvsvsVRzvQ">Study Design</a></td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left gt_striped" headers="Items">Bias in hiring</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Items"><a href="https://mathisawesome.shinyapps.io/central-limit-theorem/">CLT Explorer</a></td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left gt_striped" headers="Items"><a href="https://math615.netlify.app/hw/hw06-foundations_for_inference.html">HW06</a></td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
@@ -2127,24 +2175,23 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="assessment">Assessment</h2>
 <div class="cell">
 <div class="cell-output-display">
-
-<div id="mvfbatlefd" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#mvfbatlefd table {
+<div id="knxptrrbjc" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#knxptrrbjc table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#mvfbatlefd thead, #mvfbatlefd tbody, #mvfbatlefd tfoot, #mvfbatlefd tr, #mvfbatlefd td, #mvfbatlefd th {
+#knxptrrbjc thead, #knxptrrbjc tbody, #knxptrrbjc tfoot, #knxptrrbjc tr, #knxptrrbjc td, #knxptrrbjc th {
   border-style: none;
 }
 
-#mvfbatlefd p {
+#knxptrrbjc p {
   margin: 0;
   padding: 0;
 }
 
-#mvfbatlefd .gt_table {
+#knxptrrbjc .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2170,12 +2217,12 @@ ul.task-list li input[type="checkbox"] {
   border-left-color: #D3D3D3;
 }
 
-#mvfbatlefd .gt_caption {
+#knxptrrbjc .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#mvfbatlefd .gt_title {
+#knxptrrbjc .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2187,7 +2234,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-width: 0;
 }
 
-#mvfbatlefd .gt_subtitle {
+#knxptrrbjc .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2199,7 +2246,7 @@ ul.task-list li input[type="checkbox"] {
   border-top-width: 0;
 }
 
-#mvfbatlefd .gt_heading {
+#knxptrrbjc .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2211,13 +2258,13 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#mvfbatlefd .gt_bottom_border {
+#knxptrrbjc .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#mvfbatlefd .gt_col_headings {
+#knxptrrbjc .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2232,7 +2279,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#mvfbatlefd .gt_col_heading {
+#knxptrrbjc .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2252,7 +2299,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#mvfbatlefd .gt_column_spanner_outer {
+#knxptrrbjc .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2264,15 +2311,15 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 4px;
 }
 
-#mvfbatlefd .gt_column_spanner_outer:first-child {
+#knxptrrbjc .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#mvfbatlefd .gt_column_spanner_outer:last-child {
+#knxptrrbjc .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#mvfbatlefd .gt_column_spanner {
+#knxptrrbjc .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2284,11 +2331,11 @@ ul.task-list li input[type="checkbox"] {
   width: 100%;
 }
 
-#mvfbatlefd .gt_spanner_row {
+#knxptrrbjc .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#mvfbatlefd .gt_group_heading {
+#knxptrrbjc .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2314,7 +2361,7 @@ ul.task-list li input[type="checkbox"] {
   text-align: left;
 }
 
-#mvfbatlefd .gt_empty_group_heading {
+#knxptrrbjc .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2329,15 +2376,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 
-#mvfbatlefd .gt_from_md > :first-child {
+#knxptrrbjc .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#mvfbatlefd .gt_from_md > :last-child {
+#knxptrrbjc .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#mvfbatlefd .gt_row {
+#knxptrrbjc .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2356,7 +2403,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#mvfbatlefd .gt_stub {
+#knxptrrbjc .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2369,7 +2416,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#mvfbatlefd .gt_stub_row_group {
+#knxptrrbjc .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2383,15 +2430,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: top;
 }
 
-#mvfbatlefd .gt_row_group_first td {
+#knxptrrbjc .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#mvfbatlefd .gt_row_group_first th {
+#knxptrrbjc .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#mvfbatlefd .gt_summary_row {
+#knxptrrbjc .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2401,16 +2448,16 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#mvfbatlefd .gt_first_summary_row {
+#knxptrrbjc .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#mvfbatlefd .gt_first_summary_row.thick {
+#knxptrrbjc .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#mvfbatlefd .gt_last_summary_row {
+#knxptrrbjc .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2420,7 +2467,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#mvfbatlefd .gt_grand_summary_row {
+#knxptrrbjc .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2430,7 +2477,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#mvfbatlefd .gt_first_grand_summary_row {
+#knxptrrbjc .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2440,7 +2487,7 @@ ul.task-list li input[type="checkbox"] {
   border-top-color: #D3D3D3;
 }
 
-#mvfbatlefd .gt_last_grand_summary_row_top {
+#knxptrrbjc .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2450,11 +2497,11 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#mvfbatlefd .gt_striped {
+#knxptrrbjc .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#mvfbatlefd .gt_table_body {
+#knxptrrbjc .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2463,7 +2510,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#mvfbatlefd .gt_footnotes {
+#knxptrrbjc .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2477,7 +2524,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#mvfbatlefd .gt_footnote {
+#knxptrrbjc .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2486,7 +2533,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#mvfbatlefd .gt_sourcenotes {
+#knxptrrbjc .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2500,7 +2547,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#mvfbatlefd .gt_sourcenote {
+#knxptrrbjc .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2508,88 +2555,92 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#mvfbatlefd .gt_left {
+#knxptrrbjc .gt_left {
   text-align: left;
 }
 
-#mvfbatlefd .gt_center {
+#knxptrrbjc .gt_center {
   text-align: center;
 }
 
-#mvfbatlefd .gt_right {
+#knxptrrbjc .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#mvfbatlefd .gt_font_normal {
+#knxptrrbjc .gt_font_normal {
   font-weight: normal;
 }
 
-#mvfbatlefd .gt_font_bold {
+#knxptrrbjc .gt_font_bold {
   font-weight: bold;
 }
 
-#mvfbatlefd .gt_font_italic {
+#knxptrrbjc .gt_font_italic {
   font-style: italic;
 }
 
-#mvfbatlefd .gt_super {
+#knxptrrbjc .gt_super {
   font-size: 65%;
 }
 
-#mvfbatlefd .gt_footnote_marks {
+#knxptrrbjc .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#mvfbatlefd .gt_asterisk {
+#knxptrrbjc .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#mvfbatlefd .gt_indent_1 {
+#knxptrrbjc .gt_indent_1 {
   text-indent: 5px;
 }
 
-#mvfbatlefd .gt_indent_2 {
+#knxptrrbjc .gt_indent_2 {
   text-indent: 10px;
 }
 
-#mvfbatlefd .gt_indent_3 {
+#knxptrrbjc .gt_indent_3 {
   text-indent: 15px;
 }
 
-#mvfbatlefd .gt_indent_4 {
+#knxptrrbjc .gt_indent_4 {
   text-indent: 20px;
 }
 
-#mvfbatlefd .gt_indent_5 {
+#knxptrrbjc .gt_indent_5 {
   text-indent: 25px;
 }
 
-#mvfbatlefd .katex-display {
+#knxptrrbjc .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#mvfbatlefd div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#knxptrrbjc div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-  <thead>
-    <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Items">Items</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr><td headers="Items" class="gt_row gt_left"><span data-qmd-base64="UXVpeiAwNQ=="><span class="gt_from_md">Quiz 05</span></span></td></tr>
-    <tr><td headers="Items" class="gt_row gt_left gt_striped"><span data-qmd-base64="UXVpeiAwNg=="><span class="gt_from_md">Quiz 06</span></span></td></tr>
-  </tbody>
-  
-  
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_col_headings header">
+<th id="Items" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Items</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="Items">Quiz 05</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left gt_striped" headers="Items">Quiz 06</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
@@ -2639,6 +2690,33 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       } else {
         el.classList.add('notransition');
       }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
     }
   }
   const toggleColorMode = (alternate) => {
@@ -2707,13 +2785,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return localAlternateSentinel;
     }
   }
-  let localAlternateSentinel = 'default';
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
   // Dark / light mode switch
   window.quartoToggleColorScheme = () => {
     // Read the current dark / light value 
     let toAlternate = !hasAlternateSentinel();
     toggleColorMode(toAlternate);
     setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
   };
   // Ensure there is a toggle, if there isn't float one in the top right
   if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
@@ -2748,18 +2828,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -2791,11 +2860,48 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/norcalbiostat\.github\.io\/MATH615");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -2805,8 +2911,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -2818,7 +2933,129 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -2862,6 +3099,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -2887,6 +3125,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -2949,15 +3213,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-    <div class="nav-footer-left">This site is built with 💚 and <a href="https://quarto.org/">Quarto</a> by <a href="www.norcalbiostat.com">Robin Donatello</a>.</div>   
+    <div class="nav-footer-left">
+<p>This site is built with 💚 and <a href="https://quarto.org/">Quarto</a> by <a href="www.norcalbiostat.com">Robin Donatello</a>.</p>
+</div>   
     <div class="nav-footer-center">
       &nbsp;
-    </div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/norcalbiostat/MATH615/edit/main/topics/t06-foundations_for_inference.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/norcalbiostat/MATH615/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
   </div>
 </footer>
+
 
 
 
