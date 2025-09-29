@@ -54,7 +54,26 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -271,7 +290,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="required-template" class="level2">
 <h2 class="anchored" data-anchor-id="required-template">Required template</h2>
-<p>To facilitate authoring manuscripts in the required style, we require authors to use this <a href="./journal/template.pdf">custom quarto template</a> and <a href="bibliography.bib">bibliography file</a>.</p>
+<p>To facilitate authoring manuscripts in the required style, we require authors to use this <a href="journal/_template/template.qmd">custom quarto template</a> and <a href="journal/_template/bibliography.bib">bibliography file</a>.</p>
 </section>
 <section id="cover-image" class="level2">
 <h2 class="anchored" data-anchor-id="cover-image">Cover image</h2>
@@ -325,23 +344,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div id="tbl-lm" class="anchored">
 
-<div id="iaovwjlrkh" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#iaovwjlrkh table {
+<div id="napqphmjxv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#napqphmjxv table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#iaovwjlrkh thead, #iaovwjlrkh tbody, #iaovwjlrkh tfoot, #iaovwjlrkh tr, #iaovwjlrkh td, #iaovwjlrkh th {
+#napqphmjxv thead, #napqphmjxv tbody, #napqphmjxv tfoot, #napqphmjxv tr, #napqphmjxv td, #napqphmjxv th {
   border-style: none;
 }
 
-#iaovwjlrkh p {
+#napqphmjxv p {
   margin: 0;
   padding: 0;
 }
 
-#iaovwjlrkh .gt_table {
+#napqphmjxv .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -367,12 +386,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-left-color: #D3D3D3;
 }
 
-#iaovwjlrkh .gt_caption {
+#napqphmjxv .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#iaovwjlrkh .gt_title {
+#napqphmjxv .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -384,7 +403,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-width: 0;
 }
 
-#iaovwjlrkh .gt_subtitle {
+#napqphmjxv .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -396,7 +415,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-width: 0;
 }
 
-#iaovwjlrkh .gt_heading {
+#napqphmjxv .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -408,13 +427,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#iaovwjlrkh .gt_bottom_border {
+#napqphmjxv .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#iaovwjlrkh .gt_col_headings {
+#napqphmjxv .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -429,7 +448,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#iaovwjlrkh .gt_col_heading {
+#napqphmjxv .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -449,7 +468,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#iaovwjlrkh .gt_column_spanner_outer {
+#napqphmjxv .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -461,15 +480,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 4px;
 }
 
-#iaovwjlrkh .gt_column_spanner_outer:first-child {
+#napqphmjxv .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#iaovwjlrkh .gt_column_spanner_outer:last-child {
+#napqphmjxv .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#iaovwjlrkh .gt_column_spanner {
+#napqphmjxv .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -481,11 +500,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   width: 100%;
 }
 
-#iaovwjlrkh .gt_spanner_row {
+#napqphmjxv .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#iaovwjlrkh .gt_group_heading {
+#napqphmjxv .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -511,7 +530,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   text-align: left;
 }
 
-#iaovwjlrkh .gt_empty_group_heading {
+#napqphmjxv .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -526,15 +545,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: middle;
 }
 
-#iaovwjlrkh .gt_from_md > :first-child {
+#napqphmjxv .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#iaovwjlrkh .gt_from_md > :last-child {
+#napqphmjxv .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#iaovwjlrkh .gt_row {
+#napqphmjxv .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -553,7 +572,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#iaovwjlrkh .gt_stub {
+#napqphmjxv .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -566,7 +585,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#iaovwjlrkh .gt_stub_row_group {
+#napqphmjxv .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -580,15 +599,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: top;
 }
 
-#iaovwjlrkh .gt_row_group_first td {
+#napqphmjxv .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#iaovwjlrkh .gt_row_group_first th {
+#napqphmjxv .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#iaovwjlrkh .gt_summary_row {
+#napqphmjxv .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -598,16 +617,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#iaovwjlrkh .gt_first_summary_row {
+#napqphmjxv .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#iaovwjlrkh .gt_first_summary_row.thick {
+#napqphmjxv .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#iaovwjlrkh .gt_last_summary_row {
+#napqphmjxv .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -617,7 +636,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#iaovwjlrkh .gt_grand_summary_row {
+#napqphmjxv .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -627,7 +646,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#iaovwjlrkh .gt_first_grand_summary_row {
+#napqphmjxv .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -637,7 +656,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-color: #D3D3D3;
 }
 
-#iaovwjlrkh .gt_last_grand_summary_row_top {
+#napqphmjxv .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -647,11 +666,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#iaovwjlrkh .gt_striped {
+#napqphmjxv .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#iaovwjlrkh .gt_table_body {
+#napqphmjxv .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -660,7 +679,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#iaovwjlrkh .gt_footnotes {
+#napqphmjxv .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -674,7 +693,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#iaovwjlrkh .gt_footnote {
+#napqphmjxv .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -683,7 +702,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#iaovwjlrkh .gt_sourcenotes {
+#napqphmjxv .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -697,7 +716,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#iaovwjlrkh .gt_sourcenote {
+#napqphmjxv .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -705,72 +724,72 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#iaovwjlrkh .gt_left {
+#napqphmjxv .gt_left {
   text-align: left;
 }
 
-#iaovwjlrkh .gt_center {
+#napqphmjxv .gt_center {
   text-align: center;
 }
 
-#iaovwjlrkh .gt_right {
+#napqphmjxv .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#iaovwjlrkh .gt_font_normal {
+#napqphmjxv .gt_font_normal {
   font-weight: normal;
 }
 
-#iaovwjlrkh .gt_font_bold {
+#napqphmjxv .gt_font_bold {
   font-weight: bold;
 }
 
-#iaovwjlrkh .gt_font_italic {
+#napqphmjxv .gt_font_italic {
   font-style: italic;
 }
 
-#iaovwjlrkh .gt_super {
+#napqphmjxv .gt_super {
   font-size: 65%;
 }
 
-#iaovwjlrkh .gt_footnote_marks {
+#napqphmjxv .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#iaovwjlrkh .gt_asterisk {
+#napqphmjxv .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#iaovwjlrkh .gt_indent_1 {
+#napqphmjxv .gt_indent_1 {
   text-indent: 5px;
 }
 
-#iaovwjlrkh .gt_indent_2 {
+#napqphmjxv .gt_indent_2 {
   text-indent: 10px;
 }
 
-#iaovwjlrkh .gt_indent_3 {
+#napqphmjxv .gt_indent_3 {
   text-indent: 15px;
 }
 
-#iaovwjlrkh .gt_indent_4 {
+#napqphmjxv .gt_indent_4 {
   text-indent: 20px;
 }
 
-#iaovwjlrkh .gt_indent_5 {
+#napqphmjxv .gt_indent_5 {
   text-indent: 25px;
 }
 
-#iaovwjlrkh .katex-display {
+#napqphmjxv .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#iaovwjlrkh div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#napqphmjxv div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -893,20 +912,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tr class="odd">
 <td><pre><code>Blah Blah [see @knuth1984, pp. 33-35;
 also @wickham2015, chap. 1]</code></pre></td>
-<td>Blah Blah <span class="citation" data-cites="knuth1984 wickham2015">[see @knuth1984, pp. 33-35; also @wickham2015, chap. 1]</span></td>
+<td>Blah Blah <span class="citation" data-cites="knuth1984 wickham2015">(see <a href="#ref-knuth1984" role="doc-biblioref">Knuth 1984, 33–35</a>; also <a href="#ref-wickham2015" role="doc-biblioref">Wickham 2015, chap. 1</a>)</span></td>
 </tr>
 <tr class="even">
 <td><pre><code>Blah Blah [@knuth1984, pp. 33-35,
 38-39 and passim]</code></pre></td>
-<td>Blah Blah <span class="citation" data-cites="knuth1984">[@knuth1984, pp. 33-35, 38-39 and passim]</span></td>
+<td>Blah Blah <span class="citation" data-cites="knuth1984">(<a href="#ref-knuth1984" role="doc-biblioref">Knuth 1984, 33–35, 38–39</a> and passim)</span></td>
 </tr>
 <tr class="odd">
 <td><pre><code>Blah Blah [@wickham2015; @knuth1984].</code></pre></td>
-<td>Blah Blah <span class="citation" data-cites="wickham2015 knuth1984">[@wickham2015; @knuth1984]</span>.</td>
+<td>Blah Blah <span class="citation" data-cites="wickham2015 knuth1984">(<a href="#ref-wickham2015" role="doc-biblioref">Wickham 2015</a>; <a href="#ref-knuth1984" role="doc-biblioref">Knuth 1984</a>)</span>.</td>
 </tr>
 <tr class="even">
 <td><pre><code>Wickham says blah [-@wickham2015]</code></pre></td>
-<td>Wickham says blah <span class="citation" data-cites="wickham2015">[-@wickham2015]</span></td>
+<td>Wickham says blah <span class="citation" data-cites="wickham2015">(<a href="#ref-wickham2015" role="doc-biblioref">2015</a>)</span></td>
 </tr>
 </tbody>
 </table>
@@ -925,11 +944,11 @@ also @wickham2015, chap. 1]</code></pre></td>
 <tbody>
 <tr class="odd">
 <td><pre><code>@knuth1984 says blah.</code></pre></td>
-<td><span class="citation" data-cites="knuth1984">@knuth1984</span> says blah.</td>
+<td><span class="citation" data-cites="knuth1984">Knuth (<a href="#ref-knuth1984" role="doc-biblioref">1984</a>)</span> says blah.</td>
 </tr>
 <tr class="even">
 <td><pre><code>@knuth1984 [p. 33] says blah.</code></pre></td>
-<td><span class="citation" data-cites="knuth1984">@knuth1984 [p. 33]</span> says blah.</td>
+<td><span class="citation" data-cites="knuth1984">Knuth (<a href="#ref-knuth1984" role="doc-biblioref">1984, 33</a>)</span> says blah.</td>
 </tr>
 </tbody>
 </table>
@@ -999,10 +1018,18 @@ also @wickham2015, chap. 1]</code></pre></td>
 <p>All of the code used for this report should be included and executed here. Do not include extreneous code or output not directly relevant to the results reported in this research report.</p>
 
 
+
 </section>
 </section>
 
-</main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-knuth1984" class="csl-entry" role="listitem">
+Knuth, Donald E. 1984. <span>“Literate Programming.”</span> <em>The Computer Journal</em> 27 (2): 97–111.
+</div>
+<div id="ref-wickham2015" class="csl-entry" role="listitem">
+Wickham, Hadley. 2015. <em>R Packages</em>. 1st ed. O’Reilly Media, Inc.
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
