@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.42">
+<meta name="generator" content="quarto-1.3.319">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Foundations for Statistical Inference – Data Analysis for Graduate Research</title>
+<title>Data Analysis for Graduate Research - Foundations for Statistical Inference</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -34,12 +34,12 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-1fa1d8026083a9bddc52b4aafc7f818e.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-8e00f2f28a1266a720913de837032221.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-c60145260a0ddab2a92bc450e8714d32.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-e7ec2c97e7a3335d030f3d752bad3423.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -48,13 +48,7 @@ ul.task-list li input[type="checkbox"] {
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 50,
-  "keyboard-shortcut": [
-    "f",
-    "/",
-    "s"
-  ],
-  "show-item-context": false,
+  "limit": 20,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -63,10 +57,8 @@ ul.task-list li input[type="checkbox"] {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
-    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
+    "search-submit-button-title": "Submit"
   }
 }</script>
 
@@ -77,57 +69,57 @@ ul.task-list li input[type="checkbox"] {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
+      <div class="navbar-brand-container">
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Data Analysis for Graduate Research</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../modules.html"> 
-<span class="menu-text">Overview</span></a>
+    <a class="nav-link" href="../modules.html" rel="" target="">
+ <span class="menu-text">Overview</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-all-materials" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-all-materials" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
  <span class="menu-text">All Materials</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-all-materials">    
         <li>
-    <a class="dropdown-item" href="../topics.html">
+    <a class="dropdown-item" href="../topics.html" rel="" target="">
  <span class="dropdown-text">Topics</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../slides.html">
+    <a class="dropdown-item" href="../slides.html" rel="" target="">
  <span class="dropdown-text">Slides</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../hw.html">
+    <a class="dropdown-item" href="../hw.html" rel="" target="">
  <span class="dropdown-text">Assignments</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-research-project" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-research-project" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
  <span class="menu-text">Research Project</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-research-project">    
         <li>
-    <a class="dropdown-item" href="../project.html">
+    <a class="dropdown-item" href="../project.html" rel="" target="">
  <span class="dropdown-text">Overview and Information</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../author_guide.html">
+    <a class="dropdown-item" href="../author_guide.html" rel="" target="">
  <span class="dropdown-text">Guide for Authors</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../journal.html">
+    <a class="dropdown-item" href="../journal.html" rel="" target="">
  <span class="dropdown-text">Journal of Math 615</span></a>
   </li>  
     </ul>
@@ -135,38 +127,42 @@ ul.task-list li input[type="checkbox"] {
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://drive.google.com/drive/folders/1G5R-9HK0z3D6cbHsIF_vlWOb5BZDNsVj"> <i class="bi bi-google" role="img">
+    <a class="nav-link" href="https://drive.google.com/drive/folders/1G5R-9HK0z3D6cbHsIF_vlWOb5BZDNsVj" rel="" target=""><i class="bi bi-google" role="img">
 </i> 
-<span class="menu-text"></span></a>
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../helper_code.html" rel="" target="">
+ <span class="menu-text">Helper Code</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-reference-texts" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-reference-texts" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
  <span class="menu-text">Reference Texts</span>
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-reference-texts">    
         <li>
-    <a class="dropdown-item" href="https://norcalbiostat.github.io/AppliedStatistics_notes/">
+    <a class="dropdown-item" href="https://norcalbiostat.github.io/AppliedStatistics_notes/" rel="" target="">
  <span class="dropdown-text">Applied Stats Notebook</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="https://openintro-ims.netlify.app/">
+    <a class="dropdown-item" href="https://openintro-ims.netlify.app/" rel="" target="">
  <span class="dropdown-text">Intro to Modern Stats</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="../syllabus.html"> 
-<span class="menu-text">Syllabus</span></a>
+    <a class="nav-link" href="../syllabus.html" rel="" target="">
+ <span class="menu-text">Syllabus</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../help.html"> 
-<span class="menu-text">Help</span></a>
+    <a class="nav-link" href="../help.html" rel="" target="">
+ <span class="menu-text">Help</span></a>
   </li>  
 </ul>
-          </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
+          </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -189,7 +185,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#active-learning" id="toc-active-learning" class="nav-link" data-scroll-target="#active-learning"><span class="emoji" data-emoji="pencil">📝</span> Active Learning</a></li>
   <li><a href="#assessment" id="toc-assessment" class="nav-link" data-scroll-target="#assessment">Assessment</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/norcalbiostat/MATH615/edit/main/topics/t06-foundations_for_inference.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/norcalbiostat/MATH615/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/norcalbiostat/MATH615/edit/main/topics/t06-foundations_for_inference.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/norcalbiostat/MATH615/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -210,9 +206,7 @@ ul.task-list li input[type="checkbox"] {
   </div>
   
 
-
 </header>
-
 
 <section id="learning-path" class="level2">
 <h2 class="anchored" data-anchor-id="learning-path">Learning Path</h2>
@@ -239,23 +233,24 @@ ul.task-list li input[type="checkbox"] {
 <h3 class="anchored" data-anchor-id="objectives">Objectives</h3>
 <div class="cell">
 <div class="cell-output-display">
-<div id="emnmptaixd" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#emnmptaixd table {
+
+<div id="uhmdzsnlsi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#uhmdzsnlsi table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#emnmptaixd thead, #emnmptaixd tbody, #emnmptaixd tfoot, #emnmptaixd tr, #emnmptaixd td, #emnmptaixd th {
+#uhmdzsnlsi thead, #uhmdzsnlsi tbody, #uhmdzsnlsi tfoot, #uhmdzsnlsi tr, #uhmdzsnlsi td, #uhmdzsnlsi th {
   border-style: none;
 }
 
-#emnmptaixd p {
+#uhmdzsnlsi p {
   margin: 0;
   padding: 0;
 }
 
-#emnmptaixd .gt_table {
+#uhmdzsnlsi .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -281,12 +276,12 @@ ul.task-list li input[type="checkbox"] {
   border-left-color: #D3D3D3;
 }
 
-#emnmptaixd .gt_caption {
+#uhmdzsnlsi .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#emnmptaixd .gt_title {
+#uhmdzsnlsi .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -298,7 +293,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-width: 0;
 }
 
-#emnmptaixd .gt_subtitle {
+#uhmdzsnlsi .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -310,7 +305,7 @@ ul.task-list li input[type="checkbox"] {
   border-top-width: 0;
 }
 
-#emnmptaixd .gt_heading {
+#uhmdzsnlsi .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -322,13 +317,13 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#emnmptaixd .gt_bottom_border {
+#uhmdzsnlsi .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#emnmptaixd .gt_col_headings {
+#uhmdzsnlsi .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -343,7 +338,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#emnmptaixd .gt_col_heading {
+#uhmdzsnlsi .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -363,7 +358,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#emnmptaixd .gt_column_spanner_outer {
+#uhmdzsnlsi .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -375,15 +370,15 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 4px;
 }
 
-#emnmptaixd .gt_column_spanner_outer:first-child {
+#uhmdzsnlsi .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#emnmptaixd .gt_column_spanner_outer:last-child {
+#uhmdzsnlsi .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#emnmptaixd .gt_column_spanner {
+#uhmdzsnlsi .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -395,11 +390,11 @@ ul.task-list li input[type="checkbox"] {
   width: 100%;
 }
 
-#emnmptaixd .gt_spanner_row {
+#uhmdzsnlsi .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#emnmptaixd .gt_group_heading {
+#uhmdzsnlsi .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -425,7 +420,7 @@ ul.task-list li input[type="checkbox"] {
   text-align: left;
 }
 
-#emnmptaixd .gt_empty_group_heading {
+#uhmdzsnlsi .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -440,15 +435,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 
-#emnmptaixd .gt_from_md > :first-child {
+#uhmdzsnlsi .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#emnmptaixd .gt_from_md > :last-child {
+#uhmdzsnlsi .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#emnmptaixd .gt_row {
+#uhmdzsnlsi .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -467,7 +462,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#emnmptaixd .gt_stub {
+#uhmdzsnlsi .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -480,7 +475,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#emnmptaixd .gt_stub_row_group {
+#uhmdzsnlsi .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -494,15 +489,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: top;
 }
 
-#emnmptaixd .gt_row_group_first td {
+#uhmdzsnlsi .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#emnmptaixd .gt_row_group_first th {
+#uhmdzsnlsi .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#emnmptaixd .gt_summary_row {
+#uhmdzsnlsi .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -512,16 +507,16 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#emnmptaixd .gt_first_summary_row {
+#uhmdzsnlsi .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#emnmptaixd .gt_first_summary_row.thick {
+#uhmdzsnlsi .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#emnmptaixd .gt_last_summary_row {
+#uhmdzsnlsi .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -531,7 +526,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#emnmptaixd .gt_grand_summary_row {
+#uhmdzsnlsi .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -541,7 +536,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#emnmptaixd .gt_first_grand_summary_row {
+#uhmdzsnlsi .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -551,7 +546,7 @@ ul.task-list li input[type="checkbox"] {
   border-top-color: #D3D3D3;
 }
 
-#emnmptaixd .gt_last_grand_summary_row_top {
+#uhmdzsnlsi .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -561,11 +556,11 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#emnmptaixd .gt_striped {
+#uhmdzsnlsi .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#emnmptaixd .gt_table_body {
+#uhmdzsnlsi .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -574,7 +569,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#emnmptaixd .gt_footnotes {
+#uhmdzsnlsi .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -588,7 +583,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#emnmptaixd .gt_footnote {
+#uhmdzsnlsi .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -597,7 +592,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#emnmptaixd .gt_sourcenotes {
+#uhmdzsnlsi .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -611,7 +606,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#emnmptaixd .gt_sourcenote {
+#uhmdzsnlsi .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -619,119 +614,97 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#emnmptaixd .gt_left {
+#uhmdzsnlsi .gt_left {
   text-align: left;
 }
 
-#emnmptaixd .gt_center {
+#uhmdzsnlsi .gt_center {
   text-align: center;
 }
 
-#emnmptaixd .gt_right {
+#uhmdzsnlsi .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#emnmptaixd .gt_font_normal {
+#uhmdzsnlsi .gt_font_normal {
   font-weight: normal;
 }
 
-#emnmptaixd .gt_font_bold {
+#uhmdzsnlsi .gt_font_bold {
   font-weight: bold;
 }
 
-#emnmptaixd .gt_font_italic {
+#uhmdzsnlsi .gt_font_italic {
   font-style: italic;
 }
 
-#emnmptaixd .gt_super {
+#uhmdzsnlsi .gt_super {
   font-size: 65%;
 }
 
-#emnmptaixd .gt_footnote_marks {
+#uhmdzsnlsi .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#emnmptaixd .gt_asterisk {
+#uhmdzsnlsi .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#emnmptaixd .gt_indent_1 {
+#uhmdzsnlsi .gt_indent_1 {
   text-indent: 5px;
 }
 
-#emnmptaixd .gt_indent_2 {
+#uhmdzsnlsi .gt_indent_2 {
   text-indent: 10px;
 }
 
-#emnmptaixd .gt_indent_3 {
+#uhmdzsnlsi .gt_indent_3 {
   text-indent: 15px;
 }
 
-#emnmptaixd .gt_indent_4 {
+#uhmdzsnlsi .gt_indent_4 {
   text-indent: 20px;
 }
 
-#emnmptaixd .gt_indent_5 {
+#uhmdzsnlsi .gt_indent_5 {
   text-indent: 25px;
 }
 
-#emnmptaixd .katex-display {
+#uhmdzsnlsi .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#emnmptaixd div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#uhmdzsnlsi div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
-
-<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-<thead>
-<tr class="gt_col_headings header">
-<th id="Items" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Items</th>
-</tr>
-</thead>
-<tbody class="gt_table_body">
-<tr class="odd">
-<td class="gt_row gt_left" headers="Items">Identify and distinguish between a parameter and a statistic</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left gt_striped" headers="Items">Describe multiple sampling methods</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="Items">Identify if a causal statement can be made given a data collection method</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left gt_striped" headers="Items">Explain how to test a hypothsis using randomization</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="Items">Assess a research question using a hypothesis test</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left gt_striped" headers="Items">Use the Normal distribution to calculate a probability</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="Items">Describe the concept of sampling variability</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left gt_striped" headers="Items">Calculate the mean and sd of the sampling distribution based on population parameters</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="Items">Explain the Central Limit Theorem</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left gt_striped" headers="Items">Construct and Interpret a confidence interval in context of the problem</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="Items">Use a confidence interval to make an inferential hypothesis statement</td>
-</tr>
-</tbody>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Items">Items</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="Items" class="gt_row gt_left"><span data-qmd-base64="SWRlbnRpZnkgYW5kIGRpc3Rpbmd1aXNoIGJldHdlZW4gYSBwYXJhbWV0ZXIgYW5kIGEgc3RhdGlzdGljICA="><span class="gt_from_md">Identify and distinguish between a parameter and a statistic</span></span></td></tr>
+    <tr><td headers="Items" class="gt_row gt_left gt_striped"><span data-qmd-base64="RGVzY3JpYmUgbXVsdGlwbGUgc2FtcGxpbmcgbWV0aG9kcw=="><span class="gt_from_md">Describe multiple sampling methods</span></span></td></tr>
+    <tr><td headers="Items" class="gt_row gt_left"><span data-qmd-base64="SWRlbnRpZnkgaWYgYSBjYXVzYWwgc3RhdGVtZW50IGNhbiBiZSBtYWRlIGdpdmVuIGEgZGF0YSBjb2xsZWN0aW9uIG1ldGhvZA=="><span class="gt_from_md">Identify if a causal statement can be made given a data collection method</span></span></td></tr>
+    <tr><td headers="Items" class="gt_row gt_left gt_striped"><span data-qmd-base64="RXhwbGFpbiBob3cgdG8gdGVzdCBhIGh5cG90aHNpcyB1c2luZyByYW5kb21pemF0aW9u"><span class="gt_from_md">Explain how to test a hypothsis using randomization</span></span></td></tr>
+    <tr><td headers="Items" class="gt_row gt_left"><span data-qmd-base64="QXNzZXNzIGEgcmVzZWFyY2ggcXVlc3Rpb24gdXNpbmcgYSBoeXBvdGhlc2lzIHRlc3Q="><span class="gt_from_md">Assess a research question using a hypothesis test</span></span></td></tr>
+    <tr><td headers="Items" class="gt_row gt_left gt_striped"><span data-qmd-base64="VXNlIHRoZSBOb3JtYWwgZGlzdHJpYnV0aW9uIHRvIGNhbGN1bGF0ZSBhIHByb2JhYmlsaXR5"><span class="gt_from_md">Use the Normal distribution to calculate a probability</span></span></td></tr>
+    <tr><td headers="Items" class="gt_row gt_left"><span data-qmd-base64="RGVzY3JpYmUgdGhlIGNvbmNlcHQgb2Ygc2FtcGxpbmcgdmFyaWFiaWxpdHk="><span class="gt_from_md">Describe the concept of sampling variability</span></span></td></tr>
+    <tr><td headers="Items" class="gt_row gt_left gt_striped"><span data-qmd-base64="Q2FsY3VsYXRlIHRoZSBtZWFuIGFuZCBzZCBvZiB0aGUgc2FtcGxpbmcgZGlzdHJpYnV0aW9uIGJhc2VkIG9uIHBvcHVsYXRpb24gcGFyYW1ldGVycw=="><span class="gt_from_md">Calculate the mean and sd of the sampling distribution based on population parameters</span></span></td></tr>
+    <tr><td headers="Items" class="gt_row gt_left"><span data-qmd-base64="RXhwbGFpbiB0aGUgQ2VudHJhbCBMaW1pdCBUaGVvcmVt"><span class="gt_from_md">Explain the Central Limit Theorem</span></span></td></tr>
+    <tr><td headers="Items" class="gt_row gt_left gt_striped"><span data-qmd-base64="Q29uc3RydWN0IGFuZCBJbnRlcnByZXQgYSBjb25maWRlbmNlIGludGVydmFsIGluIGNvbnRleHQgb2YgdGhlIHByb2JsZW0="><span class="gt_from_md">Construct and Interpret a confidence interval in context of the problem</span></span></td></tr>
+    <tr><td headers="Items" class="gt_row gt_left"><span data-qmd-base64="VXNlIGEgY29uZmlkZW5jZSBpbnRlcnZhbCB0byBtYWtlIGFuIGluZmVyZW50aWFsIGh5cG90aGVzaXMgc3RhdGVtZW50"><span class="gt_from_md">Use a confidence interval to make an inferential hypothesis statement</span></span></td></tr>
+  </tbody>
+  
+  
 </table>
-
 </div>
 </div>
 </div>
@@ -742,23 +715,24 @@ ul.task-list li input[type="checkbox"] {
 <p><i class="fa-solid fa-person-chalkboard" aria-label="person-chalkboard"></i> <strong>Slides (Will open in full screen. Right click to open in a new tab)</strong></p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="ojfixjaims" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#ojfixjaims table {
+
+<div id="fizlknvvcv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#fizlknvvcv table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#ojfixjaims thead, #ojfixjaims tbody, #ojfixjaims tfoot, #ojfixjaims tr, #ojfixjaims td, #ojfixjaims th {
+#fizlknvvcv thead, #fizlknvvcv tbody, #fizlknvvcv tfoot, #fizlknvvcv tr, #fizlknvvcv td, #fizlknvvcv th {
   border-style: none;
 }
 
-#ojfixjaims p {
+#fizlknvvcv p {
   margin: 0;
   padding: 0;
 }
 
-#ojfixjaims .gt_table {
+#fizlknvvcv .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -784,12 +758,12 @@ ul.task-list li input[type="checkbox"] {
   border-left-color: #D3D3D3;
 }
 
-#ojfixjaims .gt_caption {
+#fizlknvvcv .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#ojfixjaims .gt_title {
+#fizlknvvcv .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -801,7 +775,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-width: 0;
 }
 
-#ojfixjaims .gt_subtitle {
+#fizlknvvcv .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -813,7 +787,7 @@ ul.task-list li input[type="checkbox"] {
   border-top-width: 0;
 }
 
-#ojfixjaims .gt_heading {
+#fizlknvvcv .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -825,13 +799,13 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#ojfixjaims .gt_bottom_border {
+#fizlknvvcv .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ojfixjaims .gt_col_headings {
+#fizlknvvcv .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -846,7 +820,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#ojfixjaims .gt_col_heading {
+#fizlknvvcv .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -866,7 +840,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#ojfixjaims .gt_column_spanner_outer {
+#fizlknvvcv .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -878,15 +852,15 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 4px;
 }
 
-#ojfixjaims .gt_column_spanner_outer:first-child {
+#fizlknvvcv .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ojfixjaims .gt_column_spanner_outer:last-child {
+#fizlknvvcv .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ojfixjaims .gt_column_spanner {
+#fizlknvvcv .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -898,11 +872,11 @@ ul.task-list li input[type="checkbox"] {
   width: 100%;
 }
 
-#ojfixjaims .gt_spanner_row {
+#fizlknvvcv .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#ojfixjaims .gt_group_heading {
+#fizlknvvcv .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -928,7 +902,7 @@ ul.task-list li input[type="checkbox"] {
   text-align: left;
 }
 
-#ojfixjaims .gt_empty_group_heading {
+#fizlknvvcv .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -943,15 +917,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 
-#ojfixjaims .gt_from_md > :first-child {
+#fizlknvvcv .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ojfixjaims .gt_from_md > :last-child {
+#fizlknvvcv .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ojfixjaims .gt_row {
+#fizlknvvcv .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -970,7 +944,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#ojfixjaims .gt_stub {
+#fizlknvvcv .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -983,7 +957,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#ojfixjaims .gt_stub_row_group {
+#fizlknvvcv .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -997,15 +971,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: top;
 }
 
-#ojfixjaims .gt_row_group_first td {
+#fizlknvvcv .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#ojfixjaims .gt_row_group_first th {
+#fizlknvvcv .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#ojfixjaims .gt_summary_row {
+#fizlknvvcv .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1015,16 +989,16 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#ojfixjaims .gt_first_summary_row {
+#fizlknvvcv .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#ojfixjaims .gt_first_summary_row.thick {
+#fizlknvvcv .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#ojfixjaims .gt_last_summary_row {
+#fizlknvvcv .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1034,7 +1008,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#ojfixjaims .gt_grand_summary_row {
+#fizlknvvcv .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1044,7 +1018,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#ojfixjaims .gt_first_grand_summary_row {
+#fizlknvvcv .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1054,7 +1028,7 @@ ul.task-list li input[type="checkbox"] {
   border-top-color: #D3D3D3;
 }
 
-#ojfixjaims .gt_last_grand_summary_row_top {
+#fizlknvvcv .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1064,11 +1038,11 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#ojfixjaims .gt_striped {
+#fizlknvvcv .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ojfixjaims .gt_table_body {
+#fizlknvvcv .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1077,7 +1051,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#ojfixjaims .gt_footnotes {
+#fizlknvvcv .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1091,7 +1065,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#ojfixjaims .gt_footnote {
+#fizlknvvcv .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1100,7 +1074,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#ojfixjaims .gt_sourcenotes {
+#fizlknvvcv .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1114,7 +1088,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#ojfixjaims .gt_sourcenote {
+#fizlknvvcv .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1122,115 +1096,112 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#ojfixjaims .gt_left {
+#fizlknvvcv .gt_left {
   text-align: left;
 }
 
-#ojfixjaims .gt_center {
+#fizlknvvcv .gt_center {
   text-align: center;
 }
 
-#ojfixjaims .gt_right {
+#fizlknvvcv .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ojfixjaims .gt_font_normal {
+#fizlknvvcv .gt_font_normal {
   font-weight: normal;
 }
 
-#ojfixjaims .gt_font_bold {
+#fizlknvvcv .gt_font_bold {
   font-weight: bold;
 }
 
-#ojfixjaims .gt_font_italic {
+#fizlknvvcv .gt_font_italic {
   font-style: italic;
 }
 
-#ojfixjaims .gt_super {
+#fizlknvvcv .gt_super {
   font-size: 65%;
 }
 
-#ojfixjaims .gt_footnote_marks {
+#fizlknvvcv .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#ojfixjaims .gt_asterisk {
+#fizlknvvcv .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#ojfixjaims .gt_indent_1 {
+#fizlknvvcv .gt_indent_1 {
   text-indent: 5px;
 }
 
-#ojfixjaims .gt_indent_2 {
+#fizlknvvcv .gt_indent_2 {
   text-indent: 10px;
 }
 
-#ojfixjaims .gt_indent_3 {
+#fizlknvvcv .gt_indent_3 {
   text-indent: 15px;
 }
 
-#ojfixjaims .gt_indent_4 {
+#fizlknvvcv .gt_indent_4 {
   text-indent: 20px;
 }
 
-#ojfixjaims .gt_indent_5 {
+#fizlknvvcv .gt_indent_5 {
   text-indent: 25px;
 }
 
-#ojfixjaims .katex-display {
+#fizlknvvcv .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#ojfixjaims div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#fizlknvvcv div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
-
-<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-<thead>
-<tr class="gt_col_headings header">
-<th id="Items" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Items</th>
-</tr>
-</thead>
-<tbody class="gt_table_body">
-<tr class="odd">
-<td class="gt_row gt_left" headers="Items"><a href="https://math615.netlify.app/slides/lec06a-statistical_inference_with_randomization.html">lec06a</a></td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left gt_striped" headers="Items"><a href="https://math615.netlify.app/slides/lec06b-statistical_inference_with_models.html">lec06b</a></td>
-</tr>
-</tbody>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Items">Items</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="Items" class="gt_row gt_left"><span data-qmd-base64="W2xlYzA2YV0oaHR0cHM6Ly9tYXRoNjE1Lm5ldGxpZnkuYXBwL3NsaWRlcy9sZWMwNmEtc3RhdGlzdGljYWxfaW5mZXJlbmNlX3dpdGhfcmFuZG9taXphdGlvbi5odG1sKQ=="><span class="gt_from_md"><a href="https://math615.netlify.app/slides/lec06a-statistical_inference_with_randomization.html">lec06a</a></span></span></td></tr>
+    <tr><td headers="Items" class="gt_row gt_left gt_striped"><span data-qmd-base64="W2xlYzA2Yl0oaHR0cHM6Ly9tYXRoNjE1Lm5ldGxpZnkuYXBwL3NsaWRlcy9sZWMwNmItc3RhdGlzdGljYWxfaW5mZXJlbmNlX3dpdGhfbW9kZWxzLmh0bWwp"><span class="gt_from_md"><a href="https://math615.netlify.app/slides/lec06b-statistical_inference_with_models.html">lec06b</a></span></span></td></tr>
+  </tbody>
+  
+  
 </table>
-
 </div>
 </div>
 </div>
 <p><span class="emoji" data-emoji="books">📚</span> <strong>Reading</strong></p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="aulsipvprt" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#aulsipvprt table {
+
+<div id="cxajjgoszv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#cxajjgoszv table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#aulsipvprt thead, #aulsipvprt tbody, #aulsipvprt tfoot, #aulsipvprt tr, #aulsipvprt td, #aulsipvprt th {
+#cxajjgoszv thead, #cxajjgoszv tbody, #cxajjgoszv tfoot, #cxajjgoszv tr, #cxajjgoszv td, #cxajjgoszv th {
   border-style: none;
 }
 
-#aulsipvprt p {
+#cxajjgoszv p {
   margin: 0;
   padding: 0;
 }
 
-#aulsipvprt .gt_table {
+#cxajjgoszv .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1256,12 +1227,12 @@ ul.task-list li input[type="checkbox"] {
   border-left-color: #D3D3D3;
 }
 
-#aulsipvprt .gt_caption {
+#cxajjgoszv .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#aulsipvprt .gt_title {
+#cxajjgoszv .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1273,7 +1244,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-width: 0;
 }
 
-#aulsipvprt .gt_subtitle {
+#cxajjgoszv .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1285,7 +1256,7 @@ ul.task-list li input[type="checkbox"] {
   border-top-width: 0;
 }
 
-#aulsipvprt .gt_heading {
+#cxajjgoszv .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1297,13 +1268,13 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#aulsipvprt .gt_bottom_border {
+#cxajjgoszv .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#aulsipvprt .gt_col_headings {
+#cxajjgoszv .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1318,7 +1289,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#aulsipvprt .gt_col_heading {
+#cxajjgoszv .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1338,7 +1309,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#aulsipvprt .gt_column_spanner_outer {
+#cxajjgoszv .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1350,15 +1321,15 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 4px;
 }
 
-#aulsipvprt .gt_column_spanner_outer:first-child {
+#cxajjgoszv .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#aulsipvprt .gt_column_spanner_outer:last-child {
+#cxajjgoszv .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#aulsipvprt .gt_column_spanner {
+#cxajjgoszv .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1370,11 +1341,11 @@ ul.task-list li input[type="checkbox"] {
   width: 100%;
 }
 
-#aulsipvprt .gt_spanner_row {
+#cxajjgoszv .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#aulsipvprt .gt_group_heading {
+#cxajjgoszv .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1400,7 +1371,7 @@ ul.task-list li input[type="checkbox"] {
   text-align: left;
 }
 
-#aulsipvprt .gt_empty_group_heading {
+#cxajjgoszv .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1415,15 +1386,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 
-#aulsipvprt .gt_from_md > :first-child {
+#cxajjgoszv .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#aulsipvprt .gt_from_md > :last-child {
+#cxajjgoszv .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#aulsipvprt .gt_row {
+#cxajjgoszv .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1442,7 +1413,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#aulsipvprt .gt_stub {
+#cxajjgoszv .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1455,7 +1426,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#aulsipvprt .gt_stub_row_group {
+#cxajjgoszv .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1469,15 +1440,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: top;
 }
 
-#aulsipvprt .gt_row_group_first td {
+#cxajjgoszv .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#aulsipvprt .gt_row_group_first th {
+#cxajjgoszv .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#aulsipvprt .gt_summary_row {
+#cxajjgoszv .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1487,16 +1458,16 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#aulsipvprt .gt_first_summary_row {
+#cxajjgoszv .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#aulsipvprt .gt_first_summary_row.thick {
+#cxajjgoszv .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#aulsipvprt .gt_last_summary_row {
+#cxajjgoszv .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1506,7 +1477,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#aulsipvprt .gt_grand_summary_row {
+#cxajjgoszv .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1516,7 +1487,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#aulsipvprt .gt_first_grand_summary_row {
+#cxajjgoszv .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1526,7 +1497,7 @@ ul.task-list li input[type="checkbox"] {
   border-top-color: #D3D3D3;
 }
 
-#aulsipvprt .gt_last_grand_summary_row_top {
+#cxajjgoszv .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1536,11 +1507,11 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#aulsipvprt .gt_striped {
+#cxajjgoszv .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#aulsipvprt .gt_table_body {
+#cxajjgoszv .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1549,7 +1520,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#aulsipvprt .gt_footnotes {
+#cxajjgoszv .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1563,7 +1534,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#aulsipvprt .gt_footnote {
+#cxajjgoszv .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1572,7 +1543,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#aulsipvprt .gt_sourcenotes {
+#cxajjgoszv .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1586,7 +1557,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#aulsipvprt .gt_sourcenote {
+#cxajjgoszv .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1594,98 +1565,90 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#aulsipvprt .gt_left {
+#cxajjgoszv .gt_left {
   text-align: left;
 }
 
-#aulsipvprt .gt_center {
+#cxajjgoszv .gt_center {
   text-align: center;
 }
 
-#aulsipvprt .gt_right {
+#cxajjgoszv .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#aulsipvprt .gt_font_normal {
+#cxajjgoszv .gt_font_normal {
   font-weight: normal;
 }
 
-#aulsipvprt .gt_font_bold {
+#cxajjgoszv .gt_font_bold {
   font-weight: bold;
 }
 
-#aulsipvprt .gt_font_italic {
+#cxajjgoszv .gt_font_italic {
   font-style: italic;
 }
 
-#aulsipvprt .gt_super {
+#cxajjgoszv .gt_super {
   font-size: 65%;
 }
 
-#aulsipvprt .gt_footnote_marks {
+#cxajjgoszv .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#aulsipvprt .gt_asterisk {
+#cxajjgoszv .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#aulsipvprt .gt_indent_1 {
+#cxajjgoszv .gt_indent_1 {
   text-indent: 5px;
 }
 
-#aulsipvprt .gt_indent_2 {
+#cxajjgoszv .gt_indent_2 {
   text-indent: 10px;
 }
 
-#aulsipvprt .gt_indent_3 {
+#cxajjgoszv .gt_indent_3 {
   text-indent: 15px;
 }
 
-#aulsipvprt .gt_indent_4 {
+#cxajjgoszv .gt_indent_4 {
   text-indent: 20px;
 }
 
-#aulsipvprt .gt_indent_5 {
+#cxajjgoszv .gt_indent_5 {
   text-indent: 25px;
 }
 
-#aulsipvprt .katex-display {
+#cxajjgoszv .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#aulsipvprt div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#cxajjgoszv div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
-
-<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-<thead>
-<tr class="gt_col_headings header">
-<th id="Items" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Items</th>
-</tr>
-</thead>
-<tbody class="gt_table_body">
-<tr class="odd">
-<td class="gt_row gt_left" headers="Items"><a href="https://math615.netlify.app/topics/t06-foundations_for_inference">Topic Overview</a></td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left gt_striped" headers="Items"><a href="https://openintro-ims.netlify.app/foundations-randomization.html">IMS Chapter 11-11.1</a></td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="Items"><a href="https://openintro-ims.netlify.app/foundations-mathematical.html">IMS - Chapter 13.1-13.3</a></td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left gt_striped" headers="Items"><a href="https://openintro-ims.netlify.app/data-design.html">IMS - Chapter 2</a></td>
-</tr>
-</tbody>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Items">Items</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="Items" class="gt_row gt_left"><span data-qmd-base64="W1RvcGljIE92ZXJ2aWV3XShodHRwczovL21hdGg2MTUubmV0bGlmeS5hcHAvdG9waWNzL3QwNi1mb3VuZGF0aW9uc19mb3JfaW5mZXJlbmNlKSAg"><span class="gt_from_md"><a href="https://math615.netlify.app/topics/t06-foundations_for_inference">Topic Overview</a></span></span></td></tr>
+    <tr><td headers="Items" class="gt_row gt_left gt_striped"><span data-qmd-base64="W0lNUyBDaGFwdGVyIDExLTExLjFdKGh0dHBzOi8vb3BlbmludHJvLWltcy5uZXRsaWZ5LmFwcC9mb3VuZGF0aW9ucy1yYW5kb21pemF0aW9uLmh0bWwp"><span class="gt_from_md"><a href="https://openintro-ims.netlify.app/foundations-randomization.html">IMS Chapter 11-11.1</a></span></span></td></tr>
+    <tr><td headers="Items" class="gt_row gt_left"><span data-qmd-base64="W0lNUyAtIENoYXB0ZXIgMTMuMS0xMy4zXShodHRwczovL29wZW5pbnRyby1pbXMubmV0bGlmeS5hcHAvZm91bmRhdGlvbnMtbWF0aGVtYXRpY2FsLmh0bWwp"><span class="gt_from_md"><a href="https://openintro-ims.netlify.app/foundations-mathematical.html">IMS - Chapter 13.1-13.3</a></span></span></td></tr>
+    <tr><td headers="Items" class="gt_row gt_left gt_striped"><span data-qmd-base64="W0lNUyAtIENoYXB0ZXIgMl0oaHR0cHM6Ly9vcGVuaW50cm8taW1zLm5ldGxpZnkuYXBwL2RhdGEtZGVzaWduLmh0bWwp"><span class="gt_from_md"><a href="https://openintro-ims.netlify.app/data-design.html">IMS - Chapter 2</a></span></span></td></tr>
+  </tbody>
+  
+  
 </table>
-
 </div>
 </div>
 </div>
@@ -1695,23 +1658,24 @@ ul.task-list li input[type="checkbox"] {
 <p>We will be using the <a href="https://en.wikipedia.org/wiki/Jigsaw_(teaching_technique)">Jigsaw</a> technique, which is a method of <a href="https://en.wikipedia.org/wiki/Learning_by_teaching">learning by teaching</a>. You have been assigned to read and summarize one section in the textbook.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="wwgmvouvty" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#wwgmvouvty table {
+
+<div id="ijsnsdkash" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ijsnsdkash table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#wwgmvouvty thead, #wwgmvouvty tbody, #wwgmvouvty tfoot, #wwgmvouvty tr, #wwgmvouvty td, #wwgmvouvty th {
+#ijsnsdkash thead, #ijsnsdkash tbody, #ijsnsdkash tfoot, #ijsnsdkash tr, #ijsnsdkash td, #ijsnsdkash th {
   border-style: none;
 }
 
-#wwgmvouvty p {
+#ijsnsdkash p {
   margin: 0;
   padding: 0;
 }
 
-#wwgmvouvty .gt_table {
+#ijsnsdkash .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1737,12 +1701,12 @@ ul.task-list li input[type="checkbox"] {
   border-left-color: #D3D3D3;
 }
 
-#wwgmvouvty .gt_caption {
+#ijsnsdkash .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#wwgmvouvty .gt_title {
+#ijsnsdkash .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1754,7 +1718,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-width: 0;
 }
 
-#wwgmvouvty .gt_subtitle {
+#ijsnsdkash .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1766,7 +1730,7 @@ ul.task-list li input[type="checkbox"] {
   border-top-width: 0;
 }
 
-#wwgmvouvty .gt_heading {
+#ijsnsdkash .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1778,13 +1742,13 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#wwgmvouvty .gt_bottom_border {
+#ijsnsdkash .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#wwgmvouvty .gt_col_headings {
+#ijsnsdkash .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1799,7 +1763,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#wwgmvouvty .gt_col_heading {
+#ijsnsdkash .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1819,7 +1783,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#wwgmvouvty .gt_column_spanner_outer {
+#ijsnsdkash .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1831,15 +1795,15 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 4px;
 }
 
-#wwgmvouvty .gt_column_spanner_outer:first-child {
+#ijsnsdkash .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#wwgmvouvty .gt_column_spanner_outer:last-child {
+#ijsnsdkash .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#wwgmvouvty .gt_column_spanner {
+#ijsnsdkash .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1851,11 +1815,11 @@ ul.task-list li input[type="checkbox"] {
   width: 100%;
 }
 
-#wwgmvouvty .gt_spanner_row {
+#ijsnsdkash .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#wwgmvouvty .gt_group_heading {
+#ijsnsdkash .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1881,7 +1845,7 @@ ul.task-list li input[type="checkbox"] {
   text-align: left;
 }
 
-#wwgmvouvty .gt_empty_group_heading {
+#ijsnsdkash .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1896,15 +1860,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 
-#wwgmvouvty .gt_from_md > :first-child {
+#ijsnsdkash .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#wwgmvouvty .gt_from_md > :last-child {
+#ijsnsdkash .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#wwgmvouvty .gt_row {
+#ijsnsdkash .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1923,7 +1887,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#wwgmvouvty .gt_stub {
+#ijsnsdkash .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1936,7 +1900,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#wwgmvouvty .gt_stub_row_group {
+#ijsnsdkash .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1950,15 +1914,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: top;
 }
 
-#wwgmvouvty .gt_row_group_first td {
+#ijsnsdkash .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#wwgmvouvty .gt_row_group_first th {
+#ijsnsdkash .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#wwgmvouvty .gt_summary_row {
+#ijsnsdkash .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1968,16 +1932,16 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#wwgmvouvty .gt_first_summary_row {
+#ijsnsdkash .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#wwgmvouvty .gt_first_summary_row.thick {
+#ijsnsdkash .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#wwgmvouvty .gt_last_summary_row {
+#ijsnsdkash .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1987,7 +1951,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#wwgmvouvty .gt_grand_summary_row {
+#ijsnsdkash .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1997,7 +1961,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#wwgmvouvty .gt_first_grand_summary_row {
+#ijsnsdkash .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2007,7 +1971,7 @@ ul.task-list li input[type="checkbox"] {
   border-top-color: #D3D3D3;
 }
 
-#wwgmvouvty .gt_last_grand_summary_row_top {
+#ijsnsdkash .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2017,11 +1981,11 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#wwgmvouvty .gt_striped {
+#ijsnsdkash .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#wwgmvouvty .gt_table_body {
+#ijsnsdkash .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2030,7 +1994,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#wwgmvouvty .gt_footnotes {
+#ijsnsdkash .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2044,7 +2008,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#wwgmvouvty .gt_footnote {
+#ijsnsdkash .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2053,7 +2017,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#wwgmvouvty .gt_sourcenotes {
+#ijsnsdkash .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2067,7 +2031,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#wwgmvouvty .gt_sourcenote {
+#ijsnsdkash .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2075,98 +2039,90 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#wwgmvouvty .gt_left {
+#ijsnsdkash .gt_left {
   text-align: left;
 }
 
-#wwgmvouvty .gt_center {
+#ijsnsdkash .gt_center {
   text-align: center;
 }
 
-#wwgmvouvty .gt_right {
+#ijsnsdkash .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#wwgmvouvty .gt_font_normal {
+#ijsnsdkash .gt_font_normal {
   font-weight: normal;
 }
 
-#wwgmvouvty .gt_font_bold {
+#ijsnsdkash .gt_font_bold {
   font-weight: bold;
 }
 
-#wwgmvouvty .gt_font_italic {
+#ijsnsdkash .gt_font_italic {
   font-style: italic;
 }
 
-#wwgmvouvty .gt_super {
+#ijsnsdkash .gt_super {
   font-size: 65%;
 }
 
-#wwgmvouvty .gt_footnote_marks {
+#ijsnsdkash .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#wwgmvouvty .gt_asterisk {
+#ijsnsdkash .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#wwgmvouvty .gt_indent_1 {
+#ijsnsdkash .gt_indent_1 {
   text-indent: 5px;
 }
 
-#wwgmvouvty .gt_indent_2 {
+#ijsnsdkash .gt_indent_2 {
   text-indent: 10px;
 }
 
-#wwgmvouvty .gt_indent_3 {
+#ijsnsdkash .gt_indent_3 {
   text-indent: 15px;
 }
 
-#wwgmvouvty .gt_indent_4 {
+#ijsnsdkash .gt_indent_4 {
   text-indent: 20px;
 }
 
-#wwgmvouvty .gt_indent_5 {
+#ijsnsdkash .gt_indent_5 {
   text-indent: 25px;
 }
 
-#wwgmvouvty .katex-display {
+#ijsnsdkash .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#wwgmvouvty div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#ijsnsdkash div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
-
-<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-<thead>
-<tr class="gt_col_headings header">
-<th id="Items" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Items</th>
-</tr>
-</thead>
-<tbody class="gt_table_body">
-<tr class="odd">
-<td class="gt_row gt_left" headers="Items"><a href="https://docs.google.com/document/d/1XMdXO1UX5aIpE9_OekyQJgqur_JbrFMlxSvsvsVRzvQ">Study Design</a></td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left gt_striped" headers="Items">Bias in hiring</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="Items"><a href="https://mathisawesome.shinyapps.io/central-limit-theorem/">CLT Explorer</a></td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left gt_striped" headers="Items"><a href="https://math615.netlify.app/hw/hw06-foundations_for_inference.html">HW06</a></td>
-</tr>
-</tbody>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Items">Items</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="Items" class="gt_row gt_left"><span data-qmd-base64="W1N0dWR5IERlc2lnbl0oaHR0cHM6Ly9kb2NzLmdvb2dsZS5jb20vZG9jdW1lbnQvZC8xWE1kWE8xVVg1YUlwRTlfT2VreVFKZ3F1cl9KYnJGTWx4U3ZzdnNWUnp2USk="><span class="gt_from_md"><a href="https://docs.google.com/document/d/1XMdXO1UX5aIpE9_OekyQJgqur_JbrFMlxSvsvsVRzvQ">Study Design</a></span></span></td></tr>
+    <tr><td headers="Items" class="gt_row gt_left gt_striped"><span data-qmd-base64="QmlhcyBpbiBoaXJpbmc="><span class="gt_from_md">Bias in hiring</span></span></td></tr>
+    <tr><td headers="Items" class="gt_row gt_left"><span data-qmd-base64="W0NMVCBFeHBsb3Jlcl0oaHR0cHM6Ly9tYXRoaXNhd2Vzb21lLnNoaW55YXBwcy5pby9jZW50cmFsLWxpbWl0LXRoZW9yZW0vKQ=="><span class="gt_from_md"><a href="https://mathisawesome.shinyapps.io/central-limit-theorem/">CLT Explorer</a></span></span></td></tr>
+    <tr><td headers="Items" class="gt_row gt_left gt_striped"><span data-qmd-base64="W0hXMDZdKGh0dHBzOi8vbWF0aDYxNS5uZXRsaWZ5LmFwcC9ody9odzA2LWZvdW5kYXRpb25zX2Zvcl9pbmZlcmVuY2UuaHRtbCk="><span class="gt_from_md"><a href="https://math615.netlify.app/hw/hw06-foundations_for_inference.html">HW06</a></span></span></td></tr>
+  </tbody>
+  
+  
 </table>
-
 </div>
 </div>
 </div>
@@ -2175,23 +2131,24 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="assessment">Assessment</h2>
 <div class="cell">
 <div class="cell-output-display">
-<div id="knxptrrbjc" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#knxptrrbjc table {
+
+<div id="rlawhrukhe" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#rlawhrukhe table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#knxptrrbjc thead, #knxptrrbjc tbody, #knxptrrbjc tfoot, #knxptrrbjc tr, #knxptrrbjc td, #knxptrrbjc th {
+#rlawhrukhe thead, #rlawhrukhe tbody, #rlawhrukhe tfoot, #rlawhrukhe tr, #rlawhrukhe td, #rlawhrukhe th {
   border-style: none;
 }
 
-#knxptrrbjc p {
+#rlawhrukhe p {
   margin: 0;
   padding: 0;
 }
 
-#knxptrrbjc .gt_table {
+#rlawhrukhe .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2217,12 +2174,12 @@ ul.task-list li input[type="checkbox"] {
   border-left-color: #D3D3D3;
 }
 
-#knxptrrbjc .gt_caption {
+#rlawhrukhe .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#knxptrrbjc .gt_title {
+#rlawhrukhe .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2234,7 +2191,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-width: 0;
 }
 
-#knxptrrbjc .gt_subtitle {
+#rlawhrukhe .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2246,7 +2203,7 @@ ul.task-list li input[type="checkbox"] {
   border-top-width: 0;
 }
 
-#knxptrrbjc .gt_heading {
+#rlawhrukhe .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2258,13 +2215,13 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#knxptrrbjc .gt_bottom_border {
+#rlawhrukhe .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#knxptrrbjc .gt_col_headings {
+#rlawhrukhe .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2279,7 +2236,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#knxptrrbjc .gt_col_heading {
+#rlawhrukhe .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2299,7 +2256,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#knxptrrbjc .gt_column_spanner_outer {
+#rlawhrukhe .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2311,15 +2268,15 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 4px;
 }
 
-#knxptrrbjc .gt_column_spanner_outer:first-child {
+#rlawhrukhe .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#knxptrrbjc .gt_column_spanner_outer:last-child {
+#rlawhrukhe .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#knxptrrbjc .gt_column_spanner {
+#rlawhrukhe .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2331,11 +2288,11 @@ ul.task-list li input[type="checkbox"] {
   width: 100%;
 }
 
-#knxptrrbjc .gt_spanner_row {
+#rlawhrukhe .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#knxptrrbjc .gt_group_heading {
+#rlawhrukhe .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2361,7 +2318,7 @@ ul.task-list li input[type="checkbox"] {
   text-align: left;
 }
 
-#knxptrrbjc .gt_empty_group_heading {
+#rlawhrukhe .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2376,15 +2333,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 
-#knxptrrbjc .gt_from_md > :first-child {
+#rlawhrukhe .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#knxptrrbjc .gt_from_md > :last-child {
+#rlawhrukhe .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#knxptrrbjc .gt_row {
+#rlawhrukhe .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2403,7 +2360,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#knxptrrbjc .gt_stub {
+#rlawhrukhe .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2416,7 +2373,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#knxptrrbjc .gt_stub_row_group {
+#rlawhrukhe .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2430,15 +2387,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: top;
 }
 
-#knxptrrbjc .gt_row_group_first td {
+#rlawhrukhe .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#knxptrrbjc .gt_row_group_first th {
+#rlawhrukhe .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#knxptrrbjc .gt_summary_row {
+#rlawhrukhe .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2448,16 +2405,16 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#knxptrrbjc .gt_first_summary_row {
+#rlawhrukhe .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#knxptrrbjc .gt_first_summary_row.thick {
+#rlawhrukhe .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#knxptrrbjc .gt_last_summary_row {
+#rlawhrukhe .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2467,7 +2424,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#knxptrrbjc .gt_grand_summary_row {
+#rlawhrukhe .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2477,7 +2434,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#knxptrrbjc .gt_first_grand_summary_row {
+#rlawhrukhe .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2487,7 +2444,7 @@ ul.task-list li input[type="checkbox"] {
   border-top-color: #D3D3D3;
 }
 
-#knxptrrbjc .gt_last_grand_summary_row_top {
+#rlawhrukhe .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2497,11 +2454,11 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#knxptrrbjc .gt_striped {
+#rlawhrukhe .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#knxptrrbjc .gt_table_body {
+#rlawhrukhe .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2510,7 +2467,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#knxptrrbjc .gt_footnotes {
+#rlawhrukhe .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2524,7 +2481,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#knxptrrbjc .gt_footnote {
+#rlawhrukhe .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2533,7 +2490,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#knxptrrbjc .gt_sourcenotes {
+#rlawhrukhe .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2547,7 +2504,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#knxptrrbjc .gt_sourcenote {
+#rlawhrukhe .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2555,92 +2512,88 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#knxptrrbjc .gt_left {
+#rlawhrukhe .gt_left {
   text-align: left;
 }
 
-#knxptrrbjc .gt_center {
+#rlawhrukhe .gt_center {
   text-align: center;
 }
 
-#knxptrrbjc .gt_right {
+#rlawhrukhe .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#knxptrrbjc .gt_font_normal {
+#rlawhrukhe .gt_font_normal {
   font-weight: normal;
 }
 
-#knxptrrbjc .gt_font_bold {
+#rlawhrukhe .gt_font_bold {
   font-weight: bold;
 }
 
-#knxptrrbjc .gt_font_italic {
+#rlawhrukhe .gt_font_italic {
   font-style: italic;
 }
 
-#knxptrrbjc .gt_super {
+#rlawhrukhe .gt_super {
   font-size: 65%;
 }
 
-#knxptrrbjc .gt_footnote_marks {
+#rlawhrukhe .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#knxptrrbjc .gt_asterisk {
+#rlawhrukhe .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#knxptrrbjc .gt_indent_1 {
+#rlawhrukhe .gt_indent_1 {
   text-indent: 5px;
 }
 
-#knxptrrbjc .gt_indent_2 {
+#rlawhrukhe .gt_indent_2 {
   text-indent: 10px;
 }
 
-#knxptrrbjc .gt_indent_3 {
+#rlawhrukhe .gt_indent_3 {
   text-indent: 15px;
 }
 
-#knxptrrbjc .gt_indent_4 {
+#rlawhrukhe .gt_indent_4 {
   text-indent: 20px;
 }
 
-#knxptrrbjc .gt_indent_5 {
+#rlawhrukhe .gt_indent_5 {
   text-indent: 25px;
 }
 
-#knxptrrbjc .katex-display {
+#rlawhrukhe .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#knxptrrbjc div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#rlawhrukhe div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
-
-<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-<thead>
-<tr class="gt_col_headings header">
-<th id="Items" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Items</th>
-</tr>
-</thead>
-<tbody class="gt_table_body">
-<tr class="odd">
-<td class="gt_row gt_left" headers="Items">Quiz 05</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left gt_striped" headers="Items">Quiz 06</td>
-</tr>
-</tbody>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Items">Items</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="Items" class="gt_row gt_left"><span data-qmd-base64="UXVpeiAwNQ=="><span class="gt_from_md">Quiz 05</span></span></td></tr>
+    <tr><td headers="Items" class="gt_row gt_left gt_striped"><span data-qmd-base64="UXVpeiAwNg=="><span class="gt_from_md">Quiz 06</span></span></td></tr>
+  </tbody>
+  
+  
 </table>
-
 </div>
 </div>
 </div>
@@ -2690,33 +2643,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       } else {
         el.classList.add('notransition');
       }
-    }
-  }
-  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
-    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
-    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
-    let newTheme = '';
-    if(darkModeDefault) {
-      newTheme = isAlternate ? baseTheme : alternateTheme;
-    } else {
-      newTheme = isAlternate ? alternateTheme : baseTheme;
-    }
-    const changeGiscusTheme = () => {
-      // From: https://github.com/giscus/giscus/issues/336
-      const sendMessage = (message) => {
-        const iframe = document.querySelector('iframe.giscus-frame');
-        if (!iframe) return;
-        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
-      }
-      sendMessage({
-        setConfig: {
-          theme: newTheme
-        }
-      });
-    }
-    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
-    if (isGiscussLoaded) {
-      changeGiscusTheme();
     }
   }
   const toggleColorMode = (alternate) => {
@@ -2785,15 +2711,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return localAlternateSentinel;
     }
   }
-  const darkModeDefault = false;
-  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  let localAlternateSentinel = 'default';
   // Dark / light mode switch
   window.quartoToggleColorScheme = () => {
     // Read the current dark / light value 
     let toAlternate = !hasAlternateSentinel();
     toggleColorMode(toAlternate);
     setStyleSentinel(toAlternate);
-    toggleGiscusIfUsed(toAlternate, darkModeDefault);
   };
   // Ensure there is a toggle, if there isn't float one in the top right
   if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
@@ -2828,7 +2752,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const onCopySuccess = function(e) {
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -2860,48 +2795,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
   });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
-    });
-    clipboardModal.on('success', onCopySuccess);
-  }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/norcalbiostat\.github\.io\/MATH615");
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-      }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+  function tippyHover(el, contentFn) {
     const config = {
       allowHTML: true,
+      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -2911,17 +2809,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start',
+      placement: 'bottom-start'
     };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -2933,129 +2822,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
-          }
-        }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
-        }
-        return container.innerHTML
-      } else {
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(note);
-        }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
-      }
-    }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
-          }
-        } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
-          .then(res => res.text())
-          .then(html => {
-            const parser = new DOMParser();
-            const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
-            if (note !== null) {
-              const html = processXRef(id, note);
-              instance.setContent(html);
-            } 
-          }).finally(() => {
-            instance.enable();
-            instance.show();
-          });
-        }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
+      return note.innerHTML;
     });
   }
       let selectedAnnoteEl;
@@ -3099,7 +2866,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
-            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -3125,32 +2891,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -3213,18 +2953,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-    <div class="nav-footer-left">
-<p>This site is built with 💚 and <a href="https://quarto.org/">Quarto</a> by <a href="www.norcalbiostat.com">Robin Donatello</a>.</p>
-</div>   
+    <div class="nav-footer-left">This site is built with 💚 and <a href="https://quarto.org/">Quarto</a> by <a href="www.norcalbiostat.com">Robin Donatello</a>.</div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/norcalbiostat/MATH615/edit/main/topics/t06-foundations_for_inference.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/norcalbiostat/MATH615/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    </div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
   </div>
 </footer>
-
 
 
 

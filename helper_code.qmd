@@ -1,0 +1,76 @@
+---
+title: "How do I...."
+execute: 
+  warning: false
+  message: false
+  echo: true
+---
+
+```{r}
+pen <- palmerpenguins::penguins
+library(gtsummary)
+library(tidyverse)
+```
+
+## Summarize a continuous variable across a categorical variable with many levels? 
+
+:::{.callout-important}
+#### Problem:
+Sometimes the categorical variable has so many levels, or the level names are so long that the table wraps off the edge of the PDF and is unreadable. 
+
+:::
+
+```{r}
+pen |> 
+  tbl_summary(
+  include = bill_length_mm,
+  by = species
+)
+```
+
+:::{.callout-tip}
+#### Solution
+
+There is no easy way to rotate or "transpose" a gtsummary object. One approach is to manually use a "split-apply-combine" method.
+
+1. we "map" a function `\()` across all levels of `pen$species` indexing by `s`
+2. For `species` `s`, we create a `tbl_summary`
+3. where we modify the header to have a common name of the numeric variable in question 
+4. And change the label of the row to the species level `s`
+5. Then we `stack` the tables together, and replace the `header` with the name of the Categorical variable
+:::
+
+```{r}
+purrr::map(levels(pen$species), \(s)
+  pen |>
+    filter(species == s) |>
+    tbl_summary(include = bill_length_mm, missing = "no") |>
+    modify_header(all_stat_cols() ~ "**Bill length (mm)**") |>
+    modify_table_body(~ mutate(.x, label = s))
+  ) |>
+  tbl_stack(group_header = NULL) |>
+  modify_header(label ~ "**Species**")
+
+```
+
+
+Another approach is to use `dplyr` to `group_by` and `summarize`, then pass the data frame into `kable` from the `knitr` package to make a nicer table.
+
+1. Create your summary statistics using `group_by` and `summarize`. 
+2. Create a new variable as the column header, using back ticks to allow for a "non standard" variable name. 
+3. Create this new variable by `paste`'ing the value of the mean and sd together with parenthesis, after rounding to 2 digits. 
+4. `select` the variables you want to display
+5. Pass it to `kable()`
+
+```{r}
+pen |>
+  group_by(species) |>
+  summarize(mean=mean(bill_length_mm, na.rm=TRUE), 
+            sd = sd(bill_length_mm, na.rm=TRUE)) |>
+  mutate(`Bill Length(mm)` = paste0(round(mean,2), " (", round(sd,2), ")")) |>
+  select(Species= species, `Bill Length(mm)`) |>
+  knitr::kable()
+```
+
+See the [kableExtra](https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html) vignette for additional references on how to prettify this table. 
+

@@ -1,5 +1,7 @@
 ---
 title: "Journal of Math 615 Guide for Authors"
+execute:
+    echo: fenced
 ---
 
 The *Journal of MATH 615* is the official internal publication of the Data Analysis for Graduate Research course at California State University at Chico. Specific details as to project deadlines, rubrics, and more can be found for current students on the Canvas course page. 
@@ -7,7 +9,7 @@ The *Journal of MATH 615* is the official internal publication of the Data Analy
 
 # Article Preparation
 
-Article must be written in English using the Quarto R and text processing system. The journal Style Guide must be followed for formatting manuscripts. Only PDF files can be submitted. It is the responsibility of the authors to provide a submission in the appropriate format, paying very close attention to the style instructions. Manuscripts not meeting these requirements will be returned to the authors immediately.
+Article must be written in English using the Quarto R and text processing system. The Journal style guide must be followed for formatting manuscripts. Only PDF files can be submitted. It is the responsibility of the authors to provide a submission in the appropriate format, paying very close attention to the style instructions. Manuscripts not meeting these requirements will be returned to the authors immediately.
 
 ## Reproducibility 
 
@@ -15,7 +17,8 @@ To ensure reproducibility and provide transparency, all results from the manuscr
 
 ## Required template
 
-To facilitate authoring manuscripts in the required style, we require authors to use the [custom jasa Quarto template extension](https://github.com/norcalbiostat/journal615-quarto-template/tree/main). You can see a video tutorial on how to install Quarto article templates [here](https://youtu.be/uJy45by8HFI). 
+To facilitate authoring manuscripts in the required style, we require authors to use this [custom quarto template](journal/template.qmd) and [bibliography file](bibliography.bib). 
+
 
 ## Cover image
 Authors are encouraged to submit a .jpg or .png image that would be used as a cover image in the publication. 
@@ -55,6 +58,81 @@ Articles must include a "Table 1" that describes the study population in a tabul
 
 ## Decimal Numerals
 To enhance readability and clarity of the text as well as tables and figures, decimal numerals should - with the obvious exception of P-values - be rounded to the unit whenever possible (i.e. in all cases in which the rounding procedure does not change the meaning). Consider using the [`scales::label_pvalue`](https://scales.r-lib.org/reference/label_pvalue.html) function as applicable. 
+
+
+## Captions {#tbl-cap}
+
+### For Tables use `tbl-`
+```{r}
+#| label: tbl-lm
+#| tbl-cap: "A regression model."
+
+pen <- palmerpenguins::penguins
+lm(body_mass_g ~ island + bill_length_mm, data = pen) |>
+  gtsummary::tbl_regression()
+```
+
+### For Figures use `fig-`
+```{r}
+#| label: fig-scatter
+#| fig-cap: "A scatterplot"
+#| fig-width: 4
+#| fig-height: 4
+
+ggpubr::ggscatter(pen, x = "bill_length_mm", y = "body_mass_g", 
+                  color = "island",
+                  add = "loess", conf.int = TRUE)
+
+```
+
+
+## Cross-references {#sec-crf}
+
+
++---------------------------------------+---------------------------------+
+| Markdown Format                       | Output                          |
++=======================================+=================================+
+|     @fig-scatter is pretty.           | @fig-scatter is pretty.         |
++---------------------------------------+---------------------------------+
+|     @tbl-lm was created from code.    | @tbl-lm was created from code.  |
++---------------------------------------+---------------------------------+
+|     @sec-crf is this section.         | @sec-crf is this section.       |
++---------------------------------------+---------------------------------+
+|     @eq-black-scholes is above.       | @eq-black-scholes is above.     |
++---------------------------------------+---------------------------------+
+
+See the [Quarto documentation on cross-references for more info](https://quarto.org/docs/authoring/cross-references.html).
+
+
+## Citation Syntax {#sec-citations}
+
+The journal template contains a Bibtex `.bib` file for you to use. Any style of reference is acceptable as long as formatting is consistent. See [the Quarto section of the BibTeX guide](https://bibtex.eu/quarto/) and the Citation guide from the [Quarto documentation](https://quarto.org/docs/authoring/citations.html) for information on how to cite articles and include a reference section in Quarto. 
+
+
++-------------------------------------------+---------------------------------------------------------------------+
+| Markdown Format                           | Output                                                              |
++===========================================+=====================================================================+
+|     Blah Blah [see @knuth1984, pp. 33-35; | Blah Blah [see @knuth1984, pp. 33-35; also @wickham2015, chap. 1]   |
+|     also @wickham2015, chap. 1]           |                                                                     |
++-------------------------------------------+---------------------------------------------------------------------+
+|     Blah Blah [@knuth1984, pp. 33-35,     | Blah Blah [@knuth1984, pp. 33-35, 38-39 and passim]                 |
+|     38-39 and passim]                     |                                                                     |
++-------------------------------------------+---------------------------------------------------------------------+
+|     Blah Blah [@wickham2015; @knuth1984]. | Blah Blah [@wickham2015; @knuth1984].                               |
++-------------------------------------------+---------------------------------------------------------------------+
+|     Wickham says blah [-@wickham2015]     | Wickham says blah [-@wickham2015]                                   |
++-------------------------------------------+---------------------------------------------------------------------+
+
+You can also write in-text citations, as follows:
+
++-----------------------------------+-------------------------------+
+| Markdown Format                   | Output                        |
++===================================+===============================+
+|     @knuth1984 says blah.         | @knuth1984 says blah.         |
++-----------------------------------+-------------------------------+
+|     @knuth1984 [p. 33] says blah. | @knuth1984 [p. 33] says blah. |
++-----------------------------------+-------------------------------+
+
 
 # Article Body Structure
 
@@ -103,6 +181,7 @@ Interpret your results, explain their meaning, and place them in context with ex
 
 ## References
 The journal template contains a Bibtex `.bib` file for you to use. Any style of reference is acceptable as long as formatting is consistent. See [the Quarto section of the BibTeX guide](https://bibtex.eu/quarto/) and the Citation guide from the [Quarto documentation](https://quarto.org/docs/authoring/citations.html) for information on how to cite articles and include a reference section in Quarto. 
+
 
 
 ## Appendix
