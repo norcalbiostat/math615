@@ -70,23 +70,11 @@ To guide your description of this distribution try to include the following info
 library(tidyverse)
 library(sjPlot)
 library(ggpubr)
+library(gtsummary)
 
 load(here::here("data/depression_clean.Rdata")) # your import line will look something like this
 ```
 
-> text written like this are example student submission text
-
-## Basic categorical
-Draft style plot, direct computer output showing/copied. Poor grammar and/or sentence structure, no attempt at explaining what the variable means, extra unnecessary or incorrect information included. Typos. 
-
-```{r}
-table(clean$depressed)
-```
-
-> There are 249 not depressed and 45 depressed. 
-
-## Proficient categorical
-Cleaned up plot, full English sentences, useful text formatting of variable names and levels. Explained what the variable was named and what it measured. 
 
 > The `depressed` variable is an indicator variable created from the CESD scale to identify potential clinical depression. This variable has two levels: `depressed` or `not depressed`. 
 
@@ -97,20 +85,6 @@ plot_frq(clean$depressed)
 > The majority of respondents in this data set are not considered depressed; 84.7% (n=249) individuals did not meet the threshold on the CESD scale to indicate potential clinical depression.  
 
 \newpage
-
-## Basic quantitative 
-A "for your eyes only" quality plot, minimal description of characteristics, no information about the variable provided. 
-
-```{r}
-hist(clean$age)
-summary(clean$age)
-sd(clean$age)
-```
-
-> age is skewed right with a mean of 44 and median of 42 and a sd of 18.
-
-## Proficient quantitative
-Overlaid a density curve on the histogram, added a dashed line at the mean. Table of summary statistics present in a nicely formatted way, digits rounded appropriately. Plot cleaned up with appropriate axis and titles.  
 
 
 ```{r}
@@ -126,6 +100,11 @@ gghistogram(clean$age, add_density = TRUE) + xlab("Age")
 # Example - Part II
 
 ```{r}
-
+tbl_summary(clean, 
+            include = c(age, depressed), 
+            statistic = list(
+              all_continuous() ~ "{mean} ({sd})",
+              all_categorical() ~ "{n} / {N} ({p}%)"
+    ))
 ```
 
