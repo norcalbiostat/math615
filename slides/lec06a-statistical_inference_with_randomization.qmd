@@ -16,6 +16,7 @@ execute:
   freeze: auto
   echo: true
   eval: false
+  cache: true
 knitr:
   opts_chunk: 
     R.options:
@@ -146,7 +147,7 @@ It's your turn to assume the role of the bank personnel director and make a prom
 ## Class Results
 
 ```{r, echo=FALSE, code.show=FALSE}
-URL <- "https://docs.google.com/spreadsheets/d/1KViV3beCDKMfeNgJFLTJauybKBQ4qrDRqS4gCFgi8ec"
+URL <- "https://docs.google.com/spreadsheets/d/1wDFIa0bKUl1Hk1g_Vc5wX3liigI7qbywncc6fQcvxWY"
 ```
 :::: {.columns}
 
@@ -173,12 +174,12 @@ Describe the distribution of this graph. What does it seem to be centered around
 In what percent of simulations did we observe a difference of at least 29.2\% (0.292)? 
 
 ```{r}
-sum(sim.data$mfdiff >= .29) / NROW(sim.data)
+(sim.pt.est <- sum(sim.data$mfdiff >= .29) / NROW(sim.data))
 ```
 
 ## Decision
 
-In our analysis, we determined that there was only a $\approx$ ____ chance of obtaining a sample where $\geq$ 29.2\% more male candidates than female candidates get promoted under the null hypothesis, so we conclude that the data provide _some_ evidence of sex discrimination against female candidates by the male supervisors. **In this case, we _can reject_ the null hypothesis in favor of the alternative.**
+In our analysis, we determined that there was only a $\approx$ `r 100*round(sim.pt.est,3)`% chance of obtaining a sample where $\geq$ 29.2\% more male candidates than female candidates get promoted under the null hypothesis, so we conclude that the data provide _some_ evidence of sex discrimination against female candidates by the male supervisors. **In this case, we _can reject_ the null hypothesis in favor of the alternative.**
 
 
 ## Closing
