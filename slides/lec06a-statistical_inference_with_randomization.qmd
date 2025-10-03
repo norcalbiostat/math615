@@ -15,8 +15,7 @@ format:
 execute:
   freeze: auto
   echo: true
-  eval: false
-  cache: true
+  eval: true
 knitr:
   opts_chunk: 
     R.options:
@@ -179,7 +178,7 @@ In what percent of simulations did we observe a difference of at least 29.2\% (0
 
 ## Decision
 
-In our analysis, we determined that there was only a $\approx$ `r 100*round(sim.pt.est,3)`% chance of obtaining a sample where $\geq$ 29.2\% more male candidates than female candidates get promoted under the null hypothesis, so we conclude that the data provide _some_ evidence of sex discrimination against female candidates by the male supervisors. **In this case, we _can reject_ the null hypothesis in favor of the alternative.**
+In our analysis, we determined that there was only a $\approx$ 3.7% chance of obtaining a sample where $\geq$ 29.2\% more male candidates than female candidates get promoted under the null hypothesis, so we conclude that the data provide _some_ evidence of sex discrimination against female candidates by the male supervisors. **In this case, we _can reject_ the null hypothesis in favor of the alternative.**
 
 
 ## Closing
