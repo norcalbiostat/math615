@@ -1313,7 +1313,7 @@
     "href": "slides/lec06b-statistical_inference_with_models.html#the-normal-distribution-2",
     "title": "Statistical Inference using Models",
     "section": "The Normal Distribution",
-    "text": "The Normal Distribution\n\n\n\nSymmetric, “bell shaped”\nCentered on \\(\\mu\\) and spread controlled by \\(\\sigma^2\\)\nTails extend to \\(\\infty\\)\n\n\n\n\n\n\n\n\nArea under the curve will always add to 1.\nUsed to calculate the probability of an event occurring"
+    "text": "The Normal Distribution\n\n\n\nSymmetric, “bell shaped”\nCentered on \\(\\mu\\) and spread controlled by \\(\\sigma^2\\)\nTails extend to \\(\\infty\\)\n\n\n\n\n\n\n\n\n\n\n\n\nArea under the curve will always add to 1.\nUsed to calculate the probability of an event occurring"
   },
   {
     "objectID": "slides/lec06b-statistical_inference_with_models.html#comparing-values-under-two-different-distributions",
@@ -1348,7 +1348,7 @@
     "href": "slides/lec06b-statistical_inference_with_models.html#comparing-scores-1",
     "title": "Statistical Inference using Models",
     "section": "Comparing Scores",
-    "text": "Comparing Scores\nWhile we know Nel did better, Sian didn’t do too bad! What was their percentile (The percent of observations below a specified value)?\n\n\n\n\nShow the code\nopenintro::normTail(m = 21, s = 5, L = 24)\n\n\n\n\n\n\nWe can find this value using pnorm(z, mean, sd).\n\n\nShow the code\npnorm(.6, mean = 0, sd = 1)\n\n\n[1] 0.7257469"
+    "text": "Comparing Scores\nWhile we know Nel did better, Sian didn’t do too bad! What was their percentile (The percent of observations below a specified value)?\n\n\n\n\nShow the code\nopenintro::normTail(m = 21, s = 5, L = 24)\n\n\n\n\n\n\n\n\n\n\nWe can find this value using pnorm(z, mean, sd).\n\n\nShow the code\npnorm(.6, mean = 0, sd = 1)\n\n\n[1] 0.7257469"
   },
   {
     "objectID": "slides/lec06b-statistical_inference_with_models.html#finding-percentiles",
@@ -1397,7 +1397,7 @@
     "href": "slides/lec06b-statistical_inference_with_models.html#observed-data",
     "title": "Statistical Inference using Models",
     "section": "Observed data",
-    "text": "Observed data\nConsider an experiment that examined whether implanting a stent in the brain of a patient at risk for a stroke helps reduce the risk of a stroke. The results from the first 30 days of this study are summarized in the following table.\n\n\n\n\nShow the code\ntable(stent30$group, stent30$outcome) |&gt; addmargins()\n\n\n           \n            no event stroke Sum\n  control        214     13 227\n  treatment      191     33 224\n  Sum            405     46 451\n\n\n\n\n\nShow the code\ntable(stent30$group, stent30$outcome) |&gt;  prop.table(margin=1) |&gt;round(digits=2)\n\n\n           \n            no event stroke\n  control       0.94   0.06\n  treatment     0.85   0.15\n\n\n\n\nThese results are surprising! The point estimate suggests that patients who received stents may have a higher risk of stroke: \\(p_{trmt}−p_{ctrl}=0.090\\)."
+    "text": "Observed data\nConsider an experiment that examined whether implanting a stent in the brain of a patient at risk for a stroke helps reduce the risk of a stroke. The results from the first 30 days of this study are summarized in the following table.\n\n\n\n\nShow the code\ntable(stent30$group, stent30$outcome) |&gt; addmargins()\n\n\n           \n            no event stroke Sum\n  control        214     13 227\n  treatment      191     33 224\n  Sum            405     46 451\n\n\n\n\n\nShow the code\ntable(stent30$group, stent30$outcome) |&gt;  prop.table(margin=1) |&gt;round(digits=2)\n\n\n           \n            no event stroke\n  control       0.94   0.06\n  treatment     0.85   0.15\n\n\n\nThese results are surprising! The point estimate suggests that patients who received stents may have a higher risk of stroke: \\(p_{trmt}−p_{ctrl}=0.090\\)."
   },
   {
     "objectID": "slides/lec06b-statistical_inference_with_models.html#point-estimate-vs-interval-estimate",
@@ -1467,7 +1467,7 @@
     "href": "slides/lec06b-statistical_inference_with_models.html#hypothesis-test-4",
     "title": "Statistical Inference using Models",
     "section": "Hypothesis test",
-    "text": "Hypothesis test\n\n\n\nRevision 3.5:\n\n\nRewriting as a difference in parameters\n\n\n\nLet \\(p_{1}\\) be the proportion of patients with a stent who have a stroke, and \\(p_{ctrl}\\) be the proportion of patients without a stent who have a stroke\n\n\n\\(H_{0}: p_{trmt} - p_{ctrl} = 0\\)\n\\(H_{A}: p_{trmt} - p_{ctrl} \\neq 0\\)"
+    "text": "Hypothesis test\n\n\n\nRevision 3.5:\n\n\nRewriting as a difference in parameters\n\n\n\nLet \\(p_{trmt}\\) be the proportion of patients with a stent who have a stroke, and \\(p_{ctrl}\\) be the proportion of patients without a stent who have a stroke\n\n\n\\(H_{0}: p_{trmt} - p_{ctrl} = 0\\)\n\\(H_{A}: p_{trmt} - p_{ctrl} \\neq 0\\)"
   },
   {
     "objectID": "slides/lec06b-statistical_inference_with_models.html#using-the-normal-model",
@@ -1495,14 +1495,14 @@
     "href": "slides/lec06b-statistical_inference_with_models.html#using-confidence-intervals-to-test-a-hypothesis",
     "title": "Statistical Inference using Models",
     "section": "Using Confidence Intervals to test a hypothesis",
-    "text": "Using Confidence Intervals to test a hypothesis\n\nWe are 95% confident that implanting a stent in a stroke patient’s brain increased the risk of stroke within 30 days by a rate of 0.035 to 0.145.\n\nSince the interval does not contain the null hypothesized value of 0 (is completely above 0), it means the data provide convincing evidence that the stent used in the study changed the risk of stroke within 30 days\n\n\n🔗 https://math615.netlify.app"
+    "text": "Using Confidence Intervals to test a hypothesis\n\nWe are 95% confident that implanting a stent in a stroke patient’s brain increased the risk of stroke within 30 days by a rate of 0.035 to 0.145.\n\nSince the interval does not contain the null hypothesized value of 0 (is completely above 0), it means the data provide convincing evidence that the stent used in the study changed the risk of stroke within 30 days"
   },
   {
     "objectID": "slides.html",
     "href": "slides.html",
     "title": "All Slides",
     "section": "",
-    "text": "Slides will open in full screen. Right click to open in a new tab\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDate\n\n\nLec #\n\n\nTopic\n\n\n\n\n\n\nAug 25, 2024\n\n\nlec00a\n\n\nWelcome to MATH 615\n\n\n\n\nAug 25, 2025\n\n\nlec00b\n\n\nMATH 615 Course Tools\n\n\n\n\nAug 27, 2025\n\n\nlec01\n\n\nData Architecture\n\n\n\n\nSep 3, 2025\n\n\nlec02\n\n\nFormulating research questions\n\n\n\n\nSep 8, 2025\n\n\nlec03a\n\n\nWorkflows for Reproducibility\n\n\n\n\nSep 10, 2025\n\n\nlec03b\n\n\nPreparing your data for analysis\n\n\n\n\nSep 15, 2025\n\n\nlec04\n\n\nDescribing Distributions of Data\n\n\n\n\nSep 17, 2025\n\n\nlec05a\n\n\nDescribing Relationships between variables\n\n\n\n\nSep 24, 2025\n\n\nlec05b\n\n\nBest practices in Data Visualization\n\n\n\n\nOct 1, 2025\n\n\nlec06a\n\n\nStatistical Inference with Randomization\n\n\n\n\nOct 6, 2025\n\n\nlec06b\n\n\nStatistical Inference using Models\n\n\n\n\n\n\nNo matching items"
+    "text": "Slides will open in full screen. Right click to open in a new tab\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDate\n\n\nLec #\n\n\nTopic\n\n\n\n\n\n\nAug 25, 2024\n\n\nlec00a\n\n\nWelcome to MATH 615\n\n\n\n\nAug 25, 2025\n\n\nlec00b\n\n\nMATH 615 Course Tools\n\n\n\n\nAug 27, 2025\n\n\nlec01\n\n\nData Architecture\n\n\n\n\nSep 3, 2025\n\n\nlec02\n\n\nFormulating research questions\n\n\n\n\nSep 8, 2025\n\n\nlec03a\n\n\nWorkflows for Reproducibility\n\n\n\n\nSep 10, 2025\n\n\nlec03b\n\n\nPreparing your data for analysis\n\n\n\n\nSep 15, 2025\n\n\nlec04\n\n\nDescribing Distributions of Data\n\n\n\n\nSep 17, 2025\n\n\nlec05a\n\n\nDescribing Relationships between variables\n\n\n\n\nSep 24, 2025\n\n\nlec05b\n\n\nBest practices in Data Visualization\n\n\n\n\nOct 1, 2025\n\n\nlec06a\n\n\nStatistical Inference with Randomization\n\n\n\n\nOct 6, 2025\n\n\nlec06b\n\n\nStatistical Inference using Models\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "syllabus.html",
