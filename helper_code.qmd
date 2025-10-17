@@ -12,9 +12,25 @@ This page is dedicated to showing example code for selected tasks.
 pen <- palmerpenguins::penguins
 library(gtsummary)
 library(tidyverse)
+library(performance) # for check_model. You will also need to install the `see` package
+# webshot2 -- You will have to install this package to use gtsave but don't need to load it
 ```
 
-## Summarize a continuous variable across a categorical variable with many levels? 
+# Create Nice variable names
+
+Select the variables of interest and rename them nicely using `select`. Note any name with a space in it has to be surrounded by a back tick (to the left of the 1 key)
+
+```{r}
+analysis.data <- 
+  pen %>% 
+  select(`Bill Depth (mm)` = bill_depth_mm, 
+         `Bill Length (mm)` = bill_length_mm, 
+         Sex = sex) %>%
+  na.omit()
+```
+
+
+# Summarize a continuous variable across a categorical variable with many levels? 
 
 :::{.callout-important}
 #### Problem:
@@ -75,4 +91,80 @@ pen |>
 ```
 
 See the [kableExtra](https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html) vignette for additional references on how to prettify this table. 
+
+# Plots
+
+## Export to a file
+
+Make it look good first.
+
+```{r}
+ggplot(analysis.data, aes(x=`Bill Length (mm)`, 
+                          y = `Bill Depth (mm)`, 
+                          color = Sex)) + 
+  geom_point() + 
+  theme_bw(base_size=18)
+```
+
+Then save. Import this into your poster file and adjust the width and height as needed.
+
+```{r}
+#| eval: false
+ggplot(analysis.data, aes(x=`Bill Length (mm)`, 
+                          y = `Bill Depth (mm)`, 
+                          color = Sex)) + 
+  geom_point() + 
+  theme_bw(base_size=18) 
+  ggsave(filename = "myplot.png",  plot = get_last_plot(),
+         width = 6, height = 6, units = "in")
+```
+
+## Remove a legend
+
+```{r}
+ggplot(pen, aes(x=island, fill = island)) + geom_bar() + 
+  theme(legend.position="none")
+```
+
+# Regression model results
+
+Make it look good first. 
+```{r}
+model <- lm(`Bill Depth (mm)` ~ `Bill Length (mm)` + Sex, data=analysis.data)
+
+model %>% 
+  tbl_regression() %>% 
+  add_glance_table(include = c(adj.r.squared, nobs)) 
+```
+
+Then add the code to export it as an image.
+
+```{r}
+#| eval: false
+model %>%
+  tbl_regression() %>% 
+  add_glance_table(include = c(adj.r.squared, nobs)) %>% 
+  as_gt() %>%
+  gt::gtsave(filename = "model_results.png", expand = 10)
+```
+
+## Resizing your output
+
+Necessary to not make certain plots super squished. 
+
+Without resizing.
+
+```{r}
+check_model(model) # from the performance package
+```
+
+Apply a code chunk option (`#|`) to resize the height
+
+```{r}
+#| fig-height: 10
+#| echo: fenced
+check_model(model)
+```
+
+
 
