@@ -1,0 +1,1655 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.7.32">
+
+  <meta name="author" content="Robin Donatello">
+  <meta name="dcterms.date" content="2025-10-22">
+  <title>Data Analysis for Graduate Research – Simple Linear Regression Modeling</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-39d1eab08b8faec97b8adc39508066ea.css">
+  <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Simple Linear Regression Modeling</h1>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Robin Donatello 
+</div>
+</div>
+</div>
+
+  <p class="date">2025-10-22</p>
+</section>
+<section>
+<section id="purpose-estimation" class="title-slide slide level1 center">
+<h1>Purpose &amp; Estimation</h1>
+
+</section>
+<section id="purpose-of-regression-modeling" class="slide level2 smaller">
+<h2>Purpose of Regression Modeling</h2>
+<ul>
+<li>Learn more about the relationship between several independent or predictor variables and a <strong>quantitative</strong> dependent (response) variable.</li>
+<li>Regression is widely used in research as it allows us to ask the general question “<em>what is the best predictor of</em>…”, and does “<em>additional variable A</em>” or “<em>additional variable B confound the relationship between my explanatory and response variable?</em>”</li>
+</ul>
+<p>Both Regression and Correlation can be used to</p>
+<ul>
+<li><strong>Descriptive</strong>: Draw inferences regarding the relationship</li>
+<li><strong>Predictive</strong>: Predict the value of <span class="math inline">\(Y\)</span> for given values of one or more <span class="math inline">\(X\)</span>’s.</li>
+</ul>
+</section>
+<section id="examples-in-practice" class="slide level2">
+<h2>Examples in practice</h2>
+<ul>
+<li>Educational researchers might want to learn about the best predictors of success in high-school.</li>
+<li>Sociologists may want to find out which of the multiple social indicators best predict whether or not a new immigrant group will adapt to their new country of residence.</li>
+<li>Biologists may want to find out which factors (i.e.&nbsp;temperature, barometric pressure, humidity, etc.) best predict caterpillar reproduction.</li>
+</ul>
+</section>
+<section id="example---lung-function" class="slide level2 smaller">
+<h2>Example - Lung function</h2>
+<div class="callout callout-tip no-icon callout-style-simple">
+<div class="callout-body">
+<div class="callout-content">
+<p>Lung function data were obtained from an epidemiological study of households living in four areas with different amounts and types of air pollution. The data set used in PMA6 is a subset of the total data. In this example we use only the data taken on the fathers, all of whom are nonsmokers.</p>
+</div>
+</div>
+</div>
+<p>One of the major early indicators of reduced respiratory function is FEV1 or forced expiratory volume in the first second (amount of air exhaled in 1 second). Since it is known that taller males tend to have higher FEV1, we wish to determine the relationship between height and FEV1. We can use regression analysis for both a descriptive and predictive purpose.</p>
+<ul>
+<li><strong>Descriptive</strong>: Describing the relationship between FEV1 and height</li>
+<li><strong>Predictive</strong>: Determine the expected or normal FEV1 for a given height</li>
+</ul>
+</section>
+<section id="visualize-the-relationship" class="slide level2 smaller">
+<h2>Visualize the relationship</h2>
+<div class="columns">
+<div class="column" style="width:40%;">
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">ggplot</span>(fev, <span class="fu">aes</span>(<span class="at">y=</span>FFEV1, <span class="at">x=</span>FHEIGHT)) <span class="sc">+</span> </span>
+<span id="cb1-2"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">se=</span><span class="cn">FALSE</span>, <span class="at">col=</span><span class="st">"blue"</span>) <span class="sc">+</span> </span>
+<span id="cb1-3"><a></a>  <span class="fu">geom_smooth</span>(<span class="at">se=</span><span class="cn">FALSE</span>, <span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">col=</span><span class="st">"red"</span>) <span class="sc">+</span> </span>
+<span id="cb1-4"><a></a>      <span class="fu">xlab</span>(<span class="st">"Height"</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">"FEV1"</span>) <span class="sc">+</span> </span>
+<span id="cb1-5"><a></a>      <span class="fu">ggtitle</span>(<span class="st">"Scatterplot and Regression line of FEV1 </span><span class="sc">\n</span><span class="st"> Versus Height for Males."</span>) <span class="sc">+</span> <span class="fu">theme_bw</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="lec08-slr_files/figure-revealjs/unnamed-chunk-2-1.png" width="384"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:60%;">
+<p><br>
+There does appear to be a tendency for taller men to have higher FEV1. Since this relationship is reasonably linear (the blue loess line is similar to the red linear line) we can write the model the population average FEV <span class="math inline">\(\mu_{y}\)</span> as a linear function of height <span class="math inline">\(x\)</span>:</p>
+<p><span class="math display">\[
+  \mu_{y} = \beta_{0} + \beta_{1}x
+\]</span></p>
+<p>The intercept parameter, <span class="math inline">\(\beta_{0}\)</span>, represents where the line crosses the y-axis when <span class="math inline">\(x=0\)</span>. The slope parameter, <span class="math inline">\(\beta_{1}\)</span>, represents the change in <span class="math inline">\(\mu_{y}\)</span> per 1 unit <span class="math inline">\(x\)</span>.</p>
+</div></div>
+</section>
+<section id="unifying-model-framework" class="slide level2 smaller">
+<h2>Unifying model framework</h2>
+<p>We know that there is always random noise in real data (DATA = MODEL FIT + RESIDUAL) so we introduce a random error term, <span class="math inline">\(\epsilon_{i}\)</span> and assume the model:</p>
+<p><span class="math display">\[
+y_{i} = \beta_{0} + \beta_{1} X + \epsilon_{i} \\
+\epsilon_{i} \sim N(0, \sigma^{2})
+\]</span></p>
+<p>This model states that the random variable <span class="math inline">\(y\)</span> to be made up of a predictable part (a linear function of <span class="math inline">\(x\)</span>) and an unpredictable part (the random error, <span class="math inline">\(\epsilon_{i}\)</span>). The error (residual) term includes the effects of all other factors, known or unknown.</p>
+</section>
+<section id="least-squares-estimation" class="slide level2 smaller">
+<h2>Least Squares Estimation</h2>
+<ul>
+<li>Most common method of fitting a straight line to two variables.</li>
+<li>Also known as “Ordinary Least Squares (OLS)”</li>
+<li>Calculates sample statistics <span class="math inline">\(b_{0}\)</span> and <span class="math inline">\(b_{1}\)</span> to estimate the population parameter values <span class="math inline">\(\beta_{0}\)</span> and <span class="math inline">\(\beta_{1}\)</span></li>
+<li>The estimated mean function is <span class="math inline">\(\hat{y}_{i} = b_{0} + b_{1}x_{i}\)</span></li>
+<li>The <em>fitted value</em>, <span class="math inline">\(\hat{y}_{i}\)</span>, is the estimated value for point <span class="math inline">\(i\)</span>, calculated by plugging in a value for <span class="math inline">\(x_{i}\)</span> and calculating the result.<br>
+</li>
+<li>The <em>residual</em> is the difference between the observed and the fitted value: <span class="math inline">\(\epsilon_{i} = y_{i}-\hat{y}_{i}\)</span></li>
+</ul>
+</section>
+<section id="least-squares-estimation-1" class="slide level2 smaller">
+<h2>Least Squares Estimation</h2>
+<p>The estimates <span class="math inline">\(b_{0}\)</span> and <span class="math inline">\(b_{1}\)</span> are found such that they minimize the sum of the squared residuals (the unexplained residual error)</p>
+<p><span class="math display">\[ \sum_{i=1}^{n} \epsilon_{i} \]</span></p>
+<p>For simple linear regression the regression coefficient estimates that minimize the sum of squared errors can be calculated as:</p>
+<p><span class="math display">\[ \hat{\beta_{0}} = \bar{y} - \hat{\beta_{1}}\bar{x} \quad \mbox{  and  } \quad  \hat{\beta_{1}} = r\frac{s_{y}}{s_{x}} \]</span></p>
+<p>where <span class="math inline">\(r\)</span> is the correlation coefficient between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>.</p>
+</section></section>
+<section>
+<section id="partitioning-the-variance" class="title-slide slide level1 center">
+<h1>Partitioning the Variance</h1>
+
+</section>
+<section id="revisiting-the-sum-of-squares" class="slide level2 smaller">
+<h2>Revisiting the Sum of Squares</h2>
+<p>Go to: <a href="https://paternogbc.shinyapps.io/SS_regression/">https://paternogbc.shinyapps.io/SS_regression/</a>. Then turn and talk to your group about the following features of the <strong>Sum of Squares Graphs</strong></p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Total</strong></p>
+<ul>
+<li>What are the dots?</li>
+<li>What does the horizontal line represent?</li>
+<li>What do the blue lines represent?</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>Regression</strong></p>
+<ul>
+<li>What does the horizontal line represent?</li>
+<li>What does the sloped line represent?</li>
+<li>What are the green lines?</li>
+</ul>
+<p><strong>Error</strong></p>
+<ul>
+<li>What are the dots?</li>
+<li>What does the sloped line represent?</li>
+<li>What do the red lines represent?</li>
+</ul>
+</div></div>
+</section>
+<section id="sum-of-squares---regression" class="slide level2">
+<h2>Sum of Squares - Regression</h2>
+<ul>
+<li>SS Total- how far are the points away from <span class="math inline">\(\bar{y}\)</span>?</li>
+<li>SS Regression - how far away is the regression line from <span class="math inline">\(\bar{y}\)</span>?</li>
+<li>SS Error - how far are the points away from the estimated regression line?</li>
+</ul>
+<p>Looking at it this way, we are asking “If I know the value of <span class="math inline">\(x\)</span>, how much better will I be at predicting <span class="math inline">\(y\)</span> than if I were just to use <span class="math inline">\(\bar{y}\)</span>?</p>
+</section></section>
+<section>
+<section id="fitting-the-model" class="title-slide slide level1 center">
+<h1>Fitting the model</h1>
+
+</section>
+<section id="least-squares-estimation---in-r" class="slide level2">
+<h2>Least Squares Estimation - in R</h2>
+<p>A linear model using least squares estimation can be performed in R using the function <code>lm(y ~ x)</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>fev.model <span class="ot">&lt;-</span> <span class="fu">lm</span>(FFEV1 <span class="sc">~</span> FHEIGHT, <span class="at">data =</span> fev)</span>
+<span id="cb2-2"><a></a>fev.model</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = FFEV1 ~ FHEIGHT, data = fev)
+
+Coefficients:
+(Intercept)      FHEIGHT  
+    -4.0867       0.1181  </code></pre>
+</div>
+</div>
+<p>The regression equation for the model to explain FEV1 using height as a predictor is:<br>
+<span class="math display">\[ \hat{y} = -4.087 + 0.118x \]</span></p>
+</section>
+<section id="using-this-model" class="slide level2">
+<h2>Using this model</h2>
+<p><span class="math display">\[ \hat{y} = -4.087 + 0.118x \]</span></p>
+<ul>
+<li><span class="math inline">\(b_{0}\)</span>: For a father that is 0 cm tall, the predicted FEV is -4.087 (an impossible result)</li>
+<li><span class="math inline">\(b_{1}\)</span>: For every additional cm taller a father is, his predicted FEV increases by 0.118L.</li>
+<li><span class="math inline">\(\hat{y}_{x=70}\)</span>: A father who is 70cm tall has a predicted FEV1 of <span class="math inline">\(-4.087 + 0.118(70) = 4.17L\)</span></li>
+</ul>
+</section>
+<section id="other-facts-about-ls-regression" class="slide level2 smaller">
+<h2>Other facts about LS regression</h2>
+<ul>
+<li>A change of one sd in <span class="math inline">\(x\)</span> corresponds to a change of <span class="math inline">\(r\)</span> sd in <span class="math inline">\(y\)</span> since <span class="math inline">\(b_{1}=r\frac{s_{y}}{s_{x}}\)</span>.</li>
+<li>If the correlation is 0, the slope of the LS line is 0. A test of <span class="math inline">\(\beta_{1}=0\)</span> is equivalent to a test of <span class="math inline">\(\rho=0\)</span>.</li>
+<li>The LS line always passes through the point <span class="math inline">\((\bar{x}, \bar{y})\)</span>.</li>
+<li>The distinction between explanatory and response variables is essential in regression. Reversing <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> results in a different regression line.</li>
+<li>The Root Mean Squared Error (RMSE) is an estimate for <span class="math inline">\(\sigma\)</span>.</li>
+</ul>
+</section></section>
+<section>
+<section id="assumptions" class="title-slide slide level1 center">
+<h1>Assumptions</h1>
+
+</section>
+<section id="mathematical-model" class="slide level2 smaller">
+<h2>Mathematical Model</h2>
+<p>The mathematical model that we use for regression has these features that translate into assumptions.</p>
+<div class="columns">
+<div class="column" style="width:40%;">
+<p><span class="math display">\[
+\begin{align}
+  Y|X &amp; \sim N(\mu_{Y|X}, \sigma^{2}) \\
+  \mu_{Y|X} &amp; = \beta_{0} + \beta_{1} X \\
+   \sigma^{2} &amp; = Var(Y|X)
+\end{align}
+\]</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/slr_graph.png"></p>
+<figcaption>Figure 6.2</figcaption>
+</figure>
+</div>
+</div><div class="column" style="width:60%;">
+<ul>
+<li class="fragment"><strong>Independence</strong> The observations are the result of a simple random sample and thus are independent from each other</li>
+<li class="fragment"><strong>Linearity</strong>: The mean of <span class="math inline">\(Y\)</span> values at any given <span class="math inline">\(X\)</span> follows a straight line</li>
+<li class="fragment"><strong>Normality</strong>: <span class="math inline">\(Y\)</span> values are normally distributed at any given <span class="math inline">\(X\)</span></li>
+<li class="fragment"><strong>Homoscedasticity</strong> The variance of <span class="math inline">\(Y\)</span> values at any <span class="math inline">\(X\)</span> is <span class="math inline">\(\sigma^2\)</span> (same for all X)</li>
+<li class="fragment">The last two assumptions are checked by examining the <strong>residuals</strong>, and so can only be checked after the model has been fit.</li>
+</ul>
+</div></div>
+</section>
+<section id="assumption---independence" class="slide level2">
+<h2>Assumption - Independence</h2>
+<ul>
+<li>Knowledge of the method of data collection here is key!</li>
+<li>If the sampling method is not random, observations may not be independent.</li>
+<li>No real good way to “test” for independence. Need to know how the sample was obtained.</li>
+<li>Non simple random sample will not result in the same variance estimates</li>
+<li>Can use hierarchical/multi-level models for clustered samples</li>
+</ul>
+</section>
+<section id="assumption---linearity" class="slide level2">
+<h2>Assumption - Linearity</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="lec08-slr_files/figure-revealjs/unnamed-chunk-4-1.png" width="288"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<ul>
+<li>Slight departures OK</li>
+<li>Can use transformations of strongly skewed data to achieve it</li>
+<li>The lowess trend line reasonably follows a linear pattern.</li>
+</ul>
+</div></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">ggplot</span>(fev, <span class="fu">aes</span>(<span class="at">y=</span>FFEV1, <span class="at">x=</span>FHEIGHT)) <span class="sc">+</span> </span>
+<span id="cb4-2"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb4-3"><a></a>  <span class="fu">geom_smooth</span>(<span class="at">col=</span><span class="st">"blue"</span>, <span class="at">se=</span><span class="cn">FALSE</span>) <span class="sc">+</span> </span>
+<span id="cb4-4"><a></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">col=</span><span class="st">"red"</span>, <span class="at">se=</span><span class="cn">FALSE</span>) <span class="sc">+</span> </span>
+<span id="cb4-5"><a></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="assumption---normality" class="slide level2 smaller">
+<h2>Assumption - Normality</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="lec08-slr_files/figure-revealjs/unnamed-chunk-6-1.png" width="384"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="lec08-slr_files/figure-revealjs/unnamed-chunk-6-2.png" width="384"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<ul>
+<li>Slight departures OK</li>
+<li>Can use transformations to achieve it</li>
+</ul>
+<p>These plots are generated from the <code>performance</code> package.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">plot</span>(<span class="fu">check_normality</span>(fev.model), <span class="at">type=</span><span class="st">"density"</span>)</span>
+<span id="cb5-2"><a></a><span class="fu">plot</span>(<span class="fu">check_normality</span>(fev.model), <span class="at">type=</span><span class="st">"qq"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>The residuals follow a normal distribution well.</li>
+<li>Don’t let the pattern of the residuals on the qqplot fool you, the y-axis is very zoomed in.</li>
+</ul>
+</div></div>
+</section>
+<section id="assumption---homoscedasticity" class="slide level2 smaller">
+<h2>Assumption - Homoscedasticity</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">plot</span>(<span class="fu">check_heteroskedasticity</span>(fev.model))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="lec08-slr_files/figure-revealjs/unnamed-chunk-8-1.png" width="384"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<ul>
+<li>If the variance (std. residual) changes with the value of <span class="math inline">\(\hat{y}\)</span>, that is a sign of non-constant variance.</li>
+<li>Violations result in reduced validity of inference and typically larger standard errors for the coefficients.</li>
+<li>Could be caused by outliers or model mis-specificiation (e.g.&nbsp;non-normal data)</li>
+<li>FEV Example - even though there is a slight increase in the trend of fitted values against the residuals, this is within the tolerance range.</li>
+</ul>
+</div></div>
+</section>
+<section id="out-of-range-predictions" class="slide level2">
+<h2>Out of range predictions</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><br>
+</p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/slr_graph.png"></p>
+<figcaption>Figure 6.2</figcaption>
+</figure>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="callout callout-caution callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Caution!</strong></p>
+</div>
+<div class="callout-content">
+<p>The linear model is only valid within the range of the data used to fit the model</p>
+<p>To take an extreme example, suppose a father was 2 feet tall. Then the equation would predict an impossible negative value of FEV1 (<span class="math inline">\(-1.255\)</span>).</p>
+<p>A safe policy is to restrict the use of the equation to the range of the <span class="math inline">\(X\)</span> observed in the sample.</p>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="model-check" class="slide level2 smaller">
+<h2>Model-check</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">plot</span>(<span class="fu">check_predictions</span>(fev.model))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="lec08-slr_files/figure-revealjs/unnamed-chunk-9-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:40%;">
+<p>Another way of assessing model fit is to check the distribution of the predictions created by this model. A good fitting model should predict values that are similar to the observed data used to fit the model.</p>
+</div></div>
+</section></section>
+<section>
+<section id="inference" class="title-slide slide level1 center">
+<h1>Inference</h1>
+
+</section>
+<section id="distribution-of-parameter-estimates" class="slide level2 smaller">
+<h2>Distribution of parameter estimates</h2>
+<ul>
+<li>The estimated coefficients are functions of both <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>, and they are not themselves independent of each other (e.g.&nbsp;<span class="math inline">\(Cov(b_{0}, b_{1}) \neq 0)\)</span>.</li>
+<li>The joint vector <span class="math inline">\(\hat{\beta}(y, x)= (b_{0}, b_{1})\)</span> has a multivariate normal distribution, with variance that depends on the predictor variables <span class="math inline">\(x\)</span> only.</li>
+</ul>
+<p><span class="math display">\[
+\hat{\beta}(y, x) \sim \mathcal{N}(\beta, \mathbf{x^{T}x}^{-1}\sigma^{2})
+\]</span></p>
+<ul>
+<li>The normality of the vector <span class="math inline">\(\hat{\beta}\)</span> is quite robust to the model assumptions.</li>
+<li>Even if the residuals are not normally distributed, the CLT ensures that the <span class="math inline">\(\hat{\beta}\)</span> are close to normal</li>
+<li>When sample sizes are low in a category, or <span class="math inline">\(Var(X)\)</span> is close to zero, <span class="math inline">\(x^{T}x\)</span> can’t be inverted - leading to errors of “non positive definite”</li>
+</ul>
+</section>
+<section id="calculating-confidence-intervals" class="slide level2 smaller">
+<h2>Calculating Confidence Intervals</h2>
+<p><span class="math display">\[ b_{p} \pm 1.96*SE(b_{p})\]</span></p>
+<blockquote>
+<p>point estimate <span class="math inline">\(\pm\)</span> critical value * standard error of estimate</p>
+</blockquote>
+<p>But calculating the variance of <span class="math inline">\(b_{p}\)</span> involves <span class="math inline">\(\mathbf{x^{T}x}^{-1}\sigma^{2}\)</span>, which is outside the scope of this class. So, we use R functions</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="fu">confint</span>(fev.model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                  2.5 %     97.5 %
+(Intercept) -6.36315502 -1.8102499
+FHEIGHT      0.08526328  0.1509472</code></pre>
+</div>
+</div>
+<p>We can be 95% confident that the true slope parameter between a fathers height and his FEV1 is contained in the interval (0.085, 0.151).</p>
+</section>
+<section id="hypotheis-testing" class="slide level2 smaller">
+<h2>Hypotheis Testing</h2>
+<p>Let <span class="math inline">\(\beta_1\)</span> be the true slope parameter that describes the change in FEV1 as a function of height in cm.</p>
+<ul>
+<li><span class="math inline">\(H_{0}: \beta_{1}=0\)</span> There is no linear relationship between FEV1 and Height</li>
+<li><span class="math inline">\(H_{A}: \beta_{1} \neq 0\)</span> Alternate Hypothesis: There is a linear relationship between FEV1 and Height</li>
+</ul>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>broom<span class="sc">::</span><span class="fu">tidy</span>(fev.model) <span class="sc">|&gt;</span> <span class="fu">kable</span>(<span class="at">digits=</span><span class="dv">3</span>) <span class="co">#kable is in the knitr package</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">term</th>
+<th style="text-align: right;">estimate</th>
+<th style="text-align: right;">std.error</th>
+<th style="text-align: right;">statistic</th>
+<th style="text-align: right;">p.value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">(Intercept)</td>
+<td style="text-align: right;">-4.087</td>
+<td style="text-align: right;">1.152</td>
+<td style="text-align: right;">-3.548</td>
+<td style="text-align: right;">0.001</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">FHEIGHT</td>
+<td style="text-align: right;">0.118</td>
+<td style="text-align: right;">0.017</td>
+<td style="text-align: right;">7.106</td>
+<td style="text-align: right;">0.000</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>The p-value for <span class="math inline">\(b_{1}\)</span> is &lt;.0001, so there is sufficient evidence to believe that there is a linear relationship between FEV1 and Height of fathers.</p>
+</section>
+<section id="write-a-conclusion" class="slide level2 smaller">
+<h2>Write a conclusion</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Base R (ish)</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>fev.model <span class="sc">|&gt;</span> <span class="fu">coefficients</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(Intercept)     FHEIGHT 
+ -4.0867025   0.1181052 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>fev.model <span class="sc">|&gt;</span> <span class="fu">confint</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                  2.5 %     97.5 %
+(Intercept) -6.36315502 -1.8102499
+FHEIGHT      0.08526328  0.1509472</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>fev.model <span class="sc">|&gt;</span> <span class="fu">r2</span>() <span class="co"># from the performance package</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># R2 for Linear Regression
+       R2: 0.254
+  adj. R2: 0.249</code></pre>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<p><strong>gtsummary package</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a><span class="fu">tbl_regression</span>(fev.model) <span class="sc">%&gt;%</span> </span>
+<span id="cb17-2"><a></a>  <span class="fu">add_glance_table</span>(<span class="at">include =</span> <span class="fu">c</span>(nobs, r.squared))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="oiyqsjkocq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#oiyqsjkocq table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#oiyqsjkocq thead, #oiyqsjkocq tbody, #oiyqsjkocq tfoot, #oiyqsjkocq tr, #oiyqsjkocq td, #oiyqsjkocq th {
+  border-style: none;
+}
+
+#oiyqsjkocq p {
+  margin: 0;
+  padding: 0;
+}
+
+#oiyqsjkocq .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#oiyqsjkocq .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#oiyqsjkocq .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#oiyqsjkocq .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#oiyqsjkocq .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#oiyqsjkocq .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#oiyqsjkocq .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#oiyqsjkocq .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#oiyqsjkocq .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#oiyqsjkocq .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#oiyqsjkocq .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#oiyqsjkocq .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#oiyqsjkocq .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#oiyqsjkocq .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#oiyqsjkocq .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#oiyqsjkocq .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#oiyqsjkocq .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#oiyqsjkocq .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#oiyqsjkocq .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#oiyqsjkocq .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#oiyqsjkocq .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#oiyqsjkocq .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#oiyqsjkocq .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#oiyqsjkocq .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#oiyqsjkocq .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#oiyqsjkocq .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#oiyqsjkocq .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#oiyqsjkocq .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#oiyqsjkocq .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#oiyqsjkocq .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#oiyqsjkocq .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#oiyqsjkocq .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#oiyqsjkocq .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#oiyqsjkocq .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#oiyqsjkocq .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#oiyqsjkocq .gt_left {
+  text-align: left;
+}
+
+#oiyqsjkocq .gt_center {
+  text-align: center;
+}
+
+#oiyqsjkocq .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#oiyqsjkocq .gt_font_normal {
+  font-weight: normal;
+}
+
+#oiyqsjkocq .gt_font_bold {
+  font-weight: bold;
+}
+
+#oiyqsjkocq .gt_font_italic {
+  font-style: italic;
+}
+
+#oiyqsjkocq .gt_super {
+  font-size: 65%;
+}
+
+#oiyqsjkocq .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#oiyqsjkocq .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#oiyqsjkocq .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#oiyqsjkocq .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#oiyqsjkocq .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#oiyqsjkocq .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#oiyqsjkocq .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#oiyqsjkocq .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#oiyqsjkocq div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="gt_col_headings header">
+<th id="label" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"><strong>Characteristic</strong></th>
+<th id="estimate" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>Beta</strong></th>
+<th id="conf.low" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>95% CI</strong></th>
+<th id="p.value" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>p-value</strong></th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">FHEIGHT</td>
+<td class="gt_row gt_center" headers="estimate">0.12</td>
+<td class="gt_row gt_center" headers="conf.low">0.09, 0.15</td>
+<td class="gt_row gt_center" headers="p.value">&lt;0.001</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label" style="border-top-width: 2px; border-top-style: solid; border-top-color: #D3D3D3">No. Obs.</td>
+<td class="gt_row gt_center" headers="estimate" style="border-top-width: 2px; border-top-style: solid; border-top-color: #D3D3D3">150</td>
+<td class="gt_row gt_center" headers="conf.low" style="border-top-width: 2px; border-top-style: solid; border-top-color: #D3D3D3"><br>
+</td>
+<td class="gt_row gt_center" headers="p.value" style="border-top-width: 2px; border-top-style: solid; border-top-color: #D3D3D3"><br>
+</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">R²</td>
+<td class="gt_row gt_center" headers="estimate">0.254</td>
+<td class="gt_row gt_center" headers="conf.low"><br>
+</td>
+<td class="gt_row gt_center" headers="p.value"><br>
+</td>
+</tr>
+</tbody><tfoot>
+<tr class="gt_sourcenotes odd">
+<td colspan="4" class="gt_sourcenote">Abbreviation: CI = Confidence Interval</td>
+</tr>
+</tfoot>
+
+</table>
+
+</div>
+</div>
+</div>
+</div></div>
+<p><strong>Conclusion</strong></p>
+<p>Each 1cm increase in height of a father is associated with a significant increase of 0.118 (0.09, 0.15) L of FEV1 (p&lt;.0001). Height explains 25.4% of the variation in FEV1.</p>
+
+
+</section></section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+<p><a href="https://math615.netlify.app">🔗 https://math615.netlify.app</a></p>
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'fade',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+
+    <script>
+
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+
+      // slide changes (different for each slide format).
+
+      (function () {
+
+        // dispatch for htmlwidgets
+
+        function fireSlideEnter() {
+
+          const event = window.document.createEvent("Event");
+
+          event.initEvent("slideenter", true, true);
+
+          window.document.dispatchEvent(event);
+
+        }
+
+    
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+
+          fireSlideEnter();
+
+    
+
+          // dispatch for shiny
+
+          if (window.jQuery) {
+
+            if (previousSlide) {
+
+              window.jQuery(previousSlide).trigger("hidden");
+
+            }
+
+            if (currentSlide) {
+
+              window.jQuery(currentSlide).trigger("shown");
+
+            }
+
+          }
+
+        }
+
+    
+
+        // hookup for slidy
+
+        if (window.w3c_slidy) {
+
+          window.w3c_slidy.add_observer(function (slide_num) {
+
+            // slide_num starts at position 1
+
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+
+          });
+
+        }
+
+    
+
+      })();
+
+    </script>
+
+    
+
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+            const codeEl = trigger.previousElementSibling.cloneNode(true);
+            for (const childEl of codeEl.children) {
+              if (isCodeAnnotation(childEl)) {
+                childEl.remove();
+              }
+            }
+            return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp("https:\/\/norcalbiostat\.github\.io\/MATH615");
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>
