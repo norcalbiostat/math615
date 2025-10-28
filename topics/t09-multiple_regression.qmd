@@ -1,0 +1,60 @@
+---
+title: "Multiple & Generalized Regression" # title 
+subtitle: "Because life isn't bivariate" # sub title
+---
+
+```{r}
+source(here::here("topics/common_code.R"))
+this_topic <- topic_mats %>% 
+  filter(Order %/% 1 == 9, 
+         !grepl("PROJECT", Topic))
+
+header <- this_topic[1,]
+content <- this_topic[-1,]
+```
+
+## Learning Path
+
+### Where we've been  
+Learning how a third variable can modify the relationship between two explanatory and response variables. 
+
+
+### Where we're at
+Learning how to expand regression models to include more than 1 predictor, and how to fit other non-linear regression models. 
+
+
+
+### Objectives
+
+```{r}
+create_tabled_list(header$topic_obj)
+```
+
+
+## Learning Materials
+
+
+{{< fa person-chalkboard >}}  **Slides (Will open in full screen. Right click to open in a new tab)**
+
+```{r}
+create_tabled_list(content$Slides)
+```
+
+:books:  **Reading** 
+
+```{r}
+create_tabled_list(content$Reading)
+```
+
+
+## Assignments
+
+```{r}
+create_tabled_list(content$Activities)
+```
+
+## Assessment
+
+```{r}
+create_tabled_list(content$Assess)
+```

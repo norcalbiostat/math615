@@ -37,9 +37,7 @@ library(sjPlot)
 library(ggpubr)
 library(gtsummary)
 
-# load("C:/Box/Data/AddHealth/addhealth_clean.Rdata")
-#load("C:/Users/rdonatello/Box/Data/AddHealth/addhealth_clean.Rdata")
-load("/Users/rdonatello/Library/CloudStorage/Box-Box/Data/AddHealth/addhealth_clean.Rdata")
+source(here::here("load_data.R"))
 
 # Function to plot multiple overlapping density functions
 plot_3norm <- function(mean1=0, mean2=0, mean3=0, sd1=1, sd2=1, sd3=1, n = 100) {

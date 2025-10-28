@@ -255,13 +255,6 @@ Robin Donatello
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">library</span>(openintro) <span class="co"># to get the sex_discrimination data</span></span>
 <span id="cb1-2"><a></a><span class="fu">table</span>(sex_discrimination<span class="sc">$</span>sex, sex_discrimination<span class="sc">$</span>decision) <span class="sc">|&gt;</span> <span class="fu">addmargins</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-stdout">
-<pre><code>        
-         promoted not promoted Sum
-  male         21            3  24
-  female       14           10  24
-  Sum          35           13  48</code></pre>
-</div>
 </div>
 <p>In this study, a <strong>(bigger/smaller)</strong> proportion of female identifying applications were promoted than males (______________ versus ______________).</p>
 <p>Calculate the difference (male - female) between these proportions.</p>
@@ -342,22 +335,15 @@ Robin Donatello
 <div class="cell">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>sim.data <span class="ot">&lt;-</span> googlesheets4<span class="sc">::</span><span class="fu">read_sheet</span>(URL) <span class="sc">%&gt;%</span> </span>
-<span id="cb3-2"><a></a>  <span class="fu">select</span>(<span class="at">mfdiff =</span> <span class="st">`</span><span class="at">(Male - female) difference</span><span class="st">`</span>) </span>
-<span id="cb3-3"><a></a></span>
-<span id="cb3-4"><a></a><span class="fu">ggplot</span>(sim.data, <span class="fu">aes</span>(<span class="at">x =</span> mfdiff)) <span class="sc">+</span></span>
-<span id="cb3-5"><a></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> .<span class="dv">01</span>) <span class="sc">+</span></span>
-<span id="cb3-6"><a></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb3-7"><a></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> .<span class="dv">292</span>, <span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">lwd=</span><span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb3-8"><a></a>  <span class="fu">xlab</span>(<span class="st">"point estimate"</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">"Count"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>sim.data <span class="ot">&lt;-</span> googlesheets4<span class="sc">::</span><span class="fu">read_sheet</span>(URL) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-2"><a></a>  <span class="fu">select</span>(<span class="at">mfdiff =</span> <span class="st">`</span><span class="at">(Male - female) difference</span><span class="st">`</span>) </span>
+<span id="cb2-3"><a></a></span>
+<span id="cb2-4"><a></a><span class="fu">ggplot</span>(sim.data, <span class="fu">aes</span>(<span class="at">x =</span> mfdiff)) <span class="sc">+</span></span>
+<span id="cb2-5"><a></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> .<span class="dv">01</span>) <span class="sc">+</span></span>
+<span id="cb2-6"><a></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb2-7"><a></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> .<span class="dv">292</span>, <span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">lwd=</span><span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb2-8"><a></a>  <span class="fu">xlab</span>(<span class="st">"point estimate"</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">"Count"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="lec06a-statistical_inference_with_randomization_files/figure-html/unnamed-chunk-4-1.png" width="672"></p>
-</figure>
-</div>
-</div>
 </div>
 </div><div class="column" style="width:50%;">
 <p>Describe the distribution of this graph. What does it seem to be centered around?</p>
@@ -366,11 +352,8 @@ Robin Donatello
 <div class="cell">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>(sim.pt.est <span class="ot">&lt;-</span> <span class="fu">sum</span>(sim.data<span class="sc">$</span>mfdiff <span class="sc">&gt;=</span> .<span class="dv">29</span>) <span class="sc">/</span> <span class="fu">NROW</span>(sim.data))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>(sim.pt.est <span class="ot">&lt;-</span> <span class="fu">sum</span>(sim.data<span class="sc">$</span>mfdiff <span class="sc">&gt;=</span> .<span class="dv">29</span>) <span class="sc">/</span> <span class="fu">NROW</span>(sim.data))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.03846154</code></pre>
-</div>
 </div>
 </section>
 <section id="decision" class="slide level2">
@@ -601,6 +584,82 @@ Robin Donatello
         ]
       });
     </script>
+    
+
+    <script>
+
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+
+      // slide changes (different for each slide format).
+
+      (function () {
+
+        // dispatch for htmlwidgets
+
+        function fireSlideEnter() {
+
+          const event = window.document.createEvent("Event");
+
+          event.initEvent("slideenter", true, true);
+
+          window.document.dispatchEvent(event);
+
+        }
+
+    
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+
+          fireSlideEnter();
+
+    
+
+          // dispatch for shiny
+
+          if (window.jQuery) {
+
+            if (previousSlide) {
+
+              window.jQuery(previousSlide).trigger("hidden");
+
+            }
+
+            if (currentSlide) {
+
+              window.jQuery(currentSlide).trigger("shown");
+
+            }
+
+          }
+
+        }
+
+    
+
+        // hookup for slidy
+
+        if (window.w3c_slidy) {
+
+          window.w3c_slidy.add_observer(function (slide_num) {
+
+            // slide_num starts at position 1
+
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+
+          });
+
+        }
+
+    
+
+      })();
+
+    </script>
+
+    
+
     <script id="quarto-html-after-body" type="application/javascript">
       window.document.addEventListener("DOMContentLoaded", function (event) {
         const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
