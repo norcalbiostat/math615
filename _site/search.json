@@ -96,5 +96,264 @@
     "title": "Introduction to Regression modeling",
     "section": "Assessment",
     "text": "Assessment\n\n\n\n\n\n\n\n\nItems\n\n\n\n\nQuiz 09\n\n\nProject Phase 4"
+  },
+  {
+    "objectID": "slides.html",
+    "href": "slides.html",
+    "title": "All Slides",
+    "section": "",
+    "text": "Slides will open in full screen. Right click to open in a new tab\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDate\n\n\n\nLec #\n\n\n\nTopic\n\n\n\n\n\n\n\n\nAug 25, 2024\n\n\nlec00a\n\n\nWelcome to MATH 615\n\n\n\n\n\n\nAug 25, 2025\n\n\nlec00b\n\n\nMATH 615 Course Tools\n\n\n\n\n\n\nAug 27, 2025\n\n\nlec01\n\n\nData Architecture\n\n\n\n\n\n\nSep 3, 2025\n\n\nlec02\n\n\nFormulating research questions\n\n\n\n\n\n\nSep 8, 2025\n\n\nlec03a\n\n\nWorkflows for Reproducibility\n\n\n\n\n\n\nSep 10, 2025\n\n\nlec03b\n\n\nPreparing your data for analysis\n\n\n\n\n\n\nSep 15, 2025\n\n\nlec04\n\n\nDescribing Distributions of Data\n\n\n\n\n\n\nSep 17, 2025\n\n\nlec05a\n\n\nDescribing Relationships between variables\n\n\n\n\n\n\nSep 24, 2025\n\n\nlec05b\n\n\nBest practices in Data Visualization\n\n\n\n\n\n\nOct 1, 2025\n\n\nlec06a\n\n\nStatistical Inference with Randomization\n\n\n\n\n\n\nOct 6, 2025\n\n\nlec06b\n\n\nStatistical Inference using Models\n\n\n\n\n\n\nOct 8, 2025\n\n\nlec07a\n\n\nChoosing Appropriate Analysis\n\n\n\n\n\n\nOct 13, 2025\n\n\nlec07b\n\n\nInference between two means\n\n\n\n\n\n\nOct 13, 2025\n\n\nlec07c\n\n\nInference between multiple means\n\n\n\n\n\n\nOct 20, 2025\n\n\nlec07d\n\n\nInference on proportions\n\n\n\n\n\n\nOct 22, 2025\n\n\nlec07e\n\n\nCorrelation Analysis\n\n\n\n\n\n\nOct 22, 2025\n\n\nlec08\n\n\nSimple Linear Regression Modeling\n\n\n\n\n\n\nOct 29, 2025\n\n\nlec08b\n\n\nModeration and Stratification\n\n\n\n\n\n\nNov 3, 2025\n\n\nlec09\n\n\nMultiple Linear Regression\n\n\n\n\n\n\nOct 10, 2025\n\n\nlec10a\n\n\nGeneralized Linear Models\n\n\n\n\n\n\nOct 10, 2025\n\n\nlec10b\n\n\nLogistic Regression\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "slides/lec10-glm.html#introduction",
+    "href": "slides/lec10-glm.html#introduction",
+    "title": "Generalized Linear Models",
+    "section": "Introduction",
+    "text": "Introduction\nOne of the primary assumptions with linear regression, is that the error terms have a specific distribution. Namely:\n\\[ \\epsilon_{i} \\sim \\mathcal{N}(0, \\sigma^{2}) \\qquad i=1, \\ldots, n, \\quad \\mbox{and } \\epsilon_{i} \\perp \\epsilon_{j}, i \\neq j \\]\nWhen your outcome variable \\(y\\) is non-continuous/non-normal, the above assumption fails dramatically."
+  },
+  {
+    "objectID": "slides/lec10-glm.html#generalized-linear-models-glm",
+    "href": "slides/lec10-glm.html#generalized-linear-models-glm",
+    "title": "Generalized Linear Models",
+    "section": "Generalized Linear Models (GLM)",
+    "text": "Generalized Linear Models (GLM)\nAllows for different data type outcomes by allowing the linear portion of the model (\\(\\mathbf{X}\\beta\\)) to be related to the outcome variable \\(y\\) using a link function, that allows the magnitude of the variance of the errors (\\(\\sigma\\)) to be related to the predicted values themselves.\nThere are a few overarching types of non-continuous outcomes that can be modeled with GLM’s.\n\nBinary data: Logistic or Probit regression\nLog-linear models\nMultinomial/categorical data: Multinomial or Ordinal Logistic regression.\n\nCount data: Poisson regression"
+  },
+  {
+    "objectID": "slides/lec10-glm.html#fitting-glms",
+    "href": "slides/lec10-glm.html#fitting-glms",
+    "title": "Generalized Linear Models",
+    "section": "Fitting GLMs",
+    "text": "Fitting GLMs\nAll regression models aim to model the expected value of the response variable \\(Y\\) given the observed data \\(X\\), through some link function \\(C\\)\n\\[E(Y|X) = C(X)\\]\nDepending on the data type of \\(Y\\), this link function takes different forms. Examples include:\n\nLinear regression: C = Identity function (no change)\nLogistic regression: C = logit function\nPoisson regression: C = log function"
+  },
+  {
+    "objectID": "slides/lec10-glm.html#linking-the-response-to-the-predictors",
+    "href": "slides/lec10-glm.html#linking-the-response-to-the-predictors",
+    "title": "Generalized Linear Models",
+    "section": "Linking the response to the predictors",
+    "text": "Linking the response to the predictors\nAll regression models aim to model the expected value of the response variable \\(Y\\) given the observed data \\(X\\), through some link function \\(C\\)\n\\[E(Y|X) = C(X)\\]\nDepending on the data type of \\(Y\\), this link function takes different forms. Examples include:\n\nLinear regression: C = Identity function (no change)\nLogistic regression: C = logit function\nPoisson regression: C = log function"
+  },
+  {
+    "objectID": "slides/lec10-glm.html#fitting-glm",
+    "href": "slides/lec10-glm.html#fitting-glm",
+    "title": "Generalized Linear Models",
+    "section": "Fitting GLM",
+    "text": "Fitting GLM\nThe general syntax is similar to lm(), with the additional required family= argument. See ?family for a list of options.\nExample for Logistic regression would be:\n\nglm(y ~ x1 + x2 + x3, data=DATA, family=\"binomial\")"
+  },
+  {
+    "objectID": "slides/lec10-glm.html#log-linear-models",
+    "href": "slides/lec10-glm.html#log-linear-models",
+    "title": "Generalized Linear Models",
+    "section": "Log-linear models",
+    "text": "Log-linear models\nA log-linear model is when the log of the response variable is modeled using a linear combination of predictors.\n\\[ln(Y) \\sim XB +\\epsilon\\]\n\nIn statistics, when we refer to the log, we mean the natural log ln.\nThis type of model is often use to model count data using the Poisson distribution, or to achieve normality when the response variable is right skewed."
+  },
+  {
+    "objectID": "slides/lec10-glm.html#interpreting-results",
+    "href": "slides/lec10-glm.html#interpreting-results",
+    "title": "Generalized Linear Models",
+    "section": "Interpreting results",
+    "text": "Interpreting results\nSince we transformed our outcome before performing the regression, we have to back-transform the coefficient before interpretation. Similar to logistic regression, we need to exponentiate the regression coefficient before interpreting.\nWhen using log transformed outcomes, the effect on Y becomes multiplicative instead of additive.\n\nAdditive For every 1 unit increase in X, y increases by b1\nMultiplicative For every 1 unit increase in X, y is multiplied by \\(e^{b1}\\)"
+  },
+  {
+    "objectID": "slides/lec10-glm.html#example",
+    "href": "slides/lec10-glm.html#example",
+    "title": "Generalized Linear Models",
+    "section": "Example",
+    "text": "Example\nlet \\(b_{1} = 0.2\\).\n\nAdditive For every 1 unit increase in X, y increases by 0.2 units.\nMultiplicative For every 1 unit increase in X, y changes by \\(e^{0.2} = 1.22\\) = 22%"
+  },
+  {
+    "objectID": "slides/lec10-glm.html#percent-change",
+    "href": "slides/lec10-glm.html#percent-change",
+    "title": "Generalized Linear Models",
+    "section": "Percent Change",
+    "text": "Percent Change\nThus we interpret the coefficient as a percentage change in \\(Y\\) for a unit increase in \\(x_{j}\\).\n\n\\(b_{j}&lt;0\\) : Positive slope, positive association. The expected value of \\(Y\\) for when \\(x=0\\) is \\(1 - e^{b_{j}}\\) percent lower than when \\(x=1\\)\n\\(b_{j} \\geq 0\\) : Negative slope, negative association. The expected value of \\(Y\\) for when \\(x=0\\) is \\(e^{b_{j}}\\) percent higher than when \\(x=1\\)"
+  },
+  {
+    "objectID": "slides/lec10-glm.html#example-addhealth",
+    "href": "slides/lec10-glm.html#example-addhealth",
+    "title": "Generalized Linear Models",
+    "section": "Example: AddHealth",
+    "text": "Example: AddHealth\nWe are going to analyze personal income from the AddHealth data set. Income naturally is right skewed, but a log transformation fixes this problem nicely.\n\n\nShow the code\npar(mfrow=c(2,2))\nggdensity(addhealth, x = \"income\", fill = \"springgreen4\") +\n   stat_overlay_normal_density(color = \"darkgreen\", linetype = \"dashed\")\n\n\n\n\n\n\n\n\n\nShow the code\nggdensity(addhealth, x = \"logincome\", fill = \"skyblue\") +\n   stat_overlay_normal_density(color = \"navy\", linetype = \"dashed\")\n\n\n\n\n\n\n\n\n\nShow the code\nggqqplot(addhealth, x = \"income\")\n\n\n\n\n\n\n\n\n\nShow the code\nggqqplot(addhealth, x = \"logincome\")"
+  },
+  {
+    "objectID": "slides/lec10-glm.html#example-personal-income",
+    "href": "slides/lec10-glm.html#example-personal-income",
+    "title": "Generalized Linear Models",
+    "section": "Example: Personal Income",
+    "text": "Example: Personal Income\nWe are going to analyze personal income from the AddHealth data set. Income naturally is right skewed, but a log transformation fixes this problem nicely.\n\nShow the code\nggdensity(addhealth, x = \"income\", fill = \"springgreen4\") +\n   stat_overlay_normal_density(color = \"darkgreen\", linetype = \"dashed\")\nggdensity(addhealth, x = \"logincome\", fill = \"skyblue\") +\n   stat_overlay_normal_density(color = \"navy\", linetype = \"dashed\")\nggqqplot(addhealth, x = \"income\")\nggqqplot(addhealth, x = \"logincome\")"
+  },
+  {
+    "objectID": "slides/lec10-glm.html#identify-variables",
+    "href": "slides/lec10-glm.html#identify-variables",
+    "title": "Generalized Linear Models",
+    "section": "Identify variables",
+    "text": "Identify variables\n\nQuantitative outcome that has been log transformed: Income (variable logincome)\nQuantitative predictor: typical time waking up on a work day (variable wakeup)\nBinary predictor: Gender (variable female_c)\n\nThe mathematical multivariable model looks like:\n\\[ln(Y) \\sim \\beta_{0} + \\beta_{1}x_{1} + \\beta_{2}x_{2}\\]"
+  },
+  {
+    "objectID": "slides/lec10-glm.html#fit-a-linear-regression-model",
+    "href": "slides/lec10-glm.html#fit-a-linear-regression-model",
+    "title": "Generalized Linear Models",
+    "section": "Fit a linear regression model",
+    "text": "Fit a linear regression model\n\nln.mod.2 &lt;- lm(logincome~wakeup + female_c, data=addhealth)\nsummary(ln.mod.2)\n\n\nCall:\nlm(formula = logincome ~ wakeup + female_c, data = addhealth)\n\nResiduals:\n     Min       1Q   Median       3Q      Max \n-1.32215 -0.33473 -0.00461  0.34058  2.01559 \n\nCoefficients:\n                Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)    10.653062   0.025995 409.805  &lt; 2e-16 ***\nwakeup         -0.014907   0.003218  -4.633 3.73e-06 ***\nfemale_cFemale -0.192710   0.017000 -11.336  &lt; 2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 0.5233 on 3810 degrees of freedom\n  (2691 observations deleted due to missingness)\nMultiple R-squared:  0.03611,   Adjusted R-squared:  0.0356 \nF-statistic: 71.36 on 2 and 3810 DF,  p-value: &lt; 2.2e-16\n\n\nThe fitted model is: \\(ln(\\hat{y}) = 10.65 - 0.0149x_{wakeup} -0.193x_{female}\\)\nThe coefficient estimates \\(b_{p}\\) are not interpreted directly as an effect on \\(y\\)."
+  },
+  {
+    "objectID": "slides/lec10-glm.html#exponentiate-the-estimates",
+    "href": "slides/lec10-glm.html#exponentiate-the-estimates",
+    "title": "Generalized Linear Models",
+    "section": "Exponentiate the estimates",
+    "text": "Exponentiate the estimates\n\nexp(coef(ln.mod.2))\n\n   (Intercept)         wakeup female_cFemale \n  4.232198e+04   9.852031e-01   8.247215e-01 \n\n1-exp(confint(ln.mod.2)[-1,])\n\n                    2.5 %      97.5 %\nwakeup         0.02099299 0.008561652\nfemale_cFemale 0.20231394 0.147326777"
+  },
+  {
+    "objectID": "slides/lec10-glm.html#exponentiate-interpret",
+    "href": "slides/lec10-glm.html#exponentiate-interpret",
+    "title": "Generalized Linear Models",
+    "section": "Exponentiate & Interpret",
+    "text": "Exponentiate & Interpret\nRecap: \\(e^{b_p}\\) is the percent change. (ref Section 8)\n\nFor every hour later one wakes up in the morning, one can expect to earn 1-exp(-0.015) = 1.4% less income than someone who wakes up one hour earlier. This is after controlling for gender.\nFemales have on average 1-exp(-0.19) = 17% percent lower income than males, after controlling for the wake up time."
+  },
+  {
+    "objectID": "slides/lec10-glm.html#pct-chg",
+    "href": "slides/lec10-glm.html#pct-chg",
+    "title": "Generalized Linear Models",
+    "section": "Percent Change",
+    "text": "Percent Change\nThus we interpret the coefficient as a percentage change in \\(Y\\) for a unit increase in \\(x_{j}\\).\n\n\\(b_{j}&lt;0\\) : Positive slope, positive association. The expected value of \\(Y\\) for when \\(x=0\\) is \\(1 - e^{b_{j}}\\) percent lower than when \\(x=1\\)\n\\(b_{j} \\geq 0\\) : Negative slope, negative association. The expected value of \\(Y\\) for when \\(x=0\\) is \\(e^{b_{j}}\\) percent higher than when \\(x=1\\)"
+  },
+  {
+    "objectID": "slides/lec10-glm.html#section",
+    "href": "slides/lec10-glm.html#section",
+    "title": "Generalized Linear Models",
+    "section": "",
+    "text": "exp(coef(ln.mod.2))\n\n   (Intercept)         wakeup female_cFemale \n  4.232198e+04   9.852031e-01   8.247215e-01 \n\n1-exp(confint(ln.mod.2)[-1,])\n\n                    2.5 %      97.5 %\nwakeup         0.02099299 0.008561652\nfemale_cFemale 0.20231394 0.147326777"
+  },
+  {
+    "objectID": "slides/lec10-glm.html#sec-pct-chg",
+    "href": "slides/lec10-glm.html#sec-pct-chg",
+    "title": "Generalized Linear Models",
+    "section": "Percent Change",
+    "text": "Percent Change\nThus we interpret the coefficient as a percentage change in \\(Y\\) for a unit increase in \\(x_{j}\\).\n\n\\(b_{j}&lt;0\\) : Positive slope, positive association. The expected value of \\(Y\\) for when \\(x=0\\) is \\(1 - e^{b_{j}}\\) percent lower than when \\(x=1\\)\n\\(b_{j} \\geq 0\\) : Negative slope, negative association. The expected value of \\(Y\\) for when \\(x=0\\) is \\(e^{b_{j}}\\) percent higher than when \\(x=1\\)"
+  },
+  {
+    "objectID": "slides/lec10-glm.html#exponentiate-coefficient-ci",
+    "href": "slides/lec10-glm.html#exponentiate-coefficient-ci",
+    "title": "Generalized Linear Models",
+    "section": "Exponentiate coefficient & CI",
+    "text": "Exponentiate coefficient & CI\nExtract point estimate using coef()\n\nexp(coef(ln.mod.2))\n\n   (Intercept)         wakeup female_cFemale \n  4.232198e+04   9.852031e-01   8.247215e-01 \n\n\nExtract CI using confint()\n\n1-exp(confint(ln.mod.2)[-1,])\n\n                    2.5 %      97.5 %\nwakeup         0.02099299 0.008561652\nfemale_cFemale 0.20231394 0.147326777"
+  },
+  {
+    "objectID": "slides/lec10-glm.html#all-the-math-at-once",
+    "href": "slides/lec10-glm.html#all-the-math-at-once",
+    "title": "Generalized Linear Models",
+    "section": "All the math at once",
+    "text": "All the math at once\nExtract point estimate using coef()\n\nexp(coef(ln.mod.2))\n\n   (Intercept)         wakeup female_cFemale \n  4.232198e+04   9.852031e-01   8.247215e-01 \n\n\nExtract CI using confint()\n\n1-exp(confint(ln.mod.2)[-1,])\n\n                    2.5 %      97.5 %\nwakeup         0.02099299 0.008561652\nfemale_cFemale 0.20231394 0.147326777\n\n\nBoth gender and time one wakes up are significantly associated with the amount of personal earnings one makes. Waking up later in the morning is associated with 1.4% (95% CI 0.8%-2%, p&lt;.0001) percent lower income than someone who wakes up one hour earlier. Females have 17% (95% CI 15%-20%, p&lt;.0001) percent lower income than males."
+  },
+  {
+    "objectID": "slides/lec10b-logreg.html#binary-outcome-data",
+    "href": "slides/lec10b-logreg.html#binary-outcome-data",
+    "title": "Logistic Regression",
+    "section": "Binary outcome data",
+    "text": "Binary outcome data\nConsider an outcome variable \\(Y\\) with two levels: Y = 1 if event, = 0 if no event.\nLet \\(p_{i} = P(y_{i}=1)\\).\nTwo goals:\n\nAssess the impact selected covariates have on the probability of an outcome occurring.\nPredict the probability of an event occurring given a certain covariate pattern.\n\nBinary data can be modeled using a Logistic Regression Model"
+  },
+  {
+    "objectID": "slides/lec10b-logreg.html#link-function",
+    "href": "slides/lec10b-logreg.html#link-function",
+    "title": "Logistic Regression",
+    "section": "Link function",
+    "text": "Link function\nWe use this logit function to transform a binary outcome (only 0 or 1) variable into a continuous probability (which only has a range from 0 to 1).\n\n\nShow the code\np &lt;- seq(0, 1, by=.01)\nlogit.p &lt;- log(p/(1-p))\nqplot(logit.p, p, geom=\"line\", xlab = \"logit(p)\", main=\"The logit transformation\") + \n  theme_bw()"
+  },
+  {
+    "objectID": "slides/lec10b-logreg.html#logistic-link-function",
+    "href": "slides/lec10b-logreg.html#logistic-link-function",
+    "title": "Logistic Regression",
+    "section": "Logistic link function",
+    "text": "Logistic link function\nThis in essence takes a binary outcome 0/1 variable, turns it into a continuous probability (which only has a range from 0 to 1) Then the logit(p) has a continuous distribution ranging from \\(-\\infty\\) to \\(\\infty\\), which is the same form as a Multiple Linear Regression (continuous outcome modeled on a set of covariates)\n\n\nShow the code\np &lt;- seq(0, 1, by=.01)\nlogit.p &lt;- log(p/(1-p))\nqplot(logit.p, p, geom=\"line\", xlab = \"logit(p)\", main=\"The logit transformation\") + \n  theme_bw()"
+  },
+  {
+    "objectID": "slides/lec10b-logreg.html#odds-ratio",
+    "href": "slides/lec10b-logreg.html#odds-ratio",
+    "title": "Logistic Regression",
+    "section": "Odds Ratio",
+    "text": "Odds Ratio\nSince the link between \\(X\\) and \\(Y\\) is no longer linear, a one unit increase in \\(X_{p}\\) is no longer associated with a \\(b_{p}\\) increase in \\(Y\\). The regression coefficients \\(b_{p}\\) from a logistic regression must be exponentiated before interpretation.\n\\[OR = e^{b}\\]\nThe Odds Ratio (OR) provides a directly understandable statistic for the relationship between \\(y\\) and a specific \\(x\\) given all other \\(x\\)’s in the model are fixed."
+  },
+  {
+    "objectID": "slides/lec10b-logreg.html#logistic-regression",
+    "href": "slides/lec10b-logreg.html#logistic-regression",
+    "title": "Logistic Regression",
+    "section": "Logistic Regression",
+    "text": "Logistic Regression\nThe logistic model then relates the probability of an event based on a linear combination of X’s.\n\\[\nlog\\left(\n\\frac{p_{i}}{1-p_{i}}\n\\right) = \\beta_{0} + \\beta_{1}x_{1i} + \\beta_{2}x_{2i} + \\ldots + \\beta_{p}x_{pi}\n\\]\nThis means the relationship between \\(X\\) and the probability of success is nonlinear, but the relationship between \\(X\\) and the log-odds is linear."
+  },
+  {
+    "objectID": "slides/lec10b-logreg.html#what-are-the-odds",
+    "href": "slides/lec10b-logreg.html#what-are-the-odds",
+    "title": "Logistic Regression",
+    "section": "What are the Odds?",
+    "text": "What are the Odds?\nThe odds are defined as the probability an event occurs divided by the probability it does not occur: \\(\\frac{p_{i}}{1-p_{i}}\\).\n\n\nThe function \\(ln\\left(\\frac{p_{i}}{1-p_{i}}\\right)\\) is also known as the log odds, or more commonly called the logit. This is the link function for the logistic regression model."
+  },
+  {
+    "objectID": "slides/lec10b-logreg.html#what-are-the-odds-1",
+    "href": "slides/lec10b-logreg.html#what-are-the-odds-1",
+    "title": "Logistic Regression",
+    "section": "What are the Odds?",
+    "text": "What are the Odds?\nFor a binary outcome (YES = 1, NO = 0), the odds represent the ratio of success to failure:\nOdds=P(Y=1)1−P(Y=1) Odds= 1−P(Y=1) P(Y=1) ​\nIf the probability of success is 0.75, then odds = 0.75 / 0.25 = 3 (three to one odds in favor of success)."
+  },
+  {
+    "objectID": "slides/lec10b-logreg.html#deriving-the-odds-ratio-or",
+    "href": "slides/lec10b-logreg.html#deriving-the-odds-ratio-or",
+    "title": "Logistic Regression",
+    "section": "Deriving the Odds Ratio (OR)",
+    "text": "Deriving the Odds Ratio (OR)\n\nLogistic regression model: \\(logit(y) = \\beta_0 + \\beta_1 X\\)\nThe odds at \\(X = x\\) is \\(e^{\\beta_0 + \\beta_1 x}\\)\nThe odds at \\(X = x+1\\) is \\(e^{\\beta_0 + \\beta_1 (x+1)} = e^{\\beta_0 + \\beta_1 x} * e^{\\beta_1}\\)\nThe **odds ratio (OR) for a 1 unit change in \\(X\\) is then \\(e^{\\beta_1}\\)\n\nThe OR measures how the odds of success change for a one-unit increase in \\(X\\), holding other variables constant."
+  },
+  {
+    "objectID": "slides/lec10b-logreg.html#interpreting-the-or",
+    "href": "slides/lec10b-logreg.html#interpreting-the-or",
+    "title": "Logistic Regression",
+    "section": "Interpreting the OR",
+    "text": "Interpreting the OR\nConsider a binary outcome with values YES, coded as 1, and NO, coded as 0.\n\nOR = 1 = equal chance of response variable being YES given any explanatory variable value.\nOR &gt; 1 = as the explanatory variable value increases, the presence of a YES response is more likely.\nOR &lt;1 = as the explanatory variable value increases, the presence of a YES response is less likely."
+  },
+  {
+    "objectID": "slides/lec10b-logreg.html#confidence-intervals",
+    "href": "slides/lec10b-logreg.html#confidence-intervals",
+    "title": "Logistic Regression",
+    "section": "Confidence Intervals",
+    "text": "Confidence Intervals\n\nThe OR is not a linear function of the \\(x's\\), but \\(\\beta\\) is.\nThis means that a CI for the OR is created by calculating a CI for \\(\\beta\\), and then exponentiating the endpoints.\nA 95% CI for the OR is calculated as:\n\n\\[e^{\\hat{\\beta} \\pm 1.96 SE_{\\beta}} \\]\nThis math holds for any \\(k\\) unit change in x. The linearity of the confidence interval only applies at the untransformed level of the \\(\\beta\\)’s. NOT the odds ratio."
+  },
+  {
+    "objectID": "slides/lec10b-logreg.html#example-the-effect-of-gender-on-depression",
+    "href": "slides/lec10b-logreg.html#example-the-effect-of-gender-on-depression",
+    "title": "Logistic Regression",
+    "section": "Example: The effect of gender on Depression",
+    "text": "Example: The effect of gender on Depression\nThis uses the depression data set from PMAS6.\n\nBinary outcome variable: Symptoms of Depression (cases)\nBinary predictor variable: Gender (sex) as an indicator of being female\n\n\n\nShow the code\ndep_sex_model &lt;- glm(cases ~ sex, data=depress, family=\"binomial\")\nsummary(dep_sex_model)\n\n\n\nCall:\nglm(formula = cases ~ sex, family = \"binomial\", data = depress)\n\nCoefficients:\n            Estimate Std. Error z value Pr(&gt;|z|)    \n(Intercept)  -3.3511     0.6867  -4.880 1.06e-06 ***\nsex           1.0386     0.3767   2.757  0.00583 ** \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n(Dispersion parameter for binomial family taken to be 1)\n\n    Null deviance: 268.12  on 293  degrees of freedom\nResidual deviance: 259.40  on 292  degrees of freedom\nAIC: 263.4\n\nNumber of Fisher Scoring iterations: 5\n\n\nWe exponentiate the coefficients to back transform the \\(\\beta\\) estimates into Odds Ratios\n\n\nShow the code\nexp(coef(dep_sex_model))\n\n\n(Intercept)         sex \n 0.03504558  2.82517483 \n\n\nFemales have 2.8 times the odds of showing signs of depression compared to males."
+  },
+  {
+    "objectID": "slides/lec10b-logreg.html#example-depression",
+    "href": "slides/lec10b-logreg.html#example-depression",
+    "title": "Logistic Regression",
+    "section": "Example: Depression",
+    "text": "Example: Depression\nLet’s fit a model to examine the effect of identifying as female (gender) has on a depression (cases) diagnosis.\n\n\nShow the code\ndep_sex_model &lt;- glm(cases ~ sex, data=depress, family=\"binomial\")\nsummary(dep_sex_model)\n\n\n\nCall:\nglm(formula = cases ~ sex, family = \"binomial\", data = depress)\n\nCoefficients:\n            Estimate Std. Error z value Pr(&gt;|z|)    \n(Intercept)  -3.3511     0.6867  -4.880 1.06e-06 ***\nsex           1.0386     0.3767   2.757  0.00583 ** \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n(Dispersion parameter for binomial family taken to be 1)\n\n    Null deviance: 268.12  on 293  degrees of freedom\nResidual deviance: 259.40  on 292  degrees of freedom\nAIC: 263.4\n\nNumber of Fisher Scoring iterations: 5"
+  },
+  {
+    "objectID": "slides/lec10b-logreg.html#calculate-or",
+    "href": "slides/lec10b-logreg.html#calculate-or",
+    "title": "Logistic Regression",
+    "section": "Calculate OR",
+    "text": "Calculate OR\nWe exponentiate the coefficients to back transform the \\(\\beta\\) estimates into Odds Ratios\n\n\nShow the code\ntbl_regression(dep_sex_model, exponentiate = TRUE)\n\n\n\n\n\n\n\n\nCharacteristic\nOR\n95% CI\np-value\n\n\n\n\nsex\n2.83\n1.40, 6.21\n0.006\n\n\n\nAbbreviations: CI = Confidence Interval, OR = Odds Ratio\n\n\n\n\n\n\n\n\nFemales have 2.8 (1.4, 6.2) times the odds of showing signs of depression compared to males (p = 0.006).\n\n\n\n\n\n\nImportant\n\n\nnote the multiplicative effect language “times the odds”, not just “higher odds”"
+  },
+  {
+    "objectID": "slides/lec10b-logreg.html#multiple-logistic-regression",
+    "href": "slides/lec10b-logreg.html#multiple-logistic-regression",
+    "title": "Logistic Regression",
+    "section": "Multiple Logistic Regression",
+    "text": "Multiple Logistic Regression\nLet’s continue with the depression model, but now also include age and income as potential predictors of symptoms of depression.\n\n\nShow the code\nmvmodel &lt;- glm(cases ~ age + income + sex, data=depress, family=\"binomial\")\ntbl_regression(mvmodel, exponentiate = TRUE)\n\n\n\n\n\n\n\n\nCharacteristic\nOR\n95% CI\np-value\n\n\n\n\nage\n0.98\n0.96, 1.00\n0.020\n\n\nincome\n0.96\n0.94, 0.99\n0.009\n\n\nsex\n2.53\n1.23, 5.66\n0.016\n\n\n\nAbbreviations: CI = Confidence Interval, OR = Odds Ratio\n\n\n\n\n\n\n\n\n\nThe odds of a female being diagnosed with depression is 2.53 (1.23, 5.66) times greater than the odds for Males after adjusting for the effects of age and income (p=.016)."
+  },
+  {
+    "objectID": "slides/lec10b-logreg.html#calculate-the-odds-ratio",
+    "href": "slides/lec10b-logreg.html#calculate-the-odds-ratio",
+    "title": "Logistic Regression",
+    "section": "Calculate the Odds Ratio",
+    "text": "Calculate the Odds Ratio\nWe exponentiate the coefficients to back transform the \\(\\beta\\) estimates into Odds Ratios\n\n\nShow the code\ntbl_regression(dep_sex_model, exponentiate = TRUE)\n\n\n\n\n\n\n\n\nCharacteristic\nOR\n95% CI\np-value\n\n\n\n\nsex\n2.83\n1.40, 6.21\n0.006\n\n\n\nAbbreviations: CI = Confidence Interval, OR = Odds Ratio\n\n\n\n\n\n\n\n\nFemales have 2.8 (1.4, 6.2) times the odds of showing signs of depression compared to males (p = 0.006).\n\n\n\n\n\n\nImportant\n\n\nnote the multiplicative effect language “times the odds”, not just “higher odds”"
+  },
+  {
+    "objectID": "slides/lec10b-logreg.html#model-fit",
+    "href": "slides/lec10b-logreg.html#model-fit",
+    "title": "Logistic Regression",
+    "section": "Model Fit",
+    "text": "Model Fit\n\nPseudo \\(R^{2}\\) Not appropriate for logistic regression\nHosmer and Lemeshow (1980) “Goodness of Fit” take a “measure the residuals” approach to estimate how well the model fits the data.\n\nImplemented in the R package: MKmisc, function HLgof.test\n\nPrediction Accuracy Using the model to calculate predicted probabilties of \\(Y=1\\), how often does the model prediction match the data?"
   }
 ]

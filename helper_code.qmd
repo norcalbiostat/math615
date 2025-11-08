@@ -166,5 +166,30 @@ Apply a code chunk option (`#|`) to resize the height
 check_model(model)
 ```
 
+## Log linear model + gtsummary
+If you fit a log-linear model using `lm(log(y)~x)`, `tbl_regression` doesn't want to auto-exponentiate your coefficients and CI for you. Here is the workaround
 
+```{r}
+#| eval: false
+# not run
+tbl <-
+  lm(log(mpg) ~ am, mtcars) |> 
+  tbl_regression()
 
+# run this function to see the underlying column names in `tbl$table_body`
+# show_header_names(tbl)
+
+tbl |>
+  # remove character version of 95% CI
+  modify_column_hide(ci) |> 
+  # exponentiate the regression estimates
+  modify_table_body(
+    \(x) x |> mutate(across(c(estimate, conf.low, conf.high), exp))
+  ) |> 
+  # merge numeric LB and UB together to display in table
+  modify_column_merge(pattern = "{conf.low}, {conf.high}", rows = !is.na(estimate)) |> 
+  modify_header(conf.low = "**95% CI**") |> 
+  as_kable() 
+```
+
+_ref: [Stack Overflow](https://stackoverflow.com/questions/77433514/how-do-i-exponentiate-beta-coefficients-of-a-log-transformed-outcome-of-a-linear)_
