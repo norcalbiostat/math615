@@ -1,0 +1,182 @@
+---
+title: "Classification"
+date: "2025-11-12"
+author: "Robin Donatello / MATH 615"
+description: "lec10c"
+footer: "[🔗 https://math615.netlify.app](https://math615.netlify.app)"
+from: markdown+emoji
+format: 
+  revealjs:
+    theme: sky
+    transition: fade
+    slide-number: true
+    incremental: false 
+execute:
+  freeze: auto
+  echo: true
+  message: false
+  warning: false
+knitr:
+  opts_chunk: 
+    R.options:
+      width: 200
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+## Setup
+
+```{r}
+#| code-fold: show
+library(ggplot2)
+library(ROCR)
+library(ggpubr)
+library(caret)
+library(gtsummary)
+source(here::here("load_data.R"))
+```
+
+## Predicted Probabilities {.smaller}
+
+-   Sometimes Odds Ratios can be difficult to interpret or understand.
+-   Sometimes you just want to report the probability of the event
+    occurring.
+-   Or sometimes you want to predict whether or not a new individual is
+    going to have the event.
+
+For all of these, we need to calculate $p_{i} = P(y_{i}=1)$, the
+probability of the event.
+
+$$
+p_{i} = \frac{e^{\beta_{0} + \beta_{1}x_{1i} + \beta_{2}x_{2i} + \ldots + \beta_{p}x_{pi}}}
+{1 + e^{\beta_{0} + \beta_{1}x_{1i} + \beta_{2}x_{2i} + \ldots + \beta_{p}x_{pi}}}
+$$
+
+## Example: {.smaller}
+
+```{r, echo=FALSE}
+depress$sex <- factor(depress$sex, labels = c("Male", "Female"))
+dep_sex_model <- glm(cases ~ age + income + sex, data=depress, family="binomial")
+tbl_regression(dep_sex_model)
+```
+
+The predicted probability of depression is calculated as: $$
+P(depressed) = \frac{e^{-0.676 - 0.02096*age - .03656*income + 0.92945*sex}}
+{1 + e^{-0.676 - 0.02096*age - .03656*income + 0.92945*sex}}
+$$
+
+Notice this formulation requires you to specify a *covariate profile*. In other words, what value X take on for each record. Often when you are only concerned with comparing the effect of a single measures, you set all other measures equal to their means.
+
+## Comparing probabilities {.smaller}
+
+Let's compare the probability of being depressed for males and females separately, while holding age and income constant at the average value calculated across all individuals (regardless of sex).
+
+```{r}
+#| eval: false
+#| echo: false
+XB.f <- -0.676 - 0.02096*(44.4) - .03656*(20.6) + 0.92945
+phat.f <- exp(XB.f) / (1+exp(XB.f))
+XB.m <- -0.676 - 0.02096*(44.4) - .03656*(20.6)
+phat.m <- exp(XB.m) / (1+exp(XB.m))
+```
+
+$$
+P(depressed|Female) = \frac{e^{-0.676 - 0.02096(44.4) - .03656(20.6) + 0.92945(1)}}
+{1 + e^{-0.676 - 0.02096(44.4) - .03656(20.6) + 0.92945(1)}} = 0.193
+$$
+
+
+$$
+P(depressed|Male) = \frac{e^{-0.676 - 0.02096(44.4) - .03656(20.6) + 0.92945(0)}}
+{1 + e^{-0.676 - 0.02096(44.4) - .03656(20.6) + 0.92945(0)}} = 0.086
+$$
+
+
+The probability for a 44.4 year old female who makes \$20.6k annual income has a 0.19 probability of being depressed. The probability of depression for a male of equal age and income is 0.086.
+
+## Distribution of Predicted probabilities {.smaller}
+
+We can use the `predict()` command to generate a vector of predictions $\hat{p}_{i}$ for each row used in the model.
+
+```{r}
+phat.depr <- predict(dep_sex_model, type='response') 
+gghistogram(phat.depr, add = "mean" , fill = "skyblue")
+```
+
+The average predicted probability of showing symptoms of depression is 0.17.
+
+## Plotting predictions {.smaller}
+
+There was a significant effect of gender on depression diagnosis. How does that appear in the predicted probabilities? 
+
+::: {.callout-caution title="Handling missing data in the model"}
+Any row with missing data on any variable used in the model will be dropped, and so NOT get a predicted value. So the tactic is to use the data stored in the model object.
+:::
+
+```{r}
+#| code-fold: show
+model.pred.data <- cbind(dep_sex_model$data, phat.depr)
+tail(names(model.pred.data))
+```
+
+##  Model predicted probability of depression
+
+:::: {.columns}
+
+::: {.column width="60%"}
+```{r}
+ggpubr::ggdensity(model.pred.data, x="phat.depr", add="mean", color = "sex", fill = "sex", palette = c("#00AFBB", "#E7B800"))
+```
+:::
+
+::: {.column width="40%"}
+-   Reminder this is the fitted data $\hat{p}$ 
+*   What do you notice in this plot?
+:::
+
+::::
+
+
+## Predicted Class (outcome)
+
+To classify individual $i$ as being depressed or not, we draw a binary value ($x_{i} = 0$ or $1$), with probability $p_{i}$ by using the `rbinom` function, with a `size=1`.
+
+```{r}
+set.seed(12345) #reminder: change the combo on my luggage
+plot.mpp <- data.frame(pred.prob = phat.depr, 
+                       pred.class = rbinom(n = length(phat.depr), 
+                                           size = 1, 
+                                           p = phat.depr),
+                       truth = dep_sex_model$y)
+head(plot.mpp)
+```
+
+## Confusion Matrix
+
+Applying class labels and creating a cross table of predicted (rows) vs truth (cols):
+
+```{r}
+plot.mpp <- plot.mpp %>% 
+            mutate(pred.class = factor(pred.class, labels=c("Not Depressed", "Depressed")), 
+                    truth = factor(truth, labels=c("Not Depressed", "Depressed")))
+
+table(plot.mpp$pred.class, plot.mpp$truth)
+```
+
+The model correctly identified 195 individuals as not depressed and 15 as depressed. The model got it wrong 49 + 35 times.
+
+## Accuracy {.smaller}
+
+The **accuracy** of the model is calculated as the fraction of times the model prediction matches the observed category:
+
+```{r}
+(195+15)/(195+35+49+15)
+```
+
+This model has a 71.4% accuracy.
+
+* Is this good? 
+* What if death were the event?
+
+We will see later how to use accuracy as a measure of model fit and how to optimize accuracy by changing the cutoff value. 

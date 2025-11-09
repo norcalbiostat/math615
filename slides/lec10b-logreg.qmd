@@ -1,6 +1,6 @@
 ---
 title: "Logistic Regression"
-date: "2025-10-10"
+date: "2025-11-10"
 author: "Robin Donatello"
 description: "lec10b"
 footer: "[🔗 https://math615.netlify.app](https://math615.netlify.app)"
@@ -28,12 +28,10 @@ editor:
 ```{r}
 #| echo: false
 library(gtsummary)
-library(survey)
+#library(survey)
 library(ggpubr)
 library(ggplot2)
-load(here::here("data/addhealth_clean.Rdata"))
-depress <- read.delim(here::here("data/Depress.txt"))
-names(depress) <- tolower(names(depress))
+source(here::here("load_data.R"))
 ```
 
 ## Binary outcome data

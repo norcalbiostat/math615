@@ -26,10 +26,6 @@ editor:
 ---
 
 # Setup
-```{r, include=FALSE}
-# load("C:/Box/Data/AddHealth/addhealth_clean.Rdata")
-load("C:/Users/User/Box/Data/AddHealth/addhealth_clean.Rdata")
-```
 
 ```{r}
 #| code-fold: show
@@ -41,6 +37,7 @@ library(sjPlot)     # side by side barcharts with numbers
 library(gtsummary)  # regression tables
 
 pen <- palmerpenguins::penguins
+source(here::here("load_data.R"))
 ```
 
 ## Motivation - Ex. 1 {.smaller}
