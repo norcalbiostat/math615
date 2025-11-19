@@ -292,7 +292,7 @@ data.for.model4 <- addhealth %>%
   na.omit()
 
 ggpubr::ggdensity(data.for.model4, x = "sleep_duration", 
-                  fill = "poverty", facet.by = "female_c")
+                  fill = "poverty_cat", facet.by = "female_c")
 ```
 
 The distribution of sleep duration seems to be shifted slightly higher for those living over the poverty line compared to those living under, and does not seem to differ depending on gender. 
