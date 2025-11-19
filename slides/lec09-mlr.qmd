@@ -438,7 +438,30 @@ lm(FEV1 ~ AGE + HEIGHT + BIOL.SEX + AREA , data=fev_long) |>
 
 None of these differences are significant, so we can conclude that after controlling for age, height and biological sex, residential area does not have an effect on the persons lung function. This can also be noticed by the lack of increase in the $R^{2}$ value compared to the simpler model
 
+# Assumptions
 
+```{r}
+#| echo: false
+amod <- lm(FEV1 ~ AGE + HEIGHT + BIOL.SEX + AREA , data=fev_long)
+```
 
+## Assumption - Linearity {.smaller}
+
+* The assumption is that the linear combination $XB$ is linearly associated with Y. That's difficult (impossible for higher dimensions) to graph. So we look at the linearity of the _residuals_ with respect to our fitted values. 
+* A non-linear association may indicate that some of the predictors may have a non-linear relationship with the response (such as a quadratic or cubic), or that the response variable should be transformed. 
+* See more at: [https://easystats.github.io/performance/articles/check_model.html#linearity](https://easystats.github.io/performance/articles/check_model.html#linearity)
+
+## Assumption - Variance inflation {.smaller}
+
+$$
+[SE(b_i)]^2 =
+\frac{S^2}{(N -1)(S_i)^2} * 
+\frac{1}{R_i^2}
+$$
+
+* In multiple regression, the standard error of $b_i$ depends on the correlation between $x_i$, and _all other x's_. This is quantified as $R^2_i$. 
+* As this correlation increases, the _variance inflation fraction_ (VIF) increases.
+* Common thresholds suggest that VIF values less than 5 indicate low collinearity, values between 5 and 10 indicate moderate collinearity, and values larger than 10 indicate high collinearity
+* See more at [https://easystats.github.io/performance/articles/check_model.html#multicollinearity](https://easystats.github.io/performance/articles/check_model.html#multicollinearity) 
 
 
