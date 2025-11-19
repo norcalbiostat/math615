@@ -2551,8 +2551,8 @@
     "objectID": "slides/lec10a-glm.html#introduction",
     "href": "slides/lec10a-glm.html#introduction",
     "title": "Generalized Linear Models",
-    "section": "",
-    "text": "One of the primary assumptions with linear regression, is that the error terms have a specific distribution. Namely:\n\\[ \\epsilon_{i} \\sim \\mathcal{N}(0, \\sigma^{2}) \\qquad i=1, \\ldots, n, \\quad \\mbox{and } \\epsilon_{i} \\perp \\epsilon_{j}, i \\neq j \\]\nWhen your outcome variable \\(y\\) is non-continuous/non-normal, the above assumption fails dramatically."
+    "section": "Introduction",
+    "text": "Introduction\nOne of the primary assumptions with linear regression, is that the error terms have a specific distribution. Namely:\n\\[ \\epsilon_{i} \\sim \\mathcal{N}(0, \\sigma^{2}) \\qquad i=1, \\ldots, n, \\quad \\mbox{and } \\epsilon_{i} \\perp \\epsilon_{j}, i \\neq j \\]\nWhen your outcome variable \\(y\\) is non-continuous/non-normal, the above assumption fails dramatically."
   },
   {
     "objectID": "slides/lec10a-glm.html#generalized-linear-models-glm",
@@ -2594,21 +2594,21 @@
     "href": "slides/lec10a-glm.html#example",
     "title": "Generalized Linear Models",
     "section": "Example",
-    "text": "Example\nlet \\(b_{1} = 0.2\\).\n\nAdditive For every 1 unit increase in X, y increases by 0.2 units.\nMultiplicative For every 1 unit increase in X, y changes by \\(e^{0.2} = 1.22\\) = 22%"
+    "text": "Example\nlet \\(b_{1} = 0.2\\).\n\nAdditive For every 1 unit increase in X, y increases by 0.2 units.\nMultiplicative For every 1 unit increase in X, y changes by a factor of \\(e^{0.2} = 1.22\\)\n\nSign of coefficient still is directly connected to direction of association."
   },
   {
     "objectID": "slides/lec10a-glm.html#sec-pct-chg",
     "href": "slides/lec10a-glm.html#sec-pct-chg",
     "title": "Generalized Linear Models",
     "section": "Percent Change",
-    "text": "Percent Change\nThus we interpret the coefficient as a percentage change in \\(Y\\) for a unit increase in \\(x_{j}\\).\n\n\\(b_{j}&lt;0\\) : Positive slope, positive association. The expected value of \\(Y\\) for when \\(x=0\\) is \\(1 - e^{b_{j}}\\) percent lower than when \\(x=1\\)\n\\(b_{j} \\geq 0\\) : Negative slope, negative association. The expected value of \\(Y\\) for when \\(x=0\\) is \\(e^{b_{j}}\\) percent higher than when \\(x=1\\)"
+    "text": "Percent Change\nThus we interpret the coefficient as a percentage change in \\(Y\\) for a unit increase in \\(x_{j}\\). We are interested in the difference between the estimate and the value of 1.\n\nLet \\(b_{j} = -0.2\\). Then \\(e^{-0.2} = 0.82\\), and \\((1-0.82) = .18\\)\n\nThe expected value of \\(Y\\) for when \\(x=0\\) is 18% lower than when \\(x=1\\)\n\nLet \\(b_{j} = 0.2\\). Then \\(e^{0.2} = 1.22\\), and \\((1.22-1) = .22\\)\n\nThe expected value of \\(Y\\) for when \\(x=0\\) is 22% percent higher than when \\(x=1\\)"
   },
   {
     "objectID": "slides/lec10a-glm.html#example-personal-income",
     "href": "slides/lec10a-glm.html#example-personal-income",
     "title": "Generalized Linear Models",
     "section": "Example: Personal Income",
-    "text": "Example: Personal Income\nWe are going to analyze personal income from the AddHealth data set. Income naturally is right skewed, but a log transformation fixes this problem nicely.\nggdensity(addhealth, x = \"income\", fill = \"springgreen4\") +\n   stat_overlay_normal_density(color = \"darkgreen\", linetype = \"dashed\")\nggdensity(addhealth, x = \"logincome\", fill = \"skyblue\") +\n   stat_overlay_normal_density(color = \"navy\", linetype = \"dashed\")\nggqqplot(addhealth, x = \"income\")\nggqqplot(addhealth, x = \"logincome\")"
+    "text": "Example: Personal Income\nWe are going to analyze personal income from the AddHealth data set. Income naturally is right skewed, but a log transformation fixes this problem nicely.\n\nShow the code\nggdensity(addhealth, x = \"income\", fill = \"springgreen4\") +\n   stat_overlay_normal_density(color = \"darkgreen\", linetype = \"dashed\")\nggdensity(addhealth, x = \"logincome\", fill = \"skyblue\") +\n   stat_overlay_normal_density(color = \"navy\", linetype = \"dashed\")\nggqqplot(addhealth, x = \"income\")\nggqqplot(addhealth, x = \"logincome\")"
   },
   {
     "objectID": "slides/lec10a-glm.html#identify-variables",
@@ -3281,5 +3281,12 @@
     "title": "Generalized Linear Models",
     "section": "",
     "text": "One of the primary assumptions with linear regression, is that the error terms have a specific distribution. Namely:\n\\[ \\epsilon_{i} \\sim \\mathcal{N}(0, \\sigma^{2}) \\qquad i=1, \\ldots, n, \\quad \\mbox{and } \\epsilon_{i} \\perp \\epsilon_{j}, i \\neq j \\]\nWhen your outcome variable \\(y\\) is non-continuous/non-normal, the above assumption fails dramatically."
+  },
+  {
+    "objectID": "slides/lec10a-glm.html#percent-change",
+    "href": "slides/lec10a-glm.html#percent-change",
+    "title": "Generalized Linear Models",
+    "section": "Percent Change",
+    "text": "Percent Change\nThus we interpret the coefficient as a percentage change in \\(Y\\) for a unit increase in \\(x_{j}\\). We are interested in the difference between the estimate and the value of 1.\n\nLet \\(b_{j} = -0.2\\). Then \\(e^{-0.2} = 0.82\\), and \\((1-0.82) = .18\\)\n\nThe expected value of \\(Y\\) for when \\(x=0\\) is 18% lower than when \\(x=1\\)\n\nLet \\(b_{j} = 0.2\\). Then \\(e^{0.2} = 1.22\\), and \\(1.22-1 = .22\\)\n\nThe expected value of \\(Y\\) for when \\(x=0\\) is 22% percent higher than when \\(x=1\\)"
   }
 ]

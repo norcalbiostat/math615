@@ -98,14 +98,19 @@ When using log transformed outcomes, the effect on Y becomes **multiplicative** 
 let $b_{1} = 0.2$. 
 
 * **Additive** For every 1 unit increase in X, y increases by 0.2 units.
-* **Multiplicative** For every 1 unit increase in X, y changes by $e^{0.2} = 1.22$ = 22%
+* **Multiplicative** For every 1 unit increase in X, y changes by a factor of $e^{0.2} = 1.22$ 
 
-## Percent Change {#sec-pct-chg}
+Sign of coefficient still is directly connected to direction of association. 
 
-Thus we interpret the coefficient as a **percentage** change in $Y$ for a unit increase in $x_{j}$.
+## Percent Change {#sec-pct-chg .smaller}
 
-* **$b_{j}<0$** : Positive slope, positive association. The expected value of $Y$ for when $x=0$ is $1 - e^{b_{j}}$ percent _lower_ than when $x=1$
-* **$b_{j} \geq 0$** : Negative slope, negative association. The expected value of $Y$ for when $x=0$ is $e^{b_{j}}$ percent _higher_ than when $x=1$
+Thus we interpret the coefficient as a **percentage** change in $Y$ for a unit increase in $x_{j}$. We are interested in the difference between the estimate and the value of 1. 
+
+* Let $b_{j} = -0.2$. Then $e^{-0.2} = 0.82$, and $(1-0.82) = .18$
+    * The expected value of $Y$ for when $x=0$ is 18% _lower_ than when $x=1$
+* Let $b_{j} = 0.2$. Then $e^{0.2} = 1.22$, and $(1.22-1) = .22$
+    * The expected value of $Y$ for when $x=0$ is 22% percent _higher_ than when $x=1$
+   
 
 ## Example: Personal Income {.smaller} 
 
