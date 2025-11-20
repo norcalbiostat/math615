@@ -2601,7 +2601,7 @@
     "href": "slides/lec10a-glm.html#sec-pct-chg",
     "title": "Generalized Linear Models",
     "section": "Percent Change",
-    "text": "Percent Change\nThus we interpret the coefficient as a percentage change in \\(Y\\) for a unit increase in \\(x_{j}\\). We are interested in the difference between the estimate and the value of 1.\n\nLet \\(b_{j} = -0.2\\). Then \\(e^{-0.2} = 0.82\\), and \\((1-0.82) = .18\\)\n\nThe expected value of \\(Y\\) for when \\(x=0\\) is 18% lower than when \\(x=1\\)\n\nLet \\(b_{j} = 0.2\\). Then \\(e^{0.2} = 1.22\\), and \\((1.22-1) = .22\\)\n\nThe expected value of \\(Y\\) for when \\(x=0\\) is 22% percent higher than when \\(x=1\\)"
+    "text": "Percent Change\nThus we interpret the coefficient as a percentage change in \\(Y\\) for a unit increase in \\(x_{j}\\). We are interested in the difference between the estimate and the value of 1.\n\nLet \\(b_{j} = -0.2\\). Then \\(e^{-0.2} = 0.82\\), and \\((1-0.82) = .18\\)\n\nThe expected value of \\(Y\\) for when \\(x=1\\) is 18% lower than when \\(x=0\\)\n\nLet \\(b_{j} = 0.2\\). Then \\(e^{0.2} = 1.22\\), and \\((1.22-1) = .22\\)\n\nThe expected value of \\(Y\\) for when \\(x=1\\) is 22% percent higher than when \\(x=0\\)"
   },
   {
     "objectID": "slides/lec10a-glm.html#example-personal-income",
@@ -3301,6 +3301,6 @@
     "href": "slides/lec09-mlr.html#assumption---variance-inflation",
     "title": "Multiple Linear Regression",
     "section": "Assumption - Variance inflation",
-    "text": "Assumption - Variance inflation\n\\[\n[SE(b_i)]^2 =\n\\frac{S^2}{(N -1)(S_i)^2} *\n\\frac{1}{R_i^2}\n\\]\n\nIn multiple regression, the standard error of \\(b_i\\) depends on the correlation between \\(x_i\\), and all other x’s. This is quantified as \\(R^2_i\\).\nAs this correlation increases, the variance inflation fraction (VIF) increases.\nCommon thresholds suggest that VIF values less than 5 indicate low collinearity, values between 5 and 10 indicate moderate collinearity, and values larger than 10 indicate high collinearity\nSee more at https://easystats.github.io/performance/articles/check_model.html#multicollinearity"
+    "text": "Assumption - Variance inflation\n\\[\n[SE(b_i)]^2 =\n\\frac{S^2}{(N -1)(S_i)^2} *\n\\frac{1}{1-R_i^2}\n\\]\n\nIn multiple regression, the standard error of \\(b_i\\) depends on the correlation between \\(x_i\\), and all other x’s. This is quantified as \\(R^2_i\\).\nAs this correlation increases, the variance inflation fraction (VIF) increases.\nCommon thresholds suggest that VIF values less than 5 indicate low collinearity, values between 5 and 10 indicate moderate collinearity, and values larger than 10 indicate high collinearity\nSee more at https://easystats.github.io/performance/articles/check_model.html#multicollinearity"
   }
 ]

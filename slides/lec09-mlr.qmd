@@ -456,7 +456,7 @@ amod <- lm(FEV1 ~ AGE + HEIGHT + BIOL.SEX + AREA , data=fev_long)
 $$
 [SE(b_i)]^2 =
 \frac{S^2}{(N -1)(S_i)^2} * 
-\frac{1}{R_i^2}
+\frac{1}{1-R_i^2}
 $$
 
 * In multiple regression, the standard error of $b_i$ depends on the correlation between $x_i$, and _all other x's_. This is quantified as $R^2_i$. 
