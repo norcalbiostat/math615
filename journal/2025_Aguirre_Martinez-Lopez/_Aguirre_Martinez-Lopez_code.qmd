@@ -1,0 +1,352 @@
+---
+title: "The Relationship Between Field of Study and Depression Symptoms Among EOP and EOPS Students Across California Campuses"
+format: 
+  pdf:
+    colorlinks: true
+    linkcolor: blue
+    urlcolor: blue
+    citecolor: blue
+evaluate: 
+  warning: false
+  message: false
+author:
+  - name: Angel Aguirre 
+    affiliations: 
+      - name: California State University, Chico
+        department: Mathematics and Statistics
+  - name: Marlen Martinez-Lopez
+    affiliations:
+       - name: California State University, Chico
+         department: Mathematics and Statistics
+abstract: |
+  This study investigates how characteristics such as college major and underrepresented minority status affect the association on depression symptoms for students enrolled in the Educational Opportunity Program (EOP) or the Extended Opportunity Programs and Services (EOPS) across california campuses. Results demonstrate that college major have a significant association with depression. Our analysis reveals that Arts & Humanities majors are significantly higher risk of showing depression symptoms compared to other majors. These findings align with past literature highlithing “arts & humanities’ majors having a higher depression score. These findings can help with prioritizing or expanding mental health services or counseling services within EOP/EOPS or similar programs. Future research should consider variables such as college major, ethnicity, income levels and whether they have family history of depression to use to explore existing research gaps by focusing on the economically and educationally disadvantaged students. 
+bibliography: bibliography.bib
+link-citations: true
+---
+
+*Keywords:* Undergraduate students, mental health, depression, educational opportunity program, extended opportunity program and services, underrepresented minorities
+```{r, echo=FALSE, output=FALSE}
+library(tidyverse)
+library(ggpubr)
+library(gtsummary)
+library(sjPlot)
+library(ggridges)
+library(ggplot2)
+here::i_am("research_report/research_report_draft.qmd")
+load(here::here("data/college_survey_cleaned.Rdata"))
+
+clean$q16[clean$q16 == "Arts & Humanities"] <- 'Arts & Hum.'
+clean$q16[clean$q16 == "STEM"] <- 'STEM'
+clean$q16[clean$q16 == "Vocational Cert"] <- 'Vocational'
+clean$q16[clean$q16 == "Pub Health, SocSci & Edu"] <- 'PH & Ed'
+clean$q16[clean$q16 == "Business, & Recreation"] <- 'Bus. & Rec.'
+clean$q16[clean$q16 == "Undeclared"] <- 'Undeclared'
+
+```
+
+
+## Introduction and Background {#sec-intro}
+
+With the prevalence of depression among undergraduate students, it is important to realize this is a crucial stage in their mental development where they may face challenges that cause them to have their mental health decline [@miles2024]. According to the 2019 American College Health Association National College Health Assessment, which includes reports from 54,000 undergraduates students across the US [@acha2020]. This assessment reported over 46% of students had difficulty functioning as a result of feeling depressed [@acha2020]. This population is at the point of their lives where most mental health disorders typically develop [@miles2024].
+
+Mental disorders are of special concern in college students as they are at risk of developing mental health issues that can develop to more serious mental disorders such as mania/hypomania, depressive episodes, etc [@miles2024]. It is known that students commonly go through depression which can affect overall academic performance and graduation rates [@badiee2019]. It is important to know what other factors affect student mental health, in addition to academics, in order to build support systems to alleviate mental struggles [@beiter2015].
+
+Our study investigates how characteristics such as college major and underrepresented minority status affect the association on depression symptoms for students enrolled in the Educational Opportunity Program (EOP) or the Extended Opportunity Programs and Services (EOPS) across University of California (UC), California State University (CSU) and California Community Colleges (CCC) campuses. Both programs help students that are economically and educationally disadvantaged while EOP also helps students who are first generation. A research study from Lipson reveals both first generation and continuing generation students had high levels of prevalence for depression. About 40% of students in each group screened positive for symptoms of depression [@lipson2023]. Additional research found that social support for economically disadvantaged college students to be negatively associated with depression [@yu2023]. EOP provides social services and support for first generation students and economically disadvantaged students. We aim to understand if there is an associated between college major and depression and if there is an associations between unrepresented minority status and depression withing EOP and EOPS students. This could help inform and support programs that aim to help student’s mental health, especially depression.
+
+Previous research has highlighted the importance of targeted programs and interventions for students with depression. Our study builds on this foundation, providing valuable data to assess the factors that impact student’s well-being across UC, CSU, and CCC campuses across California. This data includes a student demographic that is not widely researched in recent research. Our research addresses significant gaps in the existing literature by focusing on the most economically and educationally disadvantaged students, a population that has been historically underrepresented in mental health studies in relation to college settings [@liu2022]. Specifically we aim to find whether there is an association between college major and depression, as well as underrepresented minorities and depression within EOP and EOPS students. 
+
+## Study Design and Data collection {#sec-design}
+
+This is a retrospective observational study uses survey data to identify characteristics associated with depressive symptoms. The data we are using in this analysis is the Basic Needs & Student Success Survey Statewide collected by Center Healthy Communities at California State University Chico [@chc2023]. The study population consisted of undergraduate students enrolled in the EOP or EOPS across 12 colleges in California during 2022 to 2023. The data was collected by emailing EOP/EOPS students an interest form and giving them a $25 gift card. The inclusion criteria applied for data collection are students who were enrolled in EOP or EOPS in select California campuses. 
+
+## Methods 
+
+#### Data Preparation {#sec-dataprep-methods}
+
+All survey questions were required but for every question, a "prefer not to answer" option was available which we set to missing. The following variables were used in our analysis and model.
+
+Our college major variable represents the student’s response when being asked, “Which of the following categories best describes your major?”, where the student was able to select a category that best represents their major. Additionally, college major names were shorted to allow a cleaner visualization of plots and tables. The following names are the full names of the shortened majors: PH & Ed: Public Health, Social Services and Education, Vocational: Vocational Certificate Program (Includes Electrical, Firefighting, Welding, Health Assistants, etc.), STEM: Science, Technology, Engineering and Math (Includes Medicine, Computer Science, Agriculture, Accounting, Statistics, Nursing, and Nutrition), Bus. & Rec.: Business, Recreation, and Culinary Services, and Arts & Hum.: Arts and Humanities. The "Other" major category was also recoded where students who selected "Other" and wrote their response were labeled in an appropriate major category based on their response. This process was manual. For example, if someone wrote "Administration of Justice" they would be placed accordingly into "PH & Ed". There was no "Other" response that did not fit in any of the other categories.
+
+Underrepresented minority was coded from the question "Do you identify as Hispanic or Latino or Spanish Origin?". If this was answered as any variation of "yes" we labeled that entry as an underrepresented minority. Additionally this was also coded from "What race do you identify as?". If student answered as "African American" or "American Indian" they were also labeled as an underrepresented minority. All other answers from the ethnicity question and the race question were labeled as non-underrepresented minority. The definition for Underrepresented minority came from Chico State [@chicostate2019].
+
+Depression score was measured by student responses to mental health related questions and it sums the value of those responses. The validated PHQ-9 severity scoring scale was used to compute a depression score based on responses to mental health related questions [@kroenke2001]. The variable is the summation of the values of the responses to the various different mental health questions asked. 9 questions were asked and each response to the question has a value from 1 to 5. Higher score indicating stronger symptoms. The total of those values was our variable Depression Score. If any of the values for the responses are missing the depression score will also be missing.
+
+Our binary depressed variable was based on the depression score variable. It is a binary variable where we split depression score by half at the clinical cut off of 11. This clinical cut off is based on the Canadian Medical Association Journal [@manea2012]. According to this journal the difference is negligible whether you set it from 8 to 11, but we found that 11 gives us the highest model accuracy.  
+
+The gender identity variable represents the respondent's identity. The following options were provided: "man", "woman", "gender non-binary", "gender queer or gender non-conforming", or "prefer not to answer". gender non-conforming. For our study, we collapsed these variables into the following categories: "man", "woman" and "gender non-conforming" (which is students who responded as "gender non-binary", "gender queer" and "gender non-conforming"). 
+
+LGBTQ+ variable was a binary variable on whether the student identifies as LGBTQ+ or not. The food insecurity variable was constructed from a few questions relating to food eaten in their households. One example of a question was from the following, "I/we worried whether food would run out before I/we got money to buy more" within the last 30 days. If these questions were answered with often true or sometimes true, then they were categorized as food insecure. 
+
+#### Statistical Analysis {#sec-analysis-methods}
+
+In order to answer how student's declared college major associates with depression symptoms, a Kruskal-Wallis test was used. Kruskal-Wallis will show whether there is statistical significance between college major and depression score or not. Depression score's distribution is heavily skewed to the right, so a non-parametric test was needed, and due to the data types of both variables (Quantitative ~ Categorical) the Kruskal-Wallis test was most appropriate.
+
+Additionally, to help answer whether there is an association of underrepresented minority status and depression symptoms, a Wilcox test was used. The Wilcox test will be performed to compare proportions of depression score between underrepresented minorities and non-underrepresented minorities. As previously mentioned, depression score's distribution is heavily skewed to the right, so a non-parametric test was needed, and due to the data types of both variables (Quantitative ~ Binary) the Wilcox test was most appropriate.
+
+We also performed a logistic regression of college major, underrepresented minority status and depression. Additional variables added were gender identity, LGBTQ+ identity, and food insecurity to control the relationship between college major, underrepresented minority and depression. Furthermore, software and packages used for this analysis include: RStudio [@r2025], tidyverse, sjPlot, ggridges, gtsummary, ggplot2, and ggpubr.
+
+## Results {#sec-results}
+
+Displays variables used in our bivariate and multivariable analysis. 
+
+```{r, echo=FALSE}
+#| label: summary-table-1
+#| tbl-cap: "A summary table of the variables used in the dataset."
+#| tbl-pos: "H"
+
+analysis_data <- clean |>
+  select(q16, URM, is_depressed, q14_2, identity_clean, food_secure) |>
+  na.omit()
+
+table1 <- analysis_data |>
+  tbl_summary(by = "is_depressed",
+              statistic = list(
+                all_continuous() ~ "{mean} ({sd})",
+                all_categorical() ~ "{n} ({p}%)"
+              ),
+              label = (list(q16 = "College Major",
+                            q14_2 = "LGBTQ+",
+                            identity_clean = "Gender Identity",
+                            food_secure = "Food Insecurity",
+                            URM = "Unrepresented Minority",
+                            is_depressed = "Depressed")
+                      ),
+              missing= 'no'
+              ) |>
+  add_p(pvalue_fun = label_style_pvalue(digits = 2)) |>
+  add_overall() |>
+  modify_spanning_header(c("stat_1", "stat_2") ~ "**Depressed**") |>
+  modify_footnote_header(
+    footnote = "3% of LGBTQ+, Food Insecurity, and URM were missing",
+    columns = all_stat_cols(),
+    replace = FALSE
+  ) |> as_gt()
+
+table1
+```
+
+In table 1, 77% of respondents identified as an underrepresented minority (URM), while 15% identified as LGBTQ+ and 81% were women. 56% of students identified as being food insecure. Bivariate analysis p-value using chi-square tests, indicated that LGBTQ+ identity, gender identity, and food security were each significantly associated with higher rates of depression symptoms. The most common major category sampled was Public Health and Education (43%).
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+#| label: fig-ridge-1
+#| fig-cap: "A ridge plot comparing the distribution of depression score for each major category"
+#| fig-width: 4
+#| fig-height: 3
+#| fig-pos: "H"
+
+dfr <- na.omit(clean[c("q16", "depression_score")])
+
+ggplot(dfr, aes(x = depression_score, y = q16,
+                  fill = q16)) +
+  geom_density_ridges() +
+  guides(fill = FALSE) +
+  labs(
+    x = "Depression Score",
+    y = "College Major Category",
+    fill = "Major"
+  ) +
+  stat_density_ridges(quantile_lines = TRUE, alpha = 0.75,
+                      quantiles = c(0.05, 0.5, 0.95)) +
+  ggtitle("Depression Scores by College Major Category") +
+  theme(plot.title = element_text(size = 9,face="bold"),
+        axis.title=element_text(size=9))
+```
+
+In figure 1, most college major’s depression score were skewed to the right with the exception of Arts & Humanities being less skewed to the right and having closer to a bimodal shape. The Kruskal Wallis test revealed statistically significant differences in median across all majors (p = 0.012). Post-hoc comparisons using Wilcoxon rank-sum tests show no significant pairwise differences between specific majors. Some comparisons that had a smaller p value or that are significant at the 10% level were from the following: Arts & Hum. and Bus. & Rec. at p = 0.077, Arts & Hum. and STEM at p = 0.057, and Arts & Hum. and Vocational at p = 0.174
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+#| label: fig-box-2
+#| fig-cap: "A box plot that compares depression score distribution for underrepresented minorities and non-underrepresented minorities"
+#| fig-width: 4
+#| fig-height: 3
+#| fig-pos: "H"
+
+p <- ggboxplot(clean, x = "URM", y = "depression_score",
+               color = "URM", palette = "npg", remove = NA) +
+     labs(
+       x = "URM",
+       y = "Depression Score"
+     ) +
+     coord_flip()
+
+# add p-value
+p + stat_compare_means(method = "wilcox",
+                       label.x.npc = 0.5,
+                       label.y.npc = 0.6) +
+  ggtitle("Depression Scores by URM Status") +
+  theme(plot.title = element_text(size = 9,face="bold"),
+        axis.title=element_text(size=9))
+
+```
+
+In figure 2, students who are underrepresented had a higher median depression score of 8.89 points as compared to those who are not underrepresented at 8.12. By comparing medians, URM students are more depressed by a depression score of 1 with a 95% confidence interval (-3, 2). Although this is not significant (p-value = 0.055). Both distributions are also right skewed. 
+
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+#| label: fig-forest-3
+#| fig-cap: "A forest plot that displays the odds ratio and its respective 95% confidence interval."
+#| fig-width: 4
+#| fig-height: 3
+#| fig-pos: "H"
+
+model1 <- glm(is_depressed~q16 + q14_2 + identity_clean + food_secure + URM,
+              data=clean, family='binomial')
+
+CI <- exp(confint(model1))[-1,]
+forestPlot <- plot_model(model1, axis.lim = c(min(CI), max(CI)),
+           show.values = TRUE,
+           value.offset = .4,
+           vline.color = "black",
+           title = "",
+           axis.labels = c("URM", 
+                          "Food Secure",
+                          "Identity: Woman",
+                          "Identity: Man",
+                          "LGBTQ+",
+                          "Vocational Major",
+                          "Undeclared Major",
+                          "STEM Major",
+                          "Public Health & Ed Major",
+                          "Business & Rec Major"))
+
+forestPlot
+```
+ 
+The forest figure above shows where our reference group is Arts & Humanities, non-LGBTQ+, students who identify as non-conforming, not food insecure and students who are not URM. Business & Recreation students have 0.61 (0.37, 0.98) times the odds to be classified as depressed compared to Arts & Humanities students (p = 0.041). Public Education, Social Science and Education students have 0.66 (0.45, 0.95) times the odds to be classified as depressed compared to Arts & Humanities students (p = 0.027). STEM students have 0.67 (0.45, 0.98) times the odds to be classified as depressed compared to Arts & Humanities students (p = 0.041). All these differences are significant. There’s evidence that Arts and Humanities EOP and EOPS students may suffer from depression at a higher rate than other majors Underrepresented minorities have 1.16 (0.87,1.56) times the odds to be classified as depressed (p= 0.3). This difference is not significant. We do not have evidence that underrepresented minorities from these programs are depressed more often than non underrepresented minorities. 
+
+Other variables such as LGBTQ+, had a higher 2.70 (1.94, 3.78) times the odds to be classified as depressed as compared to non-LGBTQ+ students. This is about a 170% higher depression score compared to non-LGBQT+ students. Additionally, men were 0.36(0.12, 0.94) times higher the odds compared to students identifying as non-conforming, and women had 0.56(0.20, 1.41) times higher the odds to classified as depressed as compared to non-conforming. Furthermore, students who are food insecure have a higher 2.11 (0.87, 1.56) times the odds to be classified as depressed as compared to students who are not food insecure. This is about a 111% higher depression score. 
+
+## Discussion, Conclusion {#sec-discussino}
+
+The first analysis shows Arts & Humanities, and Undeclared majors both have a higher mean of depression scores  as compared to other majors such as STEM. The second analysis showed hispanic and non hispanic students have the same medians in terms of depression score but with Hispanic students having a slightly higher mean depression score (8.98) and (8.06) respectively. While the bivariate result for depression and major was statistically significant (p = 0.006), there showed no statistical significance differences between specific majors. Ethnicity and depression bivariate analysis results showed statistical significance (p = 0.016). The first logistic model show statistical significance between major and depression score, specifically “arts & humanities” as compared to other majors. The second logistic analysis between ethnicity and depression score, show no statistical significance. 
+
+The statistical significance p-value for college major and depression confirms their association. Therefore, confirming the first hypothesis. On the other hand, the p-value ethnicity and depression does not support the second hypothesis. This finding may reflect may demonstrate that socioeconomic factors variables were common across groups in this sample. This exerts a stronger influence on mental health outcomes than ethnic backgrounds alone.  
+
+The main pattern for “arts & humanities” major, have a higher depression score than other majors specifically, the comparison between “arts & humanities” vs “stem” and “business & recreational”  and “public health, social science & education” majors. This suggests that students in “arts & humanities” may experience unique academic and career stressors that contribute to higher depression scores. It may also reflect stigma around mental health disclosure. 
+
+The findings for major and depression specifically if “arts & humanities’ majors having a higher depression score supports past research findings. Specifically, Ajinkya et al (2016) agree and highlights “College of Arts & Humanities” as having a significant association with higher odds of depression. Findings from Asher et al (2023) found Asians reported the highest depression symptoms prevalence. Given the differences in datasets, where underrepresented minorities make up 17% of the data, it is difficult to generalize findings from prior studies. 
+
+This study contributes to understanding the factors associated to depression among EOP and EOPS university students. The depression logistic regression model serves as a model to advocate resources for students in programs like EOP and EOPS or similar programs. Program Directors or staff for example, can utilize this model to inform resource allocation decisions given that mental health has been an important factor overall in student success. These findings can help with prioritizing or expanding mental health services or counseling services within EOP/EOPS or similar programs. Future research should consider variables such as college major, ethnicity, income levels and whether they have family history of depression to use to explore existing research gaps by focusing on the economically and educationally disadvantaged students. This significant research gap would with understanding mental health outcomes on a population that has been underrepresented in regards to university settings. Future research should also explore the mechanism underlying mental health outcomes across majors. 
+
+The findings may be generalizable to first generation or low income and educationally disadvantaged students at public colleges and universities in California. However, the unique characteristics of the student population suggest the results should apply to students in different academic settings, socioeconomic backgrounds or similar student support programs. Since the data is not linear nor normally distributed, the multiple linear regression could be not be used. Logistic model fit best based on the variables and the data.
+
+Since observational data was used, the findings only show associations and should not be interpreted as cause-and-effect relationships. Other possible factors that are not included in the model are gpa. A correlations analysis was performed for gpa, but the pearson's correlation coefficient resulted in close to 0. Other research literature provided gpa was a factor in depression (Hysenbegasi 2005). Therefore gpa should not be ruled out since it  could be a possible factor in other future studies. 
+
+## References
+::: {#refs}
+:::
+
+## Appendix
+
+This following code describes reading our cleaned dataset to generating summary tables and figures.
+```{r}
+load(here::here("data/college_survey_cleaned.Rdata"))
+```
+
+### A sample characteristic table
+
+This will show the sample characteristic table of variables we used.
+
+```{r, output=FALSE}
+
+analysis_data <- clean |>
+  select(q16, URM, is_depressed, q14_2, identity_clean, food_secure) |>
+  na.omit()
+
+table1 <- analysis_data |>
+  tbl_summary(by = "is_depressed",
+              statistic = list(
+                all_continuous() ~ "{mean} ({sd})",
+                all_categorical() ~ "{n} ({p}%)"
+              ),
+              label = (list(q16 = "College Major",
+                            q14_2 = "LGBTQ+",
+                            identity_clean = "Gender Identity",
+                            food_secure = "Food Insecurity",
+                            URM = "Unrepresented Minority",
+                            is_depressed = "Depressed")
+                      ),
+              missing= 'no'
+              ) |>
+  add_p(pvalue_fun = label_style_pvalue(digits = 2)) |>
+  add_overall() |>
+  modify_spanning_header(c("stat_1", "stat_2") ~ "**Depressed**") |>
+  modify_footnote_header(
+    footnote = "3% of LGBTQ+, Food Insecurity, and URM were missing",
+    columns = all_stat_cols(),
+    replace = FALSE
+  )
+
+table1
+```
+
+### Ridge plot
+
+This will display the ridge plot of the distribution of depression scores across all major types. 
+
+```{r, output=FALSE, warning=FALSE, message=FALSE}
+
+dfr <- na.omit(clean[c("q16", "depression_score")])
+
+ggplot(dfr, aes(x = depression_score, y = q16,
+                  fill = q16)) +
+  geom_density_ridges() +
+  guides(fill = FALSE) +
+  labs(
+    x = "Depression Score",
+    y = "College Major Category",
+    fill = "Major"
+  ) +
+  stat_density_ridges(quantile_lines = TRUE, alpha = 0.75,
+                      quantiles = c(0.05, 0.5, 0.95)) +
+  ggtitle("Depression Scores by College Major Category") +
+  theme(plot.title = element_text(size = 9,face="bold"))
+    
+```
+### Box Plot
+
+This will display the box plot of the distribution of depression scores between underrepresented minorities and non-underrepresented minorities.
+
+```{r, output=FALSE, warning=FALSE, message=FALSE}
+
+major2 <- subset(clean, q16 %in% c("Business, & Recreation", "Public Health & Ed", "STEM"))
+
+plot2 <- ggviolin(major2,
+                 x = "q16", xlab = "Major",
+                 y = "depression_score", ylab = "Depression Score",
+                 color = "q16",
+                 add = c("mean", "boxplot"),
+                 remove = NA) +
+                 labs(color = NULL)
+
+ggpar(plot2, ylim = c(-7, 37))
+
+```
+### Forest Plot
+
+This will display the forest plot of the variables used for the logistic regression model.
+
+```{r, output=FALSE, warning=FALSE, message=FALSE}
+
+model1 <- glm(is_depressed~q16 + q14_2 + identity_clean + food_secure + URM,
+              data=clean, family='binomial')
+
+CI <- exp(confint(model1))[-1,]
+forestPlot <- plot_model(model1, axis.lim = c(min(CI), max(CI)),
+           show.values = TRUE,
+           value.offset = .4,
+           vline.color = "black",
+           title = "",
+           axis.labels = c("URM", 
+                          "Food Secure",
+                          "Identity: Woman",
+                          "Identity: Man",
+                          "LGBTQ+",
+                          "Vocational Major",
+                          "Undeclared Major",
+                          "STEM Major",
+                          "Public Health & Ed Major",
+                          "Business & Rec Major"))
+
+forestPlot
+```
